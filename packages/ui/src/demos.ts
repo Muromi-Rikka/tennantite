@@ -1,3 +1,8 @@
+export { CardDemo } from "./containers/card/demo";
+export { IconDemo } from "./containers/icon/demo";
+export { ItemStackDemo } from "./containers/item-stack/demo";
+export { PanelDemo } from "./containers/panel/demo";
+export { SlotDemo } from "./containers/slot/demo";
 /**
  * 组件预览用例（story）独立入口：供 playground 等开发环境使用，
  * 不进入 npm 主入口（规格 §1：每组件 story / 示例可运行）。

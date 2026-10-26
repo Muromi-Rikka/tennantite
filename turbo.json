@@ -14,6 +14,14 @@
     "typecheck": {
       "dependsOn": ["^build"]
     },
+    "next-app#build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**"]
+    },
+    "tanstack-app#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".tanstack/**"]
+    },
     "test": {
       "dependsOn": ["^build"],
       "outputs": ["coverage/**"]
