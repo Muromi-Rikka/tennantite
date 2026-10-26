@@ -1,0 +1,38 @@
+# dependencies
+node_modules/
+
+# build outputs
+dist/
+build/
+.next/
+.output/
+.vinxi/
+.tanstack/
+
+# turbo / tooling cache
+.turbo/
+.nitro/
+.cache/
+
+# test artifacts
+coverage/
+
+# env
+.env
+.env.*
+!.env.example
+
+# editors / os
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# zcode local files
+.zcode/
