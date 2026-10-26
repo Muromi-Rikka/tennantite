@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@import "@verdigris/tokens/css/tokens.css";
+@import "@verdigris/textures/css/textures.css";
+
+/* monorepo：扫描工作区包源码中的类名 */
+@source "../../../packages";
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: #1f1f1f;
+  color: var(--color-mc-text-main);
+  font-family: var(--font-readable);
+  font-size: var(--text-mc);
+}

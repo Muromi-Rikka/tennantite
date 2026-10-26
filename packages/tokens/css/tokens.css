@@ -1,2 +1,65 @@
-/* @verdigris/tokens — Tailwind v4 令牌入口（阶段 1 填充完整令牌） */
-@import "tailwindcss";
+/*
+ * @verdigris/tokens — L0 设计令牌
+ *
+ * Tailwind v4 CSS-first：所有令牌经 @theme 暴露为 CSS 变量并生成对应工具类。
+ * 使用方在自己的 Tailwind 入口内：
+ *   @import "tailwindcss";
+ *   @import "@verdigris/tokens/css/tokens.css";
+ *
+ * 注：令牌文件的间距基准为 1px（--spacing），保证 1px 像素步进对齐（规格 §0.4）。
+ */
+
+/* 开源像素字体（均为 OFL 授权，见 LICENSE-ASSETS.md；不做中文适配） */
+@import "@fontsource/press-start-2p/index.css";
+@import "@fontsource/vt323/index.css";
+
+@theme {
+  /* ---- 色板（规格 §3.1） ---- */
+  --color-mc-tooltip-bg: #100010; /* 物品悬浮提示底色 */
+  --color-mc-tooltip-text: #fff8e7; /* 经典紫边提示文本 */
+  --color-mc-accent-green: #7ec850; /* 成就 / 主行动按钮 */
+  --color-mc-panel: #c6c6c6; /* 窗口面板基底 */
+  --color-mc-panel-overlay: rgb(0 0 0 / 60%); /* 半透明界面背景 */
+  --color-mc-stone: #8b8b8b; /* 按钮石纹基底 */
+  --color-mc-stone-dark: #555555; /* 暗部浮雕 */
+  --color-mc-stone-darker: #373737; /* 槽位凹槽 */
+  --color-mc-highlight: #ffffff; /* 亮部浮雕 */
+  --color-mc-text-main: #ffffff; /* 主文本 */
+  --color-mc-text-dim: #a0a0a0; /* 次文本 / 禁用 */
+  --color-mc-gold: #e2b84b; /* 标题、稀有标识 */
+  --color-mc-heart: #e3313b; /* 生命值 */
+  --color-mc-xp: #7efc20; /* 经验条 */
+
+  /* ---- 字体 ---- */
+  --font-pixel: "Press Start 2P", "VT323", monospace;
+  --font-readable: "VT323", "Press Start 2P", monospace;
+
+  /* ---- 间距：1px 像素步进 ---- */
+  --spacing: 1px;
+
+  /* ---- 文本尺寸 ---- */
+  --text-mc-pixel: 0.5rem; /* Press Start 2P 原生 8px */
+  --text-mc-pixel--line-height: 1.75;
+  --text-mc: 1rem; /* VT323 基准 */
+  --text-mc--line-height: 1.25;
+  --text-mc-lg: 1.5rem;
+  --text-mc-lg--line-height: 1.2;
+
+  /* ---- 硬阴影（无模糊，浮雕感，规格 §3.1） ---- */
+  --shadow-mc-1: 1px 1px 0 0 rgb(0 0 0 / 50%);
+  --shadow-mc-2: 2px 2px 0 0 rgb(0 0 0 / 50%);
+  --shadow-mc-raised: inset 2px 2px 0 0 rgb(255 255 255 / 40%),
+    inset -2px -2px 0 0 rgb(0 0 0 / 40%);
+  --shadow-mc-sunken: inset 2px 2px 0 0 rgb(0 0 0 / 40%),
+    inset -2px -2px 0 0 rgb(255 255 255 / 25%);
+}
+
+/* 像素渲染基调：所有纹理必须无模糊缩放（规格 §0.4 / §3.1） */
+@utility pixelated {
+  image-rendering: pixelated;
+}
+
+/* MC 文本经典投影 */
+@utility mc-text-shadow {
+  text-shadow: 2px 2px 0 rgb(0 0 0 / 60%);
+}

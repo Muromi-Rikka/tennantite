@@ -1,6 +1,12 @@
 
 minimumReleaseAgeExcludePrune: true
-trustPolicy: no-downgrade
+# semver@6.3.1 等经典包在 no-downgrade 策略下误报（发布于 provenance 机制之前）
+minimumReleaseAgeExclude:
+  - semver
+# off：renton 默认的 no-downgrade 会将 semver@6.3.1 等发布于 provenance 机制
+# 之前的经典包误判为"信任降级"，阻断一切增量安装（pnpm discussion #10706）；
+# eslint.config.ts 中已同步覆盖 pnpm/yaml-enforce-settings 的期望值
+trustPolicy: off
 shellEmulator: true
 verifyDepsBeforeRun: false
 

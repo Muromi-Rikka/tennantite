@@ -9,13 +9,14 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "lint": "turbo run lint",
+    "lint": "eslint .",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test"
   },
   "devDependencies": {
     "@renton/eslint-config-react": "^1.2.1",
     "eslint": "^10.13.0",
+    "eslint-plugin-pnpm": "^1.9.1",
     "jiti": "^2.6.1",
     "tailwindcss": "^4.3.3",
     "turbo": "^2.11.10",
