@@ -1,10 +1,15 @@
 import type { ReactNode } from "react";
 
 import { BadgePage } from "./pages/badge";
+import { BossBarPage } from "./pages/boss-bar";
 import { ButtonPage } from "./pages/button";
 import { CardPage } from "./pages/card";
 import { CheckboxPage } from "./pages/checkbox";
+import { CrosshairPage } from "./pages/crosshair";
 import { DialogPage } from "./pages/dialog";
+import { ExperienceBarPage } from "./pages/experience-bar";
+import { HealthHungerBarPage } from "./pages/health-hunger-bar";
+import { HotbarPage } from "./pages/hotbar";
 import { IconPage } from "./pages/icon";
 import { InputPage } from "./pages/input";
 import { ItemStackPage } from "./pages/item-stack";
@@ -16,6 +21,7 @@ import { ScrollAreaPage } from "./pages/scroll-area";
 import { SelectPage } from "./pages/select";
 import { SliderPage } from "./pages/slider";
 import { SlotPage } from "./pages/slot";
+import { StatusEffectsPage } from "./pages/status-effects";
 import { SwitchPage } from "./pages/switch";
 import { TabsPage } from "./pages/tabs";
 import { TooltipPage } from "./pages/tooltip";
@@ -30,10 +36,15 @@ export interface PageEntry {
 */
 export const pageRegistry = new Map<string, PageEntry>([
   ["badge", { render: () => <BadgePage />, title: "Badge" }],
+  ["boss-bar", { render: () => <BossBarPage />, title: "BossBar (HUD)" }],
   ["button", { render: () => <ButtonPage />, title: "Button" }],
   ["card", { render: () => <CardPage />, title: "Card (L2)" }],
   ["checkbox", { render: () => <CheckboxPage />, title: "Checkbox" }],
+  ["crosshair", { render: () => <CrosshairPage />, title: "Crosshair (HUD)" }],
   ["dialog", { render: () => <DialogPage />, title: "Dialog" }],
+  ["experience-bar", { render: () => <ExperienceBarPage />, title: "ExperienceBar (HUD)" }],
+  ["health-hunger-bar", { render: () => <HealthHungerBarPage />, title: "HealthHungerBar (HUD)" }],
+  ["hotbar", { render: () => <HotbarPage />, title: "Hotbar (HUD)" }],
   ["icon", { render: () => <IconPage />, title: "Icon (L2)" }],
   ["input", { render: () => <InputPage />, title: "Input" }],
   ["item-stack", { render: () => <ItemStackPage />, title: "ItemStack (L2)" }],
@@ -45,6 +56,7 @@ export const pageRegistry = new Map<string, PageEntry>([
   ["select", { render: () => <SelectPage />, title: "Select" }],
   ["slider", { render: () => <SliderPage />, title: "Slider" }],
   ["slot", { render: () => <SlotPage />, title: "Slot / Grid (L2)" }],
+  ["status-effects", { render: () => <StatusEffectsPage />, title: "StatusEffects (HUD)" }],
   ["switch", { render: () => <SwitchPage />, title: "Switch" }],
   ["tabs", { render: () => <TabsPage />, title: "Tabs" }],
   ["tooltip", { render: () => <TooltipPage />, title: "Tooltip" }],

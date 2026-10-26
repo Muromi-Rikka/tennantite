@@ -3,7 +3,7 @@ import { Progress as BaseProgress } from "@base-ui/react/progress";
 import { cn } from "../../lib/utils";
 
 const fillVariantClasses = {
-  boss: "bg-[#E3313B]",
+  boss: "bg-[#C133E3]",
   default: "bg-mc-xp",
   fuel: "bg-[#E2B84B]",
 } as const;

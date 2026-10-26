@@ -25,7 +25,11 @@ describe("progress", () => {
         <Progress aria-label="xp" value={1} />
       </>,
     );
-    expect(screen.getByRole("progressbar", { name: "boss" }).querySelector(String.raw`.bg-\[\#E3313B\]`)).not.toBeNull();
+    expect(
+      screen
+        .getByRole("progressbar", { name: "boss" })
+        .querySelector(String.raw`.bg-\[\#C133E3\]`),
+    ).not.toBeNull();
     expect(screen.getByRole("progressbar", { name: "xp" }).querySelector(".bg-mc-xp")).not.toBeNull();
   });
 

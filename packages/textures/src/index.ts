@@ -92,54 +92,140 @@ const XP_LIGHT = "#D6FFB0";
 /**
  * 生命值（9×8）
 */
-export const heart = pixelSprite(
+const HEART_ROWS = [
+  ".oo...oo.",
+  "owro.owro",
+  "orrrrrrro",
+  "orrrrrrro",
+  ".orrrrro.",
+  "..orrro..",
+  "...oro...",
+  "....o....",
+] as const;
+
+export const heart = pixelSprite(HEART_ROWS, {
+  o: OUTLINE,
+  r: HEART_RED,
+  w: HEART_HIGHLIGHT,
+});
+
+/**
+ * 空心生命值（容器灰）
+*/
+export const heartEmpty = pixelSprite(HEART_ROWS, {
+  o: OUTLINE,
+  r: "#4A4A4A",
+  w: "#6E6E6E",
+});
+
+/**
+ * 半心生命值（左半红 / 右半容器灰）
+*/
+export const heartHalf = pixelSprite(
   [
     ".oo...oo.",
-    "owro.owro",
-    "orrrrrrro",
-    "orrrrrrro",
-    ".orrrrro.",
-    "..orrro..",
-    "...oro...",
-    "....o....",
+    "owro.owdo",
+    "orrrddddd",
+    "orrrddddd",
+    ".orrdddd.",
+    "..orrddd.",
+    "...ordd..",
+    "....od...",
   ],
-  { o: OUTLINE, r: HEART_RED, w: HEART_HIGHLIGHT },
+  { d: "#4A4A4A", o: OUTLINE, r: HEART_RED, w: HEART_HIGHLIGHT },
 );
 
 /**
  * 饥饿值（9×9，鸡腿）
 */
-export const hunger = pixelSprite(
+const HUNGER_ROWS = [
+  "...oooo..",
+  "..obmmbo.",
+  ".obmmmmbo",
+  ".obmmmmbo",
+  ".obmmmbo.",
+  "..obmbo..",
+  "...obo...",
+  "..ww.....",
+  ".ww......",
+] as const;
+
+export const hunger = pixelSprite(HUNGER_ROWS, {
+  b: MEAT_DARK,
+  m: MEAT,
+  o: OUTLINE,
+  w: BONE,
+});
+
+/**
+ * 空饥饿值（容器灰）
+*/
+export const hungerEmpty = pixelSprite(HUNGER_ROWS, {
+  b: "#3A3A3A",
+  m: "#4A4A4A",
+  o: OUTLINE,
+  w: "#5A5A5A",
+});
+
+/**
+ * 半饥饿值（左半肉色 / 右半容器灰）
+*/
+export const hungerHalf = pixelSprite(
   [
     "...oooo..",
-    "..obmmbo.",
-    ".obmmmmbo",
-    ".obmmmmbo",
-    ".obmmmbo.",
-    "..obmbo..",
+    "..obmmdo.",
+    ".obmmmmdo",
+    ".obmmmmdo",
+    ".obmmmdo.",
+    "..obmdo..",
     "...obo...",
     "..ww.....",
     ".ww......",
   ],
-  { b: MEAT_DARK, m: MEAT, o: OUTLINE, w: BONE },
+  { b: MEAT_DARK, d: "#4A4A4A", m: MEAT, o: OUTLINE, w: BONE },
 );
 
 /**
  * 护甲值（9×9，胸甲）
 */
-export const armor = pixelSprite(
+const ARMOR_ROWS = [
+  ".o.....o.",
+  "oro...oro",
+  "orrooorro",
+  "orrrrrrro",
+  "orrrrrrro",
+  ".orrrrro.",
+  ".orrrrro.",
+  "..orrro..",
+  "...oro...",
+] as const;
+
+export const armor = pixelSprite(ARMOR_ROWS, { o: OUTLINE, r: IRON });
+
+/**
+ * 空护甲值（容器灰）
+*/
+export const armorEmpty = pixelSprite(ARMOR_ROWS, {
+  o: OUTLINE,
+  r: "#4A4A4A",
+});
+
+/**
+ * 半护甲值（左半铁色 / 右半容器灰）
+*/
+export const armorHalf = pixelSprite(
   [
     ".o.....o.",
-    "oro...oro",
-    "orrooorro",
-    "orrrrrrro",
-    "orrrrrrro",
-    ".orrrrro.",
-    ".orrrrro.",
-    "..orrro..",
+    "oro...odo",
+    "orroooddd",
+    "orrrrdddd",
+    "orrrrdddd",
+    ".orrrrdo.",
+    ".orrrrdo.",
+    "..orrdo..",
     "...oro...",
   ],
-  { o: OUTLINE, r: IRON },
+  { d: "#4A4A4A", o: OUTLINE, r: IRON },
 );
 
 /**
@@ -322,12 +408,18 @@ export const creeperFace = pixelSprite(
 export const pixelIcons = {
   apple,
   armor,
+  "armor-empty": armorEmpty,
+  "armor-half": armorHalf,
   "creeper-face": creeperFace,
   diamond,
   "dirt-block": dirtBlock,
   "grass-block": grassBlock,
   heart,
+  "heart-empty": heartEmpty,
+  "heart-half": heartHalf,
   hunger,
+  "hunger-empty": hungerEmpty,
+  "hunger-half": hungerHalf,
   "stone-block": stoneBlock,
   sword,
   "xp-orb": xpOrb,
