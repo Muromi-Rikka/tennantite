@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 import { RecipeBookDemo } from "./demo";
 import { RecipeBook } from "./index";
 
-describe("RecipeBook", () => {
+describe("recipeBook", () => {
   it("渲染分类与配方格", () => {
     render(<RecipeBookDemo />);
     expect(screen.getByRole("tab", { name: "建筑方块" })).toBeInTheDocument();

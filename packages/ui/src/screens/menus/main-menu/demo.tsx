@@ -1,6 +1,8 @@
 import { MainMenu } from "./index";
 
-/** MainMenu 预览用例（规格 §6.3） */
+/**
+ * MainMenu 预览用例（规格 §6.3）
+*/
 export function MainMenuDemo() {
   return (
     <MainMenu

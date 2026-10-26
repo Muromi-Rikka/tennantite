@@ -1,34 +1,42 @@
-import { Button } from "../../../primitives/button/index";
-import { ScrollArea } from "../../../primitives/scroll-area/index";
 import { Divider } from "../../../containers/divider/index";
 import { Panel } from "../../../containers/panel/index";
 import { TitleBar } from "../../../containers/title-bar/index";
 import { cn } from "../../../lib/utils";
-
-export interface ServerEntry {
-  /** 服务器地址 */
-  address: string;
-  /** 服务器名称 */
-  name: string;
-  /** 延迟与人数（展示文本，数据由使用方注入） */
-  meta?: string;
-}
+import { Button } from "../../../primitives/button/index";
+import { ScrollArea } from "../../../primitives/scroll-area/index";
 
 export interface MultiplayerScreenProps {
-  servers?: ServerEntry[];
-  selectedAddress?: string;
-  onServerSelect?: (address: string) => void;
-  onJoin?: () => void;
   className?: string;
+  onJoin?: () => void;
+  onServerSelect?: (address: string) => void;
+  selectedAddress?: string;
+  servers?: ServerEntry[];
 }
 
-/** 多人游戏服务器列表（规格 §6.3）：ScrollArea + Button。 */
+export interface ServerEntry {
+  /**
+  * 服务器地址
+  */
+  address: string;
+  /**
+  * 延迟与人数（展示文本，数据由使用方注入）
+  */
+  meta?: string;
+  /**
+  * 服务器名称
+  */
+  name: string;
+}
+
+/**
+ * 多人游戏服务器列表（规格 §6.3）：ScrollArea + Button。
+*/
 export function MultiplayerScreen({
-  servers = [],
-  selectedAddress,
-  onServerSelect,
-  onJoin,
   className,
+  onJoin,
+  onServerSelect,
+  selectedAddress,
+  servers = [],
 }: MultiplayerScreenProps) {
   return (
     <Panel className={cn("inline-flex w-360 flex-col gap-16 p-16", className)}>
@@ -42,8 +50,8 @@ export function MultiplayerScreen({
                   "w-full cursor-pointer border-2 px-12 py-8 text-left",
                   "border-transparent font-readable text-mc text-mc-text-main",
                   "hover:bg-mc-stone-dark/40",
-                  selectedAddress === server.address &&
-                    "border-black bg-mc-stone-dark/60",
+                  selectedAddress === server.address
+                  && "border-black bg-mc-stone-dark/60",
                 )}
                 data-address={server.address}
                 data-server-entry=""
@@ -54,9 +62,11 @@ export function MultiplayerScreen({
               >
                 <div>{server.name}</div>
                 <div className="text-mc-text-dim">{server.address}</div>
-                {server.meta ? (
-                  <div className="text-mc-text-dim">{server.meta}</div>
-                ) : null}
+                {server.meta
+                  ? (
+                      <div className="text-mc-text-dim">{server.meta}</div>
+                    )
+                  : null}
               </button>
               {index < servers.length - 1 ? <Divider className="my-8" /> : null}
             </div>

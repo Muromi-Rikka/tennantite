@@ -1,6 +1,8 @@
 import { ChatScreen } from "./index";
 
-/** ChatScreen 预览用例（规格 §6.3） */
+/**
+ * ChatScreen 预览用例（规格 §6.3）
+*/
 export function ChatScreenDemo() {
   return (
     <ChatScreen

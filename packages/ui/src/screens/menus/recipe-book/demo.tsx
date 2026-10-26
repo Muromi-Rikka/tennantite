@@ -1,6 +1,8 @@
 import { RecipeBook } from "./index";
 
-/** RecipeBook 预览用例（规格 §6.3） */
+/**
+ * RecipeBook 预览用例（规格 §6.3）
+*/
 export function RecipeBookDemo() {
   return (
     <RecipeBook

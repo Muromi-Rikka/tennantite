@@ -1,6 +1,8 @@
 import { AdvancementsScreen } from "./index";
 
-/** AdvancementsScreen 预览用例（规格 §6.3） */
+/**
+ * AdvancementsScreen 预览用例（规格 §6.3）
+*/
 export function AdvancementsScreenDemo() {
   return (
     <AdvancementsScreen

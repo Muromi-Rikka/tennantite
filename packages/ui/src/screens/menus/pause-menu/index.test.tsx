@@ -5,8 +5,8 @@ import { describe, expect, it, vi } from "vitest";
 import { PauseMenuDemo } from "./demo";
 import { PauseMenu } from "./index";
 
-describe("PauseMenu", () => {
-  it("Trigger 打开弹窗并渲染按钮栈", async () => {
+describe("pauseMenu", () => {
+  it("trigger 打开弹窗并渲染按钮栈", async () => {
     const user = userEvent.setup();
     render(<PauseMenu />);
     await user.click(screen.getByRole("button", { name: "打开暂停菜单" }));

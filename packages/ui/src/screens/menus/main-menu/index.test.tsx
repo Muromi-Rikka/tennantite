@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from "vitest";
 import { MainMenuDemo } from "./demo";
 import { MainMenu } from "./index";
 
-describe("MainMenu", () => {
+describe("mainMenu", () => {
   it("渲染标题与默认按钮栈", () => {
     render(<MainMenu />);
     expect(screen.getByText("VERDIGRIS")).toBeInTheDocument();

@@ -1,18 +1,22 @@
-import { Button } from "../../../primitives/button/index";
 import { cn } from "../../../lib/utils";
-
-export interface MenuAction {
-  label: string;
-  onClick?: () => void;
-  disabled?: boolean;
-}
+import { Button } from "../../../primitives/button/index";
 
 export interface MainMenuProps {
-  /** 游戏标题（Logo 位） */
-  title?: React.ReactNode;
-  /** 菜单按钮栈（单机 / 联机 / 设置 …，规格 §6.3） */
+  /**
+  * 菜单按钮栈（单机 / 联机 / 设置 …，规格 §6.3）
+  */
   actions?: MenuAction[];
   className?: string;
+  /**
+  * 游戏标题（Logo 位）
+  */
+  title?: React.ReactNode;
+}
+
+export interface MenuAction {
+  disabled?: boolean;
+  label: string;
+  onClick?: () => void;
 }
 
 const DEFAULT_ACTIONS: MenuAction[] = [
@@ -22,18 +26,20 @@ const DEFAULT_ACTIONS: MenuAction[] = [
   { label: "退出游戏" },
 ];
 
-/** 主菜单（规格 §6.3）：Logo + Button 栈，静态成立。 */
+/**
+ * 主菜单（规格 §6.3）：Logo + Button 栈，静态成立。
+*/
 export function MainMenu({
-  title = "VERDIGRIS",
   actions = DEFAULT_ACTIONS,
   className,
+  title = "VERDIGRIS",
 }: MainMenuProps) {
   return (
     <div
       className={cn("flex w-320 flex-col items-center gap-8", className)}
       data-menu=""
     >
-      <h1 className="mc-text-shadow mb-24 font-pixel text-mc-lg text-white">
+      <h1 className="mb-24 font-pixel text-mc-lg text-white mc-text-shadow">
         {title}
       </h1>
       {actions.map(action => (

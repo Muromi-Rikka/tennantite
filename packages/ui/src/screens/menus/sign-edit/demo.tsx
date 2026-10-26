@@ -1,6 +1,8 @@
 import { SignEdit } from "./index";
 
-/** SignEdit 预览用例（规格 §6.3） */
+/**
+ * SignEdit 预览用例（规格 §6.3）
+*/
 export function SignEditDemo() {
   return (
     <SignEdit

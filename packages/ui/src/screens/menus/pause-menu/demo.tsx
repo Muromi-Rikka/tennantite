@@ -1,6 +1,8 @@
 import { PauseMenu } from "./index";
 
-/** PauseMenu 预览用例（规格 §6.3） */
+/**
+ * PauseMenu 预览用例（规格 §6.3）
+*/
 export function PauseMenuDemo() {
   return (
     <PauseMenu

@@ -3,7 +3,6 @@ import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 
 import { AdvancementsScreenDemo } from "./demo";
-import { AdvancementsScreen } from "./index";
 
 describe("advancementsScreen", () => {
   it("渲染分类 Tabs 与节点", () => {

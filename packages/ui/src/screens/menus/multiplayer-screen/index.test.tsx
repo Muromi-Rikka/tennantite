@@ -5,20 +5,20 @@ import { describe, expect, it, vi } from "vitest";
 import { MultiplayerScreenDemo } from "./demo";
 import { MultiplayerScreen } from "./index";
 
-describe("MultiplayerScreen", () => {
+describe("multiplayerScreen", () => {
   it("渲染服务器列表与选中态", () => {
     render(
       <MultiplayerScreen
+        selectedAddress="b.example"
         servers={[
           { address: "a.example", name: "A" },
           { address: "b.example", name: "B" },
         ]}
-        selectedAddress="b.example"
       />,
     );
     expect(screen.getByText("B")).toBeInTheDocument();
     expect(
-      document.querySelector('[data-address="b.example"]'),
+      document.querySelector("[data-address=\"b.example\"]"),
     ).toHaveClass("bg-mc-stone-dark/60");
   });
 

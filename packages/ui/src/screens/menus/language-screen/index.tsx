@@ -1,8 +1,8 @@
-import { ScrollArea } from "../../../primitives/scroll-area/index";
 import { Divider } from "../../../containers/divider/index";
 import { Panel } from "../../../containers/panel/index";
 import { TitleBar } from "../../../containers/title-bar/index";
 import { cn } from "../../../lib/utils";
+import { ScrollArea } from "../../../primitives/scroll-area/index";
 
 export interface LanguageOption {
   code: string;
@@ -10,11 +10,13 @@ export interface LanguageOption {
 }
 
 export interface LanguageScreenProps {
-  /** 可选语言（数据由使用方注入，规格确认不做中文字体适配但列表可含中文） */
-  languages?: LanguageOption[];
-  selectedCode?: string;
-  onLanguageSelect?: (code: string) => void;
   className?: string;
+  /**
+  * 可选语言（数据由使用方注入，规格确认不做中文字体适配但列表可含中文）
+  */
+  languages?: LanguageOption[];
+  onLanguageSelect?: (code: string) => void;
+  selectedCode?: string;
 }
 
 const DEFAULT_LANGUAGES: LanguageOption[] = [
@@ -24,12 +26,14 @@ const DEFAULT_LANGUAGES: LanguageOption[] = [
   { code: "de-de", name: "Deutsch" },
 ];
 
-/** 语言选择（规格 §6.3）：ScrollArea 列表，单选高亮。 */
+/**
+ * 语言选择（规格 §6.3）：ScrollArea 列表，单选高亮。
+*/
 export function LanguageScreen({
-  languages = DEFAULT_LANGUAGES,
-  selectedCode,
-  onLanguageSelect,
   className,
+  languages = DEFAULT_LANGUAGES,
+  onLanguageSelect,
+  selectedCode,
 }: LanguageScreenProps) {
   return (
     <Panel className={cn("inline-flex w-280 flex-col gap-16 p-16", className)}>

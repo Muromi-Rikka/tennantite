@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from "vitest";
 import { DeathScreenDemo } from "./demo";
 import { DeathScreen } from "./index";
 
-describe("DeathScreen", () => {
+describe("deathScreen", () => {
   it("打开后渲染死因与按钮", async () => {
     const user = userEvent.setup();
     render(<DeathScreen cause="Steve 被苦力怕炸死了" />);

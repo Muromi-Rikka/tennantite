@@ -1,7 +1,11 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
+import { useState } from "react";
 
+import { Panel } from "../../../containers/panel/index";
+import { TitleBar } from "../../../containers/title-bar/index";
+import { cn } from "../../../lib/utils";
 import {
   Checkbox,
   Radio,
@@ -12,28 +16,29 @@ import {
   TabsPanel,
   TabsTab,
 } from "../../../primitives/index";
-import { Panel } from "../../../containers/panel/index";
-import { TitleBar } from "../../../containers/title-bar/index";
-import { cn } from "../../../lib/utils";
 
 export interface SettingsScreenProps {
-  title?: ReactNode;
-  /** 通用设置默认值（受控可选，数据由使用方注入） */
+  className?: string;
+  /**
+  * 通用设置默认值（受控可选，数据由使用方注入）
+  */
   defaults?: {
-    fov?: number;
     brightness?: number;
+    difficulty?: string;
+    fov?: number;
     showClouds?: boolean;
     smoothLighting?: boolean;
-    difficulty?: string;
   };
-  className?: string;
+  title?: ReactNode;
 }
 
-/** 设置界面（规格 §6.3）：Tabs + Slider + Checkbox + RadioGroup 分页。 */
+/**
+ * 设置界面（规格 §6.3）：Tabs + Slider + Checkbox + RadioGroup 分页。
+*/
 export function SettingsScreen({
-  title = "设置",
-  defaults = {},
   className,
+  defaults = {},
+  title = "设置",
 }: SettingsScreenProps) {
   const [fov, setFov] = useState(defaults.fov ?? 70);
   const [brightness, setBrightness] = useState(defaults.brightness ?? 50);
@@ -55,24 +60,31 @@ export function SettingsScreen({
         <TabsPanel value="video">
           <div className="flex w-320 flex-col gap-16">
             <label className="flex flex-col gap-8">
-              <span className="font-readable text-mc">视野：{fov}</span>
+              <span className="font-readable text-mc">
+                视野：
+                {fov}
+              </span>
               <Slider
                 aria-label="视野"
                 max={110}
                 min={30}
-                onValueChange={value => {
+                onValueChange={(value) => {
                   setFov(Array.isArray(value) ? (value[0] ?? 70) : value);
                 }}
                 value={fov}
               />
             </label>
             <label className="flex flex-col gap-8">
-              <span className="font-readable text-mc">亮度：{brightness}%</span>
+              <span className="font-readable text-mc">
+                亮度：
+                {brightness}
+                %
+              </span>
               <Slider
                 aria-label="亮度"
                 max={100}
                 min={0}
-                onValueChange={value => {
+                onValueChange={(value) => {
                   setBrightness(Array.isArray(value) ? (value[0] ?? 50) : value);
                 }}
                 value={brightness}
@@ -82,7 +94,7 @@ export function SettingsScreen({
               <Checkbox
                 aria-label="显示云"
                 checked={showClouds}
-                onCheckedChange={next => {
+                onCheckedChange={(next) => {
                   setShowClouds(next === true);
                 }}
               />
@@ -92,7 +104,7 @@ export function SettingsScreen({
               <Checkbox
                 aria-label="平滑光照"
                 checked={smoothLighting}
-                onCheckedChange={next => {
+                onCheckedChange={(next) => {
                   setSmoothLighting(next === true);
                 }}
               />
@@ -108,7 +120,7 @@ export function SettingsScreen({
         <TabsPanel value="game">
           <RadioGroup
             aria-label="游戏难度"
-            onValueChange={value => {
+            onValueChange={(value) => {
               setDifficulty(String(value));
             }}
             value={difficulty}

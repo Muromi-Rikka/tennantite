@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from "vitest";
 import { SignEditDemo } from "./demo";
 import { SignEdit } from "./index";
 
-describe("SignEdit", () => {
+describe("signEdit", () => {
   it("渲染 4 行输入", () => {
     render(<SignEdit />);
     for (let index = 1; index <= 4; index += 1) {

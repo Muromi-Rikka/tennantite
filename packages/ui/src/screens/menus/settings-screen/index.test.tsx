@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 import { SettingsScreenDemo } from "./demo";
 import { SettingsScreen } from "./index";
 
-describe("SettingsScreen", () => {
+describe("settingsScreen", () => {
   it("视频分页渲染滑条与复选框", () => {
     render(<SettingsScreen defaults={{ fov: 90 }} />);
     expect(screen.getByText("视野：90")).toBeInTheDocument();

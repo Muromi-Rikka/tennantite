@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from "vitest";
 import { ChatScreenDemo } from "./demo";
 import { ChatScreen } from "./index";
 
-describe("ChatScreen", () => {
+describe("chatScreen", () => {
   it("渲染历史消息与作者高亮", () => {
     render(<ChatScreenDemo />);
     expect(screen.getByText(/大家好多钻石/)).toBeInTheDocument();

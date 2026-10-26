@@ -5,11 +5,11 @@ import { describe, expect, it, vi } from "vitest";
 import { LanguageScreenDemo } from "./demo";
 import { LanguageScreen } from "./index";
 
-describe("LanguageScreen", () => {
+describe("languageScreen", () => {
   it("渲染语言列表与选中态", () => {
     render(<LanguageScreen selectedCode="en-us" />);
     expect(
-      document.querySelector('[data-language-code="en-us"]'),
+      document.querySelector("[data-language-code=\"en-us\"]"),
     ).toHaveClass("bg-mc-stone-dark/60");
   });
 
@@ -17,7 +17,7 @@ describe("LanguageScreen", () => {
     const user = userEvent.setup();
     const onLanguageSelect = vi.fn();
     render(<LanguageScreen onLanguageSelect={onLanguageSelect} />);
-    await user.click(document.querySelector('[data-language-code="ja-jp"]')!);
+    await user.click(document.querySelector("[data-language-code=\"ja-jp\"]")!);
     expect(onLanguageSelect).toHaveBeenCalledWith("ja-jp");
   });
 

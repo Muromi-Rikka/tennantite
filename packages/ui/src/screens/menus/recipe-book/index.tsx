@@ -1,33 +1,41 @@
-import { Tabs, TabsList, TabsPanel, TabsTab } from "../../../primitives/tabs/index";
+import type { PixelIconName } from "@verdigris/textures";
 import { Icon } from "../../../containers/icon/index";
 import { Panel } from "../../../containers/panel/index";
 import { Slot } from "../../../containers/slot/index";
 import { TitleBar } from "../../../containers/title-bar/index";
-import type { PixelIconName } from "@verdigris/textures";
 import { cn } from "../../../lib/utils";
-
-export interface RecipeEntry {
-  /** 产物（未解锁的占位条目可省略） */
-  output?: { count?: number; icon?: PixelIconName; src?: string };
-  /** 是否已解锁（未解锁显示 ??? 占位） */
-  unlocked?: boolean;
-}
+import { Tabs, TabsList, TabsPanel, TabsTab } from "../../../primitives/tabs/index";
 
 export interface RecipeBookProps {
-  title?: React.ReactNode;
-  /** 分类页签（数据由使用方注入） */
+  /**
+  * 分类页签（数据由使用方注入）
+  */
   categories?: {
     name: string;
     recipes: RecipeEntry[];
   }[];
   className?: string;
+  title?: React.ReactNode;
 }
 
-/** 配方书（规格 §6.3）：Tabs 分类 + Slot 配方网格 + 解锁态。 */
+export interface RecipeEntry {
+  /**
+  * 产物（未解锁的占位条目可省略）
+  */
+  output?: { count?: number; icon?: PixelIconName; src?: string };
+  /**
+  * 是否已解锁（未解锁显示 ??? 占位）
+  */
+  unlocked?: boolean;
+}
+
+/**
+ * 配方书（规格 §6.3）：Tabs 分类 + Slot 配方网格 + 解锁态。
+*/
 export function RecipeBook({
-  title = "配方书",
   categories = [],
   className,
+  title = "配方书",
 }: RecipeBookProps) {
   const firstTab = categories[0]?.name ?? "全部";
   return (
@@ -51,15 +59,17 @@ export function RecipeBook({
                   key={index}
                   size={48}
                 >
-                  {recipe.unlocked === false || !recipe.output ? (
-                    <span className="font-readable text-mc text-mc-text-dim">?</span>
-                  ) : (
-                    <Icon
-                      name={recipe.output.icon}
-                      size={36}
-                      src={recipe.output.src}
-                    />
-                  )}
+                  {recipe.unlocked === false || !recipe.output
+                    ? (
+                        <span className="font-readable text-mc text-mc-text-dim">?</span>
+                      )
+                    : (
+                        <Icon
+                          name={recipe.output.icon}
+                          size={36}
+                          src={recipe.output.src}
+                        />
+                      )}
                 </Slot>
               ))}
             </div>
