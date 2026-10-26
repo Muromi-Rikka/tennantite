@@ -1,0 +1,409 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "homepage": "https://github.com/verdigris-ui/verdigris",
+  "items": [
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "class-variance-authority",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/primitives/badge/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/ui/src/primitives/badge/types.ts",
+          "type": "registry:component"
+        }
+      ],
+      "name": "badge",
+      "registryDependencies": [],
+      "title": "Badge",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/primitives/button/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/ui/src/primitives/button/styles.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/ui/src/primitives/button/types.ts",
+          "type": "registry:component"
+        }
+      ],
+      "name": "button",
+      "registryDependencies": [],
+      "title": "Button",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/primitives/checkbox/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/ui/src/primitives/checkbox/types.ts",
+          "type": "registry:component"
+        }
+      ],
+      "name": "checkbox",
+      "registryDependencies": [],
+      "title": "Checkbox",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/primitives/dialog/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/ui/src/primitives/dialog/types.ts",
+          "type": "registry:component"
+        }
+      ],
+      "name": "dialog",
+      "registryDependencies": [],
+      "title": "Dialog",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/primitives/input/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/ui/src/primitives/input/types.ts",
+          "type": "registry:component"
+        }
+      ],
+      "name": "input",
+      "registryDependencies": [],
+      "title": "Input",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/primitives/progress/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/ui/src/primitives/progress/types.ts",
+          "type": "registry:component"
+        }
+      ],
+      "name": "progress",
+      "registryDependencies": [],
+      "title": "Progress",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/primitives/radio-group/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/ui/src/primitives/radio-group/types.ts",
+          "type": "registry:component"
+        }
+      ],
+      "name": "radio-group",
+      "registryDependencies": [],
+      "title": "Radio Group",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/primitives/scroll-area/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/ui/src/primitives/scroll-area/types.ts",
+          "type": "registry:component"
+        }
+      ],
+      "name": "scroll-area",
+      "registryDependencies": [],
+      "title": "Scroll Area",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/primitives/select/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/ui/src/primitives/select/types.ts",
+          "type": "registry:component"
+        }
+      ],
+      "name": "select",
+      "registryDependencies": [],
+      "title": "Select",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/primitives/slider/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/ui/src/primitives/slider/types.ts",
+          "type": "registry:component"
+        }
+      ],
+      "name": "slider",
+      "registryDependencies": [],
+      "title": "Slider",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/primitives/switch/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/ui/src/primitives/switch/types.ts",
+          "type": "registry:component"
+        }
+      ],
+      "name": "switch",
+      "registryDependencies": [],
+      "title": "Switch",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/primitives/tabs/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/ui/src/primitives/tabs/types.ts",
+          "type": "registry:component"
+        }
+      ],
+      "name": "tabs",
+      "registryDependencies": [],
+      "title": "Tabs",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/primitives/tooltip/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/ui/src/primitives/tooltip/types.ts",
+          "type": "registry:component"
+        }
+      ],
+      "name": "tooltip",
+      "registryDependencies": [],
+      "title": "Tooltip",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/containers/card/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "card",
+      "registryDependencies": [],
+      "title": "Card",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/containers/divider/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "divider",
+      "registryDependencies": [],
+      "title": "Divider",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/containers/grid/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "grid",
+      "registryDependencies": [],
+      "title": "Grid",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/containers/icon/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "icon",
+      "registryDependencies": [],
+      "title": "Icon",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/containers/item-stack/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "item-stack",
+      "registryDependencies": [],
+      "title": "Item Stack",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/containers/panel/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "panel",
+      "registryDependencies": [],
+      "title": "Panel",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/containers/slot/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "slot",
+      "registryDependencies": [],
+      "title": "Slot",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/containers/title-bar/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "title-bar",
+      "registryDependencies": [],
+      "title": "Title Bar",
+      "type": "registry:component"
+    }
+  ],
+  "name": "verdigris"
+}
