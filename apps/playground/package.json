@@ -12,8 +12,9 @@
   "dependencies": {
     "@verdigris/textures": "workspace:*",
     "@verdigris/tokens": "workspace:*",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "@verdigris/ui": "workspace:*",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@rsbuild/core": "^2.2.14",

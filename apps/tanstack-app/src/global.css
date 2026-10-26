@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@import "@verdigris/tokens/css/tokens.css";
+@import "@verdigris/textures/css/textures.css";
+@import "@verdigris/ui/css/scroll-area.css";
+
+@source "../../../packages";
+
+body {
+  background-color: #1f1f1f;
+  color: var(--color-mc-text-main);
+  font-family: var(--font-readable);
+}

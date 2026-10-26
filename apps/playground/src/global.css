@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "@verdigris/tokens/css/tokens.css";
 @import "@verdigris/textures/css/textures.css";
+@import "@verdigris/ui/css/scroll-area.css";
 
 /* monorepo：扫描工作区包源码中的类名 */
 @source "../../../packages";

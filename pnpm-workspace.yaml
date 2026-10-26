@@ -13,3 +13,12 @@ verifyDepsBeforeRun: false
 packages:
   - apps/*
   - packages/*
+
+allowBuilds:
+  esbuild: true
+
+permissions:
+  '@tanstack/react-router':
+    skills: true
+  '@tanstack/react-start':
+    skills: true

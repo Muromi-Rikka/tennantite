@@ -6,9 +6,9 @@ npm 包名 `@verdigris/ui`（scope `@verdigris`）。规格文档见 [spec/minec
 
 ## 技术栈
 
-- React 19 · Base UI（`@base-ui/react`）· Tailwind CSS v4（`@theme` 令牌）
+- React 19.2（精确锁定：19.3 与 Next 16 预渲染器存在兼容问题）· Base UI（`@base-ui/react`）· Tailwind CSS v4（`@theme` 令牌）
 - shadcn 官方 `cn` 包（类名合并）· class-variance-authority（变体）
-- Turborepo + pnpm 工作区 · rslib（库构建：ESM + d.ts）· rsbuild（应用构建）
+- Turborepo + pnpm 12 工作区 · rslib（库构建：ESM + d.ts）· rsbuild / Vite（应用构建）
 - ESLint 10 flat config · `@renton/eslint-config-react` · Vitest 5 + React Testing Library + axe-core
 - Node ≥ 26 · 支持 SSR（Next.js App Router 与 TanStack Start 双框架验证，兼容 RSC）
 

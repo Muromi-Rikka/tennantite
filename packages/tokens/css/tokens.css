@@ -17,6 +17,7 @@
   /* ---- 色板（规格 §3.1） ---- */
   --color-mc-tooltip-bg: #100010; /* 物品悬浮提示底色 */
   --color-mc-tooltip-text: #fff8e7; /* 经典紫边提示文本 */
+  --color-mc-tooltip-border: #2d0157; /* 提示框紫色描边 */
   --color-mc-accent-green: #7ec850; /* 成就 / 主行动按钮 */
   --color-mc-panel: #c6c6c6; /* 窗口面板基底 */
   --color-mc-panel-overlay: rgb(0 0 0 / 60%); /* 半透明界面背景 */

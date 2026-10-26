@@ -15,6 +15,7 @@ export const mcColors = {
   textDim: "#A0A0A0",
   textMain: "#FFFFFF",
   tooltipBg: "#100010",
+  tooltipBorder: "#2D0157",
   tooltipText: "#FFF8E7",
   xp: "#7EFC20",
 } as const;
