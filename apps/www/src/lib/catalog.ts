@@ -280,7 +280,7 @@ export const components: CatalogEntry[] = [
     sourceDir: "packages/ui/src/screens/containers/anvil-screen",
   },
   {
-    description: "230×219 信标面板 + 主 / 副效果选择 + 支付槽 + 确认按钮。",
+    description: "230×219 信标面板 + 5 主 / 1 辅助效果按钮 + 支付材料行 + 支付槽 + 完成 / 取消。",
     exports: ["BeaconScreen"],
     group: "screens",
     name: "BeaconScreen",

@@ -1,7 +1,7 @@
 export const blockComposition: Record<string, string[]> = {
   "advancements-screen": ["Panel", "TitleBar", "Slot", "Icon", "Tabs", "Tooltip"],
   "anvil-screen": ["ScreenPanel", "PlayerInventory", "Input"],
-  "beacon-screen": ["ScreenPanel", "PlayerInventory", "Button", "Select"],
+  "beacon-screen": ["ScreenPanel", "PlayerInventory", "GuiSprite", "Icon", "Slot"],
   "blast-furnace-screen": ["ScreenPanel", "PlayerInventory", "GuiSprite"],
   "book-screen": ["GuiSprite"],
   "brewing-stand-screen": ["ScreenPanel", "PlayerInventory"],

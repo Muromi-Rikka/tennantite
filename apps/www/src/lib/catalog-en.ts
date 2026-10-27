@@ -4,7 +4,7 @@ export const componentDescriptionsEn: Record<string, string> = {
   "advancements-screen": "Tab categories, 26 GUI px node slots, indented tree and tooltip details.",
   "anvil-screen": "110×16 name input, item / material / result slots and level cost.",
   "badge": "Count and rarity badge for item stacks; pure styling with default / dim / gold variants.",
-  "beacon-screen": "230×219 beacon panel with primary / secondary effects, payment slot and confirm button.",
+  "beacon-screen": "230×219 beacon panel with 5 primary / 1 secondary effect buttons, payment material row, payment slot and confirm / cancel buttons.",
   "boss-bar": "Boss bar with purple title and health bar (overlay semantics).",
   "brewing-stand-screen": "Fuel / ingredient / three bottle slots with bubble and arrow clipping progress.",
   "button": "Vanilla-geometry stone-textured button with default / success / ghost variants.",
