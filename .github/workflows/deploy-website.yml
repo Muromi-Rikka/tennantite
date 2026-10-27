@@ -1,4 +1,4 @@
-name: Deploy www
+name: Deploy website
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 # Cancel in-flight runs for the same ref when a new run starts
 concurrency:
-  group: deploy-www-${{ github.workflow }}-${{ github.ref }}
+  group: deploy-website-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -47,14 +47,14 @@ jobs:
           pnpm lint
           pnpm typecheck
 
-      # `...` 一并构建 @verdigris/www 依赖的工作区包（ui / tokens / textures）
+      # `...` 一并构建 @verdigris/website 依赖的工作区包（ui / tokens / textures）
       - name: Build website
-        run: pnpm turbo run build --filter=@verdigris/www...
+        run: pnpm turbo run build --filter=@verdigris/website...
 
       # PR 只做门禁 + 构建校验，不发布
       - name: Publish to CF Pages verdigris-ui
         if: github.event_name != 'pull_request'
-        run: npx --yes wrangler@4.142.0 pages deploy apps/www/dist --project-name=verdigris-ui --branch=master
+        run: npx --yes wrangler@4.142.0 pages deploy apps/website/dist --project-name=verdigris-ui --branch=master
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
