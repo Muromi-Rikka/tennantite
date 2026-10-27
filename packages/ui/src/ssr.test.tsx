@@ -23,6 +23,7 @@ import {
   Progress,
   Radio,
   RadioGroup,
+  ScaledBox,
   ScreenPanel,
   ScrollArea,
   Select,
@@ -69,6 +70,12 @@ function render(): string {
         <Radio aria-label="A" value="a" />
       </RadioGroup>
       <ScrollArea className="h-32">列表</ScrollArea>
+      <ScaledBox height={166} width={176}>
+        <ChestScreen rows={3} />
+      </ScaledBox>
+      <ScaledBox height={166} mode="fit" width={176}>
+        <ChestScreen rows={3} />
+      </ScaledBox>
       <Slider aria-label="滑条" defaultValue={30} />
       <Switch aria-label="开关" />
       <Tabs defaultValue="t1">

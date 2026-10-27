@@ -1,4 +1,4 @@
-import { Tabs, TabsList, TabsPanel, TabsTab } from "@verdigris/ui";
+import { ScaledBox, Tabs, TabsList, TabsPanel, TabsTab } from "@verdigris/ui";
 import { useState } from "react";
 
 import type { Locale } from "@/i18n";
@@ -42,8 +42,14 @@ export function PreviewTabs({ code, locale, name }: Props) {
           {copyState}
         </button>
       </div>
-      <TabsPanel className="flex min-h-[240px] items-center justify-center overflow-x-auto bg-[#0d0d0d] p-16" keepMounted value="preview">
-        <Demo name={name} />
+      <TabsPanel
+        className="mc-scroll flex min-h-[240px] items-center justify-center overflow-x-auto bg-[#0d0d0d] p-8 sm:p-16"
+        keepMounted
+        value="preview"
+      >
+        <ScaledBox className="w-full">
+          <Demo name={name} />
+        </ScaledBox>
       </TabsPanel>
       <TabsPanel className="max-h-[480px] overflow-auto bg-[#080808] p-8" keepMounted value="code">
         <pre className="text-site-fg font-mono text-[13px] leading-11"><code>{code}</code></pre>

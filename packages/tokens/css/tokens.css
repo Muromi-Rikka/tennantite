@@ -29,11 +29,21 @@
   src: url("../fonts/Minecraft-Bold.otf") format("opentype");
 }
 
-@theme {
-  /* ---- GUI 缩放：原版 GUI scale 为整数，1 GUI px = scale CSS px ---- */
+/*
+ * GUI 缩放基准（规格 §尺寸适配）。
+ *
+ * --mc-scale / --mc-gui 不放进 @theme：Tailwind v4 会把 @theme 内引用了
+ * 其它主题变量的值在构建期内联成字面量（--mc-gui 将变成 calc(2 * 1px)）。
+ * 另注意 CSS 自定义属性的 var() 引用在声明元素上解析并固化后继承 ——
+ * 仅在子树覆盖 --mc-scale 不会重解析这里声明的派生值，缩放作用域必须
+ * 同时挂 `mc-scale-scope`（见文件末尾），在作用域元素上重声明整条派生链。
+ */
+:root {
   --mc-scale: 2;
   --mc-gui: calc(var(--mc-scale) * 1px);
+}
 
+@theme {
   /* ---- 色板（26.3 采样值） ---- */
   --color-mc-panel: #c6c6c6; /* 面板填充 */
   --color-mc-panel-overlay: rgb(0 0 0 / 75%); /* 标题界面 / 标签页遮罩 */
@@ -140,4 +150,31 @@
   outline-style: solid;
   outline-width: var(--mc-gui);
   outline-offset: calc(var(--mc-gui) * -1);
+}
+
+/*
+ * GUI 缩放作用域（规格 §尺寸适配）：与本元素上的 `--mc-scale` 覆盖配套使用。
+ *
+ * CSS 自定义属性的 var() 引用在声明元素上解析固化后随继承下传，仅在子树
+ * 覆盖 --mc-scale 不会重解析 :root 声明的派生值 —— 本类在作用域元素上以
+ * 该元素的 --mc-scale 重新声明整条派生链，子树内的间距工具类、mc-text、
+ * 硬阴影、纹理尺寸与 gui() 坐标全部按新档位解析。可嵌套（内层重新解析）。
+ */
+@utility mc-scale-scope {
+  --mc-gui: calc(var(--mc-scale) * 1px);
+  --spacing: calc(var(--mc-scale) * 1px);
+  --text-mc: calc(var(--mc-scale) * 9px);
+  --text-mc--line-height: calc(var(--mc-scale) * 9px);
+  --shadow-mc-1: calc(var(--mc-scale) * 1px) calc(var(--mc-scale) * 1px) 0 0
+    rgb(0 0 0 / 50%);
+  --shadow-mc-2: calc(var(--mc-scale) * 2px) calc(var(--mc-scale) * 2px) 0 0
+    rgb(0 0 0 / 50%);
+  --shadow-mc-raised: inset calc(var(--mc-scale) * 2px)
+      calc(var(--mc-scale) * 2px) 0 0 rgb(255 255 255 / 40%),
+    inset calc(var(--mc-scale) * -2px) calc(var(--mc-scale) * -2px) 0 0
+      rgb(0 0 0 / 40%);
+  --shadow-mc-sunken: inset calc(var(--mc-scale) * 2px)
+      calc(var(--mc-scale) * 2px) 0 0 rgb(0 0 0 / 40%),
+    inset calc(var(--mc-scale) * -2px) calc(var(--mc-scale) * -2px) 0 0
+      rgb(255 255 255 / 25%);
 }

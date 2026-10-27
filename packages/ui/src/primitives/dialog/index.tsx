@@ -71,7 +71,7 @@ export function DialogPopup({
         className={cn(
           "z-50 text-mc-text-main outline-none",
           variant === "panel"
-            ? "fixed top-1/2 left-1/2 w-176 -translate-1/2 p-6"
+            ? "fixed top-1/2 left-1/2 w-176 max-w-[calc(100vw-4*var(--mc-gui))] -translate-1/2 p-6"
             : "fixed inset-0 flex flex-col items-center justify-center gap-4 bg-transparent p-0",
           className,
         )}

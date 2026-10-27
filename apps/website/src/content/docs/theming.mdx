@@ -26,12 +26,19 @@ import Callout from "@/components/docs/Callout.astro";
 ## 调整 GUI 缩放
 
 ```css
-@theme {
+:root {
   --mc-scale: 3;
 }
 ```
 
 `--mc-gui`、`--spacing`、`gui()` 与九宫格边框都会跟着变化。布局坐标仍使用原版 GUI px 数值，不需要改组件代码。
+
+<Callout variant="warn" title="为什么不在 @theme 里写">
+`--mc-scale` / `--mc-gui` 定义在普通 `:root` 规则中，而不是 `@theme`：
+Tailwind v4 会把 @theme 内引用了其它主题变量的值在构建期内联成字面量，放进
+@theme 后子树缩放会失效。另外，CSS 自定义属性链在声明元素上解析固化 ——
+局部缩放需配合 `mc-scale-scope` 类，详见[缩放与自适应](/docs/responsive/)。
+</Callout>
 
 ## 替换字体
 

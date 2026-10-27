@@ -52,7 +52,6 @@ const installCommand = "pnpm add @verdigris/ui @verdigris/tokens @verdigris/text
         <ScaledPreview
           class="h-[220px] bg-[#1f1f1f] sm:h-[280px] lg:h-[300px] xl:h-[340px] 2xl:h-[360px]"
           name="MainMenu"
-          scaleClass="scale-[0.4] sm:scale-[0.55] lg:scale-[0.5] xl:scale-[0.64] 2xl:scale-[0.7]"
         />
         <figcaption class="flex items-center justify-between border-t border-site-border px-8 py-6 text-xs text-site-muted">
           <span>{home.hero.previewLabel}</span>
@@ -106,14 +105,14 @@ const installCommand = "pnpm add @verdigris/ui @verdigris/tokens @verdigris/text
     </div>
     <div class="mt-16 grid gap-16 md:grid-cols-2">
       <a href={localeHref(locale, "/blocks/inventory-screen/")} class="group block border border-site-border bg-site-surface hover:border-site-fg/40">
-        <ScaledPreview class="h-[340px] bg-[#0d0d0d] lg:h-[380px]" name="InventoryScreen" scaleClass="scale-[0.7] sm:scale-[0.8] lg:scale-[0.9]" />
+        <ScaledPreview class="h-[340px] bg-[#0d0d0d] lg:h-[380px]" name="InventoryScreen" />
         <div class="flex items-center justify-between border-t border-site-border px-8 py-6 text-sm">
           <span class="text-site-fg group-hover:text-site-accent">InventoryScreen</span>
           <span class="text-xs text-site-muted">{home.blocks.inventory}</span>
         </div>
       </a>
       <a href={localeHref(locale, "/blocks/crafting-screen/")} class="group block border border-site-border bg-site-surface hover:border-site-fg/40">
-        <ScaledPreview class="h-[340px] bg-[#0d0d0d] lg:h-[380px]" name="CraftingScreen" scaleClass="scale-[0.7] sm:scale-[0.8] lg:scale-[0.9]" />
+        <ScaledPreview class="h-[340px] bg-[#0d0d0d] lg:h-[380px]" name="CraftingScreen" />
         <div class="flex items-center justify-between border-t border-site-border px-8 py-6 text-sm">
           <span class="text-site-fg group-hover:text-site-accent">CraftingScreen</span>
           <span class="text-xs text-site-muted">{home.blocks.crafting}</span>

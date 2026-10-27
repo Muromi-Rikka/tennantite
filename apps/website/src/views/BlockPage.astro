@@ -1,5 +1,6 @@
 ---
 import { Code } from "astro:components";
+import { ScaledBox } from "@verdigris/ui";
 import Demo from "@/components/preview/demo";
 import LinkButton from "@/components/site/LinkButton.astro";
 import PageHeader from "@/components/site/PageHeader.astro";
@@ -62,10 +63,10 @@ const jsonLd = [
       <span class="text-xs text-site-muted">{text.unindexed}</span>
     </div>
 
-    <div class="mt-16 overflow-x-auto border border-site-border bg-[#1f1f1f] p-24">
-      <div class="mx-auto flex w-max items-center justify-center">
+    <div class="mc-scroll mt-16 overflow-x-auto border border-site-border bg-[#1f1f1f] p-16 sm:p-24">
+      <ScaledBox client:load>
         <Demo client:load name={entry.name} />
-      </div>
+      </ScaledBox>
     </div>
 
     <section class="mt-32">

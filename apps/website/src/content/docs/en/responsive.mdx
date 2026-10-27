@@ -1,0 +1,77 @@
+---
+title: Scaling & responsiveness
+description: GUI scale tokens, container-adaptive scaling, and the adaptation strategy across viewport sizes.
+section: design
+order: 4
+locale: en
+---
+
+import Callout from "@/components/docs/Callout.astro";
+
+## Three adaptation tiers
+
+Different component tiers adapt to different sizes differently:
+
+| Tier | Strategy |
+| --- | --- |
+| L3 fixed geometry (container screens / HUD / menus) | Uniform scaling only — never re-layouted, never stretched (spec §6.4 vanilla-coordinate invariant) |
+| L1 / L2 primitives & containers (Button, Input, Card, Panel…) | Fluid: nine-slice / tiled textures stretch naturally; width follows the container |
+| Presentation (docs site / playground) | `ScaledBox` picks the scale automatically from the container width |
+
+## Global scale
+
+Override `--mc-scale` on `:root` (see [Theming](/en/docs/theming/)):
+
+```css
+:root {
+  --mc-scale: 3;
+}
+```
+
+`--mc-gui`, `--spacing`, `gui()` and nine-slice borders all follow. Layout coordinates remain vanilla GUI px values; no component code changes. Vanilla GUI scale is integer — fractional factors blur the pixel font and textures. Stick to 1 / 2 / 3 / 4.
+
+## Container-adaptive: `ScaledBox`
+
+`ScaledBox` measures its own container and picks the scaling mode:
+
+```tsx
+import { ScaledBox } from "@verdigris/ui";
+
+// integer mode (default): writes the largest integer step into --mc-scale,
+// the whole subtree re-layouts — in-game "GUI Scale: Auto", crispest pixels
+<ScaledBox width={176}>
+  <ChestScreen rows={3} />
+</ScaledBox>
+
+// fit mode: transform-scales to fill a fixed-height frame (marketing
+// previews); content renders at --mc-scale: 1
+<ScaledBox className="h-[340px]" height={166} mode="fit" width={176}>
+  <InventoryScreen />
+</ScaledBox>
+```
+
+- `width` / `height`: intrinsic content size (GUI px). Omit them to measure the rendered content (needs browser layout; SSR renders at step 1 and corrects after hydration).
+- `maxScale`: scale cap; floored for integer mode (fractional allowed for fit), default 2.
+- `align`: horizontal alignment of the content in integer mode, centered by default.
+- ScaledBox never goes below step 1. Containers narrower than that decide themselves whether to clip or scroll — better than deformation.
+
+<Callout variant="warn" title="Manual --mc-scale overrides need mc-scale-scope">
+CSS custom properties resolve their var() references at the declaring element
+and inherit the resolved value: overriding `--mc-scale` on a subtree does not
+re-resolve `--mc-gui` / `--spacing`. When scaling locally, pair the override
+with the `mc-scale-scope` utility from the tokens package:
+
+```tsx
+<div className="mc-scale-scope" style={{ "--mc-scale": 1 }}>
+  <ChestScreen rows={3} />
+</div>
+```
+
+`ScaledBox` handles this for you; app-wide scaling via `:root` needs no extra care.
+</Callout>
+
+## Boundaries
+
+- **Portal popups**: Dialog / Select / Tooltip popups mount on `body` and do not follow the subtree `--mc-scale`. Scaled contexts should keep popups closed (e.g. `inert` previews).
+- **SSR**: `ScaledBox` never touches browser APIs during render; the server emits step 1 and the measurement corrects after hydration (spec §1.1).
+- **Textures & text**: integer steps stay pixel-crisp; fit mode's continuous scaling softens pixels slightly — reserve it for marketing slots.

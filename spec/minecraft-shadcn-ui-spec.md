@@ -42,6 +42,7 @@
 >
 > （rentonReact ()，含 Next.js/ TanStack / Tailwind 选项，详见 1.2）
 > v0.11 —— 全量 GUI 改用 Minecraft 26.4-snapshot-3 原版 PNG（577 精灵）
+> v0.12 —— 新增尺寸适配约定（§7.1）：三层适配策略、ScaledBox 组件、mc-scale-scope 作用域
 > 目标：在保持 shadcn"复制进项目、自由裁剪" 哲学的前提下，尽量还原 Minecraft 游戏内主要界面的视觉与交互。
 
 
@@ -357,6 +358,24 @@ L0 基础素材    Design Tokens · 像素字体 · 像素纹理 · 渲染基调
 | 动画       | 可选扩展层，默认关闭；不依赖动画成立                                     |
 | 滚动条      | 像素风格自定义滚动条（ScrollArea 内实现）                             |
 | SSR      | 服务端渲染初始静态结构；悬浮 / 键盘等交互水合后增强（与 "静态优先" 一致）               |
+
+### 7.1 尺寸适配（多容器 / 多视口）
+
+按组件分层的适配策略：
+
+| 组件层 | 策略 |
+| ---- | ---- |
+| L3 固定几何（容器界面 / HUD / 菜单） | **整体等比缩放**，永不重排、不拉伸（§6.4 原版坐标不变量）；整数倍率优先，像素最锐利 |
+| L1 / L2 原语与容器 | 流式适配：九宫格 / 平铺纹理天然可拉伸，宽度跟随容器；补小屏防护（Dialog `max-width`）、长标签裁切（Button）与溢出滚动（Tabs） |
+| 展示层（网站 / playground） | `ScaledBox` 按容器宽自动取档；营销定高预览用 fit 连续填充 |
+
+**机制约束**：
+
+* 一切缩放锚定 `--mc-scale`（1 GUI px = scale CSS px）。原版缩放为整数档，禁止 < 1 的整数档；容器窄于档位 1 最低宽度时由预览容器自行裁切或滚动（宁裁切不变形）。
+* **CSS 自定义属性链在声明元素上解析固化后继承**：子树仅覆盖 `--mc-scale` 不会重新解析 `--mc-gui` / `--spacing` / `--text-mc` 等派生值。局部缩放必须配合 tokens 包的 `mc-scale-scope` 工具类（在作用域元素上重声明整条派生链）；`ScaledBox` 已内置。`--mc-scale` / `--mc-gui` 必须定义在普通 `:root` 规则 —— Tailwind v4 `@theme` 会把主题变量间的引用在构建期内联成字面量。
+* `ScaledBox`（L2 容器）：`integer` 模式按容器宽取最大整数档写入 `--mc-scale` 并整树重排（等价游戏内 "GUI Scale: Auto"）；`fit` 模式在自身盒内 transform 等比缩放居中（内容按 `--mc-scale: 1` 渲染），用于营销预览。`width` / `height` 省略时按内容实测。
+* **Portal 边界**：Dialog / Select / Tooltip 弹层挂 `body`，不随子树 `--mc-scale` 缩放 —— 局部缩放场景应保证弹层不展开（如 inert 预览）；应用级整体缩放在 `:root` 覆盖。
+* SSR：缩放组件渲染期不访问浏览器 API，服务端按档位 1 输出，水合后测量修正（§1.1）。
 
 
 

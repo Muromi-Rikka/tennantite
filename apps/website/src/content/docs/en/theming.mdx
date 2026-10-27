@@ -26,12 +26,20 @@ Themes are declared after tokens. Override only what you want to change:
 ## Change GUI scale
 
 ```css
-@theme {
+:root {
   --mc-scale: 3;
 }
 ```
 
 `--mc-gui`, `--spacing`, `gui()` and nine-slice borders all follow. Layout coordinates remain vanilla GUI px values; no component code changes.
+
+<Callout variant="warn" title="Why not @theme">
+`--mc-scale` / `--mc-gui` live in a plain `:root` rule instead of `@theme`:
+Tailwind v4 inlines references between theme variables at build time, which
+would break subtree scaling. Also, CSS custom-property chains resolve and
+freeze at the declaring element — local scaling needs the `mc-scale-scope`
+class, see [Scaling & responsiveness](/en/docs/responsive/).
+</Callout>
 
 ## Replace the font
 

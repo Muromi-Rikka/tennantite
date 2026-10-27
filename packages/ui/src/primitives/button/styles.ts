@@ -10,8 +10,9 @@ import { cn } from "../../lib/utils";
  */
 export const buttonStyles = cva(
   [
-    "mc-text-shadow inline-flex h-20 cursor-pointer items-center justify-center gap-0 px-4",
+    "mc-text-shadow inline-flex h-20 max-w-full cursor-pointer items-center justify-center gap-0 overflow-hidden px-4",
     "font-mc mc-text text-mc-text-main no-underline select-none",
+    "whitespace-nowrap",
     "disabled:cursor-not-allowed disabled:text-mc-text-dim",
   ].join(" "),
   {

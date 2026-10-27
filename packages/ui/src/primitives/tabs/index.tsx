@@ -24,7 +24,10 @@ export function TabsList({
 }: ComponentProps<typeof BaseTabs.List>) {
   return (
     <BaseTabs.List
-      className={cn("flex items-end gap-0 outline-none", className)}
+      className={cn(
+        "mc-scroll flex max-w-full items-end gap-0 overflow-x-auto outline-none",
+        className,
+      )}
       {...properties}
     />
   );

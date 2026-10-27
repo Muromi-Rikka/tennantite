@@ -22,6 +22,9 @@ export type { PanelProps } from "./panel/index";
 export { PlayerInventory } from "./player-inventory/index";
 export type { InventoryItem, PlayerInventoryProps } from "./player-inventory/index";
 
+export { ScaledBox } from "./scaled-box/index";
+export type { ScaledBoxProps } from "./scaled-box/index";
+
 export { ScreenPanel } from "./screen-panel/index";
 export type { ScreenPanelProps } from "./screen-panel/index";
 

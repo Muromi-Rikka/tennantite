@@ -411,6 +411,22 @@
       ],
       "files": [
         {
+          "path": "packages/ui/src/containers/scaled-box/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "scaled-box",
+      "registryDependencies": [],
+      "title": "Scaled Box",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
           "path": "packages/ui/src/containers/screen-panel/index.tsx",
           "type": "registry:component"
         }

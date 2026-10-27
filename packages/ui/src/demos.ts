@@ -6,6 +6,7 @@ export { IconDemo } from "./containers/icon/demo";
 export { ItemStackDemo } from "./containers/item-stack/demo";
 export { PanelDemo } from "./containers/panel/demo";
 export { PlayerInventoryDemo } from "./containers/player-inventory/demo";
+export { ScaledBoxDemo } from "./containers/scaled-box/demo";
 export { ScreenPanelDemo } from "./containers/screen-panel/demo";
 export { SlotDemo } from "./containers/slot/demo";
 export { TitleBarDemo } from "./containers/title-bar/demo";

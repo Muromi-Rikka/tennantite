@@ -4,18 +4,65 @@ import Demo from "./demo";
 interface Props {
   class?: string;
   name: string;
-  scaleClass?: string;
+  maxScale?: number;
 }
-const { class: className = "", name, scaleClass = "scale-[0.65]" } = Astro.props;
+
+const { class: className = "", maxScale = 1, name } = Astro.props;
 ---
-<div class:list={["relative overflow-hidden", className]}>
+<div
+  class:list={["relative overflow-hidden", className]}
+  data-max-scale={maxScale}
+  data-scaled-preview=""
+>
   <div
     aria-hidden="true"
     inert
     class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+    data-scaled-content=""
   >
-    <div class={scaleClass}>
-      <Demo client:visible name={name} />
-    </div>
+    <Demo client:visible name={name} />
   </div>
 </div>
+<script>
+  // 自动等比缩放：scale = min(容器盒 / 内容固有盒, maxScale)。
+  // translate 类负责居中，这里只写 CSS `scale` 属性（与 translate 组合生效）；
+  // 实测尺寸按当前 scale 换算回固有值，天然适配任意 demo，无需逐处写断点。
+  function fit(preview: HTMLElement): void {
+    const content = preview.querySelector<HTMLElement>("[data-scaled-content]");
+    if (!content) {
+      return;
+    }
+    const box = preview.getBoundingClientRect();
+    if (box.width <= 0 || box.height <= 0) {
+      return;
+    }
+    const current = Number.parseFloat(content.dataset.previewScale ?? "1") || 1;
+    const rect = content.getBoundingClientRect();
+    const naturalWidth = rect.width / current;
+    const naturalHeight = rect.height / current;
+    if (naturalWidth <= 0 || naturalHeight <= 0) {
+      return;
+    }
+    const maxScale = Number.parseFloat(preview.dataset.maxScale ?? "1") || 1;
+    const scale = Math.min(
+      maxScale,
+      box.width / naturalWidth,
+      box.height / naturalHeight,
+    );
+    content.dataset.previewScale = String(scale);
+    content.style.scale = String(scale);
+  }
+
+  const previews = document.querySelectorAll<HTMLElement>("[data-scaled-preview]");
+  const observer = new ResizeObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.target instanceof HTMLElement) {
+        fit(entry.target);
+      }
+    }
+  });
+  for (const preview of previews) {
+    observer.observe(preview);
+    fit(preview);
+  }
+</script>

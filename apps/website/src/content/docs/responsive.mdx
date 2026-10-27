@@ -1,0 +1,76 @@
+---
+title: 缩放与自适应
+description: GUI 缩放令牌、容器自适应缩放与不同尺寸场景下的适配策略。
+section: design
+order: 4
+locale: zh
+---
+
+import Callout from "@/components/docs/Callout.astro";
+
+## 三层适配策略
+
+不同尺寸场景下，三类组件的适配方式不同：
+
+| 组件层 | 策略 |
+| --- | --- |
+| L3 固定几何（容器界面 / HUD / 菜单） | 整体等比缩放，永不重排、不拉伸（规格 §6.4 原版坐标不变量） |
+| L1 / L2 原语与容器（Button、Input、Card、Panel…） | 流式适配：纹理九宫格 / 平铺天然可拉伸，宽度跟随容器 |
+| 展示层（文档站 / playground） | 用 `ScaledBox` 按容器宽度自动取档 |
+
+## 全局缩放
+
+在 `:root` 上覆盖 `--mc-scale`（见[主题](/docs/theming/)）：
+
+```css
+:root {
+  --mc-scale: 3;
+}
+```
+
+`--mc-gui`、`--spacing`、`gui()` 与九宫格边框都会跟着变化。布局坐标仍使用原版 GUI px 数值，不需要改组件代码。原版 GUI 缩放为整数，非整数倍会让像素字体与纹理发虚——保持 1 / 2 / 3 / 4。
+
+## 容器自适应：`ScaledBox`
+
+`ScaledBox` 测量自身容器宽度，自动选择缩放方式：
+
+```tsx
+import { ScaledBox } from "@verdigris/ui";
+
+// integer 模式（默认）：按容器宽取最大整数档写入 --mc-scale，
+// 内容整体重排 —— 等价游戏内 "GUI Scale: Auto"，像素最锐利
+<ScaledBox width={176}>
+  <ChestScreen rows={3} />
+</ScaledBox>
+
+// fit 模式：在自身盒内 transform 等比缩放并居中（填满定高容器，
+// 用于营销预览），内容按 --mc-scale: 1 渲染
+<ScaledBox className="h-[340px]" height={166} mode="fit" width={176}>
+  <InventoryScreen />
+</ScaledBox>
+```
+
+- `width` / `height`：内容固有尺寸（GUI px）。省略时按内容实测尺寸计算档位（依赖浏览器布局，SSR 期保持档位 1，水合后修正）。
+- `maxScale`：缩放上限，integer 模式向下取整（fit 模式可为小数），默认 2。
+- `align`：integer 模式下内容的水平对齐，默认居中。
+- 容器窄于档位 1 的最低宽度时不会缩到 1 以下——预览容器应自己决定裁切或滚动（比变形更可接受）。
+
+<Callout variant="warn" title="手动覆盖 --mc-scale 必须挂 mc-scale-scope">
+CSS 自定义属性的 var() 引用在声明元素上解析固化后随继承下传：仅在子树覆盖
+`--mc-scale` 不会重新解析 `--mc-gui` / `--spacing` 等派生值。局部缩放时必须
+在同一元素同时使用 tokens 包提供的 `mc-scale-scope` 工具类：
+
+```tsx
+<div className="mc-scale-scope" style={{ "--mc-scale": 1 }}>
+  <ChestScreen rows={3} />
+</div>
+```
+
+`ScaledBox` 已内置该处理；应用级整体缩放改 `:root` 即可，无需此注意事项。
+</Callout>
+
+## 边界
+
+- **Portal 弹层**：Dialog / Select / Tooltip 的弹层挂在 `body` 上，不随子树 `--mc-scale` 缩放。局部缩放场景应保证弹层不展开（如 `inert` 预览）。
+- **SSR**：`ScaledBox` 渲染期不访问浏览器 API，服务端按档位 1 输出，水合后测量修正（规格 §1.1）。
+- **纹理与文本**：所有缩放经整数倍 `--mc-scale` 时像素锐利；fit 模式的连续缩放会轻微发虚，仅建议用于营销展示位。

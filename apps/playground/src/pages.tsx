@@ -16,6 +16,7 @@ import { EnchantingScreenPage } from "./pages/enchanting-screen";
 import { ExperienceBarPage } from "./pages/experience-bar";
 import { FurnaceScreenPage } from "./pages/furnace-screen";
 import { GuiParityPage } from "./pages/gui-parity";
+import { GuiScalePage } from "./pages/gui-scale";
 import { HealthHungerBarPage } from "./pages/health-hunger-bar";
 import { HotbarPage } from "./pages/hotbar";
 import { IconPage } from "./pages/icon";
@@ -63,6 +64,7 @@ export const pageRegistry = new Map<string, PageEntry>([
   ["experience-bar", { render: () => <ExperienceBarPage />, title: "ExperienceBar (HUD)" }],
   ["furnace-screen", { render: () => <FurnaceScreenPage />, title: "FurnaceScreen" }],
   ["gui-parity", { render: () => <GuiParityPage />, title: "GUI Parity (all)" }],
+  ["gui-scale", { render: () => <GuiScalePage />, title: "GUI Scale (auto)" }],
   ["health-hunger-bar", { render: () => <HealthHungerBarPage />, title: "HealthHungerBar (HUD)" }],
   ["hotbar", { render: () => <HotbarPage />, title: "Hotbar (HUD)" }],
   ["icon", { render: () => <IconPage />, title: "Icon (L2)" }],
