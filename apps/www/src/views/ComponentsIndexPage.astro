@@ -1,0 +1,47 @@
+---
+import PageHeader from "@/components/site/PageHeader.astro";
+import type { Locale } from "@/i18n";
+import { componentHref, componentGroups, components, catalogDescription, groupText } from "@/lib/catalog";
+import { ui } from "@/i18n";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const text = ui[locale].componentsPage;
+---
+<SiteLayout title={text.metaTitle} description={text.description} locale={locale}>
+  <div class="mx-auto max-w-[1120px] px-12 py-24">
+    <PageHeader
+      breadcrumb={[{ label: text.breadcrumb }]}
+      title={text.title}
+      description={text.description}
+    />
+    {componentGroups.map((group) => {
+      const groupLabel = groupText(group, locale);
+      const items = components.filter(component => component.group === group.id);
+      return (
+        <section id={group.id} class="mt-32 scroll-mt-32">
+          <div class="flex items-baseline gap-8 border-b border-site-border pb-8">
+            <h2 class="text-2xl font-bold text-site-fg">{groupLabel.title}</h2>
+            <span class="text-xs uppercase tracking-wider text-site-muted">{group.level}</span>
+            <span class="ml-auto text-sm text-site-muted">{items.length}</span>
+          </div>
+          <p class="mt-8 text-sm leading-12 text-site-muted">{groupLabel.description}</p>
+          <div class="grid gap-x-24 md:grid-cols-2">
+            {items.map(component => (
+              <a
+                href={componentHref(component.slug, locale)}
+                class="group flex flex-col gap-2 border-b border-site-border/60 py-8"
+              >
+                <span class="text-base text-site-fg group-hover:text-site-accent">{component.name}</span>
+                <span class="text-sm leading-12 text-site-muted">{catalogDescription(component, locale)}</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      );
+    })}
+  </div>
+</SiteLayout>

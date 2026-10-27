@@ -6,7 +6,8 @@ import DocsSidebar from "@/components/docs/DocsSidebar.astro";
 import DocsToc from "@/components/docs/DocsToc.astro";
 import MobileDocsNav from "@/components/docs/MobileDocsNav.astro";
 import { getCollection } from "astro:content";
-import { buildDocsNav, docHref, getDocsPager, sortDocs, type DocEntry, type DocHeading } from "@/lib/docs";
+import { ui } from "@/i18n";
+import { buildDocsNav, docHref, docSlug, filterDocs, getDocsPager, type DocEntry, type DocHeading } from "@/lib/docs";
 import { breadcrumb, techArticle } from "@/lib/seo";
 
 interface Props {
@@ -14,45 +15,50 @@ interface Props {
   headings: DocHeading[];
 }
 const { entry, headings } = Astro.props;
-const docs = sortDocs(await getCollection("docs"));
-const nav = buildDocsNav(docs);
+const locale = entry.data.locale;
+const text = ui[locale];
+const docs = filterDocs(await getCollection("docs"), locale);
+const nav = buildDocsNav(docs, locale);
 const href = docHref(entry.id);
+const isIndex = docSlug(entry.id) === "index";
+const docsIndexHref = docHref(locale === "en" ? "en/index" : "index");
 const pager = getDocsPager(docs, entry.id);
 const site = Astro.site ?? new URL("http://localhost:3300");
 const jsonLd = [
-  techArticle({ description: entry.data.description, path: href, site, title: entry.data.title }),
-  ...(entry.id === "index"
+  techArticle({ description: entry.data.description, locale, path: href, site, title: entry.data.title }),
+  ...(isIndex
     ? []
-    : [breadcrumb({ items: [{ label: "Docs", path: "/docs/" }, { label: entry.data.title, path: href }], site })]),
+    : [breadcrumb({ items: [{ label: text.docsChrome.breadcrumb, path: docsIndexHref }, { label: entry.data.title, path: href }], site })]),
 ];
 ---
 <SiteLayout
-  title={`${entry.data.title} · Verdigris`}
+  title={`${entry.data.title} · ${text.docsChrome.metaSuffix}`}
   description={entry.data.description}
+  locale={locale}
   type="article"
   jsonLd={jsonLd}
 >
   <div class="mx-auto flex w-full max-w-[1440px] gap-24 px-12">
     <aside class="hidden w-[200px] shrink-0 lg:block">
       <div class="sticky top-32 max-h-[calc(100vh-128px)] overflow-y-auto py-24">
-        <DocsSidebar groups={nav} pathname={Astro.url.pathname} />
+        <DocsSidebar groups={nav} label={text.docsChrome.mobileNav} pathname={Astro.url.pathname} />
       </div>
     </aside>
     <div class="min-w-0 flex-1">
-      <MobileDocsNav groups={nav} />
+      <MobileDocsNav groups={nav} title={text.docsChrome.mobileNav} />
       <div class="grid gap-24 pt-24 pb-32 xl:grid-cols-[minmax(0,1fr)_160px]">
         <article class="min-w-0">
           <PageHeader
-            breadcrumb={entry.id === "index"
-              ? [{ label: "Docs" }]
-              : [{ href: "/docs/", label: "Docs" }, { label: entry.data.title }]}
+            breadcrumb={isIndex
+              ? [{ label: text.docsChrome.breadcrumb }]
+              : [{ href: docsIndexHref, label: text.docsChrome.breadcrumb }, { label: entry.data.title }]}
             title={entry.data.title}
             description={entry.data.description}
           />
           <div class="docs-prose mt-16" data-copy-scope><slot /></div>
-          <PrevNext prev={pager.prev} next={pager.next} />
+          <PrevNext locale={locale} prev={pager.prev} next={pager.next} />
         </article>
-        <DocsToc headings={headings.filter(heading => heading.depth === 2)} />
+        <DocsToc headings={headings.filter(heading => heading.depth === 2)} title={text.docsChrome.toc} />
       </div>
     </div>
   </div>

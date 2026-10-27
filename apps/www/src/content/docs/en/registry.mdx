@@ -1,0 +1,53 @@
+---
+title: Registry
+description: Generating registry.json and the current source-distribution status.
+section: distribution
+order: 1
+locale: en
+---
+
+import Callout from "@/components/docs/Callout.astro";
+
+## What a registry is
+
+A registry is shadcn's source-distribution format. Each entry describes a component name, type, dependencies and file paths. Consumers copy source into their project instead of importing a compiled package.
+
+## Generate
+
+```bash
+pnpm registry
+# Equivalent to
+node registry/build.mjs
+```
+
+The script scans `packages/ui/src/primitives` and `packages/ui/src/containers`, reads each `index.tsx`, infers `@base-ui/react`, `class-variance-authority` and `cn`, and lists sibling `.ts` / `.tsx` files.
+
+## Shape
+
+```json
+{
+  "name": "button",
+  "title": "Button",
+  "type": "registry:component",
+  "dependencies": ["@base-ui/react"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/ui/src/primitives/button/index.tsx",
+      "type": "registry:component"
+    }
+  ]
+}
+```
+
+The current `files` entries contain only `path` and `type`, with no inline `content`. That means this is not yet a remote registry endpoint.
+
+## Coverage
+
+The current output covers primitives and containers only, 23 entries. Screens are not included. To extend it, add `["screens", "registry:component"]` to the `groups` array and handle the second-level `screens/hud`, `screens/containers` and `screens/menus` paths.
+
+## Distribution status
+
+<Callout variant="warn" title="Not hosted">
+`@verdigris/ui` is not on npm and has no public registry URL. This site exposes no `/r/*.json` endpoint. Before hosting, inline file content or add a build step that resolves `path`.
+</Callout>

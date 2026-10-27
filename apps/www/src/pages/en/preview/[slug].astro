@@ -1,0 +1,18 @@
+---
+import { blocks, type CatalogEntry } from "@/lib/catalog";
+import PreviewPage from "@/views/PreviewPage.astro";
+
+interface Props {
+  entry: CatalogEntry;
+}
+
+export async function getStaticPaths() {
+  return blocks.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+---
+<PreviewPage entry={entry} locale="en" />

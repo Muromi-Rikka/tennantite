@@ -1,0 +1,68 @@
+---
+title: Design tokens
+description: Color, type, spacing and shadow tokens.
+section: design
+order: 1
+locale: en
+---
+
+import Callout from "@/components/docs/Callout.astro";
+import TokenTable from "@/components/docs/TokenTable.astro";
+
+## Token model
+
+`@verdigris/tokens` declares CSS variables through Tailwind v4's `@theme` and generates matching utilities. GUI scale is controlled by `--mc-scale`:
+
+```css
+@theme {
+  --mc-scale: 2;
+  --mc-gui: calc(var(--mc-scale) * 1px);
+  --spacing: var(--mc-gui);
+}
+```
+
+So `w-20` is 20 GUI px, or 40 CSS px by default; `p-4` is 8 CSS px rather than 16.
+
+## Color
+
+<Callout>
+There are 35 `--color-mc-*` tokens. Values are sampled from Minecraft Java 26.3 GUI colors. The table is derived from `packages/tokens/css/tokens.css`.
+</Callout>
+
+<TokenTable locale="en" />
+
+## Type
+
+- `--font-mc`: Minecraft pixel font first, with `Microsoft YaHei` / `PingFang SC` fallbacks.
+- `--text-mc`: 9 GUI px font size and line height.
+- `mc-text`: use it together with a color class. `tailwind-merge` treats `text-mc` and `text-mc-text-main` as the same group and drops the size; `mc-text` avoids the `text-*` group.
+- `mc-text-shadow`: classic 1 GUI px text shadow.
+
+```tsx
+<p className="font-mc mc-text text-mc-text-main mc-text-shadow">Title</p>
+```
+
+## Spacing and shadows
+
+| Utility | Meaning |
+| --- | --- |
+| `p-8` / `p-16` | 16px / 32px |
+| `w-200` | 400px (vanilla button width) |
+| `shadow-mc-1` / `shadow-mc-2` | 1 / 2 GUI px outer shadow |
+| `shadow-mc-raised` / `shadow-mc-sunken` | inset raised / sunken shadow |
+| `mc-border` / `mc-border-2` | 1 / 2 GUI px border |
+| `pixelated` | `image-rendering: pixelated` |
+
+## Overrides
+
+Declare the same `@theme` variables after importing tokens:
+
+```css
+@theme {
+  --color-mc-panel: #d9c7a3;
+  --color-mc-gold: #ffd166;
+  --mc-scale: 3;
+}
+```
+
+`--mc-gui` recomputes from `--mc-scale`, so every `gui()` and `--spacing` measurement scales with it. See [Theming](/en/docs/theming/).

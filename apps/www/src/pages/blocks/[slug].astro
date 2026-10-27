@@ -1,14 +1,6 @@
 ---
-import { Code } from "astro:components";
-import SiteLayout from "@/layouts/SiteLayout.astro";
-import PageHeader from "@/components/site/PageHeader.astro";
-import PrevNext from "@/components/site/PrevNext.astro";
-import LinkButton from "@/components/site/LinkButton.astro";
-import Demo from "@/components/preview/demo";
-import { blockComposition } from "@/lib/blocks";
-import { blocks, findComponentByName, getBlockPager, type CatalogEntry } from "@/lib/catalog";
-import { readDemoSource } from "@/lib/source";
-import { breadcrumb, techArticle } from "@/lib/seo";
+import { blocks, type CatalogEntry } from "@/lib/catalog";
+import BlockPage from "@/views/BlockPage.astro";
 
 interface Props {
   entry: CatalogEntry;
@@ -22,63 +14,5 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const code = readDemoSource(entry.sourceDir);
-const pager = getBlockPager(entry.slug);
-const composition = (blockComposition[entry.slug] ?? [])
-  .map(name => findComponentByName(name))
-  .filter((component): component is CatalogEntry => component !== undefined);
-const site = Astro.site ?? new URL("http://localhost:3300");
-const jsonLd = [
-  techArticle({ description: entry.description, path: `/blocks/${entry.slug}/`, site, title: entry.name }),
-  breadcrumb({ items: [{ label: "Blocks", path: "/blocks/" }, { label: entry.name, path: `/blocks/${entry.slug}/` }], site }),
-];
 ---
-<SiteLayout
-  title={`${entry.name} Block · Verdigris`}
-  description={`${entry.description} 查看 ${entry.name} 的整屏预览、组成与示例源码。`}
-  type="article"
-  jsonLd={jsonLd}
->
-  <div class="mx-auto max-w-[1120px] px-12 py-24">
-    <PageHeader
-      breadcrumb={[{ href: "/blocks/", label: "Blocks" }, { label: entry.name }]}
-      title={entry.name}
-      description={entry.description}
-    />
-
-    <div class="mt-12 flex flex-wrap items-center gap-8">
-      <LinkButton href={`/preview/${entry.slug}/`} target="_blank" rel="noreferrer">全屏预览</LinkButton>
-      <span class="text-xs text-site-muted">预览页不进入搜索引擎索引</span>
-    </div>
-
-    <div class="mt-16 overflow-x-auto border border-site-border bg-[#1f1f1f] p-24">
-      <div class="mx-auto flex w-max items-center justify-center">
-        <Demo client:load name={entry.name} />
-      </div>
-    </div>
-
-    <section class="mt-32">
-      <h2 class="text-2xl font-bold text-site-fg">组成</h2>
-      <p class="mt-4 text-sm leading-12 text-site-muted">这些是可直接组合的组件；Block 只是把它们按原版坐标放在一起。</p>
-      <div class="mt-8 flex flex-wrap gap-4">
-        {composition.map(component => (
-          <a
-            class="border border-site-border bg-site-surface px-4 py-2 font-mono text-xs text-site-fg hover:text-site-accent"
-            href={`/components/${component.slug}/`}
-          >
-            {component.name}
-          </a>
-        ))}
-      </div>
-    </section>
-
-    <section class="mt-32">
-      <h2 class="text-2xl font-bold text-site-fg">代码</h2>
-      <div class="mt-8 overflow-x-auto border border-site-border bg-[#080808] p-8" data-copy-scope>
-        <Code code={code} lang="tsx" />
-      </div>
-    </section>
-
-    <PrevNext prev={pager.prev} next={pager.next} />
-  </div>
-</SiteLayout>
+<BlockPage entry={entry} locale="zh" />

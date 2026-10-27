@@ -2,26 +2,44 @@
 import { Icon } from "@verdigris/ui";
 import { getCollection } from "astro:content";
 import Search from "@/components/site/search";
+import type { Locale } from "@/i18n";
+import { localeHref, switchLocalePath, ui } from "@/i18n";
 import { buildSearchItems } from "@/lib/search";
 import SiteNav from "./SiteNav.astro";
 import MobileNav from "./MobileNav.astro";
 
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const text = ui[locale];
 const docs = await getCollection("docs");
-const searchItems = buildSearchItems(docs);
+const searchItems = buildSearchItems(docs, locale);
 const pathname = Astro.url.pathname;
 const githubUrl = "https://github.com/verdigris-ui/verdigris";
+const switchHref = /^\/(?:en\/)?404\/?$/.test(pathname)
+  ? localeHref(locale === "zh" ? "en" : "zh", "/")
+  : switchLocalePath(pathname, locale === "zh" ? "en" : "zh");
 ---
 <header class="sticky top-0 z-40 border-b border-site-border bg-site-bg/85 backdrop-blur">
   <div class="mx-auto flex h-32 max-w-[1440px] items-center gap-8 px-12">
-    <a href="/" class="flex items-center gap-4 text-lg font-bold tracking-wide text-site-fg hover:text-mc-gold">
+    <a href={localeHref(locale, "/")} class="flex items-center gap-4 text-lg font-bold tracking-wide text-site-fg hover:text-mc-gold">
       <Icon name="grass-block" size={8} />
       Verdigris
     </a>
-    <SiteNav pathname={pathname} />
+    <SiteNav locale={locale} pathname={pathname} />
     <div class="ml-auto flex items-center gap-4">
-      <Search client:idle items={searchItems} />
-      <a class="hidden text-sm text-site-muted hover:text-site-fg md:inline" href={githubUrl} target="_blank" rel="noreferrer">GitHub</a>
-      <MobileNav pathname={pathname} />
+      <Search client:idle items={searchItems} locale={locale} />
+      <a
+        class="text-sm text-site-muted hover:text-site-fg"
+        href={switchHref}
+        hreflang={locale === "zh" ? "en" : "zh-CN"}
+        aria-label={locale === "zh" ? "Switch to English" : "切换到中文"}
+      >
+        {text.switchLabel}
+      </a>
+      <a class="hidden text-sm text-site-muted hover:text-site-fg md:inline" href={githubUrl} target="_blank" rel="noreferrer">{text.nav.github}</a>
+      <MobileNav locale={locale} pathname={pathname} />
     </div>
   </div>
 </header>

@@ -1,0 +1,43 @@
+---
+title: Accessibility
+description: axe tests, keyboard interaction and known limits.
+section: architecture
+order: 3
+locale: en
+---
+
+import Callout from "@/components/docs/Callout.astro";
+
+## axe-core tests
+
+`packages/ui/src/primitives/a11y.test.tsx` renders components with Testing Library, then runs axe-core through `expectNoAxeViolations`. Coverage:
+
+- Button, Input, Badge, ScrollArea
+- Checkbox, Switch, RadioGroup, Slider, Progress
+- Tabs, Select, Dialog, Tooltip
+
+```bash
+pnpm --filter @verdigris/ui test
+```
+
+## Keyboard and focus
+
+Base UI handles tab order, arrow keys, Enter / Space and Escape. Custom interactions use a white pixel focus frame; `mc-outline` provides a 1 GUI px outer outline. Hover is a desktop enhancement, never the only entry point.
+
+## Semantics
+
+- Dialogs must provide `DialogTitle`; add `DialogDescription` when context is needed.
+- Icon-only controls get an `aria-label` from the caller.
+- `Icon` is `aria-hidden="true"` by default and stays out of the accessibility tree.
+- Decorative previews use `inert` and `aria-hidden` to avoid duplicate focus and announcements.
+
+## Known limits
+
+- HUD layers are overlays and do not join focus; they are not operable form regions.
+- Full screens are visual simulations, not semantic data tables.
+- axe does not yet cover every screen; primitives are the current focus.
+- Chinese glyphs fall back to system fonts, so weight and width can differ.
+
+<Callout variant="warn" title="Integration checklist">
+Inputs need a label or `aria-label`; buttons need readable text; dialogs need a title; never make hover the only entry point.
+</Callout>

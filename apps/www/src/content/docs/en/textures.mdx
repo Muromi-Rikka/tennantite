@@ -1,0 +1,52 @@
+---
+title: Textures
+description: Nine-slice textures, icons and pixel rendering.
+section: design
+order: 2
+locale: en
+---
+
+import Callout from "@/components/docs/Callout.astro";
+import IconGrid from "@/components/docs/IconGrid.astro";
+import TextureClasses from "@/components/docs/TextureClasses.astro";
+
+## Redraw strategy
+
+Every texture is redrawn for this project; there are zero Mojang assets. Icons are described as character art and compiled by `pixelSprite(rows, palette)` into the smallest set of SVG `<rect>` runs. See `packages/textures/LICENSE-ASSETS.md`.
+
+## Nine-slice
+
+Buttons and panels use a 12×12 source with slice 3 through `border-image`. Border widths scale with `--mc-gui`, so changing GUI scale does not stretch or blur the art. Every texture class sets `image-rendering: pixelated`.
+
+```css
+.mc-tex-panel {
+  border: calc(var(--mc-gui) * 3) solid transparent;
+  border-image: url("/textures/panel.svg") 3 / calc(var(--mc-gui) * 3) stretch;
+}
+```
+
+## Texture classes
+
+<TextureClasses locale="en" />
+
+## Icons
+
+<IconGrid />
+
+```tsx
+import { Icon } from "@verdigris/ui";
+
+<Icon name="grass-block" size={16} />
+```
+
+`size` is in GUI px and defaults to 16. Icons are `aria-hidden` by default; provide an `aria-label` or nearby text when they carry meaning.
+
+## Import
+
+```css
+@import "@verdigris/textures/css/textures.css";
+```
+
+<Callout>
+Texture classes work on any element, but depend on the CSS variables from `@verdigris/textures`. If you copy a single SVG icon, you do not need the full texture stylesheet.
+</Callout>

@@ -1,16 +1,21 @@
 ---
+import type { Locale } from "@/i18n";
+import { localeHref, ui } from "@/i18n";
+
 interface Props {
+  locale: Locale;
   pathname: string;
 }
-const { pathname } = Astro.props;
+const { locale, pathname } = Astro.props;
+const text = ui[locale];
 const items = [
-  { href: "/docs/", label: "文档" },
-  { href: "/components/", label: "组件" },
-  { href: "/blocks/", label: "Blocks" },
+  { href: localeHref(locale, "/docs/"), label: text.nav.docs },
+  { href: localeHref(locale, "/components/"), label: text.nav.components },
+  { href: localeHref(locale, "/blocks/"), label: text.nav.blocks },
 ];
 const isActive = (href: string) => pathname === href || pathname.startsWith(href);
 ---
-<nav aria-label="主导航" class="hidden items-center gap-2 md:flex">
+<nav aria-label={locale === "zh" ? "主导航" : "Main navigation"} class="hidden items-center gap-2 md:flex">
   {items.map(item => (
     <a
       href={item.href}

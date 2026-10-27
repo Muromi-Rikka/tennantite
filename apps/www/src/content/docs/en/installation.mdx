@@ -1,0 +1,75 @@
+---
+title: Installation
+description: Add styles and components to a React 19 + Tailwind v4 project.
+section: start
+order: 2
+locale: en
+---
+
+import Callout from "@/components/docs/Callout.astro";
+import InstallCommand from "@/components/docs/InstallCommand.astro";
+
+## Prerequisites
+
+- Node.js ≥ 26
+- pnpm 12
+- React 19.2.8 (peer range `^19.2.0`; 19.3 has a known prerender issue with Next 16)
+- Tailwind CSS v4
+
+## Install dependencies
+
+<InstallCommand command="pnpm add @verdigris/ui @verdigris/tokens @verdigris/textures" locale="en" />
+
+<Callout variant="warn" title="Not on npm yet">
+v0.1.0 is still a preview. Inside this repo use `"@verdigris/ui": "workspace:*"` instead of installing from npm.
+</Callout>
+
+## Wire up styles
+
+Import the packages in this order from your Tailwind entry CSS:
+
+```css
+@import "tailwindcss";
+@import "@verdigris/tokens/css/tokens.css";
+@import "@verdigris/textures/css/textures.css";
+@import "@verdigris/ui/css/scroll-area.css";
+
+/* Let Tailwind scan package class names; paths are relative to this CSS file. */
+@source "../node_modules/@verdigris/ui/dist";
+
+body {
+  background-color: #1f1f1f;
+  color: var(--color-mc-text-main);
+  font-family: var(--font-mc);
+  font-size: var(--text-mc);
+}
+```
+
+<Callout>
+In this monorepo point `@source` at `../../packages`. The path must be relative to the current CSS file; consumers should adjust it for their layout. Without it, Tailwind classes used inside components are not generated.
+</Callout>
+
+## First component
+
+```tsx
+import { Button, Panel } from "@verdigris/ui";
+
+export function StartPanel() {
+  return (
+    <Panel className="p-12">
+      <Button variant="success">Start game</Button>
+    </Panel>
+  );
+}
+```
+
+## Frameworks
+
+Components render safely on the server by default. The repo includes Next.js App Router and TanStack Start verification apps; the rsbuild playground is for quick iteration. See [SSR / RSC](/en/docs/ssr/) for the exact constraints.
+
+## Troubleshooting
+
+- Missing classes: make sure `@source` covers `node_modules/@verdigris/ui/dist`.
+- Wrong spacing: `--spacing` is 2px, so `w-20` is 40px, not 80px.
+- React version: stay on 19.2.8 to avoid the Next 16 prerender issue in 19.3.
+- Chinese glyphs: the pixel font covers Latin only; Chinese falls back through the token stack.

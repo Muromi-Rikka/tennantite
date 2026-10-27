@@ -1,13 +1,22 @@
 ---
-import { tokenRows } from "@/lib/tokens";
+import type { Locale } from "@/i18n";
+import { tokenRows, tokenUsageEn } from "@/lib/tokens";
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = "zh" } = Astro.props;
+const labels = locale === "en"
+  ? { token: "Token", usage: "Usage", value: "Value" }
+  : { token: "令牌", usage: "用途", value: "值" };
 ---
 <div class="mt-8 overflow-x-auto">
   <table class="w-full border-collapse text-sm">
     <thead>
       <tr>
-        <th class="border-b border-site-border px-4 py-3 text-left text-site-fg">令牌</th>
-        <th class="border-b border-site-border px-4 py-3 text-left text-site-fg">值</th>
-        <th class="border-b border-site-border px-4 py-3 text-left text-site-fg">用途</th>
+        <th class="border-b border-site-border px-4 py-3 text-left text-site-fg">{labels.token}</th>
+        <th class="border-b border-site-border px-4 py-3 text-left text-site-fg">{labels.value}</th>
+        <th class="border-b border-site-border px-4 py-3 text-left text-site-fg">{labels.usage}</th>
       </tr>
     </thead>
     <tbody>
@@ -18,7 +27,7 @@ import { tokenRows } from "@/lib/tokens";
             <span class="mr-4 inline-block size-8 border border-site-border align-middle" style={{ backgroundColor: row.value }}></span>
             {row.value}
           </td>
-          <td class="border-b border-site-border/60 px-4 py-3 align-top text-site-muted">{row.usage}</td>
+          <td class="border-b border-site-border/60 px-4 py-3 align-top text-site-muted">{locale === "en" ? tokenUsageEn[row.token] ?? row.usage : row.usage}</td>
         </tr>
       ))}
     </tbody>

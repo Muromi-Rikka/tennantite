@@ -3,12 +3,13 @@ import type { DocHeading } from "@/lib/docs";
 
 interface Props {
   headings: DocHeading[];
+  title: string;
 }
-const { headings } = Astro.props;
+const { headings, title } = Astro.props;
 ---
-<nav aria-label="本页目录" class="hidden xl:block">
+<nav aria-label={title} class="hidden xl:block">
   <div class="sticky top-32">
-    <h2 class="text-xs uppercase tracking-wider text-site-muted">本页目录</h2>
+    <h2 class="text-xs uppercase tracking-wider text-site-muted">{title}</h2>
     <ul class="mt-4 border-l border-site-border">
       {headings.map(heading => (
         <li>

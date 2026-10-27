@@ -1,28 +1,46 @@
 ---
 import "@/styles/global.css";
+import type { Locale } from "@/i18n";
+import { switchLocalePath, ui } from "@/i18n";
 import { website } from "@/lib/seo";
 
 interface Props {
+  alternates?: boolean;
   description: string;
   jsonLd?: Record<string, unknown>[];
+  locale: Locale;
   noindex?: boolean;
   title: string;
   type?: "article" | "website";
 }
-const { description, jsonLd = [], noindex = false, title, type = "website" } = Astro.props;
+const {
+  alternates = true,
+  description,
+  jsonLd = [],
+  locale,
+  noindex = false,
+  title,
+  type = "website",
+} = Astro.props;
+const text = ui[locale];
 const site = Astro.site ?? new URL("http://localhost:3300");
 const canonical = new URL(Astro.url.pathname, site);
-const graph = [website(site), ...jsonLd];
+const alternateLocale: Locale = locale === "zh" ? "en" : "zh";
+const isNotFound = /^\/(?:en\/)?404\/?$/.test(Astro.url.pathname);
+const graph = [website(site, locale), ...jsonLd];
 const json = JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replaceAll("<", "\\u003c");
 ---
 <!doctype html>
-<html lang="zh-CN">
+<html lang={text.htmlLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical.href} />
+    {alternates && !isNotFound && <link rel="alternate" hreflang="zh-CN" href={new URL(switchLocalePath(Astro.url.pathname, "zh"), site).href} />}
+    {alternates && !isNotFound && <link rel="alternate" hreflang="en" href={new URL(switchLocalePath(Astro.url.pathname, "en"), site).href} />}
+    {alternates && !isNotFound && <link rel="alternate" hreflang="x-default" href={new URL(switchLocalePath(Astro.url.pathname, "zh"), site).href} />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" type="application/xml" />
     <meta name="theme-color" content="#0a0a0a" />
@@ -32,16 +50,24 @@ const json = JSON.stringify({ "@context": "https://schema.org", "@graph": graph 
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical.href} />
     <meta property="og:site_name" content="Verdigris" />
-    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:locale" content={text.ogLocale} />
+    <meta property="og:locale:alternate" content={ui[alternateLocale].ogLocale} />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <script type="application/ld+json" set:html={json} />
   </head>
-  <body class="flex min-h-screen flex-col bg-site-bg font-mc text-site-fg">
+  <body
+    class="flex min-h-screen flex-col bg-site-bg font-mc text-site-fg"
+    data-copied-label={text.copied}
+    data-copy-failed-label={text.copyFailed}
+    data-copy-label={text.copy}
+  >
     <slot />
     <script>
-      const COPY_LABEL = "复制";
+      const copyLabel = document.body.dataset.copyLabel ?? "复制";
+      const copiedLabel = document.body.dataset.copiedLabel ?? "已复制";
+      const copyFailedLabel = document.body.dataset.copyFailedLabel ?? "复制失败";
       function mountCodeCopy() {
         document.querySelectorAll("[data-copy-scope] pre").forEach((pre) => {
           if (pre.parentElement?.classList.contains("code-frame")) return;
@@ -52,7 +78,7 @@ const json = JSON.stringify({ "@context": "https://schema.org", "@graph": graph 
           const button = document.createElement("button");
           button.type = "button";
           button.className = "code-copy";
-          button.textContent = COPY_LABEL;
+          button.textContent = copyLabel;
           frame.append(button);
         });
       }
@@ -66,11 +92,11 @@ const json = JSON.stringify({ "@context": "https://schema.org", "@graph": graph 
           ?? "";
         try {
           await navigator.clipboard.writeText(text);
-          button.textContent = "已复制";
+          button.textContent = copiedLabel;
         } catch {
-          button.textContent = "复制失败";
+          button.textContent = copyFailedLabel;
         }
-        setTimeout(() => { button.textContent = COPY_LABEL; }, 2000);
+        setTimeout(() => { button.textContent = copyLabel; }, 2000);
       });
       mountCodeCopy();
     </script>

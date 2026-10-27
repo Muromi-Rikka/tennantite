@@ -1,0 +1,71 @@
+---
+import PageHeader from "@/components/site/PageHeader.astro";
+import ScaledPreview from "@/components/preview/ScaledPreview.astro";
+import type { Locale } from "@/i18n";
+import { ui } from "@/i18n";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import { blockHref, blocks } from "@/lib/catalog";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const text = ui[locale].blocksPage;
+const groups = [
+  { id: "screens" as const, ...text.groups.screens },
+  { id: "menus" as const, ...text.groups.menus },
+];
+---
+<SiteLayout title={text.metaTitle} description={text.description} locale={locale}>
+  <div class="mx-auto max-w-[1440px] px-12 py-24">
+    <PageHeader
+      breadcrumb={[{ label: text.breadcrumb }]}
+      title={text.title}
+      description={text.description}
+    />
+    <div class="mt-24 grid gap-32 lg:grid-cols-[160px_minmax(0,1fr)]">
+      <aside class="hidden lg:block">
+        <div class="sticky top-32 flex flex-col gap-4">
+          {groups.map(group => (
+            <a href={`#${group.id}`} class="text-sm text-site-muted hover:text-site-fg">{group.title}</a>
+          ))}
+        </div>
+      </aside>
+      <div>
+        {groups.map((group) => {
+          const items = blocks.filter(block => block.group === group.id);
+          return (
+            <section id={group.id} class="mt-32 scroll-mt-32 first:mt-0">
+              <div class="flex items-baseline gap-8 border-b border-site-border pb-8">
+                <h2 class="text-2xl font-bold text-site-fg">{group.title}</h2>
+                <span class="ml-auto text-sm text-site-muted">{items.length}</span>
+              </div>
+              <p class="mt-8 text-sm leading-12 text-site-muted">{group.description}</p>
+              <div class="mt-16 grid gap-16 lg:grid-cols-2">
+                {items.map(block => (
+                  <a
+                    href={blockHref(block.slug, locale)}
+                    class="group block border border-site-border bg-site-surface transition-colors hover:border-site-fg/40"
+                  >
+                    <ScaledPreview
+                      class="h-[360px] bg-[#0d0d0d] sm:h-[400px]"
+                      name={block.name}
+                      scaleClass="scale-[0.7] sm:scale-[0.8]"
+                    />
+                    <div class="flex items-center justify-between border-t border-site-border px-8 py-6">
+                      <div class="flex flex-col gap-1">
+                        <span class="text-sm text-site-fg group-hover:text-site-accent">{block.name}</span>
+                        <span class="text-xs text-site-muted">{group.title}</span>
+                      </div>
+                      <span aria-hidden="true" class="text-site-muted">→</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </section>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</SiteLayout>

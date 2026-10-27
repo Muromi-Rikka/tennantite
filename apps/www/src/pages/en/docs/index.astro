@@ -1,0 +1,12 @@
+---
+import DocsLayout from "@/layouts/DocsLayout.astro";
+import { getCollection, render } from "astro:content";
+
+const docs = await getCollection("docs");
+const entry = docs.find(item =>
+  item.data.locale === "en" && item.data.section === "start" && item.data.order === 1,
+);
+if (!entry) throw new Error("Missing English introduction docs entry");
+const { Content, headings } = await render(entry);
+---
+<DocsLayout entry={entry} headings={headings}><Content /></DocsLayout>

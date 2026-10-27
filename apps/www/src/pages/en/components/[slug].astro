@@ -1,0 +1,19 @@
+---
+import type { CatalogEntry } from "@/lib/catalog";
+import { components } from "@/lib/catalog";
+import ComponentPage from "@/views/ComponentPage.astro";
+
+interface Props {
+  entry: CatalogEntry;
+}
+
+export async function getStaticPaths() {
+  return components.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+---
+<ComponentPage entry={entry} locale="en" />

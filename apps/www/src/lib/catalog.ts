@@ -1,3 +1,7 @@
+import type { Locale } from "../i18n";
+import { localeHref } from "../i18n";
+import { componentDescriptionsEn, componentGroupTextEn } from "./catalog-en";
+
 export interface CatalogEntry {
   description: string;
   exports: string[];
@@ -423,6 +427,18 @@ export const components: CatalogEntry[] = [
 
 export const blocks = components.filter(component => component.group === "screens" || component.group === "menus");
 
+export function blockHref(slug: string, locale: Locale): string {
+  return localeHref(locale, `/blocks/${slug}/`);
+}
+
+export function catalogDescription(entry: CatalogEntry, locale: Locale): string {
+  return locale === "en" ? componentDescriptionsEn[entry.slug] ?? entry.description : entry.description;
+}
+
+export function componentHref(slug: string, locale: Locale): string {
+  return localeHref(locale, `/components/${slug}/`);
+}
+
 export function findBlock(slug: string) {
   return blocks.find(block => block.slug === slug);
 }
@@ -435,7 +451,7 @@ export function findComponentByName(name: string) {
   return components.find(component => component.name === name);
 }
 
-export function getBlockPager(slug: string): CatalogPager {
+export function getBlockPager(slug: string, locale: Locale): CatalogPager {
   const index = blocks.findIndex(block => block.slug === slug);
   if (index === -1) {
     return {};
@@ -443,12 +459,12 @@ export function getBlockPager(slug: string): CatalogPager {
   const prev = blocks[index - 1];
   const next = blocks[index + 1];
   return {
-    ...(prev && { prev: { href: `/blocks/${prev.slug}/`, title: prev.name } }),
-    ...(next && { next: { href: `/blocks/${next.slug}/`, title: next.name } }),
+    ...(prev && { prev: { href: blockHref(prev.slug, locale), title: prev.name } }),
+    ...(next && { next: { href: blockHref(next.slug, locale), title: next.name } }),
   };
 }
 
-export function getComponentPager(slug: string): CatalogPager {
+export function getComponentPager(slug: string, locale: Locale): CatalogPager {
   const index = components.findIndex(component => component.slug === slug);
   if (index === -1) {
     return {};
@@ -456,11 +472,19 @@ export function getComponentPager(slug: string): CatalogPager {
   const prev = components[index - 1];
   const next = components[index + 1];
   return {
-    ...(prev && { prev: pagerItem(prev) }),
-    ...(next && { next: pagerItem(next) }),
+    ...(prev && { prev: pagerItem(prev, locale) }),
+    ...(next && { next: pagerItem(next, locale) }),
   };
 }
 
-function pagerItem(entry: CatalogEntry): CatalogPagerItem {
-  return { href: `/components/${entry.slug}/`, title: entry.name };
+export function groupText(group: ComponentGroup, locale: Locale) {
+  return locale === "en" ? componentGroupTextEn[group.id] : { description: group.description, title: group.title };
+}
+
+export function previewHref(slug: string, locale: Locale): string {
+  return localeHref(locale, `/preview/${slug}/`);
+}
+
+function pagerItem(entry: CatalogEntry, locale: Locale): CatalogPagerItem {
+  return { href: componentHref(entry.slug, locale), title: entry.name };
 }

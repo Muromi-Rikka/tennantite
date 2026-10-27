@@ -1,0 +1,68 @@
+---
+title: Theming
+description: Override tokens, scale the GUI, replace fonts and textures.
+section: design
+order: 3
+locale: en
+---
+
+import Callout from "@/components/docs/Callout.astro";
+
+## Override tokens
+
+Themes are declared after tokens. Override only what you want to change:
+
+```css
+@import "tailwindcss";
+@import "@verdigris/tokens/css/tokens.css";
+
+@theme {
+  --color-mc-panel: #d9c7a3;
+  --color-mc-panel-overlay: rgb(20 10 0 / 80%);
+  --color-mc-accent-green: #4f9a35;
+}
+```
+
+## Change GUI scale
+
+```css
+@theme {
+  --mc-scale: 3;
+}
+```
+
+`--mc-gui`, `--spacing`, `gui()` and nine-slice borders all follow. Layout coordinates remain vanilla GUI px values; no component code changes.
+
+## Replace the font
+
+```css
+@font-face {
+  font-family: "MyPixel";
+  src: url("/fonts/my-pixel.woff2") format("woff2");
+  font-display: swap;
+}
+
+@theme {
+  --font-mc: "MyPixel", "Microsoft YaHei", sans-serif;
+}
+```
+
+<Callout variant="warn" title="No Chinese pixel font">
+The project does not adapt a Chinese pixel font. Chinese falls back to the system sans-serif stack; that is a spec decision, not an omission.
+</Callout>
+
+## Replace textures
+
+Texture variables can be overridden locally:
+
+```css
+.mc-tex-btn {
+  --mc-btn-fill: #4a6b2a;
+}
+```
+
+Replacing `--mc-btn-frame` swaps the button nine-slice source. The panel `border-image` is declared directly on `.mc-tex-panel`; override that rule or add a higher-specificity `.mc-tex-panel` declaration. Textures are data URIs and make no external image requests.
+
+## Light and dark
+
+The library does not ship a light / dark switch. A light panel is part of the Minecraft look; to reskin the whole UI, override `--color-mc-*` and `site-*` in `@theme`. This site itself is dark-only.

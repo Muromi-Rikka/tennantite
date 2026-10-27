@@ -9,10 +9,21 @@ const site = process.env.SITE_URL ?? "http://localhost:3300";
 
 export default defineConfig({
   build: { format: "directory" },
+  i18n: {
+    defaultLocale: "zh",
+    locales: ["zh", "en"],
+    routing: { prefixDefaultLocale: false },
+  },
   integrations: [
     mdx(),
     react(),
-    sitemap({ filter: page => !new URL(page).pathname.startsWith("/preview/") }),
+    sitemap({
+      filter: (page) => {
+        const { pathname } = new URL(page);
+        return !pathname.includes("/preview/") && pathname !== "/404/" && pathname !== "/en/404/";
+      },
+      i18n: { defaultLocale: "zh", locales: { en: "en-US", zh: "zh-CN" } },
+    }),
   ],
   markdown: { shikiConfig: { theme: "github-dark" } },
   output: "static",

@@ -1,13 +1,7 @@
 ---
-import SiteLayout from "@/layouts/SiteLayout.astro";
-import PageHeader from "@/components/site/PageHeader.astro";
-import PageSection from "@/components/site/PageSection.astro";
-import PrevNext from "@/components/site/PrevNext.astro";
-import InstallCommand from "@/components/docs/InstallCommand.astro";
-import PreviewTabs from "@/components/preview/preview-tabs";
-import { getComponentPager, components, type CatalogEntry } from "@/lib/catalog";
-import { readDemoSource } from "@/lib/source";
-import { breadcrumb, techArticle } from "@/lib/seo";
+import type { CatalogEntry } from "@/lib/catalog";
+import { components } from "@/lib/catalog";
+import ComponentPage from "@/views/ComponentPage.astro";
 
 interface Props {
   entry: CatalogEntry;
@@ -21,46 +15,5 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const code = readDemoSource(entry.sourceDir);
-const pager = getComponentPager(entry.slug);
-const site = Astro.site ?? new URL("http://localhost:3300");
-const jsonLd = [
-  techArticle({ description: entry.description, path: `/components/${entry.slug}/`, site, title: entry.name }),
-  breadcrumb({ items: [{ label: "Components", path: "/components/" }, { label: entry.name, path: `/components/${entry.slug}/` }], site }),
-];
 ---
-<SiteLayout
-  title={`${entry.name} 组件 · Verdigris`}
-  description={`${entry.description} 查看 ${entry.name} 的实时预览、导出与源码。`}
-  type="article"
-  jsonLd={jsonLd}
->
-  <div class="mx-auto max-w-[1120px] px-12 py-24">
-    <PageHeader
-      breadcrumb={[{ href: "/components/", label: "Components" }, { label: entry.name }]}
-      title={entry.name}
-      description={entry.description}
-    />
-    <PreviewTabs client:load name={entry.name} code={code} />
-
-    <PageSection title="安装">
-      <InstallCommand command="pnpm add @verdigris/ui" />
-      <p class="mt-4 text-xs text-site-muted">仓库内使用 workspace 依赖；npm 尚未发布。</p>
-    </PageSection>
-
-    <PageSection title="导出">
-      <div class="flex flex-wrap gap-4">
-        {entry.exports.map(name => (
-          <code class="border border-site-border bg-site-surface px-4 py-2 font-mono text-xs text-site-fg">{name}</code>
-        ))}
-      </div>
-    </PageSection>
-
-    <PageSection title="源码">
-      <code class="font-mono text-sm text-site-fg">{entry.sourceDir}/index.tsx</code>
-      <p class="mt-4 text-sm leading-12 text-site-muted">npm 包保留源码目录，可直接复制改造。</p>
-    </PageSection>
-
-    <PrevNext prev={pager.prev} next={pager.next} />
-  </div>
-</SiteLayout>
+<ComponentPage entry={entry} locale="zh" />

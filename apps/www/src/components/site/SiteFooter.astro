@@ -1,49 +1,25 @@
 ---
 import { Icon } from "@verdigris/ui";
+import type { Locale } from "@/i18n";
+import { localeHref, ui } from "@/i18n";
 
-const columns = [
-  {
-    title: "文档",
-    links: [
-      { href: "/docs/", label: "介绍" },
-      { href: "/docs/installation/", label: "安装" },
-      { href: "/docs/tokens/", label: "设计令牌" },
-      { href: "/docs/textures/", label: "纹理" },
-      { href: "/docs/theming/", label: "主题" },
-    ],
-  },
-  {
-    title: "组件",
-    links: [
-      { href: "/components/", label: "Components" },
-      { href: "/blocks/", label: "Blocks" },
-      { href: "/components/#primitives", label: "原语" },
-      { href: "/components/#containers", label: "容器" },
-      { href: "/components/#hud", label: "HUD" },
-    ],
-  },
-  {
-    title: "资源",
-    links: [
-      { href: "/docs/ssr/", label: "SSR / RSC" },
-      { href: "/docs/accessibility/", label: "可访问性" },
-      { href: "/docs/registry/", label: "Registry" },
-      { href: "https://github.com/verdigris-ui/verdigris", label: "GitHub", external: true },
-    ],
-  },
-];
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const text = ui[locale].footer;
 ---
 <footer class="border-t border-site-border">
   <div class="mx-auto grid max-w-[1440px] gap-24 px-12 py-32 md:grid-cols-[1.4fr_repeat(3,1fr)]">
     <div class="max-w-[320px]">
-      <a href="/" class="flex items-center gap-4 text-base font-bold tracking-wide hover:text-mc-gold">
+      <a href={localeHref(locale, "/")} class="flex items-center gap-4 text-base font-bold tracking-wide hover:text-mc-gold">
         <Icon name="grass-block" size={8} />
         Verdigris
       </a>
-      <p class="mt-8 text-sm leading-12 text-site-muted">按 shadcn 哲学分发的 Minecraft 风格 React 组件库。</p>
-      <p class="mt-4 text-xs text-site-muted">非 Mojang 官方产品。</p>
+      <p class="mt-8 text-sm leading-12 text-site-muted">{text.description}</p>
+      <p class="mt-4 text-xs text-site-muted">{text.notice}</p>
     </div>
-    {columns.map(column => (
+    {text.columns.map(column => (
       <div>
         <h2 class="text-xs uppercase tracking-wider text-site-fg">{column.title}</h2>
         <ul class="mt-8 flex flex-col gap-2">
@@ -51,8 +27,8 @@ const columns = [
             <li>
               <a
                 href={link.href}
-                target={"external" in link && link.external ? "_blank" : undefined}
-                rel={"external" in link && link.external ? "noreferrer" : undefined}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noreferrer" : undefined}
                 class="text-sm text-site-muted hover:text-site-fg"
               >
                 {link.label}
@@ -65,8 +41,8 @@ const columns = [
   </div>
   <div class="border-t border-site-border">
     <div class="mx-auto flex max-w-[1440px] flex-col gap-2 px-12 py-8 text-xs text-site-muted sm:flex-row sm:justify-between">
-      <span>© 2026 Verdigris</span>
-      <span>全部纹理重绘 · 字体 SIL OFL 1.1</span>
+      <span>{text.copyright}</span>
+      <span>{text.assets}</span>
     </div>
   </div>
 </footer>

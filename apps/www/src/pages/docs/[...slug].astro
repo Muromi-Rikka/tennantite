@@ -9,7 +9,7 @@ interface Props {
 
 export async function getStaticPaths() {
   const docs = await getCollection("docs");
-  return docs.filter(entry => entry.id !== "index").map(entry => ({
+  return docs.filter(entry => entry.data.locale === "zh" && entry.id !== "index").map(entry => ({
     params: { slug: entry.id },
     props: { entry },
   }));

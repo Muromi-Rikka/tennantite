@@ -1,0 +1,72 @@
+---
+import InstallCommand from "@/components/docs/InstallCommand.astro";
+import PreviewTabs from "@/components/preview/preview-tabs";
+import PageHeader from "@/components/site/PageHeader.astro";
+import PageSection from "@/components/site/PageSection.astro";
+import PrevNext from "@/components/site/PrevNext.astro";
+import type { Locale } from "@/i18n";
+import { fill, localeHref, ui } from "@/i18n";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import {
+  catalogDescription,
+  componentHref,
+  getComponentPager,
+  type CatalogEntry,
+} from "@/lib/catalog";
+import { readDemoSource } from "@/lib/source";
+import { breadcrumb, techArticle } from "@/lib/seo";
+
+interface Props {
+  entry: CatalogEntry;
+  locale: Locale;
+}
+const { entry, locale } = Astro.props;
+const text = ui[locale];
+const page = text.componentPage;
+const description = catalogDescription(entry, locale);
+const href = componentHref(entry.slug, locale);
+const componentsIndexHref = localeHref(locale, "/components/");
+const code = readDemoSource(entry.sourceDir);
+const pager = getComponentPager(entry.slug, locale);
+const site = Astro.site ?? new URL("http://localhost:3300");
+const jsonLd = [
+  techArticle({ description, locale, path: href, site, title: entry.name }),
+  breadcrumb({ items: [{ label: page.breadcrumb, path: componentsIndexHref }, { label: entry.name, path: href }], site }),
+];
+---
+<SiteLayout
+  title={`${entry.name} ${page.metaTitleSuffix}`}
+  description={`${description} ${fill(page.metaDescriptionSuffix, { name: entry.name })}`}
+  locale={locale}
+  type="article"
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-[1120px] px-12 py-24">
+    <PageHeader
+      breadcrumb={[{ href: componentsIndexHref, label: page.breadcrumb }, { label: entry.name }]}
+      title={entry.name}
+      description={description}
+    />
+    <PreviewTabs client:load code={code} locale={locale} name={entry.name} />
+
+    <PageSection title={page.install}>
+      <InstallCommand command="pnpm add @verdigris/ui" locale={locale} />
+      <p class="mt-4 text-xs text-site-muted">{page.installNote}</p>
+    </PageSection>
+
+    <PageSection title={page.exports}>
+      <div class="flex flex-wrap gap-4">
+        {entry.exports.map(name => (
+          <code class="border border-site-border bg-site-surface px-4 py-2 font-mono text-xs text-site-fg">{name}</code>
+        ))}
+      </div>
+    </PageSection>
+
+    <PageSection title={page.source}>
+      <code class="font-mono text-sm text-site-fg">{entry.sourceDir}/index.tsx</code>
+      <p class="mt-4 text-sm leading-12 text-site-muted">{page.sourceNote}</p>
+    </PageSection>
+
+    <PrevNext locale={locale} prev={pager.prev} next={pager.next} />
+  </div>
+</SiteLayout>

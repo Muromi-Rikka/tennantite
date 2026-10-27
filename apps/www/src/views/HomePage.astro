@@ -1,0 +1,139 @@
+---
+import { Icon } from "@verdigris/ui";
+import InstallCommand from "@/components/docs/InstallCommand.astro";
+import PrimitiveStrip from "@/components/home/primitive-strip";
+import Demo from "@/components/preview/demo";
+import ScaledPreview from "@/components/preview/ScaledPreview.astro";
+import LinkButton from "@/components/site/LinkButton.astro";
+import type { Locale } from "@/i18n";
+import { fill, localeHref, ui } from "@/i18n";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import { blocks, components } from "@/lib/catalog";
+import { softwareApplication } from "@/lib/seo";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const text = ui[locale];
+const home = text.home;
+const site = Astro.site ?? new URL("http://localhost:3300");
+const installCommand = "pnpm add @verdigris/ui @verdigris/tokens @verdigris/textures";
+---
+<SiteLayout
+  title={home.metaTitle}
+  description={home.metaDescription}
+  locale={locale}
+  jsonLd={[softwareApplication(site, locale)]}
+>
+  <section class="border-b border-site-border">
+    <div class="mx-auto grid max-w-[1120px] gap-32 px-12 py-40 lg:grid-cols-[1.1fr_0.9fr]">
+      <div class="flex flex-col items-start">
+        <div class="flex items-center gap-4 text-xs text-site-muted">
+          <span class="border border-mc-gold/60 px-4 py-1 text-mc-gold">v0.1.0</span>
+          <span>{fill(home.hero.counts, { blocks: blocks.length, components: components.length })}</span>
+        </div>
+        <h1 class="mt-12 text-[40px] leading-[1.15] font-bold text-site-fg lg:text-[44px]">
+          {home.hero.headingLine1}<br />
+          {home.hero.headingLine2Prefix}<span class="mc-text-shadow text-mc-gold">{home.hero.headingHighlight}</span>{home.hero.headingSuffix}
+        </h1>
+        <p class="mt-12 max-w-[560px] text-base leading-14 text-site-muted">
+          {home.hero.description}
+        </p>
+        <div class="mt-16 flex flex-wrap gap-8">
+          <LinkButton href={localeHref(locale, "/docs/installation/")} variant="success">{home.hero.install}</LinkButton>
+          <LinkButton href={localeHref(locale, "/components/")}>{home.hero.browse}</LinkButton>
+        </div>
+        <div class="mt-16 w-full max-w-[560px]">
+          <InstallCommand command={installCommand} locale={locale} />
+          <p class="mt-4 text-xs leading-10 text-site-muted">{home.hero.installNote}</p>
+        </div>
+      </div>
+      <figure class="border border-site-border bg-site-surface p-8 shadow-mc-2">
+        <div class="flex h-[360px] items-center justify-center overflow-hidden bg-[#1f1f1f]" inert aria-hidden="true">
+          <Demo client:load name="MainMenu" />
+        </div>
+        <figcaption class="mt-8 flex items-center justify-between text-xs text-site-muted">
+          <span>{home.hero.previewLabel}</span>
+          <a class="text-site-fg hover:text-mc-gold" href={localeHref(locale, "/blocks/main-menu/")}>{home.hero.view}</a>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1120px] px-12 py-32">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {home.features.map(feature => (
+        <div class="border border-site-border bg-site-surface p-12">
+          <Icon name={feature.icon} size={12} />
+          <h2 class="mt-8 text-base font-bold text-site-fg">{feature.title}</h2>
+          <p class="mt-4 text-sm leading-12 text-site-muted">{feature.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1120px] px-12 py-32">
+    <div class="grid gap-24 lg:grid-cols-[0.8fr_1.2fr]">
+      <div>
+        <p class="text-xs uppercase tracking-wider text-site-muted">{home.primitives.eyebrow}</p>
+        <h2 class="mt-4 text-2xl font-bold text-site-fg">{home.primitives.title}</h2>
+        <p class="mt-8 text-sm leading-12 text-site-muted">
+          {home.primitives.description}
+        </p>
+        <pre class="mt-8 overflow-x-auto border border-site-border bg-[#080808] p-8 font-mono text-[13px] leading-[22px] text-site-fg"><code>{home.primitiveCode}</code></pre>
+        <div class="mt-8">
+          <LinkButton href={localeHref(locale, "/components/")}>{fill(home.primitives.all, { count: components.length })}</LinkButton>
+        </div>
+      </div>
+      <div class="border border-site-border bg-site-surface p-16">
+        <PrimitiveStrip client:visible />
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1120px] px-12 py-32">
+    <div class="flex flex-wrap items-end justify-between gap-8">
+      <div>
+        <p class="text-xs uppercase tracking-wider text-site-muted">{home.blocks.eyebrow}</p>
+        <h2 class="mt-4 text-2xl font-bold text-site-fg">{home.blocks.title}</h2>
+        <p class="mt-4 max-w-[640px] text-sm leading-12 text-site-muted">
+          {home.blocks.description}
+        </p>
+      </div>
+      <LinkButton href={localeHref(locale, "/blocks/")}>{fill(home.blocks.all, { count: blocks.length })}</LinkButton>
+    </div>
+    <div class="mt-16 grid gap-16 md:grid-cols-2">
+      <a href={localeHref(locale, "/blocks/inventory-screen/")} class="group block border border-site-border bg-site-surface hover:border-site-fg/40">
+        <ScaledPreview class="h-[340px] bg-[#0d0d0d]" name="InventoryScreen" scaleClass="scale-[0.7] sm:scale-[0.8]" />
+        <div class="flex items-center justify-between border-t border-site-border px-8 py-6 text-sm">
+          <span class="text-site-fg group-hover:text-site-accent">InventoryScreen</span>
+          <span class="text-xs text-site-muted">{home.blocks.inventory}</span>
+        </div>
+      </a>
+      <a href={localeHref(locale, "/blocks/crafting-screen/")} class="group block border border-site-border bg-site-surface hover:border-site-fg/40">
+        <ScaledPreview class="h-[340px] bg-[#0d0d0d]" name="CraftingScreen" scaleClass="scale-[0.7] sm:scale-[0.8]" />
+        <div class="flex items-center justify-between border-t border-site-border px-8 py-6 text-sm">
+          <span class="text-site-fg group-hover:text-site-accent">CraftingScreen</span>
+          <span class="text-xs text-site-muted">{home.blocks.crafting}</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1120px] px-12 py-40">
+    <div class="border border-site-border bg-site-surface p-24 text-center shadow-mc-2">
+      <h2 class="text-3xl font-bold text-site-fg">{home.cta.title}</h2>
+      <p class="mx-auto mt-8 max-w-[560px] text-sm leading-12 text-site-muted">
+        {home.cta.description}
+      </p>
+      <div class="mx-auto mt-16 max-w-[560px]">
+        <InstallCommand command={installCommand} locale={locale} />
+      </div>
+      <div class="mt-16 flex flex-wrap justify-center gap-8">
+        <LinkButton href={localeHref(locale, "/docs/installation/")} variant="success">{home.cta.install}</LinkButton>
+        <LinkButton href={localeHref(locale, "/blocks/")} variant="ghost">{home.cta.browse}</LinkButton>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

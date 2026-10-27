@@ -9,6 +9,7 @@ export const GET: APIRoute = ({ site }) => {
     "User-agent: *",
     "Allow: /",
     "Disallow: /preview/",
+    "Disallow: /en/preview/",
     "",
     `Sitemap: ${new URL("/sitemap-index.xml", origin).href}`,
     "",

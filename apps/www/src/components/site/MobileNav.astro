@@ -1,16 +1,25 @@
 ---
+import type { Locale } from "@/i18n";
+import { localeHref, switchLocalePath, ui } from "@/i18n";
+
 interface Props {
+  locale: Locale;
   pathname: string;
 }
+const { locale, pathname } = Astro.props;
+const text = ui[locale];
 const items = [
-  { href: "/docs/", label: "文档" },
-  { href: "/components/", label: "组件" },
-  { href: "/blocks/", label: "Blocks" },
+  { href: localeHref(locale, "/docs/"), label: text.nav.docs },
+  { href: localeHref(locale, "/components/"), label: text.nav.components },
+  { href: localeHref(locale, "/blocks/"), label: text.nav.blocks },
 ];
+const switchHref = /^\/(?:en\/)?404\/?$/.test(pathname)
+  ? localeHref(locale === "zh" ? "en" : "zh", "/")
+  : switchLocalePath(pathname, locale === "zh" ? "en" : "zh");
 ---
 <details class="group relative md:hidden">
   <summary
-    aria-label="打开导航"
+    aria-label={locale === "zh" ? "打开导航" : "Open navigation"}
     class="flex size-16 cursor-pointer list-none items-center justify-center border border-site-border text-site-muted [&::-webkit-details-marker]:hidden hover:text-site-fg"
   >
     <svg aria-hidden="true" class="size-16" fill="currentColor" viewBox="0 0 16 16">
@@ -20,11 +29,12 @@ const items = [
     </svg>
   </summary>
   <div class="absolute top-full right-0 mt-4 w-[200px] border border-site-border bg-site-surface p-8">
-    <nav aria-label="移动导航" class="flex flex-col">
+    <nav aria-label={locale === "zh" ? "移动导航" : "Mobile navigation"} class="flex flex-col">
       {items.map(item => (
         <a class="py-2 text-sm text-site-muted hover:text-site-fg" href={item.href}>{item.label}</a>
       ))}
-      <a class="py-2 text-sm text-site-muted hover:text-site-fg" href="https://github.com/verdigris-ui/verdigris" target="_blank" rel="noreferrer">GitHub</a>
+      <a class="py-2 text-sm text-site-muted hover:text-site-fg" href={switchHref}>{text.switchLabel}</a>
+      <a class="py-2 text-sm text-site-muted hover:text-site-fg" href="https://github.com/verdigris-ui/verdigris" target="_blank" rel="noreferrer">{text.nav.github}</a>
     </nav>
   </div>
 </details>

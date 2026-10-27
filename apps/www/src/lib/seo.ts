@@ -1,6 +1,12 @@
+import type { Locale } from "../i18n";
+import { localeHref, ui } from "../i18n";
+
 type JsonLd = Record<string, unknown>;
 
-const DESCRIPTION = "Minecraft 风格 React UI 组件库：48 个组件、19 个整屏界面；源码可复制，数据可注入，SSR 安全。";
+const DESCRIPTION: Record<Locale, string> = {
+  en: "A Minecraft-style React UI library: 48 components and 19 full-screen interfaces; copy the source, inject data, stay SSR-safe.",
+  zh: "Minecraft 风格 React UI 组件库：48 个组件、19 个整屏界面；源码可复制，数据可注入，SSR 安全。",
+};
 
 export function breadcrumb({ items, site }: { items: { label: string; path?: string }[]; site: URL }): JsonLd {
   return {
@@ -14,36 +20,48 @@ export function breadcrumb({ items, site }: { items: { label: string; path?: str
   };
 }
 
-export function softwareApplication(site: URL): JsonLd {
+export function softwareApplication(site: URL, locale: Locale): JsonLd {
   return {
     "@type": "SoftwareApplication",
     "applicationCategory": "DeveloperApplication",
-    "description": DESCRIPTION,
+    "description": DESCRIPTION[locale],
     "name": "Verdigris",
     "operatingSystem": "Web",
     "softwareVersion": "0.1.0",
-    "url": new URL("/", site).href,
+    "url": new URL(localeHref(locale, "/"), site).href,
   };
 }
 
-export function techArticle({ description, path, site, title }: { description: string; path: string; site: URL; title: string }): JsonLd {
+export function techArticle({
+  description,
+  locale,
+  path,
+  site,
+  title,
+}: {
+  description: string;
+  locale: Locale;
+  path: string;
+  site: URL;
+  title: string;
+}): JsonLd {
   return {
     "@type": "TechArticle",
     description,
     "headline": title,
-    "inLanguage": "zh-CN",
+    "inLanguage": ui[locale].htmlLang,
     "isPartOf": { "@id": `${site.origin}/#website` },
     "url": new URL(path, site).href,
   };
 }
 
-export function website(site: URL): JsonLd {
+export function website(site: URL, locale: Locale): JsonLd {
   return {
     "@id": `${site.origin}/#website`,
     "@type": "WebSite",
-    "description": DESCRIPTION,
-    "inLanguage": "zh-CN",
+    "description": DESCRIPTION[locale],
+    "inLanguage": ui[locale].htmlLang,
     "name": "Verdigris",
-    "url": new URL("/", site).href,
+    "url": new URL(localeHref(locale, "/"), site).href,
   };
 }

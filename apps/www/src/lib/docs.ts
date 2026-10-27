@@ -1,6 +1,9 @@
 import type { CollectionEntry } from "astro:content";
 
-export const DOC_SECTIONS = ["开始", "设计系统", "架构", "分发"] as const;
+import type { DocSection, Locale } from "../i18n";
+import { localeHref, ui } from "../i18n";
+
+export const DOC_SECTIONS: DocSection[] = ["start", "design", "architecture", "distribution"];
 
 export type DocEntry = CollectionEntry<"docs">;
 
@@ -31,7 +34,7 @@ export interface DocsNavItem {
   title: string;
 }
 
-export function buildDocsNav(docs: DocEntry[]): DocsNavGroup[] {
+export function buildDocsNav(docs: DocEntry[], locale: Locale): DocsNavGroup[] {
   const sorted = sortDocs(docs);
   const groups: DocsNavGroup[] = [];
   for (const section of DOC_SECTIONS) {
@@ -44,14 +47,31 @@ export function buildDocsNav(docs: DocEntry[]): DocsNavGroup[] {
         title: entry.data.title,
       }));
     if (items.length > 0) {
-      groups.push({ items, title: section });
+      groups.push({ items, title: ui[locale].docsChrome.sections[section] });
     }
   }
   return groups;
 }
 
 export function docHref(id: string) {
-  return id === "index" ? "/docs/" : `/docs/${id}/`;
+  const locale = docLocale(id);
+  const slug = docSlug(id);
+  const path = slug === "index" ? "/docs/" : `/docs/${slug}/`;
+  return localeHref(locale, path);
+}
+
+export function docLocale(id: string): Locale {
+  const normalized = id.replaceAll("\\", "/");
+  return normalized === "en" || normalized.startsWith("en/") ? "en" : "zh";
+}
+
+export function docSlug(id: string): string {
+  const normalized = id.replaceAll("\\", "/");
+  return normalized === "en/index" || normalized === "en" ? "index" : normalized.replace(/^en\//, "");
+}
+
+export function filterDocs(docs: DocEntry[], locale: Locale): DocEntry[] {
+  return docs.filter(entry => entry.data.locale === locale);
 }
 
 export function getDocsPager(docs: DocEntry[], id: string): DocPager {

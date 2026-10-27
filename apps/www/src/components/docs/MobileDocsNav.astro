@@ -3,12 +3,13 @@ import type { DocsNavGroup } from "@/lib/docs";
 
 interface Props {
   groups: DocsNavGroup[];
+  title: string;
 }
-const { groups } = Astro.props;
+const { groups, title } = Astro.props;
 ---
 <details class="mt-16 border border-site-border bg-site-surface p-8 lg:hidden">
-  <summary class="cursor-pointer list-none text-sm text-site-fg marker:hidden">文档目录</summary>
-  <nav aria-label="移动文档目录" class="mt-8">
+  <summary class="cursor-pointer list-none text-sm text-site-fg marker:hidden">{title}</summary>
+  <nav aria-label={title} class="mt-8">
     {groups.map(group => (
       <div class="mt-8 first:mt-0">
         <h2 class="text-xs uppercase tracking-wider text-site-muted">{group.title}</h2>

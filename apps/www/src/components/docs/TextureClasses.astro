@@ -1,19 +1,26 @@
 ---
-import { textureRows } from "@/lib/textures";
+import type { Locale } from "@/i18n";
+import { textureRows, textureUsageEn } from "@/lib/textures";
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = "zh" } = Astro.props;
+const labels = locale === "en" ? { className: "Class", usage: "Usage" } : { className: "类名", usage: "用途" };
 ---
 <div class="mt-8 overflow-x-auto">
   <table class="w-full border-collapse text-sm">
     <thead>
       <tr>
-        <th class="border-b border-site-border px-4 py-3 text-left text-site-fg">类名</th>
-        <th class="border-b border-site-border px-4 py-3 text-left text-site-fg">用途</th>
+        <th class="border-b border-site-border px-4 py-3 text-left text-site-fg">{labels.className}</th>
+        <th class="border-b border-site-border px-4 py-3 text-left text-site-fg">{labels.usage}</th>
       </tr>
     </thead>
     <tbody>
       {textureRows.map(row => (
         <tr>
           <td class="border-b border-site-border/60 px-4 py-3 align-top font-mono text-xs text-site-fg">{row.className}</td>
-          <td class="border-b border-site-border/60 px-4 py-3 align-top text-site-muted">{row.usage}</td>
+          <td class="border-b border-site-border/60 px-4 py-3 align-top text-site-muted">{locale === "en" ? textureUsageEn[row.className] ?? row.usage : row.usage}</td>
         </tr>
       ))}
     </tbody>

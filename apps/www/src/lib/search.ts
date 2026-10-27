@@ -1,6 +1,8 @@
+import type { Locale } from "../i18n";
 import type { DocEntry } from "./docs";
-import { blocks, components } from "./catalog";
-import { docHref, sortDocs } from "./docs";
+import { ui } from "../i18n";
+import { blockHref, blocks, catalogDescription, componentHref, components } from "./catalog";
+import { docHref, filterDocs, sortDocs } from "./docs";
 
 export interface SearchItem {
   description: string;
@@ -9,24 +11,25 @@ export interface SearchItem {
   title: string;
 }
 
-export function buildSearchItems(docs: DocEntry[]): SearchItem[] {
+export function buildSearchItems(docs: DocEntry[], locale: Locale): SearchItem[] {
+  const text = ui[locale].search.groups;
   return [
-    ...sortDocs(docs).map(entry => ({
+    ...sortDocs(filterDocs(docs, locale)).map(entry => ({
       description: entry.data.description,
-      group: "文档",
+      group: text.docs,
       href: docHref(entry.id),
       title: entry.data.title,
     })),
     ...components.map(item => ({
-      description: item.description,
-      group: "组件",
-      href: `/components/${item.slug}/`,
+      description: catalogDescription(item, locale),
+      group: text.components,
+      href: componentHref(item.slug, locale),
       title: item.name,
     })),
     ...blocks.map(item => ({
-      description: item.description,
-      group: "Blocks",
-      href: `/blocks/${item.slug}/`,
+      description: catalogDescription(item, locale),
+      group: text.blocks,
+      href: blockHref(item.slug, locale),
       title: item.name,
     })),
   ];

@@ -1,0 +1,23 @@
+---
+import LinkButton from "@/components/site/LinkButton.astro";
+import type { Locale } from "@/i18n";
+import { localeHref, ui } from "@/i18n";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const text = ui[locale].notFound;
+---
+<SiteLayout title={text.title} description={text.description} locale={locale} noindex>
+  <div class="mx-auto flex max-w-[760px] flex-col items-start px-12 py-40">
+    <p class="font-mono text-sm text-mc-gold">404</p>
+    <h1 class="mt-8 text-4xl font-bold text-site-fg">{text.heading}</h1>
+    <p class="mt-8 text-base leading-14 text-site-muted">{text.body}</p>
+    <div class="mt-16 flex flex-wrap gap-8">
+      <LinkButton href={localeHref(locale, "/")} variant="success">{text.home}</LinkButton>
+      <LinkButton href={localeHref(locale, "/components/")} variant="ghost">{text.components}</LinkButton>
+    </div>
+  </div>
+</SiteLayout>
