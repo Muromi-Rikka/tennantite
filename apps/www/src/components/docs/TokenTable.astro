@@ -1,0 +1,26 @@
+---
+import { tokenRows } from "@/lib/tokens";
+---
+<div class="mt-8 overflow-x-auto">
+  <table class="w-full border-collapse text-sm">
+    <thead>
+      <tr>
+        <th class="border-b border-site-border px-4 py-3 text-left text-site-fg">令牌</th>
+        <th class="border-b border-site-border px-4 py-3 text-left text-site-fg">值</th>
+        <th class="border-b border-site-border px-4 py-3 text-left text-site-fg">用途</th>
+      </tr>
+    </thead>
+    <tbody>
+      {tokenRows.map(row => (
+        <tr>
+          <td class="border-b border-site-border/60 px-4 py-3 align-top font-mono text-xs text-site-fg">{row.token}</td>
+          <td class="border-b border-site-border/60 px-4 py-3 align-top font-mono text-xs text-site-muted">
+            <span class="mr-4 inline-block size-8 border border-site-border align-middle" style={{ backgroundColor: row.value }}></span>
+            {row.value}
+          </td>
+          <td class="border-b border-site-border/60 px-4 py-3 align-top text-site-muted">{row.usage}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,19 @@
+---
+import Breadcrumb from "./Breadcrumb.astro";
+
+interface BreadcrumbItem {
+  href?: string;
+  label: string;
+}
+interface Props {
+  breadcrumb: BreadcrumbItem[];
+  description: string;
+  title: string;
+}
+const { breadcrumb, description, title } = Astro.props;
+---
+<header>
+  <Breadcrumb items={breadcrumb} />
+  <h1 class="mt-8 text-3xl font-bold text-site-fg">{title}</h1>
+  <p class="mt-4 max-w-[720px] text-base leading-14 text-site-muted">{description}</p>
+</header>

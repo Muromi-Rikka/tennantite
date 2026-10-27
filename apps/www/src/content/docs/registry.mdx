@@ -1,0 +1,52 @@
+---
+title: Registry
+description: 生成 registry.json 与源码分发的现状。
+section: 分发
+order: 1
+---
+
+import Callout from "@/components/docs/Callout.astro";
+
+## registry 是什么
+
+Registry 是 shadcn 的源码分发格式：每个条目描述组件名、类型、依赖与文件路径。使用方可以按条目把源码复制进项目，而不是从 npm 引入编译产物。
+
+## 生成
+
+```bash
+pnpm registry
+# 等价于
+node registry/build.mjs
+```
+
+脚本扫描 `packages/ui/src/primitives` 与 `packages/ui/src/containers`，为每个目录读取 `index.tsx`，推断 `@base-ui/react`、`class-variance-authority`、`cn` 依赖，并把同目录的 `.ts` / `.tsx` 兄弟文件一并列出。
+
+## 结构
+
+```json
+{
+  "name": "button",
+  "title": "Button",
+  "type": "registry:component",
+  "dependencies": ["@base-ui/react"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/ui/src/primitives/button/index.tsx",
+      "type": "registry:component"
+    }
+  ]
+}
+```
+
+当前的 `files` 只有 `path` 与 `type`，没有内联 `content`。这意味着它还不能直接作为远程 registry 端点使用。
+
+## 覆盖范围
+
+当前只覆盖 primitives 与 containers，共 23 个条目。screens 没有纳入。要扩展，需要在 `groups` 数组中加 `["screens", "registry:component"]`，并处理 `screens/hud`、`screens/containers`、`screens/menus` 的二级目录。
+
+## 分发状态
+
+<Callout variant="warn" title="尚未托管">
+`@verdigris/ui` 尚未发布到 npm，也没有公开的 registry URL。官网不提供 `/r/*.json` 端点。托管前需要把文件内容内联，或提供一个能解析 `path` 的构建步骤。
+</Callout>

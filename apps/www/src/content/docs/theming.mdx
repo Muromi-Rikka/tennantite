@@ -1,0 +1,67 @@
+---
+title: 主题
+description: 覆盖令牌、缩放 GUI、替换字体与纹理。
+section: 设计系统
+order: 3
+---
+
+import Callout from "@/components/docs/Callout.astro";
+
+## 覆盖令牌
+
+主题在 tokens 之后声明。只需覆盖想改的变量，其余保持默认：
+
+```css
+@import "tailwindcss";
+@import "@verdigris/tokens/css/tokens.css";
+
+@theme {
+  --color-mc-panel: #d9c7a3;
+  --color-mc-panel-overlay: rgb(20 10 0 / 80%);
+  --color-mc-accent-green: #4f9a35;
+}
+```
+
+## 调整 GUI 缩放
+
+```css
+@theme {
+  --mc-scale: 3;
+}
+```
+
+`--mc-gui`、`--spacing`、`gui()` 与九宫格边框都会跟着变化。布局坐标仍使用原版 GUI px 数值，不需要改组件代码。
+
+## 替换字体
+
+```css
+@font-face {
+  font-family: "MyPixel";
+  src: url("/fonts/my-pixel.woff2") format("woff2");
+  font-display: swap;
+}
+
+@theme {
+  --font-mc: "MyPixel", "Microsoft YaHei", sans-serif;
+}
+```
+
+<Callout variant="warn" title="中文没有像素字体">
+项目不做中文像素字体适配。中文会回退到系统无衬线字体；这是 spec 的明确决策，不是遗漏。
+</Callout>
+
+## 替换纹理
+
+纹理变量可以局部覆盖：
+
+```css
+.mc-tex-btn {
+  --mc-btn-fill: #4a6b2a;
+}
+```
+
+替换 `--mc-btn-frame` 可以换掉按钮九宫格源图。面板的 `border-image` 直接写在 `.mc-tex-panel` 规则里；要换面板纹理，覆盖该规则或新增更高优先级的 `.mc-tex-panel` 声明。纹理本身是 data URI，不依赖外部图片请求。
+
+## 明暗主题
+
+库不内置 light / dark 切换。浅色面板是 Minecraft 视觉的一部分；如果需要整体换色，在 `@theme` 中覆盖 `--color-mc-*` 与 `site-*` 即可。官网本身只提供深色主题。

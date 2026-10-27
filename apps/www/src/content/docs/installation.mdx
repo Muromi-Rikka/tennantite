@@ -1,0 +1,74 @@
+---
+title: 安装
+description: 在 React 19 + Tailwind v4 项目中接入样式与组件。
+section: 开始
+order: 2
+---
+
+import Callout from "@/components/docs/Callout.astro";
+import InstallCommand from "@/components/docs/InstallCommand.astro";
+
+## 前置条件
+
+- Node.js ≥ 26
+- pnpm 12
+- React 19.2.8（peer 范围 `^19.2.0`；19.3 与 Next 16 预渲染存在已知兼容问题）
+- Tailwind CSS v4
+
+## 安装依赖
+
+<InstallCommand command="pnpm add @verdigris/ui @verdigris/tokens @verdigris/textures" />
+
+<Callout variant="warn" title="npm 尚未发布">
+v0.1.0 仍在预览。仓库内使用 `"@verdigris/ui": "workspace:*"`，不要从 npm 安装。
+</Callout>
+
+## 接入样式
+
+在 Tailwind 入口 CSS 中按顺序引入：
+
+```css
+@import "tailwindcss";
+@import "@verdigris/tokens/css/tokens.css";
+@import "@verdigris/textures/css/textures.css";
+@import "@verdigris/ui/css/scroll-area.css";
+
+/* 让 Tailwind 扫描包内类名；路径相对本 CSS 文件 */
+@source "../node_modules/@verdigris/ui/dist";
+
+body {
+  background-color: #1f1f1f;
+  color: var(--color-mc-text-main);
+  font-family: var(--font-mc);
+  font-size: var(--text-mc);
+}
+```
+
+<Callout>
+monorepo 内把 `@source` 指向 `../../packages`。`@source` 的路径必须相对当前 CSS 文件；消费者按自己的目录位置调整。否则组件里的 Tailwind 类不会生成。
+</Callout>
+
+## 第一个组件
+
+```tsx
+import { Button, Panel } from "@verdigris/ui";
+
+export function StartPanel() {
+  return (
+    <Panel className="p-12">
+      <Button variant="success">开始游戏</Button>
+    </Panel>
+  );
+}
+```
+
+## 框架
+
+组件默认 SSR 安全。仓库内提供 Next.js App Router 与 TanStack Start 两个验证应用；rsbuild playground 用于快速预览。约束与验证方式见 [SSR / RSC](/docs/ssr/)。
+
+## 常见问题
+
+- 类名缺失：检查 `@source` 是否覆盖 `node_modules/@verdigris/ui/dist`。
+- 间距不对：`--spacing` 等于 2px，`w-20` 是 40px，不是 80px。
+- React 版本：保持 19.2.8，避免 19.3 与 Next 16 的预渲染兼容问题。
+- 中文显示：像素字体只覆盖拉丁字符，中文按令牌回退到系统无衬线字体。

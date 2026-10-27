@@ -1,0 +1,21 @@
+---
+import { textureRows } from "@/lib/textures";
+---
+<div class="mt-8 overflow-x-auto">
+  <table class="w-full border-collapse text-sm">
+    <thead>
+      <tr>
+        <th class="border-b border-site-border px-4 py-3 text-left text-site-fg">类名</th>
+        <th class="border-b border-site-border px-4 py-3 text-left text-site-fg">用途</th>
+      </tr>
+    </thead>
+    <tbody>
+      {textureRows.map(row => (
+        <tr>
+          <td class="border-b border-site-border/60 px-4 py-3 align-top font-mono text-xs text-site-fg">{row.className}</td>
+          <td class="border-b border-site-border/60 px-4 py-3 align-top text-site-muted">{row.usage}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

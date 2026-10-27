@@ -14,7 +14,7 @@ export function Slider({
 }: SliderProps) {
   return (
     <BaseSlider.Root className={cn("flex h-20 w-full items-center", className)} {...properties}>
-      <BaseSlider.Control className="flex w-full cursor-pointer touch-none items-center outline-none">
+      <BaseSlider.Control className="relative flex w-full cursor-pointer touch-none items-center outline-none">
         <BaseSlider.Track className="mc-tex-slider-track h-20 w-full" />
         <BaseSlider.Thumb
           aria-label={ariaLabel}

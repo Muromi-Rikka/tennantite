@@ -1,0 +1,19 @@
+---
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import LinkButton from "@/components/site/LinkButton.astro";
+---
+<SiteLayout
+  title="区块未找到 · Verdigris"
+  description="这个页面不存在。"
+  noindex
+>
+  <div class="mx-auto flex max-w-[760px] flex-col items-start px-12 py-40">
+    <p class="font-mono text-sm text-mc-gold">404</p>
+    <h1 class="mt-8 text-4xl font-bold text-site-fg">区块未找到</h1>
+    <p class="mt-8 text-base leading-14 text-site-muted">这个坐标没有生成地形。可以回到首页，或直接浏览组件。</p>
+    <div class="mt-16 flex flex-wrap gap-8">
+      <LinkButton href="/" variant="success">返回首页</LinkButton>
+      <LinkButton href="/components/" variant="ghost">浏览组件</LinkButton>
+    </div>
+  </div>
+</SiteLayout>

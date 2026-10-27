@@ -6,13 +6,14 @@ import { MainMenu } from "./index";
 export function MainMenuDemo() {
   return (
     <MainMenu
-      className="h-120"
       actions={[
         { label: "单人游戏" },
         { label: "多人游戏" },
         { label: "设置" },
         { disabled: true, label: "最近的世界（无）" },
       ]}
+      className="h-120"
+      titleAs="p"
     />
   );
 }

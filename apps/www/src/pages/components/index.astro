@@ -1,0 +1,41 @@
+---
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import PageHeader from "@/components/site/PageHeader.astro";
+import { componentGroups, components } from "@/lib/catalog";
+
+const title = "Components · Verdigris";
+const description = "48 个可复制进项目的组件，按层级分组。每个页面提供实时预览与示例源码。";
+---
+<SiteLayout title={title} description={description}>
+  <div class="mx-auto max-w-[1120px] px-12 py-24">
+    <PageHeader
+      breadcrumb={[{ label: "Components" }]}
+      title="Components"
+      description={description}
+    />
+    {componentGroups.map(group => {
+      const items = components.filter(component => component.group === group.id);
+      return (
+        <section id={group.id} class="mt-32 scroll-mt-32">
+          <div class="flex items-baseline gap-8 border-b border-site-border pb-8">
+            <h2 class="text-2xl font-bold text-site-fg">{group.title}</h2>
+            <span class="text-xs uppercase tracking-wider text-site-muted">{group.level}</span>
+            <span class="ml-auto text-sm text-site-muted">{items.length}</span>
+          </div>
+          <p class="mt-8 text-sm leading-12 text-site-muted">{group.description}</p>
+          <div class="grid gap-x-24 md:grid-cols-2">
+            {items.map(component => (
+              <a
+                href={`/components/${component.slug}/`}
+                class="group flex flex-col gap-2 border-b border-site-border/60 py-8"
+              >
+                <span class="text-base text-site-fg group-hover:text-site-accent">{component.name}</span>
+                <span class="text-sm leading-12 text-site-muted">{component.description}</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      );
+    })}
+  </div>
+</SiteLayout>

@@ -1,0 +1,32 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Demo from "@/components/preview/demo";
+import { blocks, type CatalogEntry } from "@/lib/catalog";
+
+interface Props {
+  entry: CatalogEntry;
+}
+
+export async function getStaticPaths() {
+  return blocks.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+---
+<BaseLayout
+  title={`${entry.name} 预览 · Verdigris`}
+  description={entry.description}
+  type="article"
+  noindex
+>
+  <div class="flex h-24 items-center justify-between border-b border-white/10 px-8 text-sm">
+    <a class="text-site-muted hover:text-site-fg" href="/blocks/">← 返回 Blocks</a>
+    <span class="text-site-fg">{entry.name}</span>
+  </div>
+  <div class="flex min-h-[calc(100vh-48px)] items-center justify-center overflow-auto bg-[#1f1f1f] p-16">
+    <Demo client:load name={entry.name} />
+  </div>
+</BaseLayout>

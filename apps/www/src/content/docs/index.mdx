@@ -1,0 +1,51 @@
+---
+title: 介绍
+description: 核心原则、分层与分发方式。
+section: 开始
+order: 1
+---
+
+import Callout from "@/components/docs/Callout.astro";
+
+## 不是传统组件库
+
+Verdigris 把 Minecraft 的 GUI 语言拆成可复制的 React 源码。它同时提供两条通道：npm 包与源码目录。组件基于 Base UI 与 Tailwind CSS v4，默认由设计令牌驱动。
+
+48 个组件覆盖四个层级：13 个原语、10 个容器、6 个 HUD 状态层、19 个整屏界面。整屏不是黑盒，而是由小部件拼装出来的组合示例。
+
+<Callout title="三条使用约定">
+源码可改：每个组件都是独立目录；数据注入：界面只接收数据与回调；令牌覆盖：颜色、字体、间距、阴影都可在 `@theme` 中重写。
+</Callout>
+
+## 五条设计原则
+
+1. 分层组合，而不是整屏黑盒。整屏界面由 `ScreenPanel`、`PlayerInventory`、`Slot` 等部件组合。
+2. UI 与游戏逻辑解耦。组件不读取存档、不发送网络请求，只渲染传入的数据。
+3. 风格走令牌。几何与颜色来自 CSS 变量，覆盖变量即可换肤。
+4. 像素基调。1 GUI px 默认等于 2 CSS px；纹理使用 `image-rendering: pixelated`。
+5. 静态优先。纯展示组件保持 RSC 兼容，交互边界尽量小。
+
+## 分层
+
+| 层级 | 内容 | 数量 |
+| --- | --- | --- |
+| L0 | `@verdigris/tokens` / `@verdigris/textures` | 2 个包 |
+| L1 | 原语：Button、Input、Slider、Tabs… | 13 |
+| L2 | 容器：Panel、Grid、Slot、ScreenPanel… | 10 |
+| L3 | HUD 与整屏界面 | 25 |
+
+完整说明见 [组件分层](/docs/layers/)；按组件浏览见 [Components](/components/)。
+
+## 分发
+
+`@verdigris/ui` 是 workspace 包。仓库还包含 `registry/registry.json`，它按 shadcn registry 的结构描述组件源码与依赖。Registry 当前只覆盖 primitives 与 containers。
+
+## 当前状态
+
+<Callout variant="warn" title="v0.1.0 预览">
+`@verdigris/ui` 尚未发布到 npm，registry 也没有公开托管地址。仓库内请使用 `workspace:*` 引用。Next.js App Router 与 TanStack Start 的 SSR 冒烟已通过；axe 测试覆盖 primitives。
+</Callout>
+
+## 下一步
+
+从 [安装](/docs/installation/) 开始接入样式，然后浏览 [Components](/components/) 与 [Blocks](/blocks/)。

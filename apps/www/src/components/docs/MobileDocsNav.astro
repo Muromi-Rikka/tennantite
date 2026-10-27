@@ -1,0 +1,25 @@
+---
+import type { DocsNavGroup } from "@/lib/docs";
+
+interface Props {
+  groups: DocsNavGroup[];
+}
+const { groups } = Astro.props;
+---
+<details class="mt-16 border border-site-border bg-site-surface p-8 lg:hidden">
+  <summary class="cursor-pointer list-none text-sm text-site-fg marker:hidden">文档目录</summary>
+  <nav aria-label="移动文档目录" class="mt-8">
+    {groups.map(group => (
+      <div class="mt-8 first:mt-0">
+        <h2 class="text-xs uppercase tracking-wider text-site-muted">{group.title}</h2>
+        <ul class="mt-4">
+          {group.items.map(item => (
+            <li>
+              <a class="block py-2 text-sm text-site-muted hover:text-site-fg" href={item.href}>{item.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </nav>
+</details>

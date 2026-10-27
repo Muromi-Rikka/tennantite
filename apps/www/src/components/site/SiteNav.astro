@@ -1,0 +1,26 @@
+---
+interface Props {
+  pathname: string;
+}
+const { pathname } = Astro.props;
+const items = [
+  { href: "/docs/", label: "文档" },
+  { href: "/components/", label: "组件" },
+  { href: "/blocks/", label: "Blocks" },
+];
+const isActive = (href: string) => pathname === href || pathname.startsWith(href);
+---
+<nav aria-label="主导航" class="hidden items-center gap-2 md:flex">
+  {items.map(item => (
+    <a
+      href={item.href}
+      aria-current={isActive(item.href) ? "page" : undefined}
+      class:list={[
+        "px-4 py-2 text-sm transition-colors",
+        isActive(item.href) ? "text-site-fg" : "text-site-muted hover:text-site-fg",
+      ]}
+    >
+      {item.label}
+    </a>
+  ))}
+</nav>

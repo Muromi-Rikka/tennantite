@@ -1,0 +1,33 @@
+---
+import { Icon } from "@verdigris/ui";
+
+const icons = [
+  "air",
+  "air-empty",
+  "apple",
+  "armor",
+  "armor-empty",
+  "armor-half",
+  "creeper-face",
+  "diamond",
+  "dirt-block",
+  "grass-block",
+  "heart",
+  "heart-empty",
+  "heart-half",
+  "hunger",
+  "hunger-empty",
+  "hunger-half",
+  "stone-block",
+  "sword",
+  "xp-orb",
+] as const;
+---
+<div class="mt-8 grid grid-cols-2 gap-8 sm:grid-cols-3">
+  {icons.map(name => (
+    <div class="flex items-center gap-4 border border-site-border bg-site-surface p-4">
+      <Icon name={name} size={12} />
+      <code class="font-mono text-xs text-site-muted">{name}</code>
+    </div>
+  ))}
+</div>

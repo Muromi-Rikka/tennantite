@@ -1,0 +1,78 @@
+---
+import "@/styles/global.css";
+import { website } from "@/lib/seo";
+
+interface Props {
+  description: string;
+  jsonLd?: Record<string, unknown>[];
+  noindex?: boolean;
+  title: string;
+  type?: "article" | "website";
+}
+const { description, jsonLd = [], noindex = false, title, type = "website" } = Astro.props;
+const site = Astro.site ?? new URL("http://localhost:3300");
+const canonical = new URL(Astro.url.pathname, site);
+const graph = [website(site), ...jsonLd];
+const json = JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replaceAll("<", "\\u003c");
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.href} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" type="application/xml" />
+    <meta name="theme-color" content="#0a0a0a" />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:site_name" content="Verdigris" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <script type="application/ld+json" set:html={json} />
+  </head>
+  <body class="flex min-h-screen flex-col bg-site-bg font-mc text-site-fg">
+    <slot />
+    <script>
+      const COPY_LABEL = "复制";
+      function mountCodeCopy() {
+        document.querySelectorAll("[data-copy-scope] pre").forEach((pre) => {
+          if (pre.parentElement?.classList.contains("code-frame")) return;
+          const frame = document.createElement("div");
+          frame.className = "code-frame";
+          pre.replaceWith(frame);
+          frame.append(pre);
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "code-copy";
+          button.textContent = COPY_LABEL;
+          frame.append(button);
+        });
+      }
+      document.addEventListener("click", async (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const button = target.closest("[data-copy], .code-copy");
+        if (!(button instanceof HTMLElement)) return;
+        const text = button.dataset.copy
+          ?? button.parentElement?.querySelector("pre")?.innerText
+          ?? "";
+        try {
+          await navigator.clipboard.writeText(text);
+          button.textContent = "已复制";
+        } catch {
+          button.textContent = "复制失败";
+        }
+        setTimeout(() => { button.textContent = COPY_LABEL; }, 2000);
+      });
+      mountCodeCopy();
+    </script>
+  </body>
+</html>

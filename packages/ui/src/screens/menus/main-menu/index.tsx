@@ -17,6 +17,10 @@ export interface MainMenuProps {
   * 游戏标题（Logo 位）
   */
   title?: ReactNode;
+  /**
+  * 标题元素（默认 h1；嵌入页面时传 p 可避免重复一级标题）
+  */
+  titleAs?: "h1" | "h2" | "p";
 }
 
 export interface MenuAction {
@@ -40,7 +44,9 @@ export function MainMenu({
   background,
   className,
   title = "VERDIGRIS",
+  titleAs = "h1",
 }: MainMenuProps) {
+  const TitleTag = titleAs;
   return (
     <div
       className={cn(
@@ -57,9 +63,9 @@ export function MainMenu({
             </div>
           )
         : <div aria-hidden className="absolute inset-0 bg-black/40" />}
-      <h1 className="relative font-mc mc-text text-white mc-text-shadow">
+      <TitleTag className="relative font-mc mc-text text-white mc-text-shadow">
         {title}
-      </h1>
+      </TitleTag>
       {actions.map(action => (
         <Button
           className="relative w-200"

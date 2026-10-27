@@ -1,0 +1,18 @@
+---
+interface Props {
+  command: string;
+}
+const { command } = Astro.props;
+---
+<div class="mt-8 flex items-center justify-between gap-8 border border-site-border bg-[#080808] px-8 py-6">
+  <code class="overflow-x-auto font-mono text-[13px] text-site-fg">
+    <span class="mr-4 text-site-accent">$</span>{command}
+  </code>
+  <button
+    type="button"
+    data-copy={command}
+    class="shrink-0 border border-site-border px-4 py-2 text-xs text-site-muted hover:text-site-fg"
+  >
+    复制
+  </button>
+</div>

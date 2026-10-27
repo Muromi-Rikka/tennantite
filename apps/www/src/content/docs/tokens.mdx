@@ -1,0 +1,67 @@
+---
+title: 设计令牌
+description: 颜色、字体、间距与阴影令牌。
+section: 设计系统
+order: 1
+---
+
+import Callout from "@/components/docs/Callout.astro";
+import TokenTable from "@/components/docs/TokenTable.astro";
+
+## 令牌模型
+
+`@verdigris/tokens` 用 Tailwind v4 的 `@theme` 声明 CSS 变量，同时生成对应工具类。GUI 缩放由 `--mc-scale` 控制：
+
+```css
+@theme {
+  --mc-scale: 2;
+  --mc-gui: calc(var(--mc-scale) * 1px);
+  --spacing: var(--mc-gui);
+}
+```
+
+因此 `w-20` 是 20 GUI px，默认等于 40 CSS px；`p-4` 是 8 CSS px，而不是 16 CSS px。
+
+## 颜色
+
+<Callout>
+共 35 个 `--color-mc-*` 令牌。取值对齐 Minecraft Java 26.3 稳定版 GUI 的采样色。下表由 `packages/tokens/css/tokens.css` 派生。
+</Callout>
+
+<TokenTable />
+
+## 字体与文本
+
+- `--font-mc`：Minecraft 像素字体优先，中文回退 `Microsoft YaHei` / `PingFang SC`。
+- `--text-mc`：9 GUI px 字号与 9 GUI px 行高。
+- `mc-text`：必须与颜色类一起使用。`tailwind-merge` 会把 `text-mc` 与 `text-mc-text-main` 视为同一组，导致字号被丢弃；`mc-text` 不落入 `text-*` 分组。
+- `mc-text-shadow`：1 GUI px 的经典文字投影。
+
+```tsx
+<p className="font-mc mc-text text-mc-text-main mc-text-shadow">标题</p>
+```
+
+## 间距与阴影
+
+| 工具类 | 含义 |
+| --- | --- |
+| `p-8` / `p-16` | 16px / 32px |
+| `w-200` | 400px（原版按钮宽度） |
+| `shadow-mc-1` / `shadow-mc-2` | 1 / 2 GUI px 外阴影 |
+| `shadow-mc-raised` / `shadow-mc-sunken` | 浮雕外 / 内阴影 |
+| `mc-border` / `mc-border-2` | 1 / 2 GUI px 边框 |
+| `pixelated` | `image-rendering: pixelated` |
+
+## 覆盖
+
+在 tokens 引入之后声明同名的 `@theme` 变量即可覆盖：
+
+```css
+@theme {
+  --color-mc-panel: #d9c7a3;
+  --color-mc-gold: #ffd166;
+  --mc-scale: 3;
+}
+```
+
+`--mc-gui` 会随 `--mc-scale` 重新计算，所有使用 `gui()` 或 `--spacing` 的几何一起缩放。更多主题做法见 [主题](/docs/theming/)。

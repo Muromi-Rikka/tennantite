@@ -1,0 +1,45 @@
+---
+title: SSR / RSC
+description: 服务端渲染约束、use client 边界与验证应用。
+section: 架构
+order: 2
+---
+
+import Callout from "@/components/docs/Callout.astro";
+
+## 硬约束
+
+1. 服务端渲染不报错，不访问 `window`、`document`、`localStorage`。
+2. 初始 HTML 完整，不依赖客户端补出关键内容。
+3. 水合不产生 warning，服务端与客户端首帧一致。
+
+`packages/ui/src/ssr.test.tsx` 在 Node 环境用 `renderToStaticMarkup` 渲染 primitives、`ScreenPanel` 与 `PlayerInventory`。任何组件在模块顶层或渲染期触碰浏览器 API，都会直接让测试失败。
+
+## use client 边界
+
+- Base UI 组件需要客户端交互时，由组件自身或调用方提供 `"use client"`。
+- `useHasHover` 在 SSR 返回 `false`，在 `useEffect` 中读取 `matchMedia`；hover 只作桌面增强。
+- 不要用 `typeof window !== "undefined"` 分支渲染不同结构，否则首帧会不一致。把差异放到 effect 或 CSS 中。
+
+## 双框架验证
+
+```bash
+pnpm --filter @verdigris/next-app dev
+pnpm --filter @verdigris/tanstack-app dev
+```
+
+Next.js App Router 在 3100 端口，TanStack Start 在 3200 端口。两个应用渲染同一组控件，用来发现框架级的水合与预渲染差异。
+
+## 自动化冒烟
+
+```bash
+pnpm --filter @verdigris/ui test
+```
+
+<Callout>
+Vitest 的 SSR 测试使用 node 环境，不加载 jsdom。它验证的是“服务端能渲染”，不是浏览器交互；交互与可访问性由 jsdom 测试覆盖。
+</Callout>
+
+## 本站
+
+官网由 Astro 在构建期静态生成。文档页不加载 preview/demo 的 React chunk，只保留空闲期水合的搜索 island 与一段原生复制脚本。组件与 Block 页按需水合预览。

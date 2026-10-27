@@ -1,0 +1,17 @@
+---
+interface Props {
+  title?: string;
+  variant?: "info" | "warn";
+}
+const { title, variant = "info" } = Astro.props;
+---
+<div
+  class:list={[
+    "mt-8 border-l-2 bg-white/[0.03] p-8 text-sm leading-12 text-site-muted",
+    variant === "info" && "border-site-accent",
+    variant === "warn" && "border-mc-gold",
+  ]}
+>
+  {title && <p class="mb-4 font-bold text-site-fg">{title}</p>}
+  <slot />
+</div>

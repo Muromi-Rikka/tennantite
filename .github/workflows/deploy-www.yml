@@ -1,0 +1,29 @@
+name: Deploy www
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 26
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: test -n "$SITE_URL"
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+      - run: pnpm --filter @verdigris/www typecheck
+      - run: pnpm turbo run build --filter=@verdigris/www
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy apps/www/dist --project-name=verdigris --branch=main

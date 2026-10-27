@@ -1,0 +1,21 @@
+---
+import Demo from "./demo";
+
+interface Props {
+  class?: string;
+  name: string;
+  scaleClass?: string;
+}
+const { class: className = "", name, scaleClass = "scale-[0.65]" } = Astro.props;
+---
+<div class:list={["relative overflow-hidden", className]}>
+  <div
+    aria-hidden="true"
+    inert
+    class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+  >
+    <div class={scaleClass}>
+      <Demo client:visible name={name} />
+    </div>
+  </div>
+</div>

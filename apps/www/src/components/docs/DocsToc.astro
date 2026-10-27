@@ -1,0 +1,25 @@
+---
+import type { DocHeading } from "@/lib/docs";
+
+interface Props {
+  headings: DocHeading[];
+}
+const { headings } = Astro.props;
+---
+<nav aria-label="本页目录" class="hidden xl:block">
+  <div class="sticky top-32">
+    <h2 class="text-xs uppercase tracking-wider text-site-muted">本页目录</h2>
+    <ul class="mt-4 border-l border-site-border">
+      {headings.map(heading => (
+        <li>
+          <a
+            href={`#${heading.slug}`}
+            class="-ml-px block border-l border-transparent py-2 pl-8 text-sm text-site-muted hover:border-site-fg hover:text-site-fg"
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>

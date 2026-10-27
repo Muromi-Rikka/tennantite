@@ -1,0 +1,43 @@
+export interface TokenRow {
+  token: string;
+  usage: string;
+  value: string;
+}
+
+export const tokenRows: TokenRow[] = [
+  { token: "--color-mc-panel", usage: "面板填充", value: "#c6c6c6" },
+  { token: "--color-mc-panel-overlay", usage: "标题界面 / 标签页遮罩", value: "rgb(0 0 0 / 75%)" },
+  { token: "--color-mc-highlight", usage: "亮部浮雕", value: "#ffffff" },
+  { token: "--color-mc-stone", usage: "槽位填充", value: "#8b8b8b" },
+  { token: "--color-mc-stone-dark", usage: "面板暗边", value: "#555555" },
+  { token: "--color-mc-stone-darker", usage: "槽位暗边", value: "#373737" },
+  { token: "--color-mc-button", usage: "按钮填充", value: "#6f6f6f" },
+  { token: "--color-mc-button-hover", usage: "—", value: "#757575" },
+  { token: "--color-mc-button-disabled", usage: "—", value: "#2c2c2c" },
+  { token: "--color-mc-button-light", usage: "按钮亮边", value: "#aaaaaa" },
+  { token: "--color-mc-button-dark", usage: "按钮暗边", value: "#565656" },
+  { token: "--color-mc-slot", usage: "—", value: "#8b8b8b" },
+  { token: "--color-mc-text-main", usage: "—", value: "#ffffff" },
+  { token: "--color-mc-text-dim", usage: "—", value: "#a0a0a0" },
+  { token: "--color-mc-text-disabled", usage: "—", value: "#a0a0a0" },
+  { token: "--color-mc-gold", usage: "—", value: "#ffaa00" },
+  { token: "--color-mc-yellow", usage: "—", value: "#ffff55" },
+  { token: "--color-mc-green", usage: "—", value: "#55ff55" },
+  { token: "--color-mc-aqua", usage: "—", value: "#55ffff" },
+  { token: "--color-mc-red", usage: "—", value: "#ff5555" },
+  { token: "--color-mc-purple", usage: "—", value: "#ff55ff" },
+  { token: "--color-mc-gray", usage: "—", value: "#aaaaaa" },
+  { token: "--color-mc-accent-green", usage: "主行动按钮（非原版扩展）", value: "#7ec850" },
+  { token: "--color-mc-heart", usage: "—", value: "#ff1313" },
+  { token: "--color-mc-xp", usage: "—", value: "#80ff20" },
+  { token: "--color-mc-selection", usage: "热键栏选中框亮边", value: "#d5e8d0" },
+  { token: "--color-mc-selection-mid", usage: "—", value: "#a1b29d" },
+  { token: "--color-mc-selection-dark", usage: "—", value: "#5f6d5c" },
+  { token: "--color-mc-hotbar", usage: "—", value: "rgb(39 37 5 / 73%)" },
+  { token: "--color-mc-scroller", usage: "—", value: "#c0c0c0" },
+  { token: "--color-mc-scroller-dark", usage: "—", value: "#808080" },
+  { token: "--color-mc-tooltip-bg", usage: "—", value: "rgb(16 0 16 / 94%)" },
+  { token: "--color-mc-tooltip-text", usage: "—", value: "#ffffff" },
+  { token: "--color-mc-tooltip-border-top", usage: "—", value: "rgb(80 0 255 / 31%)" },
+  { token: "--color-mc-tooltip-border-bottom", usage: "—", value: "rgb(40 0 127 / 31%)" },
+];

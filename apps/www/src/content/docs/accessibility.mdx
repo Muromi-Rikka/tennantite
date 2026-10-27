@@ -1,0 +1,42 @@
+---
+title: 可访问性
+description: axe 测试、键盘交互与已知限制。
+section: 架构
+order: 3
+---
+
+import Callout from "@/components/docs/Callout.astro";
+
+## axe-core 测试
+
+`packages/ui/src/primitives/a11y.test.tsx` 用 Testing Library 渲染组件，再通过 `expectNoAxeViolations` 跑 axe-core。覆盖范围：
+
+- Button、Input、Badge、ScrollArea
+- Checkbox、Switch、RadioGroup、Slider、Progress
+- Tabs、Select、Dialog、Tooltip
+
+```bash
+pnpm --filter @verdigris/ui test
+```
+
+## 键盘与焦点
+
+Base UI 负责 Tab 顺序、方向键、Enter / Space、Esc 关闭等行为。自研交互统一使用白色像素焦点框；`mc-outline` 提供 1 GUI px 外描边。hover 只作桌面增强，不承载唯一入口。
+
+## 语义与标注
+
+- Dialog 必须提供 `DialogTitle`；需要说明时再提供 `DialogDescription`。
+- 纯图标控件由调用方给 `aria-label`。
+- `Icon` 默认 `aria-hidden="true"`，不进入可达性树。
+- 装饰性预览使用 `inert` 与 `aria-hidden`，避免重复焦点与重复朗读。
+
+## 已知限制
+
+- HUD 是 overlay，不参与焦点；它不是可操作的表单区域。
+- 整屏界面是视觉模拟，不是语义化的数据表格。
+- axe 尚未覆盖全部 screens；当前以 primitives 为主。
+- 像素字体的中文字形回退到系统字体，字重与字宽可能不一致。
+
+<Callout variant="warn" title="接入检查">
+输入框必须有 label 或 `aria-label`；按钮必须有可读文本；Dialog 必须有标题；不要把 hover 当作唯一入口。
+</Callout>

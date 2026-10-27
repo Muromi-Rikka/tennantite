@@ -1,0 +1,27 @@
+---
+import { Icon } from "@verdigris/ui";
+import { getCollection } from "astro:content";
+import Search from "@/components/site/search";
+import { buildSearchItems } from "@/lib/search";
+import SiteNav from "./SiteNav.astro";
+import MobileNav from "./MobileNav.astro";
+
+const docs = await getCollection("docs");
+const searchItems = buildSearchItems(docs);
+const pathname = Astro.url.pathname;
+const githubUrl = "https://github.com/verdigris-ui/verdigris";
+---
+<header class="sticky top-0 z-40 border-b border-site-border bg-site-bg/85 backdrop-blur">
+  <div class="mx-auto flex h-32 max-w-[1440px] items-center gap-8 px-12">
+    <a href="/" class="flex items-center gap-4 text-lg font-bold tracking-wide text-site-fg hover:text-mc-gold">
+      <Icon name="grass-block" size={8} />
+      Verdigris
+    </a>
+    <SiteNav pathname={pathname} />
+    <div class="ml-auto flex items-center gap-4">
+      <Search client:idle items={searchItems} />
+      <a class="hidden text-sm text-site-muted hover:text-site-fg md:inline" href={githubUrl} target="_blank" rel="noreferrer">GitHub</a>
+      <MobileNav pathname={pathname} />
+    </div>
+  </div>
+</header>

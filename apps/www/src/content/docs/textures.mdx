@@ -1,0 +1,51 @@
+---
+title: 纹理
+description: 九宫格纹理、图标与像素渲染。
+section: 设计系统
+order: 2
+---
+
+import Callout from "@/components/docs/Callout.astro";
+import IconGrid from "@/components/docs/IconGrid.astro";
+import TextureClasses from "@/components/docs/TextureClasses.astro";
+
+## 重绘策略
+
+所有纹理都是本项目重绘的，零 Mojang 素材。图标以字符画描述，构建时由 `pixelSprite(rows, palette)` 合并同色横向 run，输出最小的 SVG `<rect>` 集合。许可见 `packages/textures/LICENSE-ASSETS.md`。
+
+## 九宫格
+
+按钮与面板使用 12×12 源图、slice 3 的 `border-image`。边框宽度按 `--mc-gui` 缩放，因此 GUI scale 变化时纹理不会被拉伸模糊。所有纹理类内置 `image-rendering: pixelated`。
+
+```css
+.mc-tex-panel {
+  border: calc(var(--mc-gui) * 3) solid transparent;
+  border-image: url("/textures/panel.svg") 3 / calc(var(--mc-gui) * 3) stretch;
+}
+```
+
+## 纹理类
+
+<TextureClasses />
+
+## 图标
+
+<IconGrid />
+
+```tsx
+import { Icon } from "@verdigris/ui";
+
+<Icon name="grass-block" size={16} />
+```
+
+`size` 的单位是 GUI px，默认 16。图标默认 `aria-hidden`；需要语义时由调用方提供 `aria-label` 或可见文本。
+
+## 引入
+
+```css
+@import "@verdigris/textures/css/textures.css";
+```
+
+<Callout>
+纹理类可以用于任意元素，但类名依赖 `@verdigris/textures` 的 CSS 变量。若只复制单个图标的 SVG，不需要引入整份纹理样式。
+</Callout>

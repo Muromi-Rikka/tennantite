@@ -1,0 +1,30 @@
+---
+interface Props {
+  pathname: string;
+}
+const items = [
+  { href: "/docs/", label: "文档" },
+  { href: "/components/", label: "组件" },
+  { href: "/blocks/", label: "Blocks" },
+];
+---
+<details class="group relative md:hidden">
+  <summary
+    aria-label="打开导航"
+    class="flex size-16 cursor-pointer list-none items-center justify-center border border-site-border text-site-muted [&::-webkit-details-marker]:hidden hover:text-site-fg"
+  >
+    <svg aria-hidden="true" class="size-16" fill="currentColor" viewBox="0 0 16 16">
+      <rect height="2" width="12" x="2" y="4" />
+      <rect height="2" width="12" x="2" y="7" />
+      <rect height="2" width="12" x="2" y="10" />
+    </svg>
+  </summary>
+  <div class="absolute top-full right-0 mt-4 w-[200px] border border-site-border bg-site-surface p-8">
+    <nav aria-label="移动导航" class="flex flex-col">
+      {items.map(item => (
+        <a class="py-2 text-sm text-site-muted hover:text-site-fg" href={item.href}>{item.label}</a>
+      ))}
+      <a class="py-2 text-sm text-site-muted hover:text-site-fg" href="https://github.com/verdigris-ui/verdigris" target="_blank" rel="noreferrer">GitHub</a>
+    </nav>
+  </div>
+</details>

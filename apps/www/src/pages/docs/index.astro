@@ -1,0 +1,9 @@
+---
+import DocsLayout from "@/layouts/DocsLayout.astro";
+import { getEntry, render } from "astro:content";
+
+const entry = await getEntry("docs", "index");
+if (!entry) throw new Error("缺少 docs/index.mdx");
+const { Content, headings } = await render(entry);
+---
+<DocsLayout entry={entry} headings={headings}><Content /></DocsLayout>

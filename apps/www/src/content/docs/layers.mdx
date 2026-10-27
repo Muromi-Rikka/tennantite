@@ -1,0 +1,65 @@
+---
+title: 组件分层
+description: L0–L3 分层、数据注入与组合方式。
+section: 架构
+order: 1
+---
+
+import Callout from "@/components/docs/Callout.astro";
+
+## 四个层级
+
+| 层级 | 包路径 | 数量 | 代表 |
+| --- | --- | --- | --- |
+| L0 | `@verdigris/tokens`、`@verdigris/textures` | 2 | 颜色、字体、纹理、图标 |
+| L1 | `packages/ui/src/primitives` | 13 | Button、Input、Tabs、Dialog |
+| L2 | `packages/ui/src/containers` | 10 | Panel、Grid、Slot、ScreenPanel |
+| L3 | `packages/ui/src/screens` | 25 | HUD 6、容器界面 9、菜单界面 10 |
+
+L1 只依赖 Base UI 与令牌；L2 组合 L1；L3 组合 L1–L2，并接收使用方传入的数据。
+
+## 组合而非黑盒
+
+整屏界面不是独立的巨型组件。以物品栏为例，它由 `ScreenPanel` 提供 176×166 的绝对坐标基座，再由 `PlayerInventory` 与槽位组合：
+
+```tsx
+<InventoryScreen
+  mainItems={[{ count: 64, icon: "stone-block" }]}
+  selectedIndex={0}
+  onSlotClick={(area, index) => {
+    console.log(area, index);
+  }}
+/>
+```
+
+需要完全自定义时，可以跳过 `InventoryScreen`，直接用 `ScreenPanel`、`Grid`、`Slot` 拼出同样的布局。
+
+## 数据结构
+
+```ts
+type ScreenArea =
+  | "armor" | "craft" | "craft-result" | "hotbar"
+  | "input" | "main" | "offhand" | "output" | "secondary";
+
+interface ScreenItem {
+  icon?: PixelIconName;
+  count?: number;
+  src?: string;
+  tooltip?: string;
+}
+
+type ScreenSlot = ScreenItem | null | undefined;
+```
+
+`padSlots(slots, length)` 会截断多余项并补齐缺失项，保证固定长度的槽位数组不会让布局塌陷。
+
+## 交互边界
+
+- 槽位点击统一回调为 `onSlotClick(area, index)`；具体区域由组件声明。
+- 不支持拖拽。拖拽涉及指针捕获、跨容器状态与放置规则，超出纯 UI 库边界。
+- HUD 是 overlay 语义，不参与焦点顺序，也不拦截页面交互。
+- 组件不读取存档、不发送请求、不包含游戏规则。
+
+## RSC 兼容
+
+纯展示组件不包含 `useEffect` 或浏览器 API，可以作为 Server Component 渲染。需要状态的模块单独标注 `"use client"`；`useHasHover` 在 SSR 返回 `false`，只在 `useEffect` 中读取 `matchMedia`。详见 [SSR / RSC](/docs/ssr/)。
