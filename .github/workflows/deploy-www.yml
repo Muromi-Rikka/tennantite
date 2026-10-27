@@ -1,7 +1,7 @@
 name: Deploy www
 on:
   push:
-    branches: [main]
+    branches: [master]
   workflow_dispatch: {}
 
 jobs:
@@ -26,4 +26,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy apps/www/dist --project-name=verdigris --branch=main
+          command: pages deploy apps/www/dist --project-name=verdigris --branch=master
