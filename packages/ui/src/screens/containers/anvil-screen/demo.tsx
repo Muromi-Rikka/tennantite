@@ -9,7 +9,7 @@ export function AnvilScreenDemo() {
       defaultValue="铁剑"
       item={{ icon: "sword", tooltip: "铁剑" }}
       levelCost={3}
-      material={{ count: 4, icon: "stone-block", tooltip: "铁锭" }}
+      material={{ count: 4, icon: "iron-ingot", tooltip: "铁锭" }}
       result={{ icon: "sword", tooltip: "铁剑 · 锋利 I" }}
       title="修理"
     />

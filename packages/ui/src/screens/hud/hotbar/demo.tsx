@@ -13,9 +13,9 @@ export function HotbarDemo() {
         { icon: "sword", tooltip: "铁剑" },
         { count: 5, icon: "apple", tooltip: "苹果 ×5" },
         {},
-        { icon: "xp-orb" },
+        { icon: "experience-bottle" },
         {},
-        { icon: "creeper-face" },
+        { icon: "gunpowder" },
       ]}
       selectedIndex={2}
     />

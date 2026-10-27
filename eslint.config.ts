@@ -16,6 +16,7 @@ const globalIgnores = {
     "**/routeTree.gen.ts",
     "**/next-env.d.ts",
     "**/.next/**",
+    "packages/textures/src/pixel-icons.generated.ts",
   ],
 };
 

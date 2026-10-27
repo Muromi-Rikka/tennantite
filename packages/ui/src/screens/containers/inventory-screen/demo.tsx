@@ -16,7 +16,7 @@ export function InventoryScreenDemo() {
   return (
     <InventoryScreen
       armorItems={[
-        { icon: "armor" },
+        { icon: "iron-chestplate" },
         null,
         { count: 1, icon: "diamond" },
         null,
@@ -30,9 +30,9 @@ export function InventoryScreenDemo() {
         { icon: "sword" },
         { count: 5, icon: "apple" },
         EMPTY,
-        { icon: "xp-orb" },
+        { icon: "experience-bottle" },
         EMPTY,
-        { icon: "creeper-face" },
+        { icon: "gunpowder" },
       ]}
       mainItems={[
         stone(64),

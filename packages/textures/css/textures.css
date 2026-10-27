@@ -1,5 +1,5 @@
 /*
- * @verdigris/textures — L0 像素纹理（全部本项目重绘，零 Mojang 素材，见 LICENSE-ASSETS.md）
+ * @verdigris/textures — L0 像素纹理（九宫格/进度条本项目重绘；图标见 src/pixel-icons.generated.ts，授权见 LICENSE-ASSETS.md）
  *
  * 视觉基准：Minecraft Java 26.3 GUI。1 GUI px = var(--mc-gui)；
  * 所有特征尺寸用 calc(var(--mc-gui) * n) 缩放，除经验条 / Boss 条 / Tooltip 边框外一律无渐变。

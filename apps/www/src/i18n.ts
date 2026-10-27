@@ -211,7 +211,7 @@ const zh: UIDictionary = {
     toc: "本页目录",
   },
   footer: {
-    assets: "全部纹理重绘 · 字体 SIL OFL 1.1",
+    assets: "GUI 纹理重绘 · 物品/状态图标取自原版 26.3 · 字体 SIL OFL 1.1",
     columns: [
       {
         links: [
@@ -266,12 +266,12 @@ const zh: UIDictionary = {
       { body: "每个组件都是独立目录，改哪行由你决定。", icon: "stone-block", title: "源码可复制" },
       { body: "颜色、字体、间距、阴影都在 @theme；覆盖变量即可换肤。", icon: "diamond", title: "令牌驱动" },
       { body: "Next.js App Router 与 TanStack Start 双框架验证，服务端不触达浏览器 API。", icon: "heart", title: "SSR 就绪" },
-      { body: "按原版 GUI 坐标采样：1 GUI px = 2 CSS px，九宫格纹理无模糊缩放。", icon: "xp-orb", title: "像素级还原" },
+      { body: "按原版 GUI 坐标采样：1 GUI px = 2 CSS px，九宫格纹理无模糊缩放。", icon: "experience-bottle", title: "像素级还原" },
     ],
     hero: {
       browse: "浏览组件",
       counts: "{components} 个组件 · {blocks} 个整屏",
-      description: "按 shadcn 哲学分发的像素级 GUI 组件：复制源码、注入数据、双框架 SSR 验证。全部纹理重绘，零 Mojang 素材。",
+      description: "按 shadcn 哲学分发的像素级 GUI 组件：复制源码、注入数据、双框架 SSR 验证。GUI 九宫格纹理重绘，物品与状态图标取自 Minecraft 26.3 原版素材。",
       headingHighlight: "搬进 React",
       headingLine1: "把 Minecraft 的",
       headingLine2Prefix: "界面，",
@@ -281,7 +281,7 @@ const zh: UIDictionary = {
       previewLabel: "菜单界面 · MainMenu",
       view: "查看 →",
     },
-    metaDescription: "48 个可复制的 Minecraft 风格 React 组件与 19 个整屏界面。基于 Base UI 与 Tailwind v4，SSR 安全，全部纹理重绘。",
+    metaDescription: "48 个可复制的 Minecraft 风格 React 组件与 19 个整屏界面。基于 Base UI 与 Tailwind v4，SSR 安全；GUI 纹理重绘，物品图标取自原版 26.3。",
     metaTitle: "Verdigris · Minecraft 风格 React 组件库",
     primitiveCode: `import { Button, Panel } from "@verdigris/ui";
 
@@ -390,7 +390,7 @@ const en: UIDictionary = {
     toc: "On this page",
   },
   footer: {
-    assets: "All textures redrawn · Font under SIL OFL 1.1",
+    assets: "Redrawn GUI textures · vanilla 26.3 item/status icons · SIL OFL 1.1 font",
     columns: [
       {
         links: [
@@ -445,12 +445,12 @@ const en: UIDictionary = {
       { body: "Every component is its own directory. Change whatever line you need.", icon: "stone-block", title: "Source you can own" },
       { body: "Colors, type, spacing and shadows live in @theme. Override variables to reskin.", icon: "diamond", title: "Token-driven" },
       { body: "Verified with Next.js App Router and TanStack Start; no browser APIs during render.", icon: "heart", title: "SSR ready" },
-      { body: "Sampled from vanilla GUI coordinates: 1 GUI px = 2 CSS px, nine-slice textures stay crisp.", icon: "xp-orb", title: "Pixel-accurate" },
+      { body: "Sampled from vanilla GUI coordinates: 1 GUI px = 2 CSS px, nine-slice textures stay crisp.", icon: "experience-bottle", title: "Pixel-accurate" },
     ],
     hero: {
       browse: "Browse components",
       counts: "{components} components · {blocks} full screens",
-      description: "Pixel-accurate GUI components distributed the shadcn way: copy the source, inject data, verify under two SSR frameworks. Every texture is redrawn; zero Mojang assets.",
+      description: "Pixel-accurate GUI components distributed the shadcn way: copy the source, inject data, verify under two SSR frameworks. GUI nine-slices are redrawn; item and status icons come from vanilla Minecraft 26.3 assets.",
       headingHighlight: "React",
       headingLine1: "Bring Minecraft's",
       headingLine2Prefix: "interface into ",
@@ -460,7 +460,7 @@ const en: UIDictionary = {
       previewLabel: "Menu · MainMenu",
       view: "View →",
     },
-    metaDescription: "48 copy-ready Minecraft-style React components and 19 full-screen interfaces. Base UI + Tailwind v4, SSR-safe, all textures redrawn.",
+    metaDescription: "48 copy-ready Minecraft-style React components and 19 full-screen interfaces. Base UI + Tailwind v4, SSR-safe; GUI textures redrawn, item icons from vanilla 26.3.",
     metaTitle: "Verdigris · Minecraft-style React components",
     primitiveCode: `import { Button, Panel } from "@verdigris/ui";
 

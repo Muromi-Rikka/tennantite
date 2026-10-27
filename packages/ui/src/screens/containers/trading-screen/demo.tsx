@@ -10,11 +10,11 @@ export function TradingScreenDemo() {
       title="村民交易"
       trades={[
         {
-          inputA: { count: 20, icon: "dirt-block", tooltip: "小麦 ×20" },
-          output: { icon: "diamond", tooltip: "绿宝石" },
+          inputA: { count: 20, icon: "wheat", tooltip: "小麦 ×20" },
+          output: { icon: "emerald", tooltip: "绿宝石" },
         },
         {
-          inputA: { count: 3, icon: "diamond", tooltip: "绿宝石 ×3" },
+          inputA: { count: 3, icon: "emerald", tooltip: "绿宝石 ×3" },
           inputB: { count: 1, icon: "apple" },
           output: { icon: "sword", tooltip: "铁剑" },
         },

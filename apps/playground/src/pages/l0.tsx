@@ -1,5 +1,7 @@
+import type { PixelIconName } from "@verdigris/textures";
 import { pixelIcons } from "@verdigris/textures";
 import { mcColors } from "@verdigris/tokens";
+import { Icon } from "@verdigris/ui";
 
 /**
  * L0 出口验收：令牌、字体、纹理、图标在 playground 正确渲染（规格 §9 M0）
@@ -87,13 +89,9 @@ export function L0Page() {
 
       <Section title="Pixel Icon Set (starter)">
         <div className="flex flex-wrap gap-12">
-          {Object.entries(pixelIcons).map(([name, svg]) => (
+          {(Object.keys(pixelIcons) as PixelIconName[]).map(name => (
             <div className="flex flex-col items-center gap-2" key={name}>
-              <div
-                className="size-32 pixelated"
-                // eslint-disable-next-line react/dom-no-dangerously-set-innerhtml -- 静态内置 SVG 精灵
-                dangerouslySetInnerHTML={{ __html: svg }}
-              />
+              <Icon name={name} size={32} />
               <span className="text-mc-text-dim">{name}</span>
             </div>
           ))}

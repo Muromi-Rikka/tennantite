@@ -2,7 +2,7 @@
   "name": "@verdigris/textures",
   "type": "module",
   "version": "0.1.0",
-  "description": "Verdigris pixel textures — all-redrawn Minecraft-style SVG sprites and nine-slice textures (zero Mojang assets)",
+  "description": "Verdigris pixel textures — redrawn Minecraft-style SVG nine-slices plus vanilla Minecraft 26.3 item/status icon PNGs",
   "exports": {
     ".": {
       "types": "./src/index.ts",
@@ -10,13 +10,20 @@
     },
     "./css/*": "./css/*"
   },
+  "files": [
+    "LICENSE-ASSETS.md",
+    "css",
+    "src"
+  ],
   "engines": {
     "node": ">=26"
   },
   "scripts": {
+    "sync:icons": "node scripts/sync-vanilla-icons.mjs",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "fflate": "^0.8.3",
     "typescript": "^6.0.3"
   }
 }

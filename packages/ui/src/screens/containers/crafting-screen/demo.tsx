@@ -7,17 +7,17 @@ export function CraftingScreenDemo() {
   return (
     <CraftingScreen
       craftItems={[
-        { count: 1, icon: "grass-block" },
+        { count: 1, icon: "oak-planks" },
         null,
-        { count: 1, icon: "grass-block" },
+        { count: 1, icon: "oak-planks" },
         null,
-        { count: 1, icon: "grass-block" },
+        { count: 1, icon: "oak-planks" },
         null,
-        { count: 1, icon: "grass-block" },
+        { count: 1, icon: "oak-planks" },
         null,
         null,
       ]}
-      craftResult={{ count: 1, icon: "creeper-face", tooltip: "合成产物" }}
+      craftResult={{ count: 1, icon: "crafting-table", tooltip: "工作台" }}
       hotbarItems={[{ count: 64, icon: "stone-block" }]}
       selectedIndex={0}
       title="合成"

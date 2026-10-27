@@ -8,7 +8,7 @@ export function IconDemo() {
     <div className="flex flex-wrap items-end gap-12">
       <Icon name="heart" size={9} />
       <Icon name="grass-block" size={16} />
-      <Icon name="creeper-face" size={32} />
+      <Icon name="emerald" size={32} />
       <Icon name="diamond" />
       <Icon name="sword" size={24} />
       <Icon className="border-(length:--mc-gui) border-black" name="stone-block" size={32} />

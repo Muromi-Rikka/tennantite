@@ -8,7 +8,7 @@ export function EnchantingScreenDemo() {
     <EnchantingScreen
       availableLevel={30}
       item={{ icon: "sword", tooltip: "铁剑" }}
-      lapis={{ count: 16, icon: "diamond", tooltip: "青金石" }}
+      lapis={{ count: 16, icon: "lapis-lazuli", tooltip: "青金石" }}
       options={[
         { lapisCost: 1, level: 1, xpCost: 2 },
         { label: "锋利 III", lapisCost: 2, level: 2, xpCost: 11 },

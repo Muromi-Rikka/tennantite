@@ -68,7 +68,7 @@ spec/             # 规格文档
 
 ## 素材授权
 
-所有纹理、图标均为本项目重绘（字符画 → SVG），不包含任何 Mojang 官方素材；视觉基准为 Minecraft Java 26.3 稳定版 GUI（颜色 / 九宫格 / 字体度量 / 布局均按原版采样值重建）。字体使用开源替代（Minecraft font by Idrees Hassan，SIL OFL 1.1）。详见 `packages/textures/LICENSE-ASSETS.md`。
+GUI 九宫格纹理为本项目重绘；物品、方块与 HUD 状态图标取自 Minecraft Java 26.3 官方客户端（固定版本与 SHA-1），版权归 Mojang。字体使用开源替代（Minecraft font by Idrees Hassan，SIL OFL 1.1）。详见 `packages/textures/LICENSE-ASSETS.md`。
 
 ## 供应链策略说明
 
