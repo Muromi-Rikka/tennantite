@@ -22,3 +22,8 @@ permissions:
     skills: true
   '@tanstack/react-start':
     skills: true
+
+# .claude/ 未纳入版本库，CI 中该目录不存在会导致 ERR_PNPM_NO_AGENT_SKILLS_DIR
+skills:
+  dirs:
+    - .claude/skills
