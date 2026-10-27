@@ -16,6 +16,10 @@ export interface InventoryItem {
 }
 
 export interface PlayerInventoryProps {
+  /**
+  * 不绘制槽位凹槽（容器背景已烘焙槽框）
+  */
+  bare?: boolean;
   className?: string;
   /**
   * 快捷栏 9 格
@@ -26,9 +30,13 @@ export interface PlayerInventoryProps {
   */
   hotbarY?: number;
   /**
-  * 主背包 27 格（3×9，行优先）
+  * 主背包物品（行优先，默认 3×9）
   */
   mainItems?: (InventoryItem | null | undefined)[];
+  /**
+  * 主背包行数（默认 3）
+  */
+  mainRows?: number;
   onSlotClick?: (area: "hotbar" | "main", index: number) => void;
   /**
   * 快捷栏选中索引
@@ -45,7 +53,6 @@ export interface PlayerInventoryProps {
 }
 
 const COLUMNS = 9;
-const MAIN_SLOTS = 27;
 const HOTBAR_SLOTS = 9;
 
 /**
@@ -53,10 +60,12 @@ const HOTBAR_SLOTS = 9;
  * 数据注入、无游戏逻辑；RSC 兼容（纯展示 + 可选回调）。
  */
 export function PlayerInventory({
+  bare = false,
   className,
   hotbarItems = [],
   hotbarY = 141,
   mainItems = [],
+  mainRows = 3,
   onSlotClick,
   selectedIndex,
   x = 7,
@@ -66,7 +75,8 @@ export function PlayerInventory({
     <div className={cn("contents", className)}>
       <InventoryGroup
         area="main"
-        count={MAIN_SLOTS}
+        bare={bare}
+        count={mainRows * COLUMNS}
         items={mainItems}
         left={x}
         onSlotClick={onSlotClick}
@@ -74,6 +84,7 @@ export function PlayerInventory({
       />
       <InventoryGroup
         area="hotbar"
+        bare={bare}
         count={HOTBAR_SLOTS}
         items={hotbarItems}
         left={x}
@@ -87,6 +98,7 @@ export function PlayerInventory({
 
 function InventoryGroup({
   area,
+  bare,
   count,
   items,
   left,
@@ -95,6 +107,7 @@ function InventoryGroup({
   top,
 }: {
   area: "hotbar" | "main";
+  bare: boolean;
   count: number;
   items: PlayerInventoryProps["mainItems"];
   left: number;
@@ -113,6 +126,7 @@ function InventoryGroup({
         return (
           <Slot
             aria-label={`${area}-${index}`}
+            bare={bare}
             className={onSlotClick ? "cursor-pointer" : undefined}
             key={index}
             onClick={

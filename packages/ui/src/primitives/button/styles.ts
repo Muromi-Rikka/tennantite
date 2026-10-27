@@ -26,6 +26,7 @@ export const buttonStyles = cva(
           "hover:bg-white/10 active:bg-white/20",
           "focus-visible:mc-outline focus-visible:outline-white",
         ].join(" "),
+        realms: "mc-tex-btn-realms focus-visible:mc-outline focus-visible:outline-white",
         success: "mc-tex-btn-success focus-visible:mc-outline focus-visible:outline-white",
       },
     },

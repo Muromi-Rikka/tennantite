@@ -1,5 +1,5 @@
 /*
- * @verdigris/ui — 像素风格滚动条（ScrollArea 自研样式，规格 §4 #12；对齐 26.3 scroller.png）
+ * @verdigris/ui — 原版滚动条精灵（ScrollArea 自研样式，规格 §4 #12）
  * 用法：@import "@verdigris/ui/css/scroll-area.css";
  */
 
@@ -14,21 +14,29 @@
 }
 
 .mc-scroll::-webkit-scrollbar-track {
-  background-color: #000000;
-  border: var(--mc-gui) solid #000000;
+  background-color: transparent;
+  background-image: var(--mc-gui-sprites-widget-scroller-background-png, none);
+  background-repeat: repeat-y;
+  background-size: 100% 100%;
+  border: 0;
+  image-rendering: pixelated;
 }
 
 .mc-scroll::-webkit-scrollbar-thumb {
-  background-color: var(--color-mc-scroller, #c0c0c0);
-  border: var(--mc-gui) solid var(--color-mc-scroller-dark, #808080);
+  background-color: transparent;
+  background-image: var(--mc-gui-sprites-widget-scroller-png, none);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border: 0;
+  image-rendering: pixelated;
   min-height: calc(var(--mc-gui) * 32);
   min-width: calc(var(--mc-gui) * 32);
 }
 
 .mc-scroll::-webkit-scrollbar-thumb:hover {
-  background-color: #e0e0e0;
+  background-image: var(--mc-gui-sprites-widget-scroller-png, none);
 }
 
 .mc-scroll::-webkit-scrollbar-corner {
-  background-color: #000000;
+  background-color: transparent;
 }

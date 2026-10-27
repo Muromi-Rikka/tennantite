@@ -333,6 +333,22 @@
       ],
       "files": [
         {
+          "path": "packages/ui/src/containers/gui-sprite/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "gui-sprite",
+      "registryDependencies": [],
+      "title": "Gui Sprite",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
           "path": "packages/ui/src/containers/icon/index.tsx",
           "type": "registry:component"
         }
@@ -379,6 +395,38 @@
       ],
       "files": [
         {
+          "path": "packages/ui/src/containers/player-inventory/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "player-inventory",
+      "registryDependencies": [],
+      "title": "Player Inventory",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/containers/screen-panel/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "screen-panel",
+      "registryDependencies": [],
+      "title": "Screen Panel",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
           "path": "packages/ui/src/containers/slot/index.tsx",
           "type": "registry:component"
         }
@@ -402,6 +450,818 @@
       "name": "title-bar",
       "registryDependencies": [],
       "title": "Title Bar",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/abstract-furnace-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "abstract-furnace-screen",
+      "registryDependencies": [],
+      "title": "Abstract Furnace Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/anvil-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "anvil-screen",
+      "registryDependencies": [],
+      "title": "Anvil Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/beacon-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "beacon-screen",
+      "registryDependencies": [],
+      "title": "Beacon Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/blast-furnace-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "blast-furnace-screen",
+      "registryDependencies": [],
+      "title": "Blast Furnace Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/brewing-stand-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "brewing-stand-screen",
+      "registryDependencies": [],
+      "title": "Brewing Stand Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/cartography-table-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "cartography-table-screen",
+      "registryDependencies": [],
+      "title": "Cartography Table Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/chest-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "chest-screen",
+      "registryDependencies": [],
+      "title": "Chest Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/crafter-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "crafter-screen",
+      "registryDependencies": [],
+      "title": "Crafter Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/crafting-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "crafting-screen",
+      "registryDependencies": [],
+      "title": "Crafting Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/creative-inventory-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "creative-inventory-screen",
+      "registryDependencies": [],
+      "title": "Creative Inventory Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/dispenser-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "dispenser-screen",
+      "registryDependencies": [],
+      "title": "Dispenser Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/enchanting-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "enchanting-screen",
+      "registryDependencies": [],
+      "title": "Enchanting Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/furnace-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "furnace-screen",
+      "registryDependencies": [],
+      "title": "Furnace Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/gamemode-switcher/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "gamemode-switcher",
+      "registryDependencies": [],
+      "title": "Gamemode Switcher",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/grindstone-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "grindstone-screen",
+      "registryDependencies": [],
+      "title": "Grindstone Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/hopper-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "hopper-screen",
+      "registryDependencies": [],
+      "title": "Hopper Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/horse-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "horse-screen",
+      "registryDependencies": [],
+      "title": "Horse Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/inventory-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "inventory-screen",
+      "registryDependencies": [],
+      "title": "Inventory Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/loom-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "loom-screen",
+      "registryDependencies": [],
+      "title": "Loom Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/nautilus-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "nautilus-screen",
+      "registryDependencies": [],
+      "title": "Nautilus Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/shulker-box-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "shulker-box-screen",
+      "registryDependencies": [],
+      "title": "Shulker Box Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/smithing-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "smithing-screen",
+      "registryDependencies": [],
+      "title": "Smithing Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/smoker-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "smoker-screen",
+      "registryDependencies": [],
+      "title": "Smoker Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/stonecutter-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "stonecutter-screen",
+      "registryDependencies": [],
+      "title": "Stonecutter Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/containers/trading-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "trading-screen",
+      "registryDependencies": [],
+      "title": "Trading Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/hud/attack-indicator/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "attack-indicator",
+      "registryDependencies": [],
+      "title": "Attack Indicator",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/hud/boss-bar/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "boss-bar",
+      "registryDependencies": [],
+      "title": "Boss Bar",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/hud/crosshair/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "crosshair",
+      "registryDependencies": [],
+      "title": "Crosshair",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/hud/experience-bar/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "experience-bar",
+      "registryDependencies": [],
+      "title": "Experience Bar",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/hud/health-hunger-bar/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "health-hunger-bar",
+      "registryDependencies": [],
+      "title": "Health Hunger Bar",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/hud/hotbar/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "hotbar",
+      "registryDependencies": [],
+      "title": "Hotbar",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/hud/jump-bar/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "jump-bar",
+      "registryDependencies": [],
+      "title": "Jump Bar",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/hud/locator-bar/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "locator-bar",
+      "registryDependencies": [],
+      "title": "Locator Bar",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/hud/status-effects/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "status-effects",
+      "registryDependencies": [],
+      "title": "Status Effects",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/advancements-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "advancements-screen",
+      "registryDependencies": [],
+      "title": "Advancements Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/book-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "book-screen",
+      "registryDependencies": [],
+      "title": "Book Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/chat-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "chat-screen",
+      "registryDependencies": [],
+      "title": "Chat Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/death-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "death-screen",
+      "registryDependencies": [],
+      "title": "Death Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/friends-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "friends-screen",
+      "registryDependencies": [],
+      "title": "Friends Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/language-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "language-screen",
+      "registryDependencies": [],
+      "title": "Language Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/main-menu/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "main-menu",
+      "registryDependencies": [],
+      "title": "Main Menu",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/menu-background/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "menu-background",
+      "registryDependencies": [],
+      "title": "Menu Background",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/multiplayer-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "multiplayer-screen",
+      "registryDependencies": [],
+      "title": "Multiplayer Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/pause-menu/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "pause-menu",
+      "registryDependencies": [],
+      "title": "Pause Menu",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/player-list/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "player-list",
+      "registryDependencies": [],
+      "title": "Player List",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/realms-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "realms-screen",
+      "registryDependencies": [],
+      "title": "Realms Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/recipe-book/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "recipe-book",
+      "registryDependencies": [],
+      "title": "Recipe Book",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/settings-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "settings-screen",
+      "registryDependencies": [],
+      "title": "Settings Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/sign-edit/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "sign-edit",
+      "registryDependencies": [],
+      "title": "Sign Edit",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/social-interactions-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "social-interactions-screen",
+      "registryDependencies": [],
+      "title": "Social Interactions Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/spectator-menu/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "spectator-menu",
+      "registryDependencies": [],
+      "title": "Spectator Menu",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/statistics-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "statistics-screen",
+      "registryDependencies": [],
+      "title": "Statistics Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/toast/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "toast",
+      "registryDependencies": [],
+      "title": "Toast",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/menus/world-list-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "world-list-screen",
+      "registryDependencies": [],
+      "title": "World List Screen",
       "type": "registry:component"
     }
   ],

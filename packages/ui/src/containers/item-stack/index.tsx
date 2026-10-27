@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 import { Badge } from "../../primitives/badge/index";
 import { Tooltip, TooltipPopup, TooltipTrigger } from "../../primitives/tooltip/index";
@@ -32,6 +32,10 @@ export interface ItemStackProps {
   */
   src?: string;
   /**
+  * 槽位样式（绝对定位等）
+  */
+  style?: CSSProperties;
+  /**
   * 悬浮提示内容（提供时以 Tooltip 包裹，交互经水合增强）
   */
   tooltip?: ReactNode;
@@ -49,10 +53,11 @@ export function ItemStack({
   selected = false,
   size = 18,
   src,
+  style,
   tooltip,
 }: ItemStackProps) {
   const content = (
-    <Slot bare={bare} className={className} selected={selected} size={size}>
+    <Slot bare={bare} className={className} selected={selected} size={size} style={style}>
       <Icon name={icon} size={16} src={src} />
       {count !== undefined && count > 1
         ? (

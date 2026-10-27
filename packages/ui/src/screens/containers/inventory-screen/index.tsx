@@ -1,20 +1,21 @@
+import type { GuiSpriteName } from "@verdigris/textures";
 import type { ReactNode } from "react";
 
 import type { ScreenSlot } from "../types";
 import { PlayerInventory } from "../../../containers/player-inventory/index";
 import { ScreenPanel } from "../../../containers/screen-panel/index";
 import { gui } from "../../../lib/utils";
+import { RecipeBookButton } from "../screen-parts";
 import { ScreenItemSlot } from "../screen-slot";
 import { padSlots } from "../types";
 
-/**
- * 盔甲槽位 y（GUI px，步进 18）
- */
 const ARMOR_TOPS = [7, 25, 43, 61];
-
-/**
- * 2×2 合成格左上角（GUI px）
- */
+const ARMOR_GHOSTS: GuiSpriteName[] = [
+  "sprites/container/slot/helmet.png",
+  "sprites/container/slot/chestplate.png",
+  "sprites/container/slot/leggings.png",
+  "sprites/container/slot/boots.png",
+];
 const CRAFT_POSITIONS = [
   [97, 17],
   [115, 17],
@@ -23,46 +24,25 @@ const CRAFT_POSITIONS = [
 ] as const;
 
 export interface InventoryScreenProps {
-  /**
-  * 盔甲 4 格
-  */
   armorItems?: ScreenSlot[];
   className?: string;
-  /**
-  * 合成 2×2
-  */
   craftItems?: ScreenSlot[];
-  /**
-  * 合成产物
-  */
   craftResult?: ScreenSlot;
-  /**
-  * 快捷栏 9 格
-  */
   hotbarItems?: ScreenSlot[];
-  /**
-  * 主背包 27 格（3×9）
-  */
   mainItems?: ScreenSlot[];
-  /**
-  * 副手槽（原版 (76,61)）
-  */
   offhandItem?: ScreenSlot;
+  onRecipeBook?: () => void;
   onSlotClick?: (
     area: "armor" | "craft" | "craft-result" | "hotbar" | "main" | "offhand",
     index: number,
   ) => void;
-  /**
-  * 玩家预览（原版 (26,8) 50×64 的角色模型区）
-  */
   playerPreview?: ReactNode;
   selectedIndex?: number;
   title?: ReactNode;
 }
 
 /**
- * 物品栏界面（规格 §6）：176×166 面板 + 绝对坐标槽位，数据注入、无游戏逻辑。
- * RSC 兼容（纯展示 + 可选回调）。
+ * 物品栏界面（规格 §6）：`container/inventory.png` 176×166，槽框已烘焙在背景中。
  */
 export function InventoryScreen({
   armorItems = [],
@@ -72,6 +52,7 @@ export function InventoryScreen({
   hotbarItems = [],
   mainItems = [],
   offhandItem,
+  onRecipeBook,
   onSlotClick,
   playerPreview,
   selectedIndex,
@@ -81,15 +62,22 @@ export function InventoryScreen({
   const craft = padSlots(craftItems, 4);
 
   return (
-    <ScreenPanel className={className} height={166} title={title} width={176}>
+    <ScreenPanel
+      background="container/inventory.png"
+      className={className}
+      height={166}
+      title={title}
+      width={176}
+    >
       <div
-        className="absolute"
+        className="absolute bg-black"
         style={{ height: gui(64), left: gui(26), top: gui(8), width: gui(50) }}
       >
         {playerPreview}
       </div>
       {ARMOR_TOPS.map((top, index) => (
         <ScreenItemSlot
+          ghost={ARMOR_GHOSTS[index]}
           item={armor[index]}
           key={top}
           label={`armor-${index}`}
@@ -105,6 +93,7 @@ export function InventoryScreen({
         />
       ))}
       <ScreenItemSlot
+        ghost="sprites/container/slot/shield.png"
         item={offhandItem}
         label="offhand-0"
         left={76}
@@ -146,7 +135,9 @@ export function InventoryScreen({
         }
         top={27}
       />
+      <RecipeBookButton left={104} onClick={onRecipeBook} top={22} />
       <PlayerInventory
+        bare
         hotbarItems={hotbarItems}
         mainItems={mainItems}
         onSlotClick={onSlotClick}

@@ -7,4 +7,4 @@ export interface ButtonProps extends ComponentProps<"button"> {
   variant?: ButtonVariant;
 }
 
-export type ButtonVariant = "default" | "ghost" | "success";
+export type ButtonVariant = "default" | "ghost" | "realms" | "success";

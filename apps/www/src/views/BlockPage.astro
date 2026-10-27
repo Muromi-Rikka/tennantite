@@ -10,6 +10,7 @@ import SiteLayout from "@/layouts/SiteLayout.astro";
 import { blockComposition } from "@/lib/blocks";
 import {
   blockHref,
+  blockTitle,
   catalogDescription,
   componentHref,
   findComponentByName,
@@ -27,6 +28,7 @@ interface Props {
 const { entry, locale } = Astro.props;
 const text = ui[locale].blockPage;
 const description = catalogDescription(entry, locale);
+const displayName = blockTitle(entry, locale);
 const href = blockHref(entry.slug, locale);
 const blocksIndexHref = localeHref(locale, "/blocks/");
 const preview = previewHref(entry.slug, locale);
@@ -37,21 +39,21 @@ const composition = (blockComposition[entry.slug] ?? [])
   .filter((component): component is CatalogEntry => component !== undefined);
 const site = Astro.site ?? new URL("http://localhost:3300");
 const jsonLd = [
-  techArticle({ description, locale, path: href, site, title: entry.name }),
-  breadcrumb({ items: [{ label: text.breadcrumb, path: blocksIndexHref }, { label: entry.name, path: href }], site }),
+  techArticle({ description, locale, path: href, site, title: displayName }),
+  breadcrumb({ items: [{ label: text.breadcrumb, path: blocksIndexHref }, { label: displayName, path: href }], site }),
 ];
 ---
 <SiteLayout
-  title={`${entry.name} ${text.metaTitleSuffix}`}
-  description={`${description} ${fill(text.metaDescriptionSuffix, { name: entry.name })}`}
+  title={`${displayName} ${text.metaTitleSuffix}`}
+  description={`${description} ${fill(text.metaDescriptionSuffix, { name: displayName })}`}
   locale={locale}
   type="article"
   jsonLd={jsonLd}
 >
   <div class="mx-auto max-w-[1120px] px-12 py-24">
     <PageHeader
-      breadcrumb={[{ href: blocksIndexHref, label: text.breadcrumb }, { label: entry.name }]}
-      title={entry.name}
+      breadcrumb={[{ href: blocksIndexHref, label: text.breadcrumb }, { label: displayName }]}
+      title={displayName}
       description={description}
     />
 

@@ -1,9 +1,28 @@
+import type { GuiSpriteName } from "@verdigris/textures";
 import type { ComponentProps, ReactNode } from "react";
 
+import type { GuiSpriteRect } from "../gui-sprite/index";
 import { cn, gui } from "../../lib/utils";
+import { GuiSprite } from "../gui-sprite/index";
 import { TitleBar } from "../title-bar/index";
 
 export interface ScreenPanelProps extends Omit<ComponentProps<"div">, "title"> {
+  /**
+  * 原版容器背景精灵（如 `container/inventory.png`）
+  */
+  background?: GuiSpriteName;
+  /**
+  * 背景九宫格切片（源 PNG px）
+  */
+  backgroundSlice?: number | { bottom: number; left: number; right: number; top: number };
+  /**
+  * 背景裁剪区域；省略时为整图
+  */
+  backgroundSrc?: GuiSpriteRect;
+  /**
+  * 背景平铺
+  */
+  backgroundTile?: boolean;
   /**
   * 面板高度（GUI px，原版容器界面 166）
   */
@@ -23,8 +42,13 @@ export interface ScreenPanelProps extends Omit<ComponentProps<"div">, "title"> {
  *
  * 面板纹理铺满整块面积，子元素坐标从面板外沿 (0,0) 起算的 GUI px ——
  * 因此槽位坐标可直接照抄原版 `container/*.png` 的数值，不受 3px 边框影响。
+ * 传入 `background` 时直接绘制原版背景（含烘焙槽框），否则使用通用面板。
  */
 export function ScreenPanel({
+  background,
+  backgroundSlice,
+  backgroundSrc,
+  backgroundTile,
   children,
   className,
   height,
@@ -39,7 +63,19 @@ export function ScreenPanel({
       style={{ height: gui(height), width: gui(width), ...style }}
       {...properties}
     >
-      <div aria-hidden="true" className="mc-tex-panel absolute inset-0" />
+      {background
+        ? (
+            <GuiSprite
+              className="absolute inset-0"
+              height={height}
+              name={background}
+              slice={backgroundSlice}
+              src={backgroundTile ? backgroundSrc : (backgroundSrc ?? { height, width, x: 0, y: 0 })}
+              tile={backgroundTile}
+              width={width}
+            />
+          )
+        : <div aria-hidden="true" className="mc-tex-panel absolute inset-0" />}
       <div className="absolute inset-0">
         {title === undefined
           ? null

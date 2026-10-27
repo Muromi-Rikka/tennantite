@@ -6,6 +6,7 @@ import type {
   DialogProps as DialogProperties,
 } from "./types";
 
+import { GuiSprite } from "../../containers/gui-sprite/index";
 import { cn } from "../../lib/utils";
 
 export type {
@@ -15,8 +16,8 @@ export type {
 } from "./types";
 
 /**
- * MC 模态弹窗（规格 §4 #9）：半透明底 + 暗面板，用于暂停菜单 / 确认框。
-*/
+ * MC 模态弹窗（规格 §4 #9）：半透明底 + 原版 popup 背景。
+ */
 export function Dialog(properties: DialogProperties) {
   return <BaseDialog.Root {...properties} />;
 }
@@ -70,13 +71,23 @@ export function DialogPopup({
         className={cn(
           "z-50 text-mc-text-main outline-none",
           variant === "panel"
-            ? "mc-tex-panel fixed top-1/2 left-1/2 w-176 -translate-1/2 p-6"
+            ? "fixed top-1/2 left-1/2 w-176 -translate-1/2 p-6"
             : "fixed inset-0 flex flex-col items-center justify-center gap-4 bg-transparent p-0",
           className,
         )}
         {...properties}
       >
-        {children}
+        {variant === "panel"
+          ? (
+              <GuiSprite
+                className="absolute inset-0"
+                name="sprites/popup/background.png"
+                slice={5}
+                style={{ height: "100%", width: "100%" }}
+              />
+            )
+          : null}
+        <div className="relative">{children}</div>
       </BaseDialog.Popup>
     </BaseDialog.Portal>
   );

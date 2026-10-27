@@ -3,9 +3,7 @@
 import type { ReactNode } from "react";
 import { useState } from "react";
 
-import { Panel } from "../../../containers/panel/index";
-import { TitleBar } from "../../../containers/title-bar/index";
-import { cn } from "../../../lib/utils";
+import { cn, gui } from "../../../lib/utils";
 import {
   Checkbox,
   Radio,
@@ -16,12 +14,10 @@ import {
   TabsPanel,
   TabsTab,
 } from "../../../primitives/index";
+import { MenuBackground } from "../menu-background/index";
 
 export interface SettingsScreenProps {
   className?: string;
-  /**
-  * 通用设置默认值（受控可选，数据由使用方注入）
-  */
   defaults?: {
     brightness?: number;
     difficulty?: string;
@@ -29,15 +25,12 @@ export interface SettingsScreenProps {
     showClouds?: boolean;
     smoothLighting?: boolean;
   };
-  /**
-  * 面板标题（省略时标签页直接居顶，与原版设置界面一致）
-  */
   title?: ReactNode;
 }
 
 /**
- * 设置界面（规格 §6.3）：Tabs + Slider + Checkbox + RadioGroup 分页。
-*/
+ * 设置界面（规格 §6.3）：320×240 menu_background + 原版 tabs/slider/checkbox。
+ */
 export function SettingsScreen({
   className,
   defaults = {},
@@ -46,51 +39,47 @@ export function SettingsScreen({
   const [fov, setFov] = useState(defaults.fov ?? 70);
   const [brightness, setBrightness] = useState(defaults.brightness ?? 50);
   const [showClouds, setShowClouds] = useState(defaults.showClouds ?? true);
-  const [smoothLighting, setSmoothLighting] = useState(
-    defaults.smoothLighting ?? true,
-  );
+  const [smoothLighting, setSmoothLighting] = useState(defaults.smoothLighting ?? true);
   const [difficulty, setDifficulty] = useState(defaults.difficulty ?? "普通");
 
   return (
-    <Panel className={cn("inline-flex w-320 flex-col gap-4 p-6", className)}>
-      {title ? <TitleBar align="center" title={title} /> : null}
-      <Tabs className="gap-4" defaultValue="video">
+    <MenuBackground
+      className={cn("overflow-hidden", className)}
+      style={{ height: gui(240), width: gui(320) }}
+    >
+      {title
+        ? <div className="absolute inset-x-0 top-2 text-center font-mc mc-text text-mc-text-main mc-text-shadow">{title}</div>
+        : null}
+      <Tabs className="absolute inset-x-6 top-8" defaultValue="video">
         <TabsList aria-label="设置分类">
           <TabsTab value="video">视频</TabsTab>
           <TabsTab value="audio">音乐和声音</TabsTab>
           <TabsTab value="game">游戏</TabsTab>
         </TabsList>
         <TabsPanel value="video">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 pt-4">
             <label className="flex items-center justify-between gap-4">
-              <span className="font-mc mc-text">
-                视野：
-                {fov}
-              </span>
+              <span className="font-mc mc-text">{`视野：${fov}`}</span>
               <Slider
                 aria-label="视野"
                 className="w-150"
                 max={110}
                 min={30}
                 onValueChange={(value) => {
-                  setFov(Array.isArray(value) ? (value[0] ?? 70) : value);
+                  setFov(Array.isArray(value) ? (value[0] ?? 70) : Number(value));
                 }}
                 value={fov}
               />
             </label>
             <label className="flex items-center justify-between gap-4">
-              <span className="font-mc mc-text">
-                亮度：
-                {brightness}
-                %
-              </span>
+              <span className="font-mc mc-text">{`亮度：${brightness}%`}</span>
               <Slider
                 aria-label="亮度"
                 className="w-150"
                 max={100}
                 min={0}
                 onValueChange={(value) => {
-                  setBrightness(Array.isArray(value) ? (value[0] ?? 50) : value);
+                  setBrightness(Array.isArray(value) ? (value[0] ?? 50) : Number(value));
                 }}
                 value={brightness}
               />
@@ -118,13 +107,12 @@ export function SettingsScreen({
           </div>
         </TabsPanel>
         <TabsPanel value="audio">
-          <p className="font-mc mc-text text-mc-text-dim">
-            声音设置（示例分页）
-          </p>
+          <p className="pt-4 font-mc mc-text text-mc-text-dim">声音设置（示例分页）</p>
         </TabsPanel>
         <TabsPanel value="game">
           <RadioGroup
             aria-label="游戏难度"
+            className="flex flex-col gap-2 pt-4"
             onValueChange={(value) => {
               setDifficulty(String(value));
             }}
@@ -139,6 +127,6 @@ export function SettingsScreen({
           </RadioGroup>
         </TabsPanel>
       </Tabs>
-    </Panel>
+    </MenuBackground>
   );
 }

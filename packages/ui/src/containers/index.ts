@@ -7,6 +7,9 @@ export type { DividerProps } from "./divider/index";
 export { Grid } from "./grid/index";
 export type { GridProps } from "./grid/index";
 
+export { GuiSprite } from "./gui-sprite/index";
+export type { GuiSpriteProps, GuiSpriteRect } from "./gui-sprite/index";
+
 export { Icon } from "./icon/index";
 export type { IconProps } from "./icon/index";
 

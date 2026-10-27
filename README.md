@@ -43,7 +43,7 @@ import "@verdigris/ui/css/scroll-area.css";
 
 ```
 apps/
-  playground/     # 组件开发预览（rsbuild，44 个组件页）
+  playground/     # 组件开发预览（rsbuild，78 个组件 + GUI parity 页）
   next-app/       # SSR 验证：Next.js 16 App Router（pnpm --filter @verdigris/next-app dev）
   tanstack-app/   # SSR 验证：TanStack Start 1.169（pnpm --filter @verdigris/tanstack-app dev）
 packages/
@@ -57,10 +57,10 @@ spec/             # 规格文档
 组件清单：
 
 - **L1 原语（13）**：Button · Input · Slider · Checkbox · Switch · RadioGroup · Select · Tabs · Dialog · Progress · Tooltip · ScrollArea（自研）· Badge（自研）
-- **L2 容器（10）**：Panel · ScreenPanel · Slot / Grid · ItemStack · PlayerInventory · Icon · Card · TitleBar · Divider
-- **L3 HUD（6）**：HealthHungerBar · ExperienceBar · Hotbar · Crosshair · StatusEffects · BossBar
-- **L3 容器界面（9）**：InventoryScreen · ChestScreen · CraftingScreen · FurnaceScreen · BrewingStandScreen · EnchantingScreen · BeaconScreen · AnvilScreen · TradingScreen
-- **L3 菜单界面（10）**：MainMenu · PauseMenu · SettingsScreen · MultiplayerScreen · LanguageScreen · AdvancementsScreen · RecipeBook · ChatScreen · SignEdit · DeathScreen
+- **L2 容器（10）**：GuiSprite · Panel · ScreenPanel · Slot / Grid · ItemStack · PlayerInventory · Icon · Card · TitleBar · Divider
+- **L3 HUD（9）**：HealthHungerBar · ExperienceBar · Hotbar · Crosshair · StatusEffects · BossBar · AttackIndicator · JumpBar · LocatorBar
+- **L3 容器界面（24）**：InventoryScreen · ChestScreen · CraftingScreen · FurnaceScreen · BlastFurnaceScreen · SmokerScreen · BrewingStandScreen · EnchantingScreen · BeaconScreen · AnvilScreen · TradingScreen · ShulkerBoxScreen · HopperScreen · DispenserScreen · HorseScreen · CartographyTableScreen · GrindstoneScreen · LoomScreen · SmithingScreen · StonecutterScreen · CrafterScreen · NautilusScreen · CreativeInventoryScreen · GamemodeSwitcher
+- **L3 菜单界面（20）****：MainMenu · PauseMenu · SettingsScreen · MultiplayerScreen · WorldListScreen · LanguageScreen · AdvancementsScreen · RecipeBook · ChatScreen · SignEdit · DeathScreen · Toast / ToastStack · NotificationBadge · BookScreen · StatisticsScreen · SocialInteractionsScreen · SpectatorMenu · RealmsScreen · FriendsScreen · PlayerList · MenuBackground
 
 ## SSR / RSC
 
@@ -68,7 +68,7 @@ spec/             # 规格文档
 
 ## 素材授权
 
-GUI 九宫格纹理为本项目重绘；物品、方块与 HUD 状态图标取自 Minecraft Java 26.3 官方客户端（固定版本与 SHA-1），版权归 Mojang。字体使用开源替代（Minecraft font by Idrees Hassan，SIL OFL 1.1）。详见 `packages/textures/LICENSE-ASSETS.md`。
+GUI 纹理取自 Resource Pack Creator 的 GUI 分类（Minecraft Java 26.4-snapshot-3 原版 PNG）；物品、方块与 HUD 状态图标取自 Minecraft Java 26.3 官方客户端（固定版本与 SHA-1）。版权归 Mojang。字体使用开源替代（Minecraft font by Idrees Hassan，SIL OFL 1.1）。详见 `packages/textures/LICENSE-ASSETS.md`。
 
 ## 供应链策略说明
 

@@ -12,7 +12,8 @@
     "lint": "eslint .",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
-    "registry": "node registry/build.mjs"
+    "registry": "node registry/build.mjs",
+    "verify:assets": "node packages/textures/scripts/sync-gui-sprites.mjs --check && node packages/textures/scripts/scan-gui-layouts.mjs --check"
   },
   "devDependencies": {
     "@renton/eslint-config-react": "^1.2.1",

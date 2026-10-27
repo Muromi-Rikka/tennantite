@@ -1,13 +1,15 @@
 /*
- * @verdigris/textures — L0 像素纹理（九宫格/进度条本项目重绘；图标见 src/pixel-icons.generated.ts，授权见 LICENSE-ASSETS.md）
+ * @verdigris/textures — L0 像素纹理（原版 GUI PNG + 图标；授权见 LICENSE-ASSETS.md）
  *
  * 视觉基准：Minecraft Java 26.3 GUI。1 GUI px = var(--mc-gui)；
  * 所有特征尺寸用 calc(var(--mc-gui) * n) 缩放，除经验条 / Boss 条 / Tooltip 边框外一律无渐变。
- * 九宫格经 border-image 切片（按钮 12×12 slice 3；面板 12×12 slice 3）。
+ * 九宫格经 border-image 切片（按钮 20×20 slice 3；面板 12×12 slice 3）。
  * 所有纹理类内置 image-rendering: pixelated（规格 §0.4）。
  *
  * 用法：在应用 Tailwind 入口内 @import "@verdigris/textures/css/textures.css";
  */
+
+@import "./gui-sprites.generated.css";
 
 /* ---- 按钮：常态（黑框 / 亮边 #AAA / 暗边 #565 / 填充 #6F6F6F） ---- */
 .mc-tex-btn {
@@ -250,4 +252,218 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='2' height='1' fill='%23866043'/%3E%3Crect x='2' y='0' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='3' y='0' width='4' height='1' fill='%23866043'/%3E%3Crect x='7' y='0' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='8' y='0' width='4' height='1' fill='%23866043'/%3E%3Crect x='12' y='0' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='13' y='0' width='3' height='1' fill='%23866043'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='1' y='1' width='14' height='1' fill='%23866043'/%3E%3Crect x='15' y='1' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='0' y='2' width='5' height='1' fill='%23866043'/%3E%3Crect x='5' y='2' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='6' y='2' width='5' height='1' fill='%23866043'/%3E%3Crect x='11' y='2' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='12' y='2' width='4' height='1' fill='%23866043'/%3E%3Crect x='0' y='3' width='16' height='1' fill='%23866043'/%3E%3Crect x='0' y='4' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='1' y='4' width='8' height='1' fill='%23866043'/%3E%3Crect x='9' y='4' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='10' y='4' width='4' height='1' fill='%23866043'/%3E%3Crect x='14' y='4' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='15' y='4' width='1' height='1' fill='%23866043'/%3E%3Crect x='0' y='5' width='4' height='1' fill='%23866043'/%3E%3Crect x='4' y='5' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='5' y='5' width='11' height='1' fill='%23866043'/%3E%3Crect x='0' y='6' width='11' height='1' fill='%23866043'/%3E%3Crect x='11' y='6' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='12' y='6' width='4' height='1' fill='%23866043'/%3E%3Crect x='0' y='7' width='2' height='1' fill='%23866043'/%3E%3Crect x='2' y='7' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='3' y='7' width='4' height='1' fill='%23866043'/%3E%3Crect x='7' y='7' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='8' y='7' width='8' height='1' fill='%23866043'/%3E%3Crect x='0' y='8' width='14' height='1' fill='%23866043'/%3E%3Crect x='14' y='8' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='15' y='8' width='1' height='1' fill='%23866043'/%3E%3Crect x='0' y='9' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='1' y='9' width='8' height='1' fill='%23866043'/%3E%3Crect x='9' y='9' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='10' y='9' width='6' height='1' fill='%23866043'/%3E%3Crect x='0' y='10' width='5' height='1' fill='%23866043'/%3E%3Crect x='5' y='10' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='6' y='10' width='7' height='1' fill='%23866043'/%3E%3Crect x='13' y='10' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='14' y='10' width='2' height='1' fill='%23866043'/%3E%3Crect x='0' y='11' width='16' height='1' fill='%23866043'/%3E%3Crect x='0' y='12' width='2' height='1' fill='%23866043'/%3E%3Crect x='2' y='12' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='3' y='12' width='6' height='1' fill='%23866043'/%3E%3Crect x='9' y='12' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='10' y='12' width='6' height='1' fill='%23866043'/%3E%3Crect x='0' y='13' width='5' height='1' fill='%23866043'/%3E%3Crect x='5' y='13' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='6' y='13' width='10' height='1' fill='%23866043'/%3E%3Crect x='0' y='14' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='1' y='14' width='10' height='1' fill='%23866043'/%3E%3Crect x='11' y='14' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='12' y='14' width='2' height='1' fill='%23866043'/%3E%3Crect x='14' y='14' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='15' y='14' width='1' height='1' fill='%23866043'/%3E%3Crect x='0' y='15' width='8' height='1' fill='%23866043'/%3E%3Crect x='8' y='15' width='1' height='1' fill='%236E4E35'/%3E%3Crect x='9' y='15' width='7' height='1' fill='%23866043'/%3E%3C/svg%3E");
   background-size: calc(var(--mc-gui) * 16) calc(var(--mc-gui) * 16);
   image-rendering: pixelated;
+}
+
+/* =====================================================================
+ * Vanilla GUI sprite overrides (26.4-snapshot-3)
+ * The generated classes live in gui-sprites.generated.css.
+ * ===================================================================== */
+
+.mc-tex-btn {
+  background-color: transparent;
+  background-image: none;
+  border: calc(var(--mc-gui) * 3) solid transparent;
+  border-image-source: var(--mc-gui-sprites-widget-button-png);
+  border-image-slice: 3 fill;
+  border-image-width: calc(var(--mc-gui) * 3);
+  border-image-repeat: stretch;
+}
+
+.mc-tex-btn:hover:not(:disabled),
+.mc-tex-btn:focus-visible:not(:disabled),
+.mc-tex-btn--hover {
+  background-color: transparent;
+  border-image-source: var(--mc-gui-sprites-widget-button-highlighted-png);
+}
+
+.mc-tex-btn:disabled,
+.mc-tex-btn--disabled {
+  background: transparent;
+  border: var(--mc-gui) solid transparent;
+  border-image-source: var(--mc-gui-sprites-widget-button-disabled-png);
+  border-image-slice: 1 fill;
+  border-image-width: var(--mc-gui);
+}
+
+.mc-tex-btn-success {
+  background-color: var(--color-mc-accent-green, #7ec850);
+  background-image: none;
+  border: calc(var(--mc-gui) * 3) solid transparent;
+  border-image-source: var(--mc-gui-sprites-widget-button-png);
+  border-image-slice: 3 fill;
+  border-image-width: calc(var(--mc-gui) * 3);
+}
+
+.mc-tex-text-field {
+  background: #000000;
+  border: var(--mc-gui) solid transparent;
+  border-image-source: var(--mc-gui-sprites-widget-text-field-png);
+  border-image-slice: 1 fill;
+  border-image-width: var(--mc-gui);
+}
+
+.mc-tex-text-field:focus,
+.mc-tex-text-field:focus-visible {
+  border-color: transparent;
+  border-image-source: var(--mc-gui-sprites-widget-text-field-highlighted-png);
+}
+
+.mc-tex-text-field:disabled {
+  color: var(--color-mc-text-dim, #a0a0a0);
+  border-image-source: var(--mc-gui-sprites-widget-text-field-png);
+}
+
+.mc-tex-slider-track {
+  background: transparent;
+  border: var(--mc-gui) solid transparent;
+  border-image-source: var(--mc-gui-sprites-widget-slider-png);
+  border-image-slice: 1 fill;
+  border-image-width: var(--mc-gui);
+}
+
+.mc-tex-slider-track:hover,
+.mc-tex-slider-track:focus-within {
+  border-image-source: var(--mc-gui-sprites-widget-slider-highlighted-png);
+}
+
+.mc-tex-slider-thumb {
+  background-color: transparent;
+  background-image: var(--mc-gui-sprites-widget-slider-handle-png);
+  background-size: 100% 100%;
+  border: 0;
+  box-shadow: none;
+  height: calc(var(--mc-gui) * 20);
+  image-rendering: pixelated;
+  width: calc(var(--mc-gui) * 8);
+}
+
+.mc-tex-slider-thumb:hover,
+.mc-tex-slider-thumb:focus-visible {
+  background-color: transparent;
+  background-image: var(--mc-gui-sprites-widget-slider-handle-highlighted-png);
+  box-shadow: none;
+}
+
+.mc-tex-checkbox {
+  background-color: transparent;
+  background-image: var(--mc-gui-sprites-widget-checkbox-png);
+  background-size: 100% 100%;
+  border: 0;
+  image-rendering: pixelated;
+}
+
+.mc-tex-checkbox:hover,
+.mc-tex-checkbox:focus-visible {
+  background-image: var(--mc-gui-sprites-widget-checkbox-highlighted-png);
+  border-color: transparent;
+}
+
+.mc-tex-checkbox[data-checked],
+.mc-tex-checkbox[data-state="checked"] {
+  background-image: var(--mc-gui-sprites-widget-checkbox-selected-png);
+}
+
+.mc-tex-checkbox[data-checked]:hover,
+.mc-tex-checkbox[data-state="checked"]:hover,
+.mc-tex-checkbox[data-checked]:focus-visible,
+.mc-tex-checkbox[data-state="checked"]:focus-visible {
+  background-image: var(--mc-gui-sprites-widget-checkbox-selected-highlighted-png);
+}
+
+.mc-tex-tab {
+  background: transparent;
+  background-image: var(--mc-gui-sprites-widget-tab-png);
+  background-size: 100% 100%;
+  box-shadow: none;
+  image-rendering: pixelated;
+}
+
+.mc-tex-tab:hover,
+.mc-tex-tab[data-active]:hover,
+.mc-tex-tab[data-selected]:hover,
+.mc-tex-tab:focus-visible {
+  background-image: var(--mc-gui-sprites-widget-tab-highlighted-png);
+  box-shadow: none;
+}
+
+.mc-tex-tab:focus-visible {
+  outline: none;
+}
+
+.mc-tex-tab[data-active],
+.mc-tex-tab[data-selected] {
+  background: transparent;
+  background-image: var(--mc-gui-sprites-widget-tab-selected-png);
+  box-shadow: none;
+}
+
+.mc-tex-tab[data-active]:hover,
+.mc-tex-tab[data-selected]:hover {
+  background-image: var(--mc-gui-sprites-widget-tab-selected-highlighted-png);
+}
+
+.mc-tex-tooltip {
+  background: var(--color-mc-tooltip-bg, rgb(16 0 16 / 94%));
+  border: 0;
+  border-image: none;
+}
+
+.mc-tex-hotbar {
+  background-color: transparent;
+  background-image: var(--mc-gui-sprites-hud-hotbar-png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.mc-tex-hotbar-selection {
+  background-image: var(--mc-gui-sprites-hud-hotbar-selection-png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: calc(var(--mc-gui) * 23);
+  width: calc(var(--mc-gui) * 24);
+}
+
+.mc-tex-xp-bg {
+  background-image: var(--mc-gui-sprites-hud-experience-bar-background-png);
+  background-size: 100% 100%;
+}
+
+.mc-tex-xp-fill {
+  background-image: var(--mc-gui-sprites-hud-experience-bar-progress-png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.mc-tex-boss-bg {
+  background-image: var(--mc-gui-sprites-boss-bar-purple-background-png);
+  background-size: 100% 100%;
+}
+
+.mc-tex-boss-fill {
+  background-image: var(--mc-gui-sprites-boss-bar-purple-progress-png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.mc-tex-flame,
+.mc-tex-arrow,
+.mc-tex-craft-arrow,
+.mc-tex-brew-arrow,
+.mc-tex-bubbles,
+.mc-tex-dirt {
+  background-image: none;
+}
+
+.mc-tex-btn-realms {
+  background-color: transparent;
+  background-image: none;
+  border: calc(var(--mc-gui) * 3) solid transparent;
+  border-image-source: var(--mc-gui-sprites-widget-realms-button-png);
+  border-image-slice: 3 fill;
+  border-image-width: calc(var(--mc-gui) * 3);
+}
+
+.mc-tex-btn-realms:hover:not(:disabled),
+.mc-tex-btn-realms:focus-visible:not(:disabled) {
+  border-image-source: var(--mc-gui-sprites-widget-realms-button-highlighted-png);
 }

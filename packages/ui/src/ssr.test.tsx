@@ -6,13 +6,19 @@ import { describe, expect, it } from "vitest";
 
 import {
   Badge,
+  BossBar,
   Button,
   Checkbox,
+  ChestScreen,
   Dialog,
   DialogDescription,
   DialogPopup,
   DialogTitle,
+  GuiSprite,
+  HealthHungerBar,
   Input,
+  InventoryScreen,
+  MainMenu,
   PlayerInventory,
   Progress,
   Radio,
@@ -32,6 +38,7 @@ import {
   TabsList,
   TabsPanel,
   TabsTab,
+  Toast,
   Tooltip,
   TooltipPopup,
   TooltipTrigger,
@@ -41,6 +48,13 @@ function render(): string {
   return renderToStaticMarkup(
     <>
       <Badge>64</Badge>
+      <GuiSprite name="container/inventory.png" />
+      <InventoryScreen />
+      <ChestScreen rows={3} />
+      <HealthHungerBar health={20} hunger={20} />
+      <BossBar name="Boss" value={0.5} />
+      <Toast title="提示" />
+      <MainMenu />
       <Button>开始</Button>
       <Checkbox aria-label="复选" />
       <Input placeholder="输入" />

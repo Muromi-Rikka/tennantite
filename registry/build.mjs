@@ -30,6 +30,9 @@ function inferDependencies(source) {
 const groups = [
   ["primitives", "registry:component"],
   ["containers", "registry:component"],
+  ["screens/containers", "registry:component"],
+  ["screens/hud", "registry:component"],
+  ["screens/menus", "registry:component"],
 ];
 
 const items = [];

@@ -1,12 +1,18 @@
+import type { GuiSpriteName } from "@verdigris/textures";
 import type { ComponentProps } from "react";
 
 import { cn, gui } from "../../lib/utils";
+import { GuiSprite } from "../gui-sprite/index";
 
 export interface SlotProps extends ComponentProps<"div"> {
   /**
   * 不绘制槽位纹理（用于 HUD 热键栏等自带槽位纹理的容器）
   */
   bare?: boolean;
+  /**
+  * 空槽 ghost 精灵
+  */
+  ghost?: GuiSpriteName;
   /**
   * 选中态：1 GUI px 白色内框
   */
@@ -23,7 +29,9 @@ export interface SlotProps extends ComponentProps<"div"> {
  */
 export function Slot({
   bare = false,
+  children,
   className,
+  ghost,
   selected = false,
   size = 18,
   style,
@@ -39,6 +47,8 @@ export function Slot({
       )}
       style={{ height: gui(size), width: gui(size), ...style }}
       {...properties}
-    />
+    >
+      {children ?? (ghost ? <GuiSprite height={16} name={ghost} width={16} /> : null)}
+    </div>
   );
 }

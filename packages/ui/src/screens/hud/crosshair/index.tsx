@@ -1,48 +1,32 @@
-import { cn, gui } from "../../../lib/utils";
+import { GuiSprite } from "../../../containers/gui-sprite/index";
+import { cn } from "../../../lib/utils";
+import { AttackIndicator } from "../attack-indicator/index";
 
 export interface CrosshairProps {
+  /**
+   * 攻击指示器进度 0..1（可选）
+   */
+  attackIndicator?: number;
   className?: string;
   /**
    * 隐藏准星（规格 §6.1：可隐藏）
    */
   hidden?: boolean;
-  /**
-   * 十字边长（GUI px，默认 9）
-   */
-  size?: number;
-  /**
-   * 线宽（GUI px，默认 1）
-   */
-  thickness?: number;
 }
 
 /**
- * MC 准星（规格 §6.1）：纯 CSS 十字，overlay 语义，可隐藏。
-*/
-export function Crosshair({
-  className,
-  hidden = false,
-  size = 9,
-  thickness = 1,
-}: CrosshairProps) {
+ * MC 准星（规格 §6.1）：原版 15×15 `hud/crosshair.png`，overlay 语义。
+ */
+export function Crosshair({ attackIndicator, className, hidden = false }: CrosshairProps) {
   if (hidden) {
     return null;
   }
   return (
-    <div
-      aria-hidden="true"
-      className={cn("pointer-events-none relative", className)}
-      data-hud=""
-      style={{ height: gui(size), width: gui(size) }}
-    >
-      <div
-        className="absolute top-1/2 left-0 -translate-y-1/2 bg-white mix-blend-difference"
-        style={{ height: gui(thickness), width: gui(size) }}
-      />
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 bg-white mix-blend-difference"
-        style={{ height: gui(size), width: gui(thickness) }}
-      />
+    <div aria-hidden="true" className={cn("inline-flex flex-col items-center", className)} data-hud="">
+      <GuiSprite height={15} name="sprites/hud/crosshair.png" width={15} />
+      {attackIndicator === undefined
+        ? null
+        : <AttackIndicator className="mt-2" progress={attackIndicator} variant="crosshair" />}
     </div>
   );
 }

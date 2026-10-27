@@ -12,7 +12,7 @@ export function CrosshairDemo() {
         </div>
       </div>
       <Crosshair hidden />
-      <Crosshair size={12} thickness={2} />
+      <Crosshair attackIndicator={0.5} />
     </div>
   );
 }

@@ -2,11 +2,25 @@
 
 本项目（Verdigris）的视觉素材分两类，授权不同。
 
-## GUI 九宫格与进度条（本项目重绘）
+## GUI 精灵（Minecraft Java 26.4-snapshot-3 原版素材）
 
-`packages/textures/css/textures.css` 中的按钮、面板、槽位、滑条、标签页、滚动条、
-Tooltip、热键栏、经验条、Boss 条、容器进度精灵：本项目原创重绘的内联 SVG
-（模仿 Minecraft GUI 的“观感”而非复刻其贴图）。
+`packages/textures/css/gui-sprites.generated.css` 与
+`packages/textures/src/gui-sprites.generated.ts` 中的 577 个 GUI 精灵取自
+Resource Pack Creator 的 GUI 分类（Mojang 原版 GUI PNG）：
+
+- 目录：<https://resourcepackcreator.com/browse-v2?category=gui>
+- manifest：<https://resourcepackcreator.com/texture-manifest.json>
+- 版本：`26.4-snapshot-3`
+- 路径：`https://resourcepackcreator.com/textures/gui/<path>`
+- 生成脚本：`packages/textures/scripts/sync-gui-sprites.mjs`；重新生成/校验：
+  `pnpm --filter @verdigris/textures sync:gui-sprites` /
+  `pnpm verify:assets`。
+
+仓库不包含原始散图，只包含生成文件中的 base64 data URI。GUI 纹理版权归
+Mojang Synergies AB，**不在本项目授权范围内**。使用需遵守
+[Minecraft EULA](https://www.minecraft.net/en-us/eula) 与
+[Minecraft Usage Guidelines](https://www.minecraft.net/en-us/usage-guidelines)。
+本项目不提供、也不暗示任何来自 Mojang 的授权。
 
 ## 图标（Minecraft Java 26.3 原版素材）
 
@@ -21,7 +35,9 @@ Minecraft Java 26.3 客户端 `client.jar`：
   - `assets/minecraft/textures/gui/sprites/hud/*.png`：11 个 HUD 状态图标，9×9（生命、饥饿、护甲、氧气及其半格/空槽）。
 - 生成脚本：`packages/textures/scripts/sync-vanilla-icons.mjs`；重新生成：
   `pnpm --filter @verdigris/textures sync:icons`。
-- 仓库不包含 `client.jar` 或原始 PNG 文件，只包含上述 31 个图标编码后的 base64 data URI。
+
+`packages/textures/src/gui-icons.generated.ts` 另有 23 个 GUI 图标与 41 个
+`mob_effect` 图标，来自同一 GUI 目录；与 GUI 精灵同一授权与来源。
 
 这些图标版权归 Mojang Synergies AB，**不在本项目授权范围内**。复制、使用或再分发
 需遵守 [Minecraft EULA](https://www.minecraft.net/en-us/eula) 与
@@ -42,5 +58,4 @@ Minecraft Java 26.3 客户端 `client.jar`：
 ## 声明
 
 "Minecraft" 是 Mojang Synergies AB 的商标。本项目与 Mojang / Microsoft 无关，
-也不是官方产品。GUI 九宫格与进度条为独立重绘；物品、方块与 HUD 状态图标按上述
-来源与授权使用。
+也不是官方产品。GUI、物品、方块、HUD、图标与字体按上述来源与授权使用。

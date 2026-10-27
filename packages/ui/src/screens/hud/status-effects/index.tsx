@@ -1,10 +1,15 @@
 /* eslint-disable react/no-array-index-key -- 状态效果是固定顺序的纵向列表 */
 import type { PixelIconName } from "@verdigris/textures";
+
+import { GuiSprite } from "../../../containers/gui-sprite/index";
 import { Icon } from "../../../containers/icon/index";
-import { Slot } from "../../../containers/slot/index";
 import { Tooltip, TooltipPopup, TooltipTrigger } from "../../../primitives/tooltip/index";
 
 export interface StatusEffect {
+  /**
+  * 环境效果（不同背景）
+  */
+  ambient?: boolean;
   /**
   * 增强等级文本（如 "II"）
   */
@@ -27,8 +32,8 @@ export interface StatusEffectsProps {
 }
 
 /**
- * MC 状态效果栏（规格 §6.1）：18×18 槽位 + 16×16 图标，纵向堆叠，overlay 语义。
-*/
+ * MC 状态效果栏（规格 §6.1）：原版 24×24 背景 + 18×18 图标，纵向堆叠。
+ */
 export function StatusEffects({ className, effects }: StatusEffectsProps) {
   if (effects.length === 0) {
     return null;
@@ -38,13 +43,22 @@ export function StatusEffects({ className, effects }: StatusEffectsProps) {
       {effects.map((effect, index) => (
         <Tooltip key={`${effect.name}-${index}`}>
           <TooltipTrigger className="block cursor-default">
-            <Slot>
+            <div className="relative size-24">
+              <GuiSprite
+                className="absolute inset-0"
+                height={24}
+                name={effect.ambient
+                  ? "sprites/hud/effect_background_ambient.png"
+                  : "sprites/hud/effect_background.png"}
+                width={24}
+              />
               <Icon
+                className="absolute top-3 left-3"
                 name={effect.icon}
-                size={16}
+                size={18}
                 src={effect.src}
               />
-            </Slot>
+            </div>
             <span className="sr-only">
               {`${effect.name}${effect.amplifier ? ` ${effect.amplifier}` : ""}`}
             </span>

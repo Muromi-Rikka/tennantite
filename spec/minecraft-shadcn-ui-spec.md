@@ -41,7 +41,7 @@
 > `@renton/eslint-config-react`
 >
 > （rentonReact ()，含 Next.js/ TanStack / Tailwind 选项，详见 1.2）
-> v0.10 —— 物品/方块/HUD 状态图标改用 Minecraft 26.3 原版客户端素材（GUI 九宫格与进度条仍重绘）
+> v0.11 —— 全量 GUI 改用 Minecraft 26.4-snapshot-3 原版 PNG（577 精灵）
 > 目标：在保持 shadcn"复制进项目、自由裁剪" 哲学的前提下，尽量还原 Minecraft 游戏内主要界面的视觉与交互。
 
 
@@ -105,7 +105,7 @@ minecraft-ui/                     # monorepo 根（Turborepo + pnpm）
 │   │   ├── src/screens/          # L3 复合界面（组合层）
 │   │   └── src/hooks/            # 共享交互钩子（悬浮、滚动等）
 │   ├── tokens/                   # L0 设计令牌（CSS 变量 + TS 常量）
-│   └── textures/                 # L0 像素纹理素材（重绘 SVG/PNG）
+│   └── textures/                 # L0 像素纹理素材（原版 GUI PNG + 生成 CSS）
 ├── registry/                     # shadcn registry 入口（可选）
 ├── examples/                     # 组合用例
 └── spec/                         # 本文档及后续扩展规格
@@ -216,11 +216,11 @@ L0 基础素材    Design Tokens · 像素字体 · 像素纹理 · 渲染基调
 
 * 字体使用开源替代：`Minecraftia`、`VT323`、`Press Start 2P`。已确认**不做中文字体适配**，仅需覆盖英文像素字体场景。
 
-* GUI 九宫格 / 进度条纹理仍由本项目重绘；物品、方块与 HUD 状态图标使用固定版本（26.3）与 SHA-1 的 Mojang 原版客户端素材，授权与来源声明见 `packages/textures/LICENSE-ASSETS.md`。
+* GUI / 物品 / 方块 / HUD / 图标全部使用固定版本（GUI 26.4-snapshot-3，物品与 HUD 26.3）的 Mojang 原版素材；授权与来源声明见 `packages/textures/LICENSE-ASSETS.md`。
 
-* 建议首版用 **内联 SVG 重绘纹理**（石头渐变按钮、面板九宫格、槽位边框），便于版本管理与无损缩放。
+* GUI 纹理由 `packages/textures/scripts/sync-gui-sprites.mjs` 生成并提交，运行时零网络；像素渲染依赖 `image-rendering: pixelated`，不做无损缩放。
 
-### 3.3 纹理清单（待重绘）
+### 3.3 纹理清单
 
 
 
@@ -363,7 +363,7 @@ L0 基础素材    Design Tokens · 像素字体 · 像素纹理 · 渲染基调
 
 3. 不做 3D / 模型渲染：玩家 / 生物模型预览属渲染层，最多提供占位插槽。
 
-4. 不直接打包 Mojang GUI 九宫格纹理 / 字体 / 音效；物品与 HUD 状态图标使用原版 26.3 素材并附来源声明。
+4. GUI、物品、HUD 与状态图标使用原版素材并附来源声明；字体与音效按各自授权处理。
 
 5. 不做纯动画 / 音效还原；核心交付在无动画时也完整成立。
 
@@ -379,7 +379,7 @@ L0 基础素材    Design Tokens · 像素字体 · 像素纹理 · 渲染基调
 
 | 阶段 | 范围                                                  | 出口标准                        |
 | -- | --------------------------------------------------- | --------------------------- |
-| M0 | L0 令牌 + 像素字体接入 + 纹理重绘（按钮 / 面板 / 槽位）                 | tokens 与纹理在 playground 正确渲染 |
+| M0 | L0 令牌 + 像素字体接入 + 原版 GUI 精灵（按钮 / 面板 / 槽位）             | tokens 与纹理在 playground 正确渲染 |
 | M1 | L1 通用 4 件套：Button / Panel / Slider / Dialog         | 四个组件有完整变体与状态                |
 | M2 | L2：Slot / Grid / ItemStack / Icon / Tooltip         | 能摆出一个可用物品格                  |
 | M3 | HUD 验收：Hotbar + HealthHungerBar + Crosshair         | HUD 用例跑通，选中 / 悬浮正常          |

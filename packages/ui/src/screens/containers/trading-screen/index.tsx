@@ -5,34 +5,21 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 
 import type { ScreenSlot } from "../types";
-import { ItemStack } from "../../../containers/item-stack/index";
+import { GuiSprite } from "../../../containers/gui-sprite/index";
 import { PlayerInventory } from "../../../containers/player-inventory/index";
 import { ScreenPanel } from "../../../containers/screen-panel/index";
-import { Slot } from "../../../containers/slot/index";
-import { cn, gui } from "../../../lib/utils";
-import { ScrollArea } from "../../../primitives/scroll-area/index";
+import { gui } from "../../../lib/utils";
 import { ScreenItemSlot } from "../screen-slot";
 
 export interface TradeOffer {
-  /**
-  * 要价物品 1
-  */
   inputA: ScreenSlot;
-  /**
-  * 要价物品 2（可选）
-  */
   inputB?: ScreenSlot;
-  /**
-  * 出售物
-  */
+  outOfStock?: boolean;
   output: ScreenSlot;
 }
 
 export interface TradingScreenProps {
   className?: string;
-  /**
-  * 底部玩家快捷栏
-  */
   hotbarItems?: ScreenSlot[];
   onTradeSelect?: (index: number) => void;
   title?: ReactNode;
@@ -40,82 +27,87 @@ export interface TradingScreenProps {
 }
 
 /**
- * 村民交易界面（规格 §6）：276×166 面板 + 98×116 交易列表 + 选中交易的价签槽。
+ * 村民交易界面（规格 §6）：`container/villager.png` 276×166。
  */
 export function TradingScreen({
   className,
   hotbarItems = [],
   onTradeSelect,
-  title = "交易",
+  title,
   trades = [],
 }: TradingScreenProps) {
   const [selected, setSelected] = useState(0);
   const active = trades[selected];
 
-  const selectTrade = (index: number) => {
-    setSelected(index);
-    onTradeSelect?.(index);
-  };
-
   return (
-    <ScreenPanel className={className} height={166} title={title} width={276}>
-      <ScrollArea
-        className="mc-tex-panel-dark absolute overflow-y-auto"
-        style={{ height: gui(116), left: gui(5), top: gui(18), width: gui(98) }}
-      >
-        {trades.map((trade, index) => (
-          <div
-            aria-label={`交易 ${index + 1}`}
-            className={cn(
-              "flex min-h-24 w-full cursor-pointer items-center gap-1 px-1 select-none",
-              "hover:bg-white/10",
-              index === selected && "bg-white/10",
-            )}
-            key={index}
-            onClick={() => {
-              selectTrade(index);
-            }}
-            onKeyDown={(event) => {
-              if (!(event.key === "Enter" || event.key === " ")) {
-                return;
-              }
-
-              event.preventDefault();
-              selectTrade(index);
-            }}
-            role="button"
-            tabIndex={0}
-          >
-            <TradeSlot item={trade.inputA} />
-            <TradeSlot item={trade.inputB} />
-            <span aria-hidden="true" className="font-mc mc-text text-mc-text-dim">
-              →
-            </span>
-            <TradeSlot item={trade.output} />
-          </div>
-        ))}
-      </ScrollArea>
+    <ScreenPanel
+      background="container/villager.png"
+      className={className}
+      height={166}
+      title={title}
+      width={276}
+    >
+      {Array.from({ length: 7 }, (_, index) => (
+        <GuiSprite
+          className="absolute"
+          height={9}
+          key={`arrow-${index}`}
+          name={index >= 6 || trades[index]?.outOfStock
+            ? "sprites/container/villager/trade_arrow_out_of_stock.png"
+            : "sprites/container/villager/trade_arrow.png"}
+          style={{ left: gui(60), top: gui(21 + index * 20) }}
+          width={10}
+        />
+      ))}
+      {trades.slice(0, 7).map((trade, index) => (
+        <button
+          aria-label={`交易 ${index + 1}`}
+          aria-pressed={index === selected}
+          className="absolute cursor-pointer border-0 bg-transparent p-0"
+          key={index}
+          onClick={() => {
+            setSelected(index);
+            onTradeSelect?.(index);
+          }}
+          style={{
+            height: gui(20),
+            left: gui(5),
+            top: gui(18 + index * 20),
+            width: gui(98),
+          }}
+          type="button"
+        />
+      ))}
+      <GuiSprite
+        className="absolute"
+        height={27}
+        name="sprites/container/villager/scroller.png"
+        style={{ left: gui(94), top: gui(18) }}
+        width={6}
+      />
+      <GuiSprite
+        className="absolute"
+        height={5}
+        name="sprites/container/villager/experience_bar_background.png"
+        style={{ left: gui(136), top: gui(16) }}
+        width={102}
+      />
       <ScreenItemSlot item={active?.inputA} label="trade-input-a" left={135} top={36} />
       <ScreenItemSlot item={active?.inputB} label="trade-input-b" left={161} top={36} />
       <ScreenItemSlot
         item={active?.output}
         label="trade-output"
-        left={197}
+        left={215}
         size={26}
-        top={36}
+        top={32}
       />
       <PlayerInventory
+        bare
         hotbarItems={hotbarItems}
         hotbarY={141}
         x={107}
         y={83}
       />
     </ScreenPanel>
-  );
-}
-
-function TradeSlot({ item }: { item?: ScreenSlot }) {
-  return (
-    <Slot size={18}>{item ? <ItemStack bare {...item} /> : null}</Slot>
   );
 }

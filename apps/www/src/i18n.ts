@@ -157,7 +157,7 @@ export interface UIDictionary {
 
 const zh: UIDictionary = {
   blockPage: {
-    breadcrumb: "Blocks",
+    breadcrumb: "整屏界面",
     code: "代码",
     composition: "组成",
     compositionNote: "这些是可直接组合的组件；Block 只是把它们按原版坐标放在一起。",
@@ -167,14 +167,14 @@ const zh: UIDictionary = {
     unindexed: "预览页不进入搜索引擎索引",
   },
   blocksPage: {
-    breadcrumb: "Blocks",
-    description: "19 个整屏组合界面。每个 Block 由 L1–L3 组件拼装，数据由使用方注入；点开可看全屏预览与示例源码。",
+    breadcrumb: "整屏界面",
+    description: "44 个整屏组合界面。每个整屏界面由 L1–L3 组件拼装，数据由使用方注入；点开可看全屏预览与示例源码。",
     groups: {
       menus: { description: "标题、设置、聊天等全屏菜单与遮罩。", title: "菜单界面" },
       screens: { description: "按原版容器坐标拼装的 176–276 GUI px 面板。", title: "容器界面" },
     },
-    metaTitle: "Blocks 整屏界面 · Verdigris",
-    title: "Blocks",
+    metaTitle: "整屏界面 · Verdigris",
+    title: "整屏界面",
   },
   componentPage: {
     breadcrumb: "Components",
@@ -191,7 +191,7 @@ const zh: UIDictionary = {
   },
   componentsPage: {
     breadcrumb: "Components",
-    description: "48 个可复制进项目的组件，按层级分组。每个页面提供实时预览与示例源码。",
+    description: "78 个可复制进项目的组件，按层级分组。每个页面提供实时预览与示例源码。",
     metaTitle: "Components 组件 · Verdigris",
     title: "Components",
   },
@@ -211,7 +211,7 @@ const zh: UIDictionary = {
     toc: "本页目录",
   },
   footer: {
-    assets: "GUI 纹理重绘 · 物品/状态图标取自原版 26.3 · 字体 SIL OFL 1.1",
+    assets: "GUI 纹理取自原版 26.4-snapshot-3 · 物品/状态图标取自原版 26.3 · 字体 SIL OFL 1.1",
     columns: [
       {
         links: [
@@ -226,7 +226,7 @@ const zh: UIDictionary = {
       {
         links: [
           { href: "/components/", label: "Components" },
-          { href: "/blocks/", label: "Blocks" },
+          { href: "/blocks/", label: "整屏界面" },
           { href: "/components/#primitives", label: "原语" },
           { href: "/components/#containers", label: "容器" },
           { href: "/components/#hud", label: "HUD" },
@@ -249,15 +249,15 @@ const zh: UIDictionary = {
   },
   home: {
     blocks: {
-      all: "全部 {count} 个 Blocks",
+      all: "全部 {count} 个整屏界面",
       crafting: "工作台 · 容器界面",
-      description: "9 个容器界面 + 10 个菜单界面。每个 Block 都是可运行示例，也可以拆回组件自行组合。",
-      eyebrow: "L3 · Blocks",
+      description: "24 个容器界面 + 20 个菜单/覆盖层。每个整屏界面都是可运行示例，也可以拆回组件自行组合。",
+      eyebrow: "L3 · 整屏界面",
       inventory: "物品栏 · 容器界面",
       title: "整屏界面，复制即用",
     },
     cta: {
-      browse: "浏览 Blocks",
+      browse: "浏览整屏界面",
       description: "从安装开始，或者先浏览一个完整的容器界面。所有纹理、图标与字体都可替换。",
       install: "开始安装",
       title: "复制、粘贴、改造。",
@@ -270,8 +270,8 @@ const zh: UIDictionary = {
     ],
     hero: {
       browse: "浏览组件",
-      counts: "{components} 个组件 · {blocks} 个整屏",
-      description: "按 shadcn 哲学分发的像素级 GUI 组件：复制源码、注入数据、双框架 SSR 验证。GUI 九宫格纹理重绘，物品与状态图标取自 Minecraft 26.3 原版素材。",
+      counts: "{components} 个组件 · {blocks} 个整屏界面",
+      description: "按 shadcn 哲学分发的像素级 GUI 组件：复制源码、注入数据、双框架 SSR 验证。GUI 精灵取自原版 26.4-snapshot-3，物品与状态图标取自 26.3。",
       headingHighlight: "搬进 React",
       headingLine1: "把 Minecraft 的",
       headingLine2Prefix: "界面，",
@@ -281,7 +281,7 @@ const zh: UIDictionary = {
       previewLabel: "菜单界面 · MainMenu",
       view: "查看 →",
     },
-    metaDescription: "48 个可复制的 Minecraft 风格 React 组件与 19 个整屏界面。基于 Base UI 与 Tailwind v4，SSR 安全；GUI 纹理重绘，物品图标取自原版 26.3。",
+    metaDescription: "78 个可复制的 Minecraft 风格 React 组件与 44 个整屏界面。基于 Base UI 与 Tailwind v4，SSR 安全；GUI 精灵取自原版 26.4-snapshot-3。",
     metaTitle: "Verdigris · Minecraft 风格 React 组件库",
     primitiveCode: `import { Button, Panel } from "@verdigris/ui";
 
@@ -301,7 +301,7 @@ export function Start() {
   },
   htmlLang: "zh-CN",
   nav: {
-    blocks: "Blocks",
+    blocks: "整屏界面",
     components: "组件",
     docs: "文档",
     github: "GitHub",
@@ -317,16 +317,16 @@ export function Start() {
   ogLocale: "zh_CN",
   pager: { next: "下一页", previous: "上一页" },
   preview: {
-    back: "← 返回 Blocks",
+    back: "← 返回整屏界面",
     metaSuffix: "预览 · Verdigris",
   },
   search: {
     close: "Esc 关闭",
-    groups: { blocks: "Blocks", components: "组件", docs: "文档" },
+    groups: { blocks: "整屏界面", components: "组件", docs: "文档" },
     label: "搜索文档",
     noResults: "没有匹配结果",
     open: "Enter 打开",
-    placeholder: "搜索文档、组件、Blocks…",
+    placeholder: "搜索文档、组件、整屏界面…",
     select: "↑↓ 选择",
     trigger: "搜索文档…",
   },
@@ -347,7 +347,7 @@ const en: UIDictionary = {
   },
   blocksPage: {
     breadcrumb: "Blocks",
-    description: "19 composed full-screen interfaces. Each Block is assembled from L1–L3 components and accepts injected data; open one for a full-screen preview and source.",
+    description: "44 composed full-screen interfaces. Each Block is assembled from L1–L3 components and accepts injected data; open one for a full-screen preview and source.",
     groups: {
       menus: { description: "Full-screen menus and overlays for title, settings, chat and more.", title: "Menu screens" },
       screens: { description: "176–276 GUI px panels laid out with vanilla container coordinates.", title: "Container screens" },

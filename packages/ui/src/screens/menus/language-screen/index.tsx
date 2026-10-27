@@ -1,7 +1,6 @@
-import { Panel } from "../../../containers/panel/index";
-import { TitleBar } from "../../../containers/title-bar/index";
-import { cn } from "../../../lib/utils";
-import { ScrollArea } from "../../../primitives/scroll-area/index";
+import { GuiSprite } from "../../../containers/gui-sprite/index";
+import { cn, gui } from "../../../lib/utils";
+import { MenuBackground } from "../menu-background/index";
 
 export interface LanguageOption {
   code: string;
@@ -10,9 +9,6 @@ export interface LanguageOption {
 
 export interface LanguageScreenProps {
   className?: string;
-  /**
-  * 可选语言（数据由使用方注入，规格确认不做中文字体适配但列表可含中文）
-  */
   languages?: LanguageOption[];
   onLanguageSelect?: (code: string) => void;
   selectedCode?: string;
@@ -26,8 +22,8 @@ const DEFAULT_LANGUAGES: LanguageOption[] = [
 ];
 
 /**
- * 语言选择（规格 §6.3）：ScrollArea 列表，单选高亮 + 1 GUI px 白色内框。
-*/
+ * 语言选择（规格 §6.3）：320×240 menu_background + 20px 行 + 原版滚动条。
+ */
 export function LanguageScreen({
   className,
   languages = DEFAULT_LANGUAGES,
@@ -35,34 +31,41 @@ export function LanguageScreen({
   selectedCode,
 }: LanguageScreenProps) {
   return (
-    <Panel className={cn("inline-flex w-280 flex-col gap-4 p-6", className)}>
-      <TitleBar align="center" title="语言" />
-      <ScrollArea className="h-160">
-        <div className="flex flex-col">
-          {languages.map(language => (
-            <button
-              className={cn(
-                "flex h-20 w-full cursor-pointer items-center px-4 text-left",
-                "font-mc mc-text text-mc-text-main hover:bg-white/10",
-                selectedCode === language.code
-                && "bg-mc-panel-overlay text-white mc-outline outline-white",
-              )}
-              data-language-code={language.code}
-              data-selected={selectedCode === language.code ? "" : undefined}
-              key={language.code}
-              onClick={() => {
-                onLanguageSelect?.(language.code);
-              }}
-              type="button"
-            >
-              {language.name}
-            </button>
-          ))}
-        </div>
-      </ScrollArea>
-      <p className="font-mc mc-text text-mc-text-dim">
-        字体使用开源像素字体（OFL），不支持全部字形
-      </p>
-    </Panel>
+    <MenuBackground
+      className={cn("overflow-hidden", className)}
+      style={{ height: gui(240), width: gui(320) }}
+    >
+      <div className="absolute font-mc mc-text text-mc-text-main mc-text-shadow" style={{ left: gui(8), top: gui(8) }}>
+        语言
+      </div>
+      <div className="absolute" style={{ left: gui(4), top: gui(36), width: gui(312) }}>
+        {languages.map((language, index) => (
+          <button
+            className={cn(
+              "relative block h-20 w-full cursor-pointer border-0 bg-transparent px-4 text-left",
+              "font-mc mc-text text-mc-text-main hover:bg-white/10",
+              selectedCode === language.code && "outline-1 outline-white",
+            )}
+            data-language-code={language.code}
+            data-selected={selectedCode === language.code ? "" : undefined}
+            key={language.code}
+            onClick={() => {
+              onLanguageSelect?.(language.code);
+            }}
+            style={{ top: gui(index * 20) }}
+            type="button"
+          >
+            {language.name}
+          </button>
+        ))}
+      </div>
+      <GuiSprite
+        className="absolute"
+        height={15}
+        name="sprites/widget/scroller.png"
+        style={{ left: gui(306), top: gui(36) }}
+        width={12}
+      />
+    </MenuBackground>
   );
 }

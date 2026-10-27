@@ -54,7 +54,7 @@ export function TabsTab({
   return (
     <BaseTabs.Tab
       className={cn(
-        "mc-tex-tab h-24 cursor-pointer px-4",
+        "mc-tex-tab h-24 w-130 cursor-pointer px-4",
         "font-mc mc-text text-mc-text-main select-none mc-text-shadow",
         className,
       )}

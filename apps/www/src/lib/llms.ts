@@ -4,6 +4,7 @@ import { ui } from "../i18n";
 import {
   blockHref,
   blocks,
+  blockTitle,
   catalogDescription,
   componentHref,
   components,
@@ -29,7 +30,7 @@ export function buildLlmsText(docs: CollectionEntry<"docs">[], locale: Locale, s
     "",
     `## ${text.nav.blocks}`,
     ...blocks.map(block =>
-      `- [${block.name}](${new URL(blockHref(block.slug, locale), site).href}): ${catalogDescription(block, locale)}`,
+      `- [${blockTitle(block, locale)}](${new URL(blockHref(block.slug, locale), site).href}): ${catalogDescription(block, locale)}`,
     ),
     "",
   ];

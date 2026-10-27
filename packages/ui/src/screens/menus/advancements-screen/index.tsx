@@ -1,48 +1,28 @@
 "use client";
 
-import type { IconProps } from "../../../containers/icon/index";
+import type { GuiSpriteName, PixelIconName } from "@verdigris/textures";
+
+import { GuiSprite } from "../../../containers/gui-sprite/index";
 import { Icon } from "../../../containers/icon/index";
-import { Panel } from "../../../containers/panel/index";
-import { Slot } from "../../../containers/slot/index";
-import { TitleBar } from "../../../containers/title-bar/index";
-import { cn } from "../../../lib/utils";
+import { ScreenPanel } from "../../../containers/screen-panel/index";
+import { cn, gui } from "../../../lib/utils";
+import { Tabs, TabsList, TabsPanel, TabsTab } from "../../../primitives/tabs/index";
 import {
-  Tabs,
-  TabsList,
-  TabsPanel,
-  TabsTab,
   Tooltip,
   TooltipPopup,
   TooltipTrigger,
-} from "../../../primitives/index";
+} from "../../../primitives/tooltip/index";
 
 export interface AdvancementNode {
-  /**
-  * 子节点
-  */
   children?: AdvancementNode[];
-  /**
-  * 描述
-  */
   description?: string;
-  /**
-  * 是否已完成
-  */
   done?: boolean;
-  /**
-  * 图标（textures 包图标名）
-  */
-  icon?: IconProps["name"];
-  /**
-  * 展示名
-  */
+  icon?: PixelIconName;
   name: string;
+  type?: "challenge" | "goal" | "task";
 }
 
 export interface AdvancementsScreenProps {
-  /**
-  * 分类（Tab）与树形节点（数据由使用方注入）
-  */
   categories?: {
     name: string;
     nodes: AdvancementNode[];
@@ -52,28 +32,52 @@ export interface AdvancementsScreenProps {
 }
 
 /**
- * 成就 / 进度界面（规格 §6.3）：Tabs 分类 + 26 GUI px 节点槽 + 缩进列表 + Tooltip 详情。
-*/
+ * 成就 / 进度界面（规格 §6.3）：252×140 原版窗口 + 分类标签 + 26px 节点框。
+ */
 export function AdvancementsScreen({
   categories = [],
   className,
-  title = "进度",
+  title,
 }: AdvancementsScreenProps) {
   const firstTab = categories[0]?.name ?? "minecraft";
   return (
-    <Panel className={cn("inline-flex w-320 flex-col gap-4 p-6", className)}>
-      <TitleBar align="center" title={title} />
-      <Tabs className="gap-4" defaultValue={firstTab}>
-        <TabsList aria-label="进度分类">
+    <ScreenPanel className={cn(className)} height={140} title={title} width={252}>
+      <GuiSprite
+        className="absolute inset-0"
+        height={140}
+        name="advancements/window.png"
+        src={{ height: 140, width: 252, x: 0, y: 0 }}
+        style={{ height: "100%", width: "100%" }}
+        width={252}
+      />
+      <Tabs className="absolute inset-0" defaultValue={firstTab}>
+        <TabsList aria-label="进度分类" className="absolute top-1 left-1">
           {categories.map(category => (
-            <TabsTab key={category.name} value={category.name}>
+            <TabsTab
+              className="mc-tex-tab h-27 w-32 px-2"
+              key={category.name}
+              style={{ backgroundImage: `var(--mc-gui-advancements-tab-${category.name}-png, none)` }}
+              value={category.name}
+            >
               {category.name}
             </TabsTab>
           ))}
         </TabsList>
         {categories.map(category => (
-          <TabsPanel key={category.name} value={category.name}>
-            <ul className="flex flex-col gap-4">
+          <TabsPanel
+            className="absolute overflow-auto bg-repeat"
+            key={category.name}
+            style={{
+              backgroundImage: `var(--mc-gui-advancements-backgrounds-${category.name}-png, none)`,
+              backgroundSize: gui(16),
+              height: gui(104),
+              left: gui(4),
+              top: gui(30),
+              width: gui(244),
+            }}
+            value={category.name}
+          >
+            <ul className="flex flex-col gap-2 p-2">
               {category.nodes.map(node => (
                 <AdvancementItem key={node.name} node={node} />
               ))}
@@ -81,37 +85,39 @@ export function AdvancementsScreen({
           </TabsPanel>
         ))}
       </Tabs>
-    </Panel>
+    </ScreenPanel>
   );
 }
 
-function AdvancementItem({ node }: { node: AdvancementNode }) {
+function AdvancementItem({ depth = 0, node }: { depth?: number; node: AdvancementNode }) {
   return (
-    <li className="flex flex-col items-start gap-2">
+    <li className="flex flex-col items-start gap-1" style={{ marginLeft: gui(depth * 12) }}>
       <Tooltip>
         <TooltipTrigger className="flex cursor-pointer items-center gap-2">
-          <Slot selected={node.done} size={26}>
-            {node.icon ? <Icon name={node.icon} size={16} /> : null}
-          </Slot>
-          <span className="font-mc mc-text" data-advancement-name="">
+          <span className="relative block size-26">
+            <GuiSprite
+              className="absolute inset-0"
+              height={26}
+              name={`sprites/advancements/${node.type ?? "task"}_frame_${node.done ? "obtained" : "unobtained"}.png` as GuiSpriteName}
+              width={26}
+            />
+            {node.icon ? <Icon className="absolute top-5 left-5" name={node.icon} size={16} /> : null}
+          </span>
+          <span className="font-mc mc-text text-mc-text-main" data-advancement-name="">
             {node.name}
           </span>
           <span className="sr-only">{node.name}</span>
         </TooltipTrigger>
         <TooltipPopup>
           <div className={node.done ? "text-mc-gold" : undefined}>{node.name}</div>
-          {node.description
-            ? (
-                <div className="text-mc-text-dim">{node.description}</div>
-              )
-            : null}
+          {node.description ? <div className="text-mc-text-dim">{node.description}</div> : null}
         </TooltipPopup>
       </Tooltip>
-      {node.children && node.children.length > 0
+      {node.children?.length
         ? (
-            <ul className="ml-12 flex flex-col gap-2 border-l-(length:--mc-gui) border-mc-stone-dark pl-8">
+            <ul className="flex flex-col gap-1">
               {node.children.map(child => (
-                <AdvancementItem key={child.name} node={child} />
+                <AdvancementItem depth={depth + 1} key={child.name} node={child} />
               ))}
             </ul>
           )

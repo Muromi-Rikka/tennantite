@@ -1,6 +1,9 @@
 import type { PixelIconName } from "@verdigris/textures";
+
+import { GuiSprite } from "../../../containers/gui-sprite/index";
 import { ItemStack } from "../../../containers/item-stack/index";
 import { cn, gui } from "../../../lib/utils";
+import { AttackIndicator } from "../attack-indicator/index";
 
 export interface HotbarItem {
   count?: number;
@@ -10,11 +13,23 @@ export interface HotbarItem {
 }
 
 export interface HotbarProps {
+  /**
+  * 攻击指示器进度 0..1
+  */
+  attackIndicator?: number;
   className?: string;
   /**
   * 9 个快捷栏位的数据（规格 §6.1，物品数据由使用方注入）
   */
   items?: HotbarItem[];
+  /**
+  * 副手物品
+  */
+  offhand?: HotbarItem;
+  /**
+  * 副手槽在左/右
+  */
+  offhandSide?: "left" | "right";
   /**
   * 当前选中槽位索引（0..8）
   */
@@ -33,7 +48,14 @@ const FRAME_INSET = 1;
  * MC 快捷栏（规格 §6.1）：原版 182×22 GUI px，9 个 20×20 槽位。
  * 选中框 24×23 围绕 20×20 槽位偏移 (-2,-1)，overlay 语义。
  */
-export function Hotbar({ className, items = [], selectedIndex }: HotbarProps) {
+export function Hotbar({
+  attackIndicator,
+  className,
+  items = [],
+  offhand,
+  offhandSide = "left",
+  selectedIndex,
+}: HotbarProps) {
   return (
     <div
       className={cn("mc-tex-hotbar relative", className)}
@@ -75,6 +97,47 @@ export function Hotbar({ className, items = [], selectedIndex }: HotbarProps) {
             <div
               className="mc-tex-hotbar-selection absolute"
               style={{ left: gui(SLOT_STEP * selectedIndex - 1), top: 0 }}
+            />
+          )}
+      {offhand
+        ? (
+            <div
+              className="absolute top-0"
+              style={{
+                height: gui(24),
+                left: gui(offhandSide === "left" ? -29 : 182),
+                width: gui(29),
+              }}
+            >
+              <GuiSprite
+                className="absolute inset-0"
+                height={24}
+                name={offhandSide === "left"
+                  ? "sprites/hud/hotbar_offhand_left.png"
+                  : "sprites/hud/hotbar_offhand_right.png"}
+                width={29}
+              />
+              <ItemStack
+                bare
+                className="absolute"
+                count={offhand.count}
+                icon={offhand.icon}
+                size={20}
+                src={offhand.src}
+                style={{ left: gui(offhandSide === "left" ? 5 : 4), top: gui(2) }}
+                tooltip={offhand.tooltip}
+              />
+            </div>
+          )
+        : null}
+      {attackIndicator === undefined
+        ? null
+        : (
+            <AttackIndicator
+              className="absolute"
+              progress={attackIndicator}
+              style={{ left: gui(82), top: gui(-18) }}
+              variant="hotbar"
             />
           )}
     </div>

@@ -5,19 +5,18 @@ import { CrosshairDemo } from "./demo";
 import { Crosshair } from "./index";
 
 describe("crosshair", () => {
-  it("渲染十字准星（两根线）", () => {
+  it("渲染原版 15×15 准星精灵", () => {
     const { container } = render(<Crosshair />);
-    const hud = container.querySelector("[data-hud]");
-    expect(hud?.childElementCount).toBe(2);
+    expect(container.querySelector("[data-gui-sprite=\"sprites/hud/crosshair.png\"]")).toBeInTheDocument();
   });
 
-  it("hidden 时不渲染", () => {
+  it("hidden 不渲染", () => {
     const { container } = render(<Crosshair hidden />);
-    expect(container.childElementCount).toBe(0);
+    expect(container).toBeEmptyDOMElement();
   });
 
   it("demo 渲染", () => {
     const { container } = render(<CrosshairDemo />);
-    expect(container.childElementCount).toBeGreaterThan(0);
+    expect(container.querySelectorAll("[data-gui-sprite=\"sprites/hud/crosshair.png\"]").length).toBe(2);
   });
 });

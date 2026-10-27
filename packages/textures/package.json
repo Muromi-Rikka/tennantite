@@ -2,7 +2,7 @@
   "name": "@verdigris/textures",
   "type": "module",
   "version": "0.1.0",
-  "description": "Verdigris pixel textures — redrawn Minecraft-style SVG nine-slices plus vanilla Minecraft 26.3 item/status icon PNGs",
+  "description": "Verdigris pixel textures — vanilla Minecraft GUI PNG sprites, redrawn nine-slices and vanilla item/status icons",
   "exports": {
     ".": {
       "types": "./src/index.ts",
@@ -20,7 +20,10 @@
   },
   "scripts": {
     "sync:icons": "node scripts/sync-vanilla-icons.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "sync:gui-sprites": "node scripts/sync-gui-sprites.mjs",
+    "sync:gui-layouts": "node scripts/scan-gui-layouts.mjs",
+    "verify:assets": "node scripts/sync-gui-sprites.mjs --check && node scripts/scan-gui-layouts.mjs --check"
   },
   "devDependencies": {
     "fflate": "^0.8.3",

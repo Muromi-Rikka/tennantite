@@ -24,7 +24,7 @@ export function ExperienceBar({ className, level, progress }: ExperienceBarProps
           aria-label={`经验：等级 ${level}`}
           max={1}
           value={Math.min(1, Math.max(0, progress))}
-          variant="default"
+          variant="xp"
         />
         <span
           aria-hidden="true"

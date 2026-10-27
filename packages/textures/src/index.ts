@@ -1,4 +1,18 @@
 /**
- * @verdigris/textures — Minecraft Java 26.3 原版图标注册表（PNG data URI）
+ * @verdigris/textures — vanilla Minecraft GUI sprites and 26.3 item/status icons.
  */
-export { type PixelIconName, pixelIcons } from "./pixel-icons.generated";
+import { guiIcons } from "./gui-icons.generated";
+import { pixelIcons as basePixelIcons } from "./pixel-icons.generated";
+
+export { type GuiIconName, guiIcons } from "./gui-icons.generated";
+export { containerSlots, type ContainerSpriteName } from "./gui-layouts.generated";
+export {
+  GUI_SPRITE_VERSION,
+  type GuiSpriteMeta,
+  guiSpriteMeta,
+  type GuiSpriteName,
+} from "./gui-sprites.generated";
+
+export const pixelIcons = { ...basePixelIcons, ...guiIcons } as const;
+
+export type PixelIconName = keyof typeof pixelIcons;

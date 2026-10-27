@@ -1,4 +1,7 @@
+import type { GuiSpriteName } from "@verdigris/textures";
+
 import type { ScreenSlot } from "./types";
+import { GuiSprite } from "../../containers/gui-sprite/index";
 import { ItemStack } from "../../containers/item-stack/index";
 import { Slot } from "../../containers/slot/index";
 import { cn, gui } from "../../lib/utils";
@@ -6,7 +9,15 @@ import { cn, gui } from "../../lib/utils";
 export interface ScreenItemSlotProps {
   className?: string;
   /**
-  * 物品（空槽渲染凹陷纹理）
+  * 绘制槽位凹槽（默认 false；容器背景已烘焙槽框）
+  */
+  frame?: boolean;
+  /**
+  * 空槽 ghost 精灵（盔甲/盾/箭等）
+  */
+  ghost?: GuiSpriteName;
+  /**
+  * 物品
   */
   item?: ScreenSlot;
   /**
@@ -34,9 +45,12 @@ export interface ScreenItemSlotProps {
 /**
  * 容器界面绝对定位槽位（规格 §6）：坐标即原版 `container/*.png` 的槽位左上角。
  * 物品图标固定 16 GUI px，在结果槽（26）内居中偏移 5。
+ * 背景已含槽框，因此默认不重复绘制 `Slot` 凹槽。
  */
 export function ScreenItemSlot({
   className,
+  frame = false,
+  ghost,
   item,
   label,
   left,
@@ -47,12 +61,17 @@ export function ScreenItemSlot({
   return (
     <Slot
       aria-label={label}
+      bare={!frame}
       className={cn("absolute", onActivate ? "cursor-pointer" : undefined, className)}
       onClick={onActivate}
       size={size}
       style={{ left: gui(left), top: gui(top) }}
     >
-      {item ? <ItemStack bare {...item} size={size} /> : null}
+      {item
+        ? <ItemStack bare {...item} size={size} />
+        : (ghost
+            ? <GuiSprite height={16} name={ghost} width={16} />
+            : null)}
     </Slot>
   );
 }
