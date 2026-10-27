@@ -1,8 +1,8 @@
 import { cva } from "class-variance-authority";
 
-import { cn } from "../../lib/utils";
-
 import type { ButtonProps as ButtonProperties } from "./types";
+
+import { cn } from "../../lib/utils";
 
 /**
  * 原版按钮几何：200×20 GUI px，横向内边距 4 GUI px；

@@ -8,15 +8,15 @@ import { InventoryScreen } from "./index";
 describe("inventoryScreen", () => {
   it("渲染 4 盔甲 + 1 副手 + 4 合成 + 1 产物 + 27 主背包 + 9 快捷栏", () => {
     const { container } = render(<InventoryScreen />);
-    expect(container.querySelectorAll('[aria-label^="armor-"]').length).toBe(4);
-    expect(container.querySelectorAll('[aria-label="offhand-0"]').length).toBe(1);
+    expect(container.querySelectorAll("[aria-label^=\"armor-\"]").length).toBe(4);
+    expect(container.querySelectorAll("[aria-label=\"offhand-0\"]").length).toBe(1);
     expect(
-      container.querySelectorAll('[aria-label^="craft-"]:not([aria-label^="craft-result"])')
+      container.querySelectorAll("[aria-label^=\"craft-\"]:not([aria-label^=\"craft-result\"])")
         .length,
     ).toBe(4);
-    expect(container.querySelectorAll('[aria-label="craft-result-0"]').length).toBe(1);
-    expect(container.querySelectorAll('[aria-label^="main-"]').length).toBe(27);
-    expect(container.querySelectorAll('[aria-label^="hotbar-"]').length).toBe(9);
+    expect(container.querySelectorAll("[aria-label=\"craft-result-0\"]").length).toBe(1);
+    expect(container.querySelectorAll("[aria-label^=\"main-\"]").length).toBe(27);
+    expect(container.querySelectorAll("[aria-label^=\"hotbar-\"]").length).toBe(9);
   });
 
   it("注入数据渲染计数徽标", () => {

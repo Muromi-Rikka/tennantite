@@ -46,7 +46,7 @@ export function MultiplayerScreen({
             <button
               className={cn(
                 "flex min-h-36 w-full cursor-pointer flex-col justify-center px-4 py-2 text-left",
-                "border-[length:var(--mc-gui)] border-transparent",
+                "border-(length:--mc-gui) border-transparent",
                 "font-mc mc-text text-mc-text-main hover:bg-white/10",
                 selectedAddress === server.address && "border-white bg-white/10",
               )}

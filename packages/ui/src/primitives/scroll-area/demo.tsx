@@ -25,7 +25,7 @@ export function ScrollAreaDemo() {
             <li className="font-mc mc-text text-mc-text-main">{name}</li>
             {index < SERVERS.length - 1
               ? (
-                  <li aria-hidden="true" className="h-[length:var(--mc-gui)] bg-mc-stone-dark" />
+                  <li aria-hidden="true" className="h-(--mc-gui) bg-mc-stone-dark" />
                 )
               : null}
           </Fragment>

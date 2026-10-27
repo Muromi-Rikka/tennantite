@@ -109,7 +109,7 @@ function AdvancementItem({ node }: { node: AdvancementNode }) {
       </Tooltip>
       {node.children && node.children.length > 0
         ? (
-            <ul className="ml-12 flex flex-col gap-2 border-l-[length:var(--mc-gui)] border-mc-stone-dark pl-8">
+            <ul className="ml-12 flex flex-col gap-2 border-l-(length:--mc-gui) border-mc-stone-dark pl-8">
               {node.children.map(child => (
                 <AdvancementItem key={child.name} node={child} />
               ))}

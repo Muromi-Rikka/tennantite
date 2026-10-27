@@ -7,6 +7,22 @@ import { gui } from "../../../lib/utils";
 import { Button } from "../../../primitives/button/index";
 import { ScreenItemSlot } from "../screen-slot";
 
+export interface EnchantingScreenProps {
+  availableLevel?: number;
+  className?: string;
+  /**
+  * 待附魔物品（左槽 (14,46)）
+  */
+  item?: ScreenSlot;
+  /**
+  * 青金石（右槽 (34,46)）
+  */
+  lapis?: ScreenSlot;
+  onEnchantSelect?: (option: EnchantOption) => void;
+  options?: EnchantOption[];
+  title?: ReactNode;
+}
+
 export interface EnchantOption {
   /**
   * 附魔描述（可选，游戏内为隐藏提示）
@@ -24,22 +40,6 @@ export interface EnchantOption {
   * 消耗的经验等级
   */
   xpCost: number;
-}
-
-export interface EnchantingScreenProps {
-  availableLevel?: number;
-  className?: string;
-  /**
-  * 待附魔物品（左槽 (14,46)）
-  */
-  item?: ScreenSlot;
-  /**
-  * 青金石（右槽 (34,46)）
-  */
-  lapis?: ScreenSlot;
-  onEnchantSelect?: (option: EnchantOption) => void;
-  options?: EnchantOption[];
-  title?: ReactNode;
 }
 
 const ROMAN = ["", "I", "II", "III"];

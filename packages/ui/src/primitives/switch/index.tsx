@@ -18,7 +18,7 @@ export function Switch({ className, ...properties }: SwitchProps) {
       )}
       {...properties}
     >
-      <BaseSwitch.Thumb className="mc-tex-btn h-20 w-20 data-checked:translate-x-20" />
+      <BaseSwitch.Thumb className="mc-tex-btn size-20 data-checked:translate-x-20" />
     </BaseSwitch.Root>
   );
 }

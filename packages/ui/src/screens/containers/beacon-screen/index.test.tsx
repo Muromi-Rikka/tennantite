@@ -17,8 +17,8 @@ describe("beaconScreen", () => {
     expect(screen.getByLabelText("信标支付槽")).toBeInTheDocument();
     expect(screen.getByLabelText("主效果")).toBeInTheDocument();
     expect(screen.getByLabelText("副效果")).toBeInTheDocument();
-    expect(container.querySelectorAll('[aria-label^="main-"]').length).toBe(27);
-    expect(container.querySelectorAll('[aria-label^="hotbar-"]').length).toBe(9);
+    expect(container.querySelectorAll("[aria-label^=\"main-\"]").length).toBe(27);
+    expect(container.querySelectorAll("[aria-label^=\"hotbar-\"]").length).toBe(9);
   });
 
   it("确认回调携带当前选择", async () => {

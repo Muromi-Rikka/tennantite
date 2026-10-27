@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key -- 固定槽位以位置为身份，列表不会重排 */
 import type { ReactNode } from "react";
 
 import type { ScreenSlot } from "../types";

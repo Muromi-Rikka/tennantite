@@ -17,6 +17,7 @@ const SERVERS = [
   "The Hive — hivemc.eu",
 ] as const;
 
+// eslint-disable-next-line react-refresh/only-export-components -- TanStack Router 要求 Route 与页面组件同文件注册。
 function App() {
   return (
     <main className="mc-tex-panel mx-auto my-8 w-240 p-12">

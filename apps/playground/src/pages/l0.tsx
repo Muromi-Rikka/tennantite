@@ -62,7 +62,7 @@ export function L0Page() {
           <div className="mc-tex-xp-bg h-5 w-182">
             <div className="mc-tex-xp-fill h-full w-1/2" />
           </div>
-          <div className="mc-tex-tooltip px-4 py-4 font-mc mc-text mc-text-shadow">
+          <div className="mc-tex-tooltip p-4 font-mc mc-text mc-text-shadow">
             Tooltip
           </div>
         </div>
@@ -118,7 +118,7 @@ function Swatch({ name, value }: { name: string; value: string }) {
   return (
     <div className="flex items-center gap-4">
       <div
-        className="size-16 border-[length:var(--mc-gui)] border-black"
+        className="size-16 border-(length:--mc-gui) border-black"
         style={{ backgroundColor: value }}
       />
       <div>

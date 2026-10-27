@@ -67,14 +67,14 @@ export function BrewingStandScreen({
         role="progressbar"
         style={{ height: gui(29), left: gui(64), top: gui(18), width: gui(12) }}
       >
-        <div className="mc-tex-bubbles h-full w-full" style={{ clipPath: clip }} />
+        <div className="mc-tex-bubbles size-full" style={{ clipPath: clip }} />
       </div>
       <div
         aria-hidden="true"
         className="absolute overflow-hidden"
         style={{ height: gui(28), left: gui(97), top: gui(19), width: gui(9) }}
       >
-        <div className="mc-tex-brew-arrow h-full w-full" style={{ clipPath: clip }} />
+        <div className="mc-tex-brew-arrow size-full" style={{ clipPath: clip }} />
       </div>
       <PlayerInventory />
     </ScreenPanel>

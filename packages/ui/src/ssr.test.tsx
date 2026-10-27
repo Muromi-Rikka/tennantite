@@ -37,7 +37,7 @@ import {
   TooltipTrigger,
 } from "./index";
 
-function render(elements: React.ReactNode): string {
+function render(): string {
   return renderToStaticMarkup(
     <>
       <Badge>64</Badge>
@@ -84,22 +84,21 @@ function render(elements: React.ReactNode): string {
           <DialogDescription>描述</DialogDescription>
         </DialogPopup>
       </Dialog>
-      {elements}
     </>,
   );
 }
 
 describe("sSR smoke (node env, 规格 §1.1)", () => {
   it("全部 L1 原语可服务端渲染", () => {
-    const html = render(null);
+    const html = render();
     expect(html).toContain("64");
     expect(html).toContain("mc-tex-btn");
     expect(html).toContain("mc-tex-slot");
     expect(html).toContain("mc-scroll");
   });
 
-  it("ScreenPanel / PlayerInventory 可服务端渲染", () => {
-    const html = render(null);
+  it("screenPanel / PlayerInventory 可服务端渲染", () => {
+    const html = render();
     expect(html).toContain("mc-tex-panel");
     expect(html).toContain("物品栏");
     expect(html).toContain("aria-label=\"main-0\"");

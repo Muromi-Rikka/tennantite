@@ -70,7 +70,7 @@ export function FurnaceScreen({
         style={{ height: gui(14), left: gui(57), top: gui(36), width: gui(14) }}
       >
         <div
-          className="mc-tex-flame h-full w-full"
+          className="mc-tex-flame size-full"
           style={{ clipPath: `inset(${(1 - burnProgress) * 100}% 0 0 0)` }}
         />
       </div>
@@ -84,7 +84,7 @@ export function FurnaceScreen({
         style={{ height: gui(16), left: gui(79), top: gui(34), width: gui(24) }}
       >
         <div
-          className="mc-tex-arrow h-full w-full"
+          className="mc-tex-arrow size-full"
           style={{ clipPath: `inset(0 ${(1 - cookProgress) * 100}% 0 0)` }}
         />
       </div>

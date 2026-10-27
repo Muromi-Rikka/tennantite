@@ -36,8 +36,10 @@ const CHECK_RUNS: CheckRun[] = CHECK_ROWS.flatMap((row, y) => {
       width += 1;
     }
     if (ch === "w") {
-      runs.push({ fill: "#868686", height: 1, width, x: x + 1, y: y + 1 });
-      runs.push({ fill: "#FFFFFF", height: 1, width, x, y });
+      runs.push(
+        { fill: "#868686", height: 1, width, x: x + 1, y: y + 1 },
+        { fill: "#FFFFFF", height: 1, width, x, y },
+      );
     }
     x += width;
   }

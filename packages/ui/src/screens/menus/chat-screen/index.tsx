@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key -- 聊天记录只追加，索引在生命周期内稳定 */
 import { cn } from "../../../lib/utils";
 import { Input } from "../../../primitives/input/index";
 import { ScrollArea } from "../../../primitives/scroll-area/index";

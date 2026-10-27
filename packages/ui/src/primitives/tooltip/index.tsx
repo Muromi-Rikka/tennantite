@@ -23,7 +23,7 @@ export function TooltipPopup({
       <BaseTooltip.Positioner className="z-50 outline-none" sideOffset={4}>
         <BaseTooltip.Popup
           className={cn(
-            "mc-tex-tooltip px-4 py-4",
+            "mc-tex-tooltip p-4",
             "font-mc mc-text text-mc-text-main mc-text-shadow",
             className,
           )}

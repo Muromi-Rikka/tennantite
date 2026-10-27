@@ -9,12 +9,12 @@ describe("craftingScreen", () => {
   it("渲染 9 合成格 + 1 产物 + 27 主背包 + 9 快捷栏", () => {
     const { container } = render(<CraftingScreen />);
     expect(
-      container.querySelectorAll('[aria-label^="craft-"]:not([aria-label^="craft-result"])')
+      container.querySelectorAll("[aria-label^=\"craft-\"]:not([aria-label^=\"craft-result\"])")
         .length,
     ).toBe(9);
-    expect(container.querySelectorAll('[aria-label="craft-result-0"]').length).toBe(1);
-    expect(container.querySelectorAll('[aria-label^="main-"]').length).toBe(27);
-    expect(container.querySelectorAll('[aria-label^="hotbar-"]').length).toBe(9);
+    expect(container.querySelectorAll("[aria-label=\"craft-result-0\"]").length).toBe(1);
+    expect(container.querySelectorAll("[aria-label^=\"main-\"]").length).toBe(27);
+    expect(container.querySelectorAll("[aria-label^=\"hotbar-\"]").length).toBe(9);
   });
 
   it("onSlotClick 携带区域与索引", async () => {

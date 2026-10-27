@@ -12,14 +12,14 @@ const fillVariantClasses = {
   default: "mc-tex-xp-fill",
 } as const;
 
-export type ProgressVariant = keyof typeof trackVariantClasses;
-
 export type ProgressProps = {
   /**
   * 填充变体：default 经验条（182×5 亮绿）/ boss Boss 条（182×5 粉紫）
   */
   variant?: ProgressVariant;
 } & ComponentProps<typeof BaseProgress.Root>;
+
+export type ProgressVariant = keyof typeof trackVariantClasses;
 
 /**
  * MC 进度条（规格 §4 #10）：原版 5 GUI px 高，纹理按 182 GUI px 定宽裁剪，不缩放。

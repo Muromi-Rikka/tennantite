@@ -10,15 +10,15 @@ export function ButtonDemo() {
 
   return (
     <div className="flex flex-wrap items-center gap-4">
-      <Button onClick={() => setCount(c => c + 1)} className="w-100">
+      <Button className="w-100" onClick={() => setCount(c => c + 1)}>
         默认（已点
         {count}
         {" "}
         次）
       </Button>
-      <Button variant="success" className="w-100">Success</Button>
-      <Button variant="ghost" className="w-60">Ghost</Button>
-      <Button disabled className="w-100">Disabled</Button>
+      <Button className="w-100" variant="success">Success</Button>
+      <Button className="w-60" variant="ghost">Ghost</Button>
+      <Button className="w-100" disabled>Disabled</Button>
     </div>
   );
 }

@@ -1,5 +1,5 @@
-import { Progress } from "../../../primitives/progress/index";
 import { cn } from "../../../lib/utils";
+import { Progress } from "../../../primitives/progress/index";
 
 export interface ExperienceBarProps {
   className?: string;

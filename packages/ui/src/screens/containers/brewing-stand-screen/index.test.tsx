@@ -9,9 +9,9 @@ describe("brewingStandScreen", () => {
     const { container } = render(
       <BrewingStandScreen bottles={[{}, {}, {}]} ingredient={{}} />,
     );
-    expect(container.querySelectorAll('[aria-label^="brewing-"]').length).toBe(5);
-    expect(container.querySelectorAll('[aria-label^="main-"]').length).toBe(27);
-    expect(container.querySelectorAll('[aria-label^="hotbar-"]').length).toBe(9);
+    expect(container.querySelectorAll("[aria-label^=\"brewing-\"]").length).toBe(5);
+    expect(container.querySelectorAll("[aria-label^=\"main-\"]").length).toBe(27);
+    expect(container.querySelectorAll("[aria-label^=\"hotbar-\"]").length).toBe(9);
   });
 
   it("酿造进度反映传入值", () => {

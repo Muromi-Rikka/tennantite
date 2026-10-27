@@ -10,9 +10,9 @@ describe("anvilScreen", () => {
     const { container } = render(
       <AnvilScreen item={{}} material={{}} result={{}} />,
     );
-    expect(container.querySelectorAll('[aria-label^="anvil-"]').length).toBe(3);
-    expect(container.querySelectorAll('[aria-label^="main-"]').length).toBe(27);
-    expect(container.querySelectorAll('[aria-label^="hotbar-"]').length).toBe(9);
+    expect(container.querySelectorAll("[aria-label^=\"anvil-\"]").length).toBe(3);
+    expect(container.querySelectorAll("[aria-label^=\"main-\"]").length).toBe(27);
+    expect(container.querySelectorAll("[aria-label^=\"hotbar-\"]").length).toBe(9);
     expect(screen.getByLabelText("物品名称")).toBeInTheDocument();
   });
 

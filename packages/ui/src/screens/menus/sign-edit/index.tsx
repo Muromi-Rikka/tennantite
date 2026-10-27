@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key -- 告示牌行号是固定 1..4 的字段身份 */
 import { Panel } from "../../../containers/panel/index";
 import { TitleBar } from "../../../containers/title-bar/index";
 import { cn } from "../../../lib/utils";

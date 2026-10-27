@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key -- 生命图标按固定槽位排列，位置即身份 */
 import { Icon } from "../../../containers/icon/index";
 
 export interface HealthHungerBarProps {

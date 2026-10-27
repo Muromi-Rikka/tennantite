@@ -1,7 +1,8 @@
+/* eslint-disable react/no-array-index-key -- 交易列表以位置为身份，选择态按索引保存 */
 "use client";
 
-import { useState } from "react";
 import type { ReactNode } from "react";
+import { useState } from "react";
 
 import type { ScreenSlot } from "../types";
 import { ItemStack } from "../../../containers/item-stack/index";
@@ -75,10 +76,12 @@ export function TradingScreen({
               selectTrade(index);
             }}
             onKeyDown={(event) => {
-              if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                selectTrade(index);
+              if (!(event.key === "Enter" || event.key === " ")) {
+                return;
               }
+
+              event.preventDefault();
+              selectTrade(index);
             }}
             role="button"
             tabIndex={0}

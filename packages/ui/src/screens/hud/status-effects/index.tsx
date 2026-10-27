@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key -- 状态效果是固定顺序的纵向列表 */
 import type { PixelIconName } from "@verdigris/textures";
 import { Icon } from "../../../containers/icon/index";
 import { Slot } from "../../../containers/slot/index";

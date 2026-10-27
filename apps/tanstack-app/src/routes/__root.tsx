@@ -18,6 +18,7 @@ export const Route = createRootRoute({
   }),
 });
 
+// eslint-disable-next-line react-refresh/only-export-components -- TanStack Router 要求 Route 与根组件同文件注册。
 function RootComponent() {
   return (
     <html lang="zh-CN">

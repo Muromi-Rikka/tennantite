@@ -17,9 +17,9 @@ describe("tradingScreen", () => {
     );
     expect(screen.getByLabelText("交易 1")).toBeInTheDocument();
     expect(screen.getByLabelText("交易 2")).toBeInTheDocument();
-    expect(container.querySelectorAll('[aria-label^="trade-"]').length).toBe(3);
-    expect(container.querySelectorAll('[aria-label^="main-"]').length).toBe(27);
-    expect(container.querySelectorAll('[aria-label^="hotbar-"]').length).toBe(9);
+    expect(container.querySelectorAll("[aria-label^=\"trade-\"]").length).toBe(3);
+    expect(container.querySelectorAll("[aria-label^=\"main-\"]").length).toBe(27);
+    expect(container.querySelectorAll("[aria-label^=\"hotbar-\"]").length).toBe(9);
   });
 
   it("交易点击回调携带索引并切换价签槽内容", async () => {

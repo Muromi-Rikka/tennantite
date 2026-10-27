@@ -8,14 +8,14 @@ import { ChestScreen } from "./index";
 describe("chestScreen", () => {
   it("单箱渲染 27 容器槽 + 玩家背包 27+9", () => {
     const { container } = render(<ChestScreen />);
-    expect(container.querySelectorAll('[aria-label^="chest-"]').length).toBe(27);
-    expect(container.querySelectorAll('[aria-label^="main-"]').length).toBe(27);
-    expect(container.querySelectorAll('[aria-label^="hotbar-"]').length).toBe(9);
+    expect(container.querySelectorAll("[aria-label^=\"chest-\"]").length).toBe(27);
+    expect(container.querySelectorAll("[aria-label^=\"main-\"]").length).toBe(27);
+    expect(container.querySelectorAll("[aria-label^=\"hotbar-\"]").length).toBe(9);
   });
 
   it("大箱渲染 54 容器槽", () => {
     const { container } = render(<ChestScreen rows={6} />);
-    expect(container.querySelectorAll('[aria-label^="chest-"]').length).toBe(54);
+    expect(container.querySelectorAll("[aria-label^=\"chest-\"]").length).toBe(54);
   });
 
   it("onSlotClick 携带区域与索引", async () => {

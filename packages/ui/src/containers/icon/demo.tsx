@@ -11,7 +11,7 @@ export function IconDemo() {
       <Icon name="creeper-face" size={32} />
       <Icon name="diamond" />
       <Icon name="sword" size={24} />
-      <Icon className="border-[length:var(--mc-gui)] border-black" name="stone-block" size={32} />
+      <Icon className="border-(length:--mc-gui) border-black" name="stone-block" size={32} />
     </div>
   );
 }

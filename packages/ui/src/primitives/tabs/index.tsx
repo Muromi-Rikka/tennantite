@@ -2,14 +2,14 @@ import type { ComponentProps } from "react";
 import { Tabs as BaseTabs } from "@base-ui/react/tabs";
 import { cn } from "../../lib/utils";
 
-export type TabsProps = ComponentProps<typeof BaseTabs.Root>;
-
 export interface TabsPanelProps extends ComponentProps<typeof BaseTabs.Panel> {
   /**
   * panel 自带窗口面板纹理 / plain 无纹理无内边距（嵌在已有面板内时用）
   */
   variant?: "panel" | "plain";
 }
+
+export type TabsProps = ComponentProps<typeof BaseTabs.Root>;
 
 /**
  * MC 标签页（规格 §4 #8）：用于配方书 / 设置分页。原版标签页 24 GUI px 高。

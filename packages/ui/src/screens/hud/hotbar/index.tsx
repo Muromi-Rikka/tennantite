@@ -1,6 +1,6 @@
 import type { PixelIconName } from "@verdigris/textures";
-import { cn, gui } from "../../../lib/utils";
 import { ItemStack } from "../../../containers/item-stack/index";
+import { cn, gui } from "../../../lib/utils";
 
 export interface HotbarItem {
   count?: number;
@@ -22,7 +22,9 @@ export interface HotbarProps {
 }
 
 const SLOT_COUNT = 9;
-/** 原版：热键栏 182×22，槽位 20×20，步进 20，首槽左上角 (1,1) */
+/**
+ * 原版：热键栏 182×22，槽位 20×20，步进 20，首槽左上角 (1,1)
+*/
 const SLOT_SIZE = 20;
 const SLOT_STEP = 20;
 const FRAME_INSET = 1;

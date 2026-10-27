@@ -10,9 +10,9 @@ describe("furnaceScreen", () => {
     const { container } = render(
       <FurnaceScreen fuel={{ count: 3 }} input={{}} output={{ count: 2 }} />,
     );
-    expect(container.querySelectorAll('[aria-label^="furnace-"]').length).toBe(3);
-    expect(container.querySelectorAll('[aria-label^="main-"]').length).toBe(27);
-    expect(container.querySelectorAll('[aria-label^="hotbar-"]').length).toBe(9);
+    expect(container.querySelectorAll("[aria-label^=\"furnace-\"]").length).toBe(3);
+    expect(container.querySelectorAll("[aria-label^=\"main-\"]").length).toBe(27);
+    expect(container.querySelectorAll("[aria-label^=\"hotbar-\"]").length).toBe(9);
   });
 
   it("火焰与箭头进度反映传入值", () => {

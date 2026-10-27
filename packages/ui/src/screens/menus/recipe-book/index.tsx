@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key -- 配方格是固定 9 列网格，位置即槽位 */
 import type { PixelIconName } from "@verdigris/textures";
 import { Grid } from "../../../containers/grid/index";
 import { Icon } from "../../../containers/icon/index";
