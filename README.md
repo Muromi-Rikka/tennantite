@@ -43,7 +43,7 @@ import "@verdigris/ui/css/scroll-area.css";
 
 ```
 apps/
-  playground/     # 组件开发预览（rsbuild，78 个组件 + GUI parity 页）
+  playground/     # 组件开发预览（rsbuild，60 个组件 + GUI parity 页）
   next-app/       # SSR 验证：Next.js 16 App Router（pnpm --filter @verdigris/next-app dev）
   tanstack-app/   # SSR 验证：TanStack Start 1.169（pnpm --filter @verdigris/tanstack-app dev）
 packages/
@@ -60,7 +60,7 @@ spec/             # 规格文档
 - **L2 容器（10）**：GuiSprite · Panel · ScreenPanel · Slot / Grid · ItemStack · PlayerInventory · Icon · Card · TitleBar · Divider
 - **L3 HUD（9）**：HealthHungerBar · ExperienceBar · Hotbar · Crosshair · StatusEffects · BossBar · AttackIndicator · JumpBar · LocatorBar
 - **L3 容器界面（24）**：InventoryScreen · ChestScreen · CraftingScreen · FurnaceScreen · BlastFurnaceScreen · SmokerScreen · BrewingStandScreen · EnchantingScreen · BeaconScreen · AnvilScreen · TradingScreen · ShulkerBoxScreen · HopperScreen · DispenserScreen · HorseScreen · CartographyTableScreen · GrindstoneScreen · LoomScreen · SmithingScreen · StonecutterScreen · CrafterScreen · NautilusScreen · CreativeInventoryScreen · GamemodeSwitcher
-- **L3 菜单界面（20）****：MainMenu · PauseMenu · SettingsScreen · MultiplayerScreen · WorldListScreen · LanguageScreen · AdvancementsScreen · RecipeBook · ChatScreen · SignEdit · DeathScreen · Toast / ToastStack · NotificationBadge · BookScreen · StatisticsScreen · SocialInteractionsScreen · SpectatorMenu · RealmsScreen · FriendsScreen · PlayerList · MenuBackground
+- **L3 菜单界面（3）**：MainMenu · ChatScreen · Toast / ToastStack / NotificationBadge
 
 ## SSR / RSC
 

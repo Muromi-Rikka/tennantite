@@ -12,7 +12,7 @@ import Callout from "@/components/docs/Callout.astro";
 
 Verdigris 把 Minecraft 的 GUI 语言拆成可复制的 React 源码。它同时提供两条通道：npm 包与源码目录。组件基于 Base UI 与 Tailwind CSS v4，默认由设计令牌驱动。
 
-48 个组件覆盖四个层级：13 个原语、10 个容器、6 个 HUD 状态层、19 个整屏界面。整屏不是黑盒，而是由小部件拼装出来的组合示例。
+60 个组件覆盖四个层级：13 个原语、11 个容器、9 个 HUD 状态层、27 个整屏界面。整屏不是黑盒，而是由小部件拼装出来的组合示例。
 
 <Callout title="三条使用约定">
 源码可改：每个组件都是独立目录；数据注入：界面只接收数据与回调；令牌覆盖：颜色、字体、间距、阴影都可在 `@theme` 中重写。
@@ -32,8 +32,8 @@ Verdigris 把 Minecraft 的 GUI 语言拆成可复制的 React 源码。它同�
 | --- | --- | --- |
 | L0 | `@verdigris/tokens` / `@verdigris/textures` | 2 个包 |
 | L1 | 原语：Button、Input、Slider、Tabs… | 13 |
-| L2 | 容器：Panel、Grid、Slot、ScreenPanel… | 10 |
-| L3 | HUD 与整屏界面 | 25 |
+| L2 | 容器：Panel、Grid、Slot、ScreenPanel… | 11 |
+| L3 | HUD 与整屏界面 | 36 |
 
 完整说明见 [组件分层](/docs/layers/)；按组件浏览见 [Components](/components/)。
 

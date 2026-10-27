@@ -1,11 +1,9 @@
 import type { ScreenItem } from "@verdigris/ui";
 
 import {
-  AdvancementsScreen,
   AnvilScreen,
   BeaconScreen,
   BlastFurnaceScreen,
-  BookScreen,
   BossBar,
   BrewingStandScreen,
   CartographyTableScreen,
@@ -17,7 +15,6 @@ import {
   DispenserScreen,
   EnchantingScreen,
   ExperienceBar,
-  FriendsScreen,
   FurnaceScreen,
   GamemodeSwitcher,
   GrindstoneScreen,
@@ -27,27 +24,16 @@ import {
   Hotbar,
   InventoryScreen,
   JumpBar,
-  LanguageScreen,
   LoomScreen,
   MainMenu,
-  MultiplayerScreen,
   NautilusScreen,
-  PlayerList,
-  RealmsScreen,
-  RecipeBook,
-  SettingsScreen,
   ShulkerBoxScreen,
-  SignEdit,
   SmithingScreen,
   SmokerScreen,
-  SocialInteractionsScreen,
-  SpectatorMenu,
-  StatisticsScreen,
   StatusEffects,
   StonecutterScreen,
   Toast,
   TradingScreen,
-  WorldListScreen,
 } from "@verdigris/ui";
 
 const item: ScreenItem = { count: 1, icon: "diamond" };
@@ -186,50 +172,8 @@ export function GuiParityPage() {
         <Frame label="Main menu">
           <MainMenu />
         </Frame>
-        <Frame label="Settings">
-          <SettingsScreen />
-        </Frame>
-        <Frame label="Multiplayer">
-          <MultiplayerScreen servers={[{ address: "mc.example.net", name: "Example" }]} />
-        </Frame>
-        <Frame label="Language">
-          <LanguageScreen />
-        </Frame>
-        <Frame label="Recipe book">
-          <RecipeBook categories={[{ name: "建筑", recipes: [{ output: { icon: "stone-block" }, unlocked: true }, { unlocked: false }] }]} />
-        </Frame>
-        <Frame label="Advancements">
-          <AdvancementsScreen categories={[{ name: "minecraft", nodes: [{ done: true, icon: "stone-block", name: "Stone Age" }] }]} />
-        </Frame>
-        <Frame label="Sign edit">
-          <SignEdit />
-        </Frame>
-        <Frame label="Book">
-          <BookScreen pages={["Left page", "Right page"]} />
-        </Frame>
         <Frame label="Toast">
           <Toast description="Recipe unlocked" icon="sprites/toast/recipe_book.png" title="New Recipe" />
-        </Frame>
-        <Frame label="Statistics">
-          <StatisticsScreen groups={[{ name: "General", rows: [{ label: "Blocks mined", value: 42 }] }]} />
-        </Frame>
-        <Frame label="Social">
-          <SocialInteractionsScreen players={[{ name: "Steve" }]} />
-        </Frame>
-        <Frame label="Spectator">
-          <SpectatorMenu />
-        </Frame>
-        <Frame label="Realms">
-          <RealmsScreen realms={[{ name: "My Realm", status: "open" }]} />
-        </Frame>
-        <Frame label="Friends">
-          <FriendsScreen friends={[{ name: "Alex" }]} />
-        </Frame>
-        <Frame label="World list">
-          <WorldListScreen worlds={[{ name: "World 1" }]} />
-        </Frame>
-        <Frame label="Player list">
-          <PlayerList players={[{ name: "Steve", operator: true }]} />
         </Frame>
       </div>
     </div>
