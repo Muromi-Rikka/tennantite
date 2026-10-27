@@ -2,7 +2,6 @@
 import { Icon } from "@verdigris/ui";
 import InstallCommand from "@/components/docs/InstallCommand.astro";
 import PrimitiveStrip from "@/components/home/primitive-strip";
-import Demo from "@/components/preview/demo";
 import ScaledPreview from "@/components/preview/ScaledPreview.astro";
 import LinkButton from "@/components/site/LinkButton.astro";
 import type { Locale } from "@/i18n";
@@ -27,17 +26,17 @@ const installCommand = "pnpm add @verdigris/ui @verdigris/tokens @verdigris/text
   jsonLd={[softwareApplication(site, locale)]}
 >
   <section class="border-b border-site-border">
-    <div class="mx-auto grid max-w-[1120px] gap-32 px-12 py-40 lg:grid-cols-[1.1fr_0.9fr]">
+    <div class="mx-auto grid max-w-[1440px] gap-16 px-12 py-40 lg:grid-cols-[1.1fr_0.9fr] lg:gap-32">
       <div class="flex flex-col items-start">
         <div class="flex items-center gap-4 text-xs text-site-muted">
           <span class="border border-mc-gold/60 px-4 py-1 text-mc-gold">v0.1.0</span>
           <span>{fill(home.hero.counts, { blocks: blocks.length, components: components.length })}</span>
         </div>
-        <h1 class="mt-12 text-[40px] leading-[1.15] font-bold text-site-fg lg:text-[44px]">
+        <h1 class="mt-12 text-[27px] leading-[1.2] font-bold text-site-fg sm:text-[36px] lg:text-[45px] lg:leading-[1.15]">
           {home.hero.headingLine1}<br />
           {home.hero.headingLine2Prefix}<span class="mc-text-shadow text-mc-gold">{home.hero.headingHighlight}</span>{home.hero.headingSuffix}
         </h1>
-        <p class="mt-12 max-w-[560px] text-base leading-14 text-site-muted">
+        <p class="mt-12 max-w-[560px] text-[18px] leading-14 text-site-muted">
           {home.hero.description}
         </p>
         <div class="mt-16 flex flex-wrap gap-8">
@@ -49,11 +48,13 @@ const installCommand = "pnpm add @verdigris/ui @verdigris/tokens @verdigris/text
           <p class="mt-4 text-xs leading-10 text-site-muted">{home.hero.installNote}</p>
         </div>
       </div>
-      <figure class="border border-site-border bg-site-surface p-8 shadow-mc-2">
-        <div class="flex h-[360px] items-center justify-center overflow-hidden bg-[#1f1f1f]" inert aria-hidden="true">
-          <Demo client:load name="MainMenu" />
-        </div>
-        <figcaption class="mt-8 flex items-center justify-between text-xs text-site-muted">
+      <figure class="border border-site-border bg-site-surface shadow-mc-2">
+        <ScaledPreview
+          class="h-[220px] bg-[#1f1f1f] sm:h-[280px] lg:h-[300px] xl:h-[340px] 2xl:h-[360px]"
+          name="MainMenu"
+          scaleClass="scale-[0.4] sm:scale-[0.55] lg:scale-[0.5] xl:scale-[0.64] 2xl:scale-[0.7]"
+        />
+        <figcaption class="flex items-center justify-between border-t border-site-border px-8 py-6 text-xs text-site-muted">
           <span>{home.hero.previewLabel}</span>
           <a class="text-site-fg hover:text-mc-gold" href={localeHref(locale, "/blocks/main-menu/")}>{home.hero.view}</a>
         </figcaption>
@@ -61,23 +62,23 @@ const installCommand = "pnpm add @verdigris/ui @verdigris/tokens @verdigris/text
     </div>
   </section>
 
-  <section class="mx-auto max-w-[1120px] px-12 py-32">
-    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+  <section class="mx-auto max-w-[1440px] px-12 py-32">
+    <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
       {home.features.map(feature => (
         <div class="border border-site-border bg-site-surface p-12">
           <Icon name={feature.icon} size={12} />
-          <h2 class="mt-8 text-base font-bold text-site-fg">{feature.title}</h2>
+          <h2 class="mt-8 text-[18px] font-bold text-site-fg">{feature.title}</h2>
           <p class="mt-4 text-sm leading-12 text-site-muted">{feature.body}</p>
         </div>
       ))}
     </div>
   </section>
 
-  <section class="mx-auto max-w-[1120px] px-12 py-32">
+  <section class="mx-auto max-w-[1440px] px-12 py-32">
     <div class="grid gap-24 lg:grid-cols-[0.8fr_1.2fr]">
-      <div>
+      <div class="min-w-0">
         <p class="text-xs uppercase tracking-wider text-site-muted">{home.primitives.eyebrow}</p>
-        <h2 class="mt-4 text-2xl font-bold text-site-fg">{home.primitives.title}</h2>
+        <h2 class="mt-4 text-[27px] font-bold text-site-fg">{home.primitives.title}</h2>
         <p class="mt-8 text-sm leading-12 text-site-muted">
           {home.primitives.description}
         </p>
@@ -86,17 +87,17 @@ const installCommand = "pnpm add @verdigris/ui @verdigris/tokens @verdigris/text
           <LinkButton href={localeHref(locale, "/components/")}>{fill(home.primitives.all, { count: components.length })}</LinkButton>
         </div>
       </div>
-      <div class="border border-site-border bg-site-surface p-16">
+      <div class="min-w-0 border border-site-border bg-site-surface p-12">
         <PrimitiveStrip client:visible />
       </div>
     </div>
   </section>
 
-  <section class="mx-auto max-w-[1120px] px-12 py-32">
+  <section class="mx-auto max-w-[1440px] px-12 py-32">
     <div class="flex flex-wrap items-end justify-between gap-8">
       <div>
         <p class="text-xs uppercase tracking-wider text-site-muted">{home.blocks.eyebrow}</p>
-        <h2 class="mt-4 text-2xl font-bold text-site-fg">{home.blocks.title}</h2>
+        <h2 class="mt-4 text-[27px] font-bold text-site-fg">{home.blocks.title}</h2>
         <p class="mt-4 max-w-[640px] text-sm leading-12 text-site-muted">
           {home.blocks.description}
         </p>
@@ -105,14 +106,14 @@ const installCommand = "pnpm add @verdigris/ui @verdigris/tokens @verdigris/text
     </div>
     <div class="mt-16 grid gap-16 md:grid-cols-2">
       <a href={localeHref(locale, "/blocks/inventory-screen/")} class="group block border border-site-border bg-site-surface hover:border-site-fg/40">
-        <ScaledPreview class="h-[340px] bg-[#0d0d0d]" name="InventoryScreen" scaleClass="scale-[0.7] sm:scale-[0.8]" />
+        <ScaledPreview class="h-[340px] bg-[#0d0d0d] lg:h-[380px]" name="InventoryScreen" scaleClass="scale-[0.7] sm:scale-[0.8] lg:scale-[0.9]" />
         <div class="flex items-center justify-between border-t border-site-border px-8 py-6 text-sm">
           <span class="text-site-fg group-hover:text-site-accent">InventoryScreen</span>
           <span class="text-xs text-site-muted">{home.blocks.inventory}</span>
         </div>
       </a>
       <a href={localeHref(locale, "/blocks/crafting-screen/")} class="group block border border-site-border bg-site-surface hover:border-site-fg/40">
-        <ScaledPreview class="h-[340px] bg-[#0d0d0d]" name="CraftingScreen" scaleClass="scale-[0.7] sm:scale-[0.8]" />
+        <ScaledPreview class="h-[340px] bg-[#0d0d0d] lg:h-[380px]" name="CraftingScreen" scaleClass="scale-[0.7] sm:scale-[0.8] lg:scale-[0.9]" />
         <div class="flex items-center justify-between border-t border-site-border px-8 py-6 text-sm">
           <span class="text-site-fg group-hover:text-site-accent">CraftingScreen</span>
           <span class="text-xs text-site-muted">{home.blocks.crafting}</span>
@@ -121,9 +122,9 @@ const installCommand = "pnpm add @verdigris/ui @verdigris/tokens @verdigris/text
     </div>
   </section>
 
-  <section class="mx-auto max-w-[1120px] px-12 py-40">
+  <section class="mx-auto max-w-[1440px] px-12 py-32">
     <div class="border border-site-border bg-site-surface p-24 text-center shadow-mc-2">
-      <h2 class="text-3xl font-bold text-site-fg">{home.cta.title}</h2>
+      <h2 class="text-[36px] font-bold text-site-fg">{home.cta.title}</h2>
       <p class="mx-auto mt-8 max-w-[560px] text-sm leading-12 text-site-muted">
         {home.cta.description}
       </p>

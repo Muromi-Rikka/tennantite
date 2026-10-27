@@ -370,7 +370,7 @@ const en: UIDictionary = {
   },
   componentsPage: {
     breadcrumb: "Components",
-    description: "48 copy-ready components grouped by layer. Every page includes a live preview and example source.",
+    description: "60 copy-ready components grouped by layer. Every page includes a live preview and example source.",
     metaTitle: "Components · Verdigris",
     title: "Components",
   },

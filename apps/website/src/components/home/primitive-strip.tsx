@@ -32,9 +32,9 @@ export function PrimitiveStrip() {
 
 function Labeled({ children, label }: { children: ReactNode; label: string }) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex min-w-0 flex-col gap-4">
       <span className="text-site-muted text-xs tracking-wider uppercase">{label}</span>
-      <div className="flex flex-wrap items-center gap-4">{children}</div>
+      <div className="flex min-w-0 flex-wrap items-center gap-4">{children}</div>
     </div>
   );
 }
