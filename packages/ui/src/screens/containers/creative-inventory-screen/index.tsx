@@ -27,6 +27,12 @@ export interface CreativeTab {
 
 const TOP_TABS = 7;
 const BOTTOM_TABS = 7;
+const TAB_WIDTH = 26;
+const TAB_HEIGHT = 32;
+const TAB_PITCH = 27;
+const PANEL_WIDTH = 195;
+const TAB_TOP = 4;
+const TAB_BOTTOM = 164;
 
 /**
  * 创造模式物品栏（规格 §6）：195×196，上下各 7 个 26×32 标签 + 9×5 物品网格。
@@ -40,57 +46,63 @@ export function CreativeInventoryScreen({
   title,
 }: CreativeInventoryScreenProps) {
   const slots = padSlots(items, 45);
+  const selectedIndex = tabs.findIndex(tab => tab.id === activeTab);
+
+  function renderTab(column: number, isTop: boolean, isSelected: boolean) {
+    const index = isTop ? column : column + TOP_TABS;
+    const tab = tabs[index];
+    return (
+      <button
+        aria-label={tab?.label ?? `标签 ${index + 1}`}
+        aria-pressed={isSelected}
+        className="absolute cursor-pointer border-0 bg-transparent p-0"
+        key={`${isTop ? "top" : "bottom"}-${column}`}
+        onClick={() => tab && onTabSelect?.(tab.id)}
+        style={{
+          height: gui(TAB_HEIGHT),
+          left: gui(tabLeft(column)),
+          top: gui(isTop ? TAB_TOP : TAB_BOTTOM),
+          width: gui(TAB_WIDTH),
+        }}
+        type="button"
+      >
+        <GuiSprite
+          height={TAB_HEIGHT}
+          name={`sprites/container/creative_inventory/tab_${isTop ? "top" : "bottom"}_${isSelected ? "selected" : "unselected"}_${column + 1}.png` as GuiSpriteName}
+          width={TAB_WIDTH}
+        />
+        {tab?.icon
+          ? (
+              <ItemStack
+                bare
+                className="pointer-events-none absolute"
+                count={tab.icon.count}
+                icon={tab.icon.icon}
+                size={16}
+                src={tab.icon.src}
+                style={{ left: gui(5), top: gui(isTop ? 9 : 7) }}
+              />
+            )
+          : null}
+      </button>
+    );
+  }
+
   return (
     <ScreenPanel className={className} height={196} title={title} width={195}>
+      {Array.from({ length: TOP_TABS }, (_, column) =>
+        selectedIndex === column ? null : renderTab(column, true, false))}
+      {Array.from({ length: BOTTOM_TABS }, (_, column) =>
+        selectedIndex === column + TOP_TABS ? null : renderTab(column, false, false))}
       <GuiSprite
-        className="absolute"
+        className="pointer-events-none absolute"
         height={136}
         name="container/creative_inventory/tab_items.png"
+        src={{ height: 136, width: 195, x: 0, y: 0 }}
         style={{ left: 0, top: gui(32) }}
         width={195}
       />
-      {Array.from({ length: TOP_TABS }, (_, index) => {
-        const tab = tabs[index];
-        const selected = tab && tab.id === activeTab;
-        return (
-          <button
-            aria-label={tab?.label ?? `标签 ${index + 1}`}
-            aria-pressed={selected}
-            className="absolute cursor-pointer border-0 bg-transparent p-0"
-            key={`top-${index}`}
-            onClick={() => tab && onTabSelect?.(tab.id)}
-            style={{ height: gui(32), left: gui(index * 27), top: gui(selected ? 0 : 4), width: gui(26) }}
-            type="button"
-          >
-            <GuiSprite
-              height={32}
-              name={`sprites/container/creative_inventory/tab_top_${selected ? "selected" : "unselected"}_${index + 1}.png` as GuiSpriteName}
-              width={26}
-            />
-          </button>
-        );
-      })}
-      {Array.from({ length: BOTTOM_TABS }, (_, index) => {
-        const tab = tabs[index + TOP_TABS];
-        const selected = tab && tab.id === activeTab;
-        return (
-          <button
-            aria-label={tab?.label ?? `标签 ${index + 8}`}
-            aria-pressed={selected}
-            className="absolute cursor-pointer border-0 bg-transparent p-0"
-            key={`bottom-${index}`}
-            onClick={() => tab && onTabSelect?.(tab.id)}
-            style={{ height: gui(32), left: gui(index * 27), top: gui(164), width: gui(26) }}
-            type="button"
-          >
-            <GuiSprite
-              height={32}
-              name={`sprites/container/creative_inventory/tab_bottom_${selected ? "selected" : "unselected"}_${index + 1}.png` as GuiSpriteName}
-              width={26}
-            />
-          </button>
-        );
-      })}
+      {selectedIndex === -1 ? null : renderTab(selectedIndex % TOP_TABS, selectedIndex < TOP_TABS, true)}
       <GuiSprite
         className="absolute"
         height={15}
@@ -106,7 +118,7 @@ export function CreativeInventoryScreen({
           key={index}
           size={18}
           style={{
-            left: gui(9 + (index % 9) * 18),
+            left: gui(8 + (index % 9) * 18),
             top: gui(49 + Math.floor(index / 9) * 18),
           }}
         >
@@ -115,4 +127,13 @@ export function CreativeInventoryScreen({
       ))}
     </ScreenPanel>
   );
+}
+
+/**
+ * 原版 `CreativeModeTabs.getTabX`：第 5/6 列（index 5/6）靠右对齐。
+ */
+function tabLeft(column: number): number {
+  return column >= 5
+    ? PANEL_WIDTH - TAB_PITCH * (7 - column) + 1
+    : column * TAB_PITCH;
 }

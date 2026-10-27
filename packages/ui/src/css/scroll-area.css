@@ -4,8 +4,7 @@
  */
 
 .mc-scroll {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-mc-scroller, #c0c0c0) #000000;
+  overflow: auto;
 }
 
 .mc-scroll::-webkit-scrollbar {
@@ -39,4 +38,15 @@
 
 .mc-scroll::-webkit-scrollbar-corner {
   background-color: transparent;
+}
+
+/*
+ * 不要在主规则里写 scrollbar-width / scrollbar-color：
+ * Chromium 在标准属性生效时会忽略 ::-webkit-scrollbar，原版精灵不会渲染。
+ */
+@supports not selector(::-webkit-scrollbar) {
+  .mc-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-mc-scroller, #c0c0c0) #000000;
+  }
 }

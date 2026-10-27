@@ -158,12 +158,14 @@ function hexAt(image, x, y) {
     .join("");
 }
 
+const SLOT_BORDER_COLORS = new Set(["373737ff", "383838ff"]);
+
 function isSlot(image, x, y, size) {
   const border = size - 1;
   if (x + size > image.width || y + size > image.height)
     return false;
   for (let i = 0; i < border; i += 1) {
-    if ((hexAt(image, x + i, y) !== "373737ff") || (hexAt(image, x, y + i) !== "373737ff") || (hexAt(image, x + 1 + i, y + border) !== "ffffffff") || (hexAt(image, x + border, y + 1 + i) !== "ffffffff"))
+    if (!SLOT_BORDER_COLORS.has(hexAt(image, x + i, y)) || !SLOT_BORDER_COLORS.has(hexAt(image, x, y + i)) || (hexAt(image, x + 1 + i, y + border) !== "ffffffff") || (hexAt(image, x + border, y + 1 + i) !== "ffffffff"))
       return false;
   }
   return hexAt(image, x + 2, y + 2) === "8b8b8bff";
@@ -195,19 +197,11 @@ const containers = manifest.textures
   .filter(texture => texture.category === "gui" && /^container\/[^/]+\.png$/.test(texture.path))
   .sort((a, b) => a.path.localeCompare(b.path));
 
-const SLOT_OVERRIDES = {
-  "container/crafter.png": [
-    [26, 19],
-    [44, 19],
-    [62, 19],
-    [26, 37],
-    [44, 37],
-    [62, 37],
-    [26, 55],
-    [44, 55],
-    [62, 55],
-  ],
+const SLOT_18_OVERRIDES = {
   "container/horse.png": [[7, 17], [7, 35]],
+};
+const SLOT_26_OVERRIDES = {
+  "container/crafter.png": [[129, 30]],
 };
 
 const entries = [];
@@ -218,12 +212,16 @@ for (const texture of containers) {
   const buffer = Buffer.from(await response.arrayBuffer());
   const image = decodePng(buffer);
   const { slots18, slots26 } = scan(image);
-  for (const slot of SLOT_OVERRIDES[texture.path] ?? []) {
-    if (slots18.every(([x, y]) => !(x === slot[0] && y === slot[1]))) {
-      slots18.unshift(slot);
-    }
+  for (const [x, y] of SLOT_18_OVERRIDES[texture.path] ?? []) {
+    if (slots18.every(([slotX, slotY]) => slotX !== x || slotY !== y))
+      slots18.push([x, y]);
+  }
+  for (const [x, y] of SLOT_26_OVERRIDES[texture.path] ?? []) {
+    if (slots26.every(([slotX, slotY]) => slotX !== x || slotY !== y))
+      slots26.push([x, y]);
   }
   slots18.sort((a, b) => a[1] - b[1] || a[0] - b[0]);
+  slots26.sort((a, b) => a[1] - b[1] || a[0] - b[0]);
   entries.push({ path: texture.path, slots18, slots26 });
 }
 

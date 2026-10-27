@@ -331,7 +331,16 @@ L0 基础素材    Design Tokens · 像素字体 · 像素纹理 · 渲染基调
 | `ChatScreen` / `SignEdit` | Input + ScrollArea + Tooltip          | 聊天 / 告示牌 |
 | `DeathScreen`             | Dialog + 文案 + Button                  | 死亡界面     |
 
+### 6.4 原版 GUI 对齐不变量
 
+容器界面坐标系以原版 `container/*.png` 的 **18×18 槽框左上角**为准，而不是原版 `Slot.x/y`（物品坐标）：
+
+- 18 槽：物品 = 槽框 + 1；26 槽：物品 = 槽框 + 5（居中）。`ScreenItemSlot` / `Slot` 的 `left/top` 一律传槽框左上角。
+- 槽位坐标必须来自 `@verdigris/textures` 的 `containerSlots`（由 `sync:gui-layouts` 扫描生成），或为界面新增一条与 `containerSlots` 对照的测试；不允许只按原版源码的 `Slot.x/y` 手抄。
+- 256×256 / 512×256 的 GUI sheet 必须用 `GuiSprite` 的 `src` 裁剪有效区域；`ScreenPanel` 的 `background` 已内置该行为，手工 `GuiSprite` 背景必须显式传 `src`，不能依赖 `100% 100%` 拉伸。
+- 选中态只切换 sprite / 颜色，不改变几何位置；需要与背景叠压时按原版绘制顺序（未选中标签 → 背景 → 选中标签）实现，而不是靠 y 偏移“挤进去”。
+- 像素箭头/指示器用整数矩形或台阶路径绘制，不使用 Unicode 字形（字体回退会改变宽度与基线）。
+- 不要在同一个元素上混用 `scrollbar-width` / `scrollbar-color` 与 `::-webkit-scrollbar`：Chromium 会忽略 webkit 伪元素样式，标准属性只放在 `@supports not selector(::-webkit-scrollbar)` 的 Firefox 回退里。
 
 ***
 

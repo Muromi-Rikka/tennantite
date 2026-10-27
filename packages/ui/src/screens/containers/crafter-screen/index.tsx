@@ -9,15 +9,15 @@ import { ScreenItemSlot } from "../screen-slot";
 import { padSlots } from "../types";
 
 const GRID_POSITIONS = [
-  [26, 19],
-  [44, 19],
-  [62, 19],
-  [26, 37],
-  [44, 37],
-  [62, 37],
-  [26, 55],
-  [44, 55],
-  [62, 55],
+  [25, 16],
+  [43, 16],
+  [61, 16],
+  [25, 34],
+  [43, 34],
+  [61, 34],
+  [25, 52],
+  [43, 52],
+  [61, 52],
 ] as const;
 
 export interface CrafterScreenProps {
@@ -95,10 +95,10 @@ export function CrafterScreen({
       <ScreenItemSlot
         item={output}
         label="crafter-output"
-        left={134}
+        left={129}
         onActivate={onSlotClick ? () => onSlotClick("output", 0) : undefined}
         size={26}
-        top={35}
+        top={30}
       />
       <PlayerInventory
         bare

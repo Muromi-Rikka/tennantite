@@ -21,18 +21,7 @@ export function SelectIcon({
 }: ComponentProps<typeof BaseSelect.Icon>) {
   return (
     <BaseSelect.Icon className={cn("flex items-center", className)} {...properties}>
-      {children ?? (
-        <svg
-          aria-hidden="true"
-          className="pixelated"
-          fill="#FFFFFF"
-          shapeRendering="crispEdges"
-          style={{ height: gui(4), width: gui(7) }}
-          viewBox="0 0 7 4"
-        >
-          <path d="M0 0h7L3 4z" />
-        </svg>
-      )}
+      {children ?? <PixelArrow direction="down" />}
     </BaseSelect.Icon>
   );
 }
@@ -54,7 +43,9 @@ export function SelectItem({
       {...properties}
     >
       <BaseSelect.ItemText>{children}</BaseSelect.ItemText>
-      <BaseSelect.ItemIndicator className="text-mc-gold">◄</BaseSelect.ItemIndicator>
+      <BaseSelect.ItemIndicator className="flex items-center text-mc-gold">
+        <PixelArrow direction="left" />
+      </BaseSelect.ItemIndicator>
     </BaseSelect.Item>
   );
 }
@@ -113,4 +104,40 @@ export function SelectValue({
   ...properties
 }: ComponentProps<typeof BaseSelect.Value>) {
   return <BaseSelect.Value className={cn("truncate", className)} {...properties} />;
+}
+
+function PixelArrow({ direction }: { direction: "down" | "left" }) {
+  const shadow = `drop-shadow(${gui(1)} ${gui(1)} 0 color-mix(in srgb, currentColor 25%, #000))`;
+  if (direction === "down") {
+    return (
+      <svg
+        aria-hidden="true"
+        className="block shrink-0"
+        fill="currentColor"
+        shapeRendering="crispEdges"
+        style={{ filter: shadow, height: gui(4), width: gui(7) }}
+        viewBox="0 0 7 4"
+      >
+        <rect height="1" width="7" />
+        <rect height="1" width="5" x="1" y="1" />
+        <rect height="1" width="3" x="2" y="2" />
+        <rect height="1" width="1" x="3" y="3" />
+      </svg>
+    );
+  }
+  return (
+    <svg
+      aria-hidden="true"
+      className="block shrink-0"
+      fill="currentColor"
+      shapeRendering="crispEdges"
+      style={{ filter: shadow, height: gui(7), width: gui(4) }}
+      viewBox="0 0 4 7"
+    >
+      <rect height="7" width="1" x="3" />
+      <rect height="5" width="1" x="2" y="1" />
+      <rect height="3" width="1" x="1" y="2" />
+      <rect height="1" width="1" x="0" y="3" />
+    </svg>
+  );
 }

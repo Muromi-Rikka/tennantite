@@ -32,6 +32,20 @@ describe("select", () => {
     expect(await screen.findByText("创造")).toBeInTheDocument();
   });
 
+  it("选中项与触发器都使用像素箭头", async () => {
+    const user = userEvent.setup();
+    const { container } = renderBasicSelect();
+
+    const icon = container.querySelector(":scope button[role=\"combobox\"] span[aria-hidden=\"true\"]");
+    expect(icon?.querySelector("svg")).not.toBeNull();
+    expect(icon?.textContent).toBe("");
+
+    await user.click(screen.getByRole("combobox", { name: "游戏模式" }));
+    const option = await screen.findByRole("option", { name: "生存" });
+    expect(option.querySelector("svg")).not.toBeNull();
+    expect(option.textContent).not.toContain("◄");
+  });
+
   it("选择选项后关闭并回调", async () => {
     const user = userEvent.setup();
     const onValueChange = vi.fn();
