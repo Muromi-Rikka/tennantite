@@ -6,11 +6,13 @@ import { AnvilScreenDemo } from "./demo";
 import { AnvilScreen } from "./index";
 
 describe("anvilScreen", () => {
-  it("渲染名称输入与 3 个槽位", () => {
+  it("渲染名称输入、3 个槽位与玩家背包", () => {
     const { container } = render(
       <AnvilScreen item={{}} material={{}} result={{}} />,
     );
-    expect(container.querySelectorAll(".mc-tex-slot[aria-label]").length).toBe(3);
+    expect(container.querySelectorAll('[aria-label^="anvil-"]').length).toBe(3);
+    expect(container.querySelectorAll('[aria-label^="main-"]').length).toBe(27);
+    expect(container.querySelectorAll('[aria-label^="hotbar-"]').length).toBe(9);
     expect(screen.getByLabelText("物品名称")).toBeInTheDocument();
   });
 

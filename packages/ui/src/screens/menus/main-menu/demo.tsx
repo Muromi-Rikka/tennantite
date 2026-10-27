@@ -6,6 +6,7 @@ import { MainMenu } from "./index";
 export function MainMenuDemo() {
   return (
     <MainMenu
+      className="h-120"
       actions={[
         { label: "单人游戏" },
         { label: "多人游戏" },

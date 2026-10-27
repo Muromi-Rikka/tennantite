@@ -6,7 +6,7 @@ import { cn } from "../../lib/utils";
 const badgeStyles = cva(
   [
     "mc-text-shadow inline-flex items-center justify-center whitespace-nowrap",
-    "font-readable text-mc leading-none",
+    "font-mc mc-text leading-none",
   ].join(" "),
   {
     defaultVariants: {
@@ -43,7 +43,7 @@ export type BadgeVariant = "default" | "dim" | "gold";
 export function Badge({ className, variant, ...properties }: BadgeProps) {
   return (
     <span
-      className={cn(badgeStyles({ className, variant }))}
+      className={cn(badgeStyles({ variant }), className)}
       {...properties}
     />
   );

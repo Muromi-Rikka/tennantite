@@ -6,53 +6,101 @@
  *   @import "tailwindcss";
  *   @import "@verdigris/tokens/css/tokens.css";
  *
- * 注：令牌文件的间距基准为 1px（--spacing），保证 1px 像素步进对齐（规格 §0.4）。
+ * 视觉基准：Minecraft Java 26.3 稳定版 GUI（颜色 / 几何 / 度量全部对齐原版）。
+ * 间距基准为 GUI px：`--spacing: var(--mc-gui)`，因此 `w-20` = 20 GUI px。
  */
 
-/* 开源像素字体（均为 OFL 授权，见 LICENSE-ASSETS.md；不做中文适配） */
-@import "@fontsource/press-start-2p/index.css";
-@import "@fontsource/vt323/index.css";
+/* 开源像素字体（Minecraft font by Idrees Hassan，SIL OFL 1.1，见 fonts/LICENSE-Minecraft-Font.txt）
+ * 度量：unitsPerEm=18、ascent=16、descent=-2 → font-size 9×scale 时字高 8 GUI px、行高 9 GUI px。
+ * 仅覆盖拉丁字符；中文回退到系统无衬线字体（不做中文适配）。 */
+@font-face {
+  font-family: "Minecraft";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/Minecraft.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Minecraft";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/Minecraft-Bold.otf") format("opentype");
+}
 
 @theme {
-  /* ---- 色板（规格 §3.1） ---- */
-  --color-mc-tooltip-bg: #100010; /* 物品悬浮提示底色 */
-  --color-mc-tooltip-text: #fff8e7; /* 经典紫边提示文本 */
-  --color-mc-tooltip-border: #2d0157; /* 提示框紫色描边 */
-  --color-mc-accent-green: #7ec850; /* 成就 / 主行动按钮 */
-  --color-mc-panel: #c6c6c6; /* 窗口面板基底 */
-  --color-mc-panel-overlay: rgb(0 0 0 / 60%); /* 半透明界面背景 */
-  --color-mc-stone: #8b8b8b; /* 按钮石纹基底 */
-  --color-mc-stone-dark: #555555; /* 暗部浮雕 */
-  --color-mc-stone-darker: #373737; /* 槽位凹槽 */
+  /* ---- GUI 缩放：原版 GUI scale 为整数，1 GUI px = scale CSS px ---- */
+  --mc-scale: 2;
+  --mc-gui: calc(var(--mc-scale) * 1px);
+
+  /* ---- 色板（26.3 采样值） ---- */
+  --color-mc-panel: #c6c6c6; /* 面板填充 */
+  --color-mc-panel-overlay: rgb(0 0 0 / 75%); /* 标题界面 / 标签页遮罩 */
   --color-mc-highlight: #ffffff; /* 亮部浮雕 */
-  --color-mc-text-main: #ffffff; /* 主文本 */
-  --color-mc-text-dim: #a0a0a0; /* 次文本 / 禁用 */
-  --color-mc-gold: #e2b84b; /* 标题、稀有标识 */
-  --color-mc-heart: #e3313b; /* 生命值 */
-  --color-mc-xp: #7efc20; /* 经验条 */
+  --color-mc-stone: #8b8b8b; /* 槽位填充 */
+  --color-mc-stone-dark: #555555; /* 面板暗边 */
+  --color-mc-stone-darker: #373737; /* 槽位暗边 */
+
+  --color-mc-button: #6f6f6f; /* 按钮填充 */
+  --color-mc-button-hover: #757575;
+  --color-mc-button-disabled: #2c2c2c;
+  --color-mc-button-light: #aaaaaa; /* 按钮亮边 */
+  --color-mc-button-dark: #565656; /* 按钮暗边 */
+
+  --color-mc-slot: #8b8b8b;
+
+  --color-mc-text-main: #ffffff;
+  --color-mc-text-dim: #a0a0a0;
+  --color-mc-text-disabled: #a0a0a0;
+
+  --color-mc-gold: #ffaa00;
+  --color-mc-yellow: #ffff55;
+  --color-mc-green: #55ff55;
+  --color-mc-aqua: #55ffff;
+  --color-mc-red: #ff5555;
+  --color-mc-purple: #ff55ff;
+  --color-mc-gray: #aaaaaa;
+
+  --color-mc-accent-green: #7ec850; /* 主行动按钮（非原版扩展） */
+  --color-mc-heart: #ff1313;
+  --color-mc-xp: #80ff20;
+
+  --color-mc-selection: #d5e8d0; /* 热键栏选中框亮边 */
+  --color-mc-selection-mid: #a1b29d;
+  --color-mc-selection-dark: #5f6d5c;
+  --color-mc-hotbar: rgb(39 37 5 / 73%);
+
+  --color-mc-scroller: #c0c0c0;
+  --color-mc-scroller-dark: #808080;
+
+  --color-mc-tooltip-bg: rgb(16 0 16 / 94%);
+  --color-mc-tooltip-text: #ffffff;
+  --color-mc-tooltip-border-top: rgb(80 0 255 / 31%);
+  --color-mc-tooltip-border-bottom: rgb(40 0 127 / 31%);
 
   /* ---- 字体 ---- */
-  --font-pixel: "Press Start 2P", "VT323", monospace;
-  --font-readable: "VT323", "Press Start 2P", monospace;
+  --font-mc: "Minecraft", "Microsoft YaHei", "PingFang SC", sans-serif;
 
-  /* ---- 间距：1px 像素步进 ---- */
-  --spacing: 1px;
+  /* ---- 间距：1 GUI px 步进 ---- */
+  --spacing: var(--mc-gui);
 
-  /* ---- 文本尺寸 ---- */
-  --text-mc-pixel: 0.5rem; /* Press Start 2P 原生 8px */
-  --text-mc-pixel--line-height: 1.75;
-  --text-mc: 1rem; /* VT323 基准 */
-  --text-mc--line-height: 1.25;
-  --text-mc-lg: 1.5rem;
-  --text-mc-lg--line-height: 1.2;
+  /* ---- 文本尺寸：行高 9 GUI px（原版） ---- */
+  --text-mc: calc(var(--mc-scale) * 9px);
+  --text-mc--line-height: calc(var(--mc-scale) * 9px);
 
-  /* ---- 硬阴影（无模糊，浮雕感，规格 §3.1） ---- */
-  --shadow-mc-1: 1px 1px 0 0 rgb(0 0 0 / 50%);
-  --shadow-mc-2: 2px 2px 0 0 rgb(0 0 0 / 50%);
-  --shadow-mc-raised: inset 2px 2px 0 0 rgb(255 255 255 / 40%),
-    inset -2px -2px 0 0 rgb(0 0 0 / 40%);
-  --shadow-mc-sunken: inset 2px 2px 0 0 rgb(0 0 0 / 40%),
-    inset -2px -2px 0 0 rgb(255 255 255 / 25%);
+  /* ---- 硬阴影（无模糊，按 GUI px 缩放） ---- */
+  --shadow-mc-1: var(--mc-gui) var(--mc-gui) 0 0 rgb(0 0 0 / 50%);
+  --shadow-mc-2: calc(var(--mc-gui) * 2) calc(var(--mc-gui) * 2) 0 0
+    rgb(0 0 0 / 50%);
+  --shadow-mc-raised: inset calc(var(--mc-gui) * 2) calc(var(--mc-gui) * 2) 0 0
+      rgb(255 255 255 / 40%),
+    inset calc(var(--mc-gui) * -2) calc(var(--mc-gui) * -2) 0 0
+      rgb(0 0 0 / 40%);
+  --shadow-mc-sunken: inset calc(var(--mc-gui) * 2) calc(var(--mc-gui) * 2) 0 0
+      rgb(0 0 0 / 40%),
+    inset calc(var(--mc-gui) * -2) calc(var(--mc-gui) * -2) 0 0
+      rgb(255 255 255 / 25%);
 }
 
 /* 像素渲染基调：所有纹理必须无模糊缩放（规格 §0.4 / §3.1） */
@@ -60,7 +108,36 @@
   image-rendering: pixelated;
 }
 
-/* MC 文本经典投影 */
+/*
+ * MC 文本尺寸（9 GUI px 字号 / 9 GUI px 行高）。
+ *
+ * 为什么不直接用 Tailwind 由 `--text-mc` 生成的 `text-mc`：tailwind-merge（cn 包）
+ * 无法区分 `text-mc`（字号）与 `text-mc-text-main`（颜色），同组只保留后者 →
+ * 字号与行高类被丢弃、行高回落到继承值。`mc-text` 不落入 `text-*` 分组，
+ * 可与颜色类安全共存。
+ */
+@utility mc-text {
+  font-size: var(--text-mc);
+  line-height: var(--text-mc--line-height);
+}
+
+/* MC 文本经典投影：偏移 1 GUI px，阴影色 = 文本色 × 0.25（白字 #3F3F3F） */
 @utility mc-text-shadow {
-  text-shadow: 2px 2px 0 rgb(0 0 0 / 60%);
+  text-shadow: var(--mc-gui) var(--mc-gui) 0
+    color-mix(in srgb, currentColor 25%, #000);
+}
+
+/* 固定 1 GUI px 边框 / 2 GUI px 边框 / 1 GUI px 外描边（不随 --spacing 之外的场景漂移） */
+@utility mc-border {
+  border-width: var(--mc-gui);
+}
+
+@utility mc-border-2 {
+  border-width: calc(var(--mc-gui) * 2);
+}
+
+@utility mc-outline {
+  outline-style: solid;
+  outline-width: var(--mc-gui);
+  outline-offset: calc(var(--mc-gui) * -1);
 }

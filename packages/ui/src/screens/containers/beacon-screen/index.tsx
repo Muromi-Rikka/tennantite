@@ -3,11 +3,9 @@
 import { useState } from "react";
 
 import type { ScreenSlot } from "../types";
-import { ItemStack } from "../../../containers/item-stack/index";
-import { Panel } from "../../../containers/panel/index";
-import { Slot } from "../../../containers/slot/index";
-import { TitleBar } from "../../../containers/title-bar/index";
-import { cn } from "../../../lib/utils";
+import { PlayerInventory } from "../../../containers/player-inventory/index";
+import { ScreenPanel } from "../../../containers/screen-panel/index";
+import { gui } from "../../../lib/utils";
 import { Button } from "../../../primitives/button/index";
 import {
   Select,
@@ -18,6 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../../primitives/select/index";
+import { ScreenItemSlot } from "../screen-slot";
 
 export interface BeaconPower {
   id: string;
@@ -32,7 +31,7 @@ export interface BeaconScreenProps {
     secondary: null | string;
   }) => void;
   /**
-  * 支付槽（铁锭 / 金锭 / 钻石 / 绿宝石）
+  * 支付槽（铁锭 / 金锭 / 钻石 / 绿宝石，(135,109)）
   */
   payment?: ScreenSlot;
   primaryOptions?: BeaconPower[];
@@ -41,60 +40,55 @@ export interface BeaconScreenProps {
 }
 
 /**
- * 信标界面（规格 §6.2）：支付槽 + 主/副效果选择（Select）+ 确认按钮。
-*/
+ * 信标界面（规格 §6）：230×219 面板 + 主/副效果选择 + 支付槽 + 确认按钮。
+ */
 export function BeaconScreen({
   className,
   onConfirm,
   payment,
   primaryOptions = [],
   secondaryOptions = [],
-  title = "信标",
+  title,
 }: BeaconScreenProps) {
   const [primary, setPrimary] = useState<null | string>(null);
   const [secondary, setSecondary] = useState<null | string>(null);
 
   return (
-    <Panel className={cn("inline-flex w-320 flex-col gap-16 p-16", className)}>
-      <TitleBar align="start" title={title} />
-      <div className="flex items-center gap-16">
-        <Slot aria-label="信标支付槽" className="cursor-pointer p-1" size={48}>
-          {payment
-            ? (
-                <ItemStack
-                  count={payment.count}
-                  icon={payment.icon}
-                  size={40}
-                  src={payment.src}
-                />
-              )
-            : null}
-        </Slot>
-        <p className="font-readable text-mc text-mc-text-dim">
-          放入铁锭 / 金锭 / 钻石 / 绿宝石以激活
-        </p>
+    <ScreenPanel className={className} height={219} title={title} width={230}>
+      <div
+        className="absolute"
+        style={{ left: gui(8), top: gui(8), width: gui(104) }}
+      >
+        <PowerSelect
+          label="主效果"
+          onChange={setPrimary}
+          options={primaryOptions}
+          value={primary}
+        />
       </div>
-      <PowerSelect
-        label="主效果"
-        onChange={setPrimary}
-        options={primaryOptions}
-        value={primary}
-      />
-      <PowerSelect
-        label="副效果"
-        onChange={setSecondary}
-        options={secondaryOptions}
-        value={secondary}
-      />
+      <div
+        className="absolute"
+        style={{ left: gui(118), top: gui(8), width: gui(104) }}
+      >
+        <PowerSelect
+          label="副效果"
+          onChange={setSecondary}
+          options={secondaryOptions}
+          value={secondary}
+        />
+      </div>
       <Button
+        className="absolute w-104"
         onClick={() => {
           onConfirm?.({ payment: payment !== undefined, primary, secondary });
         }}
-        variant="success"
+        style={{ left: gui(8), top: gui(109) }}
       >
         完成
       </Button>
-    </Panel>
+      <ScreenItemSlot item={payment} label="信标支付槽" left={135} top={109} />
+      <PlayerInventory hotbarY={194} x={35} y={136} />
+    </ScreenPanel>
   );
 }
 

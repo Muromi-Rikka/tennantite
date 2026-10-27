@@ -1,4 +1,5 @@
 import { Progress } from "../../../primitives/progress/index";
+import { cn } from "../../../lib/utils";
 
 export interface ExperienceBarProps {
   className?: string;
@@ -17,7 +18,7 @@ export interface ExperienceBarProps {
 */
 export function ExperienceBar({ className, level, progress }: ExperienceBarProps) {
   return (
-    <div className={className} data-hud="">
+    <div className={cn("w-182", className)} data-hud="">
       <div className="relative">
         <Progress
           aria-label={`经验：等级 ${level}`}
@@ -27,7 +28,7 @@ export function ExperienceBar({ className, level, progress }: ExperienceBarProps
         />
         <span
           aria-hidden="true"
-          className="absolute -top-4 left-1/2 -translate-x-1/2 font-readable text-mc text-mc-xp mc-text-shadow"
+          className="absolute -top-4 left-1/2 -translate-x-1/2 font-mc mc-text text-mc-xp mc-text-shadow"
         >
           {level}
         </span>

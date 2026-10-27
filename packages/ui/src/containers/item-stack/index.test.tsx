@@ -20,9 +20,9 @@ describe("itemStack", () => {
     expect(container.querySelector("span")).toBeNull();
   });
 
-  it("selected 传入槽位", () => {
+  it("selected 传入槽位白色内框", () => {
     const { container } = render(<ItemStack icon="diamond" selected />);
-    expect(container.querySelector(".mc-tex-slot")).toHaveClass("outline-2");
+    expect(container.querySelector(".mc-tex-slot")).toHaveClass("mc-slot-selected");
   });
 
   it("tooltip 包裹后悬浮显示", async () => {

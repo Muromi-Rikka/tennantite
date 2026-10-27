@@ -5,7 +5,7 @@ import { ItemStack } from "./index";
 */
 export function ItemStackDemo() {
   return (
-    <div className="flex items-center gap-16">
+    <div className="flex items-center gap-8">
       <ItemStack count={64} icon="stone-block" />
       <ItemStack count={1} icon="diamond" selected tooltip="钻石" />
       <ItemStack icon="apple" tooltip="苹果 · 恢复 4 饥饿" />

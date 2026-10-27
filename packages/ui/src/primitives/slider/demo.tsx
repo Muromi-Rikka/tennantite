@@ -9,9 +9,9 @@ export function SliderDemo() {
   const [volume, setVolume] = useState(70);
 
   return (
-    <div className="flex w-320 flex-col gap-16">
-      <label className="flex flex-col gap-8">
-        <span className="font-readable text-mc">
+    <div className="flex w-160 flex-col gap-8">
+      <label className="flex flex-col gap-4">
+        <span className="font-mc mc-text">
           音乐音量：
           {volume}
           %

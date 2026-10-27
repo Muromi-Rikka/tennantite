@@ -15,7 +15,6 @@ export function BeaconScreenDemo() {
         { id: "strength", label: "力量" },
         { id: "jump", label: "跳跃提升" },
       ]}
-      title="信标"
     />
   );
 }

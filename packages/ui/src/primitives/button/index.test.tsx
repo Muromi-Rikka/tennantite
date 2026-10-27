@@ -21,14 +21,14 @@ describe("button", () => {
       </>,
     );
     expect(screen.getByRole("button", { name: "绿" })).toHaveClass(
-      "bg-mc-accent-green",
+      "mc-tex-btn-success",
     );
     expect(screen.getByRole("button", { name: "幽灵" })).toHaveClass("bg-transparent");
   });
 
-  it("应用尺寸类", () => {
-    render(<Button size="lg">大按钮</Button>);
-    expect(screen.getByRole("button", { name: "大按钮" })).toHaveClass("h-40");
+  it("统一 20 GUI px 高", () => {
+    render(<Button>标准</Button>);
+    expect(screen.getByRole("button", { name: "标准" })).toHaveClass("h-20");
   });
 
   it("禁用态不可点击", async () => {
@@ -44,10 +44,19 @@ describe("button", () => {
   });
 
   it("className 经 cn 合并且后到优先", () => {
-    render(<Button className="h-48">覆盖</Button>);
+    render(<Button className="w-100">覆盖</Button>);
     const button = screen.getByRole("button", { name: "覆盖" });
     expect(button).toHaveClass("mc-tex-btn");
-    expect(button).toHaveClass("h-48");
+    expect(button).toHaveClass("w-100");
+  });
+
+  it("键盘可触发", async () => {
+    const user = userEvent.setup();
+    const onClick = vi.fn();
+    render(<Button onClick={onClick}>键盘</Button>);
+    await user.tab();
+    await user.keyboard("{Enter}");
+    expect(onClick).toHaveBeenCalled();
   });
 
   it("demo：点击计数", async () => {

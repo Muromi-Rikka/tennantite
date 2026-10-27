@@ -5,13 +5,13 @@ import { Icon } from "./index";
 */
 export function IconDemo() {
   return (
-    <div className="flex flex-wrap items-end gap-24">
-      <Icon name="heart" size={32} />
-      <Icon name="grass-block" size={48} />
-      <Icon name="creeper-face" size={64} />
-      <Icon name="diamond" size={32} />
-      <Icon name="sword" size={48} />
-      <Icon className="border border-black" name="stone-block" size={64} />
+    <div className="flex flex-wrap items-end gap-12">
+      <Icon name="heart" size={9} />
+      <Icon name="grass-block" size={16} />
+      <Icon name="creeper-face" size={32} />
+      <Icon name="diamond" />
+      <Icon name="sword" size={24} />
+      <Icon className="border-[length:var(--mc-gui)] border-black" name="stone-block" size={32} />
     </div>
   );
 }

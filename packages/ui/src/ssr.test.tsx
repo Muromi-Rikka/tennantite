@@ -13,9 +13,11 @@ import {
   DialogPopup,
   DialogTitle,
   Input,
+  PlayerInventory,
   Progress,
   Radio,
   RadioGroup,
+  ScreenPanel,
   ScrollArea,
   Select,
   SelectIcon,
@@ -43,6 +45,12 @@ function render(elements: React.ReactNode): string {
       <Checkbox aria-label="复选" />
       <Input placeholder="输入" />
       <Progress aria-label="进度" value={50} />
+      <ScreenPanel height={166} title="物品栏" width={176}>
+        <PlayerInventory
+          hotbarItems={[{ count: 64, icon: "stone-block" }]}
+          selectedIndex={0}
+        />
+      </ScreenPanel>
       <RadioGroup aria-label="单选" defaultValue="a">
         <Radio aria-label="A" value="a" />
       </RadioGroup>
@@ -88,6 +96,14 @@ describe("sSR smoke (node env, 规格 §1.1)", () => {
     expect(html).toContain("mc-tex-btn");
     expect(html).toContain("mc-tex-slot");
     expect(html).toContain("mc-scroll");
+  });
+
+  it("ScreenPanel / PlayerInventory 可服务端渲染", () => {
+    const html = render(null);
+    expect(html).toContain("mc-tex-panel");
+    expect(html).toContain("物品栏");
+    expect(html).toContain("aria-label=\"main-0\"");
+    expect(html).toContain("aria-label=\"hotbar-8\"");
   });
 
   it("打开状态的 Dialog 服务端渲染不报错（Portal 内容水合后挂载）", () => {

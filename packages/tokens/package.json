@@ -8,8 +8,14 @@
       "types": "./src/index.ts",
       "default": "./src/index.ts"
     },
-    "./css/*": "./css/*"
+    "./css/*": "./css/*",
+    "./fonts/*": "./fonts/*"
   },
+  "files": [
+    "css",
+    "fonts",
+    "src"
+  ],
   "engines": {
     "node": ">=26"
   },
@@ -17,8 +23,6 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@fontsource/press-start-2p": "^5.3.0",
-    "@fontsource/vt323": "^5.3.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3"
   }

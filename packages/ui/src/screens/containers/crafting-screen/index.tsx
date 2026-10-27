@@ -1,30 +1,49 @@
+import type { ReactNode } from "react";
+
 import type { ScreenSlot } from "../types";
-import { ItemStack } from "../../../containers/item-stack/index";
-import { Panel } from "../../../containers/panel/index";
-import { Slot } from "../../../containers/slot/index";
-import { TitleBar } from "../../../containers/title-bar/index";
-import { cn } from "../../../lib/utils";
+import { PlayerInventory } from "../../../containers/player-inventory/index";
+import { ScreenPanel } from "../../../containers/screen-panel/index";
+import { gui } from "../../../lib/utils";
+import { ScreenItemSlot } from "../screen-slot";
 import { padSlots } from "../types";
+
+/**
+ * 3×3 合成格左上角（GUI px，步进 18）
+ */
+const CRAFT_POSITIONS = [
+  [29, 16],
+  [47, 16],
+  [65, 16],
+  [29, 34],
+  [47, 34],
+  [65, 34],
+  [29, 52],
+  [47, 52],
+  [65, 52],
+] as const;
 
 export interface CraftingScreenProps {
   className?: string;
   /**
-  * 3×3 合成格（规格 §6.2）
+  * 3×3 合成格（规格 §6）
   */
   craftItems?: ScreenSlot[];
+  /**
+  * 合成产物（26×26 结果槽）
+  */
   craftResult?: ScreenSlot;
   /**
-  * 底部玩家快捷栏（可选注入）
+  * 底部玩家快捷栏
   */
   hotbarItems?: ScreenSlot[];
-  onSlotClick?: (area: "craft" | "craft-result" | "hotbar", index: number) => void;
+  onSlotClick?: (area: "craft" | "craft-result" | "hotbar" | "main", index: number) => void;
   selectedIndex?: number;
-  title?: React.ReactNode;
+  title?: ReactNode;
 }
 
 /**
- * 工作台界面（规格 §6.2）：3×3 Grid + 产物槽 + 箭头指示。
-*/
+ * 工作台界面（规格 §6）：176×166 面板 + 3×3 合成格 + 26×26 结果槽与箭头。
+ */
 export function CraftingScreen({
   className,
   craftItems = [],
@@ -35,84 +54,49 @@ export function CraftingScreen({
   title = "合成",
 }: CraftingScreenProps) {
   const craft = padSlots(craftItems, 9);
-  const hotbar = padSlots(hotbarItems, 9);
+
   return (
-    <Panel className={cn("inline-flex flex-col gap-16 p-16", className)}>
-      <TitleBar align="start" title={title} />
-      <div className="flex items-center gap-24">
-        <div className="grid grid-cols-3 gap-4">
-          {craft.map((item, index) => (
-            <Slot
-              aria-label={`craft-${index}`}
-              className="cursor-pointer"
-              key={index}
-              onClick={() => {
-                onSlotClick?.("craft", index);
-              }}
-              size={44}
-            >
-              {item
-                ? (
-                    <ItemStack
-                      count={item.count}
-                      icon={item.icon}
-                      size={36}
-                      src={item.src}
-                    />
-                  )
-                : null}
-            </Slot>
-          ))}
-        </div>
-        <span aria-hidden="true" className="font-readable text-mc-lg text-mc-text-dim">
-          →
-        </span>
-        <Slot
-          aria-label="craft-result-0"
-          className="cursor-pointer"
-          onClick={() => {
-            onSlotClick?.("craft-result", 0);
-          }}
-          size={52}
-        >
-          {craftResult
-            ? (
-                <ItemStack
-                  count={craftResult.count}
-                  icon={craftResult.icon}
-                  size={44}
-                  src={craftResult.src}
-                />
-              )
-            : null}
-        </Slot>
-      </div>
-      <div className="h-px bg-mc-stone-dark" />
-      <div className="grid grid-cols-9 gap-4">
-        {hotbar.map((item, index) => (
-          <Slot
-            aria-label={`hotbar-${index}`}
-            className="cursor-pointer"
-            key={index}
-            onClick={() => {
-              onSlotClick?.("hotbar", index);
-            }}
-            selected={selectedIndex === index ? true : undefined}
-            size={44}
-          >
-            {item
-              ? (
-                  <ItemStack
-                    count={item.count}
-                    icon={item.icon}
-                    size={36}
-                    src={item.src}
-                  />
-                )
-              : null}
-          </Slot>
-        ))}
-      </div>
-    </Panel>
+    <ScreenPanel className={className} height={166} title={title} width={176}>
+      {CRAFT_POSITIONS.map(([left, top], index) => (
+        <ScreenItemSlot
+          item={craft[index]}
+          key={`${left}-${top}`}
+          label={`craft-${index}`}
+          left={left}
+          onActivate={
+            onSlotClick
+              ? () => {
+                  onSlotClick("craft", index);
+                }
+              : undefined
+          }
+          top={top}
+        />
+      ))}
+      <div
+        aria-hidden="true"
+        className="mc-tex-craft-arrow absolute"
+        style={{ height: gui(15), left: gui(90), top: gui(35), width: gui(23) }}
+      />
+      <ScreenItemSlot
+        item={craftResult}
+        label="craft-result-0"
+        left={119}
+        onActivate={
+          onSlotClick
+            ? () => {
+                onSlotClick("craft-result", 0);
+              }
+            : undefined
+        }
+        size={26}
+        top={30}
+      />
+      <PlayerInventory
+        hotbarItems={hotbarItems}
+        onSlotClick={onSlotClick}
+        selectedIndex={selectedIndex}
+      />
+    </ScreenPanel>
   );
 }

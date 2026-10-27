@@ -5,7 +5,7 @@ import { HealthHungerBar } from "./index";
 */
 export function HealthHungerBarDemo() {
   return (
-    <div className="flex flex-col gap-24">
+    <div className="flex flex-col gap-12">
       <HealthHungerBar health={20} hunger={17} />
       <HealthHungerBar armor={13} health={7} hunger={9} oxygen={6} />
       <HealthHungerBar health={1} hunger={0} />

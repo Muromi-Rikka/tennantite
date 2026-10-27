@@ -21,9 +21,9 @@ describe("advancementsScreen", () => {
   it("悬浮显示描述", async () => {
     const user = userEvent.setup();
     render(<AdvancementsScreenDemo />);
-    const node = screen
-      .getAllByText("石器时代")
-      .find(element => !element.classList.contains("sr-only"));
+    const node = [...document.querySelectorAll("[data-advancement-name]")].find(
+      element => element.textContent === "石器时代",
+    );
     await user.hover(node!);
     expect(await screen.findByText("获得石镐")).toBeInTheDocument();
   });

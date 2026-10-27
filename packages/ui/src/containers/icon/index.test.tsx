@@ -7,12 +7,19 @@ import { Icon } from "./index";
 
 describe("icon", () => {
   it("按内置名称渲染像素图标", () => {
-    const { container } = render(<Icon name="heart" size={48} />);
+    const { container } = render(<Icon name="heart" size={9} />);
     const img = container.querySelector("img");
     expect(img).not.toBeNull();
     expect(img?.getAttribute("src")).toContain("data:image/svg+xml");
-    expect(img?.getAttribute("width")).toBe("48");
-    expect(img?.getAttribute("height")).toBe("48");
+    expect(img).toHaveAttribute("style", expect.stringContaining("calc(var(--mc-gui) * 9)"));
+  });
+
+  it("默认 16 GUI px（原版物品图标）", () => {
+    const { container } = render(<Icon name="heart" />);
+    expect(container.querySelector("img")).toHaveAttribute(
+      "style",
+      expect.stringContaining("calc(var(--mc-gui) * 16)"),
+    );
   });
 
   it("pixelated 类默认开启、可关闭", () => {
@@ -27,7 +34,7 @@ describe("icon", () => {
     expect(container.querySelector("img")).toBeNull();
   });
 
-  it("grid 按 columns 生成栅格", () => {
+  it("grid 按 columns 与 cellSize 生成栅格", () => {
     const { container } = render(
       <Grid columns={3} data-testid="grid">
         <div />
@@ -35,7 +42,10 @@ describe("icon", () => {
       </Grid>,
     );
     const grid = container.querySelector("[data-testid=\"grid\"]");
-    expect(grid).toHaveStyle({ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" });
+    expect(grid).toHaveAttribute(
+      "style",
+      expect.stringContaining("repeat(3, calc(var(--mc-gui) * 18))"),
+    );
   });
 
   it("demo 渲染多个图标", () => {

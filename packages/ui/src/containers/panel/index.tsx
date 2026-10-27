@@ -21,7 +21,7 @@ export function Panel({
     <div
       className={cn(
         variant === "dark" ? "mc-tex-panel-dark" : "mc-tex-panel",
-        "text-mc-text-main",
+        "font-mc mc-text text-mc-text-main",
         className,
       )}
       {...properties}

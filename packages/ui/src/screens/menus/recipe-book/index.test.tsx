@@ -9,7 +9,7 @@ describe("recipeBook", () => {
   it("渲染分类与配方格", () => {
     render(<RecipeBookDemo />);
     expect(screen.getByRole("tab", { name: "建筑方块" })).toBeInTheDocument();
-    expect(document.querySelectorAll(".mc-tex-slot").length).toBe(4);
+    expect(document.querySelectorAll("[data-recipe-slot]").length).toBe(4);
   });
 
   it("未解锁配方显示占位", () => {
@@ -25,6 +25,6 @@ describe("recipeBook", () => {
     const user = userEvent.setup();
     render(<RecipeBookDemo />);
     await user.click(screen.getByRole("tab", { name: "工具" }));
-    expect(document.querySelectorAll(".mc-tex-slot").length).toBe(2);
+    expect(document.querySelectorAll("[data-recipe-slot]").length).toBe(2);
   });
 });

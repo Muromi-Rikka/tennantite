@@ -1,4 +1,5 @@
 import { Progress } from "../../../primitives/progress/index";
+import { cn } from "../../../lib/utils";
 
 export interface BossBarProps {
   className?: string;
@@ -17,8 +18,8 @@ export interface BossBarProps {
 */
 export function BossBar({ className, name, value }: BossBarProps) {
   return (
-    <div className={className} data-hud="">
-      <div className="mb-2 text-center font-readable text-mc text-[#C133E3] mc-text-shadow">
+    <div className={cn("w-182", className)} data-hud="">
+      <div className="mb-2 text-center font-mc mc-text text-mc-text-main mc-text-shadow">
         {name}
       </div>
       <Progress

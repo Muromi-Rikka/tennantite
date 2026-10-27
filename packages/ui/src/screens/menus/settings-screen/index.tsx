@@ -29,6 +29,9 @@ export interface SettingsScreenProps {
     showClouds?: boolean;
     smoothLighting?: boolean;
   };
+  /**
+  * 面板标题（省略时标签页直接居顶，与原版设置界面一致）
+  */
   title?: ReactNode;
 }
 
@@ -38,7 +41,7 @@ export interface SettingsScreenProps {
 export function SettingsScreen({
   className,
   defaults = {},
-  title = "设置",
+  title,
 }: SettingsScreenProps) {
   const [fov, setFov] = useState(defaults.fov ?? 70);
   const [brightness, setBrightness] = useState(defaults.brightness ?? 50);
@@ -49,23 +52,24 @@ export function SettingsScreen({
   const [difficulty, setDifficulty] = useState(defaults.difficulty ?? "普通");
 
   return (
-    <Panel className={cn("inline-flex flex-col gap-16 p-16", className)}>
-      <TitleBar align="center" title={title} />
-      <Tabs defaultValue="video">
+    <Panel className={cn("inline-flex w-320 flex-col gap-4 p-6", className)}>
+      {title ? <TitleBar align="center" title={title} /> : null}
+      <Tabs className="gap-4" defaultValue="video">
         <TabsList aria-label="设置分类">
           <TabsTab value="video">视频</TabsTab>
           <TabsTab value="audio">音乐和声音</TabsTab>
           <TabsTab value="game">游戏</TabsTab>
         </TabsList>
         <TabsPanel value="video">
-          <div className="flex w-320 flex-col gap-16">
-            <label className="flex flex-col gap-8">
-              <span className="font-readable text-mc">
+          <div className="flex flex-col gap-4">
+            <label className="flex items-center justify-between gap-4">
+              <span className="font-mc mc-text">
                 视野：
                 {fov}
               </span>
               <Slider
                 aria-label="视野"
+                className="w-150"
                 max={110}
                 min={30}
                 onValueChange={(value) => {
@@ -74,14 +78,15 @@ export function SettingsScreen({
                 value={fov}
               />
             </label>
-            <label className="flex flex-col gap-8">
-              <span className="font-readable text-mc">
+            <label className="flex items-center justify-between gap-4">
+              <span className="font-mc mc-text">
                 亮度：
                 {brightness}
                 %
               </span>
               <Slider
                 aria-label="亮度"
+                className="w-150"
                 max={100}
                 min={0}
                 onValueChange={(value) => {
@@ -90,7 +95,8 @@ export function SettingsScreen({
                 value={brightness}
               />
             </label>
-            <label className="flex items-center gap-8">
+            <label className="flex items-center justify-between gap-4">
+              <span className="font-mc mc-text">显示云</span>
               <Checkbox
                 aria-label="显示云"
                 checked={showClouds}
@@ -98,9 +104,9 @@ export function SettingsScreen({
                   setShowClouds(next === true);
                 }}
               />
-              <span className="font-readable text-mc">显示云</span>
             </label>
-            <label className="flex items-center gap-8">
+            <label className="flex items-center justify-between gap-4">
+              <span className="font-mc mc-text">平滑光照</span>
               <Checkbox
                 aria-label="平滑光照"
                 checked={smoothLighting}
@@ -108,12 +114,11 @@ export function SettingsScreen({
                   setSmoothLighting(next === true);
                 }}
               />
-              <span className="font-readable text-mc">平滑光照</span>
             </label>
           </div>
         </TabsPanel>
         <TabsPanel value="audio">
-          <p className="font-readable text-mc text-mc-text-dim">
+          <p className="font-mc mc-text text-mc-text-dim">
             声音设置（示例分页）
           </p>
         </TabsPanel>
@@ -126,9 +131,9 @@ export function SettingsScreen({
             value={difficulty}
           >
             {["和平", "简单", "普通", "困难"].map(name => (
-              <label className="flex items-center gap-8" key={name}>
+              <label className="flex items-center gap-2" key={name}>
                 <Radio value={name} />
-                <span className="font-readable text-mc">{name}</span>
+                <span className="font-mc mc-text">{name}</span>
               </label>
             ))}
           </RadioGroup>

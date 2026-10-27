@@ -18,7 +18,7 @@ describe("progress", () => {
     expect(bar).not.toHaveAttribute("aria-valuenow");
   });
 
-  it("应用变体填充色", () => {
+  it("应用变体纹理", () => {
     render(
       <>
         <Progress aria-label="boss" value={1} variant="boss" />
@@ -26,15 +26,21 @@ describe("progress", () => {
       </>,
     );
     expect(
-      screen
-        .getByRole("progressbar", { name: "boss" })
-        .querySelector(String.raw`.bg-\[\#C133E3\]`),
+      screen.getByRole("progressbar", { name: "boss" }).querySelector(".mc-tex-boss-fill"),
     ).not.toBeNull();
-    expect(screen.getByRole("progressbar", { name: "xp" }).querySelector(".bg-mc-xp")).not.toBeNull();
+    expect(
+      screen.getByRole("progressbar", { name: "xp" }).querySelector(".mc-tex-xp-fill"),
+    ).not.toBeNull();
   });
 
-  it("demo 渲染四个进度条", () => {
+  it("轨道为原版 5 GUI px 高", () => {
+    render(<Progress aria-label="经验值" value={50} />);
+    const track = screen.getByRole("progressbar", { name: "经验值" }).querySelector(".mc-tex-xp-bg");
+    expect(track).toHaveClass("h-5");
+  });
+
+  it("demo 渲染两个进度条", () => {
     render(<ProgressDemo />);
-    expect(screen.getAllByRole("progressbar")).toHaveLength(4);
+    expect(screen.getAllByRole("progressbar")).toHaveLength(2);
   });
 });

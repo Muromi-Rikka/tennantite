@@ -1,7 +1,7 @@
 import type { SelectRootProps } from "@base-ui/react/select";
 import type { ComponentProps } from "react";
 import { Select as BaseSelect } from "@base-ui/react/select";
-import { cn } from "../../lib/utils";
+import { cn, gui } from "../../lib/utils";
 
 export type SelectProps<Value> = SelectRootProps<Value> & {
   className?: string;
@@ -15,16 +15,24 @@ export function Select<Value>({ className, ...properties }: SelectProps<Value>) 
 }
 
 export function SelectIcon({
-  children = "▼",
+  children,
   className,
   ...properties
 }: ComponentProps<typeof BaseSelect.Icon>) {
   return (
-    <BaseSelect.Icon
-      className={cn("font-readable text-mc text-mc-text-main", className)}
-      {...properties}
-    >
-      {children}
+    <BaseSelect.Icon className={cn("flex items-center", className)} {...properties}>
+      {children ?? (
+        <svg
+          aria-hidden="true"
+          className="pixelated"
+          fill="#FFFFFF"
+          shapeRendering="crispEdges"
+          style={{ height: gui(4), width: gui(7) }}
+          viewBox="0 0 7 4"
+        >
+          <path d="M0 0h7L3 4z" />
+        </svg>
+      )}
     </BaseSelect.Icon>
   );
 }
@@ -37,10 +45,9 @@ export function SelectItem({
   return (
     <BaseSelect.Item
       className={cn(
-        "flex cursor-pointer items-center justify-between px-12 py-4",
-        "font-readable text-mc text-mc-text-main select-none",
-        "data-highlighted:bg-mc-stone-dark/60 data-highlighted:text-white",
-        "data-selected:text-mc-gold",
+        "flex h-20 cursor-pointer items-center justify-between px-4 select-none",
+        "font-mc mc-text text-mc-text-main",
+        "data-highlighted:bg-white/15",
         "outline-none",
         className,
       )}
@@ -69,7 +76,7 @@ export function SelectPopup({
       <BaseSelect.Positioner className="z-50 outline-none" sideOffset={4}>
         <BaseSelect.Popup
           className={cn(
-            "mc-tex-panel mc-scroll max-h-320 overflow-y-auto p-4 outline-none",
+            "mc-tex-panel mc-scroll max-h-160 overflow-y-auto p-1 outline-none",
             className,
           )}
           {...properties}
@@ -89,9 +96,8 @@ export function SelectTrigger({
   return (
     <BaseSelect.Trigger
       className={cn(
-        "mc-tex-btn flex h-32 w-full cursor-pointer items-center justify-between px-12",
-        "font-readable text-mc text-mc-text-main select-none mc-text-shadow",
-        "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white",
+        "mc-tex-btn flex h-20 w-full cursor-pointer items-center justify-between px-4",
+        "font-mc mc-text text-mc-text-main select-none mc-text-shadow",
         "data-disabled:cursor-not-allowed data-disabled:text-mc-text-dim",
         className,
       )}

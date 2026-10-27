@@ -11,7 +11,7 @@ export function SelectDemo() {
   const [mode, setMode] = useState<null | string>("生存");
 
   return (
-    <div className="flex flex-col gap-16">
+    <div className="flex flex-col gap-8">
       <Select<string> onValueChange={setMode} value={mode}>
         <SelectTrigger aria-label="游戏模式">
           <SelectValue />

@@ -8,5 +8,6 @@
 body {
   background-color: #1f1f1f;
   color: var(--color-mc-text-main);
-  font-family: var(--font-readable);
+  font-family: var(--font-mc);
+  font-size: var(--text-mc);
 }

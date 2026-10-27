@@ -4,11 +4,18 @@ import { cn } from "../../lib/utils";
 
 export type TabsProps = ComponentProps<typeof BaseTabs.Root>;
 
+export interface TabsPanelProps extends ComponentProps<typeof BaseTabs.Panel> {
+  /**
+  * panel 自带窗口面板纹理 / plain 无纹理无内边距（嵌在已有面板内时用）
+  */
+  variant?: "panel" | "plain";
+}
+
 /**
- * MC 标签页（规格 §4 #8）：用于配方书 / 设置分页。
+ * MC 标签页（规格 §4 #8）：用于配方书 / 设置分页。原版标签页 24 GUI px 高。
 */
 export function Tabs({ className, ...properties }: TabsProps) {
-  return <BaseTabs.Root className={cn("flex flex-col gap-16", className)} {...properties} />;
+  return <BaseTabs.Root className={cn("flex flex-col gap-0", className)} {...properties} />;
 }
 
 export function TabsList({
@@ -17,7 +24,7 @@ export function TabsList({
 }: ComponentProps<typeof BaseTabs.List>) {
   return (
     <BaseTabs.List
-      className={cn("flex items-end gap-4 outline-none", className)}
+      className={cn("flex items-end gap-0 outline-none", className)}
       {...properties}
     />
   );
@@ -25,11 +32,16 @@ export function TabsList({
 
 export function TabsPanel({
   className,
+  variant = "plain",
   ...properties
-}: ComponentProps<typeof BaseTabs.Panel>) {
+}: TabsPanelProps) {
   return (
     <BaseTabs.Panel
-      className={cn("mc-tex-panel p-16 text-mc-text-main", className)}
+      className={cn(
+        "text-mc-text-main",
+        variant === "panel" ? "mc-tex-panel p-6" : "p-0",
+        className,
+      )}
       {...properties}
     />
   );
@@ -42,11 +54,8 @@ export function TabsTab({
   return (
     <BaseTabs.Tab
       className={cn(
-        "cursor-pointer border-2 border-black bg-mc-stone-dark/60 px-16 py-6",
-        "font-readable text-mc text-mc-text-main select-none mc-text-shadow",
-        "hover:bg-mc-stone-dark",
-        "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white",
-        "data-selected:border-b-mc-gold data-selected:bg-mc-stone data-selected:text-white",
+        "mc-tex-tab h-24 cursor-pointer px-4",
+        "font-mc mc-text text-mc-text-main select-none mc-text-shadow",
         className,
       )}
       {...properties}

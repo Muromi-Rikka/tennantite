@@ -1,4 +1,3 @@
-import { Divider } from "../../../containers/divider/index";
 import { Panel } from "../../../containers/panel/index";
 import { TitleBar } from "../../../containers/title-bar/index";
 import { cn } from "../../../lib/utils";
@@ -39,47 +38,43 @@ export function MultiplayerScreen({
   servers = [],
 }: MultiplayerScreenProps) {
   return (
-    <Panel className={cn("inline-flex w-360 flex-col gap-16 p-16", className)}>
+    <Panel className={cn("inline-flex w-320 flex-col gap-4 p-6", className)}>
       <TitleBar align="center" title="选择服务器" />
-      <ScrollArea className="mc-tex-slot h-160 p-8">
-        <div className="flex flex-col gap-8">
-          {servers.map((server, index) => (
-            <div key={server.address}>
-              <button
-                className={cn(
-                  "w-full cursor-pointer border-2 px-12 py-8 text-left",
-                  "border-transparent font-readable text-mc text-mc-text-main",
-                  "hover:bg-mc-stone-dark/40",
-                  selectedAddress === server.address
-                  && "border-black bg-mc-stone-dark/60",
-                )}
-                data-address={server.address}
-                data-server-entry=""
-                onClick={() => {
-                  onServerSelect?.(server.address);
-                }}
-                type="button"
-              >
-                <div>{server.name}</div>
-                <div className="text-mc-text-dim">{server.address}</div>
-                {server.meta
-                  ? (
-                      <div className="text-mc-text-dim">{server.meta}</div>
-                    )
-                  : null}
-              </button>
-              {index < servers.length - 1 ? <Divider className="my-8" /> : null}
-            </div>
+      <ScrollArea className="h-160">
+        <div className="flex flex-col">
+          {servers.map(server => (
+            <button
+              className={cn(
+                "flex min-h-36 w-full cursor-pointer flex-col justify-center px-4 py-2 text-left",
+                "border-[length:var(--mc-gui)] border-transparent",
+                "font-mc mc-text text-mc-text-main hover:bg-white/10",
+                selectedAddress === server.address && "border-white bg-white/10",
+              )}
+              data-address={server.address}
+              data-selected={selectedAddress === server.address ? "" : undefined}
+              data-server-entry=""
+              key={server.address}
+              onClick={() => {
+                onServerSelect?.(server.address);
+              }}
+              type="button"
+            >
+              <div>{server.name}</div>
+              <div className="text-mc-text-dim">{server.address}</div>
+              {server.meta
+                ? (
+                    <div className="text-mc-text-dim">{server.meta}</div>
+                  )
+                : null}
+            </button>
           ))}
         </div>
       </ScrollArea>
-      <div className="flex gap-16">
+      <div className="flex gap-4">
         <Button className="flex-1" onClick={onJoin}>
           加入服务器
         </Button>
-        <Button className="flex-1" variant="ghost">
-          刷新
-        </Button>
+        <Button className="flex-1">刷新</Button>
       </div>
     </Panel>
   );

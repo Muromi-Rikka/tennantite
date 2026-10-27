@@ -1,11 +1,26 @@
 import type { ReactNode } from "react";
+
 import type { ScreenSlot } from "../types";
-import { Grid } from "../../../containers/grid/index";
-import { ItemStack } from "../../../containers/item-stack/index";
-import { Panel } from "../../../containers/panel/index";
-import { Slot } from "../../../containers/slot/index";
-import { TitleBar } from "../../../containers/title-bar/index";
-import { cn } from "../../../lib/utils";
+import { PlayerInventory } from "../../../containers/player-inventory/index";
+import { ScreenPanel } from "../../../containers/screen-panel/index";
+import { gui } from "../../../lib/utils";
+import { ScreenItemSlot } from "../screen-slot";
+import { padSlots } from "../types";
+
+/**
+ * 盔甲槽位 y（GUI px，步进 18）
+ */
+const ARMOR_TOPS = [7, 25, 43, 61];
+
+/**
+ * 2×2 合成格左上角（GUI px）
+ */
+const CRAFT_POSITIONS = [
+  [97, 17],
+  [115, 17],
+  [97, 35],
+  [115, 35],
+] as const;
 
 export interface InventoryScreenProps {
   /**
@@ -29,14 +44,25 @@ export interface InventoryScreenProps {
   * 主背包 27 格（3×9）
   */
   mainItems?: ScreenSlot[];
-  onSlotClick?: (area: "armor" | "craft" | "craft-result" | "hotbar" | "main", index: number) => void;
+  /**
+  * 副手槽（原版 (76,61)）
+  */
+  offhandItem?: ScreenSlot;
+  onSlotClick?: (
+    area: "armor" | "craft" | "craft-result" | "hotbar" | "main" | "offhand",
+    index: number,
+  ) => void;
+  /**
+  * 玩家预览（原版 (26,8) 50×64 的角色模型区）
+  */
+  playerPreview?: ReactNode;
   selectedIndex?: number;
   title?: ReactNode;
 }
 
 /**
- * 物品栏界面（规格 §6.2）：Dialog/Panel + Slot/Grid + ItemStack 编排，
- * 数据注入、无游戏逻辑。RSC 兼容（纯展示 + 可选回调）。
+ * 物品栏界面（规格 §6）：176×166 面板 + 绝对坐标槽位，数据注入、无游戏逻辑。
+ * RSC 兼容（纯展示 + 可选回调）。
  */
 export function InventoryScreen({
   armorItems = [],
@@ -45,142 +71,87 @@ export function InventoryScreen({
   craftResult = null,
   hotbarItems = [],
   mainItems = [],
+  offhandItem,
   onSlotClick,
+  playerPreview,
   selectedIndex,
-  title = "物品栏",
+  title,
 }: InventoryScreenProps) {
-  return (
-    <Panel className={cn("inline-flex flex-col gap-16 p-16", className)}>
-      <TitleBar align="start" title={title} />
-      <div className="flex gap-16">
-        <div className="grid grid-cols-1 gap-4">
-          {Array.from({ length: 4 }, (_, index) => {
-            const item = armorItems[index];
-            return (
-              <Slot
-                aria-label={`armor-${index}`}
-                className="cursor-pointer"
-                key={index}
-                onClick={() => {
-                  onSlotClick?.("armor", index);
-                }}
-                size={44}
-              >
-                {item
-                  ? (
-                      <ItemStack
-                        count={item.count}
-                        icon={item.icon}
-                        size={36}
-                        src={item.src}
-                      />
-                    )
-                  : null}
-              </Slot>
-            );
-          })}
-        </div>
-        <div className="flex flex-1 flex-col items-end gap-16">
-          <div className="flex items-center gap-16">
-            <SlotGroup
-              area="craft"
-              columns={2}
-              count={4}
-              items={craftItems}
-              onSlotClick={onSlotClick}
-            />
-            <span aria-hidden="true" className="font-readable text-mc text-mc-text-dim">
-              →
-            </span>
-            <Slot
-              aria-label="craft-result-0"
-              className="cursor-pointer"
-              onClick={() => {
-                onSlotClick?.("craft-result", 0);
-              }}
-              size={52}
-            >
-              {craftResult
-                ? (
-                    <ItemStack
-                      count={craftResult.count}
-                      icon={craftResult.icon}
-                      size={44}
-                      src={craftResult.src}
-                    />
-                  )
-                : null}
-            </Slot>
-          </div>
-          <SlotGroup
-            area="main"
-            columns={9}
-            count={27}
-            items={mainItems}
-            onSlotClick={onSlotClick}
-            selectedIndex={selectedIndex}
-          />
-          <SlotGroup
-            area="hotbar"
-            columns={9}
-            count={9}
-            items={hotbarItems}
-            onSlotClick={onSlotClick}
-            selectedIndex={selectedIndex}
-          />
-        </div>
-      </div>
-    </Panel>
-  );
-}
+  const armor = padSlots(armorItems, 4);
+  const craft = padSlots(craftItems, 4);
 
-function SlotGroup({
-  area,
-  columns,
-  count,
-  items,
-  onSlotClick,
-  selectedIndex,
-}: {
-  area: "armor" | "craft" | "hotbar" | "main";
-  columns: number;
-  count: number;
-  items: ScreenSlot[];
-  onSlotClick?: InventoryScreenProps["onSlotClick"];
-  selectedIndex?: number;
-}) {
   return (
-    <Grid columns={columns}>
-      {Array.from({ length: count }, (_, index) => {
-        const item = items[index];
-        const selected
-          = area === "hotbar" && selectedIndex === index
-            ? true
-            : undefined;
-        return (
-          <Slot
-            aria-label={`${area}-${index}`}
-            className={cn("cursor-pointer", item ? "p-1" : undefined)}
-            key={index}
-            onClick={() => {
-              onSlotClick?.(area, index);
-            }}
-            selected={selected}
-            size={44}
-          >
-            {item
-              ? (
-                  <ItemStack
-                    count={item.count}
-                    icon={item.icon}
-                    size={36}
-                    src={item.src}
-                  />
-                )
-              : null}
-          </Slot>
-        );
-      })}
-    </Grid>
+    <ScreenPanel className={className} height={166} title={title} width={176}>
+      <div
+        className="absolute"
+        style={{ height: gui(64), left: gui(26), top: gui(8), width: gui(50) }}
+      >
+        {playerPreview}
+      </div>
+      {ARMOR_TOPS.map((top, index) => (
+        <ScreenItemSlot
+          item={armor[index]}
+          key={top}
+          label={`armor-${index}`}
+          left={7}
+          onActivate={
+            onSlotClick
+              ? () => {
+                  onSlotClick("armor", index);
+                }
+              : undefined
+          }
+          top={top}
+        />
+      ))}
+      <ScreenItemSlot
+        item={offhandItem}
+        label="offhand-0"
+        left={76}
+        onActivate={
+          onSlotClick
+            ? () => {
+                onSlotClick("offhand", 0);
+              }
+            : undefined
+        }
+        top={61}
+      />
+      {CRAFT_POSITIONS.map(([left, top], index) => (
+        <ScreenItemSlot
+          item={craft[index]}
+          key={`${left}-${top}`}
+          label={`craft-${index}`}
+          left={left}
+          onActivate={
+            onSlotClick
+              ? () => {
+                  onSlotClick("craft", index);
+                }
+              : undefined
+          }
+          top={top}
+        />
+      ))}
+      <ScreenItemSlot
+        item={craftResult}
+        label="craft-result-0"
+        left={153}
+        onActivate={
+          onSlotClick
+            ? () => {
+                onSlotClick("craft-result", 0);
+              }
+            : undefined
+        }
+        top={27}
+      />
+      <PlayerInventory
+        hotbarItems={hotbarItems}
+        mainItems={mainItems}
+        onSlotClick={onSlotClick}
+        selectedIndex={selectedIndex}
+      />
+    </ScreenPanel>
   );
 }

@@ -19,7 +19,10 @@ describe("multiplayerScreen", () => {
     expect(screen.getByText("B")).toBeInTheDocument();
     expect(
       document.querySelector("[data-address=\"b.example\"]"),
-    ).toHaveClass("bg-mc-stone-dark/60");
+    ).toHaveAttribute("data-selected");
+    expect(
+      document.querySelector("[data-address=\"a.example\"]"),
+    ).not.toHaveAttribute("data-selected");
   });
 
   it("选择与加入回调", async () => {

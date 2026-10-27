@@ -23,7 +23,7 @@ export function Card({
   ...properties
 }: CardProps) {
   return (
-    <Panel className={cn("flex flex-col gap-16 p-16", className)} {...properties}>
+    <Panel className={cn("flex flex-col gap-4 p-6", className)} {...properties}>
       {title === undefined ? null : <TitleBar align={align} title={title} />}
       {children}
     </Panel>

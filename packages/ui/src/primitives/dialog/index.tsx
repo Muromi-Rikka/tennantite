@@ -37,7 +37,7 @@ export function DialogClose({ className, ...properties }: DialogCloseProperties)
   return (
     <BaseDialog.Close
       className={cn(
-        "cursor-pointer font-readable text-mc text-mc-text-dim hover:text-mc-text-main",
+        "cursor-pointer font-mc mc-text text-mc-text-dim hover:text-mc-text-main",
         className,
       )}
       {...properties}
@@ -51,7 +51,7 @@ export function DialogDescription({
 }: ComponentProps<typeof BaseDialog.Description>) {
   return (
     <BaseDialog.Description
-      className={cn("font-readable text-mc text-mc-text-dim", className)}
+      className={cn("font-mc mc-text text-mc-text-dim", className)}
       {...properties}
     />
   );
@@ -60,6 +60,7 @@ export function DialogDescription({
 export function DialogPopup({
   children,
   className,
+  variant = "panel",
   ...properties
 }: DialogPopupProperties) {
   return (
@@ -67,8 +68,10 @@ export function DialogPopup({
       <DialogBackdrop />
       <BaseDialog.Popup
         className={cn(
-          "mc-tex-panel-dark fixed top-1/2 left-1/2 z-50 w-400 -translate-1/2 p-24",
-          "text-mc-text-main outline-none",
+          "z-50 text-mc-text-main outline-none",
+          variant === "panel"
+            ? "mc-tex-panel fixed top-1/2 left-1/2 w-176 -translate-1/2 p-6"
+            : "fixed inset-0 flex flex-col items-center justify-center gap-4 bg-transparent p-0",
           className,
         )}
         {...properties}
@@ -86,7 +89,7 @@ export function DialogTitle({
   return (
     <BaseDialog.Title
       className={cn(
-        "font-pixel text-mc-pixel text-mc-text-main mc-text-shadow",
+        "font-mc mc-text text-mc-text-main mc-text-shadow",
         className,
       )}
       {...properties}

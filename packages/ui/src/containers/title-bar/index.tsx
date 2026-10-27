@@ -19,7 +19,7 @@ export function TitleBar({
   return (
     <div
       className={cn(
-        "font-pixel text-mc-pixel text-mc-text-main mc-text-shadow",
+        "font-mc mc-text text-mc-text-main mc-text-shadow",
         align === "center" && "text-center",
         align === "end" && "text-right",
         className,

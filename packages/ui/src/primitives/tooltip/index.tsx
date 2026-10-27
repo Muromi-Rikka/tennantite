@@ -7,7 +7,7 @@ export type TooltipPopupProps = ComponentProps<typeof BaseTooltip.Popup>;
 export type TooltipProps = ComponentProps<typeof BaseTooltip.Root>;
 
 /**
- * MC 物品悬浮提示（规格 §4 #11）：黑底紫边 + 米黄文本。
+ * MC 物品悬浮提示（规格 §4 #11）：94% 深紫底 + 1 GUI px 渐变边框 + 白字投影。
 */
 export function Tooltip(properties: TooltipProps) {
   return <BaseTooltip.Root {...properties} />;
@@ -20,12 +20,11 @@ export function TooltipPopup({
 }: TooltipPopupProps) {
   return (
     <BaseTooltip.Portal>
-      <BaseTooltip.Positioner className="z-50 outline-none" sideOffset={8}>
+      <BaseTooltip.Positioner className="z-50 outline-none" sideOffset={4}>
         <BaseTooltip.Popup
           className={cn(
-            "border border-mc-tooltip-border bg-mc-tooltip-bg px-8 py-4",
-            "font-readable text-mc text-mc-tooltip-text mc-text-shadow",
-            "outline-1 outline-offset-1 outline-black/60",
+            "mc-tex-tooltip px-4 py-4",
+            "font-mc mc-text text-mc-text-main mc-text-shadow",
             className,
           )}
           {...properties}

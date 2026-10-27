@@ -18,14 +18,14 @@ const SERVERS = [
 */
 export function ScrollAreaDemo() {
   return (
-    <ScrollArea className="mc-tex-slot h-120 w-280 p-8">
-      <ul className="flex flex-col gap-4">
+    <ScrollArea className="mc-tex-slot h-60 w-140 p-4">
+      <ul className="flex flex-col gap-2">
         {SERVERS.map((name, index) => (
           <Fragment key={name}>
-            <li className="font-readable text-mc text-mc-text-main">{name}</li>
+            <li className="font-mc mc-text text-mc-text-main">{name}</li>
             {index < SERVERS.length - 1
               ? (
-                  <li aria-hidden="true" className="h-px bg-mc-stone-dark" />
+                  <li aria-hidden="true" className="h-[length:var(--mc-gui)] bg-mc-stone-dark" />
                 )
               : null}
           </Fragment>

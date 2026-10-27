@@ -34,7 +34,7 @@ const DEFAULT_ACTIONS: MenuAction[] = [
 ];
 
 /**
- * 暂停菜单（规格 §6.3）：Dialog + 按钮栈，交互经水合增强。
+ * 暂停菜单（规格 §6.3）：全屏遮罩 + 居中标题与 200×20 按钮栈。
 */
 export function PauseMenu({
   actions = DEFAULT_ACTIONS,
@@ -49,19 +49,17 @@ export function PauseMenu({
     <div className={cn(className)} data-menu="">
       <Dialog onOpenChange={setOpen} open={open}>
         <DialogTrigger render={<Button />}>{triggerLabel}</DialogTrigger>
-        <DialogPopup>
+        <DialogPopup variant="overlay">
           <DialogTitle>{title}</DialogTitle>
           {description
-            ? (
-                <DialogDescription className="mt-8">{description}</DialogDescription>
-              )
+            ? <DialogDescription>{description}</DialogDescription>
             : null}
-          <div className="mt-24 flex flex-col gap-8">
+          <div className="flex flex-col items-center gap-4">
             {actions.map(action => (
               <DialogTrigger
                 key={action.label}
                 onClick={action.onClick}
-                render={<Button className="w-280" disabled={action.disabled} />}
+                render={<Button className="w-200" disabled={action.disabled} />}
               >
                 {action.label}
               </DialogTrigger>

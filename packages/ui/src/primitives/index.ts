@@ -4,7 +4,6 @@ export type { BadgeProps, BadgeVariant } from "./badge/types";
 export { Button } from "./button/index";
 export type {
   ButtonProps,
-  ButtonSize,
   ButtonVariant,
 } from "./button/types";
 

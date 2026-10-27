@@ -6,6 +6,10 @@ import { Icon } from "../icon/index";
 import { Slot } from "../slot/index";
 
 export interface ItemStackProps {
+  /**
+  * 不绘制槽位纹理（由父容器提供）
+  */
+  bare?: boolean;
   className?: string;
   /**
   * 数量（>1 时显示计数徽标，规格 §5 #3）
@@ -16,11 +20,11 @@ export interface ItemStackProps {
   */
   icon?: Parameters<typeof Icon>[0]["name"];
   /**
-  * 选中态（白色像素描边）
+  * 选中态（1 GUI px 白色内框）
   */
   selected?: boolean;
   /**
-  * 槽位边长（px）
+  * 槽位边长（GUI px，默认 18 —— 原版槽位）
   */
   size?: number;
   /**
@@ -35,23 +39,24 @@ export interface ItemStackProps {
 
 /**
  * MC 物品堆（规格 §5 #3）：图标 + 计数徽标的最小复用单元。
- * 无 tooltip 时为纯展示组合，RSC 兼容。
+ * 图标固定 16 GUI px（原版物品图标），无 tooltip 时为纯展示组合，RSC 兼容。
  */
 export function ItemStack({
+  bare = false,
   className,
   count,
   icon,
   selected = false,
-  size = 48,
+  size = 18,
   src,
   tooltip,
 }: ItemStackProps) {
   const content = (
-    <Slot className={className} selected={selected} size={size}>
-      <Icon name={icon} size={Math.max(16, size - 16)} src={src} />
+    <Slot bare={bare} className={className} selected={selected} size={size}>
+      <Icon name={icon} size={16} src={src} />
       {count !== undefined && count > 1
         ? (
-            <Badge className="absolute right-2 bottom-1">{count}</Badge>
+            <Badge className="absolute right-1 bottom-0">{count}</Badge>
           )
         : null}
     </Slot>

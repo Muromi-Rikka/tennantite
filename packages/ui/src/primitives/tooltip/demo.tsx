@@ -6,13 +6,13 @@ import { Tooltip, TooltipPopup, TooltipTrigger } from "./index";
 export function TooltipDemo() {
   return (
     <Tooltip>
-      <TooltipTrigger className="mc-tex-slot block size-48">
+      <TooltipTrigger className="mc-tex-slot block size-18">
         <span className="sr-only">附魔金苹果</span>
       </TooltipTrigger>
       <TooltipPopup>
         <span className="text-mc-gold">附魔金苹果</span>
-        <div className="text-[#6A5ACD]">伤害吸收 IV（0:05）</div>
-        <div className="text-[#555]">minecraft:enchanted_golden_apple</div>
+        <div className="text-mc-purple">伤害吸收 IV（0:05）</div>
+        <div className="text-mc-gray">minecraft:enchanted_golden_apple</div>
       </TooltipPopup>
     </Tooltip>
   );

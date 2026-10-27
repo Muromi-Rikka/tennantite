@@ -9,7 +9,7 @@ describe("input", () => {
     const user = userEvent.setup();
     render(<Input placeholder="输入内容" />);
     const input = screen.getByPlaceholderText("输入内容");
-    expect(input).toHaveClass("bg-mc-tooltip-bg");
+    expect(input).toHaveClass("mc-tex-text-field");
     await user.type(input, "hello");
     expect(input).toHaveValue("hello");
   });

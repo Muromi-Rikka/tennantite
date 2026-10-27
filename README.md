@@ -57,7 +57,7 @@ spec/             # 规格文档
 组件清单：
 
 - **L1 原语（13）**：Button · Input · Slider · Checkbox · Switch · RadioGroup · Select · Tabs · Dialog · Progress · Tooltip · ScrollArea（自研）· Badge（自研）
-- **L2 容器（8）**：Panel · Slot / Grid · ItemStack · Icon · Card · TitleBar · Divider
+- **L2 容器（10）**：Panel · ScreenPanel · Slot / Grid · ItemStack · PlayerInventory · Icon · Card · TitleBar · Divider
 - **L3 HUD（6）**：HealthHungerBar · ExperienceBar · Hotbar · Crosshair · StatusEffects · BossBar
 - **L3 容器界面（9）**：InventoryScreen · ChestScreen · CraftingScreen · FurnaceScreen · BrewingStandScreen · EnchantingScreen · BeaconScreen · AnvilScreen · TradingScreen
 - **L3 菜单界面（10）**：MainMenu · PauseMenu · SettingsScreen · MultiplayerScreen · LanguageScreen · AdvancementsScreen · RecipeBook · ChatScreen · SignEdit · DeathScreen
@@ -68,7 +68,7 @@ spec/             # 规格文档
 
 ## 素材授权
 
-所有纹理、图标均为本项目重绘（字符画 → SVG），不包含任何 Mojang 官方素材；字体使用开源替代（Press Start 2P、VT323，均为 SIL OFL 1.1）。详见 `packages/textures/LICENSE-ASSETS.md`。
+所有纹理、图标均为本项目重绘（字符画 → SVG），不包含任何 Mojang 官方素材；视觉基准为 Minecraft Java 26.3 稳定版 GUI（颜色 / 九宫格 / 字体度量 / 布局均按原版采样值重建）。字体使用开源替代（Minecraft font by Idrees Hassan，SIL OFL 1.1）。详见 `packages/textures/LICENSE-ASSETS.md`。
 
 ## 供应链策略说明
 

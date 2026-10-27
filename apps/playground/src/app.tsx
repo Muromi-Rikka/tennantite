@@ -22,14 +22,15 @@ export function App() {
 
   return (
     <div className="flex h-full">
-      <nav className="mc-tex-panel flex w-200 shrink-0 flex-col gap-4 p-16">
-        <span className="font-pixel text-mc-pixel text-mc-gold mc-text-shadow">
+      <nav className="mc-tex-panel flex w-100 shrink-0 flex-col gap-1 p-6">
+        <span className="font-mc mc-text text-mc-gold mc-text-shadow">
           VERDIGRIS
         </span>
         {Array.from(pageRegistry.entries(), ([id, entry]) => (
           <a
-            className={`mc-tex-btn px-12 py-8 font-readable text-mc text-mc-text-main no-underline ${
-              pageId === id ? "mc-tex-btn--active" : ""
+            aria-current={pageId === id ? "page" : undefined}
+            className={`mc-tex-btn px-4 font-mc mc-text text-mc-text-main no-underline ${
+              pageId === id ? "mc-tex-btn--hover" : ""
             }`}
             href={`#/${id}`}
             key={id}
@@ -38,7 +39,7 @@ export function App() {
           </a>
         ))}
       </nav>
-      <main className="mc-tex-panel m-16 flex-1 overflow-auto p-24">
+      <main className="mc-tex-panel m-8 flex-1 overflow-auto p-12">
         {page.render()}
       </main>
     </div>

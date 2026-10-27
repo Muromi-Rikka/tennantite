@@ -36,3 +36,6 @@ pnpm-debug.log*
 
 # zcode local files
 .zcode/
+
+# pnpm / agent tooling state
+.claude/

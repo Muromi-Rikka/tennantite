@@ -6,17 +6,17 @@ import { Panel } from "./index";
 */
 export function PanelDemo() {
   return (
-    <div className="flex items-start gap-24">
-      <Panel className="w-280">
+    <div className="flex items-start gap-12">
+      <Panel className="w-140">
         <TitleBar title="Panel" />
-        <p className="font-readable text-mc">窗口灰面板（default 变体）</p>
+        <p className="font-mc mc-text">窗口灰面板（default 变体）</p>
       </Panel>
       <Panel
-        className="w-280 bg-linear-to-br from-[#5b3] to-[#357]"
+        className="w-140 bg-linear-to-br from-[#5b3] to-[#357]"
         variant="dark"
       >
         <TitleBar title="Panel dark" />
-        <p className="font-readable text-mc">半透明暗底，底色可透出</p>
+        <p className="font-mc mc-text">半透明暗底，底色可透出</p>
       </Panel>
     </div>
   );

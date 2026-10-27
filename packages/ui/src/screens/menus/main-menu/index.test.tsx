@@ -21,6 +21,16 @@ describe("mainMenu", () => {
     expect(onClick).toHaveBeenCalledOnce();
   });
 
+  it("自定义背景层替换默认泥土背景", () => {
+    render(
+      <MainMenu
+        background={<div data-testid="custom-background" />}
+        title="标题"
+      />,
+    );
+    expect(screen.getByTestId("custom-background")).toBeInTheDocument();
+  });
+
   it("demo 渲染", () => {
     render(<MainMenuDemo />);
     expect(screen.getByText("最近的世界（无）")).toBeDisabled();

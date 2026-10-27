@@ -1,4 +1,5 @@
 import type { PixelIconName } from "@verdigris/textures";
+import { Grid } from "../../../containers/grid/index";
 import { Icon } from "../../../containers/icon/index";
 import { Panel } from "../../../containers/panel/index";
 import { Slot } from "../../../containers/slot/index";
@@ -24,13 +25,13 @@ export interface RecipeEntry {
   */
   output?: { count?: number; icon?: PixelIconName; src?: string };
   /**
-  * 是否已解锁（未解锁显示 ??? 占位）
+  * 是否已解锁（未解锁显示 ? 占位）
   */
   unlocked?: boolean;
 }
 
 /**
- * 配方书（规格 §6.3）：Tabs 分类 + Slot 配方网格 + 解锁态。
+ * 配方书（规格 §6.3）：Tabs 分类 + 9 列 18 GUI px 配方网格 + 解锁态。
 */
 export function RecipeBook({
   categories = [],
@@ -39,9 +40,9 @@ export function RecipeBook({
 }: RecipeBookProps) {
   const firstTab = categories[0]?.name ?? "全部";
   return (
-    <Panel className={cn("inline-flex flex-col gap-16 p-16", className)}>
+    <Panel className={cn("inline-flex w-176 flex-col gap-4 p-6", className)}>
       <TitleBar align="center" title={title} />
-      <Tabs defaultValue={firstTab}>
+      <Tabs className="gap-4" defaultValue={firstTab}>
         <TabsList aria-label="配方分类">
           {categories.map(category => (
             <TabsTab key={category.name} value={category.name}>
@@ -51,28 +52,27 @@ export function RecipeBook({
         </TabsList>
         {categories.map(category => (
           <TabsPanel key={category.name} value={category.name}>
-            <div className="flex flex-wrap gap-4">
+            <Grid columns={9}>
               {category.recipes.map((recipe, index) => (
                 <Slot
                   className="cursor-pointer"
                   data-recipe-locked={recipe.unlocked === false ? "" : undefined}
+                  data-recipe-slot=""
                   key={index}
-                  size={48}
                 >
                   {recipe.unlocked === false || !recipe.output
                     ? (
-                        <span className="font-readable text-mc text-mc-text-dim">?</span>
+                        <span className="font-mc mc-text text-mc-text-dim">?</span>
                       )
                     : (
                         <Icon
                           name={recipe.output.icon}
-                          size={36}
                           src={recipe.output.src}
                         />
                       )}
                 </Slot>
               ))}
-            </div>
+            </Grid>
           </TabsPanel>
         ))}
       </Tabs>

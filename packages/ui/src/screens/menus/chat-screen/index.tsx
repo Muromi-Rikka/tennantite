@@ -1,5 +1,3 @@
-import { Panel } from "../../../containers/panel/index";
-import { TitleBar } from "../../../containers/title-bar/index";
 import { cn } from "../../../lib/utils";
 import { Input } from "../../../primitives/input/index";
 import { ScrollArea } from "../../../primitives/scroll-area/index";
@@ -17,7 +15,6 @@ export interface ChatScreenProps {
   defaultValue?: string;
   messages?: ChatMessage[];
   onSend?: (text: string) => void;
-  title?: React.ReactNode;
   /**
   * 输入值（受控可选）
   */
@@ -25,26 +22,27 @@ export interface ChatScreenProps {
 }
 
 /**
- * 聊天界面（规格 §6.3）：Input + ScrollArea 历史。
+ * 聊天界面（规格 §6.3）：无面板，消息历史 + 200×20 输入框。
 */
 export function ChatScreen({
   className,
   defaultValue,
   messages = [],
   onSend,
-  title = "聊天",
   value,
 }: ChatScreenProps) {
   return (
-    <Panel className={cn("inline-flex w-360 flex-col gap-8 p-16", className)}>
-      <TitleBar align="start" title={title} />
-      <ScrollArea className="mc-tex-slot h-160 p-8">
-        <ul className="flex flex-col gap-4">
+    <div className={cn("flex w-320 flex-col gap-1", className)}>
+      <ScrollArea className="max-h-160 bg-black/50 p-1">
+        <ul className="flex flex-col gap-1">
           {messages.map((message, index) => (
-            <li className="font-readable text-mc text-mc-text-main" key={index}>
+            <li
+              className="font-mc mc-text text-mc-text-main mc-text-shadow"
+              key={index}
+            >
               {message.author
                 ? (
-                    <span className="text-mc-gold">{`<${message.author}> `}</span>
+                    <span className="text-mc-yellow">{`<${message.author}> `}</span>
                   )
                 : null}
               {message.text}
@@ -54,6 +52,7 @@ export function ChatScreen({
       </ScrollArea>
       <Input
         aria-label="聊天输入"
+        className="w-200"
         defaultValue={defaultValue}
         onKeyDown={(event) => {
           if (!onSend || event.key !== "Enter") {
@@ -67,6 +66,6 @@ export function ChatScreen({
         placeholder="输入消息，回车发送…"
         value={value}
       />
-    </Panel>
+    </div>
   );
 }

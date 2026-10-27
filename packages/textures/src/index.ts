@@ -62,11 +62,11 @@ function scanColorRuns(row: string): ColorRun[] {
 ---- 通用调色板 ----
 */
 const OUTLINE = "#000000";
-const HEART_RED = "#E3313B";
-const HEART_HIGHLIGHT = "#FF8A8A";
-const MEAT = "#B5714F";
-const MEAT_DARK = "#8A4B2A";
-const BONE = "#F4F4F4";
+const HEART_RED = "#FF1313";
+const HEART_HIGHLIGHT = "#FFC8C8";
+const MEAT = "#B88458";
+const MEAT_DARK = "#7B512D";
+const BONE = "#DFB18F";
 const GRASS = "#7CBD4C";
 const GRASS_DARK = "#5D8F3A";
 const DIRT = "#866043";
@@ -77,11 +77,11 @@ const CREEPER = "#5EBD4E";
 const DIAMOND = "#4AEDD9";
 const DIAMOND_DARK = "#2BB5A5";
 const DIAMOND_LIGHT = "#BFFEF5";
-const IRON = "#D8D8D8";
+const IRON = "#B8B9C4";
 const APPLE_RED = "#E3313B";
 const APPLE_HIGHLIGHT = "#FF8A8A";
 const LEAF = "#5D8F3A";
-const XP = "#7EFC20";
+const XP = "#80FF20";
 const XP_DARK = "#4EA816";
 const XP_LIGHT = "#D6FFB0";
 
@@ -90,8 +90,10 @@ const XP_LIGHT = "#D6FFB0";
 */
 
 /**
- * 生命值（9×8）
+ * 生命值（9×9 画布，心形占上方 8 行）
 */
+const HEART_VIEWBOX = { height: 9, width: 9 } as const;
+
 const HEART_ROWS = [
   ".oo...oo.",
   "owro.owro",
@@ -103,20 +105,20 @@ const HEART_ROWS = [
   "....o....",
 ] as const;
 
-export const heart = pixelSprite(HEART_ROWS, {
-  o: OUTLINE,
-  r: HEART_RED,
-  w: HEART_HIGHLIGHT,
-});
+export const heart = pixelSprite(
+  HEART_ROWS,
+  { o: OUTLINE, r: HEART_RED, w: HEART_HIGHLIGHT },
+  HEART_VIEWBOX,
+);
 
 /**
- * 空心生命值（容器灰）
+ * 空心生命值（容器灰 #282828）
 */
-export const heartEmpty = pixelSprite(HEART_ROWS, {
-  o: OUTLINE,
-  r: "#4A4A4A",
-  w: "#6E6E6E",
-});
+export const heartEmpty = pixelSprite(
+  HEART_ROWS,
+  { o: "#282828", r: "#282828", w: "#3A3A3A" },
+  HEART_VIEWBOX,
+);
 
 /**
  * 半心生命值（左半红 / 右半容器灰）
@@ -132,7 +134,8 @@ export const heartHalf = pixelSprite(
     "...ordd..",
     "....od...",
   ],
-  { d: "#4A4A4A", o: OUTLINE, r: HEART_RED, w: HEART_HIGHLIGHT },
+  { d: "#282828", o: OUTLINE, r: HEART_RED, w: HEART_HIGHLIGHT },
+  HEART_VIEWBOX,
 );
 
 /**
@@ -153,7 +156,7 @@ const HUNGER_ROWS = [
 export const hunger = pixelSprite(HUNGER_ROWS, {
   b: MEAT_DARK,
   m: MEAT,
-  o: OUTLINE,
+  o: "#282828",
   w: BONE,
 });
 
@@ -162,8 +165,8 @@ export const hunger = pixelSprite(HUNGER_ROWS, {
 */
 export const hungerEmpty = pixelSprite(HUNGER_ROWS, {
   b: "#3A3A3A",
-  m: "#4A4A4A",
-  o: OUTLINE,
+  m: "#3A3A3A",
+  o: "#282828",
   w: "#5A5A5A",
 });
 
@@ -182,7 +185,7 @@ export const hungerHalf = pixelSprite(
     "..ww.....",
     ".ww......",
   ],
-  { b: MEAT_DARK, d: "#4A4A4A", m: MEAT, o: OUTLINE, w: BONE },
+  { b: MEAT_DARK, d: "#3A3A3A", m: MEAT, o: OUTLINE, w: BONE },
 );
 
 /**
@@ -206,8 +209,8 @@ export const armor = pixelSprite(ARMOR_ROWS, { o: OUTLINE, r: IRON });
  * 空护甲值（容器灰）
 */
 export const armorEmpty = pixelSprite(ARMOR_ROWS, {
-  o: OUTLINE,
-  r: "#4A4A4A",
+  o: "#282828",
+  r: "#3A3A3A",
 });
 
 /**
@@ -225,7 +228,7 @@ export const armorHalf = pixelSprite(
     "..orrdo..",
     "...oro...",
   ],
-  { d: "#4A4A4A", o: OUTLINE, r: IRON },
+  { d: "#3A3A3A", o: "#282828", r: IRON },
 );
 
 /**
@@ -243,6 +246,36 @@ export const xpOrb = pixelSprite(
   ],
   { d: XP_DARK, o: XP_DARK, w: XP_LIGHT, x: XP },
 );
+
+/**
+ * 氧气（9×9 气泡）
+*/
+const AIR_ROWS = [
+  "..ooooo..",
+  ".owhhwwo.",
+  "owhwwwwwo",
+  "owwwwwwwo",
+  "owwwwwwwo",
+  "owwwwwwwo",
+  "owwwwwwwo",
+  ".owwwwwo.",
+  "..ooooo..",
+] as const;
+
+export const air = pixelSprite(AIR_ROWS, {
+  h: "#D1EBFF",
+  o: "#56B8FF",
+  w: "#0094FF",
+});
+
+/**
+ * 空氧气（#406580）
+*/
+export const airEmpty = pixelSprite(AIR_ROWS, {
+  h: "#406580",
+  o: "#406580",
+  w: "#406580",
+});
 
 /*
 ---- 方块图标 ----
@@ -406,6 +439,8 @@ export const creeperFace = pixelSprite(
  * 图标注册表：名称 → SVG 字符串
 */
 export const pixelIcons = {
+  air,
+  "air-empty": airEmpty,
   apple,
   armor,
   "armor-empty": armorEmpty,

@@ -7,18 +7,18 @@ import { Slot } from "./index";
 */
 export function SlotDemo() {
   return (
-    <div className="mc-tex-panel inline-block p-16">
+    <div className="mc-tex-panel inline-block p-6">
       <Grid columns={4}>
         <Slot selected>
-          <Icon name="grass-block" size={32} />
+          <Icon name="grass-block" />
         </Slot>
-        <Slot size={48} />
-        <Slot size={48} />
-        <Slot size={48} />
-        <Slot size={48} />
-        <Slot size={48} />
-        <Slot size={48} />
-        <Slot size={48} />
+        <Slot />
+        <Slot />
+        <Slot />
+        <Slot />
+        <Slot />
+        <Slot />
+        <Slot />
       </Grid>
     </div>
   );

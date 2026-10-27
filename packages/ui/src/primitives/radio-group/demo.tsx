@@ -19,9 +19,9 @@ export function RadioGroupDemo() {
       value={difficulty}
     >
       {DIFFICULTIES.map(name => (
-        <label className="flex items-center gap-8" key={name}>
+        <label className="flex items-center gap-4" key={name}>
           <Radio value={name} />
-          <span className="font-readable text-mc">
+          <span className="font-mc mc-text">
             {name}
             {difficulty === name ? "（当前）" : ""}
           </span>

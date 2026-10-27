@@ -1,4 +1,3 @@
-import { Divider } from "../../../containers/divider/index";
 import { Panel } from "../../../containers/panel/index";
 import { TitleBar } from "../../../containers/title-bar/index";
 import { cn } from "../../../lib/utils";
@@ -27,7 +26,7 @@ const DEFAULT_LANGUAGES: LanguageOption[] = [
 ];
 
 /**
- * 语言选择（规格 §6.3）：ScrollArea 列表，单选高亮。
+ * 语言选择（规格 §6.3）：ScrollArea 列表，单选高亮 + 1 GUI px 白色内框。
 */
 export function LanguageScreen({
   className,
@@ -36,33 +35,32 @@ export function LanguageScreen({
   selectedCode,
 }: LanguageScreenProps) {
   return (
-    <Panel className={cn("inline-flex w-280 flex-col gap-16 p-16", className)}>
+    <Panel className={cn("inline-flex w-280 flex-col gap-4 p-6", className)}>
       <TitleBar align="center" title="语言" />
-      <ScrollArea className="mc-tex-slot h-160 p-8">
+      <ScrollArea className="h-160">
         <div className="flex flex-col">
-          {languages.map((language, index) => (
-            <div key={language.code}>
-              <button
-                className={cn(
-                  "w-full cursor-pointer px-12 py-8 text-left font-readable text-mc",
-                  selectedCode === language.code
-                    ? "bg-mc-stone-dark/60 text-white"
-                    : "text-mc-text-main hover:bg-mc-stone-dark/40",
-                )}
-                data-language-code={language.code}
-                onClick={() => {
-                  onLanguageSelect?.(language.code);
-                }}
-                type="button"
-              >
-                {language.name}
-              </button>
-              {index < languages.length - 1 ? <Divider /> : null}
-            </div>
+          {languages.map(language => (
+            <button
+              className={cn(
+                "flex h-20 w-full cursor-pointer items-center px-4 text-left",
+                "font-mc mc-text text-mc-text-main hover:bg-white/10",
+                selectedCode === language.code
+                && "bg-mc-panel-overlay text-white mc-outline outline-white",
+              )}
+              data-language-code={language.code}
+              data-selected={selectedCode === language.code ? "" : undefined}
+              key={language.code}
+              onClick={() => {
+                onLanguageSelect?.(language.code);
+              }}
+              type="button"
+            >
+              {language.name}
+            </button>
           ))}
         </div>
       </ScrollArea>
-      <p className="font-readable text-mc text-mc-text-dim">
+      <p className="font-mc mc-text text-mc-text-dim">
         字体使用开源像素字体（OFL），不支持全部字形
       </p>
     </Panel>

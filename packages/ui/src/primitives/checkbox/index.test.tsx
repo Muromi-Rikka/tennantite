@@ -10,7 +10,7 @@ describe("checkbox", () => {
     const onCheckedChange = vi.fn();
     render(<Checkbox aria-label="显示云" onCheckedChange={onCheckedChange} />);
     const checkbox = screen.getByRole("checkbox", { name: "显示云" });
-    expect(checkbox).toHaveClass("mc-tex-slot");
+    expect(checkbox).toHaveClass("mc-tex-checkbox");
     await user.click(checkbox);
     expect(checkbox).toBeChecked();
     expect(onCheckedChange).toHaveBeenCalledWith(true, expect.anything());

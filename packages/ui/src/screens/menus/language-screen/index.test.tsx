@@ -10,7 +10,10 @@ describe("languageScreen", () => {
     render(<LanguageScreen selectedCode="en-us" />);
     expect(
       document.querySelector("[data-language-code=\"en-us\"]"),
-    ).toHaveClass("bg-mc-stone-dark/60");
+    ).toHaveAttribute("data-selected");
+    expect(
+      document.querySelector("[data-language-code=\"zh-cn\"]"),
+    ).not.toHaveAttribute("data-selected");
   });
 
   it("选择回调", async () => {

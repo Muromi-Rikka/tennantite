@@ -23,12 +23,12 @@ const SERVERS = [
 
 export default function Home() {
   return (
-    <main className="mc-tex-panel mx-auto my-16 w-480 p-24">
-      <h1 className="font-pixel text-mc-pixel text-mc-gold mc-text-shadow">
+    <main className="mc-tex-panel mx-auto my-8 w-240 p-12">
+      <h1 className="font-mc mc-text text-mc-gold mc-text-shadow">
         VERDIGRIS · Next.js SSR
       </h1>
 
-      <section className="mt-16 flex flex-col gap-8">
+      <section className="mt-8 flex flex-col gap-4">
         <Button variant="success">SSR 渲染的按钮</Button>
         <Input placeholder="SSR 渲染的输入框" />
         <Slider aria-label="SSR 滑条" defaultValue={40} />
@@ -37,11 +37,11 @@ export default function Home() {
         <Progress aria-label="SSR 经验条" value={64} />
       </section>
 
-      <section className="mt-16">
-        <ScrollArea className="mc-tex-slot h-100 p-8">
+      <section className="mt-8">
+        <ScrollArea className="mc-tex-slot h-50 p-4">
           <ul>
             {SERVERS.map(name => (
-              <li className="font-readable text-mc" key={name}>
+              <li className="font-mc mc-text" key={name}>
                 {name}
               </li>
             ))}
@@ -49,7 +49,7 @@ export default function Home() {
         </ScrollArea>
       </section>
 
-      <section className="mt-16 flex items-center gap-16">
+      <section className="mt-8 flex items-center gap-8">
         <Badge>64</Badge>
         <Badge variant="gold">SSR OK</Badge>
       </section>

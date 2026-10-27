@@ -32,7 +32,7 @@ export interface DeathScreenProps {
 }
 
 /**
- * 死亡界面（规格 §6.3）：Dialog + 红色标题 + 按钮栈。
+ * 死亡界面（规格 §6.3）：全屏暗红遮罩 + 白色标题 + 200×20 按钮栈。
 */
 export function DeathScreen({
   cause = "你死了！",
@@ -49,30 +49,31 @@ export function DeathScreen({
   return (
     <div className={cn(className)} data-menu="">
       <Dialog onOpenChange={onOpenChange} open={isOpen}>
-        <DialogTrigger render={<Button variant="ghost" />}>
+        <DialogTrigger render={<Button className="w-200" />}>
           {triggerLabel}
         </DialogTrigger>
-        <DialogPopup className="w-320 bg-black/80 text-center">
-          <DialogTitle className="text-mc-heart">{cause}</DialogTitle>
+        <DialogPopup className="bg-red-950/50" variant="overlay">
+          <DialogTitle className="text-white">{cause}</DialogTitle>
           {details
             ? (
-                <p className="mt-8 font-readable text-mc">{details}</p>
+                <p className="font-mc mc-text text-mc-text-main mc-text-shadow">
+                  {details}
+                </p>
               )
             : null}
-          <div className="mt-24 flex flex-col gap-8">
+          <div className="flex flex-col items-center gap-4">
             <Button
-              className="w-240"
+              className="w-200"
               onClick={() => {
                 onOpenChange?.(false);
                 onRespawn?.();
               }}
-              variant="success"
             >
               {respawnLabel}
             </Button>
             <DialogTrigger
               onClick={onTitleScreen}
-              render={<Button className="w-240" variant="ghost" />}
+              render={<Button className="w-200" />}
             >
               {titleScreenLabel}
             </DialogTrigger>

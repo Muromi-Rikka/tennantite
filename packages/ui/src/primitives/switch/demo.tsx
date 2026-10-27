@@ -9,15 +9,15 @@ export function SwitchDemo() {
   const [on, setOn] = useState(false);
 
   return (
-    <div className="flex flex-col gap-16">
-      <label className="flex items-center gap-8">
+    <div className="flex flex-col gap-8">
+      <label className="flex items-center gap-4">
         <Switch
           checked={on}
           onCheckedChange={(next) => {
             setOn(next);
           }}
         />
-        <span className="font-readable text-mc">
+        <span className="font-mc mc-text">
           难度锁定：
           {on ? "开" : "关"}
         </span>

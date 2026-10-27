@@ -24,6 +24,7 @@ describe("chatScreen", () => {
 
   it("demo 渲染", () => {
     render(<ChatScreenDemo />);
-    expect(screen.getByText("聊天")).toBeInTheDocument();
+    expect(screen.getByText("<Alex>")).toBeInTheDocument();
+    expect(screen.getByLabelText("聊天输入")).toBeInTheDocument();
   });
 });

@@ -6,22 +6,38 @@ import { CraftingScreenDemo } from "./demo";
 import { CraftingScreen } from "./index";
 
 describe("craftingScreen", () => {
-  it("渲染 9 合成格 + 产物 + 9 快捷栏", () => {
+  it("渲染 9 合成格 + 1 产物 + 27 主背包 + 9 快捷栏", () => {
     const { container } = render(<CraftingScreen />);
-    expect(container.querySelectorAll(".mc-tex-slot[aria-label]").length).toBe(19);
+    expect(
+      container.querySelectorAll('[aria-label^="craft-"]:not([aria-label^="craft-result"])')
+        .length,
+    ).toBe(9);
+    expect(container.querySelectorAll('[aria-label="craft-result-0"]').length).toBe(1);
+    expect(container.querySelectorAll('[aria-label^="main-"]').length).toBe(27);
+    expect(container.querySelectorAll('[aria-label^="hotbar-"]').length).toBe(9);
   });
 
-  it("产物槽位点击回调", async () => {
+  it("onSlotClick 携带区域与索引", async () => {
     const user = userEvent.setup();
     const onSlotClick = vi.fn();
-    render(
-      <CraftingScreen
-        craftResult={{ count: 1, icon: "diamond" }}
-        onSlotClick={onSlotClick}
-      />,
-    );
+    render(<CraftingScreen onSlotClick={onSlotClick} />);
+
+    await user.click(screen.getByLabelText("craft-4"));
     await user.click(screen.getByLabelText("craft-result-0"));
-    expect(onSlotClick).toHaveBeenCalledWith("craft-result", 0);
+    await user.click(screen.getByLabelText("main-26"));
+    await user.click(screen.getByLabelText("hotbar-3"));
+
+    expect(onSlotClick.mock.calls).toEqual([
+      ["craft", 4],
+      ["craft-result", 0],
+      ["main", 26],
+      ["hotbar", 3],
+    ]);
+  });
+
+  it("选中索引标记在快捷栏槽位上", () => {
+    render(<CraftingScreen selectedIndex={1} />);
+    expect(screen.getByLabelText("hotbar-1").className).toContain("mc-slot-selected");
   });
 
   it("demo 渲染", () => {

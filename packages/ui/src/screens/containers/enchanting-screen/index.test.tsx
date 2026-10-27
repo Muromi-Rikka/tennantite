@@ -6,8 +6,8 @@ import { EnchantingScreenDemo } from "./demo";
 import { EnchantingScreen } from "./index";
 
 describe("enchantingScreen", () => {
-  it("渲染三档附魔选项", () => {
-    render(
+  it("渲染物品槽、青金石槽与三档附魔选项", () => {
+    const { container } = render(
       <EnchantingScreen
         availableLevel={30}
         lapis={{ count: 16 }}
@@ -18,6 +18,8 @@ describe("enchantingScreen", () => {
         ]}
       />,
     );
+    expect(container.querySelectorAll('[aria-label^="enchant-"]').length).toBe(2);
+    expect(container.querySelectorAll('[aria-label^="附魔选项"]').length).toBe(3);
     expect(screen.getByLabelText("附魔选项 I（消耗 2 级与 1 青金石）")).toBeEnabled();
     expect(screen.getByLabelText("附魔选项 III（消耗 30 级与 3 青金石）")).toBeEnabled();
   });

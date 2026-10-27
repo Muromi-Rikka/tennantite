@@ -15,7 +15,7 @@ export interface SignEditProps {
 }
 
 /**
- * 告示牌编辑（规格 §6.3）：逐行 Input，1..4 行。
+ * 告示牌编辑（规格 §6.3）：逐行 200×20 居中 Input，1..4 行。
 */
 export function SignEdit({
   className,
@@ -31,11 +31,17 @@ export function SignEdit({
     onChange?.(next as unknown as string[]);
   };
   return (
-    <Panel className={cn("inline-flex w-280 flex-col gap-8 p-16", className)}>
+    <Panel
+      className={cn(
+        "inline-flex w-280 flex-col items-center gap-1 p-6",
+        className,
+      )}
+    >
       <TitleBar align="center" title={title} />
       {visible.map((line, index) => (
         <Input
           aria-label={`告示牌第 ${index + 1} 行`}
+          className="w-200 text-center"
           defaultValue={line}
           key={index}
           maxLength={24}

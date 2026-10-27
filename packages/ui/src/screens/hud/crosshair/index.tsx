@@ -1,4 +1,4 @@
-import { cn } from "../../../lib/utils";
+import { cn, gui } from "../../../lib/utils";
 
 export interface CrosshairProps {
   className?: string;
@@ -7,11 +7,11 @@ export interface CrosshairProps {
    */
   hidden?: boolean;
   /**
-   * 十字边长（px，默认 16）
+   * 十字边长（GUI px，默认 9）
    */
   size?: number;
   /**
-   * 线宽（px，默认 2）
+   * 线宽（GUI px，默认 1）
    */
   thickness?: number;
 }
@@ -22,8 +22,8 @@ export interface CrosshairProps {
 export function Crosshair({
   className,
   hidden = false,
-  size = 16,
-  thickness = 2,
+  size = 9,
+  thickness = 1,
 }: CrosshairProps) {
   if (hidden) {
     return null;
@@ -33,15 +33,15 @@ export function Crosshair({
       aria-hidden="true"
       className={cn("pointer-events-none relative", className)}
       data-hud=""
-      style={{ height: size, width: size }}
+      style={{ height: gui(size), width: gui(size) }}
     >
       <div
         className="absolute top-1/2 left-0 -translate-y-1/2 bg-white mix-blend-difference"
-        style={{ height: thickness, width: size }}
+        style={{ height: gui(thickness), width: gui(size) }}
       />
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 bg-white mix-blend-difference"
-        style={{ height: size, width: thickness }}
+        style={{ height: gui(size), width: gui(thickness) }}
       />
     </div>
   );

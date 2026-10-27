@@ -20,10 +20,10 @@ export function Divider({
   return (
     <BaseSeparator
       className={cn(
-        "bg-mc-stone-dark data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full",
-        "data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
+        "bg-mc-stone-dark data-[orientation=horizontal]:h-[length:var(--mc-gui)] data-[orientation=horizontal]:w-full",
+        "data-[orientation=vertical]:h-full data-[orientation=vertical]:w-[length:var(--mc-gui)]",
         variant === "default"
-        && "border-b border-b-mc-stone-darker shadow-mc-1",
+        && "shadow-[var(--mc-gui)_var(--mc-gui)_0_0_#000]",
         className,
       )}
       {...properties}

@@ -10,6 +10,7 @@ export type ScreenArea
     | "hotbar"
     | "input"
     | "main"
+    | "offhand"
     | "output"
     | "secondary";
 

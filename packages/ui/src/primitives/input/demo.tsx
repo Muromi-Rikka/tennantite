@@ -9,7 +9,7 @@ export function InputDemo() {
   const [value, setValue] = useState("");
 
   return (
-    <div className="flex w-320 flex-col gap-16">
+    <div className="flex w-160 flex-col gap-8">
       <Input placeholder="按 T 聊天…" />
       <Input
         onChange={(event) => {

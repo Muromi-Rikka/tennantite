@@ -1,5 +1,6 @@
 import type { PixelIconName } from "@verdigris/textures";
 import { Icon } from "../../../containers/icon/index";
+import { Slot } from "../../../containers/slot/index";
 import { Tooltip, TooltipPopup, TooltipTrigger } from "../../../primitives/tooltip/index";
 
 export interface StatusEffect {
@@ -22,20 +23,12 @@ export interface StatusEffect {
 export interface StatusEffectsProps {
   className?: string;
   effects: StatusEffect[];
-  /**
-  * 图标边长（px，默认 32）
-  */
-  size?: number;
 }
 
 /**
- * MC 状态效果栏（规格 §6.1）：Icon + Tooltip，overlay 语义。
+ * MC 状态效果栏（规格 §6.1）：18×18 槽位 + 16×16 图标，纵向堆叠，overlay 语义。
 */
-export function StatusEffects({
-  className,
-  effects,
-  size = 32,
-}: StatusEffectsProps) {
+export function StatusEffects({ className, effects }: StatusEffectsProps) {
   if (effects.length === 0) {
     return null;
   }
@@ -43,18 +36,20 @@ export function StatusEffects({
     <div className={className} data-hud="">
       {effects.map((effect, index) => (
         <Tooltip key={`${effect.name}-${index}`}>
-          <TooltipTrigger className="mc-tex-slot block cursor-default">
-            <Icon
-              name={effect.icon}
-              size={size}
-              src={effect.src}
-            />
+          <TooltipTrigger className="block cursor-default">
+            <Slot>
+              <Icon
+                name={effect.icon}
+                size={16}
+                src={effect.src}
+              />
+            </Slot>
             <span className="sr-only">
               {`${effect.name}${effect.amplifier ? ` ${effect.amplifier}` : ""}`}
             </span>
           </TooltipTrigger>
           <TooltipPopup>
-            <div>
+            <div className="text-mc-text-main">
               {effect.name}
               {effect.amplifier ? ` ${effect.amplifier}` : ""}
             </div>

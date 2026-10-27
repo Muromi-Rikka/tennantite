@@ -1,7 +1,7 @@
 import type { PixelIconName } from "@verdigris/textures";
 import type { ComponentProps } from "react";
 import { pixelIcons } from "@verdigris/textures";
-import { cn } from "../../lib/utils";
+import { cn, gui } from "../../lib/utils";
 
 export interface IconProps extends Omit<ComponentProps<"img">, "alt" | "src"> {
   /**
@@ -13,7 +13,7 @@ export interface IconProps extends Omit<ComponentProps<"img">, "alt" | "src"> {
   */
   pixelated?: boolean;
   /**
-  * 边长（px，默认 32）
+  * 边长（GUI px，默认 16 —— 原版物品图标）
   */
   size?: number;
   /**
@@ -30,8 +30,9 @@ export function Icon({
   className,
   name,
   pixelated = true,
-  size = 32,
+  size = 16,
   src,
+  style,
   ...properties
 }: IconProps) {
   const href
@@ -49,9 +50,8 @@ export function Icon({
       alt=""
       aria-hidden="true"
       className={cn("shrink-0", pixelated && "pixelated", className)}
-      height={size}
       src={href}
-      width={size}
+      style={{ height: gui(size), width: gui(size), ...style }}
       {...properties}
     />
   );
