@@ -1,4 +1,4 @@
-import { PanelDemo } from "@verdigris/ui/demos";
+import { PanelDemo } from "@tennantite/ui/demos";
 
 export function PanelPage() {
   return (

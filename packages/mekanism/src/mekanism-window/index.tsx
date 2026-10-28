@@ -1,7 +1,7 @@
 import type { PointerEvent, ReactNode } from "react";
 import { useRef, useState } from "react";
 
-import { cn, gui } from "@verdigris/ui";
+import { cn, gui } from "@tennantite/ui";
 import { MekanismTitle } from "../mekanism-title/index";
 import { MekanismSprite } from "../mekanism-sprite/index";
 

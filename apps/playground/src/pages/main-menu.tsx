@@ -1,4 +1,4 @@
-import { MainMenuDemo } from "@verdigris/ui/demos";
+import { MainMenuDemo } from "@tennantite/ui/demos";
 
 export function MainMenuPage() {
   return (

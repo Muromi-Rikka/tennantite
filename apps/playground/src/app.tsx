@@ -24,7 +24,7 @@ export function App() {
     <div className="flex h-full">
       <nav className="mc-tex-panel flex w-100 shrink-0 flex-col gap-1 p-6">
         <span className="font-mc mc-text text-mc-gold mc-text-shadow">
-          VERDIGRIS
+          TENNANTITE
         </span>
         {Array.from(pageRegistry.entries(), ([id, entry]) => (
           <a

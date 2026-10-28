@@ -1,4 +1,4 @@
-import { EnchantingScreenDemo } from "@verdigris/ui/demos";
+import { EnchantingScreenDemo } from "@tennantite/ui/demos";
 
 export function EnchantingScreenPage() {
   return (

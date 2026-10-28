@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { cn, gui } from "@verdigris/ui";
+import { cn, gui } from "@tennantite/ui";
 
 const VARIANT_COLORS = {
   "button": "text-mc-mekanism-button",

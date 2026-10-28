@@ -1,6 +1,6 @@
 import type { KeyboardEvent } from "react";
 
-import { cn, gui } from "@verdigris/ui";
+import { cn, gui } from "@tennantite/ui";
 
 export interface MekanismTextFieldProps {
   className?: string;

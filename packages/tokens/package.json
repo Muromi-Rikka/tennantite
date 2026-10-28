@@ -1,8 +1,8 @@
 {
-  "name": "@verdigris/tokens",
+  "name": "@tennantite/tokens",
   "type": "module",
   "version": "0.1.0",
-  "description": "Verdigris design tokens — Minecraft-style Tailwind v4 theme variables",
+  "description": "Tennantite design tokens — Minecraft-style Tailwind v4 theme variables",
   "exports": {
     ".": {
       "types": "./src/index.ts",

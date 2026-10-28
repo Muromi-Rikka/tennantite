@@ -1,4 +1,4 @@
-import { cn, gui } from "@verdigris/ui";
+import { cn, gui } from "@tennantite/ui";
 
 /**
  * mod 贴图注册表条目：CSS data URI 变量 + 源 PNG 尺寸

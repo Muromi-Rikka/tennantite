@@ -1,10 +1,10 @@
 /*
- * @verdigris/tokens — L0 设计令牌
+ * @tennantite/tokens — L0 设计令牌
  *
  * Tailwind v4 CSS-first：所有令牌经 @theme 暴露为 CSS 变量并生成对应工具类。
  * 使用方在自己的 Tailwind 入口内：
  *   @import "tailwindcss";
- *   @import "@verdigris/tokens/css/tokens.css";
+ *   @import "@tennantite/tokens/css/tokens.css";
  *
  * 视觉基准：Minecraft Java 26.3 稳定版 GUI（颜色 / 几何 / 度量全部对齐原版）。
  * 间距基准为 GUI px：`--spacing: var(--mc-gui)`，因此 `w-20` = 20 GUI px。

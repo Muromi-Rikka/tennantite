@@ -5,7 +5,7 @@ import {
   ExtractorScreenDemo,
   Ic2EnergyGaugeDemo,
   MaceratorScreenDemo,
-} from "@verdigris/ic2/demos";
+} from "@tennantite/ic2/demos";
 
 export function Ic2Page() {
   return (

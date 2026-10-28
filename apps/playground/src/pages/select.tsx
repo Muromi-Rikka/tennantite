@@ -1,4 +1,4 @@
-import { SelectDemo } from "@verdigris/ui/demos";
+import { SelectDemo } from "@tennantite/ui/demos";
 
 export function SelectPage() {
   return (

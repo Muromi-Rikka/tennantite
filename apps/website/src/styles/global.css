@@ -1,10 +1,10 @@
 @import "tailwindcss";
-@import "@verdigris/tokens/css/tokens.css";
-@import "@verdigris/textures/css/textures.css";
-@import "@verdigris/textures/css/ic2-textures.css";
-@import "@verdigris/textures/css/ae2-textures.css";
-@import "@verdigris/textures/css/mekanism-textures.css";
-@import "@verdigris/ui/css/scroll-area.css";
+@import "@tennantite/tokens/css/tokens.css";
+@import "@tennantite/textures/css/textures.css";
+@import "@tennantite/textures/css/ic2-textures.css";
+@import "@tennantite/textures/css/ae2-textures.css";
+@import "@tennantite/textures/css/mekanism-textures.css";
+@import "@tennantite/ui/css/scroll-area.css";
 
 /* 扫描 monorepo 包内类名（路径相对本文件） */
 @source "../../../../packages";

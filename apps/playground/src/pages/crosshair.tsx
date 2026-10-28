@@ -1,4 +1,4 @@
-import { CrosshairDemo } from "@verdigris/ui/demos";
+import { CrosshairDemo } from "@tennantite/ui/demos";
 
 export function CrosshairPage() {
   return (

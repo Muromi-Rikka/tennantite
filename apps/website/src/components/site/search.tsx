@@ -6,7 +6,7 @@ import {
   DialogTitle,
   Input,
   ScrollArea,
-} from "@verdigris/ui";
+} from "@tennantite/ui";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import type { Locale } from "@/i18n";

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
-import { cn, gui } from "@verdigris/ui";
-import type { ScreenSlot } from "@verdigris/ui";
+import { cn, gui } from "@tennantite/ui";
+import type { ScreenSlot } from "@tennantite/ui";
 
 import { MekanismLabel } from "../mekanism-label/index";
 import { MekanismPlayerInventory } from "../mekanism-player-inventory/index";

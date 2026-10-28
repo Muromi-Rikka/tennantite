@@ -1,5 +1,5 @@
 /*
- * @verdigris/textures — AE2（应用能源 2）纹理
+ * @tennantite/textures — AE2（应用能源 2）纹理
  *
  * 终端家族直接使用 AE2 1.12.2 原始 GUI 贴图（terminal / crafting / states），
  * 优先级角标使用 AE2 1.21.10 的 states.png（states-modern，1.12.2 贴图没有这组
@@ -7,7 +7,7 @@
  * 其余部件（压印器进度、工具栏按钮底、清空按钮、图标）为手绘 SVG 像素复刻。
  * 1 GUI px = var(--mc-gui)，所有纹理按 --mc-gui 缩放。
  *
- * 用法：在应用 Tailwind 入口内 @import "@verdigris/textures/css/ae2-textures.css";
+ * 用法：在应用 Tailwind 入口内 @import "@tennantite/textures/css/ae2-textures.css";
  */
 
 /* AE2 原始贴图（terminal / crafting / states / states-modern）data URI 变量 */

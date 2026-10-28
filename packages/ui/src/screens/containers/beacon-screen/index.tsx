@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key -- 固定槽位/列表以位置为身份 */
 "use client";
 
-import type { GuiSpriteName, PixelIconName } from "@verdigris/textures";
+import type { GuiSpriteName, PixelIconName } from "@tennantite/textures";
 import type { ReactNode } from "react";
 import { useState } from "react";
 

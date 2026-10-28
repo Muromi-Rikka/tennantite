@@ -1,8 +1,8 @@
 {
-  "name": "@verdigris/mods-core",
+  "name": "@tennantite/mods-core",
   "type": "module",
   "version": "0.1.0",
-  "description": "Verdigris — 跨 mod 共享的 mod 界面原语（按钮/进度条/槽位网格/贴图裁剪等）",
+  "description": "Tennantite — 跨 mod 共享的 mod 界面原语（按钮/进度条/槽位网格/贴图裁剪等）",
   "sideEffects": false,
   "exports": {
     ".": {
@@ -28,7 +28,7 @@
     "react-dom": "^19.2.0"
   },
   "dependencies": {
-    "@verdigris/ui": "workspace:*"
+    "@tennantite/ui": "workspace:*"
   },
   "devDependencies": {
     "@rsbuild/plugin-react": "^2.1.1",

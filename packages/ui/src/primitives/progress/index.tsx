@@ -1,4 +1,4 @@
-import type { GuiSpriteName } from "@verdigris/textures";
+import type { GuiSpriteName } from "@tennantite/textures";
 import type { ComponentProps } from "react";
 
 import { Progress as BaseProgress } from "@base-ui/react/progress";

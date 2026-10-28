@@ -18,10 +18,10 @@ import InstallCommand from "@/components/docs/InstallCommand.astro";
 
 ## 安装依赖
 
-<InstallCommand command="pnpm add @verdigris/ui @verdigris/tokens @verdigris/textures" />
+<InstallCommand command="pnpm add @tennantite/ui @tennantite/tokens @tennantite/textures" />
 
 <Callout variant="warn" title="npm 尚未发布">
-v0.1.0 仍在预览。仓库内使用 `"@verdigris/ui": "workspace:*"`，不要从 npm 安装。
+v0.1.0 仍在预览。仓库内使用 `"@tennantite/ui": "workspace:*"`，不要从 npm 安装。
 </Callout>
 
 ## 接入样式
@@ -30,12 +30,12 @@ v0.1.0 仍在预览。仓库内使用 `"@verdigris/ui": "workspace:*"`，不要�
 
 ```css
 @import "tailwindcss";
-@import "@verdigris/tokens/css/tokens.css";
-@import "@verdigris/textures/css/textures.css";
-@import "@verdigris/ui/css/scroll-area.css";
+@import "@tennantite/tokens/css/tokens.css";
+@import "@tennantite/textures/css/textures.css";
+@import "@tennantite/ui/css/scroll-area.css";
 
 /* 让 Tailwind 扫描包内类名；路径相对本 CSS 文件 */
-@source "../node_modules/@verdigris/ui/dist";
+@source "../node_modules/@tennantite/ui/dist";
 
 body {
   background-color: #1f1f1f;
@@ -52,7 +52,7 @@ monorepo 内把 `@source` 指向 `../../packages`。`@source` 的路径必须相
 ## 第一个组件
 
 ```tsx
-import { Button, Panel } from "@verdigris/ui";
+import { Button, Panel } from "@tennantite/ui";
 
 export function StartPanel() {
   return (
@@ -69,7 +69,7 @@ export function StartPanel() {
 
 ## 常见问题
 
-- 类名缺失：检查 `@source` 是否覆盖 `node_modules/@verdigris/ui/dist`。
+- 类名缺失：检查 `@source` 是否覆盖 `node_modules/@tennantite/ui/dist`。
 - 间距不对：`--spacing` 等于 2px，`w-20` 是 40px，不是 80px。
 - React 版本：保持 19.2.8，避免 19.3 与 Next 16 的预渲染兼容问题。
 - 中文显示：像素字体只覆盖拉丁字符，中文按令牌回退到系统无衬线字体。

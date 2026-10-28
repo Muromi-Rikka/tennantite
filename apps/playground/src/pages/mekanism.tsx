@@ -14,7 +14,7 @@ import {
   MekanismThermalEvaporationScreenDemo,
   MekanismThermoelectricBoilerScreenDemo,
   MekanismUpgradeWindowDemo,
-} from "@verdigris/mekanism/demos";
+} from "@tennantite/mekanism/demos";
 
 export function MekanismPage() {
   return (

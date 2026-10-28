@@ -7,7 +7,7 @@ import {
   ScrollArea,
   Slider,
   Switch,
-} from "@verdigris/ui";
+} from "@tennantite/ui";
 
 /**
  * SSR / RSC 验证页（规格 §1.1 硬约束）：
@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <main className="mc-tex-panel mx-auto my-8 w-240 p-12">
       <h1 className="font-mc mc-text text-mc-gold mc-text-shadow">
-        VERDIGRIS · Next.js SSR
+        TENNANTITE · Next.js SSR
       </h1>
 
       <section className="mt-8 flex flex-col gap-4">

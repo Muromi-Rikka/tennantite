@@ -1,6 +1,6 @@
-import { cn } from "@verdigris/ui";
+import { cn } from "@tennantite/ui";
 
-import type { ScreenSlot } from "@verdigris/ui";
+import type { ScreenSlot } from "@tennantite/ui";
 
 import { MekanismSlot } from "../mekanism-slot/index";
 

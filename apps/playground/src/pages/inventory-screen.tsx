@@ -1,4 +1,4 @@
-import { InventoryScreenDemo } from "@verdigris/ui/demos";
+import { InventoryScreenDemo } from "@tennantite/ui/demos";
 
 export function InventoryScreenPage() {
   return (

@@ -1,9 +1,9 @@
-import type { MekanismSpriteName } from "@verdigris/textures";
+import type { MekanismSpriteName } from "@tennantite/textures";
 import type { CSSProperties } from "react";
-import { mekanismSpriteMeta } from "@verdigris/textures";
+import { mekanismSpriteMeta } from "@tennantite/textures";
 
 import type { MekanismProgressType } from "../mekanism-types";
-import { cn, gui } from "@verdigris/ui";
+import { cn, gui } from "@tennantite/ui";
 import { MEKANISM_PROGRESS_SIZES, MEKANISM_PROGRESS_SPRITES } from "../mekanism-metrics";
 import { MekanismSprite } from "../mekanism-sprite/index";
 

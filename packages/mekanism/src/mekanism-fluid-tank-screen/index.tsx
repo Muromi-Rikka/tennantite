@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { ScreenSlot } from "@verdigris/ui";
+import type { ScreenSlot } from "@tennantite/ui";
 import type { MekanismFluidContents, MekanismStorageScreenProps } from "../mekanism-storage-types";
 import type { MekanismEditMode, MekanismSecurityMode } from "../mekanism-types";
 

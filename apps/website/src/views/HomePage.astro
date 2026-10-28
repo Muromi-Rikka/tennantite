@@ -1,5 +1,5 @@
 ---
-import { Icon } from "@verdigris/ui";
+import { Icon } from "@tennantite/ui";
 import InstallCommand from "@/components/docs/InstallCommand.astro";
 import PrimitiveStrip from "@/components/home/primitive-strip";
 import ScaledPreview from "@/components/preview/ScaledPreview.astro";
@@ -17,7 +17,7 @@ const { locale } = Astro.props;
 const text = ui[locale];
 const home = text.home;
 const site = Astro.site ?? new URL("http://localhost:3300");
-const installCommand = "pnpm add @verdigris/ui @verdigris/tokens @verdigris/textures";
+const installCommand = "pnpm add @tennantite/ui @tennantite/tokens @tennantite/textures";
 ---
 <SiteLayout
   title={home.metaTitle}

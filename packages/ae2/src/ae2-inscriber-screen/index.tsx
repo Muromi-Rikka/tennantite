@@ -1,15 +1,15 @@
 import type { ReactNode } from "react";
-import { ae2SpriteMeta } from "@verdigris/textures";
+import { ae2SpriteMeta } from "@tennantite/textures";
 
-import type { PlayerInventoryProps } from "@verdigris/ui";
-import type { ScreenSlot } from "@verdigris/ui";
-import { PlayerInventory } from "@verdigris/ui";
-import { ScreenPanel } from "@verdigris/ui";
-import { cn } from "@verdigris/ui";
-import { ScreenItemSlot } from "@verdigris/ui";
-import { padSlots } from "@verdigris/ui";
+import type { PlayerInventoryProps } from "@tennantite/ui";
+import type { ScreenSlot } from "@tennantite/ui";
+import { PlayerInventory } from "@tennantite/ui";
+import { ScreenPanel } from "@tennantite/ui";
+import { cn } from "@tennantite/ui";
+import { ScreenItemSlot } from "@tennantite/ui";
+import { padSlots } from "@tennantite/ui";
 import { AE2_INSCRIBER } from "../ae2-layout";
-import { ModProgress, ModSprite, ModTitle } from "@verdigris/mods-core";
+import { ModProgress, ModSprite, ModTitle } from "@tennantite/mods-core";
 
 export interface Ae2InscriberScreenProps {
   bottomPlate?: ScreenSlot;

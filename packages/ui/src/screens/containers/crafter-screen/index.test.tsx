@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { containerSlots } from "@verdigris/textures";
+import { containerSlots } from "@tennantite/textures";
 import { describe, expect, it } from "vitest";
 
 import { CrafterScreen } from "./index";

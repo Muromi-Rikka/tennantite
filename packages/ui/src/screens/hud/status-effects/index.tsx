@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key -- 状态效果是固定顺序的纵向列表 */
-import type { PixelIconName } from "@verdigris/textures";
+import type { PixelIconName } from "@tennantite/textures";
 
 import { GuiSprite } from "../../../containers/gui-sprite/index";
 import { Icon } from "../../../containers/icon/index";

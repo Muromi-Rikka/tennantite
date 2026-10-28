@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { gui } from "@verdigris/ui";
+import { gui } from "@tennantite/ui";
 
 export interface Ic2LabelProps {
   children: ReactNode;

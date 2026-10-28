@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "homepage": "https://github.com/verdigris-ui/verdigris",
+  "homepage": "https://github.com/tennantite/tennantite",
   "items": [
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -1957,5 +1957,5 @@
       "type": "registry:component"
     }
   ],
-  "name": "verdigris"
+  "name": "tennantite"
 }

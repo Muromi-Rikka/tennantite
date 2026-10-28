@@ -1,4 +1,4 @@
-import { CraftingScreenDemo } from "@verdigris/ui/demos";
+import { CraftingScreenDemo } from "@tennantite/ui/demos";
 
 export function CraftingScreenPage() {
   return (

@@ -15,20 +15,20 @@
 > （双平台占名探测见 §11）
 > v0.6 —— 包 scope 确定为 
 >
-> `@verdigris-ui`
+> `@tennantite`
 >
 > （铜化合物方向，双平台占名探测见 §11）
 > v0.7 —— 包名确定为 
 >
-> `@verdigris/ui`
+> `@tennantite/ui`
 >
 > （scope 
 >
-> `@verdigris`
+> `@tennantite`
 >
 > ，npm 侧空闲可用；GitHub org 
 >
-> `verdigris`
+> `tennantite`
 >
 >  已被占用，如需一致 org 名见 §11）
 > v0.8 —— 新增 ESLint 规则约定：flat config，基于 
@@ -85,7 +85,7 @@
 | Lint | ESLint 9/10 flat config，基于 `@renton/eslint-config`（详见 1.2）                              |
 | 构建工具 | Rspack 生态：rslib 构建库（ESM + d.ts）、rsbuild 构建应用（apps）、底层引擎 rspack                          |
 | 组件组织 | 每个组件一个目录：`组件名/index.tsx` + 样式 / 类型 /story                                               |
-| 发布形态 | 发布 npm 包：包名 `@verdigris/ui`（scope `@verdigris`），仅 ESM + d.ts（rslib 正式 pipeline），保留源码级分发 |
+| 发布形态 | 发布 npm 包：包名 `@tennantite/ui`（scope `@tennantite`），仅 ESM + d.ts（rslib 正式 pipeline），保留源码级分发 |
 
 
 
@@ -339,7 +339,7 @@ L0 基础素材    Design Tokens · 像素字体 · 像素纹理 · 渲染基调
 容器界面坐标系以原版 `container/*.png` 的 **18×18 槽框左上角**为准，而不是原版 `Slot.x/y`（物品坐标）：
 
 - 18 槽：物品 = 槽框 + 1；26 槽：物品 = 槽框 + 5（居中）。`ScreenItemSlot` / `Slot` 的 `left/top` 一律传槽框左上角。
-- 槽位坐标必须来自 `@verdigris/textures` 的 `containerSlots`（由 `sync:gui-layouts` 扫描生成），或为界面新增一条与 `containerSlots` 对照的测试；不允许只按原版源码的 `Slot.x/y` 手抄。
+- 槽位坐标必须来自 `@tennantite/textures` 的 `containerSlots`（由 `sync:gui-layouts` 扫描生成），或为界面新增一条与 `containerSlots` 对照的测试；不允许只按原版源码的 `Slot.x/y` 手抄。
 - 256×256 / 512×256 的 GUI sheet 必须用 `GuiSprite` 的 `src` 裁剪有效区域；`ScreenPanel` 的 `background` 已内置该行为，手工 `GuiSprite` 背景必须显式传 `src`，不能依赖 `100% 100%` 拉伸。
 - 选中态只切换 sprite / 颜色，不改变几何位置；需要与背景叠压时按原版绘制顺序（未选中标签 → 背景 → 选中标签）实现，而不是靠 y 偏移“挤进去”。
 - 像素箭头/指示器用整数矩形或台阶路径绘制，不使用 Unicode 字形（字体回退会改变宽度与基线）。
@@ -480,7 +480,7 @@ L0 基础素材    Design Tokens · 像素字体 · 像素纹理 · 渲染基调
 | 拖拽交互        | 不做（首版及后续均排除，库保持只读展示 + 手势）                                              | 已确认    |
 | Tailwind 版本 | v4（tokens 经 `@theme` / CSS 变量定义）                                       | 已确认    |
 | Node 基线     | Node 26（engines 约束）                                                    | 已确认    |
-| 包 scope     | `@verdigris`，包名 `@verdigris/ui`（铜绿 / 碱式碳酸铜，对应 MC 铜氧化机制；npm scope 空闲可用） | 已确认    |
+| 包 scope     | `@tennantite`，包名 `@tennantite/ui`（铜绿 / 碱式碳酸铜，对应 MC 铜氧化机制；npm scope 空闲可用） | 已确认    |
 | 发布前复核       | npm 官方 registry 发布时最终确认 scope 未被占用（探测基于镜像通道）                           | 待发布时执行 |
 
 **scope 占名探测记录**（2026-10-25；方法：npm 经 npmmirror search API 查 `scope:<name>` 包数，GitHub 经用户页状态码，均以存在 / 不存在对照样本验证）：
@@ -491,10 +491,10 @@ L0 基础素材    Design Tokens · 像素字体 · 像素纹理 · 渲染基调
 
 * 32 个冷门元素全名（bismuth /thorium/plutonium /hafnium 等）：GitHub 侧同样全部占用。
 
-* 铜化合物 / 矿物纯名（verdigris /malachite/azurite /cuprite/patina 等 15 个）：npm 侧全部空闲，GitHub 侧全部占用（`verdigris` 被 [verdigris.org](https://verdigris.org) 占用）。
+* 铜化合物 / 矿物纯名（tennantite /malachite/azurite /cuprite/patina 等 15 个）：npm 侧全部空闲，GitHub 侧全部占用（`tennantite` 被 [tennantite.org](https://tennantite.org) 占用）。
 
-* 最终采用：npm scope 使用纯名 `@verdigris`（npm 侧空闲，包名 `@verdigris/ui`）；GitHub org 纯名 `verdigris` 已被占用，如需与 npm 一致的 org 名，可用双空闲变体 `verdigris-ui`。
+* 最终采用：npm scope 使用纯名 `@tennantite`（npm 侧空闲，包名 `@tennantite/ui`）；GitHub org 纯名 `tennantite` 已被占用，如需与 npm 一致的 org 名，可用双空闲变体 `tennantite`。
 
-* 双平台均空闲的变体（铜化合物方向）：`verdigris-ui`、`patina-ui`、`malachite-ui`、`azurite-ui`、`cuprite-ui`、`mc-verdigris`、`mc-malachite`、`mc-azurite`、`verdigriscraft`、`malachitecraft`、`cupritecraft`、`verdigrislab`、`patinalab`（`azuritecraft` 已被占用）。
+* 双平台均空闲的变体（铜化合物方向）：`tennantite`、`patina-ui`、`malachite-ui`、`azurite-ui`、`cuprite-ui`、`mc-tennantite`、`mc-malachite`、`mc-azurite`、`tennantitecraft`、`malachitecraft`、`cupritecraft`、`tennantitelab`、`patinalab`（`azuritecraft` 已被占用）。
 
 * 双平台均空闲的变体（元素方向，备选）：`copper-ui`、`mc-copper`、`mc-osmium`、`mc-cobalt`、`osmiumcraft`、`osmium-ui`、`nickelmc`、`coppermod`；其余（`coppermc`、`osmiummc`、`cobaltmc` 等）GitHub 已占用。

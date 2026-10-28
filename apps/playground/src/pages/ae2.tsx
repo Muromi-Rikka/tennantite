@@ -4,7 +4,7 @@ import {
   Ae2DriveScreenDemo,
   Ae2InscriberScreenDemo,
   Ae2TerminalScreenDemo,
-} from "@verdigris/ae2/demos";
+} from "@tennantite/ae2/demos";
 
 export function Ae2Page() {
   return (

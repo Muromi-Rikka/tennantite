@@ -22,7 +22,7 @@ jobs:
     env:
       CI: "true"
       # 站点绝对 URL：Astro 的 canonical/sitemap 依赖它，turbo 已声明该 env 参与缓存键
-      SITE_URL: ${{ vars.SITE_URL || 'https://verdigris-ui.pages.dev' }}
+      SITE_URL: ${{ vars.SITE_URL || 'https://tennantite.pages.dev' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -47,14 +47,14 @@ jobs:
           pnpm lint
           pnpm typecheck
 
-      # `...` 一并构建 @verdigris/website 依赖的工作区包（ui / tokens / textures）
+      # `...` 一并构建 @tennantite/website 依赖的工作区包（ui / tokens / textures）
       - name: Build website
-        run: pnpm turbo run build --filter=@verdigris/website...
+        run: pnpm turbo run build --filter=@tennantite/website...
 
       # PR 只做门禁 + 构建校验，不发布
-      - name: Publish to CF Pages verdigris-ui
+      - name: Publish to CF Pages tennantite
         if: github.event_name != 'pull_request'
-        run: npx --yes wrangler@4.142.0 pages deploy apps/website/dist --project-name=verdigris-ui --branch=master
+        run: npx --yes wrangler@4.142.0 pages deploy apps/website/dist --project-name=tennantite --branch=master
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}

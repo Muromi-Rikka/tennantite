@@ -1,4 +1,4 @@
-import type { PixelIconName } from "@verdigris/textures";
+import type { PixelIconName } from "@tennantite/textures";
 
 /**
  * 槽位区域标识（onSlotClick 回调用）

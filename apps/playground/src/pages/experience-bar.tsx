@@ -1,4 +1,4 @@
-import { ExperienceBarDemo } from "@verdigris/ui/demos";
+import { ExperienceBarDemo } from "@tennantite/ui/demos";
 
 export function ExperienceBarPage() {
   return (

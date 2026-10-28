@@ -1,8 +1,8 @@
 {
-  "name": "@verdigris/textures",
+  "name": "@tennantite/textures",
   "type": "module",
   "version": "0.1.0",
-  "description": "Verdigris pixel textures — vanilla Minecraft GUI PNG sprites, redrawn nine-slices and vanilla item/status icons",
+  "description": "Tennantite pixel textures — vanilla Minecraft GUI PNG sprites, redrawn nine-slices and vanilla item/status icons",
   "exports": {
     ".": {
       "types": "./src/index.ts",

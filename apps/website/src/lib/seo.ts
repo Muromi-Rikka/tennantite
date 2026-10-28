@@ -25,7 +25,7 @@ export function softwareApplication(site: URL, locale: Locale): JsonLd {
     "@type": "SoftwareApplication",
     "applicationCategory": "DeveloperApplication",
     "description": DESCRIPTION[locale],
-    "name": "Verdigris",
+    "name": "Tennantite",
     "operatingSystem": "Web",
     "softwareVersion": "0.1.0",
     "url": new URL(localeHref(locale, "/"), site).href,
@@ -61,7 +61,7 @@ export function website(site: URL, locale: Locale): JsonLd {
     "@type": "WebSite",
     "description": DESCRIPTION[locale],
     "inLanguage": ui[locale].htmlLang,
-    "name": "Verdigris",
+    "name": "Tennantite",
     "url": new URL(localeHref(locale, "/"), site).href,
   };
 }

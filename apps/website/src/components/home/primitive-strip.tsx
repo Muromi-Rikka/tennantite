@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Badge, Button, Checkbox, Input, Progress, Slider, Switch } from "@verdigris/ui";
+import { Badge, Button, Checkbox, Input, Progress, Slider, Switch } from "@tennantite/ui";
 
 export function PrimitiveStrip() {
   return (

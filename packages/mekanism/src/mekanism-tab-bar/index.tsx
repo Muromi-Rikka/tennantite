@@ -1,4 +1,4 @@
-import { cn } from "@verdigris/ui";
+import { cn } from "@tennantite/ui";
 
 import type {
   MekanismEditMode,

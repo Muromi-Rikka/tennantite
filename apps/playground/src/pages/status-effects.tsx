@@ -1,4 +1,4 @@
-import { StatusEffectsDemo } from "@verdigris/ui/demos";
+import { StatusEffectsDemo } from "@tennantite/ui/demos";
 
 export function StatusEffectsPage() {
   return (

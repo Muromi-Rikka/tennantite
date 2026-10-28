@@ -1,5 +1,5 @@
 {
-  "name": "@verdigris/mekanism",
+  "name": "@tennantite/mekanism",
   "type": "module",
   "version": "0.1.0",
   "sideEffects": false,
@@ -31,9 +31,9 @@
     "react-dom": "^19.2.0"
   },
   "dependencies": {
-    "@verdigris/mods-core": "workspace:*",
-    "@verdigris/textures": "workspace:*",
-    "@verdigris/ui": "workspace:*"
+    "@tennantite/mods-core": "workspace:*",
+    "@tennantite/textures": "workspace:*",
+    "@tennantite/ui": "workspace:*"
   },
   "devDependencies": {
     "@rsbuild/plugin-react": "^2.1.1",

@@ -1,4 +1,4 @@
-import { FurnaceScreenDemo } from "@verdigris/ui/demos";
+import { FurnaceScreenDemo } from "@tennantite/ui/demos";
 
 export function FurnaceScreenPage() {
   return (

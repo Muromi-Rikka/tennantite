@@ -18,10 +18,10 @@ import InstallCommand from "@/components/docs/InstallCommand.astro";
 
 ## Install dependencies
 
-<InstallCommand command="pnpm add @verdigris/ui @verdigris/tokens @verdigris/textures" locale="en" />
+<InstallCommand command="pnpm add @tennantite/ui @tennantite/tokens @tennantite/textures" locale="en" />
 
 <Callout variant="warn" title="Not on npm yet">
-v0.1.0 is still a preview. Inside this repo use `"@verdigris/ui": "workspace:*"` instead of installing from npm.
+v0.1.0 is still a preview. Inside this repo use `"@tennantite/ui": "workspace:*"` instead of installing from npm.
 </Callout>
 
 ## Wire up styles
@@ -30,12 +30,12 @@ Import the packages in this order from your Tailwind entry CSS:
 
 ```css
 @import "tailwindcss";
-@import "@verdigris/tokens/css/tokens.css";
-@import "@verdigris/textures/css/textures.css";
-@import "@verdigris/ui/css/scroll-area.css";
+@import "@tennantite/tokens/css/tokens.css";
+@import "@tennantite/textures/css/textures.css";
+@import "@tennantite/ui/css/scroll-area.css";
 
 /* Let Tailwind scan package class names; paths are relative to this CSS file. */
-@source "../node_modules/@verdigris/ui/dist";
+@source "../node_modules/@tennantite/ui/dist";
 
 body {
   background-color: #1f1f1f;
@@ -52,7 +52,7 @@ In this monorepo point `@source` at `../../packages`. The path must be relative 
 ## First component
 
 ```tsx
-import { Button, Panel } from "@verdigris/ui";
+import { Button, Panel } from "@tennantite/ui";
 
 export function StartPanel() {
   return (
@@ -69,7 +69,7 @@ Components render safely on the server by default. The repo includes Next.js App
 
 ## Troubleshooting
 
-- Missing classes: make sure `@source` covers `node_modules/@verdigris/ui/dist`.
+- Missing classes: make sure `@source` covers `node_modules/@tennantite/ui/dist`.
 - Wrong spacing: `--spacing` is 2px, so `w-20` is 40px, not 80px.
 - React version: stay on 19.2.8 to avoid the Next 16 prerender issue in 19.3.
 - Chinese glyphs: the pixel font covers Latin only; Chinese falls back through the token stack.

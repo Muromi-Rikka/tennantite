@@ -1,4 +1,4 @@
-import type { PixelIconName } from "@verdigris/textures";
+import type { PixelIconName } from "@tennantite/textures";
 
 import { cn, gui } from "../../lib/utils";
 import { Grid } from "../grid/index";

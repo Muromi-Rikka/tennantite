@@ -1,4 +1,4 @@
-import { ic2SpriteMeta } from "@verdigris/textures";
+import { ic2SpriteMeta } from "@tennantite/textures";
 import { expect, it } from "vitest";
 
 import { IC2_BATBOX, IC2_MACHINE, IC2_SLOT_ITEM_OFFSET } from "./ic2-layout";

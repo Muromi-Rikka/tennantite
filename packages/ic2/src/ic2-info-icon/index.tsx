@@ -1,6 +1,6 @@
-import { ModSprite } from "@verdigris/mods-core";
+import { ModSprite } from "@tennantite/mods-core";
 
-import { ic2SpriteMeta } from "@verdigris/textures";
+import { ic2SpriteMeta } from "@tennantite/textures";
 
 /**
  * IC2 左上角信息按钮图标（10×10，纯展示）。

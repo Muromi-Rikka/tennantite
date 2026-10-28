@@ -1,12 +1,12 @@
 /*
- * @verdigris/textures — IC2（工业时代 2）纹理
+ * @tennantite/textures — IC2（工业时代 2）纹理
  *
  * 直接使用 IC2 2.8.99-ex112 的原始 GUI 贴图（common / guielectricblock /
  * infobutton）与 Minecraft 1.12.2 的原版按钮、红石粉、空装备图标；见
  * ic2-sprites.generated.css，授权与来源见 LICENSE-ASSETS.md。
  * 1 GUI px = var(--mc-gui)，所有纹理按 --mc-gui 缩放。
  *
- * 用法：在应用 Tailwind 入口内 @import "@verdigris/textures/css/ic2-textures.css";
+ * 用法：在应用 Tailwind 入口内 @import "@tennantite/textures/css/ic2-textures.css";
  */
 
 /* IC2 / MC 原始贴图 data URI 变量 */

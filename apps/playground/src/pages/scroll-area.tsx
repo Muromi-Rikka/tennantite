@@ -1,4 +1,4 @@
-import { ScrollAreaDemo } from "@verdigris/ui/demos";
+import { ScrollAreaDemo } from "@tennantite/ui/demos";
 
 export function ScrollAreaPage() {
   return (

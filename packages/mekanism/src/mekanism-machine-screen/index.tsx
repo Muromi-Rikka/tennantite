@@ -1,8 +1,8 @@
-import type { MekanismSpriteName } from "@verdigris/textures";
+import type { MekanismSpriteName } from "@tennantite/textures";
 import type { ReactNode } from "react";
 import { useRef, useState } from "react";
 
-import type { ScreenSlot } from "@verdigris/ui";
+import type { ScreenSlot } from "@tennantite/ui";
 import type {
   MekanismDataType,
   MekanismEditMode,
@@ -14,7 +14,7 @@ import type {
   MekanismWindowKind,
 } from "../mekanism-types";
 import type { MekanismMachineKey, MekanismMachineLayout } from "./mekanism-machine-layout";
-import { gui } from "@verdigris/ui";
+import { gui } from "@tennantite/ui";
 import { MekanismBar } from "../mekanism-bar/index";
 import { MekanismGauge } from "../mekanism-gauge/index";
 import { MekanismArrow } from "../mekanism-arrow/index";

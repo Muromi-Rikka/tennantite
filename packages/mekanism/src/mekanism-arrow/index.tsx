@@ -1,4 +1,4 @@
-import type { MekanismSpriteName } from "@verdigris/textures";
+import type { MekanismSpriteName } from "@tennantite/textures";
 
 import { MekanismSprite } from "../mekanism-sprite/index";
 

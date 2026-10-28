@@ -1,6 +1,6 @@
 # 素材授权声明（Assets Licensing）
 
-本项目（Verdigris）的视觉素材分两类，授权不同。
+本项目（Tennantite）的视觉素材分两类，授权不同。
 
 ## GUI 精灵（Minecraft Java 26.4-snapshot-3 原版素材）
 
@@ -13,7 +13,7 @@ Resource Pack Creator 的 GUI 分类（Mojang 原版 GUI PNG）：
 - 版本：`26.4-snapshot-3`
 - 路径：`https://resourcepackcreator.com/textures/gui/<path>`
 - 生成脚本：`packages/textures/scripts/sync-gui-sprites.mjs`；重新生成/校验：
-  `pnpm --filter @verdigris/textures sync:gui-sprites` /
+  `pnpm --filter @tennantite/textures sync:gui-sprites` /
   `pnpm verify:assets`。
 
 仓库不包含原始散图，只包含生成文件中的 base64 data URI。GUI 纹理版权归
@@ -34,7 +34,7 @@ Minecraft Java 26.3 客户端 `client.jar`：
   - `assets/minecraft/textures/block/*.png`：6 个方块图标，16×16（石头、泥土、草方块侧面、铁矿石、工作台正面、橡木木板）。使用平面贴图，不是游戏内 3D 物品渲染。
   - `assets/minecraft/textures/gui/sprites/hud/*.png`：11 个 HUD 状态图标，9×9（生命、饥饿、护甲、氧气及其半格/空槽）。
 - 生成脚本：`packages/textures/scripts/sync-vanilla-icons.mjs`；重新生成：
-  `pnpm --filter @verdigris/textures sync:icons`。
+  `pnpm --filter @tennantite/textures sync:icons`。
 
 `packages/textures/src/gui-icons.generated.ts` 另有 23 个 GUI 图标与 41 个
 `mob_effect` 图标，来自同一 GUI 目录；与 GUI 精灵同一授权与来源。
@@ -64,7 +64,7 @@ IC2 机器界面与储电箱界面直接使用 IndustrialCraft 2 Experimental 2.
 - 产物：`packages/textures/css/ic2-sprites.generated.css` 与
   `packages/textures/src/ic2-sprites.generated.ts`（base64 data URI，仓库不含散图）
 - 生成脚本：`packages/textures/scripts/sync-ic2-sprites.mjs`；重新生成/校验：
-  `pnpm --filter @verdigris/textures sync:ic2-sprites` /
+  `pnpm --filter @tennantite/textures sync:ic2-sprites` /
   `pnpm verify:assets`。
 
 IC2 贴图版权归 IndustrialCraft 2 作者所有，**不在本项目授权范围内**，本项目不授予
@@ -89,7 +89,7 @@ Mekanism 26.3 界面与共享件直接使用 Mekanism 上游的原始 GUI 贴图
 - 产物：`packages/textures/css/mekanism-sprites.generated.css` 与
   `packages/textures/src/mekanism-sprites.generated.ts`（base64 data URI，仓库不含散图）
 - 生成脚本：`packages/textures/scripts/sync-mekanism-sprites.mjs`；重新生成/校验：
-  `pnpm --filter @verdigris/textures sync:mekanism-sprites` /
+  `pnpm --filter @tennantite/textures sync:mekanism-sprites` /
   `pnpm verify:assets`。
 
 Mekanism 以 **MIT** 发布，Copyright (c) 2017-2025 Aidan C. Brady。生成的 data URI
@@ -112,7 +112,7 @@ Mekanism 以 **MIT** 发布，Copyright (c) 2017-2025 Aidan C. Brady。生成的
 - 产物：`packages/textures/css/ae2-sprites.generated.css` 与
   `packages/textures/src/ae2-sprites.generated.ts`（base64 data URI，仓库不含散图）
 - 生成脚本：`packages/textures/scripts/sync-ae2-sprites.mjs`；重新生成/校验：
-  `pnpm --filter @verdigris/textures sync:ae2-sprites` /
+  `pnpm --filter @tennantite/textures sync:ae2-sprites` /
   `pnpm verify:assets`。
 
 AE2 以 **GNU LGPL-3.0** 发布（<https://github.com/AE2-UEL/Applied-Energistics-2/blob/master/LICENSE>）。

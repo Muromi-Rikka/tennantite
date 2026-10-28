@@ -1,5 +1,5 @@
 ---
-import { Icon } from "@verdigris/ui";
+import { Icon } from "@tennantite/ui";
 import { getCollection } from "astro:content";
 import Search from "@/components/site/search";
 import type { Locale } from "@/i18n";
@@ -16,7 +16,7 @@ const text = ui[locale];
 const docs = await getCollection("docs");
 const searchItems = buildSearchItems(docs, locale);
 const pathname = Astro.url.pathname;
-const githubUrl = "https://github.com/verdigris-ui/verdigris";
+const githubUrl = "https://github.com/tennantite/tennantite";
 const switchHref = /^\/(?:en\/)?404\/?$/.test(pathname)
   ? localeHref(locale === "zh" ? "en" : "zh", "/")
   : switchLocalePath(pathname, locale === "zh" ? "en" : "zh");
@@ -25,7 +25,7 @@ const switchHref = /^\/(?:en\/)?404\/?$/.test(pathname)
   <div class="mx-auto flex h-32 max-w-[1440px] items-center gap-8 px-12">
     <a href={localeHref(locale, "/")} class="flex items-center gap-4 text-lg font-bold tracking-wide text-site-fg hover:text-mc-gold">
       <Icon name="grass-block" size={8} />
-      Verdigris
+      Tennantite
     </a>
     <SiteNav locale={locale} pathname={pathname} />
     <div class="ml-auto flex items-center gap-4">

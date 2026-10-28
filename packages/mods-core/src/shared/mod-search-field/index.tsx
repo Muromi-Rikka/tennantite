@@ -1,4 +1,4 @@
-import { cn, gui } from "@verdigris/ui";
+import { cn, gui } from "@tennantite/ui";
 
 export interface ModSearchFieldProps {
   className?: string;

@@ -1,14 +1,14 @@
 import type { ReactNode } from "react";
-import { ae2SpriteMeta } from "@verdigris/textures";
+import { ae2SpriteMeta } from "@tennantite/textures";
 
-import type { PlayerInventoryProps } from "@verdigris/ui";
-import type { ScreenSlot } from "@verdigris/ui";
+import type { PlayerInventoryProps } from "@tennantite/ui";
+import type { ScreenSlot } from "@tennantite/ui";
 import type { Ae2TerminalAction } from "../ae2-types";
-import { PlayerInventory } from "@verdigris/ui";
-import { ScreenPanel } from "@verdigris/ui";
-import { cn, gui } from "@verdigris/ui";
-import { ScreenItemSlot } from "@verdigris/ui";
-import { padSlots } from "@verdigris/ui";
+import { PlayerInventory } from "@tennantite/ui";
+import { ScreenPanel } from "@tennantite/ui";
+import { cn, gui } from "@tennantite/ui";
+import { ScreenItemSlot } from "@tennantite/ui";
+import { padSlots } from "@tennantite/ui";
 import {
   AE2_CRAFTING_SLICES,
   AE2_CRAFTING_TERMINAL,
@@ -29,7 +29,7 @@ import {
   ModTabButton,
   ModTitle,
   ModToolbar,
-} from "@verdigris/mods-core";
+} from "@tennantite/mods-core";
 
 export interface Ae2CraftingTerminalScreenProps {
   className?: string;

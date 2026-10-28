@@ -1,7 +1,7 @@
-import type { Ae2SpriteName } from "@verdigris/textures";
-import { ae2SpriteMeta } from "@verdigris/textures";
+import type { Ae2SpriteName } from "@tennantite/textures";
+import { ae2SpriteMeta } from "@tennantite/textures";
 
-import { ModSprite } from "@verdigris/mods-core";
+import { ModSprite } from "@tennantite/mods-core";
 
 export interface Ae2PanelBackgroundProps {
   /**

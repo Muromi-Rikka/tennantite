@@ -13,7 +13,7 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf8" },
       { content: "width=device-width, initial-scale=1", name: "viewport" },
-      { title: "Verdigris · TanStack Start SSR 验证" },
+      { title: "Tennantite · TanStack Start SSR 验证" },
     ],
   }),
 });

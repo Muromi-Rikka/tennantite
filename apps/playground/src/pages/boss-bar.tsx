@@ -1,4 +1,4 @@
-import { BossBarDemo } from "@verdigris/ui/demos";
+import { BossBarDemo } from "@tennantite/ui/demos";
 
 export function BossBarPage() {
   return (

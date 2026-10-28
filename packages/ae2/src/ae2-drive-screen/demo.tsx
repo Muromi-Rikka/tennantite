@@ -1,4 +1,4 @@
-import type { ScreenSlot } from "@verdigris/ui";
+import type { ScreenSlot } from "@tennantite/ui";
 import { Ae2DriveScreen } from "./index";
 
 const STORAGE_ITEMS: ScreenSlot[] = [

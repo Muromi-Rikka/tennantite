@@ -1,8 +1,8 @@
-# Verdigris
+# Tennantite
 
 > Minecraft 风格 UI 组件库，基于 shadcn/ui 哲学构建：复制进项目、自由裁剪。
 
-npm 包名 `@verdigris/ui`（scope `@verdigris`）。规格文档见 [spec/minecraft-shadcn-ui-spec.md](./spec/minecraft-shadcn-ui-spec.md)。
+npm 包名 `@tennantite/ui`（scope `@tennantite`）。规格文档见 [spec/minecraft-shadcn-ui-spec.md](./spec/minecraft-shadcn-ui-spec.md)。
 
 ## 技术栈与版本策略
 
@@ -28,11 +28,11 @@ pnpm registry    # 重新生成 shadcn registry.json
 ## 使用组件
 
 ```tsx
-import { Button, Panel, Slot, Hotbar, InventoryScreen } from "@verdigris/ui";
-import "@verdigris/tokens/css/tokens.css"; // Tailwind 入口内：@import "tailwindcss" 之后
-import "@verdigris/textures/css/textures.css";
-import "@verdigris/textures/css/mekanism-textures.css";
-import "@verdigris/ui/css/scroll-area.css";
+import { Button, Panel, Slot, Hotbar, InventoryScreen } from "@tennantite/ui";
+import "@tennantite/tokens/css/tokens.css"; // Tailwind 入口内：@import "tailwindcss" 之后
+import "@tennantite/textures/css/textures.css";
+import "@tennantite/textures/css/mekanism-textures.css";
+import "@tennantite/ui/css/scroll-area.css";
 
 // 所有界面均为数据注入、无游戏逻辑（规格 §8）
 <InventoryScreen mainItems={items} onSlotClick={(area, index) => {}} />
@@ -45,16 +45,16 @@ import "@verdigris/ui/css/scroll-area.css";
 ```
 apps/
   playground/     # 组件开发预览（rsbuild，60 个组件 + GUI parity 页）
-  next-app/       # SSR 验证：Next.js 16 App Router（pnpm --filter @verdigris/next-app dev）
-  tanstack-app/   # SSR 验证：TanStack Start 1.169（pnpm --filter @verdigris/tanstack-app dev）
+  next-app/       # SSR 验证：Next.js 16 App Router（pnpm --filter @tennantite/next-app dev）
+  tanstack-app/   # SSR 验证：TanStack Start 1.169（pnpm --filter @tennantite/tanstack-app dev）
 packages/
-  ui/             # @verdigris/ui 组件库（rslib，ESM + d.ts）
-  mods-core/      # @verdigris/mods-core 跨 mod 共享原语（Mod* 组件 + progressClipPath）
-  mekanism/       # @verdigris/mekanism Mekanism 26.3 界面与组件
-  ic2/            # @verdigris/ic2 工业时代 2 界面与组件
-  ae2/            # @verdigris/ae2 应用能源 2 界面与组件
-  tokens/         # @verdigris/tokens 设计令牌（L0）
-  textures/       # @verdigris/textures 像素纹理（L0）
+  ui/             # @tennantite/ui 组件库（rslib，ESM + d.ts）
+  mods-core/      # @tennantite/mods-core 跨 mod 共享原语（Mod* 组件 + progressClipPath）
+  mekanism/       # @tennantite/mekanism Mekanism 26.3 界面与组件
+  ic2/            # @tennantite/ic2 工业时代 2 界面与组件
+  ae2/            # @tennantite/ae2 应用能源 2 界面与组件
+  tokens/         # @tennantite/tokens 设计令牌（L0）
+  textures/       # @tennantite/textures 像素纹理（L0）
 registry/         # shadcn registry（node registry/build.mjs 生成）
 spec/             # 规格文档
 ```

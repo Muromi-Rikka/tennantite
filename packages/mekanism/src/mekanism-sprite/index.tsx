@@ -1,8 +1,8 @@
-import type { MekanismSpriteName } from "@verdigris/textures";
+import type { MekanismSpriteName } from "@tennantite/textures";
 import type { CSSProperties } from "react";
-import { mekanismSpriteMeta } from "@verdigris/textures";
+import { mekanismSpriteMeta } from "@tennantite/textures";
 
-import { cn, gui } from "@verdigris/ui";
+import { cn, gui } from "@tennantite/ui";
 
 export interface MekanismSpriteProps {
   className?: string;

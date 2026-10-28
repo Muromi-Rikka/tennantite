@@ -1,5 +1,5 @@
 ---
-import { Icon } from "@verdigris/ui";
+import { Icon } from "@tennantite/ui";
 import type { Locale } from "@/i18n";
 import { localeHref, ui } from "@/i18n";
 
@@ -14,7 +14,7 @@ const text = ui[locale].footer;
     <div class="max-w-[320px]">
       <a href={localeHref(locale, "/")} class="flex items-center gap-4 text-base font-bold tracking-wide hover:text-mc-gold">
         <Icon name="grass-block" size={8} />
-        Verdigris
+        Tennantite
       </a>
       <p class="mt-8 text-sm leading-12 text-site-muted">{text.description}</p>
       <p class="mt-4 text-xs text-site-muted">{text.notice}</p>

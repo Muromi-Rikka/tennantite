@@ -1,4 +1,4 @@
-import { DialogDemo } from "@verdigris/ui/demos";
+import { DialogDemo } from "@tennantite/ui/demos";
 
 export function DialogPage() {
   return (

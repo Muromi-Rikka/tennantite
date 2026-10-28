@@ -1,6 +1,6 @@
 /**
  * shadcn registry 生成器（规格 §1 registry/，标注可选，最小可用实现）
- * 产出 registry/registry.json：覆盖 @verdigris/ui 与各 mod 包全部组件目录。
+ * 产出 registry/registry.json：覆盖 @tennantite/ui 与各 mod 包全部组件目录。
  * 运行：node registry/build.mjs
  */
 import fs from "node:fs";
@@ -88,9 +88,9 @@ for (const [groupRoot, group, type] of groups) {
 
 const registry = {
   $schema: "https://ui.shadcn.com/schema/registry.json",
-  homepage: "https://github.com/verdigris-ui/verdigris",
+  homepage: "https://github.com/tennantite/tennantite",
   items,
-  name: "verdigris",
+  name: "tennantite",
 };
 
 const outFile = path.join(root, "registry", "registry.json");

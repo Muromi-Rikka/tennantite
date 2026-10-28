@@ -3,7 +3,7 @@ import { pluginReact } from "@rsbuild/plugin-react";
 
 export default defineConfig({
   html: {
-    title: "Verdigris Playground",
+    title: "Tennantite Playground",
   },
   plugins: [pluginReact()],
   source: {

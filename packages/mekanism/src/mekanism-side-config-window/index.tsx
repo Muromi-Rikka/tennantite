@@ -1,7 +1,7 @@
-import type { MekanismSpriteName } from "@verdigris/textures";
+import type { MekanismSpriteName } from "@tennantite/textures";
 
 import type { MekanismDataType, MekanismSide, MekanismTransmission } from "../mekanism-types";
-import { cn, gui } from "@verdigris/ui";
+import { cn, gui } from "@tennantite/ui";
 import { MEKANISM_DATA_COLORS } from "../mekanism-metrics";
 import { MekanismImageButton } from "../mekanism-image-button/index";
 import { MekanismInnerScreen } from "../mekanism-inner-screen/index";

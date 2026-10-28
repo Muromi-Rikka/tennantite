@@ -18,7 +18,7 @@ import { docHref, filterDocs, sortDocs } from "./docs";
 export function buildLlmsText(docs: CollectionEntry<"docs">[], locale: Locale, site: URL): string {
   const text = ui[locale];
   const lines = [
-    "# Verdigris",
+    "# Tennantite",
     "",
     `> ${text.home.metaDescription}`,
     "",

@@ -1,4 +1,4 @@
-import { RadioGroupDemo } from "@verdigris/ui/demos";
+import { RadioGroupDemo } from "@tennantite/ui/demos";
 
 export function RadioGroupPage() {
   return (

@@ -1,5 +1,5 @@
 /**
- * @verdigris/textures — vanilla Minecraft GUI sprites and 26.3 item/status icons.
+ * @tennantite/textures — vanilla Minecraft GUI sprites and 26.3 item/status icons.
  */
 import { guiIcons } from "./gui-icons.generated";
 import { pixelIcons as basePixelIcons } from "./pixel-icons.generated";

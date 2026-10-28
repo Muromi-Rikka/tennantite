@@ -1,4 +1,4 @@
-import type { ScreenSlot } from "@verdigris/ui";
+import type { ScreenSlot } from "@tennantite/ui";
 import type { MekanismMachineKey } from "./mekanism-machine-screen/mekanism-machine-layout";
 import { MekanismBar } from "./mekanism-bar/index";
 import { MekanismChemicalTankScreen } from "./mekanism-chemical-tank-screen/index";

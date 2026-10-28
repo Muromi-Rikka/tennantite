@@ -1,5 +1,5 @@
 import type { ComponentProps, CSSProperties } from "react";
-import { Button, ChestScreen, MainMenu, ScaledBox } from "@verdigris/ui";
+import { Button, ChestScreen, MainMenu, ScaledBox } from "@tennantite/ui";
 import { useState } from "react";
 
 const MANUAL_SCALES = [1, 2, 3] as const;

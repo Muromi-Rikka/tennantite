@@ -1,4 +1,4 @@
-import { HotbarDemo } from "@verdigris/ui/demos";
+import { HotbarDemo } from "@tennantite/ui/demos";
 
 export function HotbarPage() {
   return (

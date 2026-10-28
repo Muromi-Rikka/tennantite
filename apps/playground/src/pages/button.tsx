@@ -1,4 +1,4 @@
-import { ButtonDemo } from "@verdigris/ui/demos";
+import { ButtonDemo } from "@tennantite/ui/demos";
 
 export function ButtonPage() {
   return (

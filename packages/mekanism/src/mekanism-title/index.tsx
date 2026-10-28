@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 
-import { cn, gui } from "@verdigris/ui";
+import { cn, gui } from "@tennantite/ui";
 
 export interface MekanismTitleProps {
   children?: ReactNode;

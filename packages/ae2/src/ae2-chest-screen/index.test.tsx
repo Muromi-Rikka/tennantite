@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 
-import { gui } from "@verdigris/ui";
+import { gui } from "@tennantite/ui";
 import { Ae2ChestScreenDemo } from "./demo";
 import { Ae2ChestScreen } from "./index";
 

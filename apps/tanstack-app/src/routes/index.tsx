@@ -8,7 +8,7 @@ import {
   ScrollArea,
   Slider,
   Switch,
-} from "@verdigris/ui";
+} from "@tennantite/ui";
 
 const SERVERS = [
   "Hypixel — mc.hypixel.net",
@@ -22,7 +22,7 @@ function App() {
   return (
     <main className="mc-tex-panel mx-auto my-8 w-240 p-12">
       <h1 className="font-mc mc-text text-mc-gold mc-text-shadow">
-        VERDIGRIS · TanStack Start SSR
+        TENNANTITE · TanStack Start SSR
       </h1>
 
       <section className="mt-8 flex flex-col gap-4">

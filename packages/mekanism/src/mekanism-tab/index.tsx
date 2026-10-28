@@ -1,6 +1,6 @@
-import type { MekanismSpriteName } from "@verdigris/textures";
+import type { MekanismSpriteName } from "@tennantite/textures";
 
-import { cn, gui } from "@verdigris/ui";
+import { cn, gui } from "@tennantite/ui";
 
 import type { MekanismTabKind } from "../mekanism-types";
 import { MekanismSprite } from "../mekanism-sprite/index";

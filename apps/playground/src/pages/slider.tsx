@@ -1,4 +1,4 @@
-import { SliderDemo } from "@verdigris/ui/demos";
+import { SliderDemo } from "@tennantite/ui/demos";
 
 export function SliderPage() {
   return (

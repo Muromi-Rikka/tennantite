@@ -1,4 +1,4 @@
-import { TradingScreenDemo } from "@verdigris/ui/demos";
+import { TradingScreenDemo } from "@tennantite/ui/demos";
 
 export function TradingScreenPage() {
   return (

@@ -1,4 +1,4 @@
-import type { PixelIconName } from "@verdigris/textures";
+import type { PixelIconName } from "@tennantite/textures";
 
 export type DocSection = "architecture" | "design" | "distribution" | "start";
 export type Locale = "en" | "zh";
@@ -181,7 +181,7 @@ const zh: UIDictionary = {
     compositionNote: "这些是可直接组合的组件；Block 只是把它们按原版坐标放在一起。",
     fullPreview: "全屏预览",
     metaDescriptionSuffix: "查看 {name} 的整屏预览、组成与示例源码。",
-    metaTitleSuffix: "整屏 · Verdigris",
+    metaTitleSuffix: "整屏 · Tennantite",
     unindexed: "预览页不进入搜索引擎索引",
   },
   blocksPage: {
@@ -191,7 +191,7 @@ const zh: UIDictionary = {
       menus: { description: "标题、设置、聊天等全屏菜单与遮罩。", title: "菜单界面" },
       screens: { description: "按原版容器坐标拼装的 176–276 GUI px 面板。", title: "容器界面" },
     },
-    metaTitle: "整屏界面 · Verdigris",
+    metaTitle: "整屏界面 · Tennantite",
     title: "整屏界面",
   },
   componentPage: {
@@ -201,7 +201,7 @@ const zh: UIDictionary = {
     install: "安装",
     installNote: "仓库内使用 workspace 依赖；npm 尚未发布。",
     metaDescriptionSuffix: "查看 {name} 的实时预览、导出与源码。",
-    metaTitleSuffix: "组件 · Verdigris",
+    metaTitleSuffix: "组件 · Tennantite",
     previewLabel: "预览",
     source: "源码",
     sourceNote: "npm 包保留源码目录，可直接复制改造。",
@@ -211,7 +211,7 @@ const zh: UIDictionary = {
     breadcrumb: "Components",
     description: "{count} 个原版与通用组件，按层级分组。每个页面提供实时预览与示例源码；Mod 组件集中在独立区域。",
     listLabel: "组件列表",
-    metaTitle: "Components 组件 · Verdigris",
+    metaTitle: "Components 组件 · Tennantite",
     title: "Components",
   },
   copied: "已复制",
@@ -219,7 +219,7 @@ const zh: UIDictionary = {
   copyFailed: "复制失败",
   docsChrome: {
     breadcrumb: "Docs",
-    metaSuffix: "文档 · Verdigris",
+    metaSuffix: "文档 · Tennantite",
     mobileNav: "文档目录",
     sections: {
       architecture: "架构",
@@ -258,12 +258,12 @@ const zh: UIDictionary = {
           { href: "/docs/ssr/", label: "SSR / RSC" },
           { href: "/docs/accessibility/", label: "可访问性" },
           { href: "/docs/registry/", label: "Registry" },
-          { external: true, href: "https://github.com/verdigris-ui/verdigris", label: "GitHub" },
+          { external: true, href: "https://github.com/tennantite/tennantite", label: "GitHub" },
         ],
         title: "资源",
       },
     ],
-    copyright: "© 2026 Verdigris",
+    copyright: "© 2026 Tennantite",
     description: "按 shadcn 哲学分发的 Minecraft 风格 React 组件库。",
     notice: "非 Mojang 官方产品。",
   },
@@ -303,8 +303,8 @@ const zh: UIDictionary = {
       view: "查看 →",
     },
     metaDescription: "71 个可复制的 Minecraft 风格 React 组件与 37 个整屏界面。基于 Base UI 与 Tailwind v4，SSR 安全；GUI 精灵取自原版 26.4-snapshot-3。",
-    metaTitle: "Verdigris · Minecraft 风格 React 组件库",
-    primitiveCode: `import { Button, Panel } from "@verdigris/ui";
+    metaTitle: "Tennantite · Minecraft 风格 React 组件库",
+    primitiveCode: `import { Button, Panel } from "@tennantite/ui";
 
 export function Start() {
   return (
@@ -332,7 +332,7 @@ export function Start() {
       title: "组件",
     },
     description: "Mekanism、工业时代 2 与 应用能源 2 的整屏界面与组件：Mekanism 手绘复刻 26.3 贴图，IC2 使用 1.12.2 原始 GUI 贴图，AE2 终端使用原版 GUI 贴图；数据注入、无游戏逻辑。",
-    metaTitle: "Mod 界面 · Verdigris",
+    metaTitle: "Mod 界面 · Tennantite",
     mods: {
       ae2: {
         description: "应用能源 2 界面（原版 GUI 贴图切片）：ME 终端、合成终端、压印器、ME 驱动器与 ME 箱子。",
@@ -366,14 +366,14 @@ export function Start() {
     description: "这个页面不存在。",
     heading: "区块未找到",
     home: "返回首页",
-    title: "区块未找到 · Verdigris",
+    title: "区块未找到 · Tennantite",
   },
   ogLocale: "zh_CN",
   pager: { next: "下一页", previous: "上一页" },
   preview: {
     back: "← 返回整屏界面",
     backMods: "← 返回 Mod 界面",
-    metaSuffix: "预览 · Verdigris",
+    metaSuffix: "预览 · Tennantite",
   },
   search: {
     close: "Esc 关闭",
@@ -397,7 +397,7 @@ const en: UIDictionary = {
     compositionNote: "These are the composable components; the Block only places them at vanilla coordinates.",
     fullPreview: "Full-screen preview",
     metaDescriptionSuffix: "See the full-screen preview, composition and example source for {name}.",
-    metaTitleSuffix: "Block · Verdigris",
+    metaTitleSuffix: "Block · Tennantite",
     unindexed: "Preview pages are excluded from search indexes",
   },
   blocksPage: {
@@ -407,7 +407,7 @@ const en: UIDictionary = {
       menus: { description: "Full-screen menus and overlays for title, settings, chat and more.", title: "Menu screens" },
       screens: { description: "176–276 GUI px panels laid out with vanilla container coordinates.", title: "Container screens" },
     },
-    metaTitle: "Blocks · Verdigris",
+    metaTitle: "Blocks · Tennantite",
     title: "Blocks",
   },
   componentPage: {
@@ -417,7 +417,7 @@ const en: UIDictionary = {
     install: "Install",
     installNote: "Use a workspace dependency in this repo; npm is not published yet.",
     metaDescriptionSuffix: "See the live preview, exports and source for {name}.",
-    metaTitleSuffix: "component · Verdigris",
+    metaTitleSuffix: "component · Tennantite",
     previewLabel: "Preview",
     source: "Source",
     sourceNote: "The npm package keeps the source tree, so you can copy and adapt it directly.",
@@ -427,7 +427,7 @@ const en: UIDictionary = {
     breadcrumb: "Components",
     description: "{count} vanilla and shared components grouped by layer. Every page includes a live preview and example source; mod components have their own area.",
     listLabel: "Component list",
-    metaTitle: "Components · Verdigris",
+    metaTitle: "Components · Tennantite",
     title: "Components",
   },
   copied: "Copied",
@@ -435,7 +435,7 @@ const en: UIDictionary = {
   copyFailed: "Copy failed",
   docsChrome: {
     breadcrumb: "Docs",
-    metaSuffix: "Docs · Verdigris",
+    metaSuffix: "Docs · Tennantite",
     mobileNav: "Documentation",
     sections: {
       architecture: "Architecture",
@@ -474,12 +474,12 @@ const en: UIDictionary = {
           { href: "/en/docs/ssr/", label: "SSR / RSC" },
           { href: "/en/docs/accessibility/", label: "Accessibility" },
           { href: "/en/docs/registry/", label: "Registry" },
-          { external: true, href: "https://github.com/verdigris-ui/verdigris", label: "GitHub" },
+          { external: true, href: "https://github.com/tennantite/tennantite", label: "GitHub" },
         ],
         title: "Resources",
       },
     ],
-    copyright: "© 2026 Verdigris",
+    copyright: "© 2026 Tennantite",
     description: "A Minecraft-style React component library distributed with shadcn philosophy.",
     notice: "Not an official Mojang product.",
   },
@@ -519,8 +519,8 @@ const en: UIDictionary = {
       view: "View →",
     },
     metaDescription: "71 copy-ready Minecraft-style React components and 37 full-screen interfaces. Base UI + Tailwind v4, SSR-safe; GUI textures redrawn, item icons from vanilla 26.3.",
-    metaTitle: "Verdigris · Minecraft-style React components",
-    primitiveCode: `import { Button, Panel } from "@verdigris/ui";
+    metaTitle: "Tennantite · Minecraft-style React components",
+    primitiveCode: `import { Button, Panel } from "@tennantite/ui";
 
 export function Start() {
   return (
@@ -548,7 +548,7 @@ export function Start() {
       title: "Components",
     },
     description: "Full-screen interfaces and components for Mekanism, IndustrialCraft 2 and Applied Energistics 2: Mekanism reproduces the 26.3 textures by hand, IC2 uses the original 1.12.2 GUI textures, AE2 terminals use the original GUI textures; data-injected with no game logic.",
-    metaTitle: "Mod screens · Verdigris",
+    metaTitle: "Mod screens · Tennantite",
     mods: {
       ae2: {
         description: "Applied Energistics 2 screens (slices of the original GUI textures): ME terminal, crafting terminal, inscriber, ME drive and ME chest.",
@@ -582,14 +582,14 @@ export function Start() {
     description: "This page does not exist.",
     heading: "Page not found",
     home: "Go home",
-    title: "Page not found · Verdigris",
+    title: "Page not found · Tennantite",
   },
   ogLocale: "en_US",
   pager: { next: "Next", previous: "Previous" },
   preview: {
     back: "← Back to Blocks",
     backMods: "← Back to mod screens",
-    metaSuffix: "Preview · Verdigris",
+    metaSuffix: "Preview · Tennantite",
   },
   search: {
     close: "Esc close",

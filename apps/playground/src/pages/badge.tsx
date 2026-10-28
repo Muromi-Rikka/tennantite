@@ -1,4 +1,4 @@
-import { BadgeDemo } from "@verdigris/ui/demos";
+import { BadgeDemo } from "@tennantite/ui/demos";
 
 export function BadgePage() {
   return (

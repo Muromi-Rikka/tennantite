@@ -1,4 +1,4 @@
-import { SlotDemo } from "@verdigris/ui/demos";
+import { SlotDemo } from "@tennantite/ui/demos";
 
 export function SlotPage() {
   return (

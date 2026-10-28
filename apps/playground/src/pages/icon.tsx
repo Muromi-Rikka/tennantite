@@ -1,4 +1,4 @@
-import { IconDemo } from "@verdigris/ui/demos";
+import { IconDemo } from "@tennantite/ui/demos";
 
 export function IconPage() {
   return (

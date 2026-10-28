@@ -1,4 +1,4 @@
-import { ItemStackDemo } from "@verdigris/ui/demos";
+import { ItemStackDemo } from "@tennantite/ui/demos";
 
 export function ItemStackPage() {
   return (

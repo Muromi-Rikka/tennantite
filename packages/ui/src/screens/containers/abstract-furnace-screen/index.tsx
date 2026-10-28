@@ -1,4 +1,4 @@
-import type { GuiSpriteName } from "@verdigris/textures";
+import type { GuiSpriteName } from "@tennantite/textures";
 import type { ReactNode } from "react";
 
 import type { ScreenSlot } from "../types";

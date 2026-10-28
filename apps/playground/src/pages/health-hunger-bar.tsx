@@ -1,4 +1,4 @@
-import { HealthHungerBarDemo } from "@verdigris/ui/demos";
+import { HealthHungerBarDemo } from "@tennantite/ui/demos";
 
 export function HealthHungerBarPage() {
   return (

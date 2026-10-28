@@ -1,4 +1,4 @@
-import { TooltipDemo } from "@verdigris/ui/demos";
+import { TooltipDemo } from "@tennantite/ui/demos";
 
 export function TooltipPage() {
   return (

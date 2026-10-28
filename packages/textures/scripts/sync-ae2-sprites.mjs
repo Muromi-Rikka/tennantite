@@ -1,7 +1,7 @@
 // Generates the AE2 sprite registry + CSS from two pinned upstream asset packs:
 // AE2 1.12.2 / rv6 (terminal family) and AE2 1.21.10 (modern `states.png`, which
 // carries the corner-tab and priority icons missing from the 1.12.2 sheet).
-// Run: pnpm --filter @verdigris/textures sync:ae2-sprites
+// Run: pnpm --filter @tennantite/textures sync:ae2-sprites
 //
 // Sources are pinned to one upstream commit each so the generated files are
 // reproducible. `--check` re-renders and compares against the committed files.
@@ -86,7 +86,7 @@ function render(entries) {
 // Source: AE2-UEL/Applied-Energistics-2 (LGPL-3.0) @ ${LEGACY_COMMIT} — 1.12.2 贴图
 // Source: AppliedEnergistics/Applied-Energistics-2 (LGPL-3.0) @ ${MODERN_COMMIT} — 1.21.10 贴图
 // Textures © the Applied Energistics 2 authors; see LICENSE-ASSETS.md.
-// Regenerate: pnpm --filter @verdigris/textures sync:ae2-sprites
+// Regenerate: pnpm --filter @tennantite/textures sync:ae2-sprites
 
 export interface Ae2SpriteMeta {
   cssVar: string;

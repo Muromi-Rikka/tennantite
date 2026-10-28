@@ -1,5 +1,5 @@
 {
-  "name": "@verdigris/playground",
+  "name": "@tennantite/playground",
   "type": "module",
   "version": "0.1.0",
   "private": true,
@@ -10,12 +10,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@verdigris/ae2": "workspace:*",
-    "@verdigris/ic2": "workspace:*",
-    "@verdigris/mekanism": "workspace:*",
-    "@verdigris/textures": "workspace:*",
-    "@verdigris/tokens": "workspace:*",
-    "@verdigris/ui": "workspace:*",
+    "@tennantite/ae2": "workspace:*",
+    "@tennantite/ic2": "workspace:*",
+    "@tennantite/mekanism": "workspace:*",
+    "@tennantite/textures": "workspace:*",
+    "@tennantite/tokens": "workspace:*",
+    "@tennantite/ui": "workspace:*",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },

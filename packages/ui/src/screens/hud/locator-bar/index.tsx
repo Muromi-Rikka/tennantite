@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key -- 固定槽位/列表以位置为身份 */
-import type { GuiSpriteName } from "@verdigris/textures";
+import type { GuiSpriteName } from "@tennantite/textures";
 
 import { GuiSprite } from "../../../containers/gui-sprite/index";
 import { cn, gui } from "../../../lib/utils";

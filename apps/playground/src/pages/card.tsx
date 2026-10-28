@@ -1,4 +1,4 @@
-import { CardDemo } from "@verdigris/ui/demos";
+import { CardDemo } from "@tennantite/ui/demos";
 
 export function CardPage() {
   return (

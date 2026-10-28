@@ -10,7 +10,7 @@ import Callout from "@/components/docs/Callout.astro";
 
 ## Not a traditional component library
 
-Verdigris breaks Minecraft's GUI language into copyable React source. It ships through two channels: an npm package and source directories. Components are built on Base UI and Tailwind CSS v4, driven by design tokens by default.
+Tennantite breaks Minecraft's GUI language into copyable React source. It ships through two channels: an npm package and source directories. Components are built on Base UI and Tailwind CSS v4, driven by design tokens by default.
 
 The 71 components split into a core library and a separate mod area: 60 vanilla/shared components plus 11 mod components; the 37 full-screen interfaces are 27 vanilla screens and 10 mod screens. Full screens are not black boxes; they are compositions of smaller parts.
 
@@ -30,7 +30,7 @@ Source you can own: every component is its own directory. Data injection: screen
 
 | Layer | Content | Count |
 | --- | --- | --- |
-| L0 | `@verdigris/tokens` / `@verdigris/textures` | 2 packages |
+| L0 | `@tennantite/tokens` / `@tennantite/textures` | 2 packages |
 | L1 | Primitives: Button, Input, Slider, Tabs… | 13 |
 | L2 | Containers: Panel, Grid, Slot, ScreenPanel… | 12 |
 | L3 | HUD and full-screen interfaces | 41 |
@@ -39,12 +39,12 @@ Read the [layer guide](/en/docs/layers/), or browse [Components](/en/components/
 
 ## Distribution
 
-`@verdigris/ui` is a workspace package. The repo also includes `registry/registry.json`, which describes component source and dependencies using the shadcn registry shape. The registry currently covers primitives and containers only.
+`@tennantite/ui` is a workspace package. The repo also includes `registry/registry.json`, which describes component source and dependencies using the shadcn registry shape. The registry currently covers primitives and containers only.
 
 ## Current status
 
 <Callout variant="warn" title="v0.1.0 preview">
-`@verdigris/ui` is not published on npm yet, and the registry has no public host. Use `workspace:*` inside this repo. Next.js App Router and TanStack Start SSR smoke tests pass; axe tests cover primitives.
+`@tennantite/ui` is not published on npm yet, and the registry has no public host. Use `workspace:*` inside this repo. Next.js App Router and TanStack Start SSR smoke tests pass; axe tests cover primitives.
 </Callout>
 
 ## Next

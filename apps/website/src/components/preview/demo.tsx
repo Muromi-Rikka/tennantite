@@ -60,14 +60,14 @@ import {
   ToastDemo,
   TooltipDemo,
   TradingScreenDemo,
-} from "@verdigris/ui/demos";
+} from "@tennantite/ui/demos";
 import {
   Ae2ChestScreenDemo,
   Ae2CraftingTerminalScreenDemo,
   Ae2DriveScreenDemo,
   Ae2InscriberScreenDemo,
   Ae2TerminalScreenDemo,
-} from "@verdigris/ae2/demos";
+} from "@tennantite/ae2/demos";
 import {
   BatBoxScreenDemo,
   CompressorScreenDemo,
@@ -75,7 +75,7 @@ import {
   ExtractorScreenDemo,
   Ic2EnergyGaugeDemo,
   MaceratorScreenDemo,
-} from "@verdigris/ic2/demos";
+} from "@tennantite/ic2/demos";
 import {
   MekanismChemicalTankScreenDemo,
   MekanismDynamicTankScreenDemo,
@@ -97,7 +97,7 @@ import {
   MekanismThermoelectricBoilerScreenDemo,
   MekanismUpgradeWindowDemo,
   MekanismWindowDemo,
-} from "@verdigris/mekanism/demos";
+} from "@tennantite/mekanism/demos";
 
 const registry: Record<string, ComponentType> = {
   Ae2ChestScreenDemo,

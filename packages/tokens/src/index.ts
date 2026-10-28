@@ -1,5 +1,5 @@
 /**
- * @verdigris/tokens — TS 常量（与 css/tokens.css 同源，CSS 为唯一事实来源）
+ * @tennantite/tokens — TS 常量（与 css/tokens.css 同源，CSS 为唯一事实来源）
  *
  * 颜色取值对齐 Minecraft Java 26.3 GUI 采样值。
  */

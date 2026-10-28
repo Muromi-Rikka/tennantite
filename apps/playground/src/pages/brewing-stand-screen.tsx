@@ -1,4 +1,4 @@
-import { BrewingStandScreenDemo } from "@verdigris/ui/demos";
+import { BrewingStandScreenDemo } from "@tennantite/ui/demos";
 
 export function BrewingStandScreenPage() {
   return (

@@ -1,4 +1,4 @@
-import type { PixelIconName } from "@verdigris/textures";
+import type { PixelIconName } from "@tennantite/textures";
 
 import { GuiSprite } from "../../../containers/gui-sprite/index";
 import { ItemStack } from "../../../containers/item-stack/index";

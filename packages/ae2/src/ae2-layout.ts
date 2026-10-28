@@ -2,7 +2,7 @@
  * AE2（应用能源 2）屏幕布局常量。
  *
  * 终端家族（ME 终端 / 合成终端）直接使用 AE2 1.12.2 的 GUI 贴图切片
- * （`terminal.png` / `crafting.png`，见 `@verdigris/textures` 的
+ * （`terminal.png` / `crafting.png`，见 `@tennantite/textures` 的
  * `ae2-sprites.generated`）：面板由 header / firstRow / row / lastRow / bottom
  * 五段纵向拼接，槽框、滚动条轨道、合成区与背包都由贴图烘焙，组件只叠加交互热区。
  * 切片矩形与叠加坐标均为源 PNG px（1 源 px = 1 GUI px），取自贴图实测。

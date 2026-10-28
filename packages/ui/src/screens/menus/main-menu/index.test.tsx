@@ -8,7 +8,7 @@ import { MainMenu } from "./index";
 describe("mainMenu", () => {
   it("渲染标题与默认按钮栈", () => {
     render(<MainMenu />);
-    expect(screen.getByText("VERDIGRIS")).toBeInTheDocument();
+    expect(screen.getByText("TENNANTITE")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "单人游戏" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "退出游戏" })).toBeInTheDocument();
   });

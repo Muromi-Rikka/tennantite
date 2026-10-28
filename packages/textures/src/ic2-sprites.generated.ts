@@ -2,7 +2,7 @@
 // Source: IndustrialCraft 2 Experimental 2.8.99-ex112 (IC2 作者所有) — GUI 贴图
 // Source: Minecraft Java 1.12.2 client (Mojang Synergies AB) — 原版按钮 / 红石 / 空装备图标
 // See LICENSE-ASSETS.md; IC2 与 Mojang 素材均不在本项目授权范围内。
-// Regenerate: pnpm --filter @verdigris/textures sync:ic2-sprites
+// Regenerate: pnpm --filter @tennantite/textures sync:ic2-sprites
 
 export interface Ic2SpriteMeta {
   cssVar: string;

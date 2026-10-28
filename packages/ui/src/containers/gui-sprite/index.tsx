@@ -1,6 +1,6 @@
-import type { GuiSpriteName } from "@verdigris/textures";
+import type { GuiSpriteName } from "@tennantite/textures";
 import type { ComponentProps, CSSProperties } from "react";
-import { guiSpriteMeta } from "@verdigris/textures";
+import { guiSpriteMeta } from "@tennantite/textures";
 
 import { cn, gui } from "../../lib/utils";
 

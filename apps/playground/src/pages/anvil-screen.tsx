@@ -1,4 +1,4 @@
-import { AnvilScreenDemo } from "@verdigris/ui/demos";
+import { AnvilScreenDemo } from "@tennantite/ui/demos";
 
 export function AnvilScreenPage() {
   return (

@@ -1,4 +1,4 @@
-import { gui } from "@verdigris/ui";
+import { gui } from "@tennantite/ui";
 
 export interface ModScrollbarProps {
   height: number;

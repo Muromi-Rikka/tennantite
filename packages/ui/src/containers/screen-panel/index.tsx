@@ -1,4 +1,4 @@
-import type { GuiSpriteName } from "@verdigris/textures";
+import type { GuiSpriteName } from "@tennantite/textures";
 import type { ComponentProps, ReactNode } from "react";
 
 import type { GuiSpriteRect } from "../gui-sprite/index";

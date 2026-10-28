@@ -1,7 +1,7 @@
-import type { PixelIconName } from "@verdigris/textures";
-import { pixelIcons } from "@verdigris/textures";
-import { mcColors } from "@verdigris/tokens";
-import { Icon } from "@verdigris/ui";
+import type { PixelIconName } from "@tennantite/textures";
+import { pixelIcons } from "@tennantite/textures";
+import { mcColors } from "@tennantite/tokens";
+import { Icon } from "@tennantite/ui";
 
 /**
  * L0 出口验收：令牌、字体、纹理、图标在 playground 正确渲染（规格 §9 M0）

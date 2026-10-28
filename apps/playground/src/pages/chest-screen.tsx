@@ -1,4 +1,4 @@
-import { ChestScreenDemo } from "@verdigris/ui/demos";
+import { ChestScreenDemo } from "@tennantite/ui/demos";
 
 export function ChestScreenPage() {
   return (

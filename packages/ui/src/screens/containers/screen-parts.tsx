@@ -1,4 +1,4 @@
-import type { GuiSpriteName } from "@verdigris/textures";
+import type { GuiSpriteName } from "@tennantite/textures";
 
 import { GuiSprite } from "../../containers/gui-sprite/index";
 import { gui } from "../../lib/utils";

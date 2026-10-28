@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { gui } from "@verdigris/ui";
+import { gui } from "@tennantite/ui";
 
 /**
  * IC2 界面标题：水平居中、y=6、`#404040`、无阴影。

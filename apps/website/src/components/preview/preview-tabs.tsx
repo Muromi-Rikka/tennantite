@@ -1,4 +1,4 @@
-import { ScaledBox, Tabs, TabsList, TabsPanel, TabsTab } from "@verdigris/ui";
+import { ScaledBox, Tabs, TabsList, TabsPanel, TabsTab } from "@tennantite/ui";
 import { useState } from "react";
 
 import type { Locale } from "@/i18n";

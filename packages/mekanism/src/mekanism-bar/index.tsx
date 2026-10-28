@@ -1,8 +1,8 @@
-import type { MekanismSpriteName } from "@verdigris/textures";
-import { mekanismSpriteMeta } from "@verdigris/textures";
+import type { MekanismSpriteName } from "@tennantite/textures";
+import { mekanismSpriteMeta } from "@tennantite/textures";
 
-import { progressClipPath } from "@verdigris/mods-core";
-import { cn, gui } from "@verdigris/ui";
+import { progressClipPath } from "@tennantite/mods-core";
+import { cn, gui } from "@tennantite/ui";
 import { MekanismSprite } from "../mekanism-sprite/index";
 
 export interface MekanismBarProps {

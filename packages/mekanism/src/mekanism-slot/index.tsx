@@ -1,10 +1,10 @@
-import type { MekanismSpriteName } from "@verdigris/textures";
+import type { MekanismSpriteName } from "@tennantite/textures";
 import type { KeyboardEvent } from "react";
 
-import type { ScreenSlot } from "@verdigris/ui";
+import type { ScreenSlot } from "@tennantite/ui";
 import type { MekanismSlotOverlay, MekanismSlotType } from "../mekanism-types";
-import { ItemStack } from "@verdigris/ui";
-import { cn, gui } from "@verdigris/ui";
+import { ItemStack } from "@tennantite/ui";
+import { cn, gui } from "@tennantite/ui";
 import { MEKANISM_SLOT_SPRITES } from "../mekanism-metrics";
 import { MekanismSprite } from "../mekanism-sprite/index";
 

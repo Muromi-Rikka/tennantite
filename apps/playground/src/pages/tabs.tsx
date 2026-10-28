@@ -1,4 +1,4 @@
-import { TabsDemo } from "@verdigris/ui/demos";
+import { TabsDemo } from "@tennantite/ui/demos";
 
 export function TabsPage() {
   return (

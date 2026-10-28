@@ -1,5 +1,5 @@
-import type { ScreenSlot } from "@verdigris/ui";
-import { ScreenItemSlot } from "@verdigris/ui";
+import type { ScreenSlot } from "@tennantite/ui";
+import { ScreenItemSlot } from "@tennantite/ui";
 
 export interface ModSlotGridProps {
   /**

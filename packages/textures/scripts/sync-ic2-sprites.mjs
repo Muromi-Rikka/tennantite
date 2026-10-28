@@ -1,7 +1,7 @@
 import { unzipSync } from "fflate";
 // Generates the IC2 sprite registry + CSS from two pinned upstream jars:
 // IndustrialCraft 2 Experimental 2.8.99-ex112 and the Minecraft 1.12.2 client.
-// Run: pnpm --filter @verdigris/textures sync:ic2-sprites
+// Run: pnpm --filter @tennantite/textures sync:ic2-sprites
 //
 // Sources are pinned to one upstream release each so the generated files are
 // reproducible. `--check` re-renders and compares against the committed files.
@@ -341,7 +341,7 @@ function render(entries) {
 // Source: IndustrialCraft 2 Experimental ${IC2_VERSION} (IC2 作者所有) — GUI 贴图
 // Source: Minecraft Java ${MC_VERSION} client (Mojang Synergies AB) — 原版按钮 / 红石 / 空装备图标
 // See LICENSE-ASSETS.md; IC2 与 Mojang 素材均不在本项目授权范围内。
-// Regenerate: pnpm --filter @verdigris/textures sync:ic2-sprites
+// Regenerate: pnpm --filter @tennantite/textures sync:ic2-sprites
 
 export interface Ic2SpriteMeta {
   cssVar: string;

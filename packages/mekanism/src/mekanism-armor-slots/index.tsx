@@ -1,4 +1,4 @@
-import type { ScreenSlot } from "@verdigris/ui";
+import type { ScreenSlot } from "@tennantite/ui";
 
 import { MekanismSlot } from "../mekanism-slot/index";
 

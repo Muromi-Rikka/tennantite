@@ -1,4 +1,4 @@
-import { ChatScreenDemo } from "@verdigris/ui/demos";
+import { ChatScreenDemo } from "@tennantite/ui/demos";
 
 export function ChatScreenPage() {
   return (

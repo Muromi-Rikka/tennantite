@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import type { ScreenSlot } from "@verdigris/ui";
+import type { ScreenSlot } from "@tennantite/ui";
 import type { Ic2RedstoneMode } from "../ic2-types";
 
 import {
@@ -8,7 +8,7 @@ import {
   PlayerInventory,
   ScreenItemSlot,
   ScreenPanel,
-} from "@verdigris/ui";
+} from "@tennantite/ui";
 import { Ic2EnergyGauge } from "../ic2-energy-gauge/index";
 import { IC2_BATBOX } from "../ic2-layout";
 import { Ic2Label } from "../ic2-label";

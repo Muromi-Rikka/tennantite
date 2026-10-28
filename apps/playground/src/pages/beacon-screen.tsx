@@ -1,4 +1,4 @@
-import { BeaconScreenDemo } from "@verdigris/ui/demos";
+import { BeaconScreenDemo } from "@tennantite/ui/demos";
 
 export function BeaconScreenPage() {
   return (

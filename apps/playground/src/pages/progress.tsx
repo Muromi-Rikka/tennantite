@@ -1,4 +1,4 @@
-import { ProgressDemo } from "@verdigris/ui/demos";
+import { ProgressDemo } from "@tennantite/ui/demos";
 
 export function ProgressPage() {
   return (

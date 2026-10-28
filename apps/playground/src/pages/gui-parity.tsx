@@ -1,4 +1,4 @@
-import type { ScreenItem } from "@verdigris/ui";
+import type { ScreenItem } from "@tennantite/ui";
 
 import {
   AnvilScreen,
@@ -34,7 +34,7 @@ import {
   StonecutterScreen,
   Toast,
   TradingScreen,
-} from "@verdigris/ui";
+} from "@tennantite/ui";
 
 const item: ScreenItem = { count: 1, icon: "diamond" };
 const stone: ScreenItem = { count: 64, icon: "stone-block" };

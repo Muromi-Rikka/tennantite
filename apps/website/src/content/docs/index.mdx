@@ -10,7 +10,7 @@ import Callout from "@/components/docs/Callout.astro";
 
 ## 不是传统组件库
 
-Verdigris 把 Minecraft 的 GUI 语言拆成可复制的 React 源码。它同时提供两条通道：npm 包与源码目录。组件基于 Base UI 与 Tailwind CSS v4，默认由设计令牌驱动。
+Tennantite 把 Minecraft 的 GUI 语言拆成可复制的 React 源码。它同时提供两条通道：npm 包与源码目录。组件基于 Base UI 与 Tailwind CSS v4，默认由设计令牌驱动。
 
 71 个组件分为核心库与独立 Mod 区：60 个原版/通用组件，加 11 个 Mod 组件；37 个整屏界面由 27 个原版整屏与 10 个 Mod 界面组成。整屏不是黑盒，而是由小部件拼装出来的组合示例。
 
@@ -30,7 +30,7 @@ Verdigris 把 Minecraft 的 GUI 语言拆成可复制的 React 源码。它同�
 
 | 层级 | 内容 | 数量 |
 | --- | --- | --- |
-| L0 | `@verdigris/tokens` / `@verdigris/textures` | 2 个包 |
+| L0 | `@tennantite/tokens` / `@tennantite/textures` | 2 个包 |
 | L1 | 原语：Button、Input、Slider、Tabs… | 13 |
 | L2 | 容器：Panel、Grid、Slot、ScreenPanel… | 12 |
 | L3 | HUD 与整屏界面 | 41 |
@@ -39,12 +39,12 @@ Verdigris 把 Minecraft 的 GUI 语言拆成可复制的 React 源码。它同�
 
 ## 分发
 
-`@verdigris/ui` 是 workspace 包。仓库还包含 `registry/registry.json`，它按 shadcn registry 的结构描述组件源码与依赖。Registry 当前只覆盖 primitives 与 containers。
+`@tennantite/ui` 是 workspace 包。仓库还包含 `registry/registry.json`，它按 shadcn registry 的结构描述组件源码与依赖。Registry 当前只覆盖 primitives 与 containers。
 
 ## 当前状态
 
 <Callout variant="warn" title="v0.1.0 预览">
-`@verdigris/ui` 尚未发布到 npm，registry 也没有公开托管地址。仓库内请使用 `workspace:*` 引用。Next.js App Router 与 TanStack Start 的 SSR 冒烟已通过；axe 测试覆盖 primitives。
+`@tennantite/ui` 尚未发布到 npm，registry 也没有公开托管地址。仓库内请使用 `workspace:*` 引用。Next.js App Router 与 TanStack Start 的 SSR 冒烟已通过；axe 测试覆盖 primitives。
 </Callout>
 
 ## 下一步

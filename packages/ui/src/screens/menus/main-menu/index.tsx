@@ -42,11 +42,11 @@ export function MainMenu({
   onLanguage,
   showRealms = true,
   splash,
-  title = "VERDIGRIS",
+  title = "TENNANTITE",
   titleAs = "h1",
 }: MainMenuProps) {
   const TitleTag = titleAs;
-  const isCustomTitle = title !== "VERDIGRIS";
+  const isCustomTitle = title !== "TENNANTITE";
   const topActions = actions.slice(0, 3);
   const bottomActions = actions.slice(3, 5);
   return (

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key -- HUD 图标按固定槽位排列，位置即身份 */
-import type { GuiSpriteName } from "@verdigris/textures";
+import type { GuiSpriteName } from "@tennantite/textures";
 
 import { GuiSprite } from "../../../containers/gui-sprite/index";
 import { cn } from "../../../lib/utils";

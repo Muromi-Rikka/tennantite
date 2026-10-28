@@ -1,4 +1,4 @@
-import { CheckboxDemo } from "@verdigris/ui/demos";
+import { CheckboxDemo } from "@tennantite/ui/demos";
 
 export function CheckboxPage() {
   return (

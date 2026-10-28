@@ -1,6 +1,6 @@
-import type { PixelIconName } from "@verdigris/textures";
+import type { PixelIconName } from "@tennantite/textures";
 import type { ComponentProps } from "react";
-import { pixelIcons } from "@verdigris/textures";
+import { pixelIcons } from "@tennantite/textures";
 import { cn, gui } from "../../lib/utils";
 
 export interface IconProps extends Omit<ComponentProps<"img">, "alt" | "src"> {

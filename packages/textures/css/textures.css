@@ -1,12 +1,12 @@
 /*
- * @verdigris/textures — L0 像素纹理（原版 GUI PNG + 图标；授权见 LICENSE-ASSETS.md）
+ * @tennantite/textures — L0 像素纹理（原版 GUI PNG + 图标；授权见 LICENSE-ASSETS.md）
  *
  * 视觉基准：Minecraft Java 26.3 GUI。1 GUI px = var(--mc-gui)；
  * 所有特征尺寸用 calc(var(--mc-gui) * n) 缩放，除经验条 / Boss 条 / Tooltip 边框外一律无渐变。
  * 九宫格经 border-image 切片（按钮 20×20 slice 3；面板 12×12 slice 3）。
  * 所有纹理类内置 image-rendering: pixelated（规格 §0.4）。
  *
- * 用法：在应用 Tailwind 入口内 @import "@verdigris/textures/css/textures.css";
+ * 用法：在应用 Tailwind 入口内 @import "@tennantite/textures/css/textures.css";
  */
 
 @import "./gui-sprites.generated.css";

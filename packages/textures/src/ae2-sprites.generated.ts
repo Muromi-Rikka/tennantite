@@ -2,7 +2,7 @@
 // Source: AE2-UEL/Applied-Energistics-2 (LGPL-3.0) @ 724ffaebe3a8ba7d2320431acf03a8c2f6345d9e — 1.12.2 贴图
 // Source: AppliedEnergistics/Applied-Energistics-2 (LGPL-3.0) @ f0935a94b490397361e0c08e2bfd27f923af0f23 — 1.21.10 贴图
 // Textures © the Applied Energistics 2 authors; see LICENSE-ASSETS.md.
-// Regenerate: pnpm --filter @verdigris/textures sync:ae2-sprites
+// Regenerate: pnpm --filter @tennantite/textures sync:ae2-sprites
 
 export interface Ae2SpriteMeta {
   cssVar: string;

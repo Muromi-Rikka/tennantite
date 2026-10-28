@@ -1,4 +1,4 @@
-import { SwitchDemo } from "@verdigris/ui/demos";
+import { SwitchDemo } from "@tennantite/ui/demos";
 
 export function SwitchPage() {
   return (

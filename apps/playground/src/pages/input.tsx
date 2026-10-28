@@ -1,4 +1,4 @@
-import { InputDemo } from "@verdigris/ui/demos";
+import { InputDemo } from "@tennantite/ui/demos";
 
 export function InputPage() {
   return (

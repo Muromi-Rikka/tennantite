@@ -1,5 +1,5 @@
 {
-  "name": "@verdigris/next-app",
+  "name": "@tennantite/next-app",
   "type": "module",
   "version": "0.1.0",
   "private": true,
@@ -10,9 +10,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@verdigris/textures": "workspace:*",
-    "@verdigris/tokens": "workspace:*",
-    "@verdigris/ui": "workspace:*",
+    "@tennantite/textures": "workspace:*",
+    "@tennantite/tokens": "workspace:*",
+    "@tennantite/ui": "workspace:*",
     "next": "^16.3.4",
     "react": "19.2.8",
     "react-dom": "19.2.8"

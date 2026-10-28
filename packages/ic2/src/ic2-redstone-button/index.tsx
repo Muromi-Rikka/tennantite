@@ -1,8 +1,8 @@
-import { ModSprite } from "@verdigris/mods-core";
+import { ModSprite } from "@tennantite/mods-core";
 
-import { ic2SpriteMeta } from "@verdigris/textures";
+import { ic2SpriteMeta } from "@tennantite/textures";
 
-import { gui } from "@verdigris/ui";
+import { gui } from "@tennantite/ui";
 
 import type { Ic2RedstoneMode } from "../ic2-types";
 
