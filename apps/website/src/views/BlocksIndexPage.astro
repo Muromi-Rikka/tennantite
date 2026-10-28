@@ -13,6 +13,7 @@ const { locale } = Astro.props;
 const text = ui[locale].blocksPage;
 const groups = [
   { id: "screens" as const, ...text.groups.screens },
+  { id: "mods" as const, ...text.groups.mods },
   { id: "menus" as const, ...text.groups.menus },
 ];
 ---
