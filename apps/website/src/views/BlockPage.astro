@@ -11,9 +11,9 @@ import SiteLayout from "@/layouts/SiteLayout.astro";
 import { blockComposition } from "@/lib/blocks";
 import {
   blockHref,
-  blockTitle,
   catalogDescription,
   componentHref,
+  componentTitle,
   findComponentByName,
   getBlockPager,
   previewHref,
@@ -29,7 +29,7 @@ interface Props {
 const { entry, locale } = Astro.props;
 const text = ui[locale].blockPage;
 const description = catalogDescription(entry, locale);
-const displayName = blockTitle(entry, locale);
+const displayName = componentTitle(entry, locale);
 const href = blockHref(entry.slug, locale);
 const blocksIndexHref = localeHref(locale, "/blocks/");
 const preview = previewHref(entry.slug, locale);
@@ -78,7 +78,7 @@ const jsonLd = [
             class="border border-site-border bg-site-surface px-4 py-2 font-mono text-xs text-site-fg hover:text-site-accent"
             href={componentHref(component.slug, locale)}
           >
-            {component.name}
+            {componentTitle(component, locale)}
           </a>
         ))}
       </div>

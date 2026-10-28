@@ -55,6 +55,7 @@ export interface UIDictionary {
   componentsPage: {
     breadcrumb: string;
     description: string;
+    listLabel: string;
     metaTitle: string;
     title: string;
   };
@@ -194,6 +195,7 @@ const zh: UIDictionary = {
   componentsPage: {
     breadcrumb: "Components",
     description: "66 个可复制进项目的组件，按层级分组。每个页面提供实时预览与示例源码。",
+    listLabel: "组件列表",
     metaTitle: "Components 组件 · Verdigris",
     title: "Components",
   },
@@ -374,6 +376,7 @@ const en: UIDictionary = {
   componentsPage: {
     breadcrumb: "Components",
     description: "66 copy-ready components grouped by layer. Every page includes a live preview and example source.",
+    listLabel: "Component list",
     metaTitle: "Components · Verdigris",
     title: "Components",
   },

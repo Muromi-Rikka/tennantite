@@ -606,8 +606,8 @@ export function getBlockPager(slug: string, locale: Locale): CatalogPager {
   const prev = blocks[index - 1];
   const next = blocks[index + 1];
   return {
-    ...(prev && { prev: { href: blockHref(prev.slug, locale), title: blockTitle(prev, locale) } }),
-    ...(next && { next: { href: blockHref(next.slug, locale), title: blockTitle(next, locale) } }),
+    ...(prev && { prev: { href: blockHref(prev.slug, locale), title: componentTitle(prev, locale) } }),
+    ...(next && { next: { href: blockHref(next.slug, locale), title: componentTitle(next, locale) } }),
   };
 }
 
@@ -633,47 +633,87 @@ export function previewHref(slug: string, locale: Locale): string {
 }
 
 function pagerItem(entry: CatalogEntry, locale: Locale): CatalogPagerItem {
-  return { href: componentHref(entry.slug, locale), title: entry.name };
+  return { href: componentHref(entry.slug, locale), title: componentTitle(entry, locale) };
 }
 
 /**
- * Block 页面使用的中文界面名；组件页仍保留组件类名。
+ * 中文界面名；组件页与 Block 页共用。代码标识（类名、导出、源码路径）保持英文。
  */
-export const blockTitlesZh: Record<string, string> = {
+export const componentTitlesZh: Record<string, string> = {
+  // 原语
+  "badge": "徽标",
+  "button": "按钮",
+  "checkbox": "复选框",
+  "dialog": "对话框",
+  "input": "输入框",
+  "progress": "进度条",
+  "radio-group": "单选组",
+  "scroll-area": "滚动区域",
+  "select": "下拉选择",
+  "slider": "滑块",
+  "switch": "开关",
+  "tabs": "标签页",
+  "tooltip": "提示气泡",
+  // 容器
+  "card": "卡片",
+  "divider": "分隔线",
+  "grid": "网格",
+  "icon": "图标",
+  "item-stack": "物品堆叠",
+  "panel": "面板",
+  "player-inventory": "玩家物品栏",
+  "screen-panel": "界面基座",
+  "slot": "物品格",
+  "title-bar": "标题栏",
+  "gui-sprite": "GUI 精灵",
+  "eu-bar": "EU 能量条",
+  // HUD
+  "boss-bar": "Boss 血条",
+  "crosshair": "十字准星",
+  "experience-bar": "经验条",
+  "health-hunger-bar": "状态栏",
+  "hotbar": "快捷栏",
+  "status-effects": "状态效果",
+  "attack-indicator": "攻击蓄力指示器",
+  "jump-bar": "跳跃蓄力条",
+  "locator-bar": "定位条",
+  // 容器界面
   "anvil-screen": "铁砧界面",
-  "batbox-screen": "储电箱界面",
   "beacon-screen": "信标界面",
-  "blast-furnace-screen": "高炉界面",
   "brewing-stand-screen": "酿造台界面",
-  "cartography-table-screen": "制图台界面",
-  "chat-screen": "聊天界面",
   "chest-screen": "箱子界面",
-  "compressor-screen": "压缩机界面",
-  "crafter-screen": "合成器界面",
   "crafting-screen": "工作台界面",
-  "creative-inventory-screen": "创造物品栏",
-  "dispenser-screen": "发射器界面",
-  "electric-furnace-screen": "电炉界面",
   "enchanting-screen": "附魔台界面",
-  "extractor-screen": "提取机界面",
   "furnace-screen": "熔炉界面",
-  "gamemode-switcher": "游戏模式切换器",
-  "grindstone-screen": "砂轮界面",
-  "hopper-screen": "漏斗界面",
-  "horse-screen": "马界面",
   "inventory-screen": "物品栏",
-  "loom-screen": "织布机界面",
-  "macerator-screen": "磨矿机界面",
-  "main-menu": "主菜单",
-  "nautilus-screen": "鹦鹉螺界面",
-  "shulker-box-screen": "潜影盒界面",
-  "smithing-screen": "锻造台界面",
-  "smoker-screen": "烟熏炉界面",
-  "stonecutter-screen": "切石机界面",
-  "toast": "通知提示",
   "trading-screen": "村民交易界面",
+  "blast-furnace-screen": "高炉界面",
+  "smoker-screen": "烟熏炉界面",
+  "shulker-box-screen": "潜影盒界面",
+  "hopper-screen": "漏斗界面",
+  "dispenser-screen": "发射器界面",
+  "horse-screen": "马界面",
+  "cartography-table-screen": "制图台界面",
+  "grindstone-screen": "砂轮界面",
+  "loom-screen": "织布机界面",
+  "smithing-screen": "锻造台界面",
+  "stonecutter-screen": "切石机界面",
+  "crafter-screen": "合成器界面",
+  "nautilus-screen": "鹦鹉螺界面",
+  "creative-inventory-screen": "创造物品栏",
+  "gamemode-switcher": "游戏模式切换器",
+  // 菜单界面
+  "chat-screen": "聊天界面",
+  "main-menu": "主菜单",
+  "toast": "通知提示",
+  // Mod 界面
+  "macerator-screen": "磨矿机界面",
+  "electric-furnace-screen": "电炉界面",
+  "extractor-screen": "提取机界面",
+  "compressor-screen": "压缩机界面",
+  "batbox-screen": "储电箱界面",
 };
 
-export function blockTitle(entry: CatalogEntry, locale: Locale): string {
-  return locale === "zh" ? blockTitlesZh[entry.slug] ?? entry.name : entry.name;
+export function componentTitle(entry: CatalogEntry, locale: Locale): string {
+  return locale === "zh" ? componentTitlesZh[entry.slug] ?? entry.name : entry.name;
 }

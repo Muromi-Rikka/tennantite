@@ -3,14 +3,14 @@ import Demo from "@/components/preview/demo";
 import type { Locale } from "@/i18n";
 import { localeHref, switchLocalePath, ui } from "@/i18n";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { blockTitle, catalogDescription, type CatalogEntry } from "@/lib/catalog";
+import { catalogDescription, componentTitle, type CatalogEntry } from "@/lib/catalog";
 
 interface Props {
   entry: CatalogEntry;
   locale: Locale;
 }
 const { entry, locale } = Astro.props;
-const displayName = blockTitle(entry, locale);
+const displayName = componentTitle(entry, locale);
 const text = ui[locale];
 const switchHref = switchLocalePath(Astro.url.pathname, locale === "zh" ? "en" : "zh");
 ---

@@ -4,7 +4,7 @@ import ScaledPreview from "@/components/preview/ScaledPreview.astro";
 import type { Locale } from "@/i18n";
 import { ui } from "@/i18n";
 import SiteLayout from "@/layouts/SiteLayout.astro";
-import { blockHref, blocks, blockTitle } from "@/lib/catalog";
+import { blockHref, blocks, componentTitle } from "@/lib/catalog";
 
 interface Props {
   locale: Locale;
@@ -54,7 +54,7 @@ const groups = [
                     />
                     <div class="flex items-center justify-between border-t border-site-border px-8 py-6">
                       <div class="flex flex-col gap-1">
-                        <span class="text-sm text-site-fg group-hover:text-site-accent">{blockTitle(block, locale)}</span>
+                        <span class="text-sm text-site-fg group-hover:text-site-accent">{componentTitle(block, locale)}</span>
                         <span class="text-xs text-site-muted">{group.title}</span>
                       </div>
                       <span aria-hidden="true" class="text-site-muted">→</span>

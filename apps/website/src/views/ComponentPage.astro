@@ -1,4 +1,6 @@
 ---
+import ComponentNav from "@/components/catalog/ComponentNav.astro";
+import MobileComponentNav from "@/components/catalog/MobileComponentNav.astro";
 import InstallCommand from "@/components/docs/InstallCommand.astro";
 import PreviewTabs from "@/components/preview/preview-tabs";
 import PageHeader from "@/components/site/PageHeader.astro";
@@ -10,6 +12,7 @@ import SiteLayout from "@/layouts/SiteLayout.astro";
 import {
   catalogDescription,
   componentHref,
+  componentTitle,
   getComponentPager,
   type CatalogEntry,
 } from "@/lib/catalog";
@@ -24,49 +27,71 @@ const { entry, locale } = Astro.props;
 const text = ui[locale];
 const page = text.componentPage;
 const description = catalogDescription(entry, locale);
+const displayName = componentTitle(entry, locale);
 const href = componentHref(entry.slug, locale);
 const componentsIndexHref = localeHref(locale, "/components/");
 const code = readDemoSource(entry.sourceDir);
 const pager = getComponentPager(entry.slug, locale);
 const site = Astro.site ?? new URL("http://localhost:3300");
 const jsonLd = [
-  techArticle({ description, locale, path: href, site, title: entry.name }),
-  breadcrumb({ items: [{ label: page.breadcrumb, path: componentsIndexHref }, { label: entry.name, path: href }], site }),
+  techArticle({ description, locale, path: href, site, title: displayName }),
+  breadcrumb({ items: [{ label: page.breadcrumb, path: componentsIndexHref }, { label: displayName, path: href }], site }),
 ];
 ---
 <SiteLayout
-  title={`${entry.name} ${page.metaTitleSuffix}`}
-  description={`${description} ${fill(page.metaDescriptionSuffix, { name: entry.name })}`}
+  title={`${displayName} ${page.metaTitleSuffix}`}
+  description={`${description} ${fill(page.metaDescriptionSuffix, { name: displayName })}`}
   locale={locale}
   type="article"
   jsonLd={jsonLd}
 >
-  <div class="mx-auto max-w-[1440px] px-12 py-24">
-    <PageHeader
-      breadcrumb={[{ href: componentsIndexHref, label: page.breadcrumb }, { label: entry.name }]}
-      title={entry.name}
-      description={description}
-    />
-    <PreviewTabs client:load code={code} locale={locale} name={entry.name} />
-
-    <PageSection title={page.install}>
-      <InstallCommand command="pnpm add @verdigris/ui" locale={locale} />
-      <p class="mt-4 text-xs text-site-muted">{page.installNote}</p>
-    </PageSection>
-
-    <PageSection title={page.exports}>
-      <div class="flex flex-wrap gap-4">
-        {entry.exports.map(name => (
-          <code class="border border-site-border bg-site-surface px-4 py-2 font-mono text-xs text-site-fg">{name}</code>
-        ))}
+  <div class="mx-auto flex w-full max-w-[1440px] gap-24 px-12">
+    <aside class="hidden w-[260px] shrink-0 lg:block">
+      <div class="sticky top-32 max-h-[calc(100vh-128px)] overflow-y-auto py-24" data-component-nav-scroll>
+        <ComponentNav currentSlug={entry.slug} locale={locale} />
       </div>
-    </PageSection>
+    </aside>
 
-    <PageSection title={page.source}>
-      <code class="font-mono text-sm text-site-fg">{entry.sourceDir}/index.tsx</code>
-      <p class="mt-4 text-sm leading-12 text-site-muted">{page.sourceNote}</p>
-    </PageSection>
+    <div class="min-w-0 flex-1 py-24">
+      <MobileComponentNav currentSlug={entry.slug} locale={locale} />
+      <PageHeader
+        breadcrumb={[{ href: componentsIndexHref, label: page.breadcrumb }, { label: displayName }]}
+        title={displayName}
+        description={description}
+      />
+      <PreviewTabs client:load code={code} locale={locale} name={entry.name} />
 
-    <PrevNext locale={locale} prev={pager.prev} next={pager.next} />
+      <PageSection title={page.install}>
+        <InstallCommand command="pnpm add @verdigris/ui" locale={locale} />
+        <p class="mt-4 text-xs text-site-muted">{page.installNote}</p>
+      </PageSection>
+
+      <PageSection title={page.exports}>
+        <div class="flex flex-wrap gap-4">
+          {entry.exports.map(name => (
+            <code class="border border-site-border bg-site-surface px-4 py-2 font-mono text-xs text-site-fg">{name}</code>
+          ))}
+        </div>
+      </PageSection>
+
+      <PageSection title={page.source}>
+        <code class="font-mono text-sm text-site-fg">{entry.sourceDir}/index.tsx</code>
+        <p class="mt-4 text-sm leading-12 text-site-muted">{page.sourceNote}</p>
+      </PageSection>
+
+      <PrevNext locale={locale} prev={pager.prev} next={pager.next} />
+    </div>
   </div>
 </SiteLayout>
+
+<script>
+  const scroller = document.querySelector<HTMLElement>("[data-component-nav-scroll]");
+  const activeItem = scroller?.querySelector<HTMLElement>('[aria-current="page"]');
+  if (scroller && activeItem) {
+    const scrollerRect = scroller.getBoundingClientRect();
+    const itemRect = activeItem.getBoundingClientRect();
+    if (itemRect.top < scrollerRect.top || itemRect.bottom > scrollerRect.bottom) {
+      scroller.scrollTop = activeItem.offsetTop - (scroller.clientHeight - activeItem.offsetHeight) / 2;
+    }
+  }
+</script>

@@ -4,9 +4,9 @@ import { ui } from "../i18n";
 import {
   blockHref,
   blocks,
-  blockTitle,
   catalogDescription,
   componentHref,
+  componentTitle,
   components,
 } from "./catalog";
 import { docHref, filterDocs, sortDocs } from "./docs";
@@ -25,12 +25,12 @@ export function buildLlmsText(docs: CollectionEntry<"docs">[], locale: Locale, s
     "",
     `## ${text.nav.components}`,
     ...components.map(component =>
-      `- [${component.name}](${new URL(componentHref(component.slug, locale), site).href}): ${catalogDescription(component, locale)}`,
+      `- [${componentTitle(component, locale)}](${new URL(componentHref(component.slug, locale), site).href}): ${catalogDescription(component, locale)}`,
     ),
     "",
     `## ${text.nav.blocks}`,
     ...blocks.map(block =>
-      `- [${blockTitle(block, locale)}](${new URL(blockHref(block.slug, locale), site).href}): ${catalogDescription(block, locale)}`,
+      `- [${componentTitle(block, locale)}](${new URL(blockHref(block.slug, locale), site).href}): ${catalogDescription(block, locale)}`,
     ),
     "",
   ];

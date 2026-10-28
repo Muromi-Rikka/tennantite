@@ -1,7 +1,7 @@
 ---
 import PageHeader from "@/components/site/PageHeader.astro";
 import type { Locale } from "@/i18n";
-import { componentHref, componentGroups, components, catalogDescription, groupText } from "@/lib/catalog";
+import { componentHref, componentGroups, components, catalogDescription, componentTitle, groupText } from "@/lib/catalog";
 import { ui } from "@/i18n";
 import SiteLayout from "@/layouts/SiteLayout.astro";
 
@@ -35,7 +35,7 @@ const text = ui[locale].componentsPage;
                 href={componentHref(component.slug, locale)}
                 class="group flex flex-col gap-2 border-b border-site-border/60 py-8"
               >
-                <span class="text-base text-site-fg group-hover:text-site-accent">{component.name}</span>
+                <span class="text-base text-site-fg group-hover:text-site-accent">{componentTitle(component, locale)}</span>
                 <span class="text-sm leading-12 text-site-muted">{catalogDescription(component, locale)}</span>
               </a>
             ))}
