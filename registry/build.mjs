@@ -88,7 +88,7 @@ for (const [groupRoot, group, type] of groups) {
 
 const registry = {
   $schema: "https://ui.shadcn.com/schema/registry.json",
-  homepage: "https://github.com/tennantite/tennantite",
+  homepage: "https://github.com/Muromi-Rikka/verdigris",
   items,
   name: "tennantite",
 };

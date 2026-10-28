@@ -16,7 +16,7 @@ const text = ui[locale];
 const docs = await getCollection("docs");
 const searchItems = buildSearchItems(docs, locale);
 const pathname = Astro.url.pathname;
-const githubUrl = "https://github.com/tennantite/tennantite";
+const githubUrl = "https://github.com/Muromi-Rikka/verdigris";
 const switchHref = /^\/(?:en\/)?404\/?$/.test(pathname)
   ? localeHref(locale === "zh" ? "en" : "zh", "/")
   : switchLocalePath(pathname, locale === "zh" ? "en" : "zh");
