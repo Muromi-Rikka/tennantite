@@ -1,6 +1,6 @@
 # Minecraft 风格 UI 组件库・规格文档
 
-> 版本：v0.10 ｜ 状态：草案 ｜ 载体：基于 shadcn/ui 的 React 19 + Tailwind 组件库
+> 版本：v0.13 ｜ 状态：草案 ｜ 载体：基于 shadcn/ui 的 React 19 + Tailwind 组件库
 > 变更记录：v0.2 —— 技术栈更新：React 19、Base UI 替代 Radix、shadcn 官方新版 
 >
 > `cn()`
@@ -43,6 +43,7 @@
 > （rentonReact ()，含 Next.js/ TanStack / Tailwind 选项，详见 1.2）
 > v0.11 —— 全量 GUI 改用 Minecraft 26.4-snapshot-3 原版 PNG（577 精灵）
 > v0.12 —— 新增尺寸适配约定（§7.1）：三层适配策略、ScaledBox 组件、mc-scale-scope 作用域
+> v0.13 —— 新增 Mod 界面层（§6.5）：IC2（工业时代 2）视觉复刻组件、ic2-textures 纹理层、ScreenPanel `backgroundClassName` 扩展与 IC2 色令牌
 > 目标：在保持 shadcn"复制进项目、自由裁剪" 哲学的前提下，尽量还原 Minecraft 游戏内主要界面的视觉与交互。
 
 
@@ -342,6 +343,18 @@ L0 基础素材    Design Tokens · 像素字体 · 像素纹理 · 渲染基调
 - 选中态只切换 sprite / 颜色，不改变几何位置；需要与背景叠压时按原版绘制顺序（未选中标签 → 背景 → 选中标签）实现，而不是靠 y 偏移“挤进去”。
 - 像素箭头/指示器用整数矩形或台阶路径绘制，不使用 Unicode 字形（字体回退会改变宽度与基线）。
 - 不要在同一个元素上混用 `scrollbar-width` / `scrollbar-color` 与 `::-webkit-scrollbar`：Chromium 会忽略 webkit 伪元素样式，标准属性只放在 `@supports not selector(::-webkit-scrollbar)` 的 Firefox 回退里。
+
+### 6.5 Mod 界面（视觉复刻扩展）
+
+以 IndustrialCraft 2（工业时代 2）为首个对象，在原版体系上扩展 mod GUI 的手绘视觉复刻：
+
+* **定位**：视觉复刻 + 数据注入，不含 mod 游戏逻辑（EU 计算、配方校验），与 §0.2 / §8 边界一致。
+* **素材**：不使用 IC2 原始素材。`packages/textures/css/ic2-textures.css` 全部为手绘 SVG data-URI 像素复刻（`.mc-tex-ic2-*`），随 `--mc-gui` 缩放；授权声明见 `packages/textures/LICENSE-ASSETS.md`。
+* **坐标**：沿用 176×166 容器坐标系与 §6.4 全部不变量。IC2 惯例为多台机器共用一张默认机器背景（`.mc-tex-ic2-machine`），背景不烘焙槽框，槽框由 `ScreenItemSlot frame` 自绘。
+* **组件**：`EuBar`（EU 能量条，可复用件）；`Ic2MachineScreen`（机器共享布局基类，对标 `AbstractFurnaceScreen`）；`MaceratorScreen` / `ElectricFurnaceScreen` / `ExtractorScreen` / `CompressorScreen` / `BatBoxScreen`（L3）；共享件 `ic2-parts.tsx`（Ic2Progress / Ic2RedstoneButton / Ic2BoltIcon / Ic2ChargeMarker）与 `ic2-types.ts`。
+* **基座扩展**：`ScreenPanel` 新增 `backgroundClassName` —— 未传原版精灵时以自定义纹理类替代 `.mc-tex-panel` 回退（mod 复刻界面的通用入口）。
+* **色板**：IC2 能量色走令牌（`--color-mc-ic2-energy` / `--color-mc-ic2-energy-dark` / `--color-mc-ic2-bolt`），允许主题覆盖（§0.3）。
+* **website 分组**：目录新增 `mods` 组（"Mod 界面"），IC2 整屏界面同时进入 blocks 索引；`EuBar` 作为可复用件归入 `containers` 组。
 
 ***
 

@@ -28,7 +28,7 @@ export interface ComponentGroup {
   title: string;
 }
 
-export type ComponentGroupId = "containers" | "hud" | "menus" | "primitives" | "screens";
+export type ComponentGroupId = "containers" | "hud" | "menus" | "mods" | "primitives" | "screens";
 
 export const componentGroups: ComponentGroup[] = [
   { description: "无状态或 Base UI 封装的基础控件。", id: "primitives", level: "L1", title: "原语" },
@@ -36,6 +36,7 @@ export const componentGroups: ComponentGroup[] = [
   { description: "叠在游戏画面上的状态层。", id: "hud", level: "L3", title: "HUD" },
   { description: "按原版坐标拼装的容器整屏。", id: "screens", level: "L3", title: "容器界面" },
   { description: "标题、设置、聊天等全屏菜单。", id: "menus", level: "L3", title: "菜单界面" },
+  { description: "工业时代 2 等 mod 界面的手绘视觉复刻（数据注入、无游戏逻辑）。", id: "mods", level: "L3", title: "Mod 界面" },
 ];
 
 export const components: CatalogEntry[] = [
@@ -519,9 +520,59 @@ export const components: CatalogEntry[] = [
     slug: "toast",
     sourceDir: "packages/ui/src/screens/menus/toast",
   },
+  {
+    description: "IC2 EU 能量条：深色内嵌槽 + 信号绿填充与液面线，悬浮显示 X / Y EU。",
+    exports: ["EuBar"],
+    group: "containers",
+    name: "EuBar",
+    slug: "eu-bar",
+    sourceDir: "packages/ui/src/screens/mods/eu-bar",
+  },
+  {
+    description: "IC2 磨矿机界面：矿物 → 粉末，通用机器布局与 EU 能量槽。",
+    exports: ["MaceratorScreen"],
+    group: "mods",
+    name: "MaceratorScreen",
+    slug: "macerator-screen",
+    sourceDir: "packages/ui/src/screens/mods/macerator-screen",
+  },
+  {
+    description: "IC2 电炉界面：EU 驱动的熔炼，通用机器布局与红石模式。",
+    exports: ["ElectricFurnaceScreen"],
+    group: "mods",
+    name: "ElectricFurnaceScreen",
+    slug: "electric-furnace-screen",
+    sourceDir: "packages/ui/src/screens/mods/electric-furnace-screen",
+  },
+  {
+    description: "IC2 提取机界面：橡胶木 → 橡胶，通用机器布局。",
+    exports: ["ExtractorScreen"],
+    group: "mods",
+    name: "ExtractorScreen",
+    slug: "extractor-screen",
+    sourceDir: "packages/ui/src/screens/mods/extractor-screen",
+  },
+  {
+    description: "IC2 压缩机界面：煤炭 → 钻石等压缩配方，通用机器布局。",
+    exports: ["CompressorScreen"],
+    group: "mods",
+    name: "CompressorScreen",
+    slug: "compressor-screen",
+    sourceDir: "packages/ui/src/screens/mods/compressor-screen",
+  },
+  {
+    description: "IC2 储电箱界面：大号 EU 能量槽 + 充电（+）/ 放电（−）槽位。",
+    exports: ["BatBoxScreen"],
+    group: "mods",
+    name: "BatBoxScreen",
+    slug: "batbox-screen",
+    sourceDir: "packages/ui/src/screens/mods/batbox-screen",
+  },
 ];
 
-export const blocks = components.filter(component => component.group === "screens" || component.group === "menus");
+export const blocks = components.filter(component =>
+  ["menus", "mods", "screens"].includes(component.group),
+);
 
 export function blockHref(slug: string, locale: Locale): string {
   return localeHref(locale, `/blocks/${slug}/`);
@@ -590,17 +641,21 @@ function pagerItem(entry: CatalogEntry, locale: Locale): CatalogPagerItem {
  */
 export const blockTitlesZh: Record<string, string> = {
   "anvil-screen": "铁砧界面",
+  "batbox-screen": "储电箱界面",
   "beacon-screen": "信标界面",
   "blast-furnace-screen": "高炉界面",
   "brewing-stand-screen": "酿造台界面",
   "cartography-table-screen": "制图台界面",
   "chat-screen": "聊天界面",
   "chest-screen": "箱子界面",
+  "compressor-screen": "压缩机界面",
   "crafter-screen": "合成器界面",
   "crafting-screen": "工作台界面",
   "creative-inventory-screen": "创造物品栏",
   "dispenser-screen": "发射器界面",
+  "electric-furnace-screen": "电炉界面",
   "enchanting-screen": "附魔台界面",
+  "extractor-screen": "提取机界面",
   "furnace-screen": "熔炉界面",
   "gamemode-switcher": "游戏模式切换器",
   "grindstone-screen": "砂轮界面",
@@ -608,6 +663,7 @@ export const blockTitlesZh: Record<string, string> = {
   "horse-screen": "马界面",
   "inventory-screen": "物品栏",
   "loom-screen": "织布机界面",
+  "macerator-screen": "磨矿机界面",
   "main-menu": "主菜单",
   "nautilus-screen": "鹦鹉螺界面",
   "shulker-box-screen": "潜影盒界面",

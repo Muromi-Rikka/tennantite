@@ -19,6 +19,7 @@ import { GuiParityPage } from "./pages/gui-parity";
 import { GuiScalePage } from "./pages/gui-scale";
 import { HealthHungerBarPage } from "./pages/health-hunger-bar";
 import { HotbarPage } from "./pages/hotbar";
+import { Ic2Page } from "./pages/ic2";
 import { IconPage } from "./pages/icon";
 import { InputPage } from "./pages/input";
 import { InventoryScreenPage } from "./pages/inventory-screen";
@@ -67,6 +68,7 @@ export const pageRegistry = new Map<string, PageEntry>([
   ["gui-scale", { render: () => <GuiScalePage />, title: "GUI Scale (auto)" }],
   ["health-hunger-bar", { render: () => <HealthHungerBarPage />, title: "HealthHungerBar (HUD)" }],
   ["hotbar", { render: () => <HotbarPage />, title: "Hotbar (HUD)" }],
+  ["ic2", { render: () => <Ic2Page />, title: "IC2 (Mod)" }],
   ["icon", { render: () => <IconPage />, title: "Icon (L2)" }],
   ["input", { render: () => <InputPage />, title: "Input" }],
   ["inventory-screen", { render: () => <InventoryScreenPage />, title: "InventoryScreen" }],

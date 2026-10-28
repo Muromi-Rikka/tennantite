@@ -1007,6 +1007,106 @@
       "registryDependencies": [],
       "title": "Toast",
       "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/batbox-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "batbox-screen",
+      "registryDependencies": [],
+      "title": "Batbox Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/compressor-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "compressor-screen",
+      "registryDependencies": [],
+      "title": "Compressor Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/electric-furnace-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "electric-furnace-screen",
+      "registryDependencies": [],
+      "title": "Electric Furnace Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/eu-bar/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eu-bar",
+      "registryDependencies": [],
+      "title": "Eu Bar",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/extractor-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "extractor-screen",
+      "registryDependencies": [],
+      "title": "Extractor Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/ic2-machine-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ic2-machine-screen",
+      "registryDependencies": [],
+      "title": "Ic2 Machine Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/macerator-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "macerator-screen",
+      "registryDependencies": [],
+      "title": "Macerator Screen",
+      "type": "registry:component"
     }
   ],
   "name": "verdigris"

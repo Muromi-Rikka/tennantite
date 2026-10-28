@@ -1,0 +1,122 @@
+/*
+ * @verdigris/textures — IC2（工业时代 2）风格纹理（视觉复刻扩展，非原版素材）
+ *
+ * 不包含 IC2 原始素材：全部为手绘 SVG data-URI 像素复刻（授权见 LICENSE-ASSETS.md）。
+ * 与 textures.css 同约定：1 GUI px = var(--mc-gui)；shape-rendering: crispEdges；
+ * image-rendering: pixelated；除能量填充外一律无渐变。
+ *
+ * 用法：在应用 Tailwind 入口内 @import "@verdigris/textures/css/ic2-textures.css";
+ */
+
+/* ---- IC2 机器窗口：原版容器同款九宫格边框 + 灰底 + 噪点（多台机器共用一张背景的 IC2 惯例） ---- */
+.mc-tex-ic2-machine,
+.mc-tex-ic2-machine-batbox {
+  border: calc(var(--mc-gui) * 3) solid transparent;
+  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' shape-rendering='crispEdges'%3E%3Crect x='2' y='0' width='8' height='1' fill='%23000000'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23000000'/%3E%3Crect x='2' y='1' width='8' height='1' fill='%23FFFFFF'/%3E%3Crect x='10' y='1' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='2' width='10' height='1' fill='%23FFFFFF'/%3E%3Crect x='11' y='2' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='3' width='2' height='1' fill='%23FFFFFF'/%3E%3Crect x='9' y='3' width='2' height='1' fill='%23555555'/%3E%3Crect x='11' y='3' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='4' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='4' width='2' height='1' fill='%23FFFFFF'/%3E%3Crect x='9' y='4' width='2' height='1' fill='%23555555'/%3E%3Crect x='11' y='4' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='5' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='5' width='2' height='1' fill='%23FFFFFF'/%3E%3Crect x='9' y='5' width='2' height='1' fill='%23555555'/%3E%3Crect x='11' y='5' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='6' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='6' width='2' height='1' fill='%23FFFFFF'/%3E%3Crect x='9' y='6' width='2' height='1' fill='%23555555'/%3E%3Crect x='11' y='6' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='7' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='7' width='2' height='1' fill='%23FFFFFF'/%3E%3Crect x='9' y='7' width='2' height='1' fill='%23555555'/%3E%3Crect x='11' y='7' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='8' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='8' width='2' height='1' fill='%23FFFFFF'/%3E%3Crect x='9' y='8' width='2' height='1' fill='%23555555'/%3E%3Crect x='11' y='8' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='9' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='9' width='10' height='1' fill='%23555555'/%3E%3Crect x='11' y='9' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='10' width='1' height='1' fill='%23000000'/%3E%3Crect x='2' y='10' width='8' height='1' fill='%23555555'/%3E%3Crect x='10' y='10' width='1' height='1' fill='%23000000'/%3E%3Crect x='2' y='11' width='8' height='1' fill='%23000000'/%3E%3C/svg%3E") 3 / calc(var(--mc-gui) * 3) stretch;
+  background-color: var(--color-mc-panel, #c6c6c6);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect x='3' y='2' width='1' height='1' fill='%23C9C9C9'/%3E%3Crect x='9' y='5' width='1' height='1' fill='%23C2C2C2'/%3E%3Crect x='13' y='11' width='1' height='1' fill='%23C9C9C9'/%3E%3Crect x='5' y='12' width='1' height='1' fill='%23C2C2C2'/%3E%3Crect x='11' y='7' width='1' height='1' fill='%23C9C9C9'/%3E%3Crect x='1' y='9' width='1' height='1' fill='%23C2C2C2'/%3E%3Crect x='7' y='15' width='1' height='1' fill='%23C9C9C9'/%3E%3Crect x='15' y='1' width='1' height='1' fill='%23C2C2C2'/%3E%3C/svg%3E");
+  background-size: calc(var(--mc-gui) * 16) calc(var(--mc-gui) * 16);
+  image-rendering: pixelated;
+}
+
+/* ---- EU 能量槽：1 GUI px 黑框 + 深色内嵌（槽底） ---- */
+.mc-tex-ic2-eu-track {
+  background: var(--color-mc-stone-darker, #373737);
+  border: var(--mc-gui) solid #000000;
+  box-shadow:
+    inset var(--mc-gui) var(--mc-gui) 0 0 rgb(0 0 0 / 55%),
+    inset calc(var(--mc-gui) * -1) calc(var(--mc-gui) * -1) 0 0 rgb(255 255 255 / 20%);
+  image-rendering: pixelated;
+}
+
+/* ---- EU 能量填充：信号绿（填充高度由组件按整数 GUI px 控制） ---- */
+.mc-tex-ic2-eu-fill {
+  background: var(--color-mc-ic2-energy, #7efc20);
+  image-rendering: pixelated;
+}
+
+/* 液面线：能量填充顶部的暗色像素行 */
+.mc-tex-ic2-eu-surface {
+  background: var(--color-mc-ic2-energy-dark, #4a9e14);
+  image-rendering: pixelated;
+}
+
+/* ---- 闪电图标 6×9（EU 槽旁的能量符号） ---- */
+.mc-tex-ic2-bolt {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='9' viewBox='0 0 6 9' shape-rendering='crispEdges'%3E%3Crect x='4' y='0' width='2' height='1' fill='%23B7FF4A'/%3E%3Crect x='3' y='1' width='2' height='1' fill='%23B7FF4A'/%3E%3Crect x='2' y='2' width='2' height='1' fill='%23B7FF4A'/%3E%3Crect x='1' y='3' width='5' height='1' fill='%23B7FF4A'/%3E%3Crect x='3' y='4' width='3' height='1' fill='%23B7FF4A'/%3E%3Crect x='2' y='5' width='2' height='1' fill='%23B7FF4A'/%3E%3Crect x='1' y='6' width='2' height='1' fill='%23B7FF4A'/%3E%3Crect x='0' y='7' width='2' height='1' fill='%23B7FF4A'/%3E%3Crect x='0' y='8' width='1' height='1' fill='%23B7FF4A'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: calc(var(--mc-gui) * 9);
+  image-rendering: pixelated;
+  width: calc(var(--mc-gui) * 6);
+}
+
+/* ---- IC2 进度箭头（横向 24×16 / 纵向 13×24）：灰轨道 + 白色进度覆盖 ---- */
+.mc-tex-ic2-arrow {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='16' viewBox='0 0 24 16' shape-rendering='crispEdges'%3E%3Cg fill='%23686868'%3E%3Crect x='1' y='4' width='13' height='8'/%3E%3Cpolygon points='14,1 23,8 14,15'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+}
+
+.mc-tex-ic2-arrow-fill {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='16' viewBox='0 0 24 16' shape-rendering='crispEdges'%3E%3Cg fill='%23FFFFFF'%3E%3Crect x='2' y='5' width='12' height='6'/%3E%3Cpolygon points='14,3 21,8 14,13'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+}
+
+.mc-tex-ic2-arrow-down {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='24' viewBox='0 0 13 24' shape-rendering='crispEdges'%3E%3Cg fill='%23686868'%3E%3Crect x='4' y='1' width='5' height='13'/%3E%3Cpolygon points='1,14 11,14 6,22'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+}
+
+.mc-tex-ic2-arrow-down-fill {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='24' viewBox='0 0 13 24' shape-rendering='crispEdges'%3E%3Cg fill='%23FFFFFF'%3E%3Crect x='5' y='2' width='3' height='11'/%3E%3Cpolygon points='2,14 10,14 6,20'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+}
+
+/* ---- 红石模式图标 16×16：正常（亮火把）/ 反向（倒置火把）/ 关闭（熄灭火把） ---- */
+.mc-tex-ic2-redstone-normal {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect x='7' y='6' width='2' height='8' fill='%236E4A24'/%3E%3Crect x='7' y='6' width='1' height='8' fill='%23855E2F'/%3E%3Crect x='6' y='2' width='4' height='4' fill='%23D01818'/%3E%3Crect x='7' y='3' width='2' height='2' fill='%23FF7A6E'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+}
+
+.mc-tex-ic2-redstone-inverted {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect x='7' y='2' width='2' height='8' fill='%236E4A24'/%3E%3Crect x='8' y='2' width='1' height='8' fill='%23855E2F'/%3E%3Crect x='6' y='10' width='4' height='4' fill='%23D01818'/%3E%3Crect x='7' y='11' width='2' height='2' fill='%23FF7A6E'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+}
+
+.mc-tex-ic2-redstone-none {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect x='7' y='6' width='2' height='8' fill='%236E4A24'/%3E%3Crect x='7' y='6' width='1' height='8' fill='%23855E2F'/%3E%3Crect x='6' y='2' width='4' height='4' fill='%235B5B5B'/%3E%3Crect x='7' y='3' width='2' height='2' fill='%23373737'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+}
+
+/* ---- 充电 / 放电极性标记 9×9（储电箱槽位组旁） ---- */
+.mc-tex-ic2-charge-plus {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' viewBox='0 0 9 9' shape-rendering='crispEdges'%3E%3Crect x='3' y='1' width='3' height='7' fill='%23373737'/%3E%3Crect x='1' y='3' width='7' height='3' fill='%23373737'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: calc(var(--mc-gui) * 9);
+  image-rendering: pixelated;
+  width: calc(var(--mc-gui) * 9);
+}
+
+.mc-tex-ic2-charge-minus {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' viewBox='0 0 9 9' shape-rendering='crispEdges'%3E%3Crect x='1' y='3' width='7' height='3' fill='%23373737'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: calc(var(--mc-gui) * 9);
+  image-rendering: pixelated;
+  width: calc(var(--mc-gui) * 9);
+}

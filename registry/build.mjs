@@ -33,6 +33,7 @@ const groups = [
   ["screens/containers", "registry:component"],
   ["screens/hud", "registry:component"],
   ["screens/menus", "registry:component"],
+  ["screens/mods", "registry:component"],
 ];
 
 const items = [];

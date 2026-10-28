@@ -12,6 +12,11 @@ export interface ScreenPanelProps extends Omit<ComponentProps<"div">, "title"> {
   */
   background?: GuiSpriteName;
   /**
+  * 非 Sprite 背景的 CSS 纹理类（如 IC2 复刻 `.mc-tex-ic2-machine`）；
+  * 未传 `background` 时替代默认 `.mc-tex-panel` 回退
+  */
+  backgroundClassName?: string;
+  /**
   * 背景九宫格切片（源 PNG px）
   */
   backgroundSlice?: number | { bottom: number; left: number; right: number; top: number };
@@ -46,6 +51,7 @@ export interface ScreenPanelProps extends Omit<ComponentProps<"div">, "title"> {
  */
 export function ScreenPanel({
   background,
+  backgroundClassName = "mc-tex-panel",
   backgroundSlice,
   backgroundSrc,
   backgroundTile,
@@ -75,7 +81,7 @@ export function ScreenPanel({
               width={width}
             />
           )
-        : <div aria-hidden="true" className="mc-tex-panel absolute inset-0" />}
+        : <div aria-hidden="true" className={cn(backgroundClassName, "absolute inset-0")} />}
       <div className="absolute inset-0">
         {title === undefined
           ? null

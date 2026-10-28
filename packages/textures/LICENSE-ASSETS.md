@@ -44,6 +44,14 @@ Minecraft Java 26.3 客户端 `client.jar`：
 [Minecraft Usage Guidelines](https://www.minecraft.net/en-us/usage-guidelines)。
 本项目不提供、也不暗示任何来自 Mojang 的授权。
 
+## IC2（工业时代 2）风格纹理（手工复刻，非原始素材）
+
+`packages/textures/css/ic2-textures.css` 中的 `.mc-tex-ic2-*` 纹理（机器窗口、
+EU 能量槽、闪电图标、进度箭头、红石模式图标等）为参考 IndustrialCraft 2 视觉的
+**手绘 SVG 像素复刻**，按本项目约定以 `--mc-gui` 缩放。文件不包含、也不分发
+IC2 mod 的任何原始 PNG / 二进制素材；"IndustrialCraft" 相关名称与商标归其
+原作者所有。组件仅作视觉展示用途（数据注入，无游戏逻辑）。
+
 ## 字体
 
 | 字体 | 来源 | 授权 |

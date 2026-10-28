@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   Badge,
+  BatBoxScreen,
   BossBar,
   Button,
   Checkbox,
@@ -14,10 +15,12 @@ import {
   DialogDescription,
   DialogPopup,
   DialogTitle,
+  EuBar,
   GuiSprite,
   HealthHungerBar,
   Input,
   InventoryScreen,
+  MaceratorScreen,
   MainMenu,
   PlayerInventory,
   Progress,
@@ -52,6 +55,15 @@ function render(): string {
       <GuiSprite name="container/inventory.png" />
       <InventoryScreen />
       <ChestScreen rows={3} />
+      <MaceratorScreen
+        energy={{ max: 2000, value: 1400 }}
+        input={{ icon: "iron-ore" }}
+        output={{ count: 2, icon: "iron-ingot" }}
+        progress={0.45}
+        title="磨矿机"
+      />
+      <BatBoxScreen energy={{ max: 40000, value: 26000 }} title="储电箱" />
+      <EuBar label="EU 能量" max={40000} value={26000} />
       <HealthHungerBar health={20} hunger={20} />
       <BossBar name="Boss" value={0.5} />
       <Toast title="提示" />
@@ -121,6 +133,9 @@ describe("sSR smoke (node env, 规格 §1.1)", () => {
   it("screenPanel / PlayerInventory 可服务端渲染", () => {
     const html = render();
     expect(html).toContain("mc-tex-panel");
+    expect(html).toContain("mc-tex-ic2-machine");
+    expect(html).toContain("磨矿机");
+    expect(html).toContain("储电箱");
     expect(html).toContain("物品栏");
     expect(html).toContain("aria-label=\"main-0\"");
     expect(html).toContain("aria-label=\"hotbar-8\"");
