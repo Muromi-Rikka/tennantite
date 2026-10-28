@@ -1,0 +1,10 @@
+/*
+ * Mekanism sprite layer. Import after the vanilla sprite CSS.
+ * Generated data URIs live in mekanism-sprites.generated.css.
+ */
+@import "./mekanism-sprites.generated.css";
+
+.mc-mek-sprite {
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}

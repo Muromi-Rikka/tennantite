@@ -27,6 +27,7 @@ import { InventoryScreenPage } from "./pages/inventory-screen";
 import { ItemStackPage } from "./pages/item-stack";
 import { L0Page } from "./pages/l0";
 import { MainMenuPage } from "./pages/main-menu";
+import { MekanismPage } from "./pages/mekanism";
 import { PanelPage } from "./pages/panel";
 import { ProgressPage } from "./pages/progress";
 import { RadioGroupPage } from "./pages/radio-group";
@@ -77,6 +78,7 @@ export const pageRegistry = new Map<string, PageEntry>([
   ["item-stack", { render: () => <ItemStackPage />, title: "ItemStack (L2)" }],
   ["l0", { render: () => <L0Page />, title: "L0 · Tokens & Textures" }],
   ["main-menu", { render: () => <MainMenuPage />, title: "MainMenu (Menu)" }],
+  ["mekanism", { render: () => <MekanismPage />, title: "Mekanism (Mod)" }],
   ["panel", { render: () => <PanelPage />, title: "Panel (L2)" }],
   ["progress", { render: () => <ProgressPage />, title: "Progress" }],
   ["radio-group", { render: () => <RadioGroupPage />, title: "RadioGroup" }],

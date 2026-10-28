@@ -27,6 +27,9 @@ import {
   InventoryScreen,
   MaceratorScreen,
   MainMenu,
+  MekanismEnergyCubeScreen,
+  MekanismEnrichmentChamberScreen,
+  MekanismSideConfigWindow,
   PlayerInventory,
   Progress,
   Radio,
@@ -74,6 +77,13 @@ function render(): string {
       />
       <BatBoxScreen energy={{ max: 40000, value: 26000 }} title="储电箱" />
       <Ic2EnergyGauge label="EU 能量" left={0} max={40000} top={0} value={26000} />
+      <MekanismEnrichmentChamberScreen
+        energy={{ max: 10000, value: 6400 }}
+        progress={{ progress: 0.5 }}
+        slots={{ input: { icon: "iron-ore" }, output: { count: 2, icon: "iron-ingot" } }}
+      />
+      <MekanismEnergyCubeScreen energy={{ max: 4000000, value: 2400000 }} />
+      <MekanismSideConfigWindow left={0} top={0} />
       <HealthHungerBar health={20} hunger={20} />
       <BossBar name="Boss" value={0.5} />
       <Toast title="提示" />

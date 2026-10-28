@@ -31,6 +31,7 @@ pnpm registry    # 重新生成 shadcn registry.json
 import { Button, Panel, Slot, Hotbar, InventoryScreen } from "@verdigris/ui";
 import "@verdigris/tokens/css/tokens.css"; // Tailwind 入口内：@import "tailwindcss" 之后
 import "@verdigris/textures/css/textures.css";
+import "@verdigris/textures/css/mekanism-textures.css";
 import "@verdigris/ui/css/scroll-area.css";
 
 // 所有界面均为数据注入、无游戏逻辑（规格 §8）
@@ -61,6 +62,7 @@ spec/             # 规格文档
 - **L3 HUD（9）**：HealthHungerBar · ExperienceBar · Hotbar · Crosshair · StatusEffects · BossBar · AttackIndicator · JumpBar · LocatorBar
 - **L3 容器界面（24）**：InventoryScreen · ChestScreen · CraftingScreen · FurnaceScreen · BlastFurnaceScreen · SmokerScreen · BrewingStandScreen · EnchantingScreen · BeaconScreen · AnvilScreen · TradingScreen · ShulkerBoxScreen · HopperScreen · DispenserScreen · HorseScreen · CartographyTableScreen · GrindstoneScreen · LoomScreen · SmithingScreen · StonecutterScreen · CrafterScreen · NautilusScreen · CreativeInventoryScreen · GamemodeSwitcher
 - **L3 菜单界面（3）**：MainMenu · ChatScreen · Toast / ToastStack / NotificationBadge
+- **L3 Mod 界面（4）**：Mekanism 26.3 机器 / 储罐 / 存储 34 屏 + 侧配置 / 升级窗口；IC2 机器 / 储电箱；AE2 终端 / 驱动器 / 箱子
 
 ## SSR / RSC
 
@@ -70,6 +72,7 @@ spec/             # 规格文档
 
 - 原版 GUI 纹理：Resource Pack Creator 的 GUI 分类（Minecraft Java 26.4-snapshot-3 原版 PNG）；物品、方块与 HUD 状态图标取自 Minecraft Java 26.3 官方客户端（固定版本与 SHA-1）；版权归 Mojang。
 - AE2 终端贴图：Applied Energistics 2 1.12.2 原始 GUI 贴图（AE2-UEL 分支固定提交，GNU LGPL-3.0）。
+- Mekanism 界面：Mekanism 26.3（提交 `d4df9b3…`）原始 GUI 贴图，MIT（Copyright (c) 2017-2025 Aidan C. Brady）；升级图标 / 液体 / 化学材质同源。
 - IC2 界面：IndustrialCraft 2 Experimental 2.8.99-ex112 的原始 GUI 贴图，按钮 / 红石 / 空装备图标取自 Minecraft 1.12.2 客户端；其余 AE2 部件：手绘 SVG 像素复刻。
 - 字体：Minecraft font by Idrees Hassan（SIL OFL 1.1）。
 

@@ -27,3 +27,10 @@ export {
   ic2SpriteMeta,
   type Ic2SpriteName,
 } from "./ic2-sprites.generated";
+
+export {
+  type MekanismSpriteMeta,
+  mekanismSpriteMeta,
+  type MekanismSpriteName,
+  type MekanismSpriteScaling,
+} from "./mekanism-sprites.generated";

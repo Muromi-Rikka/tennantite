@@ -1,6 +1,6 @@
 # Minecraft 风格 UI 组件库・规格文档
 
-> 版本：v0.13 ｜ 状态：草案 ｜ 载体：基于 shadcn/ui 的 React 19 + Tailwind 组件库
+> 版本：v0.14 ｜ 状态：草案 ｜ 载体：基于 shadcn/ui 的 React 19 + Tailwind 组件库
 > 变更记录：v0.2 —— 技术栈更新：React 19、Base UI 替代 Radix、shadcn 官方新版 
 >
 > `cn()`
@@ -44,6 +44,7 @@
 > v0.11 —— 全量 GUI 改用 Minecraft 26.4-snapshot-3 原版 PNG（577 精灵）
 > v0.12 —— 新增尺寸适配约定（§7.1）：三层适配策略、ScaledBox 组件、mc-scale-scope 作用域
 > v0.13 —— 新增 Mod 界面层（§6.5）：IC2（工业时代 2）原始贴图组件、ic2-textures 纹理层、ScreenPanel `backgroundClassName` 扩展与 IC2 文字色令牌
+> v0.14 —— §6.5 扩展 Mekanism 26.3：26 台机器 + 8 个储罐/存储屏、mekanism-textures 纹理层、11 个共享件（精灵/槽/仪表/进度/条形/标签/文本控件/窗口/侧配置/升级/界面基座）与 Mekanism 文字色令牌
 > 目标：在保持 shadcn"复制进项目、自由裁剪" 哲学的前提下，尽量还原 Minecraft 游戏内主要界面的视觉与交互。
 
 
@@ -355,6 +356,11 @@ L0 基础素材    Design Tokens · 像素字体 · 像素纹理 · 渲染基调
 * **基座扩展**：`ScreenPanel` 新增 `backgroundClassName` —— 未传原版精灵时以自定义纹理类替代 `.mc-tex-panel` 回退（mod 复刻界面的通用入口）；`Slot` / `PlayerInventory` / `ScreenItemSlot` 新增 `frameClassName`，允许 mod 槽框纹理，默认仍为 `mc-tex-slot`。
 * **色板**：IC2 仅保留文字色令牌 `--color-mc-ic2-text`（`#404040`，与 1.12.2 界面文字一致）；能量、槽框与按钮颜色全部来自原始贴图。AE2 面板/槽/高光/阴影/进度色走 `--color-mc-ae2-*` 令牌，允许主题覆盖（§0.3）。
 * **website 分组**：目录新增 `mods` 组（"Mod 界面"），IC2 / AE2 整屏界面同时进入 blocks 索引；`Ic2EnergyGauge` 作为可复用件归入 `containers` 组。
+* **Mekanism 26.3（v0.14）**：固定上游 `mekanism/Mekanism` 提交 `d4df9b354c209c85713bdc8a017bfe54aa044e40`，MIT（Copyright (c) 2017-2025 Aidan C. Brady）；`sync-mekanism-sprites.mjs` 从 codeload zip 提取 `textures/gui/sprites/**`（297 个 PNG，含 `.mcmeta` 的 `nine_slice` / `tile` 缩放）、`item/upgrade/*`、`mek_liquid/*`、`mek_chemical/{infuse_type,pigment,slurry}/*`，生成 `mekanism-sprites.generated.css` / `.ts` 与 `mekanism-textures.css`。
+* **Mekanism 基座**：`base` 16×16 / border 4 九宫格，默认面板 176×166；槽位坐标为容器 `slot.x - 1` / `slot.y - 1`，物品 16×16 居中；`MekanismSprite` 目标小于两倍边框时退化为整图拉伸（`inner_screen` 200×256 / border 32），液体/化学 16×512 动画条只显示首帧；`MekanismPlayerInventory` 用 Mekanism 槽框渲染 27+9 格。
+* **Mekanism 组件**：`MekanismMachineScreen` + 26 个命名导出（富集仓…反质子核合成器）；`MekanismEnergyCubeScreen` / `MekanismFluidTankScreen` / `MekanismChemicalTankScreen` / `MekanismInductionMatrixScreen` / `MekanismDynamicTankScreen` / `MekanismThermoelectricBoilerScreen` / `MekanismThermalEvaporationScreen` / `MekanismPersonalStorageScreen`（L3，共 34 屏）；共享件 `MekanismSprite` / `MekanismSlot` / `MekanismGauge` / `MekanismProgress` / `MekanismBar` / `MekanismTab` + `MekanismTabBar` + `MekanismSideHolder` + `MekanismElementHolder` / `MekanismTitle` 等文本控件 / `MekanismWindow` / `MekanismSideConfigWindow` / `MekanismUpgradeWindow` / `MekanismScreen` + `useMekanismWindows`。
+* **Mekanism 色板**：新增 `--color-mc-mekanism-title`（`#404040`）、`--color-mc-mekanism-subheading`（`#787878`）、`--color-mc-mekanism-screen`（`#3cfe9a`）、`--color-mc-mekanism-button`（`#ffffff`）、`--color-mc-mekanism-button-inactive`（`#a0a0a0`）；槽框、仪表、按钮颜色仍来自原始贴图。
+* **Mekanism website**：`mods` 组新增机器总览 + 8 个储罐/存储屏，`containers` 组新增 11 个共享件（均标记 `mod: true`），共 20 条；`blocks.ts` 为 9 个整屏补组合说明，preview 注册对应 demo。
 
 ***
 

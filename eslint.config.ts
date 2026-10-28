@@ -20,6 +20,7 @@ const globalIgnores = {
     "packages/textures/src/gui-icons.generated.ts",
     "packages/textures/src/gui-layouts.generated.ts",
     "packages/textures/src/gui-sprites.generated.ts",
+    "packages/textures/src/mekanism-sprites.generated.ts",
   ],
 };
 

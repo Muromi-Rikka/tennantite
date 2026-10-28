@@ -74,6 +74,28 @@ IC2 贴图版权归 IndustrialCraft 2 作者所有，**不在本项目授权范�
 [Minecraft Usage Guidelines](https://www.minecraft.net/en-us/usage-guidelines)。
 组件仅作视觉展示用途（数据注入，无游戏逻辑）。
 
+## Mekanism 原始 GUI 贴图
+
+Mekanism 26.3 界面与共享件直接使用 Mekanism 上游的原始 GUI 贴图：
+
+- 上游：<https://github.com/mekanism/Mekanism>
+- 提交：`d4df9b354c209c85713bdc8a017bfe54aa044e40`
+- 提取路径：
+  - `src/main/resources/assets/mekanism/textures/gui/sprites/**`（297 个 PNG，
+    含 `.mcmeta` 的 `gui.scaling`：`nine_slice` / `tile`）
+  - `src/main/resources/assets/mekanism/textures/item/upgrade/*.png`（7 个升级图标）
+  - `src/main/resources/assets/mekanism/textures/mek_liquid/*.png`（仪表填充）
+  - `src/main/resources/assets/mekanism/textures/mek_chemical/{infuse_type,pigment,slurry}/*.png`
+- 产物：`packages/textures/css/mekanism-sprites.generated.css` 与
+  `packages/textures/src/mekanism-sprites.generated.ts`（base64 data URI，仓库不含散图）
+- 生成脚本：`packages/textures/scripts/sync-mekanism-sprites.mjs`；重新生成/校验：
+  `pnpm --filter @verdigris/textures sync:mekanism-sprites` /
+  `pnpm verify:assets`。
+
+Mekanism 以 **MIT** 发布，Copyright (c) 2017-2025 Aidan C. Brady。生成的 data URI
+属于派生分发，再分发需保留本声明与 MIT 许可文本。"Mekanism" 相关名称与商标归其
+原作者所有。组件仅作视觉展示用途（数据注入，无游戏逻辑）。
+
 ## AE2（应用能源 2）原始 GUI 贴图
 
 终端家族（`Ae2TerminalScreen` / `Ae2CraftingTerminalScreen`）与 `Ae2DriveScreen` /

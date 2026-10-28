@@ -75,3 +75,25 @@ export { ElectricFurnaceScreenDemo } from "./screens/mods/electric-furnace-scree
 export { ExtractorScreenDemo } from "./screens/mods/extractor-screen/demo";
 export { Ic2EnergyGaugeDemo } from "./screens/mods/ic2-energy-gauge/demo";
 export { MaceratorScreenDemo } from "./screens/mods/macerator-screen/demo";
+export {
+  MekanismChemicalTankScreenDemo,
+  MekanismDynamicTankScreenDemo,
+  MekanismEnergyCubeScreenDemo,
+  MekanismFluidTankScreenDemo,
+  MekanismGaugeDemo,
+  MekanismInductionMatrixScreenDemo,
+  MekanismMachineScreenDemo,
+  MekanismMachineScreensDemo,
+  MekanismPartsDemo,
+  MekanismPersonalStorageScreenDemo,
+  MekanismProgressDemo,
+  MekanismScreenDemo,
+  MekanismSideConfigWindowDemo,
+  MekanismSlotDemo,
+  MekanismSpriteDemo,
+  MekanismTabDemo,
+  MekanismThermalEvaporationScreenDemo,
+  MekanismThermoelectricBoilerScreenDemo,
+  MekanismUpgradeWindowDemo,
+  MekanismWindowDemo,
+} from "./screens/mods/mekanism-demos";

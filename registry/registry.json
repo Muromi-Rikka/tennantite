@@ -1187,6 +1187,318 @@
       "registryDependencies": [],
       "title": "Macerator Screen",
       "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-bar/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-bar",
+      "registryDependencies": [],
+      "title": "Mekanism Bar",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-chemical-tank-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-chemical-tank-screen",
+      "registryDependencies": [],
+      "title": "Mekanism Chemical Tank Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-dynamic-tank-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-dynamic-tank-screen",
+      "registryDependencies": [],
+      "title": "Mekanism Dynamic Tank Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-energy-cube-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-energy-cube-screen",
+      "registryDependencies": [],
+      "title": "Mekanism Energy Cube Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-fluid-tank-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-fluid-tank-screen",
+      "registryDependencies": [],
+      "title": "Mekanism Fluid Tank Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-gauge/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-gauge",
+      "registryDependencies": [],
+      "title": "Mekanism Gauge",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-induction-matrix-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-induction-matrix-screen",
+      "registryDependencies": [],
+      "title": "Mekanism Induction Matrix Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-machine-screen/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-machine-screen/machines.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-machine-screen/mekanism-machine-layout.ts",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-machine-screen",
+      "registryDependencies": [],
+      "title": "Mekanism Machine Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-parts/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-parts",
+      "registryDependencies": [],
+      "title": "Mekanism Parts",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-personal-storage-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-personal-storage-screen",
+      "registryDependencies": [],
+      "title": "Mekanism Personal Storage Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-progress/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-progress",
+      "registryDependencies": [],
+      "title": "Mekanism Progress",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-screen/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-screen/use-mekanism-windows.ts",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-screen",
+      "registryDependencies": [],
+      "title": "Mekanism Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-side-config-window/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-side-config-window",
+      "registryDependencies": [],
+      "title": "Mekanism Side Config Window",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-slot/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-slot",
+      "registryDependencies": [],
+      "title": "Mekanism Slot",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-sprite/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-sprite",
+      "registryDependencies": [],
+      "title": "Mekanism Sprite",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-tab/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-tab",
+      "registryDependencies": [],
+      "title": "Mekanism Tab",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-thermal-evaporation-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-thermal-evaporation-screen",
+      "registryDependencies": [],
+      "title": "Mekanism Thermal Evaporation Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-thermoelectric-boiler-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-thermoelectric-boiler-screen",
+      "registryDependencies": [],
+      "title": "Mekanism Thermoelectric Boiler Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-upgrade-window/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-upgrade-window",
+      "registryDependencies": [],
+      "title": "Mekanism Upgrade Window",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/mekanism-window/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-window",
+      "registryDependencies": [],
+      "title": "Mekanism Window",
+      "type": "registry:component"
     }
   ],
   "name": "verdigris"
