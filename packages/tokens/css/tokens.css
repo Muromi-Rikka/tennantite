@@ -89,17 +89,18 @@
   --color-mc-ic2-energy-dark: #4a9e14; /* EU 能量填充暗边 */
   --color-mc-ic2-bolt: #b7ff4a; /* 闪电图标 */
 
-  /* AE2（应用能源 2，视觉复刻扩展，非原版） */
-  --color-mc-ae2-panel: #cbccd4;
-  --color-mc-ae2-slot: #adb0c4;
-  --color-mc-ae2-slot-border: #9a9fb4;
-  --color-mc-ae2-highlight: #f2f2f2;
-  --color-mc-ae2-outline: #413f54;
-  --color-mc-ae2-shadow: #878fa5;
-  --color-mc-ae2-text: #413f54;
-  --color-mc-ae2-field-text: #f2f2f2;
-  --color-mc-ae2-placeholder: #dedfe3;
-  --color-mc-ae2-field-shadow: #696d88;
+  /* AE2（应用能源 2，视觉复刻扩展，非原版）：中性灰面板 + 凸起/凹陷 1px 斜角 */
+  --color-mc-ae2-panel: #c6c6c6;
+  --color-mc-ae2-slot: #8b8b8b;
+  --color-mc-ae2-slot-border: #373737;
+  --color-mc-ae2-highlight: #ffffff;
+  --color-mc-ae2-outline: #555555;
+  --color-mc-ae2-shadow: #6f6f6f;
+  --color-mc-ae2-text: #3c3c3c;
+  --color-mc-ae2-field: #5f5f5f;
+  --color-mc-ae2-field-text: #ffffff;
+  --color-mc-ae2-placeholder: #d6d6d6;
+  --color-mc-ae2-field-shadow: #555555;
   --color-mc-ae2-progress: #915dcd;
   --color-mc-ae2-progress-light: #b06fdd;
 

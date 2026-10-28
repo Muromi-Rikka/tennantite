@@ -346,12 +346,12 @@ L0 基础素材    Design Tokens · 像素字体 · 像素纹理 · 渲染基调
 
 ### 6.5 Mod 界面（视觉复刻扩展）
 
-以 IndustrialCraft 2（工业时代 2）与 Applied Energistics 2（应用能源 2）为对象，在原版体系上扩展 mod GUI 的手绘视觉复刻：
+以 IndustrialCraft 2（工业时代 2）与 Applied Energistics 2（应用能源 2）为对象，在原版体系上扩展 mod GUI 的视觉复刻：
 
 * **定位**：视觉复刻 + 数据注入，不含 mod 游戏逻辑（EU/能量计算、配方校验、存储检索），与 §0.2 / §8 边界一致。
-* **素材**：不使用 IC2 / AE2 原始素材。`packages/textures/css/ic2-textures.css` 与 `ae2-textures.css` 全部为手绘 SVG data-URI / CSS 像素复刻（`.mc-tex-ic2-*` / `.mc-tex-ae2-*`），随 `--mc-gui` 缩放；授权声明见 `packages/textures/LICENSE-ASSETS.md`。
-* **坐标**：IC2 沿用 176×166 容器坐标系；AE2 按 1.21 `assets/ae2/screens/*.json` 复刻 195×224 ME 终端（默认 6 行，`rows` 可调，最小 195×152）、176×178 压印器、176×201 ME 驱动器、176×168 ME 箱子。两者均遵守 §6.4 的 18/26 槽物品偏移不变量；AE2 坐标集中在 `ae2-layout.ts`，测试引用同一常量。
-* **组件**：`EuBar`（EU 能量条，可复用件）；`Ic2MachineScreen`（机器共享布局基类，对标 `AbstractFurnaceScreen`）；`MaceratorScreen` / `ElectricFurnaceScreen` / `ExtractorScreen` / `CompressorScreen` / `BatBoxScreen`（L3）；`Ae2TerminalScreen` / `Ae2InscriberScreen` / `Ae2DriveScreen` / `Ae2ChestScreen`（L3）。共享件：`ic2-parts.tsx`（Ic2Progress / Ic2RedstoneButton / Ic2BoltIcon / Ic2ChargeMarker）、`ic2-types.ts`、通用 `mod-parts.tsx`（ModProgress / ModIconButton / ModSlotGrid / ModToolbar / ModTabButton / ModScrollbar / ModSearchField / ModTitle）与 `ae2-types.ts`；`Ic2Progress` / `Ic2RedstoneButton` 委托通用件，公共 API 不变。
+* **素材**：IC2 不使用原始素材——`packages/textures/css/ic2-textures.css` 为手绘 SVG data-URI / CSS 像素复刻。AE2 终端家族（`Ae2TerminalScreen` / `Ae2CraftingTerminalScreen`）直接使用 AE2 1.12.2 原始 GUI 贴图（`terminal.png` / `crafting.png` / `states.png`）；ME 驱动器 / ME 箱子右上角优先级角标取 AE2 1.21.10 的 `states.png`（生成名 `statesModern`，1.12.2 贴图没有标签底与优先级图标）。各贴图固定上游提交与 SHA-256，生成 `ae2-sprites.generated.css`；其余 AE2 部件仍为手绘复刻。全部纹理随 `--mc-gui` 缩放；授权声明见 `packages/textures/LICENSE-ASSETS.md`。
+* **坐标**：IC2 沿用 176×166 容器坐标系；AE2 终端按贴图切片纵向拼接（header 17 + 18×rows + bottom：ME 终端 97、合成终端 170，`rows` 可调、最小 2 行），槽框 / 滚动条轨道 / 合成区全部由贴图烘焙，组件只叠加交互热区；压印器直接使用 `inscriber.png`（177×176 面板 + 右侧 35 px 升级槽条，版式同 1.12 `GuiInscriber`），ME 驱动器 176×201、ME 箱子 176×168 仍按 1.21 `assets/ae2/screens/*.json`。两者均遵守 §6.4 的 18/26 槽物品偏移不变量；AE2 坐标集中在 `ae2-layout.ts`，测试引用同一常量。
+* **组件**：`EuBar`（EU 能量条，可复用件）；`Ic2MachineScreen`（机器共享布局基类，对标 `AbstractFurnaceScreen`）；`MaceratorScreen` / `ElectricFurnaceScreen` / `ExtractorScreen` / `CompressorScreen` / `BatBoxScreen`（L3）；`Ae2TerminalScreen` / `Ae2CraftingTerminalScreen` / `Ae2InscriberScreen` / `Ae2DriveScreen` / `Ae2ChestScreen`（L3）。共享件：`ic2-parts.tsx`（Ic2Progress / Ic2RedstoneButton / Ic2BoltIcon / Ic2ChargeMarker）、`ic2-types.ts`、通用 `mod-parts.tsx`（ModProgress / ModIconButton / ModSlotGrid / ModSprite / ModToolbar / ModTabButton / ModScrollbar / ModSearchField / ModTitle）、`ae2-panel.tsx`（贴图切片拼接）、`ae2-parts.tsx`（Ae2PriorityTab：右上角优先级角标，复用 `ModSprite` 裁剪 `statesModern`）与 `ae2-types.ts`；`Ic2Progress` / `Ic2RedstoneButton` 委托通用件，公共 API 不变。
 * **基座扩展**：`ScreenPanel` 新增 `backgroundClassName` —— 未传原版精灵时以自定义纹理类替代 `.mc-tex-panel` 回退（mod 复刻界面的通用入口）；`Slot` / `PlayerInventory` / `ScreenItemSlot` 新增 `frameClassName`，允许 mod 槽框纹理，默认仍为 `mc-tex-slot`。
 * **色板**：IC2 能量色走令牌（`--color-mc-ic2-energy` / `--color-mc-ic2-energy-dark` / `--color-mc-ic2-bolt`）；AE2 面板/槽/高光/阴影/进度色走 `--color-mc-ae2-*` 令牌，允许主题覆盖（§0.3）。
 * **website 分组**：目录新增 `mods` 组（"Mod 界面"），IC2 / AE2 整屏界面同时进入 blocks 索引；`EuBar` 作为可复用件归入 `containers` 组。

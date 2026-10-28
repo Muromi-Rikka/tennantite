@@ -14,7 +14,8 @@ import {
   ae2PlayerTitleTop,
   ae2SlotFrame,
 } from "../ae2-layout";
-import { ModSlotGrid, ModTabButton, ModTitle } from "../mod-parts";
+import { Ae2PriorityTab } from "../ae2-parts";
+import { ModSlotGrid, ModTitle } from "../mod-parts";
 
 export interface Ae2DriveScreenProps {
   className?: string;
@@ -70,9 +71,7 @@ export function Ae2DriveScreen({
           rows={AE2_DRIVE.storage.rows}
           top={storageFrame.top}
         />
-        <ModTabButton
-          iconClassName="mc-tex-ae2-icon-priority"
-          label="优先级"
+        <Ae2PriorityTab
           left={AE2_DRIVE.priority.left}
           onClick={onPriority}
           top={AE2_DRIVE.priority.top}

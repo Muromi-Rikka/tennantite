@@ -297,7 +297,7 @@ const zh: UIDictionary = {
       previewLabel: "菜单界面 · MainMenu",
       view: "查看 →",
     },
-    metaDescription: "70 个可复制的 Minecraft 风格 React 组件与 36 个整屏界面。基于 Base UI 与 Tailwind v4，SSR 安全；GUI 精灵取自原版 26.4-snapshot-3。",
+    metaDescription: "71 个可复制的 Minecraft 风格 React 组件与 37 个整屏界面。基于 Base UI 与 Tailwind v4，SSR 安全；GUI 精灵取自原版 26.4-snapshot-3。",
     metaTitle: "Verdigris · Minecraft 风格 React 组件库",
     primitiveCode: `import { Button, Panel } from "@verdigris/ui";
 
@@ -319,13 +319,13 @@ export function Start() {
   modsPage: {
     breadcrumb: "Mod",
     components: {
-      description: "10 个可复制组件：9 个整屏组件与 EuBar 能量条；IC2 与 AE2 共用通用子件。",
+      description: "11 个可复制组件：10 个整屏组件与 EuBar 能量条；IC2 与 AE2 共用通用子件。",
       title: "组件",
     },
-    description: "工业时代 2 与 应用能源 2 的整屏界面与组件，手绘 SVG 视觉复刻；数据注入、无游戏逻辑。",
+    description: "工业时代 2 与 应用能源 2 的整屏界面与组件：IC2 手绘复刻，AE2 终端使用原版 GUI 贴图；数据注入、无游戏逻辑。",
     metaTitle: "Mod 界面 · Verdigris",
     screens: {
-      description: "5 个 IC2 机器界面 + 4 个 AE2 界面，按游戏内屏幕定义复刻尺寸与槽位坐标。",
+      description: "5 个 IC2 机器界面 + 5 个 AE2 界面，按游戏内屏幕定义复刻尺寸与槽位坐标。",
       title: "整屏界面",
     },
     title: "Mod 界面",
@@ -495,7 +495,7 @@ const en: UIDictionary = {
       previewLabel: "Menu · MainMenu",
       view: "View →",
     },
-    metaDescription: "70 copy-ready Minecraft-style React components and 36 full-screen interfaces. Base UI + Tailwind v4, SSR-safe; GUI textures redrawn, item icons from vanilla 26.3.",
+    metaDescription: "71 copy-ready Minecraft-style React components and 37 full-screen interfaces. Base UI + Tailwind v4, SSR-safe; GUI textures redrawn, item icons from vanilla 26.3.",
     metaTitle: "Verdigris · Minecraft-style React components",
     primitiveCode: `import { Button, Panel } from "@verdigris/ui";
 
@@ -517,13 +517,13 @@ export function Start() {
   modsPage: {
     breadcrumb: "Mods",
     components: {
-      description: "10 copy-ready components: 9 screen components plus the EuBar gauge; IC2 and AE2 share common subcomponents.",
+      description: "11 copy-ready components: 10 screen components plus the EuBar gauge; IC2 and AE2 share common subcomponents.",
       title: "Components",
     },
-    description: "Full-screen interfaces and components for IndustrialCraft 2 and Applied Energistics 2, redrawn by hand; data-injected with no game logic.",
+    description: "Full-screen interfaces and components for IndustrialCraft 2 and Applied Energistics 2: IC2 redrawn by hand, AE2 terminals use the original GUI textures; data-injected with no game logic.",
     metaTitle: "Mod screens · Verdigris",
     screens: {
-      description: "5 IC2 machine screens + 4 AE2 screens, matching in-game screen dimensions and slot coordinates.",
+      description: "5 IC2 machine screens + 5 AE2 screens, matching in-game screen dimensions and slot coordinates.",
       title: "Full screens",
     },
     title: "Mod screens",

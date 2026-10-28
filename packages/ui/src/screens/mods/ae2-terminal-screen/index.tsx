@@ -8,17 +8,20 @@ import { ScreenPanel } from "../../../containers/screen-panel/index";
 import { cn, gui } from "../../../lib/utils";
 import { padSlots } from "../../containers/types";
 import {
-  AE2_PLAYER,
+  AE2_ICONS,
   AE2_TERMINAL,
-  ae2PlayerHotbarTop,
-  ae2PlayerMainTop,
-  ae2PlayerTitleTop,
+  AE2_TERMINAL_SLICES,
   ae2TerminalHeight,
+  ae2TerminalPlayerHotbarTop,
+  ae2TerminalPlayerMainTop,
+  ae2TerminalPlayerTitleTop,
 } from "../ae2-layout";
+import { Ae2PanelBackground } from "../ae2-panel";
 import {
   ModScrollbar,
   ModSearchField,
   ModSlotGrid,
+  ModSprite,
   ModTabButton,
   ModTitle,
   ModToolbar,
@@ -49,8 +52,10 @@ export interface Ae2TerminalScreenProps {
 }
 
 /**
- * ME 终端界面（AE2 1.21 视觉复刻）：195×224（默认 6 行）面板，
- * 9 列物品网格、搜索框、滚动条、玩家背包与左侧工具栏。
+ * ME 终端界面（AE2 视觉复刻）：195×(17+18·rows+97) 面板。
+ *
+ * 面板、9 列物品网格、滚动条轨道与玩家背包全部来自 AE2 `terminal.png` 切片；
+ * 组件只在贴图坐标上叠加搜索框、交互热区与工具栏。
  */
 export function Ae2TerminalScreen({
   className,
@@ -77,7 +82,7 @@ export function Ae2TerminalScreen({
     <div
       className={cn("relative inline-block", className)}
       style={{
-        paddingLeft: gui(showToolbar ? 21 : 0),
+        paddingLeft: gui(showToolbar ? 19 : 0),
         paddingTop: gui(6),
       }}
     >
@@ -86,41 +91,46 @@ export function Ae2TerminalScreen({
             <ModToolbar
               items={[
                 {
-                  iconClassName: "mc-tex-ae2-icon-sort-name",
+                  icon: <ModSprite name="states" src={AE2_ICONS.sortName} />,
                   label: "按名称排序",
                   onClick: () => onToolbarAction?.("sort-name"),
                 },
                 {
-                  iconClassName: "mc-tex-ae2-icon-sort-direction",
-                  label: "排序方向",
-                  onClick: () => onToolbarAction?.("sort-direction"),
-                },
-                {
-                  iconClassName: "mc-tex-ae2-icon-view",
-                  label: "查看模式",
-                  onClick: () => onToolbarAction?.("view-mode"),
-                },
-                {
-                  iconClassName: "mc-tex-ae2-icon-cog",
+                  icon: <ModSprite name="states" src={AE2_ICONS.settings} />,
                   label: "终端设置",
                   onClick: () => onToolbarAction?.("settings"),
                 },
                 {
-                  iconClassName: "mc-tex-ae2-icon-style",
+                  icon: <ModSprite name="states" src={AE2_ICONS.sortDirection} />,
+                  label: "排序方向",
+                  onClick: () => onToolbarAction?.("sort-direction"),
+                },
+                {
+                  icon: <ModSprite name="states" src={AE2_ICONS.view} />,
+                  label: "查看模式",
+                  onClick: () => onToolbarAction?.("view-mode"),
+                },
+                {
+                  icon: <ModSprite name="states" src={AE2_ICONS.style} />,
                   label: "终端样式",
                   onClick: () => onToolbarAction?.("style"),
                 },
               ]}
               left={0}
-              top={6}
+              top={14}
             />
           )
         : null}
       <ScreenPanel
-        backgroundClassName={AE2_TERMINAL.backgroundClassName}
+        backgroundClassName="bg-transparent"
         height={height}
         width={AE2_TERMINAL.panelWidth}
       >
+        <Ae2PanelBackground
+          name={AE2_TERMINAL.sprite}
+          rows={rows}
+          slices={AE2_TERMINAL_SLICES}
+        />
         <ModTitle left={8} top={6}>{title}</ModTitle>
         <ModSearchField
           defaultValue={searchDefaultValue}
@@ -149,7 +159,7 @@ export function Ae2TerminalScreen({
         <ModSlotGrid
           cellSize={AE2_TERMINAL.slotSize}
           columns={AE2_TERMINAL.columns}
-          frameClassName={AE2_TERMINAL.slotFrameClassName}
+          frame={false}
           items={slots}
           labelPrefix="terminal"
           left={AE2_TERMINAL.gridLeft}
@@ -161,19 +171,20 @@ export function Ae2TerminalScreen({
           height={rows * AE2_TERMINAL.rowHeight - 2}
           left={AE2_TERMINAL.scrollbar.left}
           top={AE2_TERMINAL.scrollbar.top}
+          track={false}
         />
-        <ModTitle left={8} top={ae2PlayerTitleTop(height)}>物品栏</ModTitle>
+        <ModTitle left={8} top={ae2TerminalPlayerTitleTop(height)}>物品栏</ModTitle>
         <PlayerInventory
-          frameClassName={AE2_PLAYER.frameClassName}
+          bare
           hotbarItems={hotbarItems}
-          hotbarY={ae2PlayerHotbarTop(height)}
+          hotbarY={ae2TerminalPlayerHotbarTop(height)}
           mainItems={mainItems}
           selectedIndex={selectedIndex}
-          x={AE2_PLAYER.frameLeft}
-          y={ae2PlayerMainTop(height)}
+          x={7}
+          y={ae2TerminalPlayerMainTop(height)}
         />
         <ModTabButton
-          iconClassName="mc-tex-ae2-icon-craft"
+          icon={<ModSprite name="states" src={AE2_ICONS.craftStatus} />}
           label="合成状态"
           left={171}
           onClick={onCraftingStatus}

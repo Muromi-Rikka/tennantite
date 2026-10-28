@@ -1031,6 +1031,22 @@
       ],
       "files": [
         {
+          "path": "packages/ui/src/screens/mods/ae2-crafting-terminal-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-crafting-terminal-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Crafting Terminal Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
           "path": "packages/ui/src/screens/mods/ae2-drive-screen/index.tsx",
           "type": "registry:component"
         }

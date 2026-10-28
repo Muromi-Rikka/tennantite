@@ -1,5 +1,7 @@
+import type { Ae2SpriteName } from "@verdigris/textures";
 import type { ReactNode } from "react";
 
+import { ae2SpriteMeta } from "@verdigris/textures";
 import type { ScreenSlot } from "../containers/types";
 import { progressClipPath } from "../../lib/progress";
 import { cn, gui } from "../../lib/utils";
@@ -16,9 +18,13 @@ export interface ModIconButtonProps {
   */
   height?: number;
   /**
+  * 自定义图标节点（如 AE2 贴图裁剪件）；与 `iconClassName` 二选一
+  */
+  icon?: ReactNode;
+  /**
   * 图标纹理类
   */
-  iconClassName: string;
+  iconClassName?: string;
   /**
   * 图标边长（GUI px，默认 16）
   */
@@ -43,9 +49,13 @@ export interface ModProgressProps {
   */
   direction?: "down" | "left" | "right" | "up";
   /**
+  * 填充节点（AE2 贴图裁剪件等）；与 `fillClassName` 二选一
+  */
+  fill?: ReactNode;
+  /**
   * 填充纹理类
   */
-  fillClassName: string;
+  fillClassName?: string;
   /**
   * 纹理高（GUI px）
   */
@@ -79,6 +89,10 @@ export interface ModScrollbarProps {
   left: number;
   top: number;
   /**
+  * 是否绘制轨道（默认 true；贴图已烘焙轨道时传 false）
+  */
+  track?: boolean;
+  /**
   * 滚动位置 0..1（默认 0）
   */
   value?: number;
@@ -108,6 +122,10 @@ export interface ModSlotGridProps {
   cellSize?: number;
   columns: number;
   /**
+  * 是否绘制槽框（默认 true；贴图已烘焙槽框时传 false，仅保留交互热区）
+  */
+  frame?: boolean;
+  /**
   * 槽框纹理类（默认原版 `mc-tex-slot`）
   */
   frameClassName?: string;
@@ -128,8 +146,47 @@ export interface ModSlotGridProps {
   top: number;
 }
 
+export interface ModSpriteProps {
+  className?: string;
+  /**
+  * 目标高（GUI px，默认裁剪高）
+  */
+  height?: number;
+  /**
+  * 绝对定位左/上（GUI px，提供时自动 `absolute`）
+  */
+  left?: number;
+  /**
+  * AE2 贴图名（`terminal` / `crafting` / `states`）
+  */
+  name: Ae2SpriteName;
+  /**
+  * 源 PNG 裁剪区域（1 源 px = 1 GUI px）
+  */
+  src: ModSpriteRect;
+  top?: number;
+  /**
+  * 目标宽（GUI px，默认裁剪宽）
+  */
+  width?: number;
+}
+
+/**
+ * AE2 贴图裁剪区域（源 PNG px）
+*/
+export interface ModSpriteRect {
+  height: number;
+  width: number;
+  x: number;
+  y: number;
+}
+
 export interface ModTabButtonProps {
   className?: string;
+  /**
+  * 自定义图标节点（如 AE2 贴图裁剪件）；与 `iconClassName` 二选一
+  */
+  icon?: ReactNode;
   iconClassName?: string;
   label: string;
   left: number;
@@ -147,7 +204,8 @@ export interface ModTitleProps {
 }
 
 export interface ModToolbarItem {
-  iconClassName: string;
+  icon?: ReactNode;
+  iconClassName?: string;
   label: string;
   onClick?: () => void;
 }
@@ -172,6 +230,7 @@ export function ModIconButton({
   buttonClassName = "mc-tex-btn",
   className,
   height = 22,
+  icon,
   iconClassName,
   iconSize = 16,
   label,
@@ -201,11 +260,15 @@ export function ModIconButton({
       title={title}
       type="button"
     >
-      <span
-        aria-hidden="true"
-        className={cn("block", iconClassName)}
-        style={{ height: gui(iconSize), width: gui(iconSize) }}
-      />
+      <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        {icon ?? (
+          <span
+            aria-hidden="true"
+            className={cn("block shrink-0", iconClassName)}
+            style={{ height: gui(iconSize), width: gui(iconSize) }}
+          />
+        )}
+      </span>
     </button>
   );
 }
@@ -215,6 +278,7 @@ export function ModIconButton({
  */
 export function ModProgress({
   direction = "down",
+  fill,
   fillClassName,
   height,
   inset = 0,
@@ -243,18 +307,21 @@ export function ModProgress({
         aria-hidden="true"
         className={cn("absolute", fillClassName)}
         style={{ clipPath: progressClipPath(direction, ratio), inset: gui(inset) }}
-      />
+      >
+        {fill}
+      </div>
     </div>
   );
 }
 
 /**
- * 通用 mod 滚动条展示件：6 宽轨道 + 12×15 滑块。
+ * 通用 mod 滚动条展示件：12 宽凹槽轨道 + 12×15 带棱滑块。
  */
 export function ModScrollbar({
   height,
   left,
   top,
+  track = true,
   value = 0,
 }: ModScrollbarProps) {
   const ratio = Math.min(1, Math.max(0, value));
@@ -264,10 +331,14 @@ export function ModScrollbar({
       className="absolute"
       style={{ height: gui(height), left: gui(left), top: gui(top), width: gui(12) }}
     >
-      <span
-        className="mc-tex-ae2-scrollbar-track absolute"
-        style={{ height: gui(height), left: gui(3), top: 0, width: gui(6) }}
-      />
+      {track
+        ? (
+            <span
+              className="mc-tex-ae2-scrollbar-track absolute inset-0"
+              style={{ height: gui(height) }}
+            />
+          )
+        : null}
       <span
         className="mc-tex-ae2-scrollbar-thumb absolute"
         style={{
@@ -320,6 +391,7 @@ export function ModSearchField({
 export function ModSlotGrid({
   cellSize = 18,
   columns,
+  frame = true,
   frameClassName,
   items = [],
   labelPrefix,
@@ -338,7 +410,7 @@ export function ModSlotGrid({
         const y = top + row * cellSize;
         return (
           <ScreenItemSlot
-            frame
+            frame={frame}
             frameClassName={frameClassName}
             item={item}
             key={`${x}-${y}`}
@@ -355,10 +427,47 @@ export function ModSlotGrid({
 }
 
 /**
+ * AE2 贴图裁剪渲染件：按 1 GUI px = 1 源 px 从 AE2 贴图（terminal/crafting/states）
+ * 取矩形绘制，随 `--mc-gui` 缩放；`left`/`top` 给出时为绝对定位。
+ */
+export function ModSprite({
+  className,
+  height,
+  left,
+  name,
+  src,
+  top,
+  width,
+}: ModSpriteProps) {
+  const meta = ae2SpriteMeta[name];
+  const isPositioned = left !== undefined || top !== undefined;
+  return (
+    <div
+      aria-hidden="true"
+      className={cn(isPositioned && "absolute", "pointer-events-none", className)}
+      data-ae2-sprite={name}
+      style={{
+        backgroundImage: `var(${meta.cssVar})`,
+        backgroundPosition: `${gui(-src.x)} ${gui(-src.y)}`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: `${gui(meta.width)} ${gui(meta.height)}`,
+        flexShrink: 0,
+        height: gui(height ?? src.height),
+        imageRendering: "pixelated",
+        left: left === undefined ? undefined : gui(left),
+        top: top === undefined ? undefined : gui(top),
+        width: gui(width ?? src.width),
+      }}
+    />
+  );
+}
+
+/**
  * 通用 mod 顶部标签按钮：20×20，选中态由 `selected` 切换纹理。
  */
 export function ModTabButton({
   className,
+  icon,
   iconClassName,
   label,
   left,
@@ -380,15 +489,18 @@ export function ModTabButton({
       title={label}
       type="button"
     >
-      {iconClassName
-        ? (
-            <span
-              aria-hidden="true"
-              className={cn("block", iconClassName)}
-              style={{ height: gui(16), width: gui(16) }}
-            />
-          )
-        : null}
+      <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        {icon
+          ?? (iconClassName
+            ? (
+                <span
+                  aria-hidden="true"
+                  className={cn("block shrink-0", iconClassName)}
+                  style={{ height: gui(16), width: gui(16) }}
+                />
+              )
+            : null)}
+      </span>
     </button>
   );
 }
@@ -418,7 +530,10 @@ export function ModTitle({
 }
 
 /**
- * 通用 mod 竖向工具栏：21 GUI px 浅色条 + 18×20 图标按钮。
+ * 通用 mod 竖向工具栏：16×16 凸起按钮，20 GUI px 节距，无底条。
+ *
+ * 按钮浮在屏幕黑底上（与 AE2 左侧工具栏一致），调用方用
+ * `left` / `top` 把按钮贴到面板左外侧。
  */
 export function ModToolbar({
   className,
@@ -430,24 +545,25 @@ export function ModToolbar({
     <div
       className={cn("absolute", className)}
       style={{
-        height: gui(items.length * 26 + 2),
+        height: gui(items.length * 20),
         left: gui(left),
         top: gui(top),
-        width: gui(21),
+        width: gui(16),
       }}
     >
-      <span aria-hidden="true" className="mc-tex-ae2-toolbar absolute inset-0" />
       {items.map((item, index) => (
         <ModIconButton
           buttonClassName="mc-tex-ae2-toolbar-button"
-          height={20}
+          height={16}
+          icon={item.icon}
           iconClassName={item.iconClassName}
+          iconSize={12}
           key={item.label}
           label={item.label}
-          left={4}
+          left={0}
           onClick={item.onClick}
-          top={3 + index * 26}
-          width={18}
+          top={index * 20}
+          width={16}
         />
       ))}
     </div>

@@ -52,13 +52,31 @@ EU 能量槽、闪电图标、进度箭头、红石模式图标等）为参考 I
 IC2 mod 的任何原始 PNG / 二进制素材；"IndustrialCraft" 相关名称与商标归其
 原作者所有。组件仅作视觉展示用途（数据注入，无游戏逻辑）。
 
-## AE2（应用能源 2）风格纹理（手工复刻，非原始素材）
+## AE2（应用能源 2）原始 GUI 贴图
 
-`packages/textures/css/ae2-textures.css` 中的 `.mc-tex-ae2-*` 纹理（面板、槽位、
-搜索框、滚动条、工具栏、标签、压印进度与图标等）为参考 Applied Energistics 2
-视觉的**手绘 SVG / CSS 像素复刻**，按本项目约定以 `--mc-gui` 缩放。文件不包含、
-也不分发 AE2 mod 的任何原始 PNG / 二进制素材；"Applied Energistics" 相关名称与
-商标归其原作者所有。组件仅作视觉展示用途（数据注入，无游戏逻辑）。
+终端家族（`Ae2TerminalScreen` / `Ae2CraftingTerminalScreen`）与 `Ae2DriveScreen` /
+`Ae2ChestScreen` 的优先级角标直接使用 Applied Energistics 2 的原始 GUI 贴图：
+
+- 上游（1.12.2）：<https://github.com/AE2-UEL/Applied-Energistics-2>（AE2 1.12.2 维护分支）
+- 提交：`724ffaebe3a8ba7d2320431acf03a8c2f6345d9e`
+- 文件：`assets/appliedenergistics2/textures/guis/{terminal,crafting,states}.png`
+- 上游（1.21.10）：<https://github.com/AppliedEnergistics/Applied-Energistics-2>
+- 提交：`f0935a94b490397361e0c08e2bfd27f923af0f23`
+- 文件：`assets/ae2/textures/guis/states.png` → 生成名 `statesModern`
+  （1.12.2 贴图不含标签按钮底与优先级图标，`Ae2DriveScreen` / `Ae2ChestScreen`
+  右上角 `openPriority` 角标只能取现代贴图）
+- 产物：`packages/textures/css/ae2-sprites.generated.css` 与
+  `packages/textures/src/ae2-sprites.generated.ts`（base64 data URI，仓库不含散图）
+- 生成脚本：`packages/textures/scripts/sync-ae2-sprites.mjs`；重新生成/校验：
+  `pnpm --filter @verdigris/textures sync:ae2-sprites` /
+  `pnpm verify:assets`。
+
+AE2 以 **GNU LGPL-3.0** 发布（<https://github.com/AE2-UEL/Applied-Energistics-2/blob/master/LICENSE>）。
+对应贴图版权归 Applied Energistics 2 作者所有；再分发需保留本声明并遵守 LGPL-3.0。
+"Applied Energistics" 相关名称与商标归其原作者所有。
+
+其余 AE2 部件（压印进度条、工具栏按钮底、清空按钮、部分图标）仍为
+`packages/textures/css/ae2-textures.css` 中的手绘 SVG 像素复刻，不含原始素材。
 
 ## 字体
 

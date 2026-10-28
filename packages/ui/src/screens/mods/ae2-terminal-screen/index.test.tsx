@@ -17,14 +17,17 @@ describe("ae2TerminalScreen", () => {
 
     const first = screen.getByLabelText("terminal-0");
     expect(first).toHaveStyle({ left: gui(7), top: gui(17) });
-    expect(first).toHaveClass("mc-tex-ae2-slot");
     expect(screen.getByLabelText("terminal-53")).toHaveStyle({
       left: gui(151),
       top: gui(107),
     });
 
+    // 槽框由 AE2 贴图烘焙，热区不再自带纹理类
+    expect(first).not.toHaveClass("mc-tex-ae2-slot");
+    expect(container.querySelectorAll("[data-ae2-sprite]").length).toBeGreaterThan(3);
+
     expect(screen.getByLabelText("main-0").parentElement).toHaveStyle({ top: gui(139) });
-    expect(screen.getByLabelText("main-0")).toHaveClass("mc-tex-ae2-slot");
+    expect(screen.getByLabelText("main-0")).not.toHaveClass("mc-tex-ae2-slot");
     expect(screen.getByLabelText("hotbar-0").parentElement).toHaveStyle({ top: gui(197) });
 
     const search = screen.getByLabelText("搜索");

@@ -14,7 +14,8 @@ import {
   ae2PlayerTitleTop,
   ae2SlotFrame,
 } from "../ae2-layout";
-import { ModTabButton, ModTitle } from "../mod-parts";
+import { Ae2PriorityTab } from "../ae2-parts";
+import { ModTitle } from "../mod-parts";
 
 export interface Ae2ChestScreenProps {
   className?: string;
@@ -63,9 +64,7 @@ export function Ae2ChestScreen({
           size={AE2_CHEST.storage.size}
           {...ae2SlotFrame(AE2_CHEST.storage, AE2_CHEST.storage.size)}
         />
-        <ModTabButton
-          iconClassName="mc-tex-ae2-icon-priority"
-          label="优先级"
+        <Ae2PriorityTab
           left={AE2_CHEST.priority.left}
           onClick={onPriority}
           top={AE2_CHEST.priority.top}

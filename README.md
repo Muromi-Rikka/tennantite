@@ -68,7 +68,12 @@ spec/             # 规格文档
 
 ## 素材授权
 
-GUI 纹理取自 Resource Pack Creator 的 GUI 分类（Minecraft Java 26.4-snapshot-3 原版 PNG）；物品、方块与 HUD 状态图标取自 Minecraft Java 26.3 官方客户端（固定版本与 SHA-1）。版权归 Mojang。字体使用开源替代（Minecraft font by Idrees Hassan，SIL OFL 1.1）。详见 `packages/textures/LICENSE-ASSETS.md`。
+- 原版 GUI 纹理：Resource Pack Creator 的 GUI 分类（Minecraft Java 26.4-snapshot-3 原版 PNG）；物品、方块与 HUD 状态图标取自 Minecraft Java 26.3 官方客户端（固定版本与 SHA-1）；版权归 Mojang。
+- AE2 终端贴图：Applied Energistics 2 1.12.2 原始 GUI 贴图（AE2-UEL 分支固定提交，GNU LGPL-3.0）。
+- IC2 与其余 AE2 部件：手绘 SVG 像素复刻。
+- 字体：Minecraft font by Idrees Hassan（SIL OFL 1.1）。
+
+详见 `packages/textures/LICENSE-ASSETS.md`。
 
 ## 供应链策略说明
 

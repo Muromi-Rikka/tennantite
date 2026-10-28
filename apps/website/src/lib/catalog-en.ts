@@ -2,9 +2,10 @@ import type { ComponentGroupId } from "./catalog";
 
 export const componentDescriptionsEn: Record<string, string> = {
   "ae2-chest-screen": "176×168 ME chest: single storage cell slot, priority tab and player inventory.",
+  "ae2-crafting-terminal-screen": "AE2 crafting terminal from the original GUI texture (17 + 18×rows + 170): item grid, 3×3 crafting grid, clear button, 26×26 result slot and player inventory.",
   "ae2-drive-screen": "176×201 ME drive: 2×5 storage cell slots, priority tab and player inventory.",
-  "ae2-inscriber-screen": "176×178 inscriber: three 22×22 plate / input slots, a 26×26 output slot and vertical progress.",
-  "ae2-terminal-screen": "195×224 ME terminal (6 rows): 9×6 item grid, search field, scrollbar, player inventory and left toolbar.",
+  "ae2-inscriber-screen": "AE2 inscriber from the original GUI texture (177×176 plus a 35-wide upgrade strip): plate / input slots, a 26×26 output slot and a vertical progress bar.",
+  "ae2-terminal-screen": "AE2 ME terminal built from the original GUI texture (17 + 18×rows + 97): item grid, search field, scrollbar, player inventory and left toolbar.",
   "anvil-screen": "110×16 name input, item / material / result slots and level cost.",
   "badge": "Count and rarity badge for item stacks; pure styling with default / dim / gold variants.",
   "batbox-screen": "IC2 BatBox: large EU gauge plus charge (+) / discharge (−) slots and a redstone-mode button.",

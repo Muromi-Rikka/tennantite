@@ -11,6 +11,7 @@ export function Ae2InscriberScreenDemo() {
       output={{ icon: "diamond", tooltip: "逻辑处理器" }}
       progress={0.6}
       topPlate={{ icon: "iron-ingot", tooltip: "铁板" }}
+      upgrades={[{ icon: "emerald", tooltip: "加速卡" }]}
     />
   );
 }

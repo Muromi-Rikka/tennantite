@@ -2,20 +2,13 @@ import type { ReactNode } from "react";
 
 import type { PlayerInventoryProps } from "../../../containers/player-inventory/index";
 import type { ScreenSlot } from "../../containers/types";
-import type { Ae2InscriberAction } from "../ae2-types";
 import { PlayerInventory } from "../../../containers/player-inventory/index";
 import { ScreenPanel } from "../../../containers/screen-panel/index";
-import { cn, gui } from "../../../lib/utils";
+import { cn } from "../../../lib/utils";
 import { ScreenItemSlot } from "../../containers/screen-slot";
-import {
-  AE2_INSCRIBER,
-  AE2_PLAYER,
-  ae2PlayerHotbarTop,
-  ae2PlayerMainTop,
-  ae2PlayerTitleTop,
-  ae2SlotFrame,
-} from "../ae2-layout";
-import { ModProgress, ModTitle, ModToolbar } from "../mod-parts";
+import { padSlots } from "../../containers/types";
+import { AE2_INSCRIBER } from "../ae2-layout";
+import { ModProgress, ModSprite, ModTitle } from "../mod-parts";
 
 export interface Ae2InscriberScreenProps {
   bottomPlate?: ScreenSlot;
@@ -24,24 +17,27 @@ export interface Ae2InscriberScreenProps {
   input?: ScreenSlot;
   mainItems?: PlayerInventoryProps["mainItems"];
   onTakeOutput?: () => void;
-  onToolbarAction?: (action: Ae2InscriberAction) => void;
+  onUpgradeSlotClick?: (index: number, item: ScreenSlot) => void;
   output?: ScreenSlot;
   /**
   * 压印进度 0..1
   */
   progress?: number;
   selectedIndex?: number;
-  /**
-  * 是否显示左侧工具栏（默认 true）
-  */
-  showToolbar?: boolean;
   title?: ReactNode;
   topPlate?: ScreenSlot;
+  /**
+  * 右侧升级槽（3 格，行优先）
+  */
+  upgrades?: ScreenSlot[];
 }
 
 /**
- * 压印器界面（AE2 1.21 视觉复刻）：176×178 面板，
- * 上/下压印模板与输入槽为 22×22，输出槽 26×26，右侧竖向进度条。
+ * 压印器界面（AE2 视觉复刻）：177×176 面板 + 右侧 35 px 升级槽条。
+ *
+ * 面板、上/中/下压印槽、26×26 输出槽、连接箭头、进度条轨道与玩家背包全部来自
+ * AE2 `inscriber.png`；进度填充取自贴图内的 6×18 渐变条，组件只叠加交互热区。
+ * 版式与 AE2 1.12 `GuiInscriber` 一致（ySize 176、xSize 211 + 升级条）。
  */
 export function Ae2InscriberScreen({
   bottomPlate,
@@ -50,110 +46,112 @@ export function Ae2InscriberScreen({
   input,
   mainItems,
   onTakeOutput,
-  onToolbarAction,
+  onUpgradeSlotClick,
   output,
   progress = 0,
   selectedIndex,
-  showToolbar = true,
   title = "压印器",
   topPlate,
+  upgrades,
 }: Ae2InscriberScreenProps) {
-  const height = AE2_INSCRIBER.height;
+  const { height, inventory, panel, progress: bar, slots, upgrades: strip, width } = AE2_INSCRIBER;
+  const upgradeSlots = padSlots(upgrades ?? [], strip.slots);
+  const upgradeTops = Array.from(
+    { length: strip.slots },
+    (_, index) => strip.slotTop + index * strip.slotSize,
+  );
 
   return (
-    <div
-      className={cn("relative inline-block", className)}
-      style={{ paddingLeft: gui(showToolbar ? 21 : 0) }}
-    >
-      {showToolbar
-        ? (
-            <ModToolbar
-              items={[
-                {
-                  iconClassName: "mc-tex-ae2-icon-separate-sides",
-                  label: "分离面",
-                  onClick: () => onToolbarAction?.("separate-sides"),
-                },
-                {
-                  iconClassName: "mc-tex-ae2-icon-auto-export",
-                  label: "自动输出",
-                  onClick: () => onToolbarAction?.("auto-export"),
-                },
-                {
-                  iconClassName: "mc-tex-ae2-icon-buffer",
-                  label: "缓冲区容量",
-                  onClick: () => onToolbarAction?.("buffer"),
-                },
-              ]}
-              left={0}
-              top={0}
-            />
-          )
-        : null}
-      <ScreenPanel
-        backgroundClassName={AE2_INSCRIBER.backgroundClassName}
-        height={height}
-        width={AE2_INSCRIBER.width}
-      >
-        <div
-          aria-hidden="true"
-          className="mc-tex-ae2-inscriber-arrows pointer-events-none absolute inset-0"
+    <div className={cn("relative inline-block", className)}>
+      <ScreenPanel backgroundClassName="bg-transparent" height={height} width={width}>
+        <ModSprite
+          height={panel.height}
+          left={panel.x}
+          name={AE2_INSCRIBER.sprite}
+          src={panel}
+          top={panel.y}
+        />
+        <ModSprite
+          height={strip.height}
+          left={strip.left}
+          name={AE2_INSCRIBER.sprite}
+          src={{ height: strip.height, width: strip.width, x: strip.left, y: strip.top }}
+          top={strip.top}
         />
         <ModTitle left={8} top={6}>{title}</ModTitle>
         <ScreenItemSlot
-          frame
-          frameClassName={AE2_INSCRIBER.largeSlotFrameClassName}
+          frame={false}
           item={topPlate}
           label="inscriber-top"
-          size={22}
-          {...ae2SlotFrame(AE2_INSCRIBER.slots.top, 22)}
+          left={slots.top.left}
+          size={slots.top.size}
+          top={slots.top.top}
         />
         <ScreenItemSlot
-          frame
-          frameClassName={AE2_INSCRIBER.largeSlotFrameClassName}
+          frame={false}
           item={input}
           label="inscriber-input"
-          size={22}
-          {...ae2SlotFrame(AE2_INSCRIBER.slots.input, 22)}
+          left={slots.input.left}
+          size={slots.input.size}
+          top={slots.input.top}
         />
         <ScreenItemSlot
-          frame
-          frameClassName={AE2_INSCRIBER.largeSlotFrameClassName}
+          frame={false}
           item={bottomPlate}
           label="inscriber-bottom"
-          size={22}
-          {...ae2SlotFrame(AE2_INSCRIBER.slots.bottom, 22)}
+          left={slots.bottom.left}
+          size={slots.bottom.size}
+          top={slots.bottom.top}
         />
         <ScreenItemSlot
-          frame
-          frameClassName={AE2_INSCRIBER.slotFrameClassName}
+          frame={false}
           item={output}
           label="inscriber-output"
+          left={slots.output.left}
           onActivate={onTakeOutput}
-          size={26}
-          {...ae2SlotFrame(AE2_INSCRIBER.slots.output, 26)}
+          size={slots.output.size}
+          top={slots.output.top}
         />
         <ModProgress
           direction="up"
-          fillClassName="mc-tex-ae2-inscriber-progress"
-          height={AE2_INSCRIBER.progress.height}
-          inset={1}
+          fill={(
+            <ModSprite
+              height={bar.fill.height}
+              name={AE2_INSCRIBER.sprite}
+              src={bar.fill}
+              width={bar.fill.width}
+            />
+          )}
+          height={bar.height}
           label="压印进度"
-          left={AE2_INSCRIBER.progress.left}
+          left={bar.left}
           progress={progress}
-          top={AE2_INSCRIBER.progress.top}
-          trackClassName="mc-tex-ae2-inscriber-progress-track"
-          width={AE2_INSCRIBER.progress.width}
+          top={bar.top}
+          width={bar.width}
         />
-        <ModTitle left={8} top={ae2PlayerTitleTop(height)}>物品栏</ModTitle>
+        {upgradeTops.map((top, index) => (
+          <ScreenItemSlot
+            frame={false}
+            item={upgradeSlots[index]}
+            key={top}
+            label={`inscriber-upgrade-${index}`}
+            left={strip.slotLeft}
+            onActivate={onUpgradeSlotClick
+              ? () => onUpgradeSlotClick(index, upgradeSlots[index])
+              : undefined}
+            size={strip.slotSize}
+            top={top}
+          />
+        ))}
+        <ModTitle left={8} top={inventory.titleTop}>物品栏</ModTitle>
         <PlayerInventory
-          frameClassName={AE2_PLAYER.frameClassName}
+          bare
           hotbarItems={hotbarItems}
-          hotbarY={ae2PlayerHotbarTop(height)}
+          hotbarY={inventory.hotbarTop}
           mainItems={mainItems}
           selectedIndex={selectedIndex}
-          x={AE2_PLAYER.frameLeft}
-          y={ae2PlayerMainTop(height)}
+          x={7}
+          y={inventory.mainTop}
         />
       </ScreenPanel>
     </div>

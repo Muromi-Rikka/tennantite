@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   Ae2ChestScreen,
+  Ae2CraftingTerminalScreen,
   Ae2DriveScreen,
   Ae2InscriberScreen,
   Ae2TerminalScreen,
@@ -57,6 +58,7 @@ function render(): string {
     <>
       <Badge>64</Badge>
       <Ae2TerminalScreen />
+      <Ae2CraftingTerminalScreen />
       <Ae2InscriberScreen />
       <Ae2DriveScreen />
       <Ae2ChestScreen />

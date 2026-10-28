@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 import {
   Ae2ChestScreenDemo,
+  Ae2CraftingTerminalScreenDemo,
   Ae2DriveScreenDemo,
   Ae2InscriberScreenDemo,
   Ae2TerminalScreenDemo,
@@ -74,6 +75,7 @@ import {
 
 const registry: Record<string, ComponentType> = {
   Ae2ChestScreenDemo,
+  Ae2CraftingTerminalScreenDemo,
   Ae2DriveScreenDemo,
   Ae2InscriberScreenDemo,
   Ae2TerminalScreenDemo,

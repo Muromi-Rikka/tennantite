@@ -40,7 +40,7 @@ export const componentGroups: ComponentGroup[] = [
   { description: "叠在游戏画面上的状态层。", id: "hud", level: "L3", title: "HUD" },
   { description: "按原版坐标拼装的容器整屏。", id: "screens", level: "L3", title: "容器界面" },
   { description: "标题、设置、聊天等全屏菜单。", id: "menus", level: "L3", title: "菜单界面" },
-  { description: "工业时代 2 / 应用能源 2 等 mod 界面的手绘视觉复刻（数据注入、无游戏逻辑）。", id: "mods", level: "L3", title: "Mod 界面" },
+  { description: "工业时代 2 / 应用能源 2 等 mod 界面：AE2 终端使用原版贴图，其余手绘复刻（数据注入、无游戏逻辑）。", id: "mods", level: "L3", title: "Mod 界面" },
 ];
 
 export const components: CatalogEntry[] = [
@@ -574,7 +574,7 @@ export const components: CatalogEntry[] = [
     sourceDir: "packages/ui/src/screens/mods/batbox-screen",
   },
   {
-    description: "195×224 ME 终端界面（6 行）：9×6 物品网格、搜索框、滚动条、玩家背包与左侧工具栏。",
+    description: "AE2 ME 终端（原版 terminal.png 切片，默认 6 行 195×222）：9 列物品网格、搜索框、滚动条、玩家背包与左侧工具栏。",
     exports: ["Ae2TerminalScreen"],
     group: "mods",
     name: "Ae2TerminalScreen",
@@ -582,7 +582,15 @@ export const components: CatalogEntry[] = [
     sourceDir: "packages/ui/src/screens/mods/ae2-terminal-screen",
   },
   {
-    description: "176×178 压印器界面：3 个 22×22 压印/输入槽、26×26 输出槽与竖向进度条。",
+    description: "AE2 合成终端（原版 crafting.png 切片，默认 6 行 195×295）：物品网格 + 3×3 合成格、清空按钮、26×26 结果槽与玩家背包。",
+    exports: ["Ae2CraftingTerminalScreen"],
+    group: "mods",
+    name: "Ae2CraftingTerminalScreen",
+    slug: "ae2-crafting-terminal-screen",
+    sourceDir: "packages/ui/src/screens/mods/ae2-crafting-terminal-screen",
+  },
+  {
+    description: "AE2 压印器（原版 inscriber.png 切片，177×176 + 右侧升级槽条）：3 个压印/输入槽、26×26 输出槽、竖向进度条与玩家背包。",
     exports: ["Ae2InscriberScreen"],
     group: "mods",
     name: "Ae2InscriberScreen",
@@ -698,6 +706,7 @@ function pagerItem(entry: CatalogEntry, locale: Locale): CatalogPagerItem {
  */
 export const componentTitlesZh: Record<string, string> = {
   "ae2-chest-screen": "ME 箱子界面",
+  "ae2-crafting-terminal-screen": "合成终端界面",
   "ae2-drive-screen": "ME 驱动器界面",
   "ae2-inscriber-screen": "压印器界面",
   "ae2-terminal-screen": "ME 终端界面",

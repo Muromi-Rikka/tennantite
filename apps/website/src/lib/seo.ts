@@ -4,8 +4,8 @@ import { localeHref, ui } from "../i18n";
 type JsonLd = Record<string, unknown>;
 
 const DESCRIPTION: Record<Locale, string> = {
-  en: "A Minecraft-style React UI library: 70 components and 36 full-screen interfaces; copy the source, inject data, stay SSR-safe.",
-  zh: "Minecraft 风格 React UI 组件库：70 个组件、36 个整屏界面；源码可复制，数据可注入，SSR 安全。",
+  en: "A Minecraft-style React UI library: 71 components and 37 full-screen interfaces; copy the source, inject data, stay SSR-safe.",
+  zh: "Minecraft 风格 React UI 组件库：71 个组件、37 个整屏界面；源码可复制，数据可注入，SSR 安全。",
 };
 
 export function breadcrumb({ items, site }: { items: { label: string; path?: string }[]; site: URL }): JsonLd {
