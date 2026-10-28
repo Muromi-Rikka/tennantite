@@ -40,3 +40,6 @@ pnpm-debug.log*
 
 # pnpm / agent tooling state
 .claude/
+
+# local agent skills (kept out of the repo)
+.agents/skills/
