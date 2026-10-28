@@ -1,6 +1,7 @@
 ---
 import type { Locale } from "@/i18n";
 import { localeHref, ui } from "@/i18n";
+import { findComponent, isModEntry } from "@/lib/catalog";
 
 interface Props {
   locale: Locale;
@@ -12,8 +13,14 @@ const items = [
   { href: localeHref(locale, "/docs/"), label: text.nav.docs },
   { href: localeHref(locale, "/components/"), label: text.nav.components },
   { href: localeHref(locale, "/blocks/"), label: text.nav.blocks },
+  { href: localeHref(locale, "/mods/"), label: text.nav.mods },
 ];
-const isActive = (href: string) => pathname === href || pathname.startsWith(href);
+const slug = pathname.split("/").filter(Boolean).at(-1);
+const entry = slug ? findComponent(slug) : undefined;
+const activePath = pathname.includes("/mods/") || (entry ? isModEntry(entry) : false)
+  ? localeHref(locale, "/mods/")
+  : pathname;
+const isActive = (href: string) => activePath === href || activePath.startsWith(href);
 ---
 <nav aria-label={locale === "zh" ? "主导航" : "Main navigation"} class="hidden items-center gap-2 md:flex">
   {items.map(item => (

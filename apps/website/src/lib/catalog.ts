@@ -6,6 +6,10 @@ export interface CatalogEntry {
   description: string;
   exports: string[];
   group: ComponentGroupId;
+  /**
+  * 归入官网独立 Mod 区域（整屏组件可省略，`group: "mods"` 已隐含）
+  */
+  mod?: boolean;
   name: string;
   slug: string;
   sourceDir: string;
@@ -524,6 +528,7 @@ export const components: CatalogEntry[] = [
     description: "IC2 EU 能量条：深色内嵌槽 + 信号绿填充与液面线，悬浮显示 X / Y EU。",
     exports: ["EuBar"],
     group: "containers",
+    mod: true,
     name: "EuBar",
     slug: "eu-bar",
     sourceDir: "packages/ui/src/screens/mods/eu-bar",
@@ -606,6 +611,18 @@ export const blocks = components.filter(component =>
   ["menus", "mods", "screens"].includes(component.group),
 );
 
+/**
+ * 官网独立 Mod 区域：`group: "mods"` 的整屏，以及显式标记 `mod` 的共享件。
+ */
+export function isModEntry(entry: CatalogEntry): boolean {
+  return entry.group === "mods" || entry.mod === true;
+}
+
+export const modEntries = components.filter(component => isModEntry(component));
+export const coreComponents = components.filter(component => !isModEntry(component));
+export const primaryBlocks = blocks.filter(block => block.group !== "mods");
+export const modBlocks = blocks.filter(block => block.group === "mods");
+
 export function blockHref(slug: string, locale: Locale): string {
   return localeHref(locale, `/blocks/${slug}/`);
 }
@@ -630,26 +647,34 @@ export function findComponentByName(name: string) {
   return components.find(component => component.name === name);
 }
 
-export function getBlockPager(slug: string, locale: Locale): CatalogPager {
-  const index = blocks.findIndex(block => block.slug === slug);
+export function getBlockPager(
+  slug: string,
+  locale: Locale,
+  entries: CatalogEntry[] = blocks,
+): CatalogPager {
+  const index = entries.findIndex(block => block.slug === slug);
   if (index === -1) {
     return {};
   }
-  const prev = blocks[index - 1];
-  const next = blocks[index + 1];
+  const prev = entries[index - 1];
+  const next = entries[index + 1];
   return {
     ...(prev && { prev: { href: blockHref(prev.slug, locale), title: componentTitle(prev, locale) } }),
     ...(next && { next: { href: blockHref(next.slug, locale), title: componentTitle(next, locale) } }),
   };
 }
 
-export function getComponentPager(slug: string, locale: Locale): CatalogPager {
-  const index = components.findIndex(component => component.slug === slug);
+export function getComponentPager(
+  slug: string,
+  locale: Locale,
+  entries: CatalogEntry[] = components,
+): CatalogPager {
+  const index = entries.findIndex(component => component.slug === slug);
   if (index === -1) {
     return {};
   }
-  const prev = components[index - 1];
-  const next = components[index + 1];
+  const prev = entries[index - 1];
+  const next = entries[index + 1];
   return {
     ...(prev && { prev: pagerItem(prev, locale) }),
     ...(next && { next: pagerItem(next, locale) }),

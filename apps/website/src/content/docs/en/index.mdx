@@ -12,7 +12,7 @@ import Callout from "@/components/docs/Callout.astro";
 
 Verdigris breaks Minecraft's GUI language into copyable React source. It ships through two channels: an npm package and source directories. Components are built on Base UI and Tailwind CSS v4, driven by design tokens by default.
 
-The 70 components cover four layers: 13 primitives, 12 containers, 9 HUD status layers and 36 full-screen interfaces. Full screens are not black boxes; they are compositions of smaller parts.
+The 70 components split into a core library and a separate mod area: 60 vanilla/shared components plus 10 mod components; the 36 full-screen interfaces are 27 vanilla screens and 9 mod screens. Full screens are not black boxes; they are compositions of smaller parts.
 
 <Callout title="Three ground rules">
 Source you can own: every component is its own directory. Data injection: screens receive data and callbacks only. Token overrides: colors, type, spacing and shadows can all be rewritten in `@theme`.

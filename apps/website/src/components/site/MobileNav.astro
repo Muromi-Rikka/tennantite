@@ -12,6 +12,7 @@ const items = [
   { href: localeHref(locale, "/docs/"), label: text.nav.docs },
   { href: localeHref(locale, "/components/"), label: text.nav.components },
   { href: localeHref(locale, "/blocks/"), label: text.nav.blocks },
+  { href: localeHref(locale, "/mods/"), label: text.nav.mods },
 ];
 const switchHref = /^\/(?:en\/)?404\/?$/.test(pathname)
   ? localeHref(locale === "zh" ? "en" : "zh", "/")

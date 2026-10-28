@@ -1,36 +1,60 @@
 ---
 import PageHeader from "@/components/site/PageHeader.astro";
+import LinkButton from "@/components/site/LinkButton.astro";
 import type { Locale } from "@/i18n";
-import { componentHref, componentGroups, components, catalogDescription, componentTitle, groupText } from "@/lib/catalog";
-import { ui } from "@/i18n";
+import { fill, localeHref, ui } from "@/i18n";
 import SiteLayout from "@/layouts/SiteLayout.astro";
+import {
+  catalogDescription,
+  componentGroups,
+  componentHref,
+  componentTitle,
+  coreComponents,
+  groupText,
+  modEntries,
+} from "@/lib/catalog";
 
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
 const text = ui[locale].componentsPage;
+const description = fill(text.description, { count: coreComponents.length });
+const modsText = ui[locale].modsPage;
+const modsHref = localeHref(locale, "/mods/");
+const groups = componentGroups
+  .map(group => ({
+    ...group,
+    items: coreComponents.filter(component => component.group === group.id),
+  }))
+  .filter(group => group.items.length > 0);
 ---
-<SiteLayout title={text.metaTitle} description={text.description} locale={locale}>
+<SiteLayout title={text.metaTitle} description={description} locale={locale}>
   <div class="mx-auto max-w-[1440px] px-12 py-24">
     <PageHeader
       breadcrumb={[{ label: text.breadcrumb }]}
       title={text.title}
-      description={text.description}
+      description={description}
     />
-    {componentGroups.map((group) => {
+    <div class="mt-16 flex flex-wrap items-center justify-between gap-8 border border-site-border bg-site-surface px-12 py-8">
+      <div>
+        <h2 class="text-base font-bold text-site-fg">{modsText.title}</h2>
+        <p class="mt-2 text-sm text-site-muted">{modsText.description}</p>
+      </div>
+      <LinkButton href={modsHref} variant="ghost">{modsText.breadcrumb} · {modEntries.length} →</LinkButton>
+    </div>
+    {groups.map((group) => {
       const groupLabel = groupText(group, locale);
-      const items = components.filter(component => component.group === group.id);
       return (
         <section id={group.id} class="mt-32 scroll-mt-32">
           <div class="flex items-baseline gap-8 border-b border-site-border pb-8">
             <h2 class="text-2xl font-bold text-site-fg">{groupLabel.title}</h2>
             <span class="text-xs uppercase tracking-wider text-site-muted">{group.level}</span>
-            <span class="ml-auto text-sm text-site-muted">{items.length}</span>
+            <span class="ml-auto text-sm text-site-muted">{group.items.length}</span>
           </div>
           <p class="mt-8 text-sm leading-12 text-site-muted">{groupLabel.description}</p>
           <div class="grid gap-x-24 md:grid-cols-2">
-            {items.map(component => (
+            {group.items.map(component => (
               <a
                 href={componentHref(component.slug, locale)}
                 class="group flex flex-col gap-2 border-b border-site-border/60 py-8"
@@ -45,3 +69,4 @@ const text = ui[locale].componentsPage;
     })}
   </div>
 </SiteLayout>
+

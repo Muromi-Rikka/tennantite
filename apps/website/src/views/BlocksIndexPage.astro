@@ -1,29 +1,39 @@
 ---
 import PageHeader from "@/components/site/PageHeader.astro";
+import LinkButton from "@/components/site/LinkButton.astro";
 import ScaledPreview from "@/components/preview/ScaledPreview.astro";
 import type { Locale } from "@/i18n";
-import { ui } from "@/i18n";
+import { fill, localeHref, ui } from "@/i18n";
 import SiteLayout from "@/layouts/SiteLayout.astro";
-import { blockHref, blocks, componentTitle } from "@/lib/catalog";
+import { blockHref, componentTitle, modBlocks, primaryBlocks } from "@/lib/catalog";
 
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
 const text = ui[locale].blocksPage;
+const description = fill(text.description, { count: primaryBlocks.length });
+const modsText = ui[locale].modsPage;
+const modsHref = localeHref(locale, "/mods/");
 const groups = [
   { id: "screens" as const, ...text.groups.screens },
-  { id: "mods" as const, ...text.groups.mods },
   { id: "menus" as const, ...text.groups.menus },
 ];
 ---
-<SiteLayout title={text.metaTitle} description={text.description} locale={locale}>
+<SiteLayout title={text.metaTitle} description={description} locale={locale}>
   <div class="mx-auto max-w-[1440px] px-12 py-24">
     <PageHeader
       breadcrumb={[{ label: text.breadcrumb }]}
       title={text.title}
-      description={text.description}
+      description={description}
     />
+    <div class="mt-16 flex flex-wrap items-center justify-between gap-8 border border-site-border bg-site-surface px-12 py-8">
+      <div>
+        <h2 class="text-base font-bold text-site-fg">{modsText.title}</h2>
+        <p class="mt-2 text-sm text-site-muted">{modsText.screens.description}</p>
+      </div>
+      <LinkButton href={modsHref} variant="ghost">{modsText.breadcrumb} · {modBlocks.length} →</LinkButton>
+    </div>
     <div class="mt-24 grid gap-32 lg:grid-cols-[160px_minmax(0,1fr)]">
       <aside class="hidden lg:block">
         <div class="sticky top-32 flex flex-col gap-4">
@@ -34,7 +44,7 @@ const groups = [
       </aside>
       <div>
         {groups.map((group) => {
-          const items = blocks.filter(block => block.group === group.id);
+          const items = primaryBlocks.filter(block => block.group === group.id);
           return (
             <section id={group.id} class="mt-32 scroll-mt-32 first:mt-0">
               <div class="flex items-baseline gap-8 border-b border-site-border pb-8">
@@ -69,3 +79,4 @@ const groups = [
     </div>
   </div>
 </SiteLayout>
+

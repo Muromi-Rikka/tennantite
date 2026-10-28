@@ -1,19 +1,29 @@
 ---
 import type { Locale } from "@/i18n";
 import { ui } from "@/i18n";
-import { componentGroups, components, componentHref, componentTitle, groupText } from "@/lib/catalog";
+import {
+  componentGroups,
+  components,
+  componentHref,
+  componentTitle,
+  groupText,
+  type CatalogEntry,
+} from "@/lib/catalog";
 
 interface Props {
   currentSlug?: string;
+  entries?: CatalogEntry[];
   locale: Locale;
 }
-const { currentSlug, locale } = Astro.props;
+const { currentSlug, entries = components, locale } = Astro.props;
 const label = ui[locale].componentsPage.listLabel;
-const groups = componentGroups.map(group => ({
-  ...group,
-  title: groupText(group, locale).title,
-  items: components.filter(component => component.group === group.id),
-}));
+const groups = componentGroups
+  .map(group => ({
+    ...group,
+    title: groupText(group, locale).title,
+    items: entries.filter(component => component.group === group.id),
+  }))
+  .filter(group => group.items.length > 0);
 ---
 <nav aria-label={label}>
   {groups.map(group => (

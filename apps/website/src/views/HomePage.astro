@@ -7,7 +7,7 @@ import LinkButton from "@/components/site/LinkButton.astro";
 import type { Locale } from "@/i18n";
 import { fill, localeHref, ui } from "@/i18n";
 import SiteLayout from "@/layouts/SiteLayout.astro";
-import { blocks, components } from "@/lib/catalog";
+import { blocks, components, coreComponents, modBlocks, primaryBlocks } from "@/lib/catalog";
 import { softwareApplication } from "@/lib/seo";
 
 interface Props {
@@ -83,7 +83,7 @@ const installCommand = "pnpm add @verdigris/ui @verdigris/tokens @verdigris/text
         </p>
         <pre class="mt-8 overflow-x-auto border border-site-border bg-[#080808] p-8 font-mono text-[13px] leading-[22px] text-site-fg"><code>{home.primitiveCode}</code></pre>
         <div class="mt-8">
-          <LinkButton href={localeHref(locale, "/components/")}>{fill(home.primitives.all, { count: components.length })}</LinkButton>
+          <LinkButton href={localeHref(locale, "/components/")}>{fill(home.primitives.all, { count: coreComponents.length })}</LinkButton>
         </div>
       </div>
       <div class="min-w-0 border border-site-border bg-site-surface p-12">
@@ -101,7 +101,10 @@ const installCommand = "pnpm add @verdigris/ui @verdigris/tokens @verdigris/text
           {home.blocks.description}
         </p>
       </div>
-      <LinkButton href={localeHref(locale, "/blocks/")}>{fill(home.blocks.all, { count: blocks.length })}</LinkButton>
+      <div class="flex flex-wrap gap-8">
+        <LinkButton href={localeHref(locale, "/blocks/")}>{fill(home.blocks.all, { count: primaryBlocks.length })}</LinkButton>
+        <LinkButton href={localeHref(locale, "/mods/")} variant="ghost">{fill(home.blocks.mods, { count: modBlocks.length })}</LinkButton>
+      </div>
     </div>
     <div class="mt-16 grid gap-16 md:grid-cols-2">
       <a href={localeHref(locale, "/blocks/inventory-screen/")} class="group block border border-site-border bg-site-surface hover:border-site-fg/40">

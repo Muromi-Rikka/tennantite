@@ -1,13 +1,15 @@
 ---
 import type { Locale } from "@/i18n";
 import { ui } from "@/i18n";
+import type { CatalogEntry } from "@/lib/catalog";
 import ComponentNav from "./ComponentNav.astro";
 
 interface Props {
   currentSlug?: string;
+  entries?: CatalogEntry[];
   locale: Locale;
 }
-const { currentSlug, locale } = Astro.props;
+const { currentSlug, entries, locale } = Astro.props;
 const label = ui[locale].componentsPage.listLabel;
 ---
 <details class="mb-16 border border-site-border bg-site-surface p-8 lg:hidden">
@@ -15,6 +17,6 @@ const label = ui[locale].componentsPage.listLabel;
     {label}
   </summary>
   <div class="mt-8">
-    <ComponentNav currentSlug={currentSlug} locale={locale} />
+    <ComponentNav currentSlug={currentSlug} entries={entries} locale={locale} />
   </div>
 </details>

@@ -3,7 +3,7 @@ import Demo from "@/components/preview/demo";
 import type { Locale } from "@/i18n";
 import { localeHref, switchLocalePath, ui } from "@/i18n";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { catalogDescription, componentTitle, type CatalogEntry } from "@/lib/catalog";
+import { catalogDescription, componentTitle, isModEntry, type CatalogEntry } from "@/lib/catalog";
 
 interface Props {
   entry: CatalogEntry;
@@ -12,6 +12,9 @@ interface Props {
 const { entry, locale } = Astro.props;
 const displayName = componentTitle(entry, locale);
 const text = ui[locale];
+const mod = isModEntry(entry);
+const backHref = localeHref(locale, mod ? "/mods/" : "/blocks/");
+const backLabel = mod ? text.preview.backMods : text.preview.back;
 const switchHref = switchLocalePath(Astro.url.pathname, locale === "zh" ? "en" : "zh");
 ---
 <BaseLayout
@@ -22,7 +25,7 @@ const switchHref = switchLocalePath(Astro.url.pathname, locale === "zh" ? "en" :
   noindex
 >
   <div class="flex h-24 items-center justify-between border-b border-white/10 px-8 text-sm">
-    <a class="text-site-muted hover:text-site-fg" href={localeHref(locale, "/blocks/")}>{text.preview.back}</a>
+    <a class="text-site-muted hover:text-site-fg" href={backHref}>{backLabel}</a>
     <div class="flex items-center gap-8">
       <a class="text-site-muted hover:text-site-fg" href={switchHref}>{text.switchLabel}</a>
       <span class="text-site-fg">{displayName}</span>

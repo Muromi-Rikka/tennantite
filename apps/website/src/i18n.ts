@@ -33,7 +33,6 @@ export interface UIDictionary {
     description: string;
     groups: {
       menus: { description: string; title: string };
-      mods: { description: string; title: string };
       screens: { description: string; title: string };
     };
     metaTitle: string;
@@ -83,6 +82,7 @@ export interface UIDictionary {
       description: string;
       eyebrow: string;
       inventory: string;
+      mods: string;
       title: string;
     };
     cta: {
@@ -116,11 +116,20 @@ export interface UIDictionary {
     };
   };
   htmlLang: string;
+  modsPage: {
+    breadcrumb: string;
+    components: { description: string; title: string };
+    description: string;
+    metaTitle: string;
+    screens: { description: string; title: string };
+    title: string;
+  };
   nav: {
     blocks: string;
     components: string;
     docs: string;
     github: string;
+    mods: string;
   };
   notFound: {
     body: string;
@@ -137,6 +146,7 @@ export interface UIDictionary {
   };
   preview: {
     back: string;
+    backMods: string;
     metaSuffix: string;
   };
   search: {
@@ -145,6 +155,7 @@ export interface UIDictionary {
       blocks: string;
       components: string;
       docs: string;
+      mods: string;
     };
     label: string;
     noResults: string;
@@ -170,10 +181,9 @@ const zh: UIDictionary = {
   },
   blocksPage: {
     breadcrumb: "整屏界面",
-    description: "36 个整屏组合界面。每个整屏界面由 L1–L3 组件拼装，数据由使用方注入；点开可看全屏预览与示例源码。",
+    description: "{count} 个原版整屏。容器与菜单界面由 L1–L3 组件拼装，数据由使用方注入；Mod 整屏集中在独立区域。",
     groups: {
       menus: { description: "标题、设置、聊天等全屏菜单与遮罩。", title: "菜单界面" },
-      mods: { description: "工业时代 2 / 应用能源 2 等 mod 的机器界面，手绘纹理复刻（数据注入、无游戏逻辑）。", title: "Mod 界面" },
       screens: { description: "按原版容器坐标拼装的 176–276 GUI px 面板。", title: "容器界面" },
     },
     metaTitle: "整屏界面 · Verdigris",
@@ -194,7 +204,7 @@ const zh: UIDictionary = {
   },
   componentsPage: {
     breadcrumb: "Components",
-    description: "70 个可复制进项目的组件，按层级分组。每个页面提供实时预览与示例源码。",
+    description: "{count} 个原版与通用组件，按层级分组。每个页面提供实时预览与示例源码；Mod 组件集中在独立区域。",
     listLabel: "组件列表",
     metaTitle: "Components 组件 · Verdigris",
     title: "Components",
@@ -231,6 +241,7 @@ const zh: UIDictionary = {
         links: [
           { href: "/components/", label: "Components" },
           { href: "/blocks/", label: "整屏界面" },
+          { href: "/mods/", label: "Mod 界面" },
           { href: "/components/#primitives", label: "原语" },
           { href: "/components/#containers", label: "容器" },
           { href: "/components/#hud", label: "HUD" },
@@ -253,11 +264,12 @@ const zh: UIDictionary = {
   },
   home: {
     blocks: {
-      all: "全部 {count} 个整屏界面",
+      all: "全部 {count} 个原版整屏",
       crafting: "工作台 · 容器界面",
       description: "24 个容器界面 + 9 个 Mod 机器界面 + 3 个菜单/覆盖层。每个整屏界面都是可运行示例，也可以拆回组件自行组合。",
       eyebrow: "L3 · 整屏界面",
       inventory: "物品栏 · 容器界面",
+      mods: "Mod 界面（{count}）",
       title: "整屏界面，复制即用",
     },
     cta: {
@@ -297,18 +309,33 @@ export function Start() {
   );
 }`,
     primitives: {
-      all: "全部 {count} 个组件",
+      all: "全部 {count} 个核心组件",
       description: "原语只依赖 Base UI 与令牌。它们不读取游戏状态，也没有隐藏的全局样式；复制单个组件不会拖进整座框架。",
       eyebrow: "L1 · Primitives",
       title: "从一行 import 开始",
     },
   },
   htmlLang: "zh-CN",
+  modsPage: {
+    breadcrumb: "Mod",
+    components: {
+      description: "10 个可复制组件：9 个整屏组件与 EuBar 能量条；IC2 与 AE2 共用通用子件。",
+      title: "组件",
+    },
+    description: "工业时代 2 与 应用能源 2 的整屏界面与组件，手绘 SVG 视觉复刻；数据注入、无游戏逻辑。",
+    metaTitle: "Mod 界面 · Verdigris",
+    screens: {
+      description: "5 个 IC2 机器界面 + 4 个 AE2 界面，按游戏内屏幕定义复刻尺寸与槽位坐标。",
+      title: "整屏界面",
+    },
+    title: "Mod 界面",
+  },
   nav: {
     blocks: "整屏界面",
     components: "组件",
     docs: "文档",
     github: "GitHub",
+    mods: "Mod",
   },
   notFound: {
     body: "这个坐标没有生成地形。可以回到首页，或直接浏览组件。",
@@ -322,11 +349,12 @@ export function Start() {
   pager: { next: "下一页", previous: "上一页" },
   preview: {
     back: "← 返回整屏界面",
+    backMods: "← 返回 Mod 界面",
     metaSuffix: "预览 · Verdigris",
   },
   search: {
     close: "Esc 关闭",
-    groups: { blocks: "整屏界面", components: "组件", docs: "文档" },
+    groups: { blocks: "整屏界面", components: "组件", docs: "文档", mods: "Mod" },
     label: "搜索文档",
     noResults: "没有匹配结果",
     open: "Enter 打开",
@@ -351,10 +379,9 @@ const en: UIDictionary = {
   },
   blocksPage: {
     breadcrumb: "Blocks",
-    description: "36 composed full-screen interfaces. Each Block is assembled from L1–L3 components and accepts injected data; open one for a full-screen preview and source.",
+    description: "{count} vanilla full-screen interfaces. Container and menu screens are assembled from L1–L3 components and accept injected data; mod screens live in their own area.",
     groups: {
       menus: { description: "Full-screen menus and overlays for title, settings, chat and more.", title: "Menu screens" },
-      mods: { description: "Machine screens from mods such as IndustrialCraft 2 / Applied Energistics 2, redrawn by hand (data-injected, no game logic).", title: "Mod screens" },
       screens: { description: "176–276 GUI px panels laid out with vanilla container coordinates.", title: "Container screens" },
     },
     metaTitle: "Blocks · Verdigris",
@@ -375,7 +402,7 @@ const en: UIDictionary = {
   },
   componentsPage: {
     breadcrumb: "Components",
-    description: "70 copy-ready components grouped by layer. Every page includes a live preview and example source.",
+    description: "{count} vanilla and shared components grouped by layer. Every page includes a live preview and example source; mod components have their own area.",
     listLabel: "Component list",
     metaTitle: "Components · Verdigris",
     title: "Components",
@@ -412,6 +439,7 @@ const en: UIDictionary = {
         links: [
           { href: "/en/components/", label: "Components" },
           { href: "/en/blocks/", label: "Blocks" },
+          { href: "/en/mods/", label: "Mod screens" },
           { href: "/en/components/#primitives", label: "Primitives" },
           { href: "/en/components/#containers", label: "Containers" },
           { href: "/en/components/#hud", label: "HUD" },
@@ -434,11 +462,12 @@ const en: UIDictionary = {
   },
   home: {
     blocks: {
-      all: "All {count} Blocks",
+      all: "All {count} vanilla screens",
       crafting: "Crafting table · Container screen",
       description: "24 container screens, 9 mod machine screens and 3 menu screens. Every Block runs as-is, or you can take it apart and compose the pieces yourself.",
       eyebrow: "L3 · Blocks",
       inventory: "Inventory · Container screen",
+      mods: "Mod screens ({count})",
       title: "Full screens, ready to copy",
     },
     cta: {
@@ -478,18 +507,33 @@ export function Start() {
   );
 }`,
     primitives: {
-      all: "All {count} components",
+      all: "All {count} core components",
       description: "Primitives depend only on Base UI and tokens. They read no game state and hide no global styles; copying one component does not drag in the whole framework.",
       eyebrow: "L1 · Primitives",
       title: "Start with one import",
     },
   },
   htmlLang: "en",
+  modsPage: {
+    breadcrumb: "Mods",
+    components: {
+      description: "10 copy-ready components: 9 screen components plus the EuBar gauge; IC2 and AE2 share common subcomponents.",
+      title: "Components",
+    },
+    description: "Full-screen interfaces and components for IndustrialCraft 2 and Applied Energistics 2, redrawn by hand; data-injected with no game logic.",
+    metaTitle: "Mod screens · Verdigris",
+    screens: {
+      description: "5 IC2 machine screens + 4 AE2 screens, matching in-game screen dimensions and slot coordinates.",
+      title: "Full screens",
+    },
+    title: "Mod screens",
+  },
   nav: {
     blocks: "Blocks",
     components: "Components",
     docs: "Docs",
     github: "GitHub",
+    mods: "Mods",
   },
   notFound: {
     body: "No terrain generated at these coordinates. Go home or browse the components.",
@@ -503,11 +547,12 @@ export function Start() {
   pager: { next: "Next", previous: "Previous" },
   preview: {
     back: "← Back to Blocks",
+    backMods: "← Back to mod screens",
     metaSuffix: "Preview · Verdigris",
   },
   search: {
     close: "Esc close",
-    groups: { blocks: "Blocks", components: "Components", docs: "Docs" },
+    groups: { blocks: "Blocks", components: "Components", docs: "Docs", mods: "Mods" },
     label: "Search documentation",
     noResults: "No results",
     open: "Enter open",

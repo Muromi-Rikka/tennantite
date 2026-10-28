@@ -3,11 +3,12 @@ import type { Locale } from "../i18n";
 import { ui } from "../i18n";
 import {
   blockHref,
-  blocks,
   catalogDescription,
   componentHref,
-  components,
   componentTitle,
+  coreComponents,
+  modEntries,
+  primaryBlocks,
 } from "./catalog";
 import { docHref, filterDocs, sortDocs } from "./docs";
 
@@ -24,13 +25,18 @@ export function buildLlmsText(docs: CollectionEntry<"docs">[], locale: Locale, s
     ),
     "",
     `## ${text.nav.components}`,
-    ...components.map(component =>
+    ...coreComponents.map(component =>
       `- [${componentTitle(component, locale)}](${new URL(componentHref(component.slug, locale), site).href}): ${catalogDescription(component, locale)}`,
     ),
     "",
     `## ${text.nav.blocks}`,
-    ...blocks.map(block =>
+    ...primaryBlocks.map(block =>
       `- [${componentTitle(block, locale)}](${new URL(blockHref(block.slug, locale), site).href}): ${catalogDescription(block, locale)}`,
+    ),
+    "",
+    `## ${text.nav.mods}`,
+    ...modEntries.map(component =>
+      `- [${componentTitle(component, locale)}](${new URL(componentHref(component.slug, locale), site).href}): ${catalogDescription(component, locale)}`,
     ),
     "",
   ];

@@ -16,7 +16,10 @@ import {
   componentTitle,
   findComponentByName,
   getBlockPager,
+  isModEntry,
+  modBlocks,
   previewHref,
+  primaryBlocks,
   type CatalogEntry,
 } from "@/lib/catalog";
 import { breadcrumb, techArticle } from "@/lib/seo";
@@ -28,20 +31,23 @@ interface Props {
 }
 const { entry, locale } = Astro.props;
 const text = ui[locale].blockPage;
+const modsText = ui[locale].modsPage;
 const description = catalogDescription(entry, locale);
 const displayName = componentTitle(entry, locale);
+const mod = isModEntry(entry);
 const href = blockHref(entry.slug, locale);
-const blocksIndexHref = localeHref(locale, "/blocks/");
+const indexHref = localeHref(locale, mod ? "/mods/" : "/blocks/");
+const indexLabel = mod ? modsText.breadcrumb : text.breadcrumb;
 const preview = previewHref(entry.slug, locale);
 const code = readDemoSource(entry.sourceDir);
-const pager = getBlockPager(entry.slug, locale);
+const pager = getBlockPager(entry.slug, locale, mod ? modBlocks : primaryBlocks);
 const composition = (blockComposition[entry.slug] ?? [])
   .map(name => findComponentByName(name))
   .filter((component): component is CatalogEntry => component !== undefined);
 const site = Astro.site ?? new URL("http://localhost:3300");
 const jsonLd = [
   techArticle({ description, locale, path: href, site, title: displayName }),
-  breadcrumb({ items: [{ label: text.breadcrumb, path: blocksIndexHref }, { label: displayName, path: href }], site }),
+  breadcrumb({ items: [{ label: indexLabel, path: indexHref }, { label: displayName, path: href }], site }),
 ];
 ---
 <SiteLayout
@@ -53,7 +59,7 @@ const jsonLd = [
 >
   <div class="mx-auto max-w-[1440px] px-12 py-24">
     <PageHeader
-      breadcrumb={[{ href: blocksIndexHref, label: text.breadcrumb }, { label: displayName }]}
+      breadcrumb={[{ href: indexHref, label: indexLabel }, { label: displayName }]}
       title={displayName}
       description={description}
     />
