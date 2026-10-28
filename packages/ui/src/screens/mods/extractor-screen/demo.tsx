@@ -10,7 +10,6 @@ export function ExtractorScreenDemo() {
       input={{ icon: "oak-planks", tooltip: "橡木木板" }}
       output={{ count: 3, icon: "charcoal", tooltip: "橡胶" }}
       progress={0.3}
-      redstoneMode="none"
       title="提取机"
     />
   );

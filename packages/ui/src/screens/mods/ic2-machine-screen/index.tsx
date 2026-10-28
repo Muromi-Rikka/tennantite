@@ -1,13 +1,15 @@
 import type { ReactNode } from "react";
 
 import type { ScreenSlot } from "../../containers/types";
-import type { Ic2RedstoneMode } from "../ic2-types";
+import type { Ic2ProgressStyle } from "../ic2-types";
 
 import { PlayerInventory } from "../../../containers/player-inventory/index";
 import { ScreenPanel } from "../../../containers/screen-panel/index";
 import { ScreenItemSlot } from "../../containers/screen-slot";
-import { EuBar } from "../eu-bar/index";
-import { Ic2BoltIcon, Ic2Progress, Ic2RedstoneButton } from "../ic2-parts";
+import { padSlots } from "../../containers/types";
+import { Ic2EnergyGauge } from "../ic2-energy-gauge/index";
+import { IC2_MACHINE } from "../ic2-layout";
+import { Ic2InfoIcon, Ic2Label, Ic2Progress, Ic2Title } from "../ic2-parts";
 
 export interface Ic2MachineScreenProps {
   /**
@@ -15,110 +17,140 @@ export interface Ic2MachineScreenProps {
   */
   backgroundClassName?: string;
   /**
-  * 电池 / 充电槽（可选，渲染在右上角）
-  */
-  battery?: ScreenSlot;
-  /**
-  * 额外槽位（如升级槽），由使用方绝对定位
+  * 额外槽位（由使用方绝对定位）
   */
   children?: ReactNode;
   className?: string;
   /**
-  * EU 能量状态（省略时不渲染能量槽）
+  * 放电槽（扳手取下电池）
+  */
+  discharge?: ScreenSlot;
+  /**
+  * EU 能量状态（省略时不渲染 EU 闪电）
   */
   energy?: { max: number; value: number };
   input?: ScreenSlot;
-  /**
-  * 红石模式切换回调；省略时按钮为纯展示
-  */
-  onRedstoneModeChange?: (mode: Ic2RedstoneMode) => void;
   /**
   * 产物槽点击回调
   */
   onTakeOutput?: () => void;
   output?: ScreenSlot;
   /**
-  * 机器处理进度 0..1（纵向箭头白色填充）
+  * 玩家名（默认“玩家”，渲染在背包上方）
+  */
+  playerName?: ReactNode;
+  /**
+  * 机器处理进度 0..1
   */
   progress?: number;
-  redstoneMode?: Ic2RedstoneMode;
+  /**
+  * 进度贴图：磨矿机 crush / 电炉 arrow / 压缩机 triangle / 提取机 drop
+  */
+  progressStyle: Ic2ProgressStyle;
   title?: ReactNode;
+  /**
+  * 升级槽（最多 4，不足补 null）
+  */
+  upgrades?: ScreenSlot[];
 }
 
 /**
- * IC2 机器界面共享布局（工业时代 2 视觉复刻）：176×166，多台机器共用一张默认
- * 机器背景（IC2 惯例），槽框由 `ScreenItemSlot frame` 自绘。经典布局：
- * 左侧 EU 能量槽 (26,25) 14×48 + 闪电图标，中列输入 (81,15) → 纵向箭头 → 输出 (81,65)，
- * 右上电池槽，右下红石模式按钮；底部接玩家背包。
+ * IC2 机器界面共享布局（1.12.2 原版贴图）：176×166，左上信息图标、
+ * 输入 / 放电 / 26×26 产物槽、右侧 4 个升级槽、红色 EU 闪电、进度条与玩家背包。
  */
 export function Ic2MachineScreen({
   backgroundClassName = "mc-tex-ic2-machine",
-  battery,
   children,
   className,
+  discharge,
   energy,
   input,
-  onRedstoneModeChange,
   onTakeOutput,
   output,
+  playerName = "玩家",
   progress = 0,
-  redstoneMode = "normal",
+  progressStyle,
   title,
+  upgrades = [],
 }: Ic2MachineScreenProps) {
+  const progressPosition = IC2_MACHINE.progress[progressStyle];
   return (
     <ScreenPanel
       backgroundClassName={backgroundClassName}
       className={className}
-      height={166}
-      title={title}
-      width={176}
+      height={IC2_MACHINE.height}
+      width={IC2_MACHINE.width}
     >
-      {energy
-        ? (
-            <>
-              <EuBar
-                height={48}
-                label="EU 能量"
-                left={26}
-                max={energy.max}
-                tooltip
-                top={25}
-                value={energy.value}
-                width={14}
-              />
-              <Ic2BoltIcon left={17} top={44} />
-            </>
-          )
-        : null}
-      <ScreenItemSlot frame item={input} label="machine-input" left={81} top={15} />
-      {battery
-        ? <ScreenItemSlot frame item={battery} label="machine-battery" left={143} top={15} />
-        : null}
+      <Ic2InfoIcon left={IC2_MACHINE.info.left} top={IC2_MACHINE.info.top} />
+      <Ic2Title>{title}</Ic2Title>
+      <Ic2Label left={IC2_MACHINE.inventory.nameLeft} top={IC2_MACHINE.inventory.nameTop}>
+        {playerName}
+      </Ic2Label>
       <ScreenItemSlot
         frame
+        frameClassName="mc-tex-ic2-slot"
+        item={input}
+        label="machine-input"
+        left={IC2_MACHINE.slots.input.left}
+        top={IC2_MACHINE.slots.input.top}
+      />
+      <ScreenItemSlot
+        frame
+        frameClassName="mc-tex-ic2-slot"
+        item={discharge}
+        label="machine-discharge"
+        left={IC2_MACHINE.slots.discharge.left}
+        top={IC2_MACHINE.slots.discharge.top}
+      />
+      <ScreenItemSlot
+        frame
+        frameClassName="mc-tex-ic2-slot-large"
         item={output}
         label="machine-output"
-        left={81}
+        left={IC2_MACHINE.slots.output.left}
         onActivate={onTakeOutput}
-        top={65}
+        size={IC2_MACHINE.slots.output.size}
+        top={IC2_MACHINE.slots.output.top}
       />
+      {padSlots(upgrades, IC2_MACHINE.slots.upgrades.count).map((slot, index) => (
+        <ScreenItemSlot
+          frame
+          frameClassName="mc-tex-ic2-slot"
+          item={slot}
+          // eslint-disable-next-line react/no-array-index-key -- 固定位置的升级槽，索引即槽位号
+          key={`machine-upgrade-${index}`}
+          label={`machine-upgrade-${index}`}
+          left={IC2_MACHINE.slots.upgrades.left}
+          top={IC2_MACHINE.slots.upgrades.top + index * IC2_MACHINE.slots.upgrades.step}
+        />
+      ))}
+      {energy
+        ? (
+            <Ic2EnergyGauge
+              label="EU 能量"
+              left={IC2_MACHINE.energy.left}
+              max={energy.max}
+              tooltip
+              top={IC2_MACHINE.energy.top}
+              value={energy.value}
+              variant={IC2_MACHINE.energy.variant}
+            />
+          )
+        : null}
       <Ic2Progress
-        direction="down"
-        height={24}
         label="处理进度"
-        left={83}
+        left={progressPosition.left}
         progress={progress}
-        top={37}
-        width={13}
-      />
-      <Ic2RedstoneButton
-        left={148}
-        mode={redstoneMode}
-        onChange={onRedstoneModeChange}
-        top={57}
+        style={progressStyle}
+        top={progressPosition.top}
       />
       {children}
-      <PlayerInventory />
+      <PlayerInventory
+        frameClassName="mc-tex-ic2-slot"
+        hotbarY={IC2_MACHINE.inventory.hotbarTop}
+        x={IC2_MACHINE.inventory.left}
+        y={IC2_MACHINE.inventory.top}
+      />
     </ScreenPanel>
   );
 }

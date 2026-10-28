@@ -1,6 +1,13 @@
-import type { Ic2RedstoneMode } from "./ic2-types";
+import type { ReactNode } from "react";
+
+import { ic2SpriteMeta } from "@verdigris/textures";
+
+import type { Ic2ProgressStyle, Ic2RedstoneMode } from "./ic2-types";
+import type { ModSpriteRect } from "./mod-parts";
+
+import { progressClipPath } from "../../lib/progress";
 import { gui } from "../../lib/utils";
-import { ModIconButton, ModProgress } from "./mod-parts";
+import { ModSprite } from "./mod-parts";
 
 const REDSTONE_ORDER: Ic2RedstoneMode[] = ["normal", "inverted", "none"];
 
@@ -10,15 +17,47 @@ const REDSTONE_LABEL: Record<Ic2RedstoneMode, string> = {
   normal: "红石模式：普通",
 };
 
+interface ProgressGeometry {
+  background: ModSpriteRect;
+  fill: ModSpriteRect;
+  offset: { x: number; y: number };
+}
+
+/**
+ * 进度贴图源矩形（`common.png`）。背景偏移为相对填充原点的负偏移，
+ * 与 IC2 `Gauge.drawBackground` 一致。
+ */
+const PROGRESS: Record<Ic2ProgressStyle, ProgressGeometry> = {
+  arrow: {
+    background: { height: 16, width: 32, x: 160, y: 0 },
+    fill: { height: 15, width: 22, x: 165, y: 16 },
+    offset: { x: -5, y: 0 },
+  },
+  crush: {
+    background: { height: 16, width: 32, x: 160, y: 32 },
+    fill: { height: 11, width: 21, x: 165, y: 52 },
+    offset: { x: -5, y: -3 },
+  },
+  drop: {
+    background: { height: 16, width: 32, x: 160, y: 96 },
+    fill: { height: 15, width: 22, x: 165, y: 112 },
+    offset: { x: -5, y: 0 },
+  },
+  triangle: {
+    background: { height: 16, width: 32, x: 160, y: 64 },
+    fill: { height: 15, width: 22, x: 165, y: 80 },
+    offset: { x: -5, y: 0 },
+  },
+};
+
+export interface Ic2LabelProps {
+  children: ReactNode;
+  className?: string;
+  left: number;
+  top: number;
+}
+
 export interface Ic2ProgressProps {
-  /**
-  * 填充方向：向下（IC2 机器经典布局）或向右
-  */
-  direction?: "down" | "right";
-  /**
-  * 纹理高（GUI px：纵向 24 / 横向 16）
-  */
-  height: number;
   /**
   * 无障碍标签（提供时暴露 progressbar 语义）
   */
@@ -28,11 +67,11 @@ export interface Ic2ProgressProps {
   * 处理进度 0..1
   */
   progress: number;
-  top: number;
   /**
-  * 纹理宽（GUI px：纵向 13 / 横向 24）
+  * 进度贴图：粉碎 / 熔炼箭头 / 滴落 / 三角
   */
-  width: number;
+  style: Ic2ProgressStyle;
+  top: number;
 }
 
 export interface Ic2RedstoneButtonProps {
@@ -53,62 +92,80 @@ export interface Ic2RedstoneButtonProps {
 }
 
 /**
- * IC2 闪电图标 6×9（EU 能量槽旁的能量符号，绝对定位装饰）。
+ * IC2 左上角信息按钮图标（10×10，纯展示）。
  */
-export function Ic2BoltIcon({ left, top }: { left: number; top: number }) {
+export function Ic2InfoIcon({ left, top }: { left: number; top: number }) {
   return (
-    <span
-      aria-hidden="true"
-      className="mc-tex-ic2-bolt absolute"
-      style={{ left: gui(left), top: gui(top) }}
+    <ModSprite
+      left={left}
+      sprite={ic2SpriteMeta.infoButton}
+      src={{ height: 10, width: 10, x: 0, y: 0 }}
+      top={top}
     />
   );
 }
 
 /**
- * 储电箱充/放电极性标记 9×9（绝对定位装饰）。
+ * IC2 界面文字（绝对定位，`#404040`）。
  */
-export function Ic2ChargeMarker({ kind, left, top }: { kind: "minus" | "plus"; left: number; top: number }) {
+export function Ic2Label({ children, className, left, top }: Ic2LabelProps) {
   return (
     <span
-      aria-hidden="true"
-      className={kind === "plus" ? "mc-tex-ic2-charge-plus absolute" : "mc-tex-ic2-charge-minus absolute"}
+      className={className
+        ? `absolute font-mc mc-text whitespace-pre text-mc-ic2-text ${className}`
+        : "absolute font-mc mc-text whitespace-pre text-mc-ic2-text"}
       style={{ left: gui(left), top: gui(top) }}
-    />
+    >
+      {children}
+    </span>
   );
 }
 
 /**
- * IC2 进度箭头（工业时代 2 视觉复刻）：灰色轨道 + 白色填充按比例裁剪。
- * 轨道不烘焙在背景里（`.mc-tex-ic2-machine` 只画窗口与噪点），由本组件成对绘制。
+ * IC2 机器进度（原版贴图）：背景 + 白色填充自左向右裁剪。
  */
-export function Ic2Progress({
-  direction = "down",
-  height,
-  label,
-  left,
-  progress,
-  top,
-  width,
-}: Ic2ProgressProps) {
+export function Ic2Progress({ label, left, progress, style, top }: Ic2ProgressProps) {
+  const geometry = PROGRESS[style];
   const ratio = Math.min(1, Math.max(0, progress));
   return (
-    <ModProgress
-      direction={direction}
-      fillClassName={direction === "right" ? "mc-tex-ic2-arrow-fill" : "mc-tex-ic2-arrow-down-fill"}
-      height={height}
-      label={label}
-      left={left}
-      progress={ratio}
-      top={top}
-      trackClassName={direction === "right" ? "mc-tex-ic2-arrow" : "mc-tex-ic2-arrow-down"}
-      width={width}
-    />
+    <div
+      aria-label={label}
+      aria-valuemax={1}
+      aria-valuemin={0}
+      aria-valuenow={ratio}
+      className="absolute"
+      data-ic2-progress={style}
+      role={label ? "progressbar" : undefined}
+      style={{
+        height: gui(geometry.fill.height),
+        left: gui(left),
+        top: gui(top),
+        width: gui(geometry.fill.width),
+      }}
+    >
+      <ModSprite
+        left={geometry.offset.x}
+        sprite={ic2SpriteMeta.common}
+        src={geometry.background}
+        top={geometry.offset.y}
+      />
+      {ratio > 0
+        ? (
+            <div
+              aria-hidden="true"
+              className="absolute inset-0"
+              style={{ clipPath: progressClipPath("right", ratio) }}
+            >
+              <ModSprite sprite={ic2SpriteMeta.common} src={geometry.fill} />
+            </div>
+          )
+        : null}
+    </div>
   );
 }
 
 /**
- * IC2 红石模式按钮（工业时代 2 视觉复刻）：原版按钮几何 + 火把状态图标，
+ * IC2 红石模式按钮（20×20 原版按钮 + 16×16 红石粉图标），
  * 悬浮提示用原生 title（避免与 Tooltip 触发器嵌套出 button-in-button）。
  */
 export function Ic2RedstoneButton({
@@ -127,16 +184,34 @@ export function Ic2RedstoneButton({
     onChange(next ?? "normal");
   };
   return (
-    <ModIconButton
-      buttonClassName="mc-tex-btn"
-      height={22}
-      iconClassName={`mc-tex-ic2-redstone-${mode}`}
-      label={text}
-      left={left}
+    <button
+      aria-label={text}
+      className="mc-tex-ic2-btn absolute cursor-pointer border-0 p-0"
       onClick={onChange ? cycle : undefined}
+      style={{ height: gui(20), left: gui(left), top: gui(top), width: gui(20) }}
       title={text}
-      top={top}
-      width={22}
-    />
+      type="button"
+    >
+      <ModSprite
+        left={2}
+        sprite={ic2SpriteMeta.redstone}
+        src={{ height: 16, width: 16, x: 0, y: 0 }}
+        top={2}
+      />
+    </button>
+  );
+}
+
+/**
+ * IC2 界面标题：水平居中、y=6、`#404040`、无阴影。
+ */
+export function Ic2Title({ children }: { children: ReactNode }) {
+  return (
+    <span
+      className="absolute inset-x-0 text-center font-mc mc-text text-mc-ic2-text"
+      style={{ top: gui(6) }}
+    >
+      {children}
+    </span>
   );
 }

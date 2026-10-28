@@ -44,13 +44,35 @@ Minecraft Java 26.3 客户端 `client.jar`：
 [Minecraft Usage Guidelines](https://www.minecraft.net/en-us/usage-guidelines)。
 本项目不提供、也不暗示任何来自 Mojang 的授权。
 
-## IC2（工业时代 2）风格纹理（手工复刻，非原始素材）
+## IC2（工业时代 2）与 Minecraft 1.12.2 原始 GUI 贴图
 
-`packages/textures/css/ic2-textures.css` 中的 `.mc-tex-ic2-*` 纹理（机器窗口、
-EU 能量槽、闪电图标、进度箭头、红石模式图标等）为参考 IndustrialCraft 2 视觉的
-**手绘 SVG 像素复刻**，按本项目约定以 `--mc-gui` 缩放。文件不包含、也不分发
-IC2 mod 的任何原始 PNG / 二进制素材；"IndustrialCraft" 相关名称与商标归其
-原作者所有。组件仅作视觉展示用途（数据注入，无游戏逻辑）。
+IC2 机器界面与储电箱界面直接使用 IndustrialCraft 2 Experimental 2.8.99-ex112
+（Minecraft 1.12.2）的原始 GUI 贴图，以及同版本 Minecraft 客户端的原版按钮 /
+红石粉 / 空装备图标：
+
+- IC2 下载：<https://maven.ic2.player.to/net/industrial-craft/industrialcraft-2/2.8.99-ex112/industrialcraft-2-2.8.99-ex112.jar>
+  - SHA-1：`3dc2c457ce0fd73bb70d9240ab45e092e06b0e8a`（8,065,969 bytes）
+  - 提取路径：`assets/ic2/textures/gui/{common,guielectricblock,infobutton}.png`
+  - 生成名：`common`（原样 256×256）、`electricBlock`（裁剪 176×196）、
+    `infoButton`（裁剪 10×10）、`machineBackground`（按
+    `GuiDefaultBackground` 九宫格合成的 176×166）
+- Minecraft 1.12.2 client 下载：<https://piston-data.mojang.com/v1/objects/0f275bc1547d01fa5f56ba34bdc87d981ee12daf/client.jar>
+  - SHA-1：`0f275bc1547d01fa5f56ba34bdc87d981ee12daf`（10,180,113 bytes）
+  - 提取路径：`assets/minecraft/textures/gui/widgets.png`（按钮切片 20×20，
+    v=66 常态 / v=86 悬停）、`assets/minecraft/textures/items/redstone_dust.png`
+    与 `empty_armor_slot_{boots,leggings,chestplate,helmet}.png`
+- 产物：`packages/textures/css/ic2-sprites.generated.css` 与
+  `packages/textures/src/ic2-sprites.generated.ts`（base64 data URI，仓库不含散图）
+- 生成脚本：`packages/textures/scripts/sync-ic2-sprites.mjs`；重新生成/校验：
+  `pnpm --filter @verdigris/textures sync:ic2-sprites` /
+  `pnpm verify:assets`。
+
+IC2 贴图版权归 IndustrialCraft 2 作者所有，**不在本项目授权范围内**，本项目不授予
+任何再分发授权；"IndustrialCraft" 相关名称与商标归其原作者所有。Minecraft 1.12.2
+贴图版权归 Mojang Synergies AB，使用需遵守
+[Minecraft EULA](https://www.minecraft.net/en-us/eula) 与
+[Minecraft Usage Guidelines](https://www.minecraft.net/en-us/usage-guidelines)。
+组件仅作视觉展示用途（数据注入，无游戏逻辑）。
 
 ## AE2（应用能源 2）原始 GUI 贴图
 

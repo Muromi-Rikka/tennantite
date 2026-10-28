@@ -10,7 +10,6 @@ export function ElectricFurnaceScreenDemo() {
       input={{ icon: "iron-ore", tooltip: "铁矿石" }}
       output={{ count: 3, icon: "iron-ingot", tooltip: "铁锭" }}
       progress={0.8}
-      redstoneMode="inverted"
       title="电炉"
     />
   );

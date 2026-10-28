@@ -1,3 +1,5 @@
+import { ae2SpriteMeta } from "@verdigris/textures";
+
 import { gui } from "../../lib/utils";
 import { AE2_PRIORITY_TAB } from "./ae2-layout";
 import { ModSprite } from "./mod-parts";
@@ -40,20 +42,20 @@ export function Ae2PriorityTab({
       <ModSprite
         className="group-hover:opacity-0 group-focus-visible:opacity-0"
         left={0}
-        name="statesModern"
+        sprite={ae2SpriteMeta.statesModern}
         src={AE2_PRIORITY_TAB.background}
         top={0}
       />
       <ModSprite
         className="opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100"
         left={0}
-        name="statesModern"
+        sprite={ae2SpriteMeta.statesModern}
         src={AE2_PRIORITY_TAB.backgroundFocus}
         top={0}
       />
       <ModSprite
         left={AE2_PRIORITY_TAB.iconLeft}
-        name="statesModern"
+        sprite={ae2SpriteMeta.statesModern}
         src={AE2_PRIORITY_TAB.icon}
         top={AE2_PRIORITY_TAB.iconTop}
       />

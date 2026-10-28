@@ -1,4 +1,5 @@
 import type { Ae2SpriteName } from "@verdigris/textures";
+import { ae2SpriteMeta } from "@verdigris/textures";
 
 import { ModSprite } from "./mod-parts";
 
@@ -44,21 +45,21 @@ export function Ae2PanelBackground({
 
   return (
     <>
-      <ModSprite left={0} name={name} src={strip(slices.header)} top={0} />
-      <ModSprite left={0} name={name} src={strip(slices.firstRow)} top={slices.header.height} />
+      <ModSprite left={0} sprite={ae2SpriteMeta[name]} src={strip(slices.header)} top={0} />
+      <ModSprite left={0} sprite={ae2SpriteMeta[name]} src={strip(slices.firstRow)} top={slices.header.height} />
       {Array.from({ length: Math.max(0, rowCount - 2) }, (_, index) => (
         <ModSprite
           key={index}
           left={0}
-          name={name}
+          sprite={ae2SpriteMeta[name]}
           src={strip(slices.row)}
           top={slices.header.height + slices.firstRow.height + index * slices.row.height}
         />
       ))}
-      <ModSprite left={0} name={name} src={strip(slices.lastRow)} top={lastRowTop} />
+      <ModSprite left={0} sprite={ae2SpriteMeta[name]} src={strip(slices.lastRow)} top={lastRowTop} />
       <ModSprite
         left={0}
-        name={name}
+        sprite={ae2SpriteMeta[name]}
         src={strip(slices.bottom)}
         top={lastRowTop + slices.lastRow.height}
       />

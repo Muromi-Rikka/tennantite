@@ -6,7 +6,7 @@ import { BatBoxScreenDemo } from "./demo";
 import { BatBoxScreen } from "./index";
 
 describe("batBoxScreen", () => {
-  it("渲染充放电槽位、EU 存储与玩家背包", () => {
+  it("渲染装备 / 充放电槽位、EU 存储与玩家背包", () => {
     const { container } = render(
       <BatBoxScreen
         charge={{}}
@@ -15,12 +15,27 @@ describe("batBoxScreen", () => {
     );
     expect(screen.getByLabelText("batbox-charge")).toBeInTheDocument();
     expect(screen.getByLabelText("batbox-discharge")).toBeInTheDocument();
-    expect(container.querySelectorAll("[aria-label^=\"main-\"]").length).toBe(27);
-    expect(container.querySelectorAll("[aria-label^=\"hotbar-\"]").length).toBe(9);
+    for (let index = 0; index < 4; index += 1) {
+      expect(screen.getByLabelText(`batbox-armor-${index}`)).toBeInTheDocument();
+    }
+    expect(
+      screen.getByLabelText("batbox-armor-0").querySelector(".mc-tex-ic2-armor-boots"),
+    ).not.toBeNull();
+    expect(container.querySelectorAll("[aria-label^=\"main-\"]")).toHaveLength(27);
+    expect(container.querySelectorAll("[aria-label^=\"hotbar-\"]")).toHaveLength(9);
     expect(screen.getByRole("progressbar", { name: "EU 存储" })).toHaveAttribute(
       "aria-valuenow",
       "26000",
     );
+  });
+
+  it("渲染原版状态文字", () => {
+    render(<BatBoxScreen energy={{ max: 40000, value: 26000 }} />);
+    expect(screen.getByText("能量:")).toBeInTheDocument();
+    expect(screen.getByText(/26000/).textContent).toBe(" 26000");
+    expect(screen.getByText("/40000")).toBeInTheDocument();
+    expect(screen.getByText("输出: 32 EU/t")).toBeInTheDocument();
+    expect(screen.getByText("装备")).toBeInTheDocument();
   });
 
   it("红石模式按钮循环切换：普通 → 反向 → 忽略", async () => {

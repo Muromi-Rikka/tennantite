@@ -2,20 +2,27 @@ import type { ReactNode } from "react";
 
 import type { ScreenSlot } from "../../containers/types";
 import type { Ic2RedstoneMode } from "../ic2-types";
+
 import { PlayerInventory } from "../../../containers/player-inventory/index";
 import { ScreenPanel } from "../../../containers/screen-panel/index";
 import { ScreenItemSlot } from "../../containers/screen-slot";
-import { EuBar } from "../eu-bar/index";
-import { Ic2BoltIcon, Ic2ChargeMarker, Ic2RedstoneButton } from "../ic2-parts";
+import { padSlots } from "../../containers/types";
+import { Ic2EnergyGauge } from "../ic2-energy-gauge/index";
+import { IC2_BATBOX } from "../ic2-layout";
+import { Ic2Label, Ic2RedstoneButton, Ic2Title } from "../ic2-parts";
 
 export interface BatBoxScreenProps {
   /**
-  * 充电槽（放置待充电物品，"+" 标记）
+  * 装备槽（顺序 boots, leggings, chestplate, helmet；最多 4，不足补空）
+  */
+  armor?: ScreenSlot[];
+  /**
+  * 充电槽（放置待充电物品）
   */
   charge?: ScreenSlot;
   className?: string;
   /**
-  * 放电槽（放置供能物品，"−" 标记）
+  * 放电槽（放置供能物品）
   */
   discharge?: ScreenSlot;
   /**
@@ -26,53 +33,97 @@ export interface BatBoxScreenProps {
   * 红石模式切换回调；省略时按钮为纯展示
   */
   onRedstoneModeChange?: (mode: Ic2RedstoneMode) => void;
+  /**
+  * 输出功率（EU/t，默认 32）
+  */
+  output?: number;
   redstoneMode?: Ic2RedstoneMode;
   title?: ReactNode;
 }
 
 /**
- * 储电箱界面（工业时代 2 视觉复刻，BatBox）：176×166，左侧大号 EU 能量槽，
- * 右侧充电（+）/ 放电（−）槽位与红石模式按钮；底部接玩家背包。
+ * 储电箱界面（1.12.2 原版贴图，BatBox）：176×196，4 个装备槽、
+ * 充电 / 放电槽、红色 EU 横条、原版红石按钮与状态文字；底部接玩家背包。
  */
 export function BatBoxScreen({
+  armor,
   charge,
   className,
   discharge,
   energy,
   onRedstoneModeChange,
+  output = 32,
   redstoneMode = "normal",
   title,
 }: BatBoxScreenProps) {
+  const armorSlots = padSlots(armor ?? [], IC2_BATBOX.slots.armor.count);
   return (
     <ScreenPanel
-      backgroundClassName="mc-tex-ic2-machine-batbox"
+      backgroundClassName="mc-tex-ic2-batbox"
       className={className}
-      height={166}
-      title={title}
-      width={176}
+      height={IC2_BATBOX.height}
+      width={IC2_BATBOX.width}
     >
-      <EuBar
-        height={62}
+      <Ic2Title>{title}</Ic2Title>
+      {armorSlots.map((slot, index) => (
+        <ScreenItemSlot
+          ghostClassName={IC2_BATBOX.slots.armor.ghosts[index]}
+          item={slot}
+          // eslint-disable-next-line react/no-array-index-key -- 固定位置的装备槽，索引即槽位号
+          key={`batbox-armor-${index}`}
+          label={`batbox-armor-${index}`}
+          left={IC2_BATBOX.slots.armor.left + index * IC2_BATBOX.slots.armor.step}
+          top={IC2_BATBOX.slots.armor.top}
+        />
+      ))}
+      <ScreenItemSlot
+        item={charge}
+        label="batbox-charge"
+        left={IC2_BATBOX.slots.charge.left}
+        top={IC2_BATBOX.slots.charge.top}
+      />
+      <ScreenItemSlot
+        item={discharge}
+        label="batbox-discharge"
+        left={IC2_BATBOX.slots.discharge.left}
+        top={IC2_BATBOX.slots.discharge.top}
+      />
+      <Ic2EnergyGauge
         label="EU 存储"
-        left={26}
+        left={IC2_BATBOX.energy.left}
         max={energy.max}
         tooltip
-        top={15}
+        top={IC2_BATBOX.energy.top}
         value={energy.value}
-        width={14}
+        variant={IC2_BATBOX.energy.variant}
       />
-      <Ic2BoltIcon left={17} top={42} />
-      <Ic2ChargeMarker kind="plus" left={99} top={20} />
-      <ScreenItemSlot frame item={charge} label="batbox-charge" left={121} top={15} />
-      <Ic2ChargeMarker kind="minus" left={99} top={56} />
-      <ScreenItemSlot frame item={discharge} label="batbox-discharge" left={121} top={51} />
       <Ic2RedstoneButton
-        left={148}
+        left={IC2_BATBOX.button.left}
         mode={redstoneMode}
         onChange={onRedstoneModeChange}
-        top={57}
+        top={IC2_BATBOX.button.top}
       />
-      <PlayerInventory />
+      <Ic2Label left={IC2_BATBOX.labels.level.left} top={IC2_BATBOX.labels.level.top}>
+        能量:
+      </Ic2Label>
+      <Ic2Label left={IC2_BATBOX.labels.value.left} top={IC2_BATBOX.labels.value.top}>
+        {` ${Math.floor(Math.min(energy.value, energy.max))}`}
+      </Ic2Label>
+      <Ic2Label left={IC2_BATBOX.labels.capacity.left} top={IC2_BATBOX.labels.capacity.top}>
+        {`/${energy.max}`}
+      </Ic2Label>
+      <Ic2Label left={IC2_BATBOX.labels.output.left} top={IC2_BATBOX.labels.output.top}>
+        {`输出: ${output} EU/t`}
+      </Ic2Label>
+      <Ic2Label left={IC2_BATBOX.labels.armor.left} top={IC2_BATBOX.labels.armor.top}>
+        装备
+      </Ic2Label>
+      <PlayerInventory
+        bare
+        hotbarY={IC2_BATBOX.inventory.hotbarTop}
+        x={IC2_BATBOX.inventory.left}
+        y={IC2_BATBOX.inventory.top}
+      />
     </ScreenPanel>
   );
 }

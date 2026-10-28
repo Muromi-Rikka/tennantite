@@ -319,10 +319,10 @@ export function Start() {
   modsPage: {
     breadcrumb: "Mod",
     components: {
-      description: "11 个可复制组件：10 个整屏组件与 EuBar 能量条；IC2 与 AE2 共用通用子件。",
+      description: "11 个可复制组件：10 个整屏组件与 Ic2EnergyGauge 能量表；IC2 与 AE2 共用通用子件。",
       title: "组件",
     },
-    description: "工业时代 2 与 应用能源 2 的整屏界面与组件：IC2 手绘复刻，AE2 终端使用原版 GUI 贴图；数据注入、无游戏逻辑。",
+    description: "工业时代 2 与 应用能源 2 的整屏界面与组件：IC2 使用 1.12.2 原始 GUI 贴图，AE2 终端使用原版 GUI 贴图；数据注入、无游戏逻辑。",
     metaTitle: "Mod 界面 · Verdigris",
     screens: {
       description: "5 个 IC2 机器界面 + 5 个 AE2 界面，按游戏内屏幕定义复刻尺寸与槽位坐标。",
@@ -517,10 +517,10 @@ export function Start() {
   modsPage: {
     breadcrumb: "Mods",
     components: {
-      description: "11 copy-ready components: 10 screen components plus the EuBar gauge; IC2 and AE2 share common subcomponents.",
+      description: "11 copy-ready components: 10 screen components plus the Ic2EnergyGauge; IC2 and AE2 share common subcomponents.",
       title: "Components",
     },
-    description: "Full-screen interfaces and components for IndustrialCraft 2 and Applied Energistics 2: IC2 redrawn by hand, AE2 terminals use the original GUI textures; data-injected with no game logic.",
+    description: "Full-screen interfaces and components for IndustrialCraft 2 and Applied Energistics 2: IC2 uses the original 1.12.2 GUI textures, AE2 terminals use the original GUI textures; data-injected with no game logic.",
     metaTitle: "Mod screens · Verdigris",
     screens: {
       description: "5 IC2 machine screens + 5 AE2 screens, matching in-game screen dimensions and slot coordinates.",

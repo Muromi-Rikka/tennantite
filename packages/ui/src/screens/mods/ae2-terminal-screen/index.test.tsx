@@ -24,7 +24,7 @@ describe("ae2TerminalScreen", () => {
 
     // 槽框由 AE2 贴图烘焙，热区不再自带纹理类
     expect(first).not.toHaveClass("mc-tex-ae2-slot");
-    expect(container.querySelectorAll("[data-ae2-sprite]").length).toBeGreaterThan(3);
+    expect(container.querySelectorAll("[data-mod-sprite]").length).toBeGreaterThan(3);
 
     expect(screen.getByLabelText("main-0").parentElement).toHaveStyle({ top: gui(139) });
     expect(screen.getByLabelText("main-0")).not.toHaveClass("mc-tex-ae2-slot");

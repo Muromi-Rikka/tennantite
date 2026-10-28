@@ -28,7 +28,7 @@ describe("ae2CraftingTerminalScreen", () => {
 
     expect(screen.getByRole("button", { name: "清空合成格" })).toHaveStyle({ left: gui(92), top: gui(140) });
 
-    expect(container.querySelectorAll("[data-ae2-sprite]").length).toBeGreaterThan(3);
+    expect(container.querySelectorAll("[data-mod-sprite]").length).toBeGreaterThan(3);
 
     expect(screen.getByLabelText("main-0").parentElement).toHaveStyle({ top: gui(212) });
     expect(screen.getByLabelText("hotbar-0").parentElement).toHaveStyle({ top: gui(270) });

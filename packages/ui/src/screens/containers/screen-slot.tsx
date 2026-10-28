@@ -1,4 +1,5 @@
 import type { GuiSpriteName } from "@verdigris/textures";
+import type { ReactNode } from "react";
 
 import type { ScreenSlot } from "./types";
 import { GuiSprite } from "../../containers/gui-sprite/index";
@@ -20,6 +21,10 @@ export interface ScreenItemSlotProps {
   * 空槽 ghost 精灵（盔甲/盾/箭等）
   */
   ghost?: GuiSpriteName;
+  /**
+  * 自定义 ghost 纹理类（与 `ghost` 二选一）
+  */
+  ghostClassName?: string;
   /**
   * 物品
   */
@@ -56,6 +61,7 @@ export function ScreenItemSlot({
   frame = false,
   frameClassName,
   ghost,
+  ghostClassName,
   item,
   label,
   left,
@@ -63,6 +69,23 @@ export function ScreenItemSlot({
   size = 18,
   top,
 }: ScreenItemSlotProps) {
+  let content: ReactNode = null;
+  if (item) {
+    content = <ItemStack bare {...item} size={size} />;
+  }
+  else if (ghostClassName) {
+    content = (
+      <span
+        aria-hidden="true"
+        className={cn("block shrink-0", ghostClassName)}
+        style={{ height: gui(16), width: gui(16) }}
+      />
+    );
+  }
+  else if (ghost) {
+    content = <GuiSprite height={16} name={ghost} width={16} />;
+  }
+
   return (
     <Slot
       aria-label={label}
@@ -73,11 +96,7 @@ export function ScreenItemSlot({
       size={size}
       style={{ left: gui(left), top: gui(top) }}
     >
-      {item
-        ? <ItemStack bare {...item} size={size} />
-        : (ghost
-            ? <GuiSprite height={16} name={ghost} width={16} />
-            : null)}
+      {content}
     </Slot>
   );
 }

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ae2SpriteMeta } from "@verdigris/textures";
 
 import type { PlayerInventoryProps } from "../../../containers/player-inventory/index";
 import type { ScreenSlot } from "../../containers/types";
@@ -67,14 +68,14 @@ export function Ae2InscriberScreen({
         <ModSprite
           height={panel.height}
           left={panel.x}
-          name={AE2_INSCRIBER.sprite}
+          sprite={ae2SpriteMeta[AE2_INSCRIBER.sprite]}
           src={panel}
           top={panel.y}
         />
         <ModSprite
           height={strip.height}
           left={strip.left}
-          name={AE2_INSCRIBER.sprite}
+          sprite={ae2SpriteMeta[AE2_INSCRIBER.sprite]}
           src={{ height: strip.height, width: strip.width, x: strip.left, y: strip.top }}
           top={strip.top}
         />
@@ -117,7 +118,7 @@ export function Ae2InscriberScreen({
           fill={(
             <ModSprite
               height={bar.fill.height}
-              name={AE2_INSCRIBER.sprite}
+              sprite={ae2SpriteMeta[AE2_INSCRIBER.sprite]}
               src={bar.fill}
               width={bar.fill.width}
             />

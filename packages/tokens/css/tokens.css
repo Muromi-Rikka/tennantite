@@ -84,10 +84,8 @@
   --color-mc-scroller: #c0c0c0;
   --color-mc-scroller-dark: #808080;
 
-  /* IC2（工业时代 2，视觉复刻扩展，非原版） */
-  --color-mc-ic2-energy: #7efc20; /* EU 能量填充（信号绿） */
-  --color-mc-ic2-energy-dark: #4a9e14; /* EU 能量填充暗边 */
-  --color-mc-ic2-bolt: #b7ff4a; /* 闪电图标 */
+  /* IC2（工业时代 2，原版 GUI 贴图配套文字色） */
+  --color-mc-ic2-text: #404040; /* IC2 界面文字 */
 
   /* AE2（应用能源 2，视觉复刻扩展，非原版）：中性灰面板 + 凸起/凹陷 1px 斜角 */
   --color-mc-ae2-panel: #c6c6c6;

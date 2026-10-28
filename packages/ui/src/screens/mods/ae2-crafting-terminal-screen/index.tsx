@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ae2SpriteMeta } from "@verdigris/textures";
 
 import type { PlayerInventoryProps } from "../../../containers/player-inventory/index";
 import type { ScreenSlot } from "../../containers/types";
@@ -128,27 +129,27 @@ export function Ae2CraftingTerminalScreen({
             <ModToolbar
               items={[
                 {
-                  icon: <ModSprite name="states" src={AE2_ICONS.sortName} />,
+                  icon: <ModSprite sprite={ae2SpriteMeta.states} src={AE2_ICONS.sortName} />,
                   label: "按名称排序",
                   onClick: () => onToolbarAction?.("sort-name"),
                 },
                 {
-                  icon: <ModSprite name="states" src={AE2_ICONS.settings} />,
+                  icon: <ModSprite sprite={ae2SpriteMeta.states} src={AE2_ICONS.settings} />,
                   label: "终端设置",
                   onClick: () => onToolbarAction?.("settings"),
                 },
                 {
-                  icon: <ModSprite name="states" src={AE2_ICONS.sortDirection} />,
+                  icon: <ModSprite sprite={ae2SpriteMeta.states} src={AE2_ICONS.sortDirection} />,
                   label: "排序方向",
                   onClick: () => onToolbarAction?.("sort-direction"),
                 },
                 {
-                  icon: <ModSprite name="states" src={AE2_ICONS.view} />,
+                  icon: <ModSprite sprite={ae2SpriteMeta.states} src={AE2_ICONS.view} />,
                   label: "查看模式",
                   onClick: () => onToolbarAction?.("view-mode"),
                 },
                 {
-                  icon: <ModSprite name="states" src={AE2_ICONS.style} />,
+                  icon: <ModSprite sprite={ae2SpriteMeta.states} src={AE2_ICONS.style} />,
                   label: "终端样式",
                   onClick: () => onToolbarAction?.("style"),
                 },
@@ -258,7 +259,7 @@ export function Ae2CraftingTerminalScreen({
           y={ae2TerminalPlayerMainTop(height)}
         />
         <ModTabButton
-          icon={<ModSprite name="states" src={AE2_ICONS.craftStatus} />}
+          icon={<ModSprite sprite={ae2SpriteMeta.states} src={AE2_ICONS.craftStatus} />}
           label="合成状态"
           left={171}
           onClick={onCraftingStatus}

@@ -24,7 +24,8 @@
     "sync:ae2-sprites": "node scripts/sync-ae2-sprites.mjs",
     "sync:gui-sprites": "node scripts/sync-gui-sprites.mjs",
     "sync:gui-layouts": "node scripts/scan-gui-layouts.mjs",
-    "verify:assets": "node scripts/sync-gui-sprites.mjs --check && node scripts/sync-ae2-sprites.mjs --check && node scripts/scan-gui-layouts.mjs --check"
+    "sync:ic2-sprites": "node scripts/sync-ic2-sprites.mjs",
+    "verify:assets": "node scripts/sync-gui-sprites.mjs --check && node scripts/sync-ae2-sprites.mjs --check && node scripts/sync-ic2-sprites.mjs --check && node scripts/scan-gui-layouts.mjs --check"
   },
   "devDependencies": {
     "fflate": "^0.8.3",

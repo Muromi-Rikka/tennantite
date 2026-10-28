@@ -1132,22 +1132,6 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "dependencies": [
-        "cn"
-      ],
-      "files": [
-        {
-          "path": "packages/ui/src/screens/mods/eu-bar/index.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "name": "eu-bar",
-      "registryDependencies": [],
-      "title": "Eu Bar",
-      "type": "registry:component"
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "dependencies": [],
       "files": [
         {
@@ -1158,6 +1142,22 @@
       "name": "extractor-screen",
       "registryDependencies": [],
       "title": "Extractor Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/ic2-energy-gauge/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ic2-energy-gauge",
+      "registryDependencies": [],
+      "title": "Ic2 Energy Gauge",
       "type": "registry:component"
     },
     {

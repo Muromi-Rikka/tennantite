@@ -20,9 +20,9 @@ import {
   DialogDescription,
   DialogPopup,
   DialogTitle,
-  EuBar,
   GuiSprite,
   HealthHungerBar,
+  Ic2EnergyGauge,
   Input,
   InventoryScreen,
   MaceratorScreen,
@@ -73,7 +73,7 @@ function render(): string {
         title="磨矿机"
       />
       <BatBoxScreen energy={{ max: 40000, value: 26000 }} title="储电箱" />
-      <EuBar label="EU 能量" max={40000} value={26000} />
+      <Ic2EnergyGauge label="EU 能量" left={0} max={40000} top={0} value={26000} />
       <HealthHungerBar health={20} hunger={20} />
       <BossBar name="Boss" value={0.5} />
       <Toast title="提示" />

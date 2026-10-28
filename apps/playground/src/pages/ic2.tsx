@@ -2,8 +2,8 @@ import {
   BatBoxScreenDemo,
   CompressorScreenDemo,
   ElectricFurnaceScreenDemo,
-  EuBarDemo,
   ExtractorScreenDemo,
+  Ic2EnergyGaugeDemo,
   MaceratorScreenDemo,
 } from "@verdigris/ui/demos";
 
@@ -14,10 +14,10 @@ export function Ic2Page() {
         IC2（工业时代 2）— Mod 界面
       </h1>
       <p className="mb-16 font-mc mc-text text-mc-text-dim">
-        手绘 SVG 视觉复刻（不含 IC2 原始素材），数据注入、无游戏逻辑。
+        IC2 1.12.2 原始贴图复刻（数据注入、无游戏逻辑），数据注入、无游戏逻辑。
       </p>
-      <Section title="EuBar — EU 能量条">
-        <EuBarDemo />
+      <Section title="Ic2EnergyGauge — EU 能量表">
+        <Ic2EnergyGaugeDemo />
       </Section>
       <Section title="MaceratorScreen — 磨矿机">
         <MaceratorScreenDemo />

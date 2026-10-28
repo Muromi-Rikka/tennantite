@@ -41,7 +41,7 @@ describe("ae2InscriberScreen", () => {
       width: gui(26),
     });
     expect(screen.getByLabelText("inscriber-top")).not.toHaveClass("mc-tex-ae2-slot-large");
-    expect(container.querySelectorAll("[data-ae2-sprite]").length).toBeGreaterThan(1);
+    expect(container.querySelectorAll("[data-mod-sprite]").length).toBeGreaterThan(1);
 
     expect(screen.getByLabelText("main-0").parentElement).toHaveStyle({ top: gui(93) });
     expect(screen.getByLabelText("hotbar-0").parentElement).toHaveStyle({ top: gui(151) });

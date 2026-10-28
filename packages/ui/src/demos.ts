@@ -72,6 +72,6 @@ export { Ae2TerminalScreenDemo } from "./screens/mods/ae2-terminal-screen/demo";
 export { BatBoxScreenDemo } from "./screens/mods/batbox-screen/demo";
 export { CompressorScreenDemo } from "./screens/mods/compressor-screen/demo";
 export { ElectricFurnaceScreenDemo } from "./screens/mods/electric-furnace-screen/demo";
-export { EuBarDemo } from "./screens/mods/eu-bar/demo";
 export { ExtractorScreenDemo } from "./screens/mods/extractor-screen/demo";
+export { Ic2EnergyGaugeDemo } from "./screens/mods/ic2-energy-gauge/demo";
 export { MaceratorScreenDemo } from "./screens/mods/macerator-screen/demo";

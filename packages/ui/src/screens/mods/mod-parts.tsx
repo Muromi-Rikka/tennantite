@@ -1,7 +1,5 @@
-import type { Ae2SpriteName } from "@verdigris/textures";
 import type { ReactNode } from "react";
 
-import { ae2SpriteMeta } from "@verdigris/textures";
 import type { ScreenSlot } from "../containers/types";
 import { progressClipPath } from "../../lib/progress";
 import { cn, gui } from "../../lib/utils";
@@ -146,6 +144,15 @@ export interface ModSlotGridProps {
   top: number;
 }
 
+/**
+ * mod 贴图注册表条目：CSS data URI 变量 + 源 PNG 尺寸
+*/
+export interface ModSpriteMeta {
+  cssVar: string;
+  height: number;
+  width: number;
+}
+
 export interface ModSpriteProps {
   className?: string;
   /**
@@ -157,9 +164,9 @@ export interface ModSpriteProps {
   */
   left?: number;
   /**
-  * AE2 贴图名（`terminal` / `crafting` / `states`）
+  * 贴图注册表条目（`ae2SpriteMeta.*` / `ic2SpriteMeta.*`）
   */
-  name: Ae2SpriteName;
+  sprite: ModSpriteMeta;
   /**
   * 源 PNG 裁剪区域（1 源 px = 1 GUI px）
   */
@@ -172,7 +179,7 @@ export interface ModSpriteProps {
 }
 
 /**
- * AE2 贴图裁剪区域（源 PNG px）
+ * 贴图裁剪区域（源 PNG px）
 */
 export interface ModSpriteRect {
   height: number;
@@ -427,30 +434,29 @@ export function ModSlotGrid({
 }
 
 /**
- * AE2 贴图裁剪渲染件：按 1 GUI px = 1 源 px 从 AE2 贴图（terminal/crafting/states）
- * 取矩形绘制，随 `--mc-gui` 缩放；`left`/`top` 给出时为绝对定位。
+ * mod 贴图裁剪渲染件：按 1 GUI px = 1 源 px 从任意 mod 贴图注册表
+ * （`cssVar/width/height`）取矩形绘制，随 `--mc-gui` 缩放；`left`/`top` 给出时为绝对定位。
  */
 export function ModSprite({
   className,
   height,
   left,
-  name,
+  sprite,
   src,
   top,
   width,
 }: ModSpriteProps) {
-  const meta = ae2SpriteMeta[name];
   const isPositioned = left !== undefined || top !== undefined;
   return (
     <div
       aria-hidden="true"
       className={cn(isPositioned && "absolute", "pointer-events-none", className)}
-      data-ae2-sprite={name}
+      data-mod-sprite={sprite.cssVar}
       style={{
-        backgroundImage: `var(${meta.cssVar})`,
+        backgroundImage: `var(${sprite.cssVar})`,
         backgroundPosition: `${gui(-src.x)} ${gui(-src.y)}`,
         backgroundRepeat: "no-repeat",
-        backgroundSize: `${gui(meta.width)} ${gui(meta.height)}`,
+        backgroundSize: `${gui(sprite.width)} ${gui(sprite.height)}`,
         flexShrink: 0,
         height: gui(height ?? src.height),
         imageRendering: "pixelated",
