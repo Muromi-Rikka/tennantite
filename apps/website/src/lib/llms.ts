@@ -6,9 +6,12 @@ import {
   catalogDescription,
   componentHref,
   componentTitle,
+  commonComponents,
   coreComponents,
-  modEntries,
+  modCatalog,
+  modIds,
   primaryBlocks,
+  type ModTarget,
 } from "./catalog";
 import { docHref, filterDocs, sortDocs } from "./docs";
 
@@ -34,11 +37,25 @@ export function buildLlmsText(docs: CollectionEntry<"docs">[], locale: Locale, s
       `- [${componentTitle(block, locale)}](${new URL(blockHref(block.slug, locale), site).href}): ${catalogDescription(block, locale)}`,
     ),
     "",
-    `## ${text.nav.mods}`,
-    ...modEntries.map(component =>
-      `- [${componentTitle(component, locale)}](${new URL(componentHref(component.slug, locale), site).href}): ${catalogDescription(component, locale)}`,
-    ),
-    "",
+    ...modIds.flatMap(id => [
+      `## ${text.modsPage.mods[id as ModTarget].title}`,
+      ...modCatalog[id].blocks.map(block =>
+        `- [${componentTitle(block, locale)}](${new URL(blockHref(block.slug, locale), site).href}): ${catalogDescription(block, locale)}`,
+      ),
+      ...modCatalog[id].components.map(component =>
+        `- [${componentTitle(component, locale)}](${new URL(componentHref(component.slug, locale), site).href}): ${catalogDescription(component, locale)}`,
+      ),
+      "",
+    ]),
+    ...(commonComponents.length > 0
+      ? [
+          `## ${text.modsPage.common.title}`,
+          ...commonComponents.map(component =>
+            `- [${componentTitle(component, locale)}](${new URL(componentHref(component.slug, locale), site).href}): ${catalogDescription(component, locale)}`,
+          ),
+          "",
+        ]
+      : []),
   ];
   return lines.join("\n");
 }

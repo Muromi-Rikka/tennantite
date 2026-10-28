@@ -1015,13 +1015,13 @@
       ],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/ae2-chest-screen/index.tsx",
+          "path": "packages/mods-core/src/shared/mod-icon-button/index.tsx",
           "type": "registry:component"
         }
       ],
-      "name": "ae2-chest-screen",
+      "name": "mod-icon-button",
       "registryDependencies": [],
-      "title": "Ae2 Chest Screen",
+      "title": "Mod Icon Button",
       "type": "registry:component"
     },
     {
@@ -1031,13 +1031,27 @@
       ],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/ae2-crafting-terminal-screen/index.tsx",
+          "path": "packages/mods-core/src/shared/mod-progress/index.tsx",
           "type": "registry:component"
         }
       ],
-      "name": "ae2-crafting-terminal-screen",
+      "name": "mod-progress",
       "registryDependencies": [],
-      "title": "Ae2 Crafting Terminal Screen",
+      "title": "Mod Progress",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/mods-core/src/shared/mod-scrollbar/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mod-scrollbar",
+      "registryDependencies": [],
+      "title": "Mod Scrollbar",
       "type": "registry:component"
     },
     {
@@ -1047,13 +1061,27 @@
       ],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/ae2-drive-screen/index.tsx",
+          "path": "packages/mods-core/src/shared/mod-search-field/index.tsx",
           "type": "registry:component"
         }
       ],
-      "name": "ae2-drive-screen",
+      "name": "mod-search-field",
       "registryDependencies": [],
-      "title": "Ae2 Drive Screen",
+      "title": "Mod Search Field",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/mods-core/src/shared/mod-slot-grid/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mod-slot-grid",
+      "registryDependencies": [],
+      "title": "Mod Slot Grid",
       "type": "registry:component"
     },
     {
@@ -1063,13 +1091,13 @@
       ],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/ae2-inscriber-screen/index.tsx",
+          "path": "packages/mods-core/src/shared/mod-sprite/index.tsx",
           "type": "registry:component"
         }
       ],
-      "name": "ae2-inscriber-screen",
+      "name": "mod-sprite",
       "registryDependencies": [],
-      "title": "Ae2 Inscriber Screen",
+      "title": "Mod Sprite",
       "type": "registry:component"
     },
     {
@@ -1079,69 +1107,13 @@
       ],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/ae2-terminal-screen/index.tsx",
+          "path": "packages/mods-core/src/shared/mod-tab-button/index.tsx",
           "type": "registry:component"
         }
       ],
-      "name": "ae2-terminal-screen",
+      "name": "mod-tab-button",
       "registryDependencies": [],
-      "title": "Ae2 Terminal Screen",
-      "type": "registry:component"
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "dependencies": [],
-      "files": [
-        {
-          "path": "packages/ui/src/screens/mods/batbox-screen/index.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "name": "batbox-screen",
-      "registryDependencies": [],
-      "title": "Batbox Screen",
-      "type": "registry:component"
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "dependencies": [],
-      "files": [
-        {
-          "path": "packages/ui/src/screens/mods/compressor-screen/index.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "name": "compressor-screen",
-      "registryDependencies": [],
-      "title": "Compressor Screen",
-      "type": "registry:component"
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "dependencies": [],
-      "files": [
-        {
-          "path": "packages/ui/src/screens/mods/electric-furnace-screen/index.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "name": "electric-furnace-screen",
-      "registryDependencies": [],
-      "title": "Electric Furnace Screen",
-      "type": "registry:component"
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "dependencies": [],
-      "files": [
-        {
-          "path": "packages/ui/src/screens/mods/extractor-screen/index.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "name": "extractor-screen",
-      "registryDependencies": [],
-      "title": "Extractor Screen",
+      "title": "Mod Tab Button",
       "type": "registry:component"
     },
     {
@@ -1151,41 +1123,13 @@
       ],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/ic2-energy-gauge/index.tsx",
+          "path": "packages/mods-core/src/shared/mod-title/index.tsx",
           "type": "registry:component"
         }
       ],
-      "name": "ic2-energy-gauge",
+      "name": "mod-title",
       "registryDependencies": [],
-      "title": "Ic2 Energy Gauge",
-      "type": "registry:component"
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "dependencies": [],
-      "files": [
-        {
-          "path": "packages/ui/src/screens/mods/ic2-machine-screen/index.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "name": "ic2-machine-screen",
-      "registryDependencies": [],
-      "title": "Ic2 Machine Screen",
-      "type": "registry:component"
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "dependencies": [],
-      "files": [
-        {
-          "path": "packages/ui/src/screens/mods/macerator-screen/index.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "name": "macerator-screen",
-      "registryDependencies": [],
-      "title": "Macerator Screen",
+      "title": "Mod Title",
       "type": "registry:component"
     },
     {
@@ -1195,7 +1139,51 @@
       ],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-bar/index.tsx",
+          "path": "packages/mods-core/src/shared/mod-toolbar/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mod-toolbar",
+      "registryDependencies": [],
+      "title": "Mod Toolbar",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-armor-slots/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-armor-slots",
+      "registryDependencies": [],
+      "title": "Mekanism Armor Slots",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-arrow/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-arrow",
+      "registryDependencies": [],
+      "title": "Mekanism Arrow",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-bar/index.tsx",
           "type": "registry:component"
         }
       ],
@@ -1206,10 +1194,26 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-button/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-button",
+      "registryDependencies": [],
+      "title": "Mekanism Button",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "dependencies": [],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-chemical-tank-screen/index.tsx",
+          "path": "packages/mekanism/src/mekanism-chemical-tank-screen/index.tsx",
           "type": "registry:component"
         }
       ],
@@ -1223,7 +1227,7 @@
       "dependencies": [],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-dynamic-tank-screen/index.tsx",
+          "path": "packages/mekanism/src/mekanism-dynamic-tank-screen/index.tsx",
           "type": "registry:component"
         }
       ],
@@ -1237,7 +1241,21 @@
       "dependencies": [],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-energy-cube-screen/index.tsx",
+          "path": "packages/mekanism/src/mekanism-element-holder/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-element-holder",
+      "registryDependencies": [],
+      "title": "Mekanism Element Holder",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-energy-cube-screen/index.tsx",
           "type": "registry:component"
         }
       ],
@@ -1251,7 +1269,7 @@
       "dependencies": [],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-fluid-tank-screen/index.tsx",
+          "path": "packages/mekanism/src/mekanism-fluid-tank-screen/index.tsx",
           "type": "registry:component"
         }
       ],
@@ -1267,7 +1285,23 @@
       ],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-gauge/index.tsx",
+          "path": "packages/mekanism/src/mekanism-gas-mode/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-gas-mode",
+      "registryDependencies": [],
+      "title": "Mekanism Gas Mode",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-gauge/index.tsx",
           "type": "registry:component"
         }
       ],
@@ -1278,10 +1312,26 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-image-button/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-image-button",
+      "registryDependencies": [],
+      "title": "Mekanism Image Button",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "dependencies": [],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-induction-matrix-screen/index.tsx",
+          "path": "packages/mekanism/src/mekanism-induction-matrix-screen/index.tsx",
           "type": "registry:component"
         }
       ],
@@ -1292,18 +1342,54 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-inner-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-inner-screen",
+      "registryDependencies": [],
+      "title": "Mekanism Inner Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-label/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-label",
+      "registryDependencies": [],
+      "title": "Mekanism Label",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "dependencies": [],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-machine-screen/index.tsx",
+          "path": "packages/mekanism/src/mekanism-machine-screen/index.tsx",
           "type": "registry:component"
         },
         {
-          "path": "packages/ui/src/screens/mods/mekanism-machine-screen/machines.tsx",
+          "path": "packages/mekanism/src/mekanism-machine-screen/machines.tsx",
           "type": "registry:component"
         },
         {
-          "path": "packages/ui/src/screens/mods/mekanism-machine-screen/mekanism-machine-layout.ts",
+          "path": "packages/mekanism/src/mekanism-machine-screen/mekanism-machine-layout.test.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/mekanism/src/mekanism-machine-screen/mekanism-machine-layout.ts",
           "type": "registry:component"
         }
       ],
@@ -1314,26 +1400,10 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "dependencies": [
-        "cn"
-      ],
-      "files": [
-        {
-          "path": "packages/ui/src/screens/mods/mekanism-parts/index.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "name": "mekanism-parts",
-      "registryDependencies": [],
-      "title": "Mekanism Parts",
-      "type": "registry:component"
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "dependencies": [],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-personal-storage-screen/index.tsx",
+          "path": "packages/mekanism/src/mekanism-personal-storage-screen/index.tsx",
           "type": "registry:component"
         }
       ],
@@ -1349,7 +1419,23 @@
       ],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-progress/index.tsx",
+          "path": "packages/mekanism/src/mekanism-player-inventory/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-player-inventory",
+      "registryDependencies": [],
+      "title": "Mekanism Player Inventory",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-progress/index.tsx",
           "type": "registry:component"
         }
       ],
@@ -1365,11 +1451,11 @@
       ],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-screen/index.tsx",
+          "path": "packages/mekanism/src/mekanism-screen/index.tsx",
           "type": "registry:component"
         },
         {
-          "path": "packages/ui/src/screens/mods/mekanism-screen/use-mekanism-windows.ts",
+          "path": "packages/mekanism/src/mekanism-screen/use-mekanism-windows.ts",
           "type": "registry:component"
         }
       ],
@@ -1380,12 +1466,26 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-security-light/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-security-light",
+      "registryDependencies": [],
+      "title": "Mekanism Security Light",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "dependencies": [
         "cn"
       ],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-side-config-window/index.tsx",
+          "path": "packages/mekanism/src/mekanism-side-config-window/index.tsx",
           "type": "registry:component"
         }
       ],
@@ -1396,12 +1496,26 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-side-holder/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-side-holder",
+      "registryDependencies": [],
+      "title": "Mekanism Side Holder",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "dependencies": [
         "cn"
       ],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-slot/index.tsx",
+          "path": "packages/mekanism/src/mekanism-slot/index.tsx",
           "type": "registry:component"
         }
       ],
@@ -1417,7 +1531,7 @@
       ],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-sprite/index.tsx",
+          "path": "packages/mekanism/src/mekanism-sprite/index.tsx",
           "type": "registry:component"
         }
       ],
@@ -1433,7 +1547,23 @@
       ],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-tab/index.tsx",
+          "path": "packages/mekanism/src/mekanism-switch/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-switch",
+      "registryDependencies": [],
+      "title": "Mekanism Switch",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-tab/index.tsx",
           "type": "registry:component"
         }
       ],
@@ -1444,10 +1574,42 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-tab-bar/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-tab-bar",
+      "registryDependencies": [],
+      "title": "Mekanism Tab Bar",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-text-field/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-text-field",
+      "registryDependencies": [],
+      "title": "Mekanism Text Field",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "dependencies": [],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-thermal-evaporation-screen/index.tsx",
+          "path": "packages/mekanism/src/mekanism-thermal-evaporation-screen/index.tsx",
           "type": "registry:component"
         }
       ],
@@ -1461,7 +1623,7 @@
       "dependencies": [],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-thermoelectric-boiler-screen/index.tsx",
+          "path": "packages/mekanism/src/mekanism-thermoelectric-boiler-screen/index.tsx",
           "type": "registry:component"
         }
       ],
@@ -1472,10 +1634,26 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-title/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-title",
+      "registryDependencies": [],
+      "title": "Mekanism Title",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "dependencies": [],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-upgrade-window/index.tsx",
+          "path": "packages/mekanism/src/mekanism-upgrade-window/index.tsx",
           "type": "registry:component"
         }
       ],
@@ -1486,18 +1664,296 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-warning-light/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-warning-light",
+      "registryDependencies": [],
+      "title": "Mekanism Warning Light",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "dependencies": [
         "cn"
       ],
       "files": [
         {
-          "path": "packages/ui/src/screens/mods/mekanism-window/index.tsx",
+          "path": "packages/mekanism/src/mekanism-window/index.tsx",
           "type": "registry:component"
         }
       ],
       "name": "mekanism-window",
       "registryDependencies": [],
       "title": "Mekanism Window",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ic2/src/batbox-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "batbox-screen",
+      "registryDependencies": [],
+      "title": "Batbox Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ic2/src/compressor-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "compressor-screen",
+      "registryDependencies": [],
+      "title": "Compressor Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ic2/src/electric-furnace-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "electric-furnace-screen",
+      "registryDependencies": [],
+      "title": "Electric Furnace Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ic2/src/extractor-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "extractor-screen",
+      "registryDependencies": [],
+      "title": "Extractor Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ic2/src/ic2-energy-gauge/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ic2-energy-gauge",
+      "registryDependencies": [],
+      "title": "Ic2 Energy Gauge",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ic2/src/ic2-info-icon/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ic2-info-icon",
+      "registryDependencies": [],
+      "title": "Ic2 Info Icon",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ic2/src/ic2-label/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ic2-label",
+      "registryDependencies": [],
+      "title": "Ic2 Label",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ic2/src/ic2-machine-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ic2-machine-screen",
+      "registryDependencies": [],
+      "title": "Ic2 Machine Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ic2/src/ic2-progress/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ic2-progress",
+      "registryDependencies": [],
+      "title": "Ic2 Progress",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ic2/src/ic2-redstone-button/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ic2-redstone-button",
+      "registryDependencies": [],
+      "title": "Ic2 Redstone Button",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ic2/src/ic2-title/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ic2-title",
+      "registryDependencies": [],
+      "title": "Ic2 Title",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ic2/src/macerator-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "macerator-screen",
+      "registryDependencies": [],
+      "title": "Macerator Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ae2/src/ae2-chest-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-chest-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Chest Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ae2/src/ae2-crafting-terminal-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-crafting-terminal-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Crafting Terminal Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ae2/src/ae2-drive-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-drive-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Drive Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ae2/src/ae2-inscriber-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-inscriber-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Inscriber Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ae2/src/ae2-priority-tab/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-priority-tab",
+      "registryDependencies": [],
+      "title": "Ae2 Priority Tab",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ae2/src/ae2-terminal-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-terminal-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Terminal Screen",
       "type": "registry:component"
     }
   ],

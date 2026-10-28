@@ -1,6 +1,6 @@
 /**
  * shadcn registry 生成器（规格 §1 registry/，标注可选，最小可用实现）
- * 产出 registry/registry.json：覆盖 @verdigris/ui 全部组件目录。
+ * 产出 registry/registry.json：覆盖 @verdigris/ui 与各 mod 包全部组件目录。
  * 运行：node registry/build.mjs
  */
 import fs from "node:fs";
@@ -8,7 +8,6 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const uiSrc = path.join(root, "packages/ui/src");
 
 /**
  * 依赖推断：组件源码中出现的基础依赖
@@ -28,17 +27,20 @@ function inferDependencies(source) {
 }
 
 const groups = [
-  ["primitives", "registry:component"],
-  ["containers", "registry:component"],
-  ["screens/containers", "registry:component"],
-  ["screens/hud", "registry:component"],
-  ["screens/menus", "registry:component"],
-  ["screens/mods", "registry:component"],
+  ["packages/ui/src", "primitives", "registry:component"],
+  ["packages/ui/src", "containers", "registry:component"],
+  ["packages/ui/src", "screens/containers", "registry:component"],
+  ["packages/ui/src", "screens/hud", "registry:component"],
+  ["packages/ui/src", "screens/menus", "registry:component"],
+  ["packages/mods-core/src/shared", "", "registry:component"],
+  ["packages/mekanism/src", "", "registry:component"],
+  ["packages/ic2/src", "", "registry:component"],
+  ["packages/ae2/src", "", "registry:component"],
 ];
 
 const items = [];
-for (const [group, type] of groups) {
-  const groupDir = path.join(uiSrc, group);
+for (const [groupRoot, group, type] of groups) {
+  const groupDir = path.join(root, groupRoot, group);
   const entries = fs.existsSync(groupDir)
     ? fs.readdirSync(groupDir, { withFileTypes: true })
     : [];
@@ -61,7 +63,7 @@ for (const [group, type] of groups) {
       );
     const files = siblings.map(file => ({
       path: path
-        .join("packages/ui/src", group, entry.name, file)
+        .join(groupRoot, group, entry.name, file)
         .replaceAll("\\", "/"),
       type,
     }));

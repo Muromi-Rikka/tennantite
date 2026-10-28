@@ -49,6 +49,10 @@ apps/
   tanstack-app/   # SSR 验证：TanStack Start 1.169（pnpm --filter @verdigris/tanstack-app dev）
 packages/
   ui/             # @verdigris/ui 组件库（rslib，ESM + d.ts）
+  mods-core/      # @verdigris/mods-core 跨 mod 共享原语（Mod* 组件 + progressClipPath）
+  mekanism/       # @verdigris/mekanism Mekanism 26.3 界面与组件
+  ic2/            # @verdigris/ic2 工业时代 2 界面与组件
+  ae2/            # @verdigris/ae2 应用能源 2 界面与组件
   tokens/         # @verdigris/tokens 设计令牌（L0）
   textures/       # @verdigris/textures 像素纹理（L0）
 registry/         # shadcn registry（node registry/build.mjs 生成）

@@ -1,7 +1,7 @@
 import type { Locale } from "../i18n";
 import type { DocEntry } from "./docs";
 import { ui } from "../i18n";
-import { blockHref, catalogDescription, componentHref, componentTitle, coreComponents, modEntries, primaryBlocks } from "./catalog";
+import { blockHref, catalogDescription, componentHref, componentTitle, coreComponents, modCatalog, modIds, primaryBlocks, type ModTarget } from "./catalog";
 import { docHref, filterDocs, sortDocs } from "./docs";
 
 export interface SearchItem {
@@ -32,11 +32,19 @@ export function buildSearchItems(docs: DocEntry[], locale: Locale): SearchItem[]
       href: blockHref(item.slug, locale),
       title: componentTitle(item, locale),
     })),
-    ...modEntries.map(item => ({
-      description: catalogDescription(item, locale),
-      group: text.mods,
-      href: componentHref(item.slug, locale),
-      title: componentTitle(item, locale),
-    })),
+    ...modIds.flatMap(id => [
+      ...modCatalog[id].blocks.map(item => ({
+        description: catalogDescription(item, locale),
+        group: text[id as ModTarget],
+        href: blockHref(item.slug, locale),
+        title: componentTitle(item, locale),
+      })),
+      ...modCatalog[id].components.map(item => ({
+        description: catalogDescription(item, locale),
+        group: text[id as ModTarget],
+        href: componentHref(item.slug, locale),
+        title: componentTitle(item, locale),
+      })),
+    ]),
   ];
 }

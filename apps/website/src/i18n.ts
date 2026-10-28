@@ -118,9 +118,11 @@ export interface UIDictionary {
   htmlLang: string;
   modsPage: {
     breadcrumb: string;
+    common: { description: string; title: string };
     components: { description: string; title: string };
     description: string;
     metaTitle: string;
+    mods: Record<"mekanism" | "ic2" | "ae2", { description: string; title: string }>;
     screens: { description: string; title: string };
     title: string;
   };
@@ -152,9 +154,12 @@ export interface UIDictionary {
   search: {
     close: string;
     groups: {
+      ae2: string;
       blocks: string;
       components: string;
       docs: string;
+      ic2: string;
+      mekanism: string;
       mods: string;
     };
     label: string;
@@ -318,14 +323,32 @@ export function Start() {
   htmlLang: "zh-CN",
   modsPage: {
     breadcrumb: "Mod",
+    common: {
+      description: "Mekanism、IC2、AE2 共用的进度条、按钮、槽位网格等通用子件。",
+      title: "跨 mod 通用",
+    },
     components: {
-      description: "11 个可复制组件：10 个整屏组件与 Ic2EnergyGauge 能量表；IC2 与 AE2 共用通用子件。",
+      description: "各 mod 可复制的组件级部件，按 mod 维度归档。",
       title: "组件",
     },
-    description: "工业时代 2 与 应用能源 2 的整屏界面与组件：IC2 使用 1.12.2 原始 GUI 贴图，AE2 终端使用原版 GUI 贴图；数据注入、无游戏逻辑。",
+    description: "Mekanism、工业时代 2 与 应用能源 2 的整屏界面与组件：Mekanism 手绘复刻 26.3 贴图，IC2 使用 1.12.2 原始 GUI 贴图，AE2 终端使用原版 GUI 贴图；数据注入、无游戏逻辑。",
     metaTitle: "Mod 界面 · Verdigris",
+    mods: {
+      ae2: {
+        description: "应用能源 2 界面（原版 GUI 贴图切片）：ME 终端、合成终端、压印器、ME 驱动器与 ME 箱子。",
+        title: "应用能源 2",
+      },
+      ic2: {
+        description: "工业时代 2 界面（1.12.2 原始 GUI 贴图）：磨矿机、电炉、提取机、压缩机、储电箱与 EU 能量表。",
+        title: "工业时代 2",
+      },
+      mekanism: {
+        description: "Mekanism 26.3 界面（手绘复刻贴图）：26 台机器共用布局表，另有储罐、能量立方、感应矩阵与全套窗口部件。",
+        title: "Mekanism",
+      },
+    },
     screens: {
-      description: "5 个 IC2 机器界面 + 5 个 AE2 界面，按游戏内屏幕定义复刻尺寸与槽位坐标。",
+      description: "按游戏内屏幕定义复刻尺寸与槽位坐标。",
       title: "整屏界面",
     },
     title: "Mod 界面",
@@ -354,7 +377,7 @@ export function Start() {
   },
   search: {
     close: "Esc 关闭",
-    groups: { blocks: "整屏界面", components: "组件", docs: "文档", mods: "Mod" },
+    groups: { ae2: "AE2", blocks: "整屏界面", components: "组件", docs: "文档", ic2: "IC2", mekanism: "Mekanism", mods: "Mod" },
     label: "搜索文档",
     noResults: "没有匹配结果",
     open: "Enter 打开",
@@ -516,14 +539,32 @@ export function Start() {
   htmlLang: "en",
   modsPage: {
     breadcrumb: "Mods",
+    common: {
+      description: "Progress bars, buttons, slot grids and other primitives shared across mods.",
+      title: "Cross-mod shared",
+    },
     components: {
-      description: "11 copy-ready components: 10 screen components plus the Ic2EnergyGauge; IC2 and AE2 share common subcomponents.",
+      description: "Copy-ready component-level parts, archived per mod.",
       title: "Components",
     },
-    description: "Full-screen interfaces and components for IndustrialCraft 2 and Applied Energistics 2: IC2 uses the original 1.12.2 GUI textures, AE2 terminals use the original GUI textures; data-injected with no game logic.",
+    description: "Full-screen interfaces and components for Mekanism, IndustrialCraft 2 and Applied Energistics 2: Mekanism reproduces the 26.3 textures by hand, IC2 uses the original 1.12.2 GUI textures, AE2 terminals use the original GUI textures; data-injected with no game logic.",
     metaTitle: "Mod screens · Verdigris",
+    mods: {
+      ae2: {
+        description: "Applied Energistics 2 screens (slices of the original GUI textures): ME terminal, crafting terminal, inscriber, ME drive and ME chest.",
+        title: "Applied Energistics 2",
+      },
+      ic2: {
+        description: "IndustrialCraft 2 screens (original 1.12.2 GUI textures): macerator, electric furnace, extractor, compressor, batbox and the EU energy gauge.",
+        title: "IndustrialCraft 2",
+      },
+      mekanism: {
+        description: "Mekanism 26.3 screens (hand-drawn textures): 26 machines share one layout table, plus tanks, energy cubes, the induction matrix and the full window kit.",
+        title: "Mekanism",
+      },
+    },
     screens: {
-      description: "5 IC2 machine screens + 5 AE2 screens, matching in-game screen dimensions and slot coordinates.",
+      description: "Screen dimensions and slot coordinates matched to the in-game screens.",
       title: "Full screens",
     },
     title: "Mod screens",
@@ -552,7 +593,7 @@ export function Start() {
   },
   search: {
     close: "Esc close",
-    groups: { blocks: "Blocks", components: "Components", docs: "Docs", mods: "Mods" },
+    groups: { ae2: "AE2", blocks: "Blocks", components: "Components", docs: "Docs", ic2: "IC2", mekanism: "Mekanism", mods: "Mods" },
     label: "Search documentation",
     noResults: "No results",
     open: "Enter open",

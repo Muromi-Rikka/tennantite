@@ -64,36 +64,3 @@ export { StatusEffectsDemo } from "./screens/hud/status-effects/demo";
 export { ChatScreenDemo } from "./screens/menus/chat-screen/demo";
 export { MainMenuDemo } from "./screens/menus/main-menu/demo";
 export { ToastDemo, ToastStackDemo } from "./screens/menus/toast/demo";
-export { Ae2ChestScreenDemo } from "./screens/mods/ae2-chest-screen/demo";
-export { Ae2CraftingTerminalScreenDemo } from "./screens/mods/ae2-crafting-terminal-screen/demo";
-export { Ae2DriveScreenDemo } from "./screens/mods/ae2-drive-screen/demo";
-export { Ae2InscriberScreenDemo } from "./screens/mods/ae2-inscriber-screen/demo";
-export { Ae2TerminalScreenDemo } from "./screens/mods/ae2-terminal-screen/demo";
-export { BatBoxScreenDemo } from "./screens/mods/batbox-screen/demo";
-export { CompressorScreenDemo } from "./screens/mods/compressor-screen/demo";
-export { ElectricFurnaceScreenDemo } from "./screens/mods/electric-furnace-screen/demo";
-export { ExtractorScreenDemo } from "./screens/mods/extractor-screen/demo";
-export { Ic2EnergyGaugeDemo } from "./screens/mods/ic2-energy-gauge/demo";
-export { MaceratorScreenDemo } from "./screens/mods/macerator-screen/demo";
-export {
-  MekanismChemicalTankScreenDemo,
-  MekanismDynamicTankScreenDemo,
-  MekanismEnergyCubeScreenDemo,
-  MekanismFluidTankScreenDemo,
-  MekanismGaugeDemo,
-  MekanismInductionMatrixScreenDemo,
-  MekanismMachineScreenDemo,
-  MekanismMachineScreensDemo,
-  MekanismPartsDemo,
-  MekanismPersonalStorageScreenDemo,
-  MekanismProgressDemo,
-  MekanismScreenDemo,
-  MekanismSideConfigWindowDemo,
-  MekanismSlotDemo,
-  MekanismSpriteDemo,
-  MekanismTabDemo,
-  MekanismThermalEvaporationScreenDemo,
-  MekanismThermoelectricBoilerScreenDemo,
-  MekanismUpgradeWindowDemo,
-  MekanismWindowDemo,
-} from "./screens/mods/mekanism-demos";

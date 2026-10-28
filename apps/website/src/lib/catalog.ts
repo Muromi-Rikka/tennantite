@@ -7,9 +7,9 @@ export interface CatalogEntry {
   exports: string[];
   group: ComponentGroupId;
   /**
-  * 归入官网独立 Mod 区域（整屏组件可省略，`group: "mods"` 已隐含）
+  * Mod 归属维度（整屏组件可省略，`group: "mods"` 已隐含）；"common" 为跨 mod 共享件。
   */
-  mod?: boolean;
+  mod?: ModId;
   name: string;
   slug: string;
   sourceDir: string;
@@ -33,6 +33,12 @@ export interface ComponentGroup {
 }
 
 export type ComponentGroupId = "containers" | "hud" | "menus" | "mods" | "primitives" | "screens";
+
+export const modIds = ["mekanism", "ic2", "ae2"] as const;
+
+export type ModTarget = (typeof modIds)[number];
+
+export type ModId = ModTarget | "common";
 
 export const componentGroups: ComponentGroup[] = [
   { description: "无状态或 Base UI 封装的基础控件。", id: "primitives", level: "L1", title: "原语" },
@@ -528,261 +534,280 @@ export const components: CatalogEntry[] = [
     description: "IC2 EU 能量表（1.12.2 原版贴图）：机器用红色闪电自下而上填充，储电箱用红色横条自左向右填充；悬浮显示 X / Y EU。",
     exports: ["Ic2EnergyGauge"],
     group: "containers",
-    mod: true,
+    mod: "ic2",
     name: "Ic2EnergyGauge",
     slug: "ic2-energy-gauge",
-    sourceDir: "packages/ui/src/screens/mods/ic2-energy-gauge",
+    sourceDir: "packages/ic2/src/ic2-energy-gauge",
   },
   {
     description: "IC2 磨矿机界面（1.12.2 原版贴图）：输入 / 放电 / 26×26 产物槽、4 个升级槽、红色 EU 闪电与粉碎进度。",
     exports: ["MaceratorScreen"],
     group: "mods",
+    mod: "ic2",
     name: "MaceratorScreen",
     slug: "macerator-screen",
-    sourceDir: "packages/ui/src/screens/mods/macerator-screen",
+    sourceDir: "packages/ic2/src/macerator-screen",
   },
   {
     description: "IC2 电炉界面（1.12.2 原版贴图）：输入 / 放电 / 26×26 产物槽、4 个升级槽、红色 EU 闪电与熔炼箭头进度。",
     exports: ["ElectricFurnaceScreen"],
     group: "mods",
+    mod: "ic2",
     name: "ElectricFurnaceScreen",
     slug: "electric-furnace-screen",
-    sourceDir: "packages/ui/src/screens/mods/electric-furnace-screen",
+    sourceDir: "packages/ic2/src/electric-furnace-screen",
   },
   {
     description: "IC2 提取机界面（1.12.2 原版贴图）：输入 / 放电 / 26×26 产物槽、4 个升级槽、红色 EU 闪电与滴落进度。",
     exports: ["ExtractorScreen"],
     group: "mods",
+    mod: "ic2",
     name: "ExtractorScreen",
     slug: "extractor-screen",
-    sourceDir: "packages/ui/src/screens/mods/extractor-screen",
+    sourceDir: "packages/ic2/src/extractor-screen",
   },
   {
     description: "IC2 压缩机界面（1.12.2 原版贴图）：输入 / 放电 / 26×26 产物槽、4 个升级槽、红色 EU 闪电与三角进度。",
     exports: ["CompressorScreen"],
     group: "mods",
+    mod: "ic2",
     name: "CompressorScreen",
     slug: "compressor-screen",
-    sourceDir: "packages/ui/src/screens/mods/compressor-screen",
+    sourceDir: "packages/ic2/src/compressor-screen",
   },
   {
     description: "IC2 储电箱界面（1.12.2 原版贴图）：4 个装备槽、充电 / 放电槽、红色 EU 横条、原版红石按钮与状态文字。",
     exports: ["BatBoxScreen"],
     group: "mods",
+    mod: "ic2",
     name: "BatBoxScreen",
     slug: "batbox-screen",
-    sourceDir: "packages/ui/src/screens/mods/batbox-screen",
+    sourceDir: "packages/ic2/src/batbox-screen",
   },
   {
     description: "AE2 ME 终端（原版 terminal.png 切片，默认 6 行 195×222）：9 列物品网格、搜索框、滚动条、玩家背包与左侧工具栏。",
     exports: ["Ae2TerminalScreen"],
     group: "mods",
+    mod: "ae2",
     name: "Ae2TerminalScreen",
     slug: "ae2-terminal-screen",
-    sourceDir: "packages/ui/src/screens/mods/ae2-terminal-screen",
+    sourceDir: "packages/ae2/src/ae2-terminal-screen",
   },
   {
     description: "AE2 合成终端（原版 crafting.png 切片，默认 6 行 195×295）：物品网格 + 3×3 合成格、清空按钮、26×26 结果槽与玩家背包。",
     exports: ["Ae2CraftingTerminalScreen"],
     group: "mods",
+    mod: "ae2",
     name: "Ae2CraftingTerminalScreen",
     slug: "ae2-crafting-terminal-screen",
-    sourceDir: "packages/ui/src/screens/mods/ae2-crafting-terminal-screen",
+    sourceDir: "packages/ae2/src/ae2-crafting-terminal-screen",
   },
   {
     description: "AE2 压印器（原版 inscriber.png 切片，177×176 + 右侧升级槽条）：3 个压印/输入槽、26×26 输出槽、竖向进度条与玩家背包。",
     exports: ["Ae2InscriberScreen"],
     group: "mods",
+    mod: "ae2",
     name: "Ae2InscriberScreen",
     slug: "ae2-inscriber-screen",
-    sourceDir: "packages/ui/src/screens/mods/ae2-inscriber-screen",
+    sourceDir: "packages/ae2/src/ae2-inscriber-screen",
   },
   {
     description: "176×201 ME 驱动器界面：2×5 存储元件槽、优先级标签与玩家背包。",
     exports: ["Ae2DriveScreen"],
     group: "mods",
+    mod: "ae2",
     name: "Ae2DriveScreen",
     slug: "ae2-drive-screen",
-    sourceDir: "packages/ui/src/screens/mods/ae2-drive-screen",
+    sourceDir: "packages/ae2/src/ae2-drive-screen",
   },
   {
     description: "176×168 ME 箱子界面：单个存储元件槽、优先级标签与玩家背包。",
     exports: ["Ae2ChestScreen"],
     group: "mods",
+    mod: "ae2",
     name: "Ae2ChestScreen",
     slug: "ae2-chest-screen",
-    sourceDir: "packages/ui/src/screens/mods/ae2-chest-screen",
+    sourceDir: "packages/ae2/src/ae2-chest-screen",
   },
   {
     description: "Mekanism 26.3 机器总览：26 台单方块机器共用一套布局表（槽位 / 仪表 / 进度 / 标签 / 侧配置 / 升级窗口）。",
     exports: ["MekanismMachineScreen", "MEKANISM_MACHINES", "MEKANISM_MACHINE_TITLES"],
     group: "mods",
+    mod: "mekanism",
     name: "MekanismMachineScreen",
     slug: "mekanism-machine-screen",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-machine-screen",
+    sourceDir: "packages/mekanism/src/mekanism-machine-screen",
   },
   {
     description: "Mekanism 能量立方：176×166，WIDE 能量仪表、充放电槽、右侧 4 甲 + 副手装备栏与安全标签。",
     exports: ["MekanismEnergyCubeScreen"],
     group: "mods",
+    mod: "mekanism",
     name: "MekanismEnergyCubeScreen",
     slug: "mekanism-energy-cube-screen",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-energy-cube-screen",
+    sourceDir: "packages/mekanism/src/mekanism-energy-cube-screen",
   },
   {
     description: "Mekanism 流体储罐：176×166，WIDE 流体仪表、输入/输出槽、左侧装备栏与安全/编辑标签。",
     exports: ["MekanismFluidTankScreen"],
     group: "mods",
+    mod: "mekanism",
     name: "MekanismFluidTankScreen",
     slug: "mekanism-fluid-tank-screen",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-fluid-tank-screen",
+    sourceDir: "packages/mekanism/src/mekanism-fluid-tank-screen",
   },
   {
     description: "Mekanism 化学储罐：176×166，横向化学条、内屏、倾倒模式、输入/输出槽与左侧装备栏。",
     exports: ["MekanismChemicalTankScreen"],
     group: "mods",
+    mod: "mekanism",
     name: "MekanismChemicalTankScreen",
     slug: "mekanism-chemical-tank-screen",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-chemical-tank-screen",
+    sourceDir: "packages/mekanism/src/mekanism-chemical-tank-screen",
   },
   {
     description: "Mekanism 感应矩阵：176×166，34×56 能量仪表、内屏、两个元件槽、左侧装备栏与能量/矩阵标签。",
     exports: ["MekanismInductionMatrixScreen"],
     group: "mods",
+    mod: "mekanism",
     name: "MekanismInductionMatrixScreen",
     slug: "mekanism-induction-matrix-screen",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-induction-matrix-screen",
+    sourceDir: "packages/mekanism/src/mekanism-induction-matrix-screen",
   },
   {
     description: "Mekanism 动态储罐：176×166，34×56 合并流体/化学仪表、内屏、两个内容槽与左侧装备栏。",
     exports: ["MekanismDynamicTankScreen"],
     group: "mods",
+    mod: "mekanism",
     name: "MekanismDynamicTankScreen",
     slug: "mekanism-dynamic-tank-screen",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-dynamic-tank-screen",
+    sourceDir: "packages/mekanism/src/mekanism-dynamic-tank-screen",
   },
   {
     description: "Mekanism 热力锅炉：218×166，四联化学/流体仪表、两条竖向速率条、内屏与警告标签。",
     exports: ["MekanismThermoelectricBoilerScreen"],
     group: "mods",
+    mod: "mekanism",
     name: "MekanismThermoelectricBoilerScreen",
     slug: "mekanism-thermoelectric-boiler-screen",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-thermoelectric-boiler-screen",
+    sourceDir: "packages/mekanism/src/mekanism-thermoelectric-boiler-screen",
   },
   {
     description: "Mekanism 热力蒸发控制器：196×166，输入/输出流体仪表、横向速率条、内屏与警告标签。",
     exports: ["MekanismThermalEvaporationScreen"],
     group: "mods",
+    mod: "mekanism",
     name: "MekanismThermalEvaporationScreen",
     slug: "mekanism-thermal-evaporation-screen",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-thermal-evaporation-screen",
+    sourceDir: "packages/mekanism/src/mekanism-thermal-evaporation-screen",
   },
   {
     description: "Mekanism 个人箱子：176×222，9×6 槽位、安全标签与玩家背包。",
     exports: ["MekanismPersonalStorageScreen"],
     group: "mods",
+    mod: "mekanism",
     name: "MekanismPersonalStorageScreen",
     slug: "mekanism-personal-storage-screen",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-personal-storage-screen",
+    sourceDir: "packages/mekanism/src/mekanism-personal-storage-screen",
   },
   {
     description: "Mekanism 精灵渲染器：按上游 .mcmeta 的 nine_slice / tile 规则绘制，支持染色与动画首帧。",
     exports: ["MekanismSprite"],
     group: "containers",
-    mod: true,
+    mod: "mekanism",
     name: "MekanismSprite",
     slug: "mekanism-sprite",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-sprite",
+    sourceDir: "packages/mekanism/src/mekanism-sprite",
   },
   {
     description: "Mekanism 物品槽：槽框贴图 + 16×16 物品 + 可选覆盖图标，坐标为槽框左上角。",
     exports: ["MekanismSlot"],
     group: "containers",
-    mod: true,
+    mod: "mekanism",
     name: "MekanismSlot",
     slug: "mekanism-slot",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-slot",
+    sourceDir: "packages/mekanism/src/mekanism-slot",
   },
   {
     description: "Mekanism 纵向仪表：standard / small / small-med / medium / wide 外框 + 自下而上填充 + 覆盖层。",
     exports: ["MekanismGauge"],
     group: "containers",
-    mod: true,
+    mod: "mekanism",
     name: "MekanismGauge",
     slug: "mekanism-gauge",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-gauge",
+    sourceDir: "packages/mekanism/src/mekanism-gauge",
   },
   {
     description: "Mekanism 进度条：12 种 ProgressType，严格复刻 BAR 内缩、反向与垂直裁剪方向。",
     exports: ["MekanismProgress"],
     group: "containers",
-    mod: true,
+    mod: "mekanism",
     name: "MekanismProgress",
     slug: "mekanism-progress",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-progress",
+    sourceDir: "packages/mekanism/src/mekanism-progress",
   },
   {
     description: "Mekanism 功率/速率/动态条：九宫格外框 + 方向裁剪填充 + 可选渐变染色。",
     exports: ["MekanismBar"],
     group: "containers",
-    mod: true,
+    mod: "mekanism",
     name: "MekanismBar",
     slug: "mekanism-bar",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-bar",
+    sourceDir: "packages/mekanism/src/mekanism-bar",
   },
   {
     description: "Mekanism 侧边标签：18/26 高按钮、图标变体、两侧排布与装备栏侧条。",
     exports: ["MekanismTab", "MekanismTabBar", "MekanismSideHolder", "MekanismElementHolder"],
     group: "containers",
-    mod: true,
+    mod: "mekanism",
     name: "MekanismTab",
     slug: "mekanism-tab",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-tab",
+    sourceDir: "packages/mekanism/src/mekanism-tab",
   },
   {
     description: "Mekanism 文本与控件：标题/标签/内屏/按钮/图标按钮/开关/箭头/气体模式/警告灯/输入框/装备槽。",
     exports: ["MekanismTitle", "MekanismLabel", "MekanismInnerScreen", "MekanismButton", "MekanismImageButton", "MekanismSwitch", "MekanismArrow", "MekanismGasMode", "MekanismWarningLight", "MekanismSecurityLight", "MekanismTextField", "MekanismArmorSlots"],
     group: "containers",
-    mod: true,
+    mod: "mekanism",
     name: "MekanismParts",
     slug: "mekanism-parts",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-parts",
+    sourceDir: "packages/mekanism/src",
   },
   {
     description: "Mekanism 可拖动窗口：shadow + base 九宫格 + 标题 + 关闭/固定按钮。",
     exports: ["MekanismWindow"],
     group: "containers",
-    mod: true,
+    mod: "mekanism",
     name: "MekanismWindow",
     slug: "mekanism-window",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-window",
+    sourceDir: "packages/mekanism/src/mekanism-window",
   },
   {
     description: "Mekanism 侧面配置窗口：156×135，6 个 22×22 面按钮、传输类型标签与自动弹出/清空按钮。",
     exports: ["MekanismSideConfigWindow"],
     group: "containers",
-    mod: true,
+    mod: "mekanism",
     name: "MekanismSideConfigWindow",
     slug: "mekanism-side-config-window",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-side-config-window",
+    sourceDir: "packages/mekanism/src/mekanism-side-config-window",
   },
   {
     description: "Mekanism 升级窗口：198×100，升级列表、7 个支持图标、安装/卸载进度与两个虚拟槽。",
     exports: ["MekanismUpgradeWindow"],
     group: "containers",
-    mod: true,
+    mod: "mekanism",
     name: "MekanismUpgradeWindow",
     slug: "mekanism-upgrade-window",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-upgrade-window",
+    sourceDir: "packages/mekanism/src/mekanism-upgrade-window",
   },
   {
     description: "Mekanism 面板基座：base 九宫格、标题、背包标签、Mekanism 风格玩家背包、标签/窗口层与窗口开关 hook。",
     exports: ["MekanismScreen", "MekanismPlayerInventory", "useMekanismWindows"],
     group: "containers",
-    mod: true,
+    mod: "mekanism",
     name: "MekanismScreen",
     slug: "mekanism-screen",
-    sourceDir: "packages/ui/src/screens/mods/mekanism-screen",
+    sourceDir: "packages/mekanism/src/mekanism-screen",
   },
 ];
 
@@ -791,16 +816,48 @@ export const blocks = components.filter(component =>
 );
 
 /**
- * 官网独立 Mod 区域：`group: "mods"` 的整屏，以及显式标记 `mod` 的共享件。
+ * 官网独立 Mod 区域：显式标记 `mod` 的条目（整屏的 `group: "mods"` 也都标了 `mod`）。
  */
 export function isModEntry(entry: CatalogEntry): boolean {
-  return entry.group === "mods" || entry.mod === true;
+  return entry.mod !== undefined;
 }
 
 export const modEntries = components.filter(component => isModEntry(component));
 export const coreComponents = components.filter(component => !isModEntry(component));
 export const primaryBlocks = blocks.filter(block => block.group !== "mods");
 export const modBlocks = blocks.filter(block => block.group === "mods");
+
+export interface ModCatalog {
+  blocks: CatalogEntry[];
+  components: CatalogEntry[];
+}
+
+/** 按 mod 维度拆分的整屏与组件集合（官网 /mods/<mod>/ 子页数据源）。 */
+export const modCatalog = Object.fromEntries(
+  modIds.map(id => [
+    id,
+    {
+      blocks: modBlocks.filter(block => block.mod === id),
+      components: modEntries.filter(item => item.mod === id && item.group !== "mods"),
+    } satisfies ModCatalog,
+  ]),
+) as Record<ModTarget, ModCatalog>;
+
+/** 跨 mod 共享件（Mod* 通用件尚未编目，集合当前为空）。 */
+export const commonComponents = components.filter(component => component.mod === "common");
+
+/** mod 条目的返回索引页：/mods/<mod>/，跨 mod 通用件回 /mods/。 */
+export function modIndexHref(entry: CatalogEntry, locale: Locale): string {
+  return localeHref(locale, entry.mod !== undefined && entry.mod !== "common" ? `/mods/${entry.mod}/` : "/mods/");
+}
+
+/** 与条目同 mod 的全部条目（详情页 pager 用）。 */
+export function modScopeEntries(entry: CatalogEntry): CatalogEntry[] {
+  if (entry.mod === undefined || entry.mod === "common") {
+    return modEntries;
+  }
+  return modEntries.filter(item => item.mod === entry.mod);
+}
 
 export function blockHref(slug: string, locale: Locale): string {
   return localeHref(locale, `/blocks/${slug}/`);

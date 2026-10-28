@@ -17,10 +17,12 @@ import {
   findComponentByName,
   getBlockPager,
   isModEntry,
-  modBlocks,
+  modCatalog,
+  modIndexHref,
   previewHref,
   primaryBlocks,
   type CatalogEntry,
+  type ModTarget,
 } from "@/lib/catalog";
 import { breadcrumb, techArticle } from "@/lib/seo";
 import { readDemoSource } from "@/lib/source";
@@ -35,12 +37,13 @@ const modsText = ui[locale].modsPage;
 const description = catalogDescription(entry, locale);
 const displayName = componentTitle(entry, locale);
 const mod = isModEntry(entry);
+const modScope: ModTarget | undefined = entry.mod !== undefined && entry.mod !== "common" ? entry.mod : undefined;
 const href = blockHref(entry.slug, locale);
-const indexHref = localeHref(locale, mod ? "/mods/" : "/blocks/");
+const indexHref = modScope ? modIndexHref(entry, locale) : localeHref(locale, "/blocks/");
 const indexLabel = mod ? modsText.breadcrumb : text.breadcrumb;
 const preview = previewHref(entry.slug, locale);
 const code = readDemoSource(entry.sourceDir);
-const pager = getBlockPager(entry.slug, locale, mod ? modBlocks : primaryBlocks);
+const pager = getBlockPager(entry.slug, locale, modScope ? modCatalog[modScope].blocks : primaryBlocks);
 const composition = (blockComposition[entry.slug] ?? [])
   .map(name => findComponentByName(name))
   .filter((component): component is CatalogEntry => component !== undefined);

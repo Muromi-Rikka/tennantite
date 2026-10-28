@@ -3,7 +3,7 @@ import Demo from "@/components/preview/demo";
 import type { Locale } from "@/i18n";
 import { localeHref, switchLocalePath, ui } from "@/i18n";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { catalogDescription, componentTitle, isModEntry, type CatalogEntry } from "@/lib/catalog";
+import { catalogDescription, componentTitle, isModEntry, modIndexHref, type CatalogEntry } from "@/lib/catalog";
 
 interface Props {
   entry: CatalogEntry;
@@ -13,7 +13,7 @@ const { entry, locale } = Astro.props;
 const displayName = componentTitle(entry, locale);
 const text = ui[locale];
 const mod = isModEntry(entry);
-const backHref = localeHref(locale, mod ? "/mods/" : "/blocks/");
+const backHref = mod ? modIndexHref(entry, locale) : localeHref(locale, "/blocks/");
 const backLabel = mod ? text.preview.backMods : text.preview.back;
 const switchHref = switchLocalePath(Astro.url.pathname, locale === "zh" ? "en" : "zh");
 ---

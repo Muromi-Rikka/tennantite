@@ -16,7 +16,8 @@ import {
   coreComponents,
   getComponentPager,
   isModEntry,
-  modEntries,
+  modIndexHref,
+  modScopeEntries,
   type CatalogEntry,
 } from "@/lib/catalog";
 import { readDemoSource } from "@/lib/source";
@@ -32,9 +33,9 @@ const page = text.componentPage;
 const description = catalogDescription(entry, locale);
 const displayName = componentTitle(entry, locale);
 const mod = isModEntry(entry);
-const entries = mod ? modEntries : coreComponents;
+const entries = mod ? modScopeEntries(entry) : coreComponents;
 const href = componentHref(entry.slug, locale);
-const indexHref = localeHref(locale, mod ? "/mods/" : "/components/");
+const indexHref = mod ? modIndexHref(entry, locale) : localeHref(locale, "/components/");
 const indexLabel = mod ? text.modsPage.breadcrumb : page.breadcrumb;
 const code = readDemoSource(entry.sourceDir);
 const pager = getComponentPager(entry.slug, locale, entries);

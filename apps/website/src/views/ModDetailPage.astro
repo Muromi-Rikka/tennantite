@@ -1,0 +1,84 @@
+---
+import PageHeader from "@/components/site/PageHeader.astro";
+import ScaledPreview from "@/components/preview/ScaledPreview.astro";
+import type { Locale } from "@/i18n";
+import { localeHref, ui } from "@/i18n";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import {
+  blockHref,
+  catalogDescription,
+  componentHref,
+  componentTitle,
+  modCatalog,
+} from "@/lib/catalog";
+import type { ModTarget } from "@/lib/catalog";
+
+interface Props {
+  locale: Locale;
+  mod: ModTarget;
+}
+const { locale, mod } = Astro.props;
+const text = ui[locale].modsPage;
+const modText = text.mods[mod];
+const { blocks: screens, components: componentEntries } = modCatalog[mod];
+const overviewHref = localeHref(locale, "/mods/");
+---
+<SiteLayout title={`${modText.title} · Verdigris`} description={modText.description} locale={locale}>
+  <div class="mx-auto max-w-[1440px] px-12 py-24">
+    <PageHeader
+      breadcrumb={[{ href: overviewHref, label: text.breadcrumb }, { label: modText.title }]}
+      title={modText.title}
+      description={modText.description}
+    />
+
+    <section class="mt-32">
+      <div class="flex items-baseline gap-8 border-b border-site-border pb-8">
+        <h2 class="text-2xl font-bold text-site-fg">{text.screens.title}</h2>
+        <span class="ml-auto text-sm text-site-muted">{screens.length}</span>
+      </div>
+      <p class="mt-8 text-sm leading-12 text-site-muted">{text.screens.description}</p>
+      <div class="mt-16 grid gap-16 lg:grid-cols-2">
+        {screens.map(screen => (
+          <a
+            href={blockHref(screen.slug, locale)}
+            class="group block border border-site-border bg-site-surface transition-colors hover:border-site-fg/40"
+          >
+            <ScaledPreview
+              class="h-[360px] bg-[#0d0d0d] sm:h-[400px]"
+              name={screen.name}
+            />
+            <div class="flex items-center justify-between border-t border-site-border px-8 py-6">
+              <div class="flex flex-col gap-1">
+                <span class="text-sm text-site-fg group-hover:text-site-accent">{componentTitle(screen, locale)}</span>
+                <span class="text-xs text-site-muted">{text.screens.title}</span>
+              </div>
+              <span aria-hidden="true" class="text-site-muted">→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-32">
+      <div class="flex items-baseline gap-8 border-b border-site-border pb-8">
+        <h2 class="text-2xl font-bold text-site-fg">{text.components.title}</h2>
+        <span class="ml-auto text-sm text-site-muted">{componentEntries.length}</span>
+      </div>
+      <p class="mt-8 text-sm leading-12 text-site-muted">{text.components.description}</p>
+      <div class="grid gap-x-24 md:grid-cols-2">
+        {componentEntries.map(component => (
+          <a
+            href={componentHref(component.slug, locale)}
+            class="group flex flex-col gap-2 border-b border-site-border/60 py-8"
+          >
+            <div class="flex flex-wrap items-baseline gap-4">
+              <span class="text-base text-site-fg group-hover:text-site-accent">{componentTitle(component, locale)}</span>
+              <span class="font-mono text-xs text-site-muted">{component.name}</span>
+            </div>
+            <span class="text-sm leading-12 text-site-muted">{catalogDescription(component, locale)}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</SiteLayout>

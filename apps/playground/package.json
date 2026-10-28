@@ -10,6 +10,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@verdigris/ae2": "workspace:*",
+    "@verdigris/ic2": "workspace:*",
+    "@verdigris/mekanism": "workspace:*",
     "@verdigris/textures": "workspace:*",
     "@verdigris/tokens": "workspace:*",
     "@verdigris/ui": "workspace:*",

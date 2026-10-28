@@ -4,7 +4,7 @@ import {
   Ae2DriveScreenDemo,
   Ae2InscriberScreenDemo,
   Ae2TerminalScreenDemo,
-} from "@verdigris/ui/demos";
+} from "@verdigris/ae2/demos";
 
 export function Ae2Page() {
   return (

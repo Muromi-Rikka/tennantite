@@ -5,13 +5,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 
 import {
-  Ae2ChestScreen,
-  Ae2CraftingTerminalScreen,
-  Ae2DriveScreen,
-  Ae2InscriberScreen,
-  Ae2TerminalScreen,
   Badge,
-  BatBoxScreen,
   BossBar,
   Button,
   Checkbox,
@@ -22,14 +16,9 @@ import {
   DialogTitle,
   GuiSprite,
   HealthHungerBar,
-  Ic2EnergyGauge,
   Input,
   InventoryScreen,
-  MaceratorScreen,
   MainMenu,
-  MekanismEnergyCubeScreen,
-  MekanismEnrichmentChamberScreen,
-  MekanismSideConfigWindow,
   PlayerInventory,
   Progress,
   Radio,
@@ -60,30 +49,9 @@ function render(): string {
   return renderToStaticMarkup(
     <>
       <Badge>64</Badge>
-      <Ae2TerminalScreen />
-      <Ae2CraftingTerminalScreen />
-      <Ae2InscriberScreen />
-      <Ae2DriveScreen />
-      <Ae2ChestScreen />
       <GuiSprite name="container/inventory.png" />
       <InventoryScreen />
       <ChestScreen rows={3} />
-      <MaceratorScreen
-        energy={{ max: 2000, value: 1400 }}
-        input={{ icon: "iron-ore" }}
-        output={{ count: 2, icon: "iron-ingot" }}
-        progress={0.45}
-        title="磨矿机"
-      />
-      <BatBoxScreen energy={{ max: 40000, value: 26000 }} title="储电箱" />
-      <Ic2EnergyGauge label="EU 能量" left={0} max={40000} top={0} value={26000} />
-      <MekanismEnrichmentChamberScreen
-        energy={{ max: 10000, value: 6400 }}
-        progress={{ progress: 0.5 }}
-        slots={{ input: { icon: "iron-ore" }, output: { count: 2, icon: "iron-ingot" } }}
-      />
-      <MekanismEnergyCubeScreen energy={{ max: 4000000, value: 2400000 }} />
-      <MekanismSideConfigWindow left={0} top={0} />
       <HealthHungerBar health={20} hunger={20} />
       <BossBar name="Boss" value={0.5} />
       <Toast title="提示" />
@@ -153,14 +121,6 @@ describe("sSR smoke (node env, 规格 §1.1)", () => {
   it("screenPanel / PlayerInventory 可服务端渲染", () => {
     const html = render();
     expect(html).toContain("mc-tex-panel");
-    expect(html).toContain("mc-tex-ic2-machine");
-    expect(html).toContain("磨矿机");
-    expect(html).toContain("储电箱");
-    expect(html).toContain("mc-tex-ae2-panel");
-    expect(html).toContain("ME 终端");
-    expect(html).toContain("压印器");
-    expect(html).toContain("ME 驱动器");
-    expect(html).toContain("ME 箱子");
     expect(html).toContain("物品栏");
     expect(html).toContain("aria-label=\"main-0\"");
     expect(html).toContain("aria-label=\"hotbar-8\"");

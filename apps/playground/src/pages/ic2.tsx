@@ -5,7 +5,7 @@ import {
   ExtractorScreenDemo,
   Ic2EnergyGaugeDemo,
   MaceratorScreenDemo,
-} from "@verdigris/ui/demos";
+} from "@verdigris/ic2/demos";
 
 export function Ic2Page() {
   return (

@@ -94,4 +94,5 @@ export type {
   ScreenSlot,
   SlotClickDetails,
 } from "./types";
+export { ScreenItemSlot } from "./screen-slot";
 export { padSlots } from "./types";

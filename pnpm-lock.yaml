@@ -230,6 +230,15 @@ importers:
 
   apps/playground:
     dependencies:
+      '@verdigris/ae2':
+        specifier: workspace:*
+        version: link:../../packages/ae2
+      '@verdigris/ic2':
+        specifier: workspace:*
+        version: link:../../packages/ic2
+      '@verdigris/mekanism':
+        specifier: workspace:*
+        version: link:../../packages/mekanism
       '@verdigris/textures':
         specifier: workspace:*
         version: link:../../packages/textures
@@ -325,6 +334,15 @@ importers:
       '@astrojs/sitemap':
         specifier: ^3.7.4
         version: 3.7.4
+      '@verdigris/ae2':
+        specifier: workspace:*
+        version: link:../../packages/ae2
+      '@verdigris/ic2':
+        specifier: workspace:*
+        version: link:../../packages/ic2
+      '@verdigris/mekanism':
+        specifier: workspace:*
+        version: link:../../packages/mekanism
       '@verdigris/textures':
         specifier: workspace:*
         version: link:../../packages/textures
@@ -369,6 +387,220 @@ importers:
         specifier: ^8.3.5
         version: 8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
 
+  packages/ae2:
+    dependencies:
+      '@verdigris/mods-core':
+        specifier: workspace:*
+        version: link:../mods-core
+      '@verdigris/textures':
+        specifier: workspace:*
+        version: link:../textures
+      '@verdigris/ui':
+        specifier: workspace:*
+        version: link:../ui
+    devDependencies:
+      '@rsbuild/plugin-react':
+        specifier: ^2.1.1
+        version: 2.1.1(@rsbuild/core@2.3.0-beta.0)(@rspack/core@2.2.9(@swc/helpers@0.5.23))
+      '@rslib/core':
+        specifier: ^1.0.4
+        version: 1.0.4(typescript@6.0.3)
+      '@testing-library/jest-dom':
+        specifier: ^6.9.0
+        version: 6.9.1
+      '@testing-library/react':
+        specifier: ^16.3.3
+        version: 16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@testing-library/user-event':
+        specifier: ^14.6.1
+        version: 14.6.8(@testing-library/dom@10.4.2)
+      '@types/react':
+        specifier: ^19.2.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: ^19.2.0
+        version: 19.3.0(@types/react@19.3.0)
+      '@vitest/coverage-v8':
+        specifier: ^5.0.2
+        version: 5.0.5(vitest@5.0.5)
+      axe-core:
+        specifier: ^4.11.0
+        version: 4.14.0
+      jsdom:
+        specifier: ^30.1.3
+        version: 30.1.3
+      react:
+        specifier: 19.2.8
+        version: 19.2.8
+      react-dom:
+        specifier: 19.2.8
+        version: 19.2.8(react@19.2.8)
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+      vitest:
+        specifier: ^5.0.2
+        version: 5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(jsdom@30.1.3)(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
+
+  packages/ic2:
+    dependencies:
+      '@verdigris/mods-core':
+        specifier: workspace:*
+        version: link:../mods-core
+      '@verdigris/textures':
+        specifier: workspace:*
+        version: link:../textures
+      '@verdigris/ui':
+        specifier: workspace:*
+        version: link:../ui
+    devDependencies:
+      '@rsbuild/plugin-react':
+        specifier: ^2.1.1
+        version: 2.1.1(@rsbuild/core@2.2.14)(@rspack/core@2.2.9(@swc/helpers@0.5.23))
+      '@rslib/core':
+        specifier: ^1.0.4
+        version: 1.0.4(typescript@6.0.3)
+      '@testing-library/jest-dom':
+        specifier: ^6.9.0
+        version: 6.9.1
+      '@testing-library/react':
+        specifier: ^16.3.3
+        version: 16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@testing-library/user-event':
+        specifier: ^14.6.1
+        version: 14.6.8(@testing-library/dom@10.4.2)
+      '@types/react':
+        specifier: ^19.2.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: ^19.2.0
+        version: 19.3.0(@types/react@19.3.0)
+      '@vitest/coverage-v8':
+        specifier: ^5.0.2
+        version: 5.0.5(vitest@5.0.5)
+      axe-core:
+        specifier: ^4.11.0
+        version: 4.14.0
+      jsdom:
+        specifier: ^30.1.3
+        version: 30.1.3
+      react:
+        specifier: 19.2.8
+        version: 19.2.8
+      react-dom:
+        specifier: 19.2.8
+        version: 19.2.8(react@19.2.8)
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+      vitest:
+        specifier: ^5.0.2
+        version: 5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(jsdom@30.1.3)(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
+
+  packages/mekanism:
+    dependencies:
+      '@verdigris/mods-core':
+        specifier: workspace:*
+        version: link:../mods-core
+      '@verdigris/textures':
+        specifier: workspace:*
+        version: link:../textures
+      '@verdigris/ui':
+        specifier: workspace:*
+        version: link:../ui
+    devDependencies:
+      '@rsbuild/plugin-react':
+        specifier: ^2.1.1
+        version: 2.1.1(@rsbuild/core@2.2.14)(@rspack/core@2.2.9(@swc/helpers@0.5.23))
+      '@rslib/core':
+        specifier: ^1.0.4
+        version: 1.0.4(typescript@6.0.3)
+      '@testing-library/jest-dom':
+        specifier: ^6.9.0
+        version: 6.9.1
+      '@testing-library/react':
+        specifier: ^16.3.3
+        version: 16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@testing-library/user-event':
+        specifier: ^14.6.1
+        version: 14.6.8(@testing-library/dom@10.4.2)
+      '@types/react':
+        specifier: ^19.2.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: ^19.2.0
+        version: 19.3.0(@types/react@19.3.0)
+      '@vitest/coverage-v8':
+        specifier: ^5.0.2
+        version: 5.0.5(vitest@5.0.5)
+      axe-core:
+        specifier: ^4.11.0
+        version: 4.14.0
+      jsdom:
+        specifier: ^30.1.3
+        version: 30.1.3
+      react:
+        specifier: 19.2.8
+        version: 19.2.8
+      react-dom:
+        specifier: 19.2.8
+        version: 19.2.8(react@19.2.8)
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+      vitest:
+        specifier: ^5.0.2
+        version: 5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(jsdom@30.1.3)(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
+
+  packages/mods-core:
+    dependencies:
+      '@verdigris/ui':
+        specifier: workspace:*
+        version: link:../ui
+    devDependencies:
+      '@rsbuild/plugin-react':
+        specifier: ^2.1.1
+        version: 2.1.1(@rsbuild/core@2.2.14)(@rspack/core@2.2.9(@swc/helpers@0.5.23))
+      '@rslib/core':
+        specifier: ^1.0.4
+        version: 1.0.4(typescript@6.0.3)
+      '@testing-library/jest-dom':
+        specifier: ^6.9.0
+        version: 6.9.1
+      '@testing-library/react':
+        specifier: ^16.3.3
+        version: 16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@testing-library/user-event':
+        specifier: ^14.6.1
+        version: 14.6.8(@testing-library/dom@10.4.2)
+      '@types/react':
+        specifier: ^19.2.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: ^19.2.0
+        version: 19.3.0(@types/react@19.3.0)
+      '@vitest/coverage-v8':
+        specifier: ^5.0.2
+        version: 5.0.5(vitest@5.0.5)
+      axe-core:
+        specifier: ^4.11.0
+        version: 4.14.0
+      jsdom:
+        specifier: ^30.1.3
+        version: 30.1.3
+      react:
+        specifier: 19.2.8
+        version: 19.2.8
+      react-dom:
+        specifier: 19.2.8
+        version: 19.2.8(react@19.2.8)
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+      vitest:
+        specifier: ^5.0.2
+        version: 5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(jsdom@30.1.3)(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
+
   packages/textures:
     devDependencies:
       fflate:
@@ -407,7 +639,7 @@ importers:
     devDependencies:
       '@rsbuild/plugin-react':
         specifier: ^2.1.1
-        version: 2.1.1(@rsbuild/core@2.3.0-beta.0)(@rspack/core@2.2.9(@swc/helpers@0.5.23))
+        version: 2.1.1(@rsbuild/core@2.2.14)(@rspack/core@2.2.9(@swc/helpers@0.5.23))
       '@rslib/core':
         specifier: ^1.0.4
         version: 1.0.4(typescript@6.0.3)
