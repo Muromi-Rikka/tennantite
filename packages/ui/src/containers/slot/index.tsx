@@ -10,6 +10,10 @@ export interface SlotProps extends ComponentProps<"div"> {
   */
   bare?: boolean;
   /**
+  * 自定义槽框纹理类（默认 `mc-tex-slot`；mod 界面可传自己的槽框）
+  */
+  frameClassName?: string;
+  /**
   * 空槽 ghost 精灵
   */
   ghost?: GuiSpriteName;
@@ -31,6 +35,7 @@ export function Slot({
   bare = false,
   children,
   className,
+  frameClassName = "mc-tex-slot",
   ghost,
   selected = false,
   size = 18,
@@ -41,7 +46,7 @@ export function Slot({
     <div
       className={cn(
         "relative flex items-center justify-center",
-        !bare && "mc-tex-slot",
+        !bare && frameClassName,
         selected && "mc-slot-selected",
         className,
       )}

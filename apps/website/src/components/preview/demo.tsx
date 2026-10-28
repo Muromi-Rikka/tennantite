@@ -1,5 +1,9 @@
 import type { ComponentType } from "react";
 import {
+  Ae2ChestScreenDemo,
+  Ae2DriveScreenDemo,
+  Ae2InscriberScreenDemo,
+  Ae2TerminalScreenDemo,
   AnvilScreenDemo,
   AttackIndicatorDemo,
   BadgeDemo,
@@ -69,6 +73,10 @@ import {
 } from "@verdigris/ui/demos";
 
 const registry: Record<string, ComponentType> = {
+  Ae2ChestScreenDemo,
+  Ae2DriveScreenDemo,
+  Ae2InscriberScreenDemo,
+  Ae2TerminalScreenDemo,
   AnvilScreenDemo,
   AttackIndicatorDemo,
   BadgeDemo,

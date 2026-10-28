@@ -13,6 +13,10 @@ export interface ScreenItemSlotProps {
   */
   frame?: boolean;
   /**
+  * 自定义槽框纹理类（默认原版 `mc-tex-slot`）
+  */
+  frameClassName?: string;
+  /**
   * 空槽 ghost 精灵（盔甲/盾/箭等）
   */
   ghost?: GuiSpriteName;
@@ -50,6 +54,7 @@ export interface ScreenItemSlotProps {
 export function ScreenItemSlot({
   className,
   frame = false,
+  frameClassName,
   ghost,
   item,
   label,
@@ -63,6 +68,7 @@ export function ScreenItemSlot({
       aria-label={label}
       bare={!frame}
       className={cn("absolute", onActivate ? "cursor-pointer" : undefined, className)}
+      frameClassName={frameClassName}
       onClick={onActivate}
       size={size}
       style={{ left: gui(left), top: gui(top) }}

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Ae2Page } from "./pages/ae2";
 import { AnvilScreenPage } from "./pages/anvil-screen";
 import { BadgePage } from "./pages/badge";
 import { BeaconScreenPage } from "./pages/beacon-screen";
@@ -48,6 +49,7 @@ export interface PageEntry {
  * 预览页注册表：每个组件 / 层级一个路由（hash = 键）
 */
 export const pageRegistry = new Map<string, PageEntry>([
+  ["ae2", { render: () => <Ae2Page />, title: "AE2 (Mod)" }],
   ["anvil-screen", { render: () => <AnvilScreenPage />, title: "AnvilScreen" }],
   ["badge", { render: () => <BadgePage />, title: "Badge" }],
   ["beacon-screen", { render: () => <BeaconScreenPage />, title: "BeaconScreen" }],

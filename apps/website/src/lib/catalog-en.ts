@@ -1,6 +1,10 @@
 import type { ComponentGroupId } from "./catalog";
 
 export const componentDescriptionsEn: Record<string, string> = {
+  "ae2-chest-screen": "176×168 ME chest: single storage cell slot, priority tab and player inventory.",
+  "ae2-drive-screen": "176×201 ME drive: 2×5 storage cell slots, priority tab and player inventory.",
+  "ae2-inscriber-screen": "176×178 inscriber: three 22×22 plate / input slots, a 26×26 output slot and vertical progress.",
+  "ae2-terminal-screen": "195×224 ME terminal (6 rows): 9×6 item grid, search field, scrollbar, player inventory and left toolbar.",
   "anvil-screen": "110×16 name input, item / material / result slots and level cost.",
   "badge": "Count and rarity badge for item stacks; pure styling with default / dim / gold variants.",
   "batbox-screen": "IC2 BatBox: large EU gauge plus charge (+) / discharge (−) slots and a redstone-mode button.",
@@ -53,7 +57,7 @@ export const componentGroupTextEn: Record<ComponentGroupId, { description: strin
   containers: { description: "Panels, slots, icons and other composition primitives.", title: "Containers" },
   hud: { description: "Status layers drawn over the game view.", title: "HUD" },
   menus: { description: "Full-screen menus for title, settings, chat and more.", title: "Menu screens" },
-  mods: { description: "Hand-drawn visual recreations of mod GUIs such as IndustrialCraft 2 (data-injected, no game logic).", title: "Mod screens" },
+  mods: { description: "Hand-drawn visual recreations of mod GUIs such as IndustrialCraft 2 / Applied Energistics 2 (data-injected, no game logic).", title: "Mod screens" },
   primitives: { description: "Stateless or Base UI wrappers for basic controls.", title: "Primitives" },
   screens: { description: "Full container screens assembled at vanilla coordinates.", title: "Container screens" },
 };

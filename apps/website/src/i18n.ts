@@ -170,10 +170,10 @@ const zh: UIDictionary = {
   },
   blocksPage: {
     breadcrumb: "整屏界面",
-    description: "32 个整屏组合界面。每个整屏界面由 L1–L3 组件拼装，数据由使用方注入；点开可看全屏预览与示例源码。",
+    description: "36 个整屏组合界面。每个整屏界面由 L1–L3 组件拼装，数据由使用方注入；点开可看全屏预览与示例源码。",
     groups: {
       menus: { description: "标题、设置、聊天等全屏菜单与遮罩。", title: "菜单界面" },
-      mods: { description: "工业时代 2 等 mod 的机器界面，手绘纹理复刻（数据注入、无游戏逻辑）。", title: "Mod 界面" },
+      mods: { description: "工业时代 2 / 应用能源 2 等 mod 的机器界面，手绘纹理复刻（数据注入、无游戏逻辑）。", title: "Mod 界面" },
       screens: { description: "按原版容器坐标拼装的 176–276 GUI px 面板。", title: "容器界面" },
     },
     metaTitle: "整屏界面 · Verdigris",
@@ -194,7 +194,7 @@ const zh: UIDictionary = {
   },
   componentsPage: {
     breadcrumb: "Components",
-    description: "66 个可复制进项目的组件，按层级分组。每个页面提供实时预览与示例源码。",
+    description: "70 个可复制进项目的组件，按层级分组。每个页面提供实时预览与示例源码。",
     listLabel: "组件列表",
     metaTitle: "Components 组件 · Verdigris",
     title: "Components",
@@ -255,7 +255,7 @@ const zh: UIDictionary = {
     blocks: {
       all: "全部 {count} 个整屏界面",
       crafting: "工作台 · 容器界面",
-      description: "24 个容器界面 + 5 个 Mod 机器界面 + 3 个菜单/覆盖层。每个整屏界面都是可运行示例，也可以拆回组件自行组合。",
+      description: "24 个容器界面 + 9 个 Mod 机器界面 + 3 个菜单/覆盖层。每个整屏界面都是可运行示例，也可以拆回组件自行组合。",
       eyebrow: "L3 · 整屏界面",
       inventory: "物品栏 · 容器界面",
       title: "整屏界面，复制即用",
@@ -285,7 +285,7 @@ const zh: UIDictionary = {
       previewLabel: "菜单界面 · MainMenu",
       view: "查看 →",
     },
-    metaDescription: "66 个可复制的 Minecraft 风格 React 组件与 32 个整屏界面。基于 Base UI 与 Tailwind v4，SSR 安全；GUI 精灵取自原版 26.4-snapshot-3。",
+    metaDescription: "70 个可复制的 Minecraft 风格 React 组件与 36 个整屏界面。基于 Base UI 与 Tailwind v4，SSR 安全；GUI 精灵取自原版 26.4-snapshot-3。",
     metaTitle: "Verdigris · Minecraft 风格 React 组件库",
     primitiveCode: `import { Button, Panel } from "@verdigris/ui";
 
@@ -351,10 +351,10 @@ const en: UIDictionary = {
   },
   blocksPage: {
     breadcrumb: "Blocks",
-    description: "32 composed full-screen interfaces. Each Block is assembled from L1–L3 components and accepts injected data; open one for a full-screen preview and source.",
+    description: "36 composed full-screen interfaces. Each Block is assembled from L1–L3 components and accepts injected data; open one for a full-screen preview and source.",
     groups: {
       menus: { description: "Full-screen menus and overlays for title, settings, chat and more.", title: "Menu screens" },
-      mods: { description: "Machine screens from mods such as IndustrialCraft 2, redrawn by hand (data-injected, no game logic).", title: "Mod screens" },
+      mods: { description: "Machine screens from mods such as IndustrialCraft 2 / Applied Energistics 2, redrawn by hand (data-injected, no game logic).", title: "Mod screens" },
       screens: { description: "176–276 GUI px panels laid out with vanilla container coordinates.", title: "Container screens" },
     },
     metaTitle: "Blocks · Verdigris",
@@ -375,7 +375,7 @@ const en: UIDictionary = {
   },
   componentsPage: {
     breadcrumb: "Components",
-    description: "66 copy-ready components grouped by layer. Every page includes a live preview and example source.",
+    description: "70 copy-ready components grouped by layer. Every page includes a live preview and example source.",
     listLabel: "Component list",
     metaTitle: "Components · Verdigris",
     title: "Components",
@@ -436,7 +436,7 @@ const en: UIDictionary = {
     blocks: {
       all: "All {count} Blocks",
       crafting: "Crafting table · Container screen",
-      description: "24 container screens, 5 mod machine screens and 3 menu screens. Every Block runs as-is, or you can take it apart and compose the pieces yourself.",
+      description: "24 container screens, 9 mod machine screens and 3 menu screens. Every Block runs as-is, or you can take it apart and compose the pieces yourself.",
       eyebrow: "L3 · Blocks",
       inventory: "Inventory · Container screen",
       title: "Full screens, ready to copy",
@@ -466,7 +466,7 @@ const en: UIDictionary = {
       previewLabel: "Menu · MainMenu",
       view: "View →",
     },
-    metaDescription: "66 copy-ready Minecraft-style React components and 32 full-screen interfaces. Base UI + Tailwind v4, SSR-safe; GUI textures redrawn, item icons from vanilla 26.3.",
+    metaDescription: "70 copy-ready Minecraft-style React components and 36 full-screen interfaces. Base UI + Tailwind v4, SSR-safe; GUI textures redrawn, item icons from vanilla 26.3.",
     metaTitle: "Verdigris · Minecraft-style React components",
     primitiveCode: `import { Button, Panel } from "@verdigris/ui";
 

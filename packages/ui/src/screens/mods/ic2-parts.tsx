@@ -1,5 +1,6 @@
 import type { Ic2RedstoneMode } from "./ic2-types";
-import { cn, gui } from "../../lib/utils";
+import { gui } from "../../lib/utils";
+import { ModIconButton, ModProgress } from "./mod-parts";
 
 const REDSTONE_ORDER: Ic2RedstoneMode[] = ["normal", "inverted", "none"];
 
@@ -91,36 +92,18 @@ export function Ic2Progress({
   width,
 }: Ic2ProgressProps) {
   const ratio = Math.min(1, Math.max(0, progress));
-  // down：从顶部向下填充（输入 → 输出）；right：从左向右填充
-  const clip = direction === "right"
-    ? `inset(0 ${(1 - ratio) * 100}% 0 0)`
-    : `inset(0 0 ${(1 - ratio) * 100}% 0)`;
   return (
-    <div
-      aria-label={label}
-      aria-valuemax={1}
-      aria-valuemin={0}
-      aria-valuenow={ratio}
-      className="absolute"
-      role={label ? "progressbar" : undefined}
-      style={{ height: gui(height), left: gui(left), top: gui(top), width: gui(width) }}
-    >
-      <div
-        aria-hidden="true"
-        className={cn(
-          "absolute inset-0",
-          direction === "right" ? "mc-tex-ic2-arrow" : "mc-tex-ic2-arrow-down",
-        )}
-      />
-      <div
-        aria-hidden="true"
-        className={cn(
-          "absolute inset-0",
-          direction === "right" ? "mc-tex-ic2-arrow-fill" : "mc-tex-ic2-arrow-down-fill",
-        )}
-        style={{ clipPath: clip }}
-      />
-    </div>
+    <ModProgress
+      direction={direction}
+      fillClassName={direction === "right" ? "mc-tex-ic2-arrow-fill" : "mc-tex-ic2-arrow-down-fill"}
+      height={height}
+      label={label}
+      left={left}
+      progress={ratio}
+      top={top}
+      trackClassName={direction === "right" ? "mc-tex-ic2-arrow" : "mc-tex-ic2-arrow-down"}
+      width={width}
+    />
   );
 }
 
@@ -144,19 +127,16 @@ export function Ic2RedstoneButton({
     onChange(next ?? "normal");
   };
   return (
-    <button
-      aria-label={text}
-      className="mc-tex-btn absolute flex cursor-pointer items-center justify-center border-0 p-0"
+    <ModIconButton
+      buttonClassName="mc-tex-btn"
+      height={22}
+      iconClassName={`mc-tex-ic2-redstone-${mode}`}
+      label={text}
+      left={left}
       onClick={onChange ? cycle : undefined}
-      style={{ height: gui(22), left: gui(left), top: gui(top), width: gui(22) }}
       title={text}
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        className={cn(`mc-tex-ic2-redstone-${mode}`, "block")}
-        style={{ height: gui(16), width: gui(16) }}
-      />
-    </button>
+      top={top}
+      width={22}
+    />
   );
 }

@@ -6,8 +6,8 @@ import {
   blocks,
   catalogDescription,
   componentHref,
-  componentTitle,
   components,
+  componentTitle,
 } from "./catalog";
 import { docHref, filterDocs, sortDocs } from "./docs";
 

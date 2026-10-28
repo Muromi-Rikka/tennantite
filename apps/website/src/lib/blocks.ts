@@ -1,4 +1,8 @@
 export const blockComposition: Record<string, string[]> = {
+  "ae2-chest-screen": ["ScreenPanel", "PlayerInventory", "Slot", "ModTabButton"],
+  "ae2-drive-screen": ["ScreenPanel", "PlayerInventory", "ModSlotGrid", "ModTabButton"],
+  "ae2-inscriber-screen": ["ScreenPanel", "PlayerInventory", "Slot", "ModProgress", "ModToolbar"],
+  "ae2-terminal-screen": ["ScreenPanel", "PlayerInventory", "ModSlotGrid", "ModSearchField", "ModScrollbar", "ModToolbar"],
   "anvil-screen": ["ScreenPanel", "PlayerInventory", "Input"],
   "batbox-screen": ["ScreenPanel", "PlayerInventory", "EuBar"],
   "beacon-screen": ["ScreenPanel", "PlayerInventory", "GuiSprite", "Icon", "Slot"],

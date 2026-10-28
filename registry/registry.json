@@ -1010,6 +1010,70 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/ae2-chest-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-chest-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Chest Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/ae2-drive-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-drive-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Drive Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/ae2-inscriber-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-inscriber-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Inscriber Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ui/src/screens/mods/ae2-terminal-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-terminal-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Terminal Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "dependencies": [],
       "files": [
         {

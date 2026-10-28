@@ -1,7 +1,7 @@
 import type { Locale } from "../i18n";
 import type { DocEntry } from "./docs";
 import { ui } from "../i18n";
-import { blockHref, blocks, catalogDescription, componentHref, componentTitle, components } from "./catalog";
+import { blockHref, blocks, catalogDescription, componentHref, components, componentTitle } from "./catalog";
 import { docHref, filterDocs, sortDocs } from "./docs";
 
 export interface SearchItem {

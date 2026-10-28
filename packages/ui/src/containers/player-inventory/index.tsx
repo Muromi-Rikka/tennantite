@@ -22,6 +22,10 @@ export interface PlayerInventoryProps {
   bare?: boolean;
   className?: string;
   /**
+  * 自定义槽框纹理类（默认原版 `mc-tex-slot`）
+  */
+  frameClassName?: string;
+  /**
   * 快捷栏 9 格
   */
   hotbarItems?: (InventoryItem | null | undefined)[];
@@ -62,6 +66,7 @@ const HOTBAR_SLOTS = 9;
 export function PlayerInventory({
   bare = false,
   className,
+  frameClassName,
   hotbarItems = [],
   hotbarY = 141,
   mainItems = [],
@@ -77,6 +82,7 @@ export function PlayerInventory({
         area="main"
         bare={bare}
         count={mainRows * COLUMNS}
+        frameClassName={frameClassName}
         items={mainItems}
         left={x}
         onSlotClick={onSlotClick}
@@ -86,6 +92,7 @@ export function PlayerInventory({
         area="hotbar"
         bare={bare}
         count={HOTBAR_SLOTS}
+        frameClassName={frameClassName}
         items={hotbarItems}
         left={x}
         onSlotClick={onSlotClick}
@@ -100,6 +107,7 @@ function InventoryGroup({
   area,
   bare,
   count,
+  frameClassName,
   items,
   left,
   onSlotClick,
@@ -109,6 +117,7 @@ function InventoryGroup({
   area: "hotbar" | "main";
   bare: boolean;
   count: number;
+  frameClassName?: string;
   items: PlayerInventoryProps["mainItems"];
   left: number;
   onSlotClick?: PlayerInventoryProps["onSlotClick"];
@@ -128,6 +137,7 @@ function InventoryGroup({
             aria-label={`${area}-${index}`}
             bare={bare}
             className={onSlotClick ? "cursor-pointer" : undefined}
+            frameClassName={frameClassName}
             key={index}
             onClick={
               onSlotClick

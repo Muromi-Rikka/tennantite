@@ -5,6 +5,10 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 
 import {
+  Ae2ChestScreen,
+  Ae2DriveScreen,
+  Ae2InscriberScreen,
+  Ae2TerminalScreen,
   Badge,
   BatBoxScreen,
   BossBar,
@@ -52,6 +56,10 @@ function render(): string {
   return renderToStaticMarkup(
     <>
       <Badge>64</Badge>
+      <Ae2TerminalScreen />
+      <Ae2InscriberScreen />
+      <Ae2DriveScreen />
+      <Ae2ChestScreen />
       <GuiSprite name="container/inventory.png" />
       <InventoryScreen />
       <ChestScreen rows={3} />
@@ -136,6 +144,11 @@ describe("sSR smoke (node env, 规格 §1.1)", () => {
     expect(html).toContain("mc-tex-ic2-machine");
     expect(html).toContain("磨矿机");
     expect(html).toContain("储电箱");
+    expect(html).toContain("mc-tex-ae2-panel");
+    expect(html).toContain("ME 终端");
+    expect(html).toContain("压印器");
+    expect(html).toContain("ME 驱动器");
+    expect(html).toContain("ME 箱子");
     expect(html).toContain("物品栏");
     expect(html).toContain("aria-label=\"main-0\"");
     expect(html).toContain("aria-label=\"hotbar-8\"");

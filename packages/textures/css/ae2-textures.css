@@ -1,0 +1,226 @@
+/*
+ * @verdigris/textures — AE2（应用能源 2）风格纹理（视觉复刻扩展，非原版素材）
+ *
+ * 不包含 AE2 原始素材：全部为手绘 SVG data-URI / CSS 像素复刻
+ * （授权见 LICENSE-ASSETS.md）。1 GUI px = var(--mc-gui)；
+ * 所有纹理按 --mc-gui 缩放，除进度填充外无渐变。
+ *
+ * 用法：在应用 Tailwind 入口内 @import "@verdigris/textures/css/ae2-textures.css";
+ */
+
+/* ---- AE2 窗口：浅灰面板 + 深色外框 + 上/左高光 + 底部阴影 ---- */
+.mc-tex-ae2-panel {
+  background-color: var(--color-mc-ae2-panel, #cbccd4);
+  background-image:
+    linear-gradient(
+      to bottom,
+      var(--color-mc-ae2-highlight, #f2f2f2) 0 var(--mc-gui),
+      transparent var(--mc-gui) calc(100% - var(--mc-gui) * 3),
+      var(--color-mc-ae2-highlight, #f2f2f2) calc(100% - var(--mc-gui) * 3)
+        calc(100% - var(--mc-gui) * 2),
+      var(--color-mc-ae2-shadow, #878fa5) calc(100% - var(--mc-gui) * 2) 100%
+    ),
+    linear-gradient(
+      to right,
+      var(--color-mc-ae2-highlight, #f2f2f2) 0 var(--mc-gui),
+      transparent var(--mc-gui) calc(100% - var(--mc-gui)),
+      var(--color-mc-ae2-highlight, #f2f2f2) calc(100% - var(--mc-gui)) 100%
+    );
+  border: var(--mc-gui) solid var(--color-mc-ae2-outline, #413f54);
+  box-sizing: border-box;
+  image-rendering: pixelated;
+}
+
+/* ---- AE2 槽位：18/22/26 通用，顶部 1px 高光 + 第 2 px 暗线 ---- */
+.mc-tex-ae2-slot,
+.mc-tex-ae2-slot-large::before {
+  background-color: var(--color-mc-ae2-slot, #adb0c4);
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0 var(--mc-gui),
+    var(--color-mc-ae2-slot-border, #9a9fb4) var(--mc-gui) calc(var(--mc-gui) * 2),
+    transparent calc(var(--mc-gui) * 2) 100%
+  );
+  box-shadow:
+    inset var(--mc-gui) var(--mc-gui) 0 0 var(--color-mc-ae2-highlight, #f2f2f2),
+    inset calc(var(--mc-gui) * -1) calc(var(--mc-gui) * -1) 0 0
+      var(--color-mc-ae2-highlight, #f2f2f2);
+  image-rendering: pixelated;
+}
+
+/* 22×22 大槽：1px 外阴影 + 2px 内缩后复用 18 槽视觉 */
+.mc-tex-ae2-slot-large {
+  background-color: var(--color-mc-ae2-slot-border, #9a9fb4);
+  box-shadow: inset 0 0 0 var(--mc-gui) var(--color-mc-ae2-shadow, #878fa5);
+  image-rendering: pixelated;
+  position: relative;
+}
+
+.mc-tex-ae2-slot-large::before {
+  content: "";
+  inset: calc(var(--mc-gui) * 2);
+  position: absolute;
+}
+
+/* ---- AE2 搜索框：内嵌暗底 + 亮色外框 + 顶部 2px 阴影 ---- */
+.mc-tex-ae2-text-field {
+  background-color: var(--color-mc-ae2-slot-border, #9a9fb4);
+  border: var(--mc-gui) solid var(--color-mc-ae2-highlight, #f2f2f2);
+  box-shadow: inset 0 calc(var(--mc-gui) * 2) 0 0
+    var(--color-mc-ae2-field-shadow, #696d88);
+  box-sizing: border-box;
+  color: var(--color-mc-ae2-field-text, #f2f2f2);
+  font-family: var(--font-mc);
+  font-size: var(--text-mc);
+  line-height: var(--text-mc--line-height);
+  outline: none;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.mc-tex-ae2-text-field::placeholder {
+  color: var(--color-mc-ae2-placeholder, #dedfe3);
+  opacity: 1;
+}
+
+/* ---- AE2 滚动条：6 宽轨道 + 12×15 滑块 ---- */
+.mc-tex-ae2-scrollbar-track {
+  background-color: var(--color-mc-ae2-slot-border, #9a9fb4);
+  box-shadow:
+    inset var(--mc-gui) 0 0 0 var(--color-mc-ae2-highlight, #f2f2f2),
+    inset calc(var(--mc-gui) * -1) 0 0 0 var(--color-mc-ae2-highlight, #f2f2f2);
+  image-rendering: pixelated;
+}
+
+.mc-tex-ae2-scrollbar-thumb {
+  background-color: var(--color-mc-ae2-slot, #adb0c4);
+  border: var(--mc-gui) solid var(--color-mc-ae2-outline, #413f54);
+  box-shadow:
+    inset var(--mc-gui) var(--mc-gui) 0 0 var(--color-mc-ae2-highlight, #f2f2f2),
+    inset calc(var(--mc-gui) * -1) calc(var(--mc-gui) * -1) 0 0
+      var(--color-mc-ae2-shadow, #878fa5);
+  box-sizing: border-box;
+  image-rendering: pixelated;
+}
+
+/* ---- AE2 竖向工具栏：21 GUI px 浅色条 ---- */
+.mc-tex-ae2-toolbar {
+  background-color: var(--color-mc-ae2-panel, #cbccd4);
+  border: var(--mc-gui) solid var(--color-mc-ae2-outline, #413f54);
+  box-shadow: inset var(--mc-gui) var(--mc-gui) 0 0
+    var(--color-mc-ae2-highlight, #f2f2f2);
+  box-sizing: border-box;
+  image-rendering: pixelated;
+}
+
+/* ---- AE2 工具栏按钮：18×20，1px 内框 + 上/左高光 ---- */
+.mc-tex-ae2-toolbar-button {
+  background-color: var(--color-mc-ae2-panel, #cbccd4);
+  box-shadow:
+    inset 0 0 0 var(--mc-gui) var(--color-mc-ae2-outline, #413f54),
+    inset var(--mc-gui) var(--mc-gui) 0 0 var(--color-mc-ae2-highlight, #f2f2f2);
+  image-rendering: pixelated;
+}
+
+.mc-tex-ae2-toolbar-button:hover,
+.mc-tex-ae2-toolbar-button:focus-visible {
+  box-shadow: inset 0 0 0 var(--mc-gui) var(--color-mc-ae2-highlight, #f2f2f2);
+}
+
+/* ---- AE2 顶部标签：20×20，选中态亮底 ---- */
+.mc-tex-ae2-tab {
+  background-color: var(--color-mc-ae2-panel, #cbccd4);
+  box-shadow:
+    inset 0 0 0 var(--mc-gui) var(--color-mc-ae2-outline, #413f54),
+    inset var(--mc-gui) var(--mc-gui) 0 0 var(--color-mc-ae2-highlight, #f2f2f2);
+  image-rendering: pixelated;
+}
+
+.mc-tex-ae2-tab:hover,
+.mc-tex-ae2-tab:focus-visible {
+  box-shadow: inset 0 0 0 var(--mc-gui) var(--color-mc-ae2-highlight, #f2f2f2);
+}
+
+.mc-tex-ae2-tab-selected {
+  background-color: var(--color-mc-ae2-highlight, #f2f2f2);
+  box-shadow: inset 0 0 0 var(--mc-gui) var(--color-mc-ae2-outline, #413f54);
+}
+
+/* ---- 压印器进度：6×18 轨道 + 4×16 交替紫填充 ---- */
+.mc-tex-ae2-inscriber-progress-track {
+  background-color: var(--color-mc-ae2-panel, #cbccd4);
+  border: var(--mc-gui) solid var(--color-mc-ae2-highlight, #f2f2f2);
+  box-sizing: border-box;
+  image-rendering: pixelated;
+}
+
+.mc-tex-ae2-inscriber-progress {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='16' viewBox='0 0 4 16' shape-rendering='crispEdges'%3E%3Crect width='4' height='2' y='0' fill='%23b06fdd'/%3E%3Crect width='4' height='2' y='2' fill='%23915dcd'/%3E%3Crect width='4' height='2' y='4' fill='%23b06fdd'/%3E%3Crect width='4' height='2' y='6' fill='%23915dcd'/%3E%3Crect width='4' height='2' y='8' fill='%23b06fdd'/%3E%3Crect width='4' height='2' y='10' fill='%23915dcd'/%3E%3Crect width='4' height='2' y='12' fill='%23b06fdd'/%3E%3Crect width='4' height='2' y='14' fill='%23915dcd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+}
+
+/* ---- 压印器连接箭头：上/下槽 → 输入槽 → 输出槽 ---- */
+.mc-tex-ae2-inscriber-arrows {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='176' height='178' viewBox='0 0 176 178' shape-rendering='crispEdges'%3E%3Cg fill='none' stroke='%23878fa5' stroke-width='2'%3E%3Cpath d='M57 26h11v10'/%3E%3Cpath d='M57 66h11V57'/%3E%3Cpath d='M82 46h20'/%3E%3C/g%3E%3Cpath d='M102 43l6 3-6 3z' fill='%23878fa5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+}
+
+/* ---- AE2 16×16 图标：1px 深色线，透明底 ---- */
+.mc-tex-ae2-icon-sort-name,
+.mc-tex-ae2-icon-sort-direction,
+.mc-tex-ae2-icon-view,
+.mc-tex-ae2-icon-cog,
+.mc-tex-ae2-icon-style,
+.mc-tex-ae2-icon-priority,
+.mc-tex-ae2-icon-craft,
+.mc-tex-ae2-icon-separate-sides,
+.mc-tex-ae2-icon-auto-export,
+.mc-tex-ae2-icon-buffer {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+}
+
+.mc-tex-ae2-icon-sort-name {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cg fill='none' stroke='%23413f54'%3E%3Crect x='2' y='2' width='12' height='12'/%3E%3Cpath d='M4 6h8M4 9h6M4 12h4'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.mc-tex-ae2-icon-sort-direction {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath d='M8 2v10M4 8l4 4 4-4' fill='none' stroke='%23413f54'/%3E%3C/svg%3E");
+}
+
+.mc-tex-ae2-icon-view {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cg fill='none' stroke='%23413f54'%3E%3Crect x='2' y='3' width='12' height='10'/%3E%3Cpath d='M3 8q5-4 10 0q-5 4-10 0'/%3E%3C/g%3E%3Ccircle cx='8' cy='8' r='1.5' fill='%23413f54'/%3E%3C/svg%3E");
+}
+
+.mc-tex-ae2-icon-cog {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cg fill='none' stroke='%23413f54'%3E%3Cpath d='M6 2h4v2h2v2h2v4h-2v2h-2v2H6v-2H4v-2H2V6h2V4h2z'/%3E%3Ccircle cx='8' cy='8' r='2'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.mc-tex-ae2-icon-style {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cg fill='none' stroke='%23413f54'%3E%3Crect x='2' y='2' width='12' height='12'/%3E%3Cpath d='M2 11h12'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.mc-tex-ae2-icon-priority {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath d='M4 8l4-4 4 4M4 12l4-4 4 4' fill='none' stroke='%23413f54'/%3E%3C/svg%3E");
+}
+
+.mc-tex-ae2-icon-craft {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cg fill='none' stroke='%23413f54'%3E%3Cpath d='M3 13l6-6'/%3E%3Cpath d='M7 7l2-2 4 4-2 2z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.mc-tex-ae2-icon-separate-sides {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cg fill='none' stroke='%23413f54'%3E%3Crect x='3' y='2' width='4' height='12'/%3E%3Crect x='9' y='2' width='4' height='12'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.mc-tex-ae2-icon-auto-export {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cg fill='none' stroke='%23413f54'%3E%3Crect x='2' y='4' width='7' height='8'/%3E%3Cpath d='M10 8h4M11 5l3 3-3 3'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.mc-tex-ae2-icon-buffer {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath d='M2 4h12M2 8h12M2 12h12' fill='none' stroke='%23413f54'/%3E%3C/svg%3E");
+}
