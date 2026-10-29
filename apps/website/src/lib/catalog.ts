@@ -34,7 +34,7 @@ export interface ComponentGroup {
 
 export type ComponentGroupId = "containers" | "hud" | "menus" | "mods" | "primitives" | "screens";
 
-export const modIds = ["mekanism", "ic2", "ae2", "jei", "create", "thermal", "ie"] as const;
+export const modIds = ["mekanism", "ic2", "ae2", "create", "thermal", "ie"] as const;
 
 export type ModId = "common" | ModTarget;
 
@@ -46,7 +46,7 @@ export const componentGroups: ComponentGroup[] = [
   { description: "叠在游戏画面上的状态层。", id: "hud", level: "L3", title: "HUD" },
   { description: "按原版坐标拼装的容器整屏。", id: "screens", level: "L3", title: "容器界面" },
   { description: "标题、设置、聊天等全屏菜单。", id: "menus", level: "L3", title: "菜单界面" },
-  { description: "IC2、AE2、Mekanism、JEI、Create、Thermal Expansion、Immersive Engineering 的原始 GUI 贴图复刻（数据注入、无游戏逻辑）。", id: "mods", level: "L3", title: "Mod 界面" },
+  { description: "IC2、AE2、Mekanism、Create、Thermal Expansion、Immersive Engineering 的原始 GUI 贴图复刻（数据注入、无游戏逻辑）。", id: "mods", level: "L3", title: "Mod 界面" },
 ];
 
 export const components: CatalogEntry[] = [
@@ -810,60 +810,6 @@ export const components: CatalogEntry[] = [
     sourceDir: "packages/mekanism/src/mekanism-screen",
   },
   {
-    description: "JEI 物品列表面板（26.3 原版贴图）：ingredient 九宫格面板 + 18×18 槽位网格、`search_background_v2` 搜索框与底部翻页箭头。",
-    exports: ["JeiItemListPanel"],
-    group: "mods",
-    mod: "jei",
-    name: "JeiItemListPanel",
-    slug: "jei-item-list-panel",
-    sourceDir: "packages/jei/src/jei-item-list-panel",
-  },
-  {
-    description: "JEI 书签面板（26.3 原版贴图）：窄栏书签槽纵列、底部翻页箭头与 20×20 书签/历史按钮。",
-    exports: ["JeiBookmarkPanel"],
-    group: "mods",
-    mod: "jei",
-    name: "JeiBookmarkPanel",
-    slug: "jei-bookmark-panel",
-    sourceDir: "packages/jei/src/jei-bookmark-panel",
-  },
-  {
-    description: "JEI 配方查看界面（26.3 原版贴图）：176×166 `gui_background_v2`、左侧 24×24 分类标签列、居中标题与 13×13 翻页、右侧选项按钮列，配方区槽位 / 输出槽 / 火焰 / 进度箭头数据注入。",
-    exports: ["JeiRecipeGuiScreen"],
-    group: "mods",
-    mod: "jei",
-    name: "JeiRecipeGuiScreen",
-    slug: "jei-recipe-gui-screen",
-    sourceDir: "packages/jei/src/jei-recipe-gui-screen",
-  },
-  {
-    description: "JEI 精灵渲染器：按上游 `.mcmeta` 的 `gui.scaling` 走九宫格（26.x 对象 border 四边映射）或无缩放拉伸，支持 tint。",
-    exports: ["JeiSprite"],
-    group: "containers",
-    mod: "jei",
-    name: "JeiSprite",
-    slug: "jei-sprite",
-    sourceDir: "packages/jei/src/jei-sprite",
-  },
-  {
-    description: "JEI 图标按钮：`button_*_v2` 九宫格做底、`icons/*` 精灵居中，13×13 导航与 16×16 选项按钮共用，支持 disabled / pressed。",
-    exports: ["JeiIconButton"],
-    group: "containers",
-    mod: "jei",
-    name: "JeiIconButton",
-    slug: "jei-icon-button",
-    sourceDir: "packages/jei/src/jei-icon-button",
-  },
-  {
-    description: "JEI 搜索框：`search_background_v2` 九宫格做底、透明输入覆盖（高 12 GUI px）。",
-    exports: ["JeiSearchField"],
-    group: "containers",
-    mod: "jei",
-    name: "JeiSearchField",
-    slug: "jei-search-field",
-    sourceDir: "packages/jei/src/jei-item-list-panel",
-  },
-  {
     description: "Create 磨石 / 粉碎机界面（1.21.1 图集 + 合成窗口）：`CREATE_MACHINE_LAYOUT` 数据表、输入 / 竖向进度 / 输出槽与玩家背包。",
     exports: ["CreateMillstoneScreen"],
     group: "mods",
@@ -1250,12 +1196,6 @@ export const componentTitlesZh: Record<string, string> = {
   "input": "输入框",
   "inventory-screen": "物品栏",
   "item-stack": "物品堆叠",
-  "jei-bookmark-panel": "JEI 书签面板",
-  "jei-icon-button": "JEI 图标按钮",
-  "jei-item-list-panel": "JEI 物品列表",
-  "jei-recipe-gui-screen": "JEI 配方查看界面",
-  "jei-search-field": "JEI 搜索框",
-  "jei-sprite": "JEI 精灵",
   "jump-bar": "跳跃蓄力条",
   "locator-bar": "定位条",
   "loom-screen": "织布机界面",

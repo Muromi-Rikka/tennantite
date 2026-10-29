@@ -122,25 +122,6 @@ AE2 以 **GNU LGPL-3.0** 发布（<https://github.com/AE2-UEL/Applied-Energistic
 其余 AE2 部件（压印进度条、工具栏按钮底、清空按钮、部分图标）仍为
 `packages/textures/css/ae2-textures.css` 中的手绘 SVG 像素复刻，不含原始素材。
 
-## JEI（Just Enough Items）原始 GUI 贴图
-
-JEI 界面（物品列表面板、书签栏、配方查看界面、按钮与图标）直接使用
-Just Enough Items 上游的原始 GUI 贴图：
-
-- 上游：<https://github.com/mezz/JustEnoughItems>（分支 `26.3`）
-- 提交：`b280faad7c48fbd35b54aac9bab5fdc17e217339`
-- 提取路径：`Common/src/main/resources/assets/jei/textures/gui/sprites/**`
-  （50 个 PNG，含 `.mcmeta` 的 `gui.scaling`：`nine_slice`，
-  border 为 26.x 的 `{left,top,right,bottom}` 对象格式）
-- 产物：`packages/textures/css/jei-sprites.generated.css` 与
-  `packages/textures/src/jei-sprites.generated.ts`（base64 data URI，仓库不含散图）
-- 生成脚本：`packages/textures/scripts/sync-jei-sprites.mjs`；重新生成/校验：
-  `pnpm --filter @tennantite/textures sync:jei-sprites` / `pnpm verify:assets`。
-
-JEI 以 **MIT** 发布（Copyright (c) 2016 mezz）。生成的 data URI 属于派生分发，
-再分发需保留本声明与 MIT 许可文本。"Just Enough Items" / "JEI" 相关名称与商标归其
-原作者所有。组件仅作视觉展示用途（数据注入，无游戏逻辑）。
-
 ## Create（机械动力）原始 GUI 贴图
 
 Create 界面（过滤器、工具箱、蓝图桌、数值面板的 GUI 图集与物品栏贴图）直接使用

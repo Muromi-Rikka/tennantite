@@ -27,7 +27,6 @@ import { IePage } from "./pages/ie";
 import { InputPage } from "./pages/input";
 import { InventoryScreenPage } from "./pages/inventory-screen";
 import { ItemStackPage } from "./pages/item-stack";
-import { JeiPage } from "./pages/jei";
 import { L0Page } from "./pages/l0";
 import { MainMenuPage } from "./pages/main-menu";
 import { MekanismPage } from "./pages/mekanism";
@@ -82,7 +81,6 @@ export const pageRegistry = new Map<string, PageEntry>([
   ["input", { render: () => <InputPage />, title: "Input" }],
   ["inventory-screen", { render: () => <InventoryScreenPage />, title: "InventoryScreen" }],
   ["item-stack", { render: () => <ItemStackPage />, title: "ItemStack (L2)" }],
-  ["jei", { render: () => <JeiPage />, title: "JEI (Mod)" }],
   ["l0", { render: () => <L0Page />, title: "L0 · Tokens & Textures" }],
   ["main-menu", { render: () => <MainMenuPage />, title: "MainMenu (Menu)" }],
   ["mekanism", { render: () => <MekanismPage />, title: "Mekanism (Mod)" }],

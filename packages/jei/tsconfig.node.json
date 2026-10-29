@@ -1,4 +1,0 @@
-{
-  "extends": "../../tsconfig.base.json",
-  "include": ["rslib.config.ts", "vitest.config.ts"]
-}

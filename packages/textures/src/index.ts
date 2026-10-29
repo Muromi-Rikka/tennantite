@@ -43,12 +43,6 @@ export {
 } from "./ie-sprites.generated";
 
 export {
-  type JeiSpriteMeta,
-  jeiSpriteMeta,
-  type JeiSpriteName,
-  type JeiSpriteScaling,
-} from "./jei-sprites.generated";
-export {
   type MekanismSpriteMeta,
   mekanismSpriteMeta,
   type MekanismSpriteName,

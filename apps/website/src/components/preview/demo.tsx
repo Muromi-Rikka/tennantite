@@ -29,12 +29,6 @@ import {
   IeMetalPressScreenDemo,
 } from "@tennantite/ie/demos";
 import {
-  JeiBookmarkPanelDemo,
-  JeiItemListPanelDemo,
-  JeiRecipeGuiScreenDemo,
-  JeiRecipeGuiSmeltingDemo,
-} from "@tennantite/jei/demos";
-import {
   MekanismChemicalTankScreenDemo,
   MekanismDynamicTankScreenDemo,
   MekanismEnergyCubeScreenDemo,
@@ -181,10 +175,6 @@ const registry: Record<string, ComponentType> = {
   InputDemo,
   InventoryScreenDemo,
   ItemStackDemo,
-  JeiBookmarkPanelDemo,
-  JeiItemListPanelDemo,
-  JeiRecipeGuiScreenDemo,
-  JeiRecipeGuiSmeltingDemo,
   JumpBarDemo,
   LocatorBarDemo,
   LoomScreenDemo,

@@ -36,7 +36,6 @@ const groups = [
   ["packages/mekanism/src", "", "registry:component"],
   ["packages/ic2/src", "", "registry:component"],
   ["packages/ae2/src", "", "registry:component"],
-  ["packages/jei/src", "", "registry:component"],
   ["packages/create/src", "", "registry:component"],
   ["packages/thermal/src", "", "registry:component"],
   ["packages/ie/src", "", "registry:component"],
