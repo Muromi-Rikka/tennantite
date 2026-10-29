@@ -16,6 +16,7 @@
     "@tennantite/ae2": "workspace:*",
     "@tennantite/create": "workspace:*",
     "@tennantite/enderio": "workspace:*",
+    "@tennantite/farmersdelight": "workspace:*",
     "@tennantite/ic2": "workspace:*",
     "@tennantite/ie": "workspace:*",
     "@tennantite/industrialforegoing": "workspace:*",

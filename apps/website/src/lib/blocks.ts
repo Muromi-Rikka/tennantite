@@ -30,6 +30,7 @@ export const blockComposition: Record<string, string[]> = {
   "electric-furnace-screen": ["ScreenPanel", "PlayerInventory", "Ic2EnergyGauge"],
   "enchanting-screen": ["ScreenPanel", "PlayerInventory", "Button"],
   "extractor-screen": ["ScreenPanel", "PlayerInventory", "Ic2EnergyGauge"],
+  "fd-cooking-pot-screen": ["ScreenPanel", "PlayerInventory", "Slot", "GuiSprite", "FdSprite", "FdHeatIndicator", "FdCookingProgress", "FdRecipeBookButton"],
   "furnace-screen": ["ScreenPanel", "PlayerInventory"],
   "gamemode-switcher": ["ScreenPanel", "GuiSprite"],
   "grindstone-screen": ["ScreenPanel", "PlayerInventory", "GuiSprite"],

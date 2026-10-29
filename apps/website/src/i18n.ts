@@ -122,7 +122,7 @@ export interface UIDictionary {
     components: { description: string; title: string };
     description: string;
     metaTitle: string;
-    mods: Record<"ae2" | "create" | "enderio" | "ic2" | "ie" | "industrialforegoing" | "mekanism" | "thermal", { description: string; title: string }>;
+    mods: Record<"ae2" | "create" | "enderio" | "farmersdelight" | "ic2" | "ie" | "industrialforegoing" | "mekanism" | "thermal", { description: string; title: string }>;
     screens: { description: string; title: string };
     title: string;
   };
@@ -160,6 +160,7 @@ export interface UIDictionary {
       create: string;
       docs: string;
       enderio: string;
+      farmersdelight: string;
       ic2: string;
       ie: string;
       industrialforegoing: string;
@@ -336,7 +337,7 @@ export function Start() {
       description: "各 mod 可复制的组件级部件，按 mod 维度归档。",
       title: "组件",
     },
-    description: "Mekanism、IC2、AE2、Create、Thermal Expansion、Immersive Engineering、Ender IO 与 Industrial Foregoing 的整屏界面与组件：全部使用上游原始 GUI 贴图（固定版本 + 校验），数据注入、无游戏逻辑。",
+    description: "Mekanism、IC2、AE2、Create、Thermal Expansion、Immersive Engineering、Ender IO、Industrial Foregoing 与 Farmer's Delight 的整屏界面与组件：全部使用上游原始 GUI 贴图（固定版本 + 校验），数据注入、无游戏逻辑。",
     metaTitle: "Mod 界面 · Tennantite",
     mods: {
       ae2: {
@@ -350,6 +351,10 @@ export function Start() {
       enderio: {
         description: "Ender IO（末影接口）界面（26.3 原版贴图）：合金炉、SAG 磨粉机、斯特林发电机、灵魂绑定器与电容组。",
         title: "Ender IO",
+      },
+      farmersdelight: {
+        description: "Farmer's Delight（农夫乐事）1.21 界面（原版贴图）：厨锅、受热 / 烹饪进度、配方书按钮与饱食 / 舒适 HUD 覆盖层。",
+        title: "Farmer's Delight",
       },
       ic2: {
         description: "工业时代 2 界面（1.12.2 原始 GUI 贴图）：磨矿机、电炉、提取机、压缩机、储电箱与 EU 能量表。",
@@ -402,7 +407,7 @@ export function Start() {
   },
   search: {
     close: "Esc 关闭",
-    groups: { ae2: "AE2", blocks: "整屏界面", components: "组件", create: "Create", docs: "文档", enderio: "Ender IO", ic2: "IC2", ie: "IE", industrialforegoing: "Industrial Foregoing", mekanism: "Mekanism", mods: "Mod", thermal: "Thermal" },
+    groups: { ae2: "AE2", blocks: "整屏界面", components: "组件", create: "Create", docs: "文档", enderio: "Ender IO", farmersdelight: "Farmer's Delight", ic2: "IC2", ie: "IE", industrialforegoing: "Industrial Foregoing", mekanism: "Mekanism", mods: "Mod", thermal: "Thermal" },
     label: "搜索文档",
     noResults: "没有匹配结果",
     open: "Enter 打开",
@@ -572,7 +577,7 @@ export function Start() {
       description: "Copy-ready component-level parts, archived per mod.",
       title: "Components",
     },
-    description: "Full-screen interfaces and components for Mekanism, IndustrialCraft 2, Applied Energistics 2, Create, Thermal Expansion, Immersive Engineering, Ender IO and Industrial Foregoing — all from the original upstream GUI textures (pinned versions, verified); data-injected, no game logic.",
+    description: "Full-screen interfaces and components for Mekanism, IndustrialCraft 2, Applied Energistics 2, Create, Thermal Expansion, Immersive Engineering, Ender IO, Industrial Foregoing and Farmer's Delight — all from the original upstream GUI textures (pinned versions, verified); data-injected, no game logic.",
     metaTitle: "Mod screens · Tennantite",
     mods: {
       ae2: {
@@ -586,6 +591,10 @@ export function Start() {
       enderio: {
         description: "Ender IO screens (26.3 original textures): alloy smelter, SAG mill, Stirling generator, soul binder and capacitor bank.",
         title: "Ender IO",
+      },
+      farmersdelight: {
+        description: "Farmer's Delight 1.21 screens (original textures): cooking pot, heat / cooking progress, recipe book button and nourishment / comfort HUD overlays.",
+        title: "Farmer's Delight",
       },
       ic2: {
         description: "IndustrialCraft 2 screens (original 1.12.2 GUI textures): macerator, electric furnace, extractor, compressor, batbox and the EU energy gauge.",
@@ -638,7 +647,7 @@ export function Start() {
   },
   search: {
     close: "Esc close",
-    groups: { ae2: "AE2", blocks: "Blocks", components: "Components", create: "Create", docs: "Docs", enderio: "Ender IO", ic2: "IC2", ie: "IE", industrialforegoing: "Industrial Foregoing", mekanism: "Mekanism", mods: "Mods", thermal: "Thermal" },
+    groups: { ae2: "AE2", blocks: "Blocks", components: "Components", create: "Create", docs: "Docs", enderio: "Ender IO", farmersdelight: "Farmer's Delight", ic2: "IC2", ie: "IE", industrialforegoing: "Industrial Foregoing", mekanism: "Mekanism", mods: "Mods", thermal: "Thermal" },
     label: "Search documentation",
     noResults: "No results",
     open: "Enter open",

@@ -41,6 +41,7 @@ const groups = [
   ["packages/ie/src", "", "registry:component"],
   ["packages/enderio/src", "", "registry:component"],
   ["packages/industrialforegoing/src", "", "registry:component"],
+  ["packages/farmersdelight/src", "", "registry:component"],
 ];
 
 const items = [];

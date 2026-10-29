@@ -1,0 +1,10 @@
+/*
+ * Farmer's Delight sprite layer. Import after the vanilla sprite CSS.
+ * Generated data URIs live in farmersdelight-sprites.generated.css.
+ */
+@import "./farmersdelight-sprites.generated.css";
+
+.mc-fd-sprite {
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}

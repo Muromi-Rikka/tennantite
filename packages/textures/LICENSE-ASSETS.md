@@ -231,6 +231,28 @@ Industrial Foregoing 以 **MIT** 发布（Copyright (c) 2017 Buuz135），Titani
 "Industrial Foregoing" 相关名称与商标归其原作者所有。组件仅作视觉展示用途
 （数据注入，无游戏逻辑）。
 
+## Farmer's Delight 原始 GUI 贴图
+
+农夫乐事（Farmer's Delight）厨锅界面与 HUD 覆盖层直接使用上游原始 GUI 贴图：
+
+- 上游：<https://github.com/vectorwing/FarmersDelight>（分支 `1.21`），提交
+  `dd8b9b0bfec916a2da88a6d64e3a37f4a02c3259`。
+- 提取路径：`src/main/resources/assets/farmersdelight/textures/gui/` 下的
+  `cooking_pot.png`（256×256：176×166 面板 + `(176,0)` 17×15 受热图标 +
+  `(176,15)` 24×17 进度箭头）与 `fd_icons.png`（256×256：饱食 9×9 图标 5 枚、
+  舒适心形 2 片）。
+- 产物：`packages/textures/css/farmersdelight-sprites.generated.css`、
+  `packages/textures/css/farmersdelight-textures.css` 与
+  `packages/textures/src/farmersdelight-sprites.generated.ts`（base64 data URI，
+  仓库不含散图）。
+- 生成脚本：`packages/textures/scripts/sync-farmersdelight-sprites.mjs`；
+  重新生成 / 校验：`pnpm --filter @tennantite/textures sync:farmersdelight-sprites`
+  / `pnpm verify:assets`。
+
+Farmer's Delight 以 **MIT** 发布（Copyright (c) 2020 vectorwing）。贴图按上述授权
+随仓库分发。"Farmer's Delight" 相关名称与商标归其原作者所有。组件仅作视觉展示用途
+（数据注入，无游戏逻辑）。
+
 ## 字体
 
 | 字体 | 来源 | 授权 |

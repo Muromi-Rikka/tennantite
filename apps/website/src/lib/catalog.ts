@@ -34,7 +34,7 @@ export interface ComponentGroup {
 
 export type ComponentGroupId = "containers" | "hud" | "menus" | "mods" | "primitives" | "screens";
 
-export const modIds = ["mekanism", "ic2", "ae2", "create", "thermal", "ie", "enderio", "industrialforegoing"] as const;
+export const modIds = ["mekanism", "ic2", "ae2", "create", "thermal", "ie", "enderio", "industrialforegoing", "farmersdelight"] as const;
 
 export type ModId = "common" | ModTarget;
 
@@ -46,7 +46,7 @@ export const componentGroups: ComponentGroup[] = [
   { description: "叠在游戏画面上的状态层。", id: "hud", level: "L3", title: "HUD" },
   { description: "按原版坐标拼装的容器整屏。", id: "screens", level: "L3", title: "容器界面" },
   { description: "标题、设置、聊天等全屏菜单。", id: "menus", level: "L3", title: "菜单界面" },
-  { description: "IC2、AE2、Mekanism、Create、Thermal Expansion、Immersive Engineering、Ender IO 与 Industrial Foregoing 的原始 GUI 贴图复刻（数据注入、无游戏逻辑）。", id: "mods", level: "L3", title: "Mod 界面" },
+  { description: "IC2、AE2、Mekanism、Create、Thermal Expansion、Immersive Engineering、Ender IO、Industrial Foregoing 与 Farmer's Delight 的原始 GUI 贴图复刻（数据注入、无游戏逻辑）。", id: "mods", level: "L3", title: "Mod 界面" },
 ];
 
 export const components: CatalogEntry[] = [
@@ -1322,6 +1322,69 @@ export const components: CatalogEntry[] = [
     slug: "if-potion-brewer-screen",
     sourceDir: "packages/industrialforegoing/src/if-potion-brewer-screen",
   },
+  {
+    description: "FD 厨锅（176×166）：6 个食材槽 + 成品展示 / 盛装容器 / 输出槽、受热火焰、烹饪进度箭头与配方书按钮；槽框与锅体由上游贴图烘焙。",
+    exports: ["FdCookingPotScreen"],
+    group: "mods",
+    mod: "farmersdelight",
+    name: "FdCookingPotScreen",
+    slug: "fd-cooking-pot-screen",
+    sourceDir: "packages/farmersdelight/src/fd-cooking-pot-screen",
+  },
+  {
+    description: "FD 受热图标：cooking_pot.png (176,0) 17×15 火焰，未受热时仅保留热区与「下方需要热源」提示。",
+    exports: ["FdHeatIndicator"],
+    group: "containers",
+    mod: "farmersdelight",
+    name: "FdHeatIndicator",
+    slug: "fd-heat-indicator",
+    sourceDir: "packages/farmersdelight/src/fd-heat-indicator",
+  },
+  {
+    description: "FD 烹饪进度：cooking_pot.png (176,15) 24×17 箭头，25 px 轨道自左向右填充。",
+    exports: ["FdCookingProgress"],
+    group: "containers",
+    mod: "farmersdelight",
+    name: "FdCookingProgress",
+    slug: "fd-cooking-progress",
+    sourceDir: "packages/farmersdelight/src/fd-cooking-progress",
+  },
+  {
+    description: "FD 配方书开关按钮：原版 20×18 按钮贴图，面板内固定 (5,34)，两态由 aria-pressed 表达。",
+    exports: ["FdRecipeBookButton"],
+    group: "containers",
+    mod: "farmersdelight",
+    name: "FdRecipeBookButton",
+    slug: "fd-recipe-book-button",
+    sourceDir: "packages/farmersdelight/src/fd-recipe-book-button",
+  },
+  {
+    description: "FD 饱食覆盖层：10 枚 9×9 图标覆盖饥饿栏，饱食 0..20 与自然恢复金边两套贴图。",
+    exports: ["FdHungerOverlay"],
+    group: "containers",
+    mod: "farmersdelight",
+    name: "FdHungerOverlay",
+    slug: "fd-hunger-overlay",
+    sourceDir: "packages/farmersdelight/src/fd-hunger-overlay",
+  },
+  {
+    description: "FD 舒适覆盖层：饱食度为 0 受伤时叠加的心形闪光（ticks % 50 两帧）。",
+    exports: ["FdComfortOverlay"],
+    group: "containers",
+    mod: "farmersdelight",
+    name: "FdComfortOverlay",
+    slug: "fd-comfort-overlay",
+    sourceDir: "packages/farmersdelight/src/fd-comfort-overlay",
+  },
+  {
+    description: "FD 精灵：按 1 源 px = 1 GUI px 从 cooking_pot / fd_icons 图集裁剪绘制。",
+    exports: ["FdSprite"],
+    group: "containers",
+    mod: "farmersdelight",
+    name: "FdSprite",
+    slug: "fd-sprite",
+    sourceDir: "packages/farmersdelight/src/fd-sprite",
+  },
 ];
 
 export const blocks = components.filter(component =>
@@ -1500,6 +1563,13 @@ export const componentTitlesZh: Record<string, string> = {
   "enchanting-screen": "附魔台界面",
   "experience-bar": "经验条",
   "extractor-screen": "提取机界面",
+  "fd-comfort-overlay": "FD 舒适覆盖层",
+  "fd-cooking-pot-screen": "FD 厨锅界面",
+  "fd-cooking-progress": "FD 烹饪进度",
+  "fd-heat-indicator": "FD 受热图标",
+  "fd-hunger-overlay": "FD 饱食覆盖层",
+  "fd-recipe-book-button": "FD 配方书按钮",
+  "fd-sprite": "FD 精灵",
   "furnace-screen": "熔炉界面",
   "gamemode-switcher": "游戏模式切换器",
   "grid": "网格",

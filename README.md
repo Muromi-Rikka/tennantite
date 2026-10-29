@@ -32,6 +32,7 @@ import { Button, Panel, Slot, Hotbar, InventoryScreen } from "@tennantite/ui";
 import "@tennantite/tokens/css/tokens.css"; // Tailwind 入口内：@import "tailwindcss" 之后
 import "@tennantite/textures/css/textures.css";
 import "@tennantite/textures/css/mekanism-textures.css";
+import "@tennantite/textures/css/farmersdelight-textures.css";
 import "@tennantite/ui/css/scroll-area.css";
 
 // 所有界面均为数据注入、无游戏逻辑（规格 §8）
@@ -58,6 +59,7 @@ packages/
   ie/             # @tennantite/ie 沉浸工程界面与组件
   enderio/        # @tennantite/enderio Ender IO 26.3 界面与组件
   industrialforegoing/ # @tennantite/industrialforegoing Industrial Foregoing 1.21 界面与组件
+  farmersdelight/ # @tennantite/farmersdelight Farmer's Delight 1.21 界面与组件
   tokens/         # @tennantite/tokens 设计令牌（L0）
   textures/       # @tennantite/textures 像素纹理（L0）
 registry/         # shadcn registry（node registry/build.mjs 生成）
@@ -71,7 +73,7 @@ spec/             # 规格文档
 - **L3 HUD（9）**：HealthHungerBar · ExperienceBar · Hotbar · Crosshair · StatusEffects · BossBar · AttackIndicator · JumpBar · LocatorBar
 - **L3 容器界面（24）**：InventoryScreen · ChestScreen · CraftingScreen · FurnaceScreen · BlastFurnaceScreen · SmokerScreen · BrewingStandScreen · EnchantingScreen · BeaconScreen · AnvilScreen · TradingScreen · ShulkerBoxScreen · HopperScreen · DispenserScreen · HorseScreen · CartographyTableScreen · GrindstoneScreen · LoomScreen · SmithingScreen · StonecutterScreen · CrafterScreen · NautilusScreen · CreativeInventoryScreen · GamemodeSwitcher
 - **L3 菜单界面（3）**：MainMenu · ChatScreen · Toast / ToastStack / NotificationBadge
-- **L3 Mod 界面（8）**：Mekanism 26.3 机器 / 储罐 / 存储 34 屏 + 侧配置 / 升级窗口；IC2 机器 / 储电箱；AE2 终端 / 驱动器 / 箱子；Create 磨石 / 过滤器 / 工具箱 / 蓝图桌 / 数值面板；Thermal 红石炉 / 储能罐 / 缓存仓；IE 焦炉 / 压机 / 电弧炉 / 高压电容；Ender IO 合金炉 / SAG 磨粉机 / 斯特林发电机 / 灵魂绑定器 / 电容组；Industrial Foregoing 48 台机器布局（10 个具名屏 + 全预设画廊）
+- **L3 Mod 界面（9）**：Mekanism 26.3 机器 / 储罐 / 存储 34 屏 + 侧配置 / 升级窗口；IC2 机器 / 储电箱；AE2 终端 / 驱动器 / 箱子；Create 磨石 / 过滤器 / 工具箱 / 蓝图桌 / 数值面板；Thermal 红石炉 / 储能罐 / 缓存仓；IE 焦炉 / 压机 / 电弧炉 / 高压电容；Ender IO 合金炉 / SAG 磨粉机 / 斯特林发电机 / 灵魂绑定器 / 电容组；Industrial Foregoing 48 台机器布局（10 个具名屏 + 全预设画廊）；Farmer's Delight 厨锅界面 + 受热 / 进度 / 配方书按钮 + 饱食 / 舒适 HUD 覆盖层
 
 ## SSR / RSC
 
@@ -87,6 +89,7 @@ spec/             # 规格文档
 - IE 界面：Immersive Engineering 1.21.1（提交 `75a27f0…`）原始 GUI 贴图，© BluSunrize 及原作者保留权利。
 - Ender IO 界面：EnderIO 26.3（提交 `672d750…`）原始 GUI 贴图，Unlicense（public domain）。
 - Industrial Foregoing 界面：Industrial Foregoing 1.21（提交 `ce2852d…`，MIT）与 Titanium 1.21（提交 `f8f0461…`，LGPL-3.0）原始 GUI 贴图。
+- Farmer's Delight 界面：Farmer's Delight 1.21（提交 `dd8b9b0`）原始 GUI 贴图，MIT（Copyright (c) 2020 vectorwing）。
 - IC2 界面：IndustrialCraft 2 Experimental 2.8.99-ex112 的原始 GUI 贴图，按钮 / 红石 / 空装备图标取自 Minecraft 1.12.2 客户端；其余 AE2 部件：手绘 SVG 像素复刻。
 - 字体：Minecraft font by Idrees Hassan（SIL OFL 1.1）。
 

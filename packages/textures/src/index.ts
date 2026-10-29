@@ -20,6 +20,11 @@ export {
   eioSpriteMeta,
   type EioSpriteName,
 } from "./enderio-sprites.generated";
+export {
+  type FarmersDelightSpriteMeta,
+  farmersDelightSpriteMeta,
+  type FarmersDelightSpriteName,
+} from "./farmersdelight-sprites.generated";
 export { type GuiIconName, guiIcons } from "./gui-icons.generated";
 
 export { containerSlots, type ContainerSpriteName } from "./gui-layouts.generated";

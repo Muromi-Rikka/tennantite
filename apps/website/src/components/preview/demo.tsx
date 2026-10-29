@@ -29,6 +29,15 @@ import {
   EioStirlingGeneratorScreenDemo,
 } from "@tennantite/enderio/demos";
 import {
+  FdComfortOverlayDemo,
+  FdCookingPotScreenDemo,
+  FdCookingProgressDemo,
+  FdHeatIndicatorDemo,
+  FdHungerOverlayDemo,
+  FdRecipeBookButtonDemo,
+  FdSpriteDemo,
+} from "@tennantite/farmersdelight/demos";
+import {
   BatBoxScreenDemo,
   CompressorScreenDemo,
   ElectricFurnaceScreenDemo,
@@ -210,6 +219,13 @@ const registry: Record<string, ComponentType> = {
   EnchantingScreenDemo,
   ExperienceBarDemo,
   ExtractorScreenDemo,
+  FdComfortOverlayDemo,
+  FdCookingPotScreenDemo,
+  FdCookingProgressDemo,
+  FdHeatIndicatorDemo,
+  FdHungerOverlayDemo,
+  FdRecipeBookButtonDemo,
+  FdSpriteDemo,
   FurnaceScreenDemo,
   GamemodeSwitcherDemo,
   GridDemo,

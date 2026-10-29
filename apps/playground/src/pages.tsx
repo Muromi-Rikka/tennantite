@@ -17,6 +17,7 @@ import { DialogPage } from "./pages/dialog";
 import { EnchantingScreenPage } from "./pages/enchanting-screen";
 import { EnderioPage } from "./pages/enderio";
 import { ExperienceBarPage } from "./pages/experience-bar";
+import { FarmersDelightPage } from "./pages/farmersdelight";
 import { FurnaceScreenPage } from "./pages/furnace-screen";
 import { GuiParityPage } from "./pages/gui-parity";
 import { GuiScalePage } from "./pages/gui-scale";
@@ -73,6 +74,7 @@ export const pageRegistry = new Map<string, PageEntry>([
   ["enchanting-screen", { render: () => <EnchantingScreenPage />, title: "EnchantingScreen" }],
   ["enderio", { render: () => <EnderioPage />, title: "Ender IO (Mod)" }],
   ["experience-bar", { render: () => <ExperienceBarPage />, title: "ExperienceBar (HUD)" }],
+  ["farmersdelight", { render: () => <FarmersDelightPage />, title: "Farmer's Delight (Mod)" }],
   ["furnace-screen", { render: () => <FurnaceScreenPage />, title: "FurnaceScreen" }],
   ["gui-parity", { render: () => <GuiParityPage />, title: "GUI Parity (all)" }],
   ["gui-scale", { render: () => <GuiScalePage />, title: "GUI Scale (auto)" }],

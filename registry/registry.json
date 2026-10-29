@@ -2775,6 +2775,110 @@
       "registryDependencies": [],
       "title": "If Text Field",
       "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/farmersdelight/src/fd-comfort-overlay/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "fd-comfort-overlay",
+      "registryDependencies": [],
+      "title": "Fd Comfort Overlay",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/farmersdelight/src/fd-cooking-pot-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "fd-cooking-pot-screen",
+      "registryDependencies": [],
+      "title": "Fd Cooking Pot Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/farmersdelight/src/fd-cooking-progress/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "fd-cooking-progress",
+      "registryDependencies": [],
+      "title": "Fd Cooking Progress",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/farmersdelight/src/fd-heat-indicator/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "fd-heat-indicator",
+      "registryDependencies": [],
+      "title": "Fd Heat Indicator",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/farmersdelight/src/fd-hunger-overlay/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "fd-hunger-overlay",
+      "registryDependencies": [],
+      "title": "Fd Hunger Overlay",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/farmersdelight/src/fd-recipe-book-button/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "fd-recipe-book-button",
+      "registryDependencies": [],
+      "title": "Fd Recipe Book Button",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/farmersdelight/src/fd-sprite/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "fd-sprite",
+      "registryDependencies": [],
+      "title": "Fd Sprite",
+      "type": "registry:component"
     }
   ],
   "name": "tennantite"
