@@ -206,6 +206,31 @@ Ender IO 以 **Unlicense（public domain）** 发布，贴图属于同一仓库�
 素材。"Ender IO" 相关名称与商标归其原作者所有。组件仅作视觉展示用途（数据注入，
 无游戏逻辑）。
 
+## Industrial Foregoing 与 Titanium 原始 GUI 贴图
+
+Industrial Foregoing 机器界面（48 台机器 / 16 种菌丝发电机变体）直接使用上游原始
+GUI 贴图，并复用 Titanium 4.x 的通用机器背景：
+
+- Industrial Foregoing：<https://github.com/InnovativeOnlineIndustries/Industrial-Foregoing>
+  （分支 `1.21`），提交 `ce2852db4b34af3ab1b9637cff0b327d4bb561d5`；
+  提取 `src/main/resources/assets/industrialforegoing/textures/gui/` 下的
+  `machines.png`、`machines_extra.png` 与 `donate.png`。
+- Titanium：<https://github.com/InnovativeOnlineIndustries/Titanium>（分支 `1.21`），
+  提交 `f8f0461458a4a3a54aa0239c9243a7716b7be436`；
+  提取 `src/main/resources/assets/titanium/textures/gui/` 下的
+  `background.png` 与 `background_alt.png`。
+- 产物：`packages/textures/css/industrialforegoing-sprites.generated.css` 与
+  `packages/textures/src/industrialforegoing-sprites.generated.ts`（base64 data URI，
+  仓库不含散图）。
+- 生成脚本：`packages/textures/scripts/sync-industrialforegoing-sprites.mjs`；
+  重新生成 / 校验：`pnpm --filter @tennantite/textures sync:industrialforegoing-sprites`
+  / `pnpm verify:assets`。
+
+Industrial Foregoing 以 **MIT** 发布（Copyright (c) 2017 Buuz135），Titanium 以
+**LGPL-3.0** 发布（Copyright (C) 2026 Horizon Studio）。贴图按上述授权随仓库分发。
+"Industrial Foregoing" 相关名称与商标归其原作者所有。组件仅作视觉展示用途
+（数据注入，无游戏逻辑）。
+
 ## 字体
 
 | 字体 | 来源 | 授权 |

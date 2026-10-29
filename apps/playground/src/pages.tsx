@@ -25,6 +25,7 @@ import { HotbarPage } from "./pages/hotbar";
 import { Ic2Page } from "./pages/ic2";
 import { IconPage } from "./pages/icon";
 import { IePage } from "./pages/ie";
+import { IndustrialForegoingPage } from "./pages/industrialforegoing";
 import { InputPage } from "./pages/input";
 import { InventoryScreenPage } from "./pages/inventory-screen";
 import { ItemStackPage } from "./pages/item-stack";
@@ -80,6 +81,7 @@ export const pageRegistry = new Map<string, PageEntry>([
   ["ic2", { render: () => <Ic2Page />, title: "IC2 (Mod)" }],
   ["icon", { render: () => <IconPage />, title: "Icon (L2)" }],
   ["ie", { render: () => <IePage />, title: "Immersive Engineering (Mod)" }],
+  ["industrialforegoing", { render: () => <IndustrialForegoingPage />, title: "Industrial Foregoing (Mod)" }],
   ["input", { render: () => <InputPage />, title: "Input" }],
   ["inventory-screen", { render: () => <InventoryScreenPage />, title: "InventoryScreen" }],
   ["item-stack", { render: () => <ItemStackPage />, title: "ItemStack (L2)" }],

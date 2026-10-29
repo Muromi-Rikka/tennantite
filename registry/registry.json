@@ -2461,6 +2461,320 @@
       "registryDependencies": [],
       "title": "Eio Stirling Generator Screen",
       "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-augment-panel/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-augment-panel",
+      "registryDependencies": [],
+      "title": "If Augment Panel",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-biofuel-generator-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-biofuel-generator-screen",
+      "registryDependencies": [],
+      "title": "If Biofuel Generator Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-bioreactor-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-bioreactor-screen",
+      "registryDependencies": [],
+      "title": "If Bioreactor Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-dissolution-chamber-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-dissolution-chamber-screen",
+      "registryDependencies": [],
+      "title": "If Dissolution Chamber Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-dye-mixer-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-dye-mixer-screen",
+      "registryDependencies": [],
+      "title": "If Dye Mixer Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-energy-bar/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-energy-bar",
+      "registryDependencies": [],
+      "title": "If Energy Bar",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-fermentation-station-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-fermentation-station-screen",
+      "registryDependencies": [],
+      "title": "If Fermentation Station Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-fluid-extractor-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-fluid-extractor-screen",
+      "registryDependencies": [],
+      "title": "If Fluid Extractor Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-fluid-tank/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-fluid-tank",
+      "registryDependencies": [],
+      "title": "If Fluid Tank",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-icon-button/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-icon-button",
+      "registryDependencies": [],
+      "title": "If Icon Button",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-laser-base-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-laser-base-screen",
+      "registryDependencies": [],
+      "title": "If Laser Base Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-machine-gallery/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-machine-gallery",
+      "registryDependencies": [],
+      "title": "If Machine Gallery",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-machine-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-machine-screen",
+      "registryDependencies": [],
+      "title": "If Machine Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-mob-crusher-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-mob-crusher-screen",
+      "registryDependencies": [],
+      "title": "If Mob Crusher Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-mycelial-generator-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-mycelial-generator-screen",
+      "registryDependencies": [],
+      "title": "If Mycelial Generator Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-potion-brewer-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-potion-brewer-screen",
+      "registryDependencies": [],
+      "title": "If Potion Brewer Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-progress/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-progress",
+      "registryDependencies": [],
+      "title": "If Progress",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-redstone-button/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-redstone-button",
+      "registryDependencies": [],
+      "title": "If Redstone Button",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-slot/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-slot",
+      "registryDependencies": [],
+      "title": "If Slot",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-sprite/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-sprite",
+      "registryDependencies": [],
+      "title": "If Sprite",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-tank-panel/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-tank-panel",
+      "registryDependencies": [],
+      "title": "If Tank Panel",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/industrialforegoing/src/if-text-field/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "if-text-field",
+      "registryDependencies": [],
+      "title": "If Text Field",
+      "type": "registry:component"
     }
   ],
   "name": "tennantite"

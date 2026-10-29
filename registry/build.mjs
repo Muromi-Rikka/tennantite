@@ -40,6 +40,7 @@ const groups = [
   ["packages/thermal/src", "", "registry:component"],
   ["packages/ie/src", "", "registry:component"],
   ["packages/enderio/src", "", "registry:component"],
+  ["packages/industrialforegoing/src", "", "registry:component"],
 ];
 
 const items = [];

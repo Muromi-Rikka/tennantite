@@ -1,0 +1,10 @@
+/*
+ * Industrial Foregoing sprite layer. Import after the vanilla sprite CSS.
+ * Generated data URIs live in industrialforegoing-sprites.generated.css.
+ */
+@import "./industrialforegoing-sprites.generated.css";
+
+.mc-if-sprite {
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}

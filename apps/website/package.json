@@ -18,6 +18,7 @@
     "@tennantite/enderio": "workspace:*",
     "@tennantite/ic2": "workspace:*",
     "@tennantite/ie": "workspace:*",
+    "@tennantite/industrialforegoing": "workspace:*",
     "@tennantite/mekanism": "workspace:*",
     "@tennantite/textures": "workspace:*",
     "@tennantite/thermal": "workspace:*",

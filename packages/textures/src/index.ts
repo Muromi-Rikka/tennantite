@@ -46,6 +46,11 @@ export {
   type IeSpriteName,
   type IeSpriteScaling,
 } from "./ie-sprites.generated";
+export {
+  type IndustrialForegoingSpriteMeta,
+  industrialForegoingSpriteMeta,
+  type IndustrialForegoingSpriteName,
+} from "./industrialforegoing-sprites.generated";
 
 export {
   type MekanismSpriteMeta,

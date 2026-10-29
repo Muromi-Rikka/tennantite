@@ -122,7 +122,7 @@ export interface UIDictionary {
     components: { description: string; title: string };
     description: string;
     metaTitle: string;
-    mods: Record<"ae2" | "create" | "enderio" | "ic2" | "ie" | "mekanism" | "thermal", { description: string; title: string }>;
+    mods: Record<"ae2" | "create" | "enderio" | "ic2" | "ie" | "industrialforegoing" | "mekanism" | "thermal", { description: string; title: string }>;
     screens: { description: string; title: string };
     title: string;
   };
@@ -162,6 +162,7 @@ export interface UIDictionary {
       enderio: string;
       ic2: string;
       ie: string;
+      industrialforegoing: string;
       mekanism: string;
       mods: string;
       thermal: string;
@@ -335,7 +336,7 @@ export function Start() {
       description: "各 mod 可复制的组件级部件，按 mod 维度归档。",
       title: "组件",
     },
-    description: "Mekanism、IC2、AE2、Create、Thermal Expansion、Immersive Engineering 与 Ender IO 的整屏界面与组件：全部使用上游原始 GUI 贴图（固定版本 + 校验），数据注入、无游戏逻辑。",
+    description: "Mekanism、IC2、AE2、Create、Thermal Expansion、Immersive Engineering、Ender IO 与 Industrial Foregoing 的整屏界面与组件：全部使用上游原始 GUI 贴图（固定版本 + 校验），数据注入、无游戏逻辑。",
     metaTitle: "Mod 界面 · Tennantite",
     mods: {
       ae2: {
@@ -357,6 +358,10 @@ export function Start() {
       ie: {
         description: "Immersive Engineering（沉浸工程）界面（1.21.1 原版贴图）：焦炉、金属压机、电弧炉与高压电容。",
         title: "Immersive Engineering",
+      },
+      industrialforegoing: {
+        description: "Industrial Foregoing（工业前哨）1.21 界面（原版 GUI 图集 + Titanium）：48 台机器布局、升级槽 / 流体面板、红石与区域控件。",
+        title: "Industrial Foregoing",
       },
       mekanism: {
         description: "Mekanism 26.3 界面（手绘复刻贴图）：26 台机器共用布局表，另有储罐、能量立方、感应矩阵与全套窗口部件。",
@@ -397,7 +402,7 @@ export function Start() {
   },
   search: {
     close: "Esc 关闭",
-    groups: { ae2: "AE2", blocks: "整屏界面", components: "组件", create: "Create", docs: "文档", enderio: "Ender IO", ic2: "IC2", ie: "IE", mekanism: "Mekanism", mods: "Mod", thermal: "Thermal" },
+    groups: { ae2: "AE2", blocks: "整屏界面", components: "组件", create: "Create", docs: "文档", enderio: "Ender IO", ic2: "IC2", ie: "IE", industrialforegoing: "Industrial Foregoing", mekanism: "Mekanism", mods: "Mod", thermal: "Thermal" },
     label: "搜索文档",
     noResults: "没有匹配结果",
     open: "Enter 打开",
@@ -567,7 +572,7 @@ export function Start() {
       description: "Copy-ready component-level parts, archived per mod.",
       title: "Components",
     },
-    description: "Full-screen interfaces and components for Mekanism, IndustrialCraft 2, Applied Energistics 2, Create, Thermal Expansion, Immersive Engineering and Ender IO — all from the original upstream GUI textures (pinned versions, verified); data-injected, no game logic.",
+    description: "Full-screen interfaces and components for Mekanism, IndustrialCraft 2, Applied Energistics 2, Create, Thermal Expansion, Immersive Engineering, Ender IO and Industrial Foregoing — all from the original upstream GUI textures (pinned versions, verified); data-injected, no game logic.",
     metaTitle: "Mod screens · Tennantite",
     mods: {
       ae2: {
@@ -589,6 +594,10 @@ export function Start() {
       ie: {
         description: "Immersive Engineering screens (1.21.1 original textures): coke oven, metal press, arc furnace and HV capacitor.",
         title: "Immersive Engineering",
+      },
+      industrialforegoing: {
+        description: "Industrial Foregoing 1.21 screens (original GUI atlases + Titanium): 48 machine layouts, augment / fluid panels, redstone and area controls.",
+        title: "Industrial Foregoing",
       },
       mekanism: {
         description: "Mekanism 26.3 screens (hand-drawn textures): 26 machines share one layout table, plus tanks, energy cubes, the induction matrix and the full window kit.",
@@ -629,7 +638,7 @@ export function Start() {
   },
   search: {
     close: "Esc close",
-    groups: { ae2: "AE2", blocks: "Blocks", components: "Components", create: "Create", docs: "Docs", enderio: "Ender IO", ic2: "IC2", ie: "IE", mekanism: "Mekanism", mods: "Mods", thermal: "Thermal" },
+    groups: { ae2: "AE2", blocks: "Blocks", components: "Components", create: "Create", docs: "Docs", enderio: "Ender IO", ic2: "IC2", ie: "IE", industrialforegoing: "Industrial Foregoing", mekanism: "Mekanism", mods: "Mods", thermal: "Thermal" },
     label: "Search documentation",
     noResults: "No results",
     open: "Enter open",
