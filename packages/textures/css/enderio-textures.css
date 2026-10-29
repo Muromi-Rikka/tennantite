@@ -1,0 +1,10 @@
+/*
+ * Ender IO sprite layer. Import after the vanilla sprite CSS.
+ * Generated data URIs live in enderio-sprites.generated.css.
+ */
+@import "./enderio-sprites.generated.css";
+
+.mc-eio-sprite {
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}

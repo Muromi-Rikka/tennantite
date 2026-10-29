@@ -188,6 +188,24 @@ BluSunrize 及各原作者所有，**不在本项目授权范围内**，本项�
 "Immersive Engineering" 相关名称与商标归其原作者所有。组件仅作视觉展示用途
 （数据注入，无游戏逻辑）。
 
+## Ender IO 原始 GUI 贴图
+
+Ender IO 界面（合金炉 / SAG 磨粉机 / 斯特林发电机 / 灵魂绑定器 / 电容组）与共享件
+直接使用 Ender IO 上游的原始 GUI 贴图：
+
+- 上游：<https://github.com/Team-EnderIO/EnderIO>（分支 `26.3`）
+- 提交：`672d750cd96bf2216fd0edf9e429558681d14191`
+- 提取路径：`enderio/src/main/resources/assets/enderio/textures/gui/` 下的
+  `screen/**`、`sprites/**` 与 `widgets.png`（150 个 PNG，无 `.mcmeta`）
+- 产物：`packages/textures/css/enderio-sprites.generated.css` 与
+  `packages/textures/src/enderio-sprites.generated.ts`（base64 data URI，仓库不含散图）
+- 生成脚本：`packages/textures/scripts/sync-enderio-sprites.mjs`；重新生成/校验：
+  `pnpm --filter @tennantite/textures sync:enderio-sprites` / `pnpm verify:assets`。
+
+Ender IO 以 **Unlicense（public domain）** 发布，贴图属于同一仓库的 public domain
+素材。"Ender IO" 相关名称与商标归其原作者所有。组件仅作视觉展示用途（数据注入，
+无游戏逻辑）。
+
 ## 字体
 
 | 字体 | 来源 | 授权 |

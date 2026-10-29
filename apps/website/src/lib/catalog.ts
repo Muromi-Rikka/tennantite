@@ -34,7 +34,7 @@ export interface ComponentGroup {
 
 export type ComponentGroupId = "containers" | "hud" | "menus" | "mods" | "primitives" | "screens";
 
-export const modIds = ["mekanism", "ic2", "ae2", "create", "thermal", "ie"] as const;
+export const modIds = ["mekanism", "ic2", "ae2", "create", "thermal", "ie", "enderio"] as const;
 
 export type ModId = "common" | ModTarget;
 
@@ -46,7 +46,7 @@ export const componentGroups: ComponentGroup[] = [
   { description: "叠在游戏画面上的状态层。", id: "hud", level: "L3", title: "HUD" },
   { description: "按原版坐标拼装的容器整屏。", id: "screens", level: "L3", title: "容器界面" },
   { description: "标题、设置、聊天等全屏菜单。", id: "menus", level: "L3", title: "菜单界面" },
-  { description: "IC2、AE2、Mekanism、Create、Thermal Expansion、Immersive Engineering 的原始 GUI 贴图复刻（数据注入、无游戏逻辑）。", id: "mods", level: "L3", title: "Mod 界面" },
+  { description: "IC2、AE2、Mekanism、Create、Thermal Expansion、Immersive Engineering、Ender IO 的原始 GUI 贴图复刻（数据注入、无游戏逻辑）。", id: "mods", level: "L3", title: "Mod 界面" },
 ];
 
 export const components: CatalogEntry[] = [
@@ -1016,6 +1016,114 @@ export const components: CatalogEntry[] = [
     slug: "ie-label",
     sourceDir: "packages/ie/src/ie-label",
   },
+  {
+    description: "Ender IO 合金炉（176×208）：三种模式背景、3 输入 + 输出、双火焰进度、18×52 能量条、状态 / 模式 / 红石 / IO 按钮。",
+    exports: ["EioAlloySmelterScreen"],
+    group: "mods",
+    mod: "enderio",
+    name: "EioAlloySmelterScreen",
+    slug: "eio-alloy-smelter-screen",
+    sourceDir: "packages/enderio/src/eio-alloy-smelter-screen",
+  },
+  {
+    description: "Ender IO 电容组（176×208 面板 / 176×166 背景）：9×68 能量条、红石与 IO 控件。",
+    exports: ["EioCapacitorBankScreen"],
+    group: "mods",
+    mod: "enderio",
+    name: "EioCapacitorBankScreen",
+    slug: "eio-capacitor-bank-screen",
+    sourceDir: "packages/enderio/src/eio-capacitor-bank-screen",
+  },
+  {
+    description: "Ender IO SAG 磨粉机（176×208）：输入、4 输出、研磨球槽与 4×16 耐久条、16×24 竖向进度、能量与右侧控件。",
+    exports: ["EioSagMillScreen"],
+    group: "mods",
+    mod: "enderio",
+    name: "EioSagMillScreen",
+    slug: "eio-sag-mill-screen",
+    sourceDir: "packages/enderio/src/eio-sag-mill-screen",
+  },
+  {
+    description: "Ender IO 灵魂绑定器（176×166）：灵魂 / 材料输入、双输出、24×17 横向进度、65×5 经验条与 9×42 能量条。",
+    exports: ["EioSoulBinderScreen"],
+    group: "mods",
+    mod: "enderio",
+    name: "EioSoulBinderScreen",
+    slug: "eio-soul-binder-screen",
+    sourceDir: "packages/enderio/src/eio-soul-binder-screen",
+  },
+  {
+    description: "Ender IO 斯特林发电机（176×166）：燃料槽、14×14 燃烧进度、9×42 能量条、产能 / 效率文本与右侧控件。",
+    exports: ["EioStirlingGeneratorScreen"],
+    group: "mods",
+    mod: "enderio",
+    name: "EioStirlingGeneratorScreen",
+    slug: "eio-stirling-generator-screen",
+    sourceDir: "packages/enderio/src/eio-stirling-generator-screen",
+  },
+  {
+    description: "Ender IO 机器基座：176 px 宽背景 + 可选居中标题 / 背包标签 + 玩家背包。",
+    exports: ["EioMachineScreen"],
+    group: "containers",
+    mod: "enderio",
+    name: "EioMachineScreen",
+    slug: "eio-machine-screen",
+    sourceDir: "packages/enderio/src/eio-machine-screen",
+  },
+  {
+    description: "Ender IO 精灵渲染器：按源矩形裁剪 26.3 GUI 图集 / 单图，1 源 px = 1 GUI px。",
+    exports: ["EioSprite"],
+    group: "containers",
+    mod: "enderio",
+    name: "EioSprite",
+    slug: "eio-sprite",
+    sourceDir: "packages/enderio/src/eio-sprite",
+  },
+  {
+    description: "Ender IO 能量条：18×52 电容款精灵或 9 px 旧款条纹（widgets.png 0,128）自下而上填充；缺电容显示警示精灵。",
+    exports: ["EioEnergyBar"],
+    group: "containers",
+    mod: "enderio",
+    name: "EioEnergyBar",
+    slug: "eio-energy-bar",
+    sourceDir: "packages/enderio/src/eio-energy-bar",
+  },
+  {
+    description: "Ender IO 灵魂绑定器经验条：65×5 原版 HUD 经验条 + 绿色等级数字。",
+    exports: ["EioExperienceBar"],
+    group: "containers",
+    mod: "enderio",
+    name: "EioExperienceBar",
+    slug: "eio-experience-bar",
+    sourceDir: "packages/enderio/src/eio-experience-bar",
+  },
+  {
+    description: "Ender IO 研磨球耐久条：4×16 自下而上，按耐久比例裁剪。",
+    exports: ["EioGrindingBall"],
+    group: "containers",
+    mod: "enderio",
+    name: "EioGrindingBall",
+    slug: "eio-grinding-ball",
+    sourceDir: "packages/enderio/src/eio-grinding-ball",
+  },
+  {
+    description: "Ender IO 图标按钮：原版 16×16 按钮底（悬停高亮）+ 上游 16×16 图标。",
+    exports: ["EioIconButton"],
+    group: "containers",
+    mod: "enderio",
+    name: "EioIconButton",
+    slug: "eio-icon-button",
+    sourceDir: "packages/enderio/src/eio-icon-button",
+  },
+  {
+    description: "Ender IO 机器状态指示（16×16 新图标）：运行 / 待机 / 已禁用 / 错误。",
+    exports: ["EioMachineState"],
+    group: "containers",
+    mod: "enderio",
+    name: "EioMachineState",
+    slug: "eio-machine-state",
+    sourceDir: "packages/enderio/src/eio-machine-state",
+  },
 ];
 
 export const blocks = components.filter(component =>
@@ -1178,6 +1286,18 @@ export const componentTitlesZh: Record<string, string> = {
   "dialog": "对话框",
   "dispenser-screen": "发射器界面",
   "divider": "分隔线",
+  "eio-alloy-smelter-screen": "Ender IO 合金炉界面",
+  "eio-capacitor-bank-screen": "Ender IO 电容组界面",
+  "eio-energy-bar": "Ender IO 能量条",
+  "eio-experience-bar": "Ender IO 经验条",
+  "eio-grinding-ball": "Ender IO 研磨球耐久条",
+  "eio-icon-button": "Ender IO 图标按钮",
+  "eio-machine-screen": "Ender IO 界面基座",
+  "eio-machine-state": "Ender IO 机器状态",
+  "eio-sag-mill-screen": "Ender IO SAG 磨粉机界面",
+  "eio-soul-binder-screen": "Ender IO 灵魂绑定器界面",
+  "eio-sprite": "Ender IO 精灵",
+  "eio-stirling-generator-screen": "Ender IO 斯特林发电机界面",
   "electric-furnace-screen": "电炉界面",
   "enchanting-screen": "附魔台界面",
   "experience-bar": "经验条",

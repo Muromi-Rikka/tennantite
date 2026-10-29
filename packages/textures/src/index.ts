@@ -15,8 +15,18 @@ export {
   type CreateSpriteName,
   type CreateSpriteScaling,
 } from "./create-sprites.generated";
+export {
+  type EioSpriteMeta,
+  eioSpriteMeta,
+  type EioSpriteName,
+} from "./enderio-sprites.generated";
 export { type GuiIconName, guiIcons } from "./gui-icons.generated";
+
 export { containerSlots, type ContainerSpriteName } from "./gui-layouts.generated";
+
+export const pixelIcons = { ...basePixelIcons, ...guiIcons } as const;
+
+export type PixelIconName = keyof typeof pixelIcons;
 
 export {
   GUI_SPRITE_VERSION,
@@ -25,16 +35,11 @@ export {
   type GuiSpriteName,
 } from "./gui-sprites.generated";
 
-export const pixelIcons = { ...basePixelIcons, ...guiIcons } as const;
-
-export type PixelIconName = keyof typeof pixelIcons;
-
 export {
   type Ic2SpriteMeta,
   ic2SpriteMeta,
   type Ic2SpriteName,
 } from "./ic2-sprites.generated";
-
 export {
   type IeSpriteMeta,
   ieSpriteMeta,

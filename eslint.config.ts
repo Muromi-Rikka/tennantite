@@ -22,6 +22,7 @@ const globalIgnores = {
     "packages/textures/src/gui-sprites.generated.ts",
     "packages/textures/src/mekanism-sprites.generated.ts",
     "packages/textures/src/create-sprites.generated.ts",
+    "packages/textures/src/enderio-sprites.generated.ts",
     "packages/textures/src/ie-sprites.generated.ts",
     "packages/textures/src/thermal-sprites.generated.ts",
   ],

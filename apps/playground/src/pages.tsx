@@ -15,6 +15,7 @@ import { CreatePage } from "./pages/create";
 import { CrosshairPage } from "./pages/crosshair";
 import { DialogPage } from "./pages/dialog";
 import { EnchantingScreenPage } from "./pages/enchanting-screen";
+import { EnderioPage } from "./pages/enderio";
 import { ExperienceBarPage } from "./pages/experience-bar";
 import { FurnaceScreenPage } from "./pages/furnace-screen";
 import { GuiParityPage } from "./pages/gui-parity";
@@ -69,6 +70,7 @@ export const pageRegistry = new Map<string, PageEntry>([
   ["crosshair", { render: () => <CrosshairPage />, title: "Crosshair (HUD)" }],
   ["dialog", { render: () => <DialogPage />, title: "Dialog" }],
   ["enchanting-screen", { render: () => <EnchantingScreenPage />, title: "EnchantingScreen" }],
+  ["enderio", { render: () => <EnderioPage />, title: "Ender IO (Mod)" }],
   ["experience-bar", { render: () => <ExperienceBarPage />, title: "ExperienceBar (HUD)" }],
   ["furnace-screen", { render: () => <FurnaceScreenPage />, title: "FurnaceScreen" }],
   ["gui-parity", { render: () => <GuiParityPage />, title: "GUI Parity (all)" }],

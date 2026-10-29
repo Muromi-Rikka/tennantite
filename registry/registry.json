@@ -2289,6 +2289,178 @@
       "registryDependencies": [],
       "title": "Ie Sprite",
       "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-alloy-smelter-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-alloy-smelter-screen",
+      "registryDependencies": [],
+      "title": "Eio Alloy Smelter Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-capacitor-bank-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-capacitor-bank-screen",
+      "registryDependencies": [],
+      "title": "Eio Capacitor Bank Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-energy-bar/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-energy-bar",
+      "registryDependencies": [],
+      "title": "Eio Energy Bar",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-experience-bar/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-experience-bar",
+      "registryDependencies": [],
+      "title": "Eio Experience Bar",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-grinding-ball/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-grinding-ball",
+      "registryDependencies": [],
+      "title": "Eio Grinding Ball",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-icon-button/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-icon-button",
+      "registryDependencies": [],
+      "title": "Eio Icon Button",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-machine-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-machine-screen",
+      "registryDependencies": [],
+      "title": "Eio Machine Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-machine-state/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-machine-state",
+      "registryDependencies": [],
+      "title": "Eio Machine State",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-sag-mill-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-sag-mill-screen",
+      "registryDependencies": [],
+      "title": "Eio Sag Mill Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-soul-binder-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-soul-binder-screen",
+      "registryDependencies": [],
+      "title": "Eio Soul Binder Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-sprite/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-sprite",
+      "registryDependencies": [],
+      "title": "Eio Sprite",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-stirling-generator-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-stirling-generator-screen",
+      "registryDependencies": [],
+      "title": "Eio Stirling Generator Screen",
+      "type": "registry:component"
     }
   ],
   "name": "tennantite"

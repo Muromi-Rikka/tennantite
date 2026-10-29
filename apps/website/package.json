@@ -15,6 +15,7 @@
     "@astrojs/sitemap": "^3.7.4",
     "@tennantite/ae2": "workspace:*",
     "@tennantite/create": "workspace:*",
+    "@tennantite/enderio": "workspace:*",
     "@tennantite/ic2": "workspace:*",
     "@tennantite/ie": "workspace:*",
     "@tennantite/mekanism": "workspace:*",

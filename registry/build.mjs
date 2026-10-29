@@ -39,6 +39,7 @@ const groups = [
   ["packages/create/src", "", "registry:component"],
   ["packages/thermal/src", "", "registry:component"],
   ["packages/ie/src", "", "registry:component"],
+  ["packages/enderio/src", "", "registry:component"],
 ];
 
 const items = [];

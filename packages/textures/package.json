@@ -27,9 +27,10 @@
     "sync:gui-layouts": "node scripts/scan-gui-layouts.mjs",
     "sync:ic2-sprites": "node scripts/sync-ic2-sprites.mjs",
     "sync:ie-sprites": "node scripts/sync-ie-sprites.mjs",
+    "sync:enderio-sprites": "node scripts/sync-enderio-sprites.mjs",
     "sync:mekanism-sprites": "node scripts/sync-mekanism-sprites.mjs",
     "sync:thermal-sprites": "node scripts/sync-thermal-sprites.mjs",
-    "verify:assets": "node scripts/sync-gui-sprites.mjs --check && node scripts/sync-ae2-sprites.mjs --check && node scripts/sync-create-sprites.mjs --check && node scripts/sync-ic2-sprites.mjs --check && node scripts/sync-ie-sprites.mjs --check && node scripts/sync-mekanism-sprites.mjs --check && node scripts/sync-thermal-sprites.mjs --check && node scripts/scan-gui-layouts.mjs --check"
+    "verify:assets": "node scripts/sync-gui-sprites.mjs --check && node scripts/sync-ae2-sprites.mjs --check && node scripts/sync-create-sprites.mjs --check && node scripts/sync-ic2-sprites.mjs --check && node scripts/sync-ie-sprites.mjs --check && node scripts/sync-mekanism-sprites.mjs --check && node scripts/sync-thermal-sprites.mjs --check && node scripts/sync-enderio-sprites.mjs --check && node scripts/scan-gui-layouts.mjs --check"
   },
   "devDependencies": {
     "fflate": "^0.8.3",

@@ -56,6 +56,7 @@ packages/
   create/         # @tennantite/create 机械动力界面与组件
   thermal/        # @tennantite/thermal 热力膨胀界面与组件
   ie/             # @tennantite/ie 沉浸工程界面与组件
+  enderio/        # @tennantite/enderio Ender IO 26.3 界面与组件
   tokens/         # @tennantite/tokens 设计令牌（L0）
   textures/       # @tennantite/textures 像素纹理（L0）
 registry/         # shadcn registry（node registry/build.mjs 生成）
@@ -69,7 +70,7 @@ spec/             # 规格文档
 - **L3 HUD（9）**：HealthHungerBar · ExperienceBar · Hotbar · Crosshair · StatusEffects · BossBar · AttackIndicator · JumpBar · LocatorBar
 - **L3 容器界面（24）**：InventoryScreen · ChestScreen · CraftingScreen · FurnaceScreen · BlastFurnaceScreen · SmokerScreen · BrewingStandScreen · EnchantingScreen · BeaconScreen · AnvilScreen · TradingScreen · ShulkerBoxScreen · HopperScreen · DispenserScreen · HorseScreen · CartographyTableScreen · GrindstoneScreen · LoomScreen · SmithingScreen · StonecutterScreen · CrafterScreen · NautilusScreen · CreativeInventoryScreen · GamemodeSwitcher
 - **L3 菜单界面（3）**：MainMenu · ChatScreen · Toast / ToastStack / NotificationBadge
-- **L3 Mod 界面（7）**：Mekanism 26.3 机器 / 储罐 / 存储 34 屏 + 侧配置 / 升级窗口；IC2 机器 / 储电箱；AE2 终端 / 驱动器 / 箱子；Create 磨石 / 过滤器 / 工具箱 / 蓝图桌 / 数值面板；Thermal 红石炉 / 储能罐 / 缓存仓；IE 焦炉 / 压机 / 电弧炉 / 高压电容
+- **L3 Mod 界面（7）**：Mekanism 26.3 机器 / 储罐 / 存储 34 屏 + 侧配置 / 升级窗口；IC2 机器 / 储电箱；AE2 终端 / 驱动器 / 箱子；Create 磨石 / 过滤器 / 工具箱 / 蓝图桌 / 数值面板；Thermal 红石炉 / 储能罐 / 缓存仓；IE 焦炉 / 压机 / 电弧炉 / 高压电容；Ender IO 合金炉 / SAG 磨粉机 / 斯特林发电机 / 灵魂绑定器 / 电容组
 
 ## SSR / RSC
 
@@ -83,6 +84,7 @@ spec/             # 规格文档
 - Create 界面：Create mc1.21.1/dev（提交 `4148fd8…`）原始 GUI 贴图；代码 MIT，贴图 © The Create Team 保留权利。
 - Thermal 界面：CoFH ThermalExpansion 1.20.x + ThermalCore + CoFHCore（三个固定提交）原始 GUI 贴图，© Team CoFH 保留权利。
 - IE 界面：Immersive Engineering 1.21.1（提交 `75a27f0…`）原始 GUI 贴图，© BluSunrize 及原作者保留权利。
+- Ender IO 界面：EnderIO 26.3（提交 `672d750…`）原始 GUI 贴图，Unlicense（public domain）。
 - IC2 界面：IndustrialCraft 2 Experimental 2.8.99-ex112 的原始 GUI 贴图，按钮 / 红石 / 空装备图标取自 Minecraft 1.12.2 客户端；其余 AE2 部件：手绘 SVG 像素复刻。
 - 字体：Minecraft font by Idrees Hassan（SIL OFL 1.1）。
 

@@ -122,7 +122,7 @@ export interface UIDictionary {
     components: { description: string; title: string };
     description: string;
     metaTitle: string;
-    mods: Record<"ae2" | "create" | "ic2" | "ie" | "mekanism" | "thermal", { description: string; title: string }>;
+    mods: Record<"ae2" | "create" | "enderio" | "ic2" | "ie" | "mekanism" | "thermal", { description: string; title: string }>;
     screens: { description: string; title: string };
     title: string;
   };
@@ -159,6 +159,7 @@ export interface UIDictionary {
       components: string;
       create: string;
       docs: string;
+      enderio: string;
       ic2: string;
       ie: string;
       mekanism: string;
@@ -334,7 +335,7 @@ export function Start() {
       description: "各 mod 可复制的组件级部件，按 mod 维度归档。",
       title: "组件",
     },
-    description: "Mekanism、IC2、AE2、Create、Thermal Expansion 与 Immersive Engineering 的整屏界面与组件：全部使用上游原始 GUI 贴图（固定版本 + 校验），数据注入、无游戏逻辑。",
+    description: "Mekanism、IC2、AE2、Create、Thermal Expansion、Immersive Engineering 与 Ender IO 的整屏界面与组件：全部使用上游原始 GUI 贴图（固定版本 + 校验），数据注入、无游戏逻辑。",
     metaTitle: "Mod 界面 · Tennantite",
     mods: {
       ae2: {
@@ -344,6 +345,10 @@ export function Start() {
       create: {
         description: "Create（机械动力）界面（1.21.1 原版图集）：磨石 / 粉碎机、过滤器、工具箱、蓝图桌与数值配置面板。",
         title: "Create",
+      },
+      enderio: {
+        description: "Ender IO（末影接口）界面（26.3 原版贴图）：合金炉、SAG 磨粉机、斯特林发电机、灵魂绑定器与电容组。",
+        title: "Ender IO",
       },
       ic2: {
         description: "工业时代 2 界面（1.12.2 原始 GUI 贴图）：磨矿机、电炉、提取机、压缩机、储电箱与 EU 能量表。",
@@ -392,7 +397,7 @@ export function Start() {
   },
   search: {
     close: "Esc 关闭",
-    groups: { ae2: "AE2", blocks: "整屏界面", components: "组件", create: "Create", docs: "文档", ic2: "IC2", ie: "IE", mekanism: "Mekanism", mods: "Mod", thermal: "Thermal" },
+    groups: { ae2: "AE2", blocks: "整屏界面", components: "组件", create: "Create", docs: "文档", enderio: "Ender IO", ic2: "IC2", ie: "IE", mekanism: "Mekanism", mods: "Mod", thermal: "Thermal" },
     label: "搜索文档",
     noResults: "没有匹配结果",
     open: "Enter 打开",
@@ -562,7 +567,7 @@ export function Start() {
       description: "Copy-ready component-level parts, archived per mod.",
       title: "Components",
     },
-    description: "Full-screen interfaces and components for Mekanism, IndustrialCraft 2, Applied Energistics 2, Create, Thermal Expansion and Immersive Engineering — all from the original upstream GUI textures (pinned versions, verified); data-injected, no game logic.",
+    description: "Full-screen interfaces and components for Mekanism, IndustrialCraft 2, Applied Energistics 2, Create, Thermal Expansion, Immersive Engineering and Ender IO — all from the original upstream GUI textures (pinned versions, verified); data-injected, no game logic.",
     metaTitle: "Mod screens · Tennantite",
     mods: {
       ae2: {
@@ -572,6 +577,10 @@ export function Start() {
       create: {
         description: "Create screens (1.21.1 original atlases): millstone / crusher, filter, toolbox, schematic table and value settings panel.",
         title: "Create",
+      },
+      enderio: {
+        description: "Ender IO screens (26.3 original textures): alloy smelter, SAG mill, Stirling generator, soul binder and capacitor bank.",
+        title: "Ender IO",
       },
       ic2: {
         description: "IndustrialCraft 2 screens (original 1.12.2 GUI textures): macerator, electric furnace, extractor, compressor, batbox and the EU energy gauge.",
@@ -620,7 +629,7 @@ export function Start() {
   },
   search: {
     close: "Esc close",
-    groups: { ae2: "AE2", blocks: "Blocks", components: "Components", create: "Create", docs: "Docs", ic2: "IC2", ie: "IE", mekanism: "Mekanism", mods: "Mods", thermal: "Thermal" },
+    groups: { ae2: "AE2", blocks: "Blocks", components: "Components", create: "Create", docs: "Docs", enderio: "Ender IO", ic2: "IC2", ie: "IE", mekanism: "Mekanism", mods: "Mods", thermal: "Thermal" },
     label: "Search documentation",
     noResults: "No results",
     open: "Enter open",
