@@ -1,17 +1,16 @@
-import type { ReactNode } from "react";
-
 import type { ScreenSlot } from "@tennantite/ui";
-import type { Ic2RedstoneMode } from "../ic2-types";
-
+import type { ReactNode } from "react";
 import {
   padSlots,
   PlayerInventory,
   ScreenItemSlot,
   ScreenPanel,
 } from "@tennantite/ui";
+
+import type { Ic2RedstoneMode } from "../ic2-types";
 import { Ic2EnergyGauge } from "../ic2-energy-gauge/index";
-import { IC2_BATBOX } from "../ic2-layout";
 import { Ic2Label } from "../ic2-label";
+import { IC2_BATBOX } from "../ic2-layout";
 import { Ic2RedstoneButton } from "../ic2-redstone-button";
 import { Ic2Title } from "../ic2-title";
 

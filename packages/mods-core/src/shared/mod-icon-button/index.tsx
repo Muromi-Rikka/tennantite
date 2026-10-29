@@ -9,6 +9,10 @@ export interface ModIconButtonProps {
   buttonClassName?: string;
   className?: string;
   /**
+  * 禁用态：不渲染点击态与指针
+  */
+  disabled?: boolean;
+  /**
   * 按钮高（GUI px，默认 22）
   */
   height?: number;
@@ -30,6 +34,10 @@ export interface ModIconButtonProps {
   label: string;
   left?: number;
   onClick?: () => void;
+  /**
+  * 两态按钮按下态（渲染 aria-pressed）
+  */
+  pressed?: boolean;
   title?: string;
   top?: number;
   /**
@@ -44,6 +52,7 @@ export interface ModIconButtonProps {
 export function ModIconButton({
   buttonClassName = "mc-tex-btn",
   className,
+  disabled = false,
   height = 22,
   icon,
   iconClassName,
@@ -51,6 +60,7 @@ export function ModIconButton({
   label,
   left,
   onClick,
+  pressed,
   title = label,
   top,
   width = 22,
@@ -59,12 +69,15 @@ export function ModIconButton({
   return (
     <button
       aria-label={label}
+      aria-pressed={pressed}
       className={cn(
-        "flex cursor-pointer items-center justify-center border-0 p-0",
+        "flex items-center justify-center border-0 p-0",
+        disabled ? "cursor-default" : "cursor-pointer",
         isPositioned ? "absolute" : "relative",
         buttonClassName,
         className,
       )}
+      disabled={disabled}
       onClick={onClick}
       style={{
         height: gui(height),

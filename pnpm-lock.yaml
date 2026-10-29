@@ -233,15 +233,27 @@ importers:
       '@tennantite/ae2':
         specifier: workspace:*
         version: link:../../packages/ae2
+      '@tennantite/create':
+        specifier: workspace:*
+        version: link:../../packages/create
       '@tennantite/ic2':
         specifier: workspace:*
         version: link:../../packages/ic2
+      '@tennantite/ie':
+        specifier: workspace:*
+        version: link:../../packages/ie
+      '@tennantite/jei':
+        specifier: workspace:*
+        version: link:../../packages/jei
       '@tennantite/mekanism':
         specifier: workspace:*
         version: link:../../packages/mekanism
       '@tennantite/textures':
         specifier: workspace:*
         version: link:../../packages/textures
+      '@tennantite/thermal':
+        specifier: workspace:*
+        version: link:../../packages/thermal
       '@tennantite/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
@@ -337,15 +349,27 @@ importers:
       '@tennantite/ae2':
         specifier: workspace:*
         version: link:../../packages/ae2
+      '@tennantite/create':
+        specifier: workspace:*
+        version: link:../../packages/create
       '@tennantite/ic2':
         specifier: workspace:*
         version: link:../../packages/ic2
+      '@tennantite/ie':
+        specifier: workspace:*
+        version: link:../../packages/ie
+      '@tennantite/jei':
+        specifier: workspace:*
+        version: link:../../packages/jei
       '@tennantite/mekanism':
         specifier: workspace:*
         version: link:../../packages/mekanism
       '@tennantite/textures':
         specifier: workspace:*
         version: link:../../packages/textures
+      '@tennantite/thermal':
+        specifier: workspace:*
+        version: link:../../packages/thermal
       '@tennantite/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
@@ -442,7 +466,172 @@ importers:
         specifier: ^5.0.2
         version: 5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(jsdom@30.1.3)(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
 
+  packages/create:
+    dependencies:
+      '@tennantite/mods-core':
+        specifier: workspace:*
+        version: link:../mods-core
+      '@tennantite/textures':
+        specifier: workspace:*
+        version: link:../textures
+      '@tennantite/ui':
+        specifier: workspace:*
+        version: link:../ui
+    devDependencies:
+      '@rsbuild/plugin-react':
+        specifier: ^2.1.1
+        version: 2.1.1(@rsbuild/core@2.2.14)(@rspack/core@2.2.9(@swc/helpers@0.5.23))
+      '@rslib/core':
+        specifier: ^1.0.4
+        version: 1.0.4(typescript@6.0.3)
+      '@testing-library/jest-dom':
+        specifier: ^6.9.0
+        version: 6.9.1
+      '@testing-library/react':
+        specifier: ^16.3.3
+        version: 16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@testing-library/user-event':
+        specifier: ^14.6.1
+        version: 14.6.8(@testing-library/dom@10.4.2)
+      '@types/react':
+        specifier: ^19.2.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: ^19.2.0
+        version: 19.3.0(@types/react@19.3.0)
+      '@vitest/coverage-v8':
+        specifier: ^5.0.2
+        version: 5.0.5(vitest@5.0.5)
+      axe-core:
+        specifier: ^4.11.0
+        version: 4.14.0
+      jsdom:
+        specifier: ^30.1.3
+        version: 30.1.3
+      react:
+        specifier: 19.2.8
+        version: 19.2.8
+      react-dom:
+        specifier: 19.2.8
+        version: 19.2.8(react@19.2.8)
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+      vitest:
+        specifier: ^5.0.2
+        version: 5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(jsdom@30.1.3)(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
+
   packages/ic2:
+    dependencies:
+      '@tennantite/mods-core':
+        specifier: workspace:*
+        version: link:../mods-core
+      '@tennantite/textures':
+        specifier: workspace:*
+        version: link:../textures
+      '@tennantite/ui':
+        specifier: workspace:*
+        version: link:../ui
+    devDependencies:
+      '@rsbuild/plugin-react':
+        specifier: ^2.1.1
+        version: 2.1.1(@rsbuild/core@2.2.14)(@rspack/core@2.2.9(@swc/helpers@0.5.23))
+      '@rslib/core':
+        specifier: ^1.0.4
+        version: 1.0.4(typescript@6.0.3)
+      '@testing-library/jest-dom':
+        specifier: ^6.9.0
+        version: 6.9.1
+      '@testing-library/react':
+        specifier: ^16.3.3
+        version: 16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@testing-library/user-event':
+        specifier: ^14.6.1
+        version: 14.6.8(@testing-library/dom@10.4.2)
+      '@types/react':
+        specifier: ^19.2.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: ^19.2.0
+        version: 19.3.0(@types/react@19.3.0)
+      '@vitest/coverage-v8':
+        specifier: ^5.0.2
+        version: 5.0.5(vitest@5.0.5)
+      axe-core:
+        specifier: ^4.11.0
+        version: 4.14.0
+      jsdom:
+        specifier: ^30.1.3
+        version: 30.1.3
+      react:
+        specifier: 19.2.8
+        version: 19.2.8
+      react-dom:
+        specifier: 19.2.8
+        version: 19.2.8(react@19.2.8)
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+      vitest:
+        specifier: ^5.0.2
+        version: 5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(jsdom@30.1.3)(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
+
+  packages/ie:
+    dependencies:
+      '@tennantite/mods-core':
+        specifier: workspace:*
+        version: link:../mods-core
+      '@tennantite/textures':
+        specifier: workspace:*
+        version: link:../textures
+      '@tennantite/ui':
+        specifier: workspace:*
+        version: link:../ui
+    devDependencies:
+      '@rsbuild/plugin-react':
+        specifier: ^2.1.1
+        version: 2.1.1(@rsbuild/core@2.2.14)(@rspack/core@2.2.9(@swc/helpers@0.5.23))
+      '@rslib/core':
+        specifier: ^1.0.4
+        version: 1.0.4(typescript@6.0.3)
+      '@testing-library/jest-dom':
+        specifier: ^6.9.0
+        version: 6.9.1
+      '@testing-library/react':
+        specifier: ^16.3.3
+        version: 16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@testing-library/user-event':
+        specifier: ^14.6.1
+        version: 14.6.8(@testing-library/dom@10.4.2)
+      '@types/react':
+        specifier: ^19.2.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: ^19.2.0
+        version: 19.3.0(@types/react@19.3.0)
+      '@vitest/coverage-v8':
+        specifier: ^5.0.2
+        version: 5.0.5(vitest@5.0.5)
+      axe-core:
+        specifier: ^4.11.0
+        version: 4.14.0
+      jsdom:
+        specifier: ^30.1.3
+        version: 30.1.3
+      react:
+        specifier: 19.2.8
+        version: 19.2.8
+      react-dom:
+        specifier: 19.2.8
+        version: 19.2.8(react@19.2.8)
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+      vitest:
+        specifier: ^5.0.2
+        version: 5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(jsdom@30.1.3)(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
+
+  packages/jei:
     dependencies:
       '@tennantite/mods-core':
         specifier: workspace:*
@@ -609,6 +798,61 @@ importers:
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
+
+  packages/thermal:
+    dependencies:
+      '@tennantite/mods-core':
+        specifier: workspace:*
+        version: link:../mods-core
+      '@tennantite/textures':
+        specifier: workspace:*
+        version: link:../textures
+      '@tennantite/ui':
+        specifier: workspace:*
+        version: link:../ui
+    devDependencies:
+      '@rsbuild/plugin-react':
+        specifier: ^2.1.1
+        version: 2.1.1(@rsbuild/core@2.2.14)(@rspack/core@2.2.9(@swc/helpers@0.5.23))
+      '@rslib/core':
+        specifier: ^1.0.4
+        version: 1.0.4(typescript@6.0.3)
+      '@testing-library/jest-dom':
+        specifier: ^6.9.0
+        version: 6.9.1
+      '@testing-library/react':
+        specifier: ^16.3.3
+        version: 16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@testing-library/user-event':
+        specifier: ^14.6.1
+        version: 14.6.8(@testing-library/dom@10.4.2)
+      '@types/react':
+        specifier: ^19.2.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: ^19.2.0
+        version: 19.3.0(@types/react@19.3.0)
+      '@vitest/coverage-v8':
+        specifier: ^5.0.2
+        version: 5.0.5(vitest@5.0.5)
+      axe-core:
+        specifier: ^4.11.0
+        version: 4.14.0
+      jsdom:
+        specifier: ^30.1.3
+        version: 30.1.3
+      react:
+        specifier: 19.2.8
+        version: 19.2.8
+      react-dom:
+        specifier: 19.2.8
+        version: 19.2.8(react@19.2.8)
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+      vitest:
+        specifier: ^5.0.2
+        version: 5.0.5(@types/node@26.6.5)(@vitest/coverage-v8@5.0.5)(jsdom@30.1.3)(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
 
   packages/tokens:
     devDependencies:

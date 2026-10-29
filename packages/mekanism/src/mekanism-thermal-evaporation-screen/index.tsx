@@ -3,9 +3,9 @@ import { useState } from "react";
 import type { MekanismFluidContents, MekanismStorageScreenProps } from "../mekanism-storage-types";
 import type { MekanismSecurityMode } from "../mekanism-types";
 
+import { MekanismArrow } from "../mekanism-arrow/index";
 import { MekanismBar } from "../mekanism-bar/index";
 import { MekanismGauge } from "../mekanism-gauge/index";
-import { MekanismArrow } from "../mekanism-arrow/index";
 import { MekanismInnerScreen } from "../mekanism-inner-screen/index";
 import { MekanismScreen } from "../mekanism-screen/index";
 import { MekanismTabBar } from "../mekanism-tab-bar/index";

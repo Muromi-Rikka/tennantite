@@ -9,8 +9,15 @@ export {
   ae2SpriteMeta,
   type Ae2SpriteName,
 } from "./ae2-sprites.generated";
+export {
+  type CreateSpriteMeta,
+  createSpriteMeta,
+  type CreateSpriteName,
+  type CreateSpriteScaling,
+} from "./create-sprites.generated";
 export { type GuiIconName, guiIcons } from "./gui-icons.generated";
 export { containerSlots, type ContainerSpriteName } from "./gui-layouts.generated";
+
 export {
   GUI_SPRITE_VERSION,
   type GuiSpriteMeta,
@@ -29,8 +36,27 @@ export {
 } from "./ic2-sprites.generated";
 
 export {
+  type IeSpriteMeta,
+  ieSpriteMeta,
+  type IeSpriteName,
+  type IeSpriteScaling,
+} from "./ie-sprites.generated";
+
+export {
+  type JeiSpriteMeta,
+  jeiSpriteMeta,
+  type JeiSpriteName,
+  type JeiSpriteScaling,
+} from "./jei-sprites.generated";
+export {
   type MekanismSpriteMeta,
   mekanismSpriteMeta,
   type MekanismSpriteName,
   type MekanismSpriteScaling,
 } from "./mekanism-sprites.generated";
+export {
+  type ThermalSpriteMeta,
+  thermalSpriteMeta,
+  type ThermalSpriteName,
+  type ThermalSpriteScaling,
+} from "./thermal-sprites.generated";

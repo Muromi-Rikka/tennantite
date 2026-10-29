@@ -1,0 +1,10 @@
+/*
+ * JEI sprite layer. Import after the vanilla sprite CSS.
+ * Generated data URIs live in jei-sprites.generated.css.
+ */
+@import "./jei-sprites.generated.css";
+
+.mc-jei-sprite {
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}

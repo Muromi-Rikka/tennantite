@@ -1,7 +1,5 @@
 import { ModSprite } from "@tennantite/mods-core";
-
 import { ic2SpriteMeta } from "@tennantite/textures";
-
 import { gui } from "@tennantite/ui";
 
 import type { Ic2RedstoneMode } from "../ic2-types";

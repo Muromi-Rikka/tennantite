@@ -1,0 +1,10 @@
+/*
+ * Thermal Expansion sprite layer. Import after the vanilla sprite CSS.
+ * Generated data URIs live in thermal-sprites.generated.css.
+ */
+@import "./thermal-sprites.generated.css";
+
+.mc-thermal-sprite {
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}

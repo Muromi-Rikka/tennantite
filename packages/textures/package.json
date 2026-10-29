@@ -22,11 +22,15 @@
     "sync:icons": "node scripts/sync-vanilla-icons.mjs",
     "typecheck": "tsc --noEmit",
     "sync:ae2-sprites": "node scripts/sync-ae2-sprites.mjs",
+    "sync:create-sprites": "node scripts/sync-create-sprites.mjs",
     "sync:gui-sprites": "node scripts/sync-gui-sprites.mjs",
     "sync:gui-layouts": "node scripts/scan-gui-layouts.mjs",
     "sync:ic2-sprites": "node scripts/sync-ic2-sprites.mjs",
+    "sync:ie-sprites": "node scripts/sync-ie-sprites.mjs",
+    "sync:jei-sprites": "node scripts/sync-jei-sprites.mjs",
     "sync:mekanism-sprites": "node scripts/sync-mekanism-sprites.mjs",
-    "verify:assets": "node scripts/sync-gui-sprites.mjs --check && node scripts/sync-ae2-sprites.mjs --check && node scripts/sync-ic2-sprites.mjs --check && node scripts/sync-mekanism-sprites.mjs --check && node scripts/scan-gui-layouts.mjs --check"
+    "sync:thermal-sprites": "node scripts/sync-thermal-sprites.mjs",
+    "verify:assets": "node scripts/sync-gui-sprites.mjs --check && node scripts/sync-ae2-sprites.mjs --check && node scripts/sync-create-sprites.mjs --check && node scripts/sync-ic2-sprites.mjs --check && node scripts/sync-ie-sprites.mjs --check && node scripts/sync-jei-sprites.mjs --check && node scripts/sync-mekanism-sprites.mjs --check && node scripts/sync-thermal-sprites.mjs --check && node scripts/scan-gui-layouts.mjs --check"
   },
   "devDependencies": {
     "fflate": "^0.8.3",

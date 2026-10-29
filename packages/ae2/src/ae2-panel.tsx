@@ -1,7 +1,6 @@
 import type { Ae2SpriteName } from "@tennantite/textures";
-import { ae2SpriteMeta } from "@tennantite/textures";
-
 import { ModSprite } from "@tennantite/mods-core";
+import { ae2SpriteMeta } from "@tennantite/textures";
 
 export interface Ae2PanelBackgroundProps {
   /**

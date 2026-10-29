@@ -1,8 +1,8 @@
 import type { MekanismSpriteName } from "@tennantite/textures";
 
-import type { MekanismGaugeKind, MekanismGaugeType } from "../mekanism-types";
 import { progressClipPath } from "@tennantite/mods-core";
 import { cn, gui } from "@tennantite/ui";
+import type { MekanismGaugeKind, MekanismGaugeType } from "../mekanism-types";
 import { MEKANISM_GAUGE_OVERLAYS, MEKANISM_GAUGE_SIZES } from "../mekanism-metrics";
 import { MekanismSprite } from "../mekanism-sprite/index";
 

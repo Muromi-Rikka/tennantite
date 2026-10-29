@@ -1,0 +1,10 @@
+/*
+ * Immersive Engineering sprite layer. Import after the vanilla sprite CSS.
+ * Generated data URIs live in ie-sprites.generated.css.
+ */
+@import "./ie-sprites.generated.css";
+
+.mc-ie-sprite {
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}

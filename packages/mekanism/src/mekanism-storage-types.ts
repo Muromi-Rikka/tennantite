@@ -1,7 +1,6 @@
 import type { MekanismSpriteName } from "@tennantite/textures";
-import type { ReactNode } from "react";
-
 import type { ScreenSlot } from "@tennantite/ui";
+import type { ReactNode } from "react";
 import type { MekanismEditMode, MekanismSecurityMode, MekanismWindowKind } from "./mekanism-types";
 
 export interface MekanismChemicalContents {

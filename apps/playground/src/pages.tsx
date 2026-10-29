@@ -11,6 +11,7 @@ import { ChatScreenPage } from "./pages/chat-screen";
 import { CheckboxPage } from "./pages/checkbox";
 import { ChestScreenPage } from "./pages/chest-screen";
 import { CraftingScreenPage } from "./pages/crafting-screen";
+import { CreatePage } from "./pages/create";
 import { CrosshairPage } from "./pages/crosshair";
 import { DialogPage } from "./pages/dialog";
 import { EnchantingScreenPage } from "./pages/enchanting-screen";
@@ -22,9 +23,11 @@ import { HealthHungerBarPage } from "./pages/health-hunger-bar";
 import { HotbarPage } from "./pages/hotbar";
 import { Ic2Page } from "./pages/ic2";
 import { IconPage } from "./pages/icon";
+import { IePage } from "./pages/ie";
 import { InputPage } from "./pages/input";
 import { InventoryScreenPage } from "./pages/inventory-screen";
 import { ItemStackPage } from "./pages/item-stack";
+import { JeiPage } from "./pages/jei";
 import { L0Page } from "./pages/l0";
 import { MainMenuPage } from "./pages/main-menu";
 import { MekanismPage } from "./pages/mekanism";
@@ -38,6 +41,7 @@ import { SlotPage } from "./pages/slot";
 import { StatusEffectsPage } from "./pages/status-effects";
 import { SwitchPage } from "./pages/switch";
 import { TabsPage } from "./pages/tabs";
+import { ThermalPage } from "./pages/thermal";
 import { TooltipPage } from "./pages/tooltip";
 import { TradingScreenPage } from "./pages/trading-screen";
 
@@ -62,6 +66,7 @@ export const pageRegistry = new Map<string, PageEntry>([
   ["checkbox", { render: () => <CheckboxPage />, title: "Checkbox" }],
   ["chest-screen", { render: () => <ChestScreenPage />, title: "ChestScreen" }],
   ["crafting-screen", { render: () => <CraftingScreenPage />, title: "CraftingScreen" }],
+  ["create", { render: () => <CreatePage />, title: "Create (Mod)" }],
   ["crosshair", { render: () => <CrosshairPage />, title: "Crosshair (HUD)" }],
   ["dialog", { render: () => <DialogPage />, title: "Dialog" }],
   ["enchanting-screen", { render: () => <EnchantingScreenPage />, title: "EnchantingScreen" }],
@@ -73,9 +78,11 @@ export const pageRegistry = new Map<string, PageEntry>([
   ["hotbar", { render: () => <HotbarPage />, title: "Hotbar (HUD)" }],
   ["ic2", { render: () => <Ic2Page />, title: "IC2 (Mod)" }],
   ["icon", { render: () => <IconPage />, title: "Icon (L2)" }],
+  ["ie", { render: () => <IePage />, title: "Immersive Engineering (Mod)" }],
   ["input", { render: () => <InputPage />, title: "Input" }],
   ["inventory-screen", { render: () => <InventoryScreenPage />, title: "InventoryScreen" }],
   ["item-stack", { render: () => <ItemStackPage />, title: "ItemStack (L2)" }],
+  ["jei", { render: () => <JeiPage />, title: "JEI (Mod)" }],
   ["l0", { render: () => <L0Page />, title: "L0 · Tokens & Textures" }],
   ["main-menu", { render: () => <MainMenuPage />, title: "MainMenu (Menu)" }],
   ["mekanism", { render: () => <MekanismPage />, title: "Mekanism (Mod)" }],
@@ -89,6 +96,7 @@ export const pageRegistry = new Map<string, PageEntry>([
   ["status-effects", { render: () => <StatusEffectsPage />, title: "StatusEffects (HUD)" }],
   ["switch", { render: () => <SwitchPage />, title: "Switch" }],
   ["tabs", { render: () => <TabsPage />, title: "Tabs" }],
+  ["thermal", { render: () => <ThermalPage />, title: "Thermal Expansion (Mod)" }],
   ["tooltip", { render: () => <TooltipPage />, title: "Tooltip" }],
   ["trading-screen", { render: () => <TradingScreenPage />, title: "TradingScreen" }],
 ]);

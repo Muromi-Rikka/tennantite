@@ -1,5 +1,5 @@
-import { render } from "@testing-library/react";
 import { pixelIcons } from "@tennantite/textures";
+import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { Grid } from "../grid/index";

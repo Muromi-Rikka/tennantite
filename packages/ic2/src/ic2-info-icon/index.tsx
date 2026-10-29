@@ -1,5 +1,4 @@
 import { ModSprite } from "@tennantite/mods-core";
-
 import { ic2SpriteMeta } from "@tennantite/textures";
 
 /**

@@ -1,11 +1,7 @@
+import type { PlayerInventoryProps, ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
-
-import type { PlayerInventoryProps } from "@tennantite/ui";
-import type { ScreenSlot } from "@tennantite/ui";
-import { PlayerInventory } from "@tennantite/ui";
-import { ScreenPanel } from "@tennantite/ui";
-import { cn, gui } from "@tennantite/ui";
-import { ScreenItemSlot } from "@tennantite/ui";
+import { ModTitle } from "@tennantite/mods-core";
+import { cn, gui, PlayerInventory, ScreenItemSlot, ScreenPanel } from "@tennantite/ui";
 import {
   AE2_CHEST,
   AE2_PLAYER,
@@ -15,7 +11,6 @@ import {
   ae2SlotFrame,
 } from "../ae2-layout";
 import { Ae2PriorityTab } from "../ae2-priority-tab/index";
-import { ModTitle } from "@tennantite/mods-core";
 
 export interface Ae2ChestScreenProps {
   className?: string;

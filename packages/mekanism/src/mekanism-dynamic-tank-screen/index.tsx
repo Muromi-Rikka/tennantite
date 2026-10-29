@@ -1,17 +1,17 @@
+import type { ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
 import { useState } from "react";
-import type { ScreenSlot } from "@tennantite/ui";
 import type { MekanismChemicalContents, MekanismFluidContents, MekanismStorageScreenProps } from "../mekanism-storage-types";
 import type { MekanismEditMode, MekanismSecurityMode } from "../mekanism-types";
 
-import { MekanismGauge } from "../mekanism-gauge/index";
 import { MekanismArmorSlots } from "../mekanism-armor-slots/index";
 import { MekanismArrow } from "../mekanism-arrow/index";
+import { MekanismElementHolder } from "../mekanism-element-holder/index";
+import { MekanismGauge } from "../mekanism-gauge/index";
 import { MekanismInnerScreen } from "../mekanism-inner-screen/index";
 import { MekanismScreen } from "../mekanism-screen/index";
-import { MekanismSlot } from "../mekanism-slot/index";
-import { MekanismElementHolder } from "../mekanism-element-holder/index";
 import { MekanismSideHolder } from "../mekanism-side-holder/index";
+import { MekanismSlot } from "../mekanism-slot/index";
 import { MekanismTabBar } from "../mekanism-tab-bar/index";
 
 export interface MekanismDynamicTankScreenProps extends MekanismStorageScreenProps {

@@ -6,7 +6,7 @@ import { describe, expect, it } from "vitest";
 
 import { BatBoxScreen, Ic2EnergyGauge, MaceratorScreen } from "./index";
 
-describe("IC2 SSR", () => {
+describe("iC2 SSR", () => {
   it("服务端渲染 mod 屏与组件不报错", () => {
     const html = renderToStaticMarkup(
       <>

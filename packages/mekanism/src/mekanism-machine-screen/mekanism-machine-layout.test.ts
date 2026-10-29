@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
 
 import type { MekanismMachineLayout } from "./mekanism-machine-layout";
-import { MEKANISM_MACHINES } from "./mekanism-machine-layout";
 import {
   MEKANISM_BASE_IMAGE,
   MEKANISM_GAUGE_SIZES,
   MEKANISM_PROGRESS_SIZES,
   MEKANISM_WINDOW_POSITIONS,
 } from "../mekanism-metrics";
+import { MEKANISM_MACHINES } from "./mekanism-machine-layout";
 
 /**
  * 独立期望表：值为上游容器槽位（slot.x / slot.y），不是布局表的复制。

@@ -1,8 +1,6 @@
-import { ModSprite, progressClipPath } from "@tennantite/mods-core";
 import type { ModSpriteRect } from "@tennantite/mods-core";
-
+import { ModSprite, progressClipPath } from "@tennantite/mods-core";
 import { ic2SpriteMeta } from "@tennantite/textures";
-
 import { cn, gui, Tooltip, TooltipPopup, TooltipTrigger } from "@tennantite/ui";
 
 import type { Ic2EnergyVariant } from "../ic2-types";

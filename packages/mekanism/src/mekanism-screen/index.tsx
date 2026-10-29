@@ -1,7 +1,6 @@
-import type { ReactNode } from "react";
-
-import { cn, gui } from "@tennantite/ui";
 import type { ScreenSlot } from "@tennantite/ui";
+import type { ReactNode } from "react";
+import { cn, gui } from "@tennantite/ui";
 
 import { MekanismLabel } from "../mekanism-label/index";
 import { MekanismPlayerInventory } from "../mekanism-player-inventory/index";

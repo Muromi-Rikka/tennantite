@@ -87,6 +87,19 @@
   /* IC2（工业时代 2，原版 GUI 贴图配套文字色） */
   --color-mc-ic2-text: #404040; /* IC2 界面文字 */
 
+  /* JEI（Just Enough Items，悬浮面板文字） */
+  --color-mc-jei-text: #ffffff; /* 界面标题文字 */
+  --color-mc-jei-field-text: #ffffff; /* 搜索框文字 */
+
+  /* Create（机械动力，浅色 GUI 深色文字） */
+  --color-mc-create-text: #404040; /* 界面文字 */
+
+  /* Thermal Expansion（浅色 GUI 深色文字） */
+  --color-mc-thermal-text: #404040; /* 界面文字 */
+
+  /* Immersive Engineering（Lib.COLOUR_I_ImmersiveOrange） */
+  --color-mc-ie-text: #f78034; /* 界面标题文字 */
+
   /* Mekanism 26.3（材质自带文字层级） */
   --color-mc-mekanism-title: #404040;
   --color-mc-mekanism-subheading: #787878;

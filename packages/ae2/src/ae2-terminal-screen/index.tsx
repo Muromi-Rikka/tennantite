@@ -1,13 +1,17 @@
+import type { PlayerInventoryProps, ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
+import {
+  ModScrollbar,
+  ModSearchField,
+  ModSlotGrid,
+  ModSprite,
+  ModTabButton,
+  ModTitle,
+  ModToolbar,
+} from "@tennantite/mods-core";
 import { ae2SpriteMeta } from "@tennantite/textures";
-
-import type { PlayerInventoryProps } from "@tennantite/ui";
-import type { ScreenSlot } from "@tennantite/ui";
+import { cn, gui, padSlots, PlayerInventory, ScreenPanel } from "@tennantite/ui";
 import type { Ae2TerminalAction } from "../ae2-types";
-import { PlayerInventory } from "@tennantite/ui";
-import { ScreenPanel } from "@tennantite/ui";
-import { cn, gui } from "@tennantite/ui";
-import { padSlots } from "@tennantite/ui";
 import {
   AE2_ICONS,
   AE2_TERMINAL,
@@ -18,15 +22,6 @@ import {
   ae2TerminalPlayerTitleTop,
 } from "../ae2-layout";
 import { Ae2PanelBackground } from "../ae2-panel";
-import {
-  ModScrollbar,
-  ModSearchField,
-  ModSlotGrid,
-  ModSprite,
-  ModTabButton,
-  ModTitle,
-  ModToolbar,
-} from "@tennantite/mods-core";
 
 export interface Ae2TerminalScreenProps {
   className?: string;

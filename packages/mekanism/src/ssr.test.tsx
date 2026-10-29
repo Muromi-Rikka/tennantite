@@ -25,7 +25,7 @@ function render(): string {
 }
 
 describe("sSR smoke (node env, 规格 §1.1)", () => {
-  it("Mekanism 屏与窗口可服务端渲染", () => {
+  it("mekanism 屏与窗口可服务端渲染", () => {
     const html = render();
     expect(typeof html).toBe("string");
     expect(html.length).toBeGreaterThan(0);

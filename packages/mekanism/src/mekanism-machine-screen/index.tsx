@@ -1,8 +1,9 @@
 import type { MekanismSpriteName } from "@tennantite/textures";
-import type { ReactNode } from "react";
-import { useRef, useState } from "react";
-
 import type { ScreenSlot } from "@tennantite/ui";
+import type { ReactNode } from "react";
+
+import { gui } from "@tennantite/ui";
+import { useRef, useState } from "react";
 import type {
   MekanismDataType,
   MekanismEditMode,
@@ -14,21 +15,20 @@ import type {
   MekanismWindowKind,
 } from "../mekanism-types";
 import type { MekanismMachineKey, MekanismMachineLayout } from "./mekanism-machine-layout";
-import { gui } from "@tennantite/ui";
-import { MekanismBar } from "../mekanism-bar/index";
-import { MekanismGauge } from "../mekanism-gauge/index";
 import { MekanismArrow } from "../mekanism-arrow/index";
+import { MekanismBar } from "../mekanism-bar/index";
 import { MekanismGasMode } from "../mekanism-gas-mode/index";
+import { MekanismGauge } from "../mekanism-gauge/index";
 import { MekanismImageButton } from "../mekanism-image-button/index";
 import { MekanismInnerScreen } from "../mekanism-inner-screen/index";
 import { MekanismLabel } from "../mekanism-label/index";
-import { MekanismTextField } from "../mekanism-text-field/index";
 import { MekanismProgress } from "../mekanism-progress/index";
 import { MekanismScreen } from "../mekanism-screen/index";
 import { MekanismSideConfigWindow } from "../mekanism-side-config-window/index";
-import { MekanismSlot } from "../mekanism-slot/index";
 import { MekanismSideHolder } from "../mekanism-side-holder/index";
+import { MekanismSlot } from "../mekanism-slot/index";
 import { MekanismTabBar } from "../mekanism-tab-bar/index";
+import { MekanismTextField } from "../mekanism-text-field/index";
 import { MekanismUpgradeWindow } from "../mekanism-upgrade-window/index";
 import { MEKANISM_MACHINE_TITLES, MEKANISM_MACHINES } from "./mekanism-machine-layout";
 

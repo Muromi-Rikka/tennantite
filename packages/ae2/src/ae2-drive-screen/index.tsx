@@ -1,11 +1,7 @@
+import type { PlayerInventoryProps, ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
-
-import type { PlayerInventoryProps } from "@tennantite/ui";
-import type { ScreenSlot } from "@tennantite/ui";
-import { PlayerInventory } from "@tennantite/ui";
-import { ScreenPanel } from "@tennantite/ui";
-import { cn, gui } from "@tennantite/ui";
-import { padSlots } from "@tennantite/ui";
+import { ModSlotGrid, ModTitle } from "@tennantite/mods-core";
+import { cn, gui, padSlots, PlayerInventory, ScreenPanel } from "@tennantite/ui";
 import {
   AE2_DRIVE,
   AE2_PLAYER,
@@ -15,7 +11,6 @@ import {
   ae2SlotFrame,
 } from "../ae2-layout";
 import { Ae2PriorityTab } from "../ae2-priority-tab/index";
-import { ModSlotGrid, ModTitle } from "@tennantite/mods-core";
 
 export interface Ae2DriveScreenProps {
   className?: string;

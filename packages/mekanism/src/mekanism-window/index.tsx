@@ -1,9 +1,8 @@
 import type { PointerEvent, ReactNode } from "react";
-import { useRef, useState } from "react";
-
 import { cn, gui } from "@tennantite/ui";
-import { MekanismTitle } from "../mekanism-title/index";
+import { useRef, useState } from "react";
 import { MekanismSprite } from "../mekanism-sprite/index";
+import { MekanismTitle } from "../mekanism-title/index";
 
 export interface MekanismWindowProps {
   children?: ReactNode;

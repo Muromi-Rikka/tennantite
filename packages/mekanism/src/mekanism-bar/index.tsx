@@ -1,7 +1,6 @@
 import type { MekanismSpriteName } from "@tennantite/textures";
-import { mekanismSpriteMeta } from "@tennantite/textures";
-
 import { progressClipPath } from "@tennantite/mods-core";
+import { mekanismSpriteMeta } from "@tennantite/textures";
 import { cn, gui } from "@tennantite/ui";
 import { MekanismSprite } from "../mekanism-sprite/index";
 

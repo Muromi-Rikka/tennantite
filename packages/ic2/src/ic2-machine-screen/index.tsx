@@ -1,18 +1,17 @@
-import type { ReactNode } from "react";
-
 import type { ScreenSlot } from "@tennantite/ui";
-import type { Ic2ProgressStyle } from "../ic2-types";
-
+import type { ReactNode } from "react";
 import {
   padSlots,
   PlayerInventory,
   ScreenItemSlot,
   ScreenPanel,
 } from "@tennantite/ui";
+
+import type { Ic2ProgressStyle } from "../ic2-types";
 import { Ic2EnergyGauge } from "../ic2-energy-gauge/index";
-import { IC2_MACHINE } from "../ic2-layout";
 import { Ic2InfoIcon } from "../ic2-info-icon";
 import { Ic2Label } from "../ic2-label";
+import { IC2_MACHINE } from "../ic2-layout";
 import { Ic2Progress } from "../ic2-progress";
 import { Ic2Title } from "../ic2-title";
 

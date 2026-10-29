@@ -1,8 +1,7 @@
+import { ModSprite } from "@tennantite/mods-core";
 import { ae2SpriteMeta } from "@tennantite/textures";
-
 import { gui } from "@tennantite/ui";
 import { AE2_PRIORITY_TAB } from "../ae2-layout";
-import { ModSprite } from "@tennantite/mods-core";
 
 export interface Ae2PriorityTabProps {
   /**

@@ -4,6 +4,10 @@
 @import "@tennantite/textures/css/ic2-textures.css";
 @import "@tennantite/textures/css/ae2-textures.css";
 @import "@tennantite/textures/css/mekanism-textures.css";
+@import "@tennantite/textures/css/jei-textures.css";
+@import "@tennantite/textures/css/create-textures.css";
+@import "@tennantite/textures/css/thermal-textures.css";
+@import "@tennantite/textures/css/ie-textures.css";
 @import "@tennantite/ui/css/scroll-area.css";
 
 /* monorepo：扫描工作区包源码中的类名 */

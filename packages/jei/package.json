@@ -1,0 +1,54 @@
+{
+  "name": "@tennantite/jei",
+  "type": "module",
+  "version": "0.1.0",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./demos": {
+      "types": "./dist/demos.d.ts",
+      "default": "./dist/demos.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=26"
+  },
+  "scripts": {
+    "build": "rslib build",
+    "dev": "rslib build --watch",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.node.json",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "peerDependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "dependencies": {
+    "@tennantite/mods-core": "workspace:*",
+    "@tennantite/textures": "workspace:*",
+    "@tennantite/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@rsbuild/plugin-react": "^2.1.1",
+    "@rslib/core": "^1.0.4",
+    "@testing-library/jest-dom": "^6.9.0",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitest/coverage-v8": "^5.0.2",
+    "axe-core": "^4.11.0",
+    "jsdom": "^30.1.3",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.2"
+  }
+}

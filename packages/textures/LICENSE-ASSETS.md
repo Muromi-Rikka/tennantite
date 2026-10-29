@@ -122,6 +122,91 @@ AE2 以 **GNU LGPL-3.0** 发布（<https://github.com/AE2-UEL/Applied-Energistic
 其余 AE2 部件（压印进度条、工具栏按钮底、清空按钮、部分图标）仍为
 `packages/textures/css/ae2-textures.css` 中的手绘 SVG 像素复刻，不含原始素材。
 
+## JEI（Just Enough Items）原始 GUI 贴图
+
+JEI 界面（物品列表面板、书签栏、配方查看界面、按钮与图标）直接使用
+Just Enough Items 上游的原始 GUI 贴图：
+
+- 上游：<https://github.com/mezz/JustEnoughItems>（分支 `26.3`）
+- 提交：`b280faad7c48fbd35b54aac9bab5fdc17e217339`
+- 提取路径：`Common/src/main/resources/assets/jei/textures/gui/sprites/**`
+  （50 个 PNG，含 `.mcmeta` 的 `gui.scaling`：`nine_slice`，
+  border 为 26.x 的 `{left,top,right,bottom}` 对象格式）
+- 产物：`packages/textures/css/jei-sprites.generated.css` 与
+  `packages/textures/src/jei-sprites.generated.ts`（base64 data URI，仓库不含散图）
+- 生成脚本：`packages/textures/scripts/sync-jei-sprites.mjs`；重新生成/校验：
+  `pnpm --filter @tennantite/textures sync:jei-sprites` / `pnpm verify:assets`。
+
+JEI 以 **MIT** 发布（Copyright (c) 2016 mezz）。生成的 data URI 属于派生分发，
+再分发需保留本声明与 MIT 许可文本。"Just Enough Items" / "JEI" 相关名称与商标归其
+原作者所有。组件仅作视觉展示用途（数据注入，无游戏逻辑）。
+
+## Create（机械动力）原始 GUI 贴图
+
+Create 界面（过滤器、工具箱、蓝图桌、数值面板的 GUI 图集与物品栏贴图）直接使用
+Create 上游的原始 GUI 贴图：
+
+- 上游：<https://github.com/Creators-of-Create/Create>（分支 `mc1.21.1/dev`）
+- 提交：`4148fd8d5b05c85d88947edc00fb495a5074f57d`
+- 提取路径：`src/main/resources/assets/create/textures/gui/{filters,filters_2,icons,player_inventory,schematics,schematics_2,toolbox,value_settings}.png`
+  （8 个 256×256 图集；`machine-background`（176×166）为按原版
+  `player_inventory.png` 顶带 + 平整横带 + 倒置顶带合成的合成图——Create 磨石 /
+  粉碎机上游无 GUI Screen，照 IC2 `machineBackground` 先例合成）
+- 产物：`packages/textures/css/create-sprites.generated.css` 与
+  `packages/textures/src/create-sprites.generated.ts`（base64 data URI，仓库不含散图）
+- 生成脚本：`packages/textures/scripts/sync-create-sprites.mjs`；重新生成/校验：
+  `pnpm --filter @tennantite/textures sync:create-sprites` / `pnpm verify:assets`。
+
+Create 代码以 **MIT** 发布，但其 `src/main/resources/assets/` 下贴图版权归
+The Create Team / The Creators of Create 所有（**All Rights Reserved**），**不在
+本项目授权范围内**，本项目不授予任何再分发授权。"Create" / "Mechanical Mastery"
+相关名称与商标归其原作者所有。组件仅作视觉展示用途（数据注入，无游戏逻辑）。
+
+## Thermal Expansion（热力膨胀）原始 GUI 贴图
+
+Thermal Expansion 界面（机器容器背景、能量/容量表、进度箭头、按钮与过滤器图标）
+直接使用 CoFH 上游的原始 GUI 贴图。1.20.x 时代 CoFH 将素材拆分至 ThermalCore 与
+CoFHCore 仓库，故脚本固定三个提交：
+
+- 代码（Screen 类坐标来源）：<https://github.com/CoFH/ThermalExpansion>（分支 `1.20.x`）
+  - 提交：`24a26758694ba32eb96a8105f080c36e768cd02f`
+- 容器背景：<https://github.com/CoFH/ThermalCore>
+  - 提交：`cc7c230146a71d177767a8f9d6b26f0a52e9aeed`
+  - 提取路径：`assets/thermal/textures/gui/container/*.png`（39 个）
+- 共享部件：<https://github.com/CoFH/CoFHCore>
+  - 提交：`dcd7bd6703418ee2e8eb2185957de83925fa89fe`
+  - 提取路径：`assets/cofh_core/textures/gui/{elements,icons,filters}/**` 与
+    `generic.png` / `generic_extension.png`
+- 产物：`packages/textures/css/thermal-sprites.generated.css` 与
+  `packages/textures/src/thermal-sprites.generated.ts`（base64 data URI，仓库不含散图）
+- 生成脚本：`packages/textures/scripts/sync-thermal-sprites.mjs`；重新生成/校验：
+  `pnpm --filter @tennantite/textures sync:thermal-sprites` / `pnpm verify:assets`。
+
+CoFH 仓库以 "Don't Be a Jerk" License v2 发布（默认 All Rights Reserved），贴图版权归
+Team CoFH 所有，**不在本项目授权范围内**，本项目不授予任何再分发授权。"Thermal
+Expansion" / "CoFH" 相关名称与商标归其原作者所有。组件仅作视觉展示用途（数据注入，
+无游戏逻辑）。
+
+## Immersive Engineering（沉浸工程）原始 GUI 贴图
+
+Immersive Engineering 界面（焦炉 / 电弧炉 / 压机 / 电容窗口、HUD 方形按钮、
+machine_interface 部件）直接使用 Immersive Engineering 上游的原始 GUI 贴图：
+
+- 上游：<https://github.com/BluSunrize/ImmersiveEngineering>（分支 `1.21.1`）
+- 提交：`75a27f03e4243544243567e8d5c38d336f4f10f4`
+- 提取路径：`src/main/resources/assets/immersiveengineering/textures/gui/**`
+  （130 个 PNG，含 `sprites/` 子目录；唯一 `.mcmeta` 为
+  `sprites/machine_interface/select_box.png` 的 `nine_slice`）
+- 产物：`packages/textures/css/ie-sprites.generated.css` 与
+  `packages/textures/src/ie-sprites.generated.ts`（base64 data URI，仓库不含散图）
+- 生成脚本：`packages/textures/scripts/sync-ie-sprites.mjs`；重新生成/校验：
+  `pnpm --filter @tennantite/textures sync:ie-sprites` / `pnpm verify:assets`。
+
+Immersive Engineering 以 "Blu's License of Common Sense" 发布，贴图版权归
+BluSunrize 及各原作者所有，**不在本项目授权范围内**，本项目不授予任何再分发授权；
+"Immersive Engineering" 相关名称与商标归其原作者所有。组件仅作视觉展示用途
+（数据注入，无游戏逻辑）。
+
 ## 字体
 
 | 字体 | 来源 | 授权 |

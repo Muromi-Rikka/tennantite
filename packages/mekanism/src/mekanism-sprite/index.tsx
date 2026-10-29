@@ -1,7 +1,6 @@
 import type { MekanismSpriteName } from "@tennantite/textures";
 import type { CSSProperties } from "react";
 import { mekanismSpriteMeta } from "@tennantite/textures";
-
 import { cn, gui } from "@tennantite/ui";
 
 export interface MekanismSpriteProps {

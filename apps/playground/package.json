@@ -11,9 +11,13 @@
   },
   "dependencies": {
     "@tennantite/ae2": "workspace:*",
+    "@tennantite/create": "workspace:*",
     "@tennantite/ic2": "workspace:*",
+    "@tennantite/ie": "workspace:*",
+    "@tennantite/jei": "workspace:*",
     "@tennantite/mekanism": "workspace:*",
     "@tennantite/textures": "workspace:*",
+    "@tennantite/thermal": "workspace:*",
     "@tennantite/tokens": "workspace:*",
     "@tennantite/ui": "workspace:*",
     "react": "19.2.8",

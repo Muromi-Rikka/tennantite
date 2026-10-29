@@ -67,32 +67,32 @@ export type { LoomScreenProps } from "./loom-screen/index";
 export { NautilusScreen } from "./nautilus-screen/index";
 export type { NautilusScreenProps } from "./nautilus-screen/index";
 
+export { ScreenItemSlot } from "./screen-slot";
 export { ShulkerBoxScreen } from "./shulker-box-screen/index";
+
 export type { ShulkerBoxScreenProps } from "./shulker-box-screen/index";
-
 export { SmithingScreen } from "./smithing-screen/index";
+
 export type { SmithingScreenProps } from "./smithing-screen/index";
-
 export { SmokerScreen } from "./smoker-screen/index";
-export type { SmokerScreenProps } from "./smoker-screen/index";
 
+export type { SmokerScreenProps } from "./smoker-screen/index";
 export { StonecutterScreen } from "./stonecutter-screen/index";
+
 export type {
   StonecutterRecipe,
   StonecutterScreenProps,
 } from "./stonecutter-screen/index";
-
 export { TradingScreen } from "./trading-screen/index";
+
 export type {
   TradeOffer,
   TradingScreenProps,
 } from "./trading-screen/index";
-
 export type {
   ScreenArea,
   ScreenItem,
   ScreenSlot,
   SlotClickDetails,
 } from "./types";
-export { ScreenItemSlot } from "./screen-slot";
 export { padSlots } from "./types";

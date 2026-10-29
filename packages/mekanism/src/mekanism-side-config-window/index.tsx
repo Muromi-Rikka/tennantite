@@ -1,11 +1,11 @@
 import type { MekanismSpriteName } from "@tennantite/textures";
 
-import type { MekanismDataType, MekanismSide, MekanismTransmission } from "../mekanism-types";
 import { cn, gui } from "@tennantite/ui";
-import { MEKANISM_DATA_COLORS } from "../mekanism-metrics";
+import type { MekanismDataType, MekanismSide, MekanismTransmission } from "../mekanism-types";
 import { MekanismImageButton } from "../mekanism-image-button/index";
 import { MekanismInnerScreen } from "../mekanism-inner-screen/index";
 import { MekanismLabel } from "../mekanism-label/index";
+import { MEKANISM_DATA_COLORS } from "../mekanism-metrics";
 import { MekanismSprite } from "../mekanism-sprite/index";
 import { MekanismWindow } from "../mekanism-window/index";
 

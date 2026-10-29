@@ -1,0 +1,60 @@
+/*
+ * Create（机械动力）sprite 层。Import after the vanilla sprite CSS.
+ * Generated data URIs live in create-sprites.generated.css.
+ *
+ * Create 的 GUI 贴图是整图 atlas：组件用 ModSprite 的 src 矩形从 atlas 裁剪，
+ * 这里只放整图窗口背景与通用基础类。
+ */
+@import "./create-sprites.generated.css";
+
+.mc-create-sprite {
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}
+
+/* ---- 机器窗口（磨石/粉碎机）：player_inventory 平整横带合成图（176×166） ---- */
+.mc-create-machine {
+  background-image: var(--mc-create-machine-background);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+}
+
+/* ---- Create 通用窗口底色（catnip Window 深灰底，toolbox/筛选器等窗口外围可见） ---- */
+.mc-create-window {
+  background-color: #373737;
+}
+
+/* ---- 数值配置浮层面板（上游 UIRenderHelper.drawStretched 深色半透明底） ---- */
+.mc-create-value-panel {
+  background-color: rgb(20 20 22 / 0.9);
+  box-shadow: 0 0 0 calc(var(--mc-gui) * 2) #565656;
+  image-rendering: pixelated;
+}
+
+/* ---- 磨石/粉碎机竖向进度条：无上游贴图，照 IC2 先例程序化绘制 ---- */
+.mc-create-progress-track {
+  background-color: #8b8b8b;
+  box-shadow: inset calc(var(--mc-gui) * 1) calc(var(--mc-gui) * 1) 0 0 #373737,
+    inset calc(var(--mc-gui) * -1) calc(var(--mc-gui) * -1) 0 0 #ffffff;
+  image-rendering: pixelated;
+}
+
+.mc-create-progress-fill {
+  background-color: #ffeb8c;
+  image-rendering: pixelated;
+}
+
+/* ---- 数值配置浮层区间条填充（Create 主题高亮色，取样自 toolbox 标题带） ---- */
+.mc-create-value-fill {
+  background-color: #ffeb8c;
+}
+
+/* ---- 数值配置浮层区间条轨道：value_settings.png (7,0) 249×8 ---- */
+.mc-create-value-track {
+  background-image: var(--mc-create-value-settings);
+  background-position: calc(var(--mc-gui) * -7) 0;
+  background-repeat: no-repeat;
+  background-size: calc(var(--mc-gui) * 256) calc(var(--mc-gui) * 256);
+  image-rendering: pixelated;
+}
