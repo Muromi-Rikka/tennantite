@@ -1,9 +1,10 @@
 ---
 import ModDetailPage from "@/views/ModDetailPage.astro";
+import { modIds } from "@/lib/catalog";
 import type { ModTarget } from "@/lib/catalog";
 
 export async function getStaticPaths() {
-  return ["mekanism", "ic2", "ae2"].map(mod => ({ params: { mod }, props: { mod } }));
+  return modIds.map(mod => ({ params: { mod }, props: { mod } }));
 }
 
 const { mod } = Astro.props as { mod: ModTarget };

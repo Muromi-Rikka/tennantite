@@ -34,11 +34,11 @@ export interface ComponentGroup {
 
 export type ComponentGroupId = "containers" | "hud" | "menus" | "mods" | "primitives" | "screens";
 
-export const modIds = ["mekanism", "ic2", "ae2"] as const;
+export const modIds = ["mekanism", "ic2", "ae2", "jei", "create", "thermal", "ie"] as const;
+
+export type ModId = "common" | ModTarget;
 
 export type ModTarget = (typeof modIds)[number];
-
-export type ModId = ModTarget | "common";
 
 export const componentGroups: ComponentGroup[] = [
   { description: "无状态或 Base UI 封装的基础控件。", id: "primitives", level: "L1", title: "原语" },
@@ -46,7 +46,7 @@ export const componentGroups: ComponentGroup[] = [
   { description: "叠在游戏画面上的状态层。", id: "hud", level: "L3", title: "HUD" },
   { description: "按原版坐标拼装的容器整屏。", id: "screens", level: "L3", title: "容器界面" },
   { description: "标题、设置、聊天等全屏菜单。", id: "menus", level: "L3", title: "菜单界面" },
-  { description: "工业时代 2 / 应用能源 2 等 mod 界面：AE2 终端使用原版贴图，其余手绘复刻（数据注入、无游戏逻辑）。", id: "mods", level: "L3", title: "Mod 界面" },
+  { description: "IC2、AE2、Mekanism、JEI、Create、Thermal Expansion、Immersive Engineering 的原始 GUI 贴图复刻（数据注入、无游戏逻辑）。", id: "mods", level: "L3", title: "Mod 界面" },
 ];
 
 export const components: CatalogEntry[] = [
@@ -809,6 +809,258 @@ export const components: CatalogEntry[] = [
     slug: "mekanism-screen",
     sourceDir: "packages/mekanism/src/mekanism-screen",
   },
+  {
+    description: "JEI 物品列表面板（26.3 原版贴图）：ingredient 九宫格面板 + 18×18 槽位网格、`search_background_v2` 搜索框与底部翻页箭头。",
+    exports: ["JeiItemListPanel"],
+    group: "mods",
+    mod: "jei",
+    name: "JeiItemListPanel",
+    slug: "jei-item-list-panel",
+    sourceDir: "packages/jei/src/jei-item-list-panel",
+  },
+  {
+    description: "JEI 书签面板（26.3 原版贴图）：窄栏书签槽纵列、底部翻页箭头与 20×20 书签/历史按钮。",
+    exports: ["JeiBookmarkPanel"],
+    group: "mods",
+    mod: "jei",
+    name: "JeiBookmarkPanel",
+    slug: "jei-bookmark-panel",
+    sourceDir: "packages/jei/src/jei-bookmark-panel",
+  },
+  {
+    description: "JEI 配方查看界面（26.3 原版贴图）：176×166 `gui_background_v2`、左侧 24×24 分类标签列、居中标题与 13×13 翻页、右侧选项按钮列，配方区槽位 / 输出槽 / 火焰 / 进度箭头数据注入。",
+    exports: ["JeiRecipeGuiScreen"],
+    group: "mods",
+    mod: "jei",
+    name: "JeiRecipeGuiScreen",
+    slug: "jei-recipe-gui-screen",
+    sourceDir: "packages/jei/src/jei-recipe-gui-screen",
+  },
+  {
+    description: "JEI 精灵渲染器：按上游 `.mcmeta` 的 `gui.scaling` 走九宫格（26.x 对象 border 四边映射）或无缩放拉伸，支持 tint。",
+    exports: ["JeiSprite"],
+    group: "containers",
+    mod: "jei",
+    name: "JeiSprite",
+    slug: "jei-sprite",
+    sourceDir: "packages/jei/src/jei-sprite",
+  },
+  {
+    description: "JEI 图标按钮：`button_*_v2` 九宫格做底、`icons/*` 精灵居中，13×13 导航与 16×16 选项按钮共用，支持 disabled / pressed。",
+    exports: ["JeiIconButton"],
+    group: "containers",
+    mod: "jei",
+    name: "JeiIconButton",
+    slug: "jei-icon-button",
+    sourceDir: "packages/jei/src/jei-icon-button",
+  },
+  {
+    description: "JEI 搜索框：`search_background_v2` 九宫格做底、透明输入覆盖（高 12 GUI px）。",
+    exports: ["JeiSearchField"],
+    group: "containers",
+    mod: "jei",
+    name: "JeiSearchField",
+    slug: "jei-search-field",
+    sourceDir: "packages/jei/src/jei-item-list-panel",
+  },
+  {
+    description: "Create 磨石 / 粉碎机界面（1.21.1 图集 + 合成窗口）：`CREATE_MACHINE_LAYOUT` 数据表、输入 / 竖向进度 / 输出槽与玩家背包。",
+    exports: ["CreateMillstoneScreen"],
+    group: "mods",
+    mod: "create",
+    name: "CreateMillstoneScreen",
+    slug: "create-millstone-screen",
+    sourceDir: "packages/create/src/create-machine-screen",
+  },
+  {
+    description: "Create 过滤器界面（1.21.1 原版图集）：2×9 物品格、黑名单/白名单与 NBT 比对两态按钮、AND/OR 连接词切换与玩家背包。",
+    exports: ["CreateFilterScreen"],
+    group: "mods",
+    mod: "create",
+    name: "CreateFilterScreen",
+    slug: "create-filter-screen",
+    sourceDir: "packages/create/src/create-filter-screen",
+  },
+  {
+    description: "Create 工具箱界面（1.21.1 原版图集）：8 色染料配色条、圆形隔层储物槽与玩家背包。",
+    exports: ["CreateToolboxScreen"],
+    group: "mods",
+    mod: "create",
+    name: "CreateToolboxScreen",
+    slug: "create-toolbox-screen",
+    sourceDir: "packages/create/src/create-toolbox-screen",
+  },
+  {
+    description: "Create 蓝图桌界面（1.21.1 原版图集）：左输入槽、中央蓝图预览区、右输出槽与确认按钮。",
+    exports: ["CreateSchematicTableScreen"],
+    group: "mods",
+    mod: "create",
+    name: "CreateSchematicTableScreen",
+    slug: "create-schematic-table-screen",
+    sourceDir: "packages/create/src/create-schematic-table-screen",
+  },
+  {
+    description: "Create 数值配置浮层（`ValueSettingsScreen`）：249×8 里程碑轨道，每 8 格一个窄里程碑、当前值用宽里程碑，配增减按钮。",
+    exports: ["CreateValueSettingsPanel"],
+    group: "mods",
+    mod: "create",
+    name: "CreateValueSettingsPanel",
+    slug: "create-value-settings-panel",
+    sourceDir: "packages/create/src/create-value-settings-panel",
+  },
+  {
+    description: "Create 图集精灵：按 `AllGuiTextures` / `AllIcons` 的源矩形从 256×256 图集裁剪绘制，也可直接渲染合成分形贴图。",
+    exports: ["CreateSprite"],
+    group: "containers",
+    mod: "create",
+    name: "CreateSprite",
+    slug: "create-sprite",
+    sourceDir: "packages/create/src/create-sprite",
+  },
+  {
+    description: "Thermal 红石炉界面（1.20.x 原版贴图）：输入 / 燃料槽、进度箭头、火焰、竖向能量表、26×26 输出槽与右侧 3×3 强化面板。",
+    exports: ["ThermalRedstoneFurnaceScreen"],
+    group: "mods",
+    mod: "thermal",
+    name: "ThermalRedstoneFurnaceScreen",
+    slug: "thermal-redstone-furnace-screen",
+    sourceDir: "packages/thermal/src/redstone-furnace-screen",
+  },
+  {
+    description: "Thermal 储能仓界面（1.20.x 原版贴图）：16×42 内缩裁剪能量表、进/出料图标与 14×14 ± 速率按钮、`amount / capacity` 文本。",
+    exports: ["ThermalEnergyCellScreen"],
+    group: "mods",
+    mod: "thermal",
+    name: "ThermalEnergyCellScreen",
+    slug: "thermal-energy-cell-screen",
+    sourceDir: "packages/thermal/src/energy-cell-screen",
+  },
+  {
+    description: "Thermal 物品缓存仓界面（1.20.x 原版贴图）：缓存物品槽、竖向容量条与 ± 取出/存入按钮。",
+    exports: ["ThermalCacheScreen"],
+    group: "mods",
+    mod: "thermal",
+    name: "ThermalCacheScreen",
+    slug: "thermal-cache-screen",
+    sourceDir: "packages/thermal/src/cache-screen",
+  },
+  {
+    description: "Thermal 机器基座：`THERMAL_MACHINES` 数据表渲染容器背景、槽位、能量表、进度与右侧强化面板，机器标签居中。",
+    exports: ["ThermalMachineScreen"],
+    group: "containers",
+    mod: "thermal",
+    name: "ThermalMachineScreen",
+    slug: "thermal-machine-screen",
+    sourceDir: "packages/thermal/src/thermal-machine-screen",
+  },
+  {
+    description: "Thermal 图集精灵：整图 / `crop` 源矩形裁剪 / tint multiply（CoFH 多态图集按 `ElementBase` 区域取图）。",
+    exports: ["ThermalSprite"],
+    group: "containers",
+    mod: "thermal",
+    name: "ThermalSprite",
+    slug: "thermal-sprite",
+    sourceDir: "packages/thermal/src/thermal-sprite",
+  },
+  {
+    description: "Thermal 能量表：照 `ElementEnergyStorage` 上下缩 1 内缩裁剪、自下而上填充。",
+    exports: ["ThermalEnergyGauge"],
+    group: "containers",
+    mod: "thermal",
+    name: "ThermalEnergyGauge",
+    slug: "thermal-energy-gauge",
+    sourceDir: "packages/thermal/src/thermal-energy-gauge",
+  },
+  {
+    description: "Thermal 储能/缓存速率控件：居中的速率文本与 14×14 ± 步进按钮。",
+    exports: ["ThermalCellRateText", "ThermalCellStepButton"],
+    group: "containers",
+    mod: "thermal",
+    name: "ThermalCellRateText",
+    slug: "thermal-cell-rate-text",
+    sourceDir: "packages/thermal/src",
+  },
+  {
+    description: "IE 焦炉界面（1.21.1 原版贴图）：输入 / 输出 / 流体容器 / 桶输出槽、火焰进度与 `FluidInfoArea` 几何的液体罐。",
+    exports: ["IeCokeOvenScreen"],
+    group: "mods",
+    mod: "ie",
+    name: "IeCokeOvenScreen",
+    slug: "ie-coke-oven-screen",
+    sourceDir: "packages/ie/src/ie-coke-oven-screen",
+  },
+  {
+    description: "IE 金属压机界面（重建自 JEI 类别布局）：输入槽、3 个可选中模具槽、横向传送带进度与输出槽。",
+    exports: ["IeMetalPressScreen"],
+    group: "mods",
+    mod: "ie",
+    name: "IeMetalPressScreen",
+    slug: "ie-metal-press-screen",
+    sourceDir: "packages/ie/src/ie-metal-press-screen",
+  },
+  {
+    description: "IE 电弧炉界面（1.21.1 原版贴图）：12 输入 + 4 添加剂 + 6 输出 + 炉渣 + 3 电极、分配按钮、竖向进度组与能量条。",
+    exports: ["IeArcFurnaceScreen"],
+    group: "mods",
+    mod: "ie",
+    name: "IeArcFurnaceScreen",
+    slug: "ie-arc-furnace-screen",
+    sourceDir: "packages/ie/src/ie-arc-furnace-screen",
+  },
+  {
+    description: "IE 高压电容界面（按 `EnergyInfoArea` 重建）：7×46 渐变能量条、`amount / capacity` 文本与 HUD 方形按钮的 IO 模式。",
+    exports: ["IeCapacitorHvScreen"],
+    group: "mods",
+    mod: "ie",
+    name: "IeCapacitorHvScreen",
+    slug: "ie-capacitor-hv-screen",
+    sourceDir: "packages/ie/src/ie-capacitor-hv-screen",
+  },
+  {
+    description: "IE 机器基座：中央窗口 + 橙色标题（`Lib.COLOUR_I_ImmersiveOrange`）、背包标签与玩家背包。",
+    exports: ["IeMachineScreen"],
+    group: "containers",
+    mod: "ie",
+    name: "IeMachineScreen",
+    slug: "ie-machine-screen",
+    sourceDir: "packages/ie/src/ie-machine-screen",
+  },
+  {
+    description: "IE 精灵渲染器：nine_slice / 无缩放拉伸 / 16 宽动画条首帧，支持 tint。",
+    exports: ["IeSprite"],
+    group: "containers",
+    mod: "ie",
+    name: "IeSprite",
+    slug: "ie-sprite",
+    sourceDir: "packages/ie/src/ie-sprite",
+  },
+  {
+    description: "IE 能量条：7×46 区域自下而上填充，`fillGradient` 由亮到暗。",
+    exports: ["IeEnergyBar"],
+    group: "containers",
+    mod: "ie",
+    name: "IeEnergyBar",
+    slug: "ie-energy-bar",
+    sourceDir: "packages/ie/src/ie-energy-bar",
+  },
+  {
+    description: "IE 液体罐：16×47 填充区自下而上注入，20×51 overlay 贴图按 `(width - overlayWidth) / 2` 居中。",
+    exports: ["IeFluidTank"],
+    group: "containers",
+    mod: "ie",
+    name: "IeFluidTank",
+    slug: "ie-fluid-tank",
+    sourceDir: "packages/ie/src/ie-fluid-tank",
+  },
+  {
+    description: "IE 文本标签：橙色 / 暗色两种层级，坐标由界面常量给出。",
+    exports: ["IeLabel"],
+    group: "containers",
+    mod: "ie",
+    name: "IeLabel",
+    slug: "ie-label",
+    sourceDir: "packages/ie/src/ie-label",
+  },
 ];
 
 export const blocks = components.filter(component =>
@@ -832,7 +1084,9 @@ export interface ModCatalog {
   components: CatalogEntry[];
 }
 
-/** 按 mod 维度拆分的整屏与组件集合（官网 /mods/<mod>/ 子页数据源）。 */
+/**
+ * 按 mod 维度拆分的整屏与组件集合（官网 /mods/<mod>/ 子页数据源）。
+*/
 export const modCatalog = Object.fromEntries(
   modIds.map(id => [
     id,
@@ -843,21 +1097,10 @@ export const modCatalog = Object.fromEntries(
   ]),
 ) as Record<ModTarget, ModCatalog>;
 
-/** 跨 mod 共享件（Mod* 通用件尚未编目，集合当前为空）。 */
+/**
+ * 跨 mod 共享件（Mod* 通用件尚未编目，集合当前为空）。
+*/
 export const commonComponents = components.filter(component => component.mod === "common");
-
-/** mod 条目的返回索引页：/mods/<mod>/，跨 mod 通用件回 /mods/。 */
-export function modIndexHref(entry: CatalogEntry, locale: Locale): string {
-  return localeHref(locale, entry.mod !== undefined && entry.mod !== "common" ? `/mods/${entry.mod}/` : "/mods/");
-}
-
-/** 与条目同 mod 的全部条目（详情页 pager 用）。 */
-export function modScopeEntries(entry: CatalogEntry): CatalogEntry[] {
-  if (entry.mod === undefined || entry.mod === "common") {
-    return modEntries;
-  }
-  return modEntries.filter(item => item.mod === entry.mod);
-}
 
 export function blockHref(slug: string, locale: Locale): string {
   return localeHref(locale, `/blocks/${slug}/`);
@@ -921,6 +1164,20 @@ export function groupText(group: ComponentGroup, locale: Locale) {
   return locale === "en" ? componentGroupTextEn[group.id] : { description: group.description, title: group.title };
 }
 
+/**
+ * mod 条目的返回索引页：/mods/<mod>/，跨 mod 通用件回 /mods/。
+*/
+export function modIndexHref(entry: CatalogEntry, locale: Locale): string {
+  return localeHref(locale, entry.mod === undefined || entry.mod === "common" ? "/mods/" : `/mods/${entry.mod}/`);
+}
+
+/**
+ * 与条目同 mod 的全部条目（详情页 pager 用）。
+*/
+export function modScopeEntries(entry: CatalogEntry): CatalogEntry[] {
+  return entry.mod === undefined || entry.mod === "common" ? modEntries : modEntries.filter(item => item.mod === entry.mod);
+}
+
 export function previewHref(slug: string, locale: Locale): string {
   return localeHref(locale, `/preview/${slug}/`);
 }
@@ -955,6 +1212,12 @@ export const componentTitlesZh: Record<string, string> = {
   "compressor-screen": "压缩机界面",
   "crafter-screen": "合成器界面",
   "crafting-screen": "工作台界面",
+  "create-filter-screen": "过滤器界面",
+  "create-millstone-screen": "磨石 / 粉碎机界面",
+  "create-schematic-table-screen": "蓝图桌界面",
+  "create-sprite": "Create 精灵",
+  "create-toolbox-screen": "工具箱界面",
+  "create-value-settings-panel": "数值配置面板",
   "creative-inventory-screen": "创造物品栏",
   "crosshair": "十字准星",
   "dialog": "对话框",
@@ -975,9 +1238,24 @@ export const componentTitlesZh: Record<string, string> = {
   "hotbar": "快捷栏",
   "ic2-energy-gauge": "EU 能量表",
   "icon": "图标",
+  "ie-arc-furnace-screen": "电弧炉界面",
+  "ie-capacitor-hv-screen": "高压电容界面",
+  "ie-coke-oven-screen": "焦炉界面",
+  "ie-energy-bar": "IE 能量条",
+  "ie-fluid-tank": "IE 液体罐",
+  "ie-label": "IE 文本标签",
+  "ie-machine-screen": "IE 界面基座",
+  "ie-metal-press-screen": "金属压机界面",
+  "ie-sprite": "IE 精灵",
   "input": "输入框",
   "inventory-screen": "物品栏",
   "item-stack": "物品堆叠",
+  "jei-bookmark-panel": "JEI 书签面板",
+  "jei-icon-button": "JEI 图标按钮",
+  "jei-item-list-panel": "JEI 物品列表",
+  "jei-recipe-gui-screen": "JEI 配方查看界面",
+  "jei-search-field": "JEI 搜索框",
+  "jei-sprite": "JEI 精灵",
   "jump-bar": "跳跃蓄力条",
   "locator-bar": "定位条",
   "loom-screen": "织布机界面",
@@ -1020,6 +1298,13 @@ export const componentTitlesZh: Record<string, string> = {
   "stonecutter-screen": "切石机界面",
   "switch": "开关",
   "tabs": "标签页",
+  "thermal-cache-screen": "缓存仓界面",
+  "thermal-cell-rate-text": "Thermal 速率控件",
+  "thermal-energy-cell-screen": "储能仓界面",
+  "thermal-energy-gauge": "Thermal 能量表",
+  "thermal-machine-screen": "Thermal 机器基座",
+  "thermal-redstone-furnace-screen": "红石炉界面",
+  "thermal-sprite": "Thermal 精灵",
   "title-bar": "标题栏",
   "toast": "通知提示",
   "tooltip": "提示气泡",

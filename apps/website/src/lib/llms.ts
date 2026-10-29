@@ -1,17 +1,18 @@
 import type { CollectionEntry } from "astro:content";
 import type { Locale } from "../i18n";
+import type { ModTarget } from "./catalog";
 import { ui } from "../i18n";
 import {
   blockHref,
   catalogDescription,
+  commonComponents,
   componentHref,
   componentTitle,
-  commonComponents,
   coreComponents,
   modCatalog,
   modIds,
+
   primaryBlocks,
-  type ModTarget,
 } from "./catalog";
 import { docHref, filterDocs, sortDocs } from "./docs";
 

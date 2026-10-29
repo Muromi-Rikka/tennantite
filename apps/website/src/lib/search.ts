@@ -1,7 +1,8 @@
 import type { Locale } from "../i18n";
+import type { ModTarget } from "./catalog";
 import type { DocEntry } from "./docs";
 import { ui } from "../i18n";
-import { blockHref, catalogDescription, componentHref, componentTitle, coreComponents, modCatalog, modIds, primaryBlocks, type ModTarget } from "./catalog";
+import { blockHref, catalogDescription, componentHref, componentTitle, coreComponents, modCatalog, modIds, primaryBlocks } from "./catalog";
 import { docHref, filterDocs, sortDocs } from "./docs";
 
 export interface SearchItem {
