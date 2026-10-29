@@ -78,8 +78,8 @@ export function IeFluidTank({
         className="absolute"
         name={overlayName}
         style={{
-          left: gui(-offsetX),
-          top: gui(-offsetY),
+          left: gui(offsetX),
+          top: gui(offsetY),
         }}
       />
     </div>

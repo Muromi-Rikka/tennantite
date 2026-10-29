@@ -35,12 +35,25 @@ describe("thermalCacheScreen", () => {
   });
 
   it("容量条位于上游 (80,36) 16×34", () => {
-    const { container } = renderCache();
+    renderCache();
     const gauge = screen.getByRole("progressbar", { name: "缓存容量" }) as HTMLElement;
     expect(gauge.style.left).toBe(`calc(var(--mc-gui) * ${THERMAL_ITEM_GAUGE.left})`);
     expect(gauge.style.top).toBe(`calc(var(--mc-gui) * ${THERMAL_ITEM_GAUGE.top})`);
     expect(gauge.style.height).toBe(`calc(var(--mc-gui) * ${THERMAL_ITEM_GAUGE.height})`);
-    expect(container).toBeDefined();
+    expect(gauge.style.width).toBe(`calc(var(--mc-gui) * ${THERMAL_ITEM_GAUGE.width})`);
+  });
+
+  it("填充格与底图同格同宽（图集自带 1 px 透明边，横向不再内缩）", () => {
+    renderCache();
+    const gauge = screen.getByRole("progressbar", { name: "缓存容量" }) as HTMLElement;
+    const sprites = gauge.querySelectorAll("[data-thermal-sprite='elements/storage_energy']");
+    const track = sprites.item(0) as HTMLElement;
+    const fill = sprites.item(1) as HTMLElement;
+    expect(fill.style.left).toBe("calc(var(--mc-gui) * 0)");
+    expect(fill.style.width).toBe(track.style.width);
+    expect(fill.style.height).toBe(`calc(var(--mc-gui) * ${THERMAL_ITEM_GAUGE.height - 2})`);
+    expect(fill.style.top).toBe("calc(var(--mc-gui) * 1)");
+    expect(fill.style.backgroundPosition).toBe("calc(var(--mc-gui) * -16) calc(var(--mc-gui) * -1)");
   });
 
   it("± 按钮回调存入/取出变化", () => {

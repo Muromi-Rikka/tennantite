@@ -35,6 +35,8 @@ export interface ThermalEnergyGaugeProps {
 /**
  * Thermal 竖向能量表：storage_energy 图集背景 + 内缩裁剪的填充
  * （照 CoFH ElementEnergyStorage：上下各内缩 1，自下而上填充）。
+ * 图集每格 16×42 自身左右各留 1 px 透明边（可见条 14 px），
+ * 所以填充格必须与底图同起点同宽，横向不能再缩。
  */
 export function ThermalEnergyGauge({
   height = THERMAL_ENERGY_GAUGE.machine.height,
@@ -64,20 +66,16 @@ export function ThermalEnergyGauge({
         name="elements/storage_energy"
         width={width}
       />
-      <div
-        className="absolute overflow-hidden"
-        style={{ height: gui(height - 2), left: gui(1), top: gui(1), width: gui(width - 2) }}
-      >
-        <div style={{ clipPath: progressClipPath("up", ratio), height: "100%", width: "100%" }}>
-          <ThermalSprite
-            crop={{ ...THERMAL_ENERGY_GAUGE.fillCrop, height: height - 2 }}
-            height={height - 2}
-            name="elements/storage_energy"
-            tint={tint}
-            width={width - 2}
-          />
-        </div>
-      </div>
+      <ThermalSprite
+        crop={{ ...THERMAL_ENERGY_GAUGE.fillCrop, height: height - 2 }}
+        height={height - 2}
+        left={0}
+        name="elements/storage_energy"
+        style={{ clipPath: progressClipPath("up", ratio) }}
+        tint={tint}
+        top={1}
+        width={width}
+      />
     </div>
   );
 }

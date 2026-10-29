@@ -52,6 +52,21 @@ describe("thermalRedstoneFurnaceScreen", () => {
     expect(screen.getByRole("progressbar", { name: "能量" })).toHaveAttribute("aria-valuenow", "50");
   });
 
+  it("能量表填充格与底图同格同宽（图集自带 1 px 透明边，横向不再内缩）", () => {
+    renderFurnace();
+    const gauge = screen.getByRole("progressbar", { name: "能量" }) as HTMLElement;
+    const sprites = gauge.querySelectorAll("[data-thermal-sprite='elements/storage_energy']");
+    const track = sprites.item(0) as HTMLElement;
+    const fill = sprites.item(1) as HTMLElement;
+    const energy = THERMAL_MACHINES.redstone_furnace.energy as { height: number; width: number };
+    expect(track.style.width).toBe(`calc(var(--mc-gui) * ${energy.width})`);
+    expect(fill.style.left).toBe("calc(var(--mc-gui) * 0)");
+    expect(fill.style.width).toBe(track.style.width);
+    expect(fill.style.height).toBe(`calc(var(--mc-gui) * ${energy.height - 2})`);
+    expect(fill.style.top).toBe("calc(var(--mc-gui) * 1)");
+    expect(fill.style.backgroundPosition).toBe("calc(var(--mc-gui) * -16) calc(var(--mc-gui) * -1)");
+  });
+
   it("进度箭头与背景按数据表常量定位", () => {
     const { container } = renderFurnace();
     const track = container.querySelector("[data-thermal-sprite='elements/progress_arrow_right']") as HTMLElement;

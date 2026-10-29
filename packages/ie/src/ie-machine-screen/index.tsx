@@ -20,6 +20,10 @@ export interface IeMachineScreenProps {
   inventoryLabel?: ReactNode;
   inventoryLabelTop: number;
   player: { hotbarY: number; left: number; top: number };
+  /**
+   * 玩家背包是否绘制原版槽框；上游贴图已烘焙槽位，默认不画（重建屏需开启）
+   */
+  playerFrames?: boolean;
   title: ReactNode;
   width: number;
 }
@@ -36,18 +40,34 @@ export function IeMachineScreen({
   inventoryLabel = "物品栏",
   inventoryLabelTop,
   player,
+  playerFrames = false,
   title,
   width,
 }: IeMachineScreenProps) {
   return (
-    <ScreenPanel className={className} height={height} width={width}>
+    <ScreenPanel
+      backgroundClassName={background ? "bg-transparent" : undefined}
+      className={className}
+      height={height}
+      width={width}
+    >
       {background
-        ? <IeSprite height={height} left={0} name={background} top={0} width={width} />
+        ? (
+            <IeSprite
+              height={height}
+              left={0}
+              name={background}
+              src={{ height, width, x: 0, y: 0 }}
+              top={0}
+              width={width}
+            />
+          )
         : null}
       <IeLabel left={8} top={6}>{title}</IeLabel>
       <IeLabel left={8} top={inventoryLabelTop}>{inventoryLabel}</IeLabel>
       {children}
       <PlayerInventory
+        bare={!playerFrames}
         hotbarY={player.hotbarY}
         x={player.left}
         y={player.top}

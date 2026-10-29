@@ -21,8 +21,8 @@ export function IeLabel({ children, className, left, top }: IeLabelProps) {
   return (
     <span
       className={className
-        ? `absolute font-mc mc-text whitespace-pre ${className}`
-        : "absolute font-mc mc-text whitespace-pre"}
+        ? `absolute font-mc mc-text whitespace-pre mc-text-shadow ${className}`
+        : "absolute font-mc mc-text whitespace-pre mc-text-shadow"}
       style={{
         color: IE_TEXT_COLOR,
         left: left === undefined ? 0 : gui(left),

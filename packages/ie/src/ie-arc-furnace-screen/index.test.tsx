@@ -15,16 +15,19 @@ describe("ieArcFurnaceScreen", () => {
     expect(container.querySelector("[data-ie-sprite=\"arc_furnace\"]")).not.toBeNull();
   });
 
-  it("槽位坐标照抄 ArcFurnaceMenu（输入 10,31,52 / 电极 62,80,98）", () => {
+  it("槽位框坐标 = ArcFurnaceMenu slot - 1（输入 9,30,51 / 电极 61,79,97）", () => {
     render(<IeArcFurnaceScreen />);
     const firstInput = screen.getByLabelText("arc-furnace-input-0");
-    expect(firstInput.style.left).toBe("calc(var(--mc-gui) * 10)");
-    expect(firstInput.style.top).toBe("calc(var(--mc-gui) * 34)");
+    expect(firstInput.style.left).toBe("calc(var(--mc-gui) * 9)");
+    expect(firstInput.style.top).toBe("calc(var(--mc-gui) * 33)");
     const secondInput = screen.getByLabelText("arc-furnace-input-1");
-    expect(secondInput.style.left).toBe("calc(var(--mc-gui) * 31)");
+    expect(secondInput.style.left).toBe("calc(var(--mc-gui) * 30)");
     const firstElectrode = screen.getByLabelText("arc-furnace-electrode-0");
-    expect(firstElectrode.style.left).toBe("calc(var(--mc-gui) * 62)");
-    expect(firstElectrode.style.top).toBe("calc(var(--mc-gui) * 10)");
+    expect(firstElectrode.style.left).toBe("calc(var(--mc-gui) * 61)");
+    expect(firstElectrode.style.top).toBe("calc(var(--mc-gui) * 9)");
+    expect(screen.getByLabelText("arc-furnace-electrode-1").style.left).toBe("calc(var(--mc-gui) * 79)");
+    expect(screen.getByLabelText("arc-furnace-electrode-2").style.left).toBe("calc(var(--mc-gui) * 97)");
+    expect(screen.getByLabelText("arc-furnace-electrode-2").style.top).toBe("calc(var(--mc-gui) * 9)");
   });
 
   it("能量条与竖向进度条（62000/100000 → 62）", () => {
@@ -39,6 +42,8 @@ describe("ieArcFurnaceScreen", () => {
     expect(bars).toHaveLength(3);
     const firstBar = bars[0] as HTMLElement;
     expect(firstBar.style.left).toBe("calc(var(--mc-gui) * 27)");
+    expect((firstBar.firstElementChild as HTMLElement).style.backgroundSize)
+      .toBe("calc(var(--mc-gui) * 3) calc(var(--mc-gui) * 16)");
   });
 
   it("分配按钮触发 autoSplit 回调", async () => {
@@ -53,7 +58,7 @@ describe("ieArcFurnaceScreen", () => {
     const layout = IE_MACHINES.arcFurnace;
     const slots = ieExpandSlots(layout);
     expect(slots.filter(slot => slot.label.startsWith("arc-furnace-input"))).toHaveLength(12);
-    expect(layout.player.hotbarY).toBe(184);
+    expect(layout.player.hotbarY).toBe(183);
   });
 
   it("demo 渲染", () => {

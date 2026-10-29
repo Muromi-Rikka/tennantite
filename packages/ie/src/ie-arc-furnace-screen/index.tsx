@@ -122,7 +122,7 @@ export function IeArcFurnaceScreen({
               style={{
                 backgroundImage: "var(--mc-ie-sprites-arc-furnace-progress)",
                 backgroundRepeat: "no-repeat",
-                backgroundSize: "100% 100%",
+                backgroundSize: `${gui(IE_ARC_PROGRESS.width)} ${gui(IE_ARC_PROGRESS.height)}`,
                 height: "100%",
                 imageRendering: "pixelated",
                 width: "100%",
@@ -171,13 +171,16 @@ export function IeArcFurnaceScreen({
           top={slot.top}
         />
       ))}
-      <ScreenItemSlot
-        item={slagOutput}
-        label="arc-furnace-slag-output"
-        left={132}
-        onActivate={onSlotClick ? () => onSlotClick("arc-furnace-slag-output") : undefined}
-        top={98}
-      />
+      {byLabel("arc-furnace-slag-output").map(slot => (
+        <ScreenItemSlot
+          item={slagOutput}
+          key={slot.label}
+          label={slot.label}
+          left={slot.left}
+          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
+          top={slot.top}
+        />
+      ))}
     </IeMachineScreen>
   );
 }

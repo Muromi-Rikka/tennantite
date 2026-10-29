@@ -55,6 +55,7 @@ export function IeMetalPressScreen({
       height={layout.height}
       inventoryLabelTop={layout.inventoryLabelTop}
       player={layout.player}
+      playerFrames
       title={layout.title}
       width={layout.width}
     >

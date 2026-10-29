@@ -15,13 +15,26 @@ describe("ieCokeOvenScreen", () => {
     expect(container.querySelector("[data-ie-sprite=\"coke_oven\"]")).not.toBeNull();
   });
 
-  it("槽位坐标照抄 CokeOvenMenu（input 30,35）", () => {
-    const { container } = render(<IeCokeOvenScreen input={{}} />);
+  it("槽位框坐标 = CokeOvenMenu slot - 1（input 30,35 → 29,34；背包 8,84 → 7,83）", () => {
+    render(<IeCokeOvenScreen input={{}} />);
     const input = screen.getByLabelText("coke-oven-input");
     const inputLayout = IE_MACHINES.cokeOven.slots[0] as { left: number; top: number };
     expect(input.style.left).toBe(`calc(var(--mc-gui) * ${inputLayout.left})`);
     expect(input.style.top).toBe(`calc(var(--mc-gui) * ${inputLayout.top})`);
-    expect(container).toBeTruthy();
+    expect(input.style.left).toBe("calc(var(--mc-gui) * 29)");
+    expect(input.style.top).toBe("calc(var(--mc-gui) * 34)");
+    const mainGrid = screen.getByLabelText("main-0").parentElement as HTMLElement;
+    expect(mainGrid.style.left).toBe("calc(var(--mc-gui) * 7)");
+    expect(mainGrid.style.top).toBe("calc(var(--mc-gui) * 83)");
+  });
+
+  it("背景贴图按 256² 画布左上角裁剪到 176×166，不缩放", () => {
+    const { container } = render(<IeCokeOvenScreen />);
+    const background = container.querySelector("[data-ie-sprite=\"coke_oven\"]") as HTMLElement;
+    expect(background.style.width).toBe("calc(var(--mc-gui) * 176)");
+    expect(background.style.height).toBe("calc(var(--mc-gui) * 166)");
+    expect(background.style.backgroundSize).toBe("calc(var(--mc-gui) * 256) calc(var(--mc-gui) * 256)");
+    expect(background.style.backgroundPosition).toBe("calc(var(--mc-gui) * 0) calc(var(--mc-gui) * 0)");
   });
 
   it("燃烧进度自下而上填充（0.65）", () => {
@@ -38,7 +51,9 @@ describe("ieCokeOvenScreen", () => {
     );
     const tank = screen.getByRole("progressbar", { name: "焦炉木焦油罐" });
     expect(tank).toHaveAttribute("aria-valuenow", "45");
-    expect(tank.querySelector("[data-ie-sprite=\"sprites/coke_oven/tank_overlay\"]")).not.toBeNull();
+    const overlay = tank.querySelector("[data-ie-sprite=\"sprites/coke_oven/tank_overlay\"]") as HTMLElement;
+    expect(overlay.style.left).toBe("calc(var(--mc-gui) * -2)");
+    expect(overlay.style.top).toBe("calc(var(--mc-gui) * -2)");
     expect(container.querySelector("[data-ie-fluid-tank]")).not.toBeNull();
   });
 

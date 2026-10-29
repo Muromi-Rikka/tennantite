@@ -2,7 +2,9 @@ import type { IeSpriteName } from "@tennantite/textures";
 
 /**
  * 机器界面数据驱动布局表（照 Mekanism 机器屏模式）。
- * 坐标为面板 GUI px（槽位为槽框左上角，即容器 slot 坐标）。
+ * 坐标为面板 GUI px。槽位为 18×18 槽框左上角 —— vanilla 把槽框画在
+ * menu slot 左上 1px，物品图标画在 menu slot 处，两者相差 1；本表存槽框坐标，
+ * 与 `ScreenItemSlot` / `PlayerInventory`（图标在框内居中）直接对齐。
  */
 
 export interface IeLayoutSlot {
@@ -80,8 +82,8 @@ function row(count: number, label: string, left: number, perRow: number, top: nu
 }
 
 /**
- * 焦炉 CokeOvenScreen / CokeOvenMenu：输入 (30,35)、输出 (85,35)、
- * 流体容器槽 (152,17)、桶输出 (152,53)、火焰 (59,37)、
+ * 焦炉 CokeOvenScreen / CokeOvenMenu（menu 坐标 → 槽框 = menu-1）：输入 (30,35)、
+ * 输出 (85,35)、流体容器槽 (152,17)、桶输出 (152,53)、火焰 (59,37)、
  * 罐 FluidInfoArea Rect2i(129,20,16,47) + 20×51 tank_overlay 居中偏移 (-2,-2)。
  */
 const COKE_OVEN = {
@@ -89,12 +91,12 @@ const COKE_OVEN = {
   flame: { left: 59, top: 37 },
   height: 166,
   inventoryLabelTop: 75,
-  player: { hotbarY: 142, left: 8, top: 84 },
+  player: { hotbarY: 141, left: 7, top: 83 },
   slots: [
-    { label: "coke-oven-input", left: 30, top: 35 },
-    { label: "coke-oven-output", left: 85, top: 35 },
-    { label: "coke-oven-fluid-container", left: 152, top: 17 },
-    { label: "coke-oven-bucket-output", left: 152, top: 53 },
+    { label: "coke-oven-input", left: 29, top: 34 },
+    { label: "coke-oven-output", left: 84, top: 34 },
+    { label: "coke-oven-fluid-container", left: 151, top: 16 },
+    { label: "coke-oven-bucket-output", left: 151, top: 52 },
   ],
   tank: {
     fill: { height: 47, left: 129, top: 20, width: 16 },
@@ -105,7 +107,7 @@ const COKE_OVEN = {
 } satisfies IeMachineLayout;
 
 /**
- * 弧光炉 ArcFurnaceScreen（imageHeight 207）/ ArcFurnaceMenu：
+ * 弧光炉 ArcFurnaceScreen（imageHeight 207）/ ArcFurnaceMenu（menu → 槽框 = menu-1）：
  * 12 输入 (10+i%3*21, 34+i/3*18)、4 添加剂 (114+i%2*18, 34+i/2*18)、
  * 6 输出 (78+i%3*18, 80+i/3*18)、炉渣输出 (132,98)、3 电极 (62/80/98, 10)、
  * 分配按钮 (10,10) 16×16、能量 (157,22)、进度条 x=27+i%3*21，y=34+i/3*18，2×16。
@@ -115,14 +117,14 @@ const ARC_FURNACE = {
   energy: { left: 157, top: 22 },
   height: 207,
   inventoryLabelTop: 116,
-  player: { hotbarY: 184, left: 8, top: 126 },
+  player: { hotbarY: 183, left: 7, top: 125 },
   progressBars: { count: 12, height: 16, label: "arc-furnace-progress", left: 27, perRow: 3, stepX: 21, stepY: 18, top: 34 },
   slots: [
-    { count: 12, label: "arc-furnace-input", left: 10, perRow: 3, stepX: 21, top: 34 },
-    row(4, "arc-furnace-additive", 114, 2, 34),
-    row(6, "arc-furnace-output", 78, 3, 80),
-    { label: "arc-furnace-slag-output", left: 132, top: 98 },
-    row(3, "arc-furnace-electrode", 62, 1, 10),
+    { count: 12, label: "arc-furnace-input", left: 9, perRow: 3, stepX: 21, top: 33 },
+    row(4, "arc-furnace-additive", 113, 2, 33),
+    row(6, "arc-furnace-output", 77, 3, 79),
+    { label: "arc-furnace-slag-output", left: 131, top: 97 },
+    row(3, "arc-furnace-electrode", 61, 3, 9),
   ],
   title: "弧光炉",
   width: 176,
@@ -138,7 +140,7 @@ const METAL_PRESS = {
   belt: { height: 16, left: 46, top: 44, width: 78 },
   height: 166,
   inventoryLabelTop: 75,
-  player: { hotbarY: 142, left: 8, top: 84 },
+  player: { hotbarY: 141, left: 7, top: 83 },
   slots: [
     { label: "metal-press-input", left: 24, top: 43 },
     { count: 3, label: "metal-press-mold", left: 64, perRow: 3, top: 20 },
@@ -157,7 +159,7 @@ const CAPACITOR_HV = {
   energy: { left: 84, top: 35 },
   height: 166,
   inventoryLabelTop: 75,
-  player: { hotbarY: 142, left: 8, top: 84 },
+  player: { hotbarY: 141, left: 7, top: 83 },
   slots: [
     { label: "capacitor-hv-mode-in", left: 24, top: 43 },
     { label: "capacitor-hv-mode-out", left: 42, top: 43 },

@@ -3,7 +3,7 @@ import type { ScreenSlot } from "@tennantite/ui";
 import { ModProgress } from "@tennantite/mods-core";
 import { ScreenItemSlot } from "@tennantite/ui";
 import { IeFluidTank } from "../ie-fluid-tank/index";
-import { IE_MACHINES } from "../ie-machine-layout";
+import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
 import { IE_FLAME } from "../ie-metrics";
 
@@ -48,6 +48,12 @@ export function IeCokeOvenScreen({
   tank,
 }: IeCokeOvenScreenProps) {
   const layout = IE_MACHINES.cokeOven;
+  const slotItems: Record<string, ScreenSlot | undefined> = {
+    "coke-oven-bucket-output": bucketOutput,
+    "coke-oven-fluid-container": fluidContainer,
+    "coke-oven-input": input,
+    "coke-oven-output": output,
+  };
   return (
     <IeMachineScreen
       background={layout.background}
@@ -95,34 +101,16 @@ export function IeCokeOvenScreen({
         top={layout.flame.top}
         width={IE_FLAME.width}
       />
-      <ScreenItemSlot
-        item={input}
-        label="coke-oven-input"
-        left={30}
-        onActivate={onSlotClick ? () => onSlotClick("coke-oven-input") : undefined}
-        top={35}
-      />
-      <ScreenItemSlot
-        item={output}
-        label="coke-oven-output"
-        left={85}
-        onActivate={onSlotClick ? () => onSlotClick("coke-oven-output") : undefined}
-        top={35}
-      />
-      <ScreenItemSlot
-        item={fluidContainer}
-        label="coke-oven-fluid-container"
-        left={152}
-        onActivate={onSlotClick ? () => onSlotClick("coke-oven-fluid-container") : undefined}
-        top={17}
-      />
-      <ScreenItemSlot
-        item={bucketOutput}
-        label="coke-oven-bucket-output"
-        left={152}
-        onActivate={onSlotClick ? () => onSlotClick("coke-oven-bucket-output") : undefined}
-        top={53}
-      />
+      {ieExpandSlots(layout).map(slot => (
+        <ScreenItemSlot
+          item={slotItems[slot.label]}
+          key={slot.label}
+          label={slot.label}
+          left={slot.left}
+          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
+          top={slot.top}
+        />
+      ))}
     </IeMachineScreen>
   );
 }

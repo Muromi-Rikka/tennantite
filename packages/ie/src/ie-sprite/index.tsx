@@ -21,6 +21,10 @@ export interface IeSpriteProps {
    * 不透明度（0..1）
    */
   opacity?: number;
+  /**
+   * 源裁剪区域（源 px）；用于 256² 画布里只取左上角 GUI 区的整屏贴图
+   */
+  src?: { height: number; width: number; x: number; y: number };
   style?: CSSProperties;
   /**
    * 染色；九宫格用 mask 叠层，其余用 multiply 混合
@@ -43,17 +47,19 @@ export function IeSprite({
   left,
   name,
   opacity,
+  src,
   style,
   tint,
   top,
   width,
 }: IeSpriteProps) {
   const meta = ieSpriteMeta[name];
-  const targetWidth = width ?? meta.width;
-  const targetHeight = height ?? meta.height;
+  const targetWidth = width ?? src?.width ?? meta.width;
+  const targetHeight = height ?? src?.height ?? meta.height;
   const scaling: IeSpriteScaling = meta.scaling;
   const border = scaling?.type === "nine_slice" ? scaling.border : null;
   const isNineSlice = border !== null
+    && src === undefined
     && targetWidth >= border.left + border.right
     && targetHeight >= border.top + border.bottom;
 
@@ -83,7 +89,14 @@ export function IeSprite({
   }
   else {
     const isAnimatedStrip = meta.width === 16 && meta.height > 64 && meta.height % 16 === 0;
-    if (isAnimatedStrip) {
+    if (src) {
+      // 与 vanilla blit 一致：从源图左上角取 src 区域，平移到元素原点，不做缩放
+      const scaleX = targetWidth / src.width;
+      const scaleY = targetHeight / src.height;
+      spriteStyle.backgroundPosition = `${gui(-src.x * scaleX)} ${gui(-src.y * scaleY)}`;
+      spriteStyle.backgroundSize = `${gui(meta.width * scaleX)} ${gui(meta.height * scaleY)}`;
+    }
+    else if (isAnimatedStrip) {
       spriteStyle.backgroundPosition = "0 0";
       spriteStyle.backgroundSize = `${gui(targetWidth)} ${gui(targetWidth * meta.height / meta.width)}`;
       spriteStyle.overflow = "hidden";

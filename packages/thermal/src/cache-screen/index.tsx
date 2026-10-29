@@ -1,6 +1,7 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
 
+import { progressClipPath } from "@tennantite/mods-core";
 import { gui, PlayerInventory, ScreenItemSlot } from "@tennantite/ui";
 import { ThermalCellRateText, ThermalCellStepButton } from "../thermal-cell-controls";
 import { THERMAL_CELL_CONTROLS, THERMAL_GUI, THERMAL_ITEM_GAUGE } from "../thermal-metrics";
@@ -43,8 +44,6 @@ export interface ThermalCacheScreenProps {
   playerName?: ReactNode;
   title?: ReactNode;
 }
-
-const THERMAL_ITEM_STORAGE = { height: 34, left: 80, top: 36, width: 16 } as const;
 
 /**
  * Thermal 物品缓存仓（ItemCellScreen 布局，ThermalCore cc7c230 的
@@ -100,28 +99,24 @@ export function ThermalCacheScreen({
         aria-valuenow={Math.round(ratio * 100)}
         className="absolute"
         role="progressbar"
-        style={{ height: gui(THERMAL_ITEM_STORAGE.height), left: gui(THERMAL_ITEM_STORAGE.left), top: gui(THERMAL_ITEM_STORAGE.top), width: gui(THERMAL_ITEM_STORAGE.width) }}
+        style={{ height: gui(THERMAL_ITEM_GAUGE.height), left: gui(THERMAL_ITEM_GAUGE.left), top: gui(THERMAL_ITEM_GAUGE.top), width: gui(THERMAL_ITEM_GAUGE.width) }}
         title="缓存容量"
       >
         <ThermalSprite
           crop={THERMAL_ITEM_GAUGE.trackCrop}
-          height={THERMAL_ITEM_STORAGE.height}
+          height={THERMAL_ITEM_GAUGE.height}
           name="elements/storage_energy"
-          width={THERMAL_ITEM_STORAGE.width}
+          width={THERMAL_ITEM_GAUGE.width}
         />
-        <div
-          className="absolute overflow-hidden"
-          style={{ height: gui(THERMAL_ITEM_STORAGE.height - 2), left: gui(1), top: gui(1), width: gui(THERMAL_ITEM_STORAGE.width - 2) }}
-        >
-          <div style={{ clipPath: `inset(${(1 - ratio) * 100}% 0 0 0)`, height: "100%", width: "100%" }}>
-            <ThermalSprite
-              crop={{ ...THERMAL_ITEM_GAUGE.fillCrop, height: THERMAL_ITEM_STORAGE.height - 2 }}
-              height={THERMAL_ITEM_STORAGE.height - 2}
-              name="elements/storage_energy"
-              width={THERMAL_ITEM_STORAGE.width - 2}
-            />
-          </div>
-        </div>
+        <ThermalSprite
+          crop={{ ...THERMAL_ITEM_GAUGE.fillCrop, height: THERMAL_ITEM_GAUGE.height - 2 }}
+          height={THERMAL_ITEM_GAUGE.height - 2}
+          left={0}
+          name="elements/storage_energy"
+          style={{ clipPath: progressClipPath("up", ratio) }}
+          top={1}
+          width={THERMAL_ITEM_GAUGE.width}
+        />
       </div>
       <ThermalCellRateText center={textCenters.input} label="存入速率" value={inputRate} />
       <ThermalCellRateText center={textCenters.output} label="取出速率" value={outputRate} />
