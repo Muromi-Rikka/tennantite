@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import { cn } from "@tennantite/ui";
 
 import type {
@@ -33,6 +35,10 @@ export interface MekanismTabBarProps {
   security?: MekanismSecurityMode;
   tabs: MekanismTabKind[];
   /**
+   * 标签按钮下方文本（键为标签类型）
+   */
+  texts?: Partial<Record<MekanismTabKind, ReactNode>>;
+  /**
    * warning 标签放哪一侧（默认右侧）
    */
   warningSide?: "left" | "right";
@@ -54,6 +60,7 @@ export function MekanismTabBar({
   redstone = "disabled",
   security = "public",
   tabs,
+  texts,
   warningSide = "right",
   width,
 }: MekanismTabBarProps) {
@@ -76,6 +83,7 @@ export function MekanismTabBar({
               onClick={onTabClick ? () => onTabClick(kind) : undefined}
               selected={isOpen}
               side={side}
+              text={texts?.[kind]}
               top={y}
             />
           </div>

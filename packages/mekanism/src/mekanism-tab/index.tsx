@@ -1,4 +1,5 @@
 import type { MekanismSpriteName } from "@tennantite/textures";
+import type { ReactNode } from "react";
 
 import { cn, gui } from "@tennantite/ui";
 
@@ -38,6 +39,10 @@ export interface MekanismTabProps {
    */
   side: "left" | "right";
   /**
+   * 按钮下方文本（上游 sorting 的开 / 关）
+   */
+  text?: ReactNode;
+  /**
    * 标签左上角 y（GUI px）
    */
   top: number;
@@ -76,6 +81,7 @@ export function MekanismTab({
   onClick,
   selected = false,
   side,
+  text,
   top,
 }: MekanismTabProps) {
   const tint = color ?? TAB_COLORS[kind] ?? "#ffffff";
@@ -121,6 +127,16 @@ export function MekanismTab({
                 width={MEKANISM_TAB_INSET.buttonSize}
               />
             </>
+          )}
+      {text === undefined
+        ? null
+        : (
+            <span
+              className="absolute text-center font-mc mc-text text-mc-mekanism-title"
+              style={{ left: 0, top: gui(24), width: gui(MEKANISM_TAB_INSET.width) }}
+            >
+              {text}
+            </span>
           )}
     </button>
   );

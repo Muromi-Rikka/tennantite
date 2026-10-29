@@ -14,6 +14,33 @@ export { MekanismElementHolder } from "./mekanism-element-holder/index";
 export type { MekanismElementHolderProps } from "./mekanism-element-holder/index";
 export { MekanismEnergyCubeScreen } from "./mekanism-energy-cube-screen/index";
 export type { MekanismEnergyCubeScreenProps } from "./mekanism-energy-cube-screen/index";
+export type { MekanismFactoryPresetProps } from "./mekanism-factory-screen/factories";
+export {
+  MekanismCombiningFactoryScreen,
+  MekanismCompressingFactoryScreen,
+  MekanismCrushingFactoryScreen,
+  MekanismEnrichingFactoryScreen,
+  MekanismInfusingFactoryScreen,
+  MekanismInjectingFactoryScreen,
+  MekanismPurifyingFactoryScreen,
+  MekanismSawingFactoryScreen,
+  MekanismSmeltingFactoryScreen,
+} from "./mekanism-factory-screen/factories";
+export { MekanismFactoryScreen } from "./mekanism-factory-screen/index";
+export type { MekanismFactoryScreenProps } from "./mekanism-factory-screen/index";
+export {
+  MEKANISM_FACTORY_TIER_NAMES,
+  MEKANISM_FACTORY_TIERS,
+  MEKANISM_FACTORY_TYPES,
+  mekanismFactoryLayout,
+} from "./mekanism-factory-screen/mekanism-factory-layout";
+export type {
+  MekanismFactoryLayout,
+  MekanismFactoryProgress,
+  MekanismFactorySlot,
+  MekanismFactoryTier,
+  MekanismFactoryType,
+} from "./mekanism-factory-screen/mekanism-factory-layout";
 export { MekanismFluidTankScreen } from "./mekanism-fluid-tank-screen/index";
 export type { MekanismFluidTankScreenProps } from "./mekanism-fluid-tank-screen/index";
 export { MekanismGasMode } from "./mekanism-gas-mode/index";

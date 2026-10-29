@@ -3,6 +3,9 @@ import {
   MekanismChemicalTankScreenDemo,
   MekanismDynamicTankScreenDemo,
   MekanismEnergyCubeScreenDemo,
+  MekanismFactoryFamiliesDemo,
+  MekanismFactoryScreenDemo,
+  MekanismFactoryTiersDemo,
   MekanismFluidTankScreenDemo,
   MekanismGaugeDemo,
   MekanismInductionMatrixScreenDemo,
@@ -23,7 +26,7 @@ export function MekanismPage() {
         Mekanism（通用机械）— Mod 界面
       </h1>
       <p className="mb-16 font-mc mc-text text-mc-text-dim">
-        Mekanism 26.3 原始贴图复刻（数据注入、无游戏逻辑），34 屏 + 侧配置/升级窗口。
+        Mekanism 26.3 原始贴图复刻（数据注入、无游戏逻辑），34 屏 + 36 类工厂配置 + 侧配置/升级窗口。
       </p>
       <Section title="共享件 — 仪表 / 进度 / 条形">
         <MekanismGaugeDemo />
@@ -38,6 +41,15 @@ export function MekanismPage() {
       </Section>
       <Section title="机器 — 26 屏">
         <MekanismMachineScreensDemo />
+      </Section>
+      <Section title="工厂 — 4 级 × 9 类">
+        <div className="flex flex-wrap items-start gap-x-64 gap-y-12">
+          <MekanismFactoryScreenDemo />
+          <MekanismFactoryFamiliesDemo />
+        </div>
+        <div className="mt-12">
+          <MekanismFactoryTiersDemo />
+        </div>
       </Section>
       <Section title="储罐 / 存储 — 8 屏">
         <div className="flex flex-wrap items-start gap-x-64 gap-y-12">

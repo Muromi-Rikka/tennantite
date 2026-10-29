@@ -6,6 +6,11 @@ import { MekanismButton } from "./mekanism-button/index";
 import { MekanismChemicalTankScreen } from "./mekanism-chemical-tank-screen/index";
 import { MekanismDynamicTankScreen } from "./mekanism-dynamic-tank-screen/index";
 import { MekanismEnergyCubeScreen } from "./mekanism-energy-cube-screen/index";
+import {
+  MekanismEnrichingFactoryScreen,
+  MekanismInjectingFactoryScreen,
+  MekanismSawingFactoryScreen,
+} from "./mekanism-factory-screen/factories";
 import { MekanismFluidTankScreen } from "./mekanism-fluid-tank-screen/index";
 import { MekanismGauge } from "./mekanism-gauge/index";
 import { MekanismInductionMatrixScreen } from "./mekanism-induction-matrix-screen/index";
@@ -29,6 +34,41 @@ import { MekanismWindow } from "./mekanism-window/index";
 const IRON: ScreenSlot = { count: 32, icon: "iron-ingot", tooltip: "铁锭" };
 const GOLD: ScreenSlot = { count: 8, icon: "gold-ingot", tooltip: "金锭" };
 
+const FACTORY_PROGRESS: Record<string, number> = {
+  "process-0": 0.9,
+  "process-1": 0.6,
+  "process-2": 0.3,
+  "process-3": 0.8,
+  "process-4": 0.45,
+  "process-5": 0.7,
+  "process-6": 0.2,
+  "process-7": 0.55,
+  "process-8": 0.35,
+};
+
+const FACTORY_SLOTS: Record<string, ScreenSlot> = {
+  "input-0": IRON,
+  "input-1": GOLD,
+  "input-2": IRON,
+  "input-3": GOLD,
+  "input-4": IRON,
+  "input-5": GOLD,
+  "input-6": IRON,
+  "input-7": GOLD,
+  "input-8": IRON,
+  "output-0": GOLD,
+  "output-1": IRON,
+  "output-2": GOLD,
+  "output-3": IRON,
+  "output-4": GOLD,
+  "output-5": IRON,
+  "output-6": GOLD,
+  "output-7": IRON,
+  "output-8": GOLD,
+};
+
+const FACTORY_TIERS = ["basic", "advanced", "elite", "ultimate"] as const;
+
 export function MekanismChemicalTankScreenDemo() {
   return <MekanismChemicalTankScreen chemical={{ amount: 32000, capacity: 64000 }} drain={GOLD} fill={IRON} />;
 }
@@ -39,6 +79,52 @@ export function MekanismDynamicTankScreenDemo() {
 
 export function MekanismEnergyCubeScreenDemo() {
   return <MekanismEnergyCubeScreen charge={IRON} discharge={GOLD} energy={{ max: 4000000, value: 2400000 }} />;
+}
+
+export function MekanismFactoryFamiliesDemo() {
+  return (
+    <div className="flex flex-wrap items-start gap-x-64 gap-y-12">
+      <MekanismInjectingFactoryScreen
+        chemical={{ amount: 48000, capacity: 64000, tint: "#c9071f" }}
+        energy={{ max: 10000, value: 6400 }}
+        slots={{ "extra": IRON, "input-0": IRON, "input-1": GOLD, "output-0": GOLD, "output-1": IRON }}
+        tier="ultimate"
+      />
+      <MekanismSawingFactoryScreen
+        energy={{ max: 10000, value: 6400 }}
+        slots={{ "input-0": IRON, "input-1": GOLD, "output-0": GOLD, "output-1": IRON, "secondary-output-0": GOLD, "secondary-output-1": IRON }}
+        tier="ultimate"
+      />
+    </div>
+  );
+}
+
+export function MekanismFactoryScreenDemo() {
+  return (
+    <MekanismEnrichingFactoryScreen
+      energy={{ max: 10000, value: 6400 }}
+      progress={FACTORY_PROGRESS}
+      slots={FACTORY_SLOTS}
+      sorting
+      tier="ultimate"
+    />
+  );
+}
+
+export function MekanismFactoryTiersDemo() {
+  return (
+    <div className="flex flex-wrap items-start gap-x-64 gap-y-12">
+      {FACTORY_TIERS.map(tier => (
+        <MekanismEnrichingFactoryScreen
+          energy={tier === "ultimate" ? { max: 10000, value: 6400 } : undefined}
+          key={tier}
+          progress={FACTORY_PROGRESS}
+          slots={FACTORY_SLOTS}
+          tier={tier}
+        />
+      ))}
+    </div>
+  );
 }
 
 export function MekanismFluidTankScreenDemo() {

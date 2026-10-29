@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   MekanismEnergyCubeScreen,
+  MekanismEnrichingFactoryScreen,
   MekanismEnrichmentChamberScreen,
   MekanismSideConfigWindow,
 } from "./index";
@@ -19,6 +20,7 @@ function render(): string {
         slots={{ input: { icon: "iron-ore" }, output: { count: 2, icon: "iron-ingot" } }}
       />
       <MekanismEnergyCubeScreen energy={{ max: 4000000, value: 2400000 }} />
+      <MekanismEnrichingFactoryScreen energy={{ max: 10, value: 5 }} tier="ultimate" />
       <MekanismSideConfigWindow left={0} top={0} />
     </>,
   );

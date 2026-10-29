@@ -1269,6 +1269,32 @@
       "dependencies": [],
       "files": [
         {
+          "path": "packages/mekanism/src/mekanism-factory-screen/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/mekanism/src/mekanism-factory-screen/factories.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/mekanism/src/mekanism-factory-screen/mekanism-factory-layout.test.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/mekanism/src/mekanism-factory-screen/mekanism-factory-layout.ts",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-factory-screen",
+      "registryDependencies": [],
+      "title": "Mekanism Factory Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
           "path": "packages/mekanism/src/mekanism-fluid-tank-screen/index.tsx",
           "type": "registry:component"
         }

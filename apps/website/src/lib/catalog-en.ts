@@ -56,6 +56,7 @@ export const componentDescriptionsEn: Record<string, string> = {
   "mekanism-chemical-tank-screen": "Mekanism chemical tank: 176×166, horizontal chemical bar, inner screen, dumping mode, input / output slots and left armor holder.",
   "mekanism-dynamic-tank-screen": "Mekanism dynamic tank: 176×166, 34×56 merged fluid / chemical gauge, inner screen, two content slots and left armor holder.",
   "mekanism-energy-cube-screen": "Mekanism energy cube: 176×166, WIDE energy gauge, charge / discharge slots, right-side 4 armor + offhand holder and security tab.",
+  "mekanism-factory-screen": "Mekanism 26.3 factories: nine factory types across basic / advanced / elite / ultimate tiers, per-process input / output slots and progress, chemical bar + dump button, sorting tab, 210 px ultimate canvas.",
   "mekanism-fluid-tank-screen": "Mekanism fluid tank: 176×166, WIDE fluid gauge, input / output slots, left armor holder and security / edit tabs.",
   "mekanism-gauge": "Mekanism vertical gauge: standard / small / small-med / medium / wide frame, bottom-up fill and overlay.",
   "mekanism-induction-matrix-screen": "Mekanism induction matrix: 176×166, 34×56 energy gauge, inner screen, two cell slots, left armor holder and energy / matrix tabs.",

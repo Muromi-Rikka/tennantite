@@ -639,6 +639,15 @@ export const components: CatalogEntry[] = [
     sourceDir: "packages/mekanism/src/mekanism-machine-screen",
   },
   {
+    description: "Mekanism 26.3 工厂：9 类 × 4 级（基础/高级/精英/终极），逐进程输入 / 输出槽与进度、化学工厂横向化学条与倾倒按钮、自动分类标签；终极档 210 px 画布。",
+    exports: ["MekanismFactoryScreen", "MEKANISM_FACTORY_TIER_NAMES", "MEKANISM_FACTORY_TIERS", "MEKANISM_FACTORY_TYPES"],
+    group: "mods",
+    mod: "mekanism",
+    name: "MekanismFactoryScreen",
+    slug: "mekanism-factory-screen",
+    sourceDir: "packages/mekanism/src/mekanism-factory-screen",
+  },
+  {
     description: "Mekanism 能量立方：176×166，WIDE 能量仪表、充放电槽、右侧 4 甲 + 副手装备栏与安全标签。",
     exports: ["MekanismEnergyCubeScreen"],
     group: "mods",
@@ -1205,6 +1214,7 @@ export const componentTitlesZh: Record<string, string> = {
   "mekanism-chemical-tank-screen": "化学储罐",
   "mekanism-dynamic-tank-screen": "动态储罐",
   "mekanism-energy-cube-screen": "能量立方",
+  "mekanism-factory-screen": "Mekanism 工厂",
   "mekanism-fluid-tank-screen": "流体储罐",
   "mekanism-gauge": "Mekanism 仪表",
   "mekanism-induction-matrix-screen": "感应矩阵",

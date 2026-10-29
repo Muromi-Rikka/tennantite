@@ -41,6 +41,7 @@ export const blockComposition: Record<string, string[]> = {
   "mekanism-chemical-tank-screen": ["MekanismScreen", "MekanismBar", "MekanismInnerScreen", "MekanismSlot", "MekanismArmorSlots", "MekanismSideHolder", "MekanismTabBar", "MekanismSideConfigWindow"],
   "mekanism-dynamic-tank-screen": ["MekanismScreen", "MekanismGauge", "MekanismInnerScreen", "MekanismSlot", "MekanismElementHolder", "MekanismArmorSlots", "MekanismSideHolder", "MekanismTabBar"],
   "mekanism-energy-cube-screen": ["MekanismScreen", "MekanismGauge", "MekanismSlot", "MekanismArmorSlots", "MekanismSideHolder", "MekanismTabBar", "MekanismSideConfigWindow"],
+  "mekanism-factory-screen": ["MekanismScreen", "MekanismSlot", "MekanismProgress", "MekanismBar", "MekanismImageButton", "MekanismTabBar", "MekanismSideConfigWindow", "MekanismUpgradeWindow"],
   "mekanism-fluid-tank-screen": ["MekanismScreen", "MekanismGauge", "MekanismSlot", "MekanismArmorSlots", "MekanismSideHolder", "MekanismTabBar"],
   "mekanism-induction-matrix-screen": ["MekanismScreen", "MekanismGauge", "MekanismInnerScreen", "MekanismSlot", "MekanismElementHolder", "MekanismArmorSlots", "MekanismSideHolder", "MekanismTabBar"],
   "mekanism-machine-screen": ["MekanismScreen", "MekanismSlot", "MekanismGauge", "MekanismProgress", "MekanismBar", "MekanismTabBar", "MekanismSideConfigWindow", "MekanismUpgradeWindow"],
