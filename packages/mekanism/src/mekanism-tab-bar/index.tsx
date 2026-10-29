@@ -9,8 +9,16 @@ import type {
 import { MEKANISM_TAB_POSITIONS } from "../mekanism-metrics";
 import { MekanismTab } from "../mekanism-tab/index";
 
-const LEFT_TABS: Set<MekanismTabKind> = new Set(["boiler", "config", "energy", "heat", "matrix", "sorting", "transporter", "visuals"]);
-const WIDE_TABS: Set<MekanismTabKind> = new Set(["energy", "heat", "warning"]);
+const LEFT_TABS: Partial<Record<MekanismTabKind, true>> = {
+  boiler: true,
+  config: true,
+  energy: true,
+  heat: true,
+  matrix: true,
+  sorting: true,
+  transporter: true,
+  visuals: true,
+};
 
 export interface MekanismTabBarProps {
   active?: MekanismTabKind[];
@@ -55,13 +63,12 @@ export function MekanismTabBar({
         if (kind === "warning" && warningSide === "left") {
           return null;
         }
-        const side: "left" | "right" = LEFT_TABS.has(kind) ? "left" : "right";
+        const side: "left" | "right" = Object.hasOwn(LEFT_TABS, kind) ? "left" : "right";
         const y = positions?.[kind] ?? MEKANISM_TAB_POSITIONS[side][kind] ?? 6;
         const isOpen = active.includes(kind);
         return (
           <div className="pointer-events-auto" key={kind}>
             <MekanismTab
-              height={WIDE_TABS.has(kind) ? 26 : (kind === "sorting" ? 35 : 18)}
               kind={kind}
               label={kind}
               left={side === "left" ? -26 : width}
@@ -78,7 +85,6 @@ export function MekanismTabBar({
         ? (
             <div className="pointer-events-auto">
               <MekanismTab
-                height={26}
                 kind="warning"
                 label="warning"
                 left={-26}

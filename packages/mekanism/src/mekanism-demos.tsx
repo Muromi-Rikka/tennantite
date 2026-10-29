@@ -1,4 +1,5 @@
 import type { ScreenSlot } from "@tennantite/ui";
+import { gui } from "@tennantite/ui";
 import type { MekanismMachineKey } from "./mekanism-machine-screen/mekanism-machine-layout";
 import { MekanismBar } from "./mekanism-bar/index";
 import { MekanismButton } from "./mekanism-button/index";
@@ -138,8 +139,13 @@ export function MekanismScreenDemo() {
 
 export function MekanismSideConfigWindowDemo() {
   return (
-    <div className="relative h-[300px] w-[340px]">
-      <MekanismSideConfigWindow left={0} sides={{ back: "OUTPUT", front: "INPUT", top: "ENERGY" }} top={0} />
+    <div className="relative" style={{ height: gui(135), width: gui(208) }}>
+      <MekanismSideConfigWindow
+        left={26}
+        sides={{ back: "OUTPUT", front: "INPUT", top: "ENERGY" }}
+        top={0}
+        transmissions={["energy", "fluid", "chemical", "item", "heat"]}
+      />
     </div>
   );
 }
@@ -167,13 +173,15 @@ export function MekanismSpriteDemo() {
 
 export function MekanismTabDemo() {
   return (
-    <div className="relative h-48 w-72">
-      <MekanismTabBar
-        active={["config"]}
-        security="private"
-        tabs={["config", "transporter", "upgrade", "security", "redstone", "energy"]}
-        width={176}
-      />
+    <div className="relative" style={{ height: gui(163), width: gui(228) }}>
+      <div className="absolute top-0 h-full" style={{ left: gui(26), width: gui(176) }}>
+        <MekanismTabBar
+          active={["config"]}
+          security="private"
+          tabs={["config", "transporter", "upgrade", "security", "redstone", "energy"]}
+          width={176}
+        />
+      </div>
     </div>
   );
 }

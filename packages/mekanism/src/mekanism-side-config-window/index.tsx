@@ -5,7 +5,7 @@ import type { MekanismDataType, MekanismSide, MekanismTransmission } from "../me
 import { MekanismImageButton } from "../mekanism-image-button/index";
 import { MekanismInnerScreen } from "../mekanism-inner-screen/index";
 import { MekanismLabel } from "../mekanism-label/index";
-import { MEKANISM_DATA_COLORS } from "../mekanism-metrics";
+import { MEKANISM_DATA_COLORS, MEKANISM_TAB_INSET } from "../mekanism-metrics";
 import { MekanismSprite } from "../mekanism-sprite/index";
 import { MekanismWindow } from "../mekanism-window/index";
 
@@ -156,14 +156,21 @@ export function MekanismSideConfigWindow({
               tint={TRANSMISSION_COLORS[type]}
               width={26}
             />
-            <MekanismSprite className="absolute" height={18} left={4} name="button" top={4} width={18} />
             <MekanismSprite
               className="absolute"
-              height={18}
-              left={4}
+              height={MEKANISM_TAB_INSET.buttonSize}
+              left={side === "left" ? MEKANISM_TAB_INSET.buttonLeft : MEKANISM_TAB_INSET.buttonRight}
+              name="button"
+              top={MEKANISM_TAB_INSET.buttonTop}
+              width={MEKANISM_TAB_INSET.buttonSize}
+            />
+            <MekanismSprite
+              className="absolute"
+              height={MEKANISM_TAB_INSET.buttonSize}
+              left={side === "left" ? MEKANISM_TAB_INSET.buttonLeft : MEKANISM_TAB_INSET.buttonRight}
               name={TRANSMISSION_ICONS[type]}
-              top={4}
-              width={18}
+              top={MEKANISM_TAB_INSET.buttonTop}
+              width={MEKANISM_TAB_INSET.buttonSize}
             />
           </button>
         );

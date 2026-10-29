@@ -3,6 +3,7 @@ import type { MekanismSpriteName } from "@tennantite/textures";
 import { cn, gui } from "@tennantite/ui";
 
 import type { MekanismTabKind } from "../mekanism-types";
+import { MEKANISM_TAB_INSET } from "../mekanism-metrics";
 import { MekanismSprite } from "../mekanism-sprite/index";
 
 export interface MekanismTabProps {
@@ -11,10 +12,6 @@ export interface MekanismTabProps {
    * 背景染色
    */
   color?: string;
-  /**
-   * 标签高度（18 / 26 完整精灵 / 35 排序）
-   */
-  height?: 18 | 26 | 35;
   /**
    * 标签类型
    */
@@ -44,10 +41,6 @@ export interface MekanismTabProps {
    * 标签左上角 y（GUI px）
    */
   top: number;
-  /**
-   * 标签宽度（固定 26）
-   */
-  width?: 26;
 }
 
 const TAB_COLORS: Partial<Record<MekanismTabKind, string>> = {
@@ -59,12 +52,23 @@ const TAB_COLORS: Partial<Record<MekanismTabKind, string>> = {
 };
 
 /**
- * Mekanism 侧边标签：26×18（energy/heat/warning 为 26×26，sorting 为 35×18）。
+ * 整图标签（无侧条与内嵌按钮）：energy / heat / warning 为上游 26×26 单图。
+ */
+const TEXTURED_TABS: Partial<Record<MekanismTabKind, true>> = {
+  energy: true,
+  heat: true,
+  warning: true,
+};
+
+/**
+ * Mekanism 侧边标签：26×26 侧条 + 18×18 内嵌按钮（sorting 为 26×35）。
+ *
+ * 上游 `GuiInsetElement` 把按钮画在侧条边框内的 (5, 4)（左侧）/ (3, 4)（右侧），
+ * 侧条本身仍是 26 高，因此上下各留 4px 边。整图标签直接铺 26×26 精灵。
  */
 export function MekanismTab({
   className,
   color,
-  height = 18,
   kind,
   label,
   left,
@@ -73,12 +77,11 @@ export function MekanismTab({
   selected = false,
   side,
   top,
-  width = 26,
 }: MekanismTabProps) {
   const tint = color ?? TAB_COLORS[kind] ?? "#ffffff";
   const icon = tabIcon(kind, side, mode);
-  const isWide = height === 26;
-  const buttonTop = height === 35 ? 4 : 0;
+  const height = kind === "sorting" ? MEKANISM_TAB_INSET.sortingHeight : MEKANISM_TAB_INSET.height;
+  const buttonLeft = side === "left" ? MEKANISM_TAB_INSET.buttonLeft : MEKANISM_TAB_INSET.buttonRight;
 
   return (
     <button
@@ -87,35 +90,35 @@ export function MekanismTab({
       className={cn("absolute", onClick ? "cursor-pointer" : "cursor-default", className)}
       disabled={!onClick}
       onClick={onClick}
-      style={{ height: gui(height), left: gui(left), top: gui(top), width: gui(width) }}
+      style={{ height: gui(height), left: gui(left), top: gui(top), width: gui(MEKANISM_TAB_INSET.width) }}
       title={label}
       type="button"
     >
-      {isWide
-        ? <MekanismSprite height={26} name={icon} width={26} />
+      {Object.hasOwn(TEXTURED_TABS, kind)
+        ? <MekanismSprite height={MEKANISM_TAB_INSET.height} name={icon} width={MEKANISM_TAB_INSET.width} />
         : (
             <>
               <MekanismSprite
                 height={height}
                 name={side === "left" ? "holder_left" : "holder_right"}
                 tint={tint}
-                width={width}
+                width={MEKANISM_TAB_INSET.width}
               />
               <MekanismSprite
                 className="absolute"
-                height={18}
-                left={4}
+                height={MEKANISM_TAB_INSET.buttonSize}
+                left={buttonLeft}
                 name="button"
-                top={buttonTop}
-                width={18}
+                top={MEKANISM_TAB_INSET.buttonTop}
+                width={MEKANISM_TAB_INSET.buttonSize}
               />
               <MekanismSprite
                 className="absolute"
-                height={18}
-                left={4}
+                height={MEKANISM_TAB_INSET.buttonSize}
+                left={buttonLeft}
                 name={icon}
-                top={buttonTop}
-                width={18}
+                top={MEKANISM_TAB_INSET.buttonTop}
+                width={MEKANISM_TAB_INSET.buttonSize}
               />
             </>
           )}

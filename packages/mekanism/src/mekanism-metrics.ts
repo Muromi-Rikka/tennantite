@@ -96,6 +96,20 @@ export const MEKANISM_TAB_POSITIONS: Record<"left" | "right", Partial<Record<Mek
   },
 };
 
+/**
+ * 侧条标签的内嵌按钮几何（上游 `GuiInsetElement`）：26 宽侧条 + 18×18 按钮，
+ * 左边标签按钮 x = border + 1、右边 x = border - 1，y = border。
+ */
+export const MEKANISM_TAB_INSET = {
+  buttonLeft: 5,
+  buttonRight: 3,
+  buttonSize: 18,
+  buttonTop: 4,
+  height: 26,
+  sortingHeight: 35,
+  width: 26,
+} as const;
+
 export const MEKANISM_WINDOW_POSITIONS = {
   "side-config": { height: 135, width: 156, x: (width: number) => (width - 156) / 2, y: 15 },
   "upgrade": { height: 100, width: 198, x: (width: number) => (width - 198) / 2, y: 15 },

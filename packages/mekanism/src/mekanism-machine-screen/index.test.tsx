@@ -27,13 +27,25 @@ describe("mekanism machine screens", () => {
     expect(screen.getByText("富集仓")).toBeInTheDocument();
   });
 
-  it("centers tab icons inside the 26×18 tab", () => {
+  it("insets tab buttons into the 26×26 side holder", () => {
     render(<MekanismEnrichmentChamberScreen energy={{ max: 10, value: 5 }} />);
     const config = screen.getByLabelText("config");
-    const icon = config.querySelector("[data-mek-sprite=\"button/configuration\"]");
-    expect(icon).toBeTruthy();
-    expect((icon as HTMLElement).style.left).toBe("calc(var(--mc-gui) * 4)");
-    expect((icon as HTMLElement).style.top).toBe("calc(var(--mc-gui) * 0)");
+    const configIcon = config.querySelector("[data-mek-sprite=\"button/configuration\"]");
+    const configHolder = config.querySelector("[data-mek-sprite=\"holder_left\"]");
+    const upgrade = screen.getByLabelText("upgrade");
+    const upgradeIcon = upgrade.querySelector("[data-mek-sprite=\"button/upgrade\"]");
+
+    expect(config.querySelector("[data-mek-sprite=\"holder_right\"]")).toBeNull();
+    expect(configHolder).toBeTruthy();
+    expect(configIcon).toBeTruthy();
+    expect(upgradeIcon).toBeTruthy();
+    expect(config.style.height).toBe("calc(var(--mc-gui) * 26)");
+    expect(config.style.width).toBe("calc(var(--mc-gui) * 26)");
+    expect((configHolder as HTMLElement).style.height).toBe("calc(var(--mc-gui) * 26)");
+    expect((configIcon as HTMLElement).style.left).toBe("calc(var(--mc-gui) * 5)");
+    expect((configIcon as HTMLElement).style.top).toBe("calc(var(--mc-gui) * 4)");
+    expect((upgradeIcon as HTMLElement).style.left).toBe("calc(var(--mc-gui) * 3)");
+    expect((upgradeIcon as HTMLElement).style.top).toBe("calc(var(--mc-gui) * 4)");
   });
 
   it("opens and closes the side config and upgrade windows", async () => {

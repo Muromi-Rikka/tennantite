@@ -756,7 +756,7 @@ export const components: CatalogEntry[] = [
     sourceDir: "packages/mekanism/src/mekanism-bar",
   },
   {
-    description: "Mekanism 侧边标签：18/26 高按钮、图标变体、两侧排布与装备栏侧条。",
+    description: "Mekanism 侧边标签：26×26 侧条 + 18×18 内嵌按钮（图标变体）、26×26 整图标签、两侧排布与装备栏侧条。",
     exports: ["MekanismTab", "MekanismTabBar", "MekanismSideHolder", "MekanismElementHolder"],
     group: "containers",
     mod: "mekanism",
