@@ -5,7 +5,6 @@ export default defineConfig({
     "process.env.NODE_ENV": JSON.stringify("test"),
   },
   test: {
-    testTimeout: 20_000,
     coverage: {
       exclude: [
         "src/**/*.test.*",
@@ -26,5 +25,6 @@ export default defineConfig({
     globals: true,
     include: ["src/**/*.test.{ts,tsx}"],
     setupFiles: ["./src/vitest.setup.ts"],
+    testTimeout: 20_000,
   },
 });
