@@ -54,7 +54,11 @@ jobs:
       # PR 只做门禁 + 构建校验，不发布
       - name: Publish to CF Pages tennantite
         if: github.event_name != 'pull_request'
-        run: npx --yes wrangler@4.142.0 pages deploy apps/website/dist --project-name=tennantite --branch=master
+        uses: nick-fields/retry@v3
+        with:
+          max_attempts: 3
+          timeout_minutes: 10
+          command: npx --yes wrangler@4.142.0 pages deploy apps/website/dist --project-name=tennantite --branch=master --commit-dirty=true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
