@@ -8,6 +8,9 @@ import { ThermalItemGauge } from "../thermal-energy-gauge/index";
 import { THERMAL_CELL_CONTROLS, THERMAL_GUI, THERMAL_ITEM_GAUGE } from "../thermal-metrics";
 import { ThermalSprite } from "../thermal-sprite/index";
 
+const EMPTY_PLAYER_HOTBAR: ScreenSlot[] = [];
+const EMPTY_PLAYER_ITEMS: ScreenSlot[] = [];
+
 export interface ThermalCacheScreenProps {
   /**
    * 缓存物品量（驱动容量条填充）
@@ -62,8 +65,8 @@ export function ThermalCacheScreen({
   onInputChange,
   onOutputChange,
   outputRate = 0,
-  playerHotbar = [],
-  playerItems = [],
+  playerHotbar = EMPTY_PLAYER_HOTBAR,
+  playerItems = EMPTY_PLAYER_ITEMS,
   playerName = "玩家",
   title = "物品缓存仓",
 }: ThermalCacheScreenProps) {

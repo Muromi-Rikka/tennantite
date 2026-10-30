@@ -1,8 +1,7 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
 
-import { useRef, useState } from "react";
-import { mekanismNextRedstone, mekanismNextSecurity, mekanismNextSide } from "../mekanism-mode-state";
+import { useEffect, useRef, useState } from "react";
 import type {
   MekanismDataType,
   MekanismRedstoneMode,
@@ -14,6 +13,7 @@ import type {
 import type { MekanismFactoryTier, MekanismFactoryType } from "./mekanism-factory-layout";
 import { MekanismBar } from "../mekanism-bar/index";
 import { MekanismImageButton } from "../mekanism-image-button/index";
+import { mekanismNextRedstone, mekanismNextSecurity, mekanismNextSide } from "../mekanism-mode-state";
 import { MekanismProgress } from "../mekanism-progress/index";
 import { MekanismScreen } from "../mekanism-screen/index";
 import { MekanismSideConfigWindow } from "../mekanism-side-config-window/index";
@@ -47,6 +47,13 @@ export interface MekanismFactoryScreenProps {
 
 const CHEMICAL_BAR = { from: "#c9071f", to: "#e03030" };
 
+interface FactoryTabActions {
+  cycleRedstone: () => void;
+  cycleSecurity: () => void;
+  setSorting: (isSorting: boolean) => void;
+  toggleWindow: (kind: MekanismWindowKind) => void;
+}
+
 /**
  * Mekanism 工厂屏：9 类 × 4 档，逐进程输入 / 输出列、进度条、化学条 + 倾倒按钮与分类标签。
  */
@@ -74,7 +81,9 @@ export function MekanismFactoryScreen({
   const layout = mekanismFactoryLayout(factory, tier);
   const [windows, setWindows] = useState<MekanismWindowKind[]>(defaultWindows);
   const windowsRef = useRef(windows);
-  windowsRef.current = windows;
+  useEffect(() => {
+    windowsRef.current = windows;
+  }, [windows]);
   const [security, setSecurity] = useState<MekanismSecurityMode>(initialSecurity);
   const [redstone, setRedstone] = useState<MekanismRedstoneMode>(initialRedstone);
   const [sorting, setSorting] = useState(initialSorting);
@@ -104,42 +113,19 @@ export function MekanismFactoryScreen({
   };
 
   const handleTabClick = (kind: MekanismTabKind) => {
-    switch (kind) {
-      case "config": {
-        toggleWindow("side-config");
-        break;
-      }
-      case "redstone": {
-        cycleRedstone();
-        break;
-      }
-      case "security": {
-        cycleSecurity();
-        break;
-      }
-      case "sorting": {
-        setSorting(!sorting);
-        onSortingChange?.(!sorting);
-        break;
-      }
-      case "upgrade": {
-        toggleWindow("upgrade");
-        break;
-      }
-      default: {
-        break;
-      }
-    }
+    handleFactoryTabClick(kind, {
+      cycleRedstone,
+      cycleSecurity,
+      setSorting: (next) => {
+        setSorting(next);
+        onSortingChange?.(next);
+      },
+      toggleWindow,
+    }, sorting);
   };
 
-  const activeTabs: MekanismTabKind[] = [
-    ...(windows.includes("side-config") ? ["config" as const] : []),
-    ...(windows.includes("upgrade") ? ["upgrade" as const] : []),
-  ];
-  const tabs: MekanismTabKind[] = ["config", "transporter", "sorting", "upgrade", "security", "redstone", "energy"];
-  if (warning) {
-    tabs.push("warning");
-  }
+  const activeTabs = factoryActiveTabs(windows);
+  const tabs = factoryTabs(warning);
 
   return (
     <MekanismScreen
@@ -201,7 +187,7 @@ export function MekanismFactoryScreen({
         label="能量"
         left={layout.power.left}
         top={layout.power.top}
-        value={energy && energy.max > 0 ? energy.value / energy.max : 0}
+        value={meterRatio(energy?.value, energy?.max)}
       />
       {layout.chemical
         ? (
@@ -211,9 +197,9 @@ export function MekanismFactoryScreen({
               kind="rate"
               label="化学物质"
               left={layout.chemical.left}
-              tint={chemical?.tint ? { from: chemical.tint, to: chemical.tint } : CHEMICAL_BAR}
+              tint={chemicalTint(chemical)}
               top={layout.chemical.top}
-              value={chemical && chemical.capacity > 0 ? chemical.amount / chemical.capacity : 0}
+              value={meterRatio(chemical?.amount, chemical?.capacity)}
               width={layout.chemical.width}
             />
           )
@@ -255,4 +241,70 @@ export function MekanismFactoryScreen({
       ))}
     </MekanismScreen>
   );
+}
+
+/**
+ * 化学条染色：优先化学物质自身色，否则用默认红色渐变。
+ */
+function chemicalTint(chemical?: MekanismFactoryScreenProps["chemical"]) {
+  return chemical?.tint ? { from: chemical.tint, to: chemical.tint } : CHEMICAL_BAR;
+}
+
+/**
+ * 当前激活标签：对应已打开的配置 / 升级窗口。
+ */
+function factoryActiveTabs(windows: MekanismWindowKind[]): MekanismTabKind[] {
+  return [
+    ...(windows.includes("side-config") ? ["config" as const] : []),
+    ...(windows.includes("upgrade") ? ["upgrade" as const] : []),
+  ];
+}
+
+/**
+ * 顶部标签页：警告时在安全页后追加警告页。
+ */
+function factoryTabs(hasWarning: boolean): MekanismTabKind[] {
+  const tabs: MekanismTabKind[] = ["config", "transporter", "sorting", "upgrade", "security", "redstone", "energy"];
+  if (hasWarning) {
+    tabs.push("warning");
+  }
+  return tabs;
+}
+
+/**
+ * 顶部标签点击分发：窗口类切换开关，模式类循环切换。
+ */
+function handleFactoryTabClick(kind: MekanismTabKind, actions: FactoryTabActions, isSorting: boolean) {
+  switch (kind) {
+    case "config": {
+      actions.toggleWindow("side-config");
+      break;
+    }
+    case "redstone": {
+      actions.cycleRedstone();
+      break;
+    }
+    case "security": {
+      actions.cycleSecurity();
+      break;
+    }
+    case "sorting": {
+      actions.setSorting(!isSorting);
+      break;
+    }
+    case "upgrade": {
+      actions.toggleWindow("upgrade");
+      break;
+    }
+    default: {
+      break;
+    }
+  }
+}
+
+/**
+ * 能量 / 化学物质占比：缺省或容量非正时为 0。
+ */
+function meterRatio(value: number | undefined, max: number | undefined) {
+  return value !== undefined && max !== undefined && max > 0 ? value / max : 0;
 }

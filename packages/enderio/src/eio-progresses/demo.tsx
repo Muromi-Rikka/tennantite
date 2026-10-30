@@ -7,8 +7,8 @@ export function EioProgressesDemo() {
       <EioProgresses
         label="合金炉进度"
         labels={["合金炉进度 1", "合金炉进度 2"]}
-        progresses={EIO_MACHINES.alloySmelter.progresses}
         progress={0.5}
+        progresses={EIO_MACHINES.alloySmelter.progresses}
       />
     </div>
   );

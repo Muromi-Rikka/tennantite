@@ -244,6 +244,7 @@ function HudRow({
       role="img"
     >
       {sprites.map((name, index) => (
+        // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 数据模型无稳定 id，列表顺序即身份
         <GuiSprite
           className={index === sprites.length - 1 ? undefined : "-mr-1"}
           height={size}

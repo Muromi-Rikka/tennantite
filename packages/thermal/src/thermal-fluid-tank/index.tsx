@@ -10,13 +10,13 @@ export interface ThermalFluidTankProps {
    */
   label?: string;
   /**
-   * 布局表 tank 条目（frame/overlay 贴图名与几何）
-   */
-  tank: ThermalMachineFluidLayout;
-  /**
    * 当前状态；省略按 0 填充
    */
   state?: { amount: number; capacity: number; tint: string };
+  /**
+   * 布局表 tank 条目（frame/overlay 贴图名与几何）
+   */
+  tank: ThermalMachineFluidLayout;
 }
 
 /**

@@ -5,6 +5,11 @@ import { describe, expect, it } from "vitest";
 import { expectNoAxeViolations } from "../testing/a11y";
 import { Ic2EnergyGauge } from "./index";
 
+function clipOf(container: HTMLElement) {
+  const fill = container.querySelector("[data-ic2-gauge-fill]") as HTMLElement;
+  return (fill.parentElement as HTMLElement).style.clipPath;
+}
+
 describe("ic2EnergyGauge", () => {
   it("可访问性（progressbar 语义）", async () => {
     const { container } = render(
@@ -28,10 +33,6 @@ describe("ic2EnergyGauge", () => {
   });
 
   it("按比例裁剪填充：横条自左向右，闪电自下而上", () => {
-    const clipOf = (container: HTMLElement) => {
-      const fill = container.querySelector("[data-ic2-gauge-fill]") as HTMLElement;
-      return (fill.parentElement as HTMLElement).style.clipPath;
-    };
     const bar = render(
       <Ic2EnergyGauge left={0} max={100} top={0} value={50} variant="bar" />,
     ).container;

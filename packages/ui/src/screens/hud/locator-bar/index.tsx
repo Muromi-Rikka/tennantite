@@ -46,6 +46,7 @@ export function LocatorBar({ arrow, className, dots }: LocatorBarProps) {
           ? "sprites/hud/locator_bar_dot/bowtie.png"
           : `sprites/hud/locator_bar_dot/default_${dot.kind ?? "0"}.png`) as GuiSpriteName;
         return (
+          // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 数据模型无稳定 id，列表顺序即身份
           <div
             className="absolute top-0 size-9"
             key={`${dot.x}-${index}`}

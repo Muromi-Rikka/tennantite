@@ -103,6 +103,7 @@ export function ToastStack({ className, toasts }: ToastStackProps) {
   return (
     <div className={cn("absolute top-4 right-4 flex flex-col gap-4", className)}>
       {toasts.map((toast, index) => (
+        // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 数据模型无稳定 id，列表顺序即身份
         <Toast key={`${toast.title}-${index}`} {...toast} />
       ))}
     </div>

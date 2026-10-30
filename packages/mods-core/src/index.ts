@@ -10,8 +10,8 @@ export { ModScrollbar, type ModScrollbarProps } from "./shared/mod-scrollbar";
 export { ModSearchField, type ModSearchFieldProps } from "./shared/mod-search-field";
 export { ModSlotGrid, type ModSlotGridProps } from "./shared/mod-slot-grid";
 export {
-  ModSprite,
   type ModDataAttributes,
+  ModSprite,
   type ModSpriteMeta,
   type ModSpriteProps,
   type ModSpriteRect,

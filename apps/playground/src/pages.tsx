@@ -85,7 +85,6 @@ export const pageGroups: readonly PageGroup[] = [
  * 预览页注册表：每个组件 / 层级一个路由（hash = 键）
 */
 export const pageRegistry = new Map<string, PageEntry>([
-  ["mods-core", { group: "mods", render: () => <ModsCorePage />, title: "Mod 共用原语" }],
   ["ae2", { group: "mods", render: () => <Ae2Page />, title: "AE2 (Mod)" }],
   ["anvil-screen", { group: "screens", render: () => <AnvilScreenPage />, title: "AnvilScreen" }],
   ["badge", { group: "primitives", render: () => <BadgePage />, title: "Badge" }],
@@ -120,6 +119,7 @@ export const pageRegistry = new Map<string, PageEntry>([
   ["l0", { group: "l0", render: () => <L0Page />, title: "L0 · Tokens & Textures" }],
   ["main-menu", { group: "screens", render: () => <MainMenuPage />, title: "MainMenu (Menu)" }],
   ["mekanism", { group: "mods", render: () => <MekanismPage />, title: "Mekanism (Mod)" }],
+  ["mods-core", { group: "mods", render: () => <ModsCorePage />, title: "Mod 共用原语" }],
   ["panel", { group: "primitives", render: () => <PanelPage />, title: "Panel (L2)" }],
   ["progress", { group: "primitives", render: () => <ProgressPage />, title: "Progress" }],
   ["radio-group", { group: "primitives", render: () => <RadioGroupPage />, title: "RadioGroup" }],

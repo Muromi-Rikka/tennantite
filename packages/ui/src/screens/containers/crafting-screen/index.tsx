@@ -33,11 +33,13 @@ export interface CraftingScreenProps {
 /**
  * 工作台界面（规格 §6）：`container/crafting_table.png` 176×166。
  */
+const EMPTY_CRAFT_ITEMS: ScreenSlot[] = [];
+const EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];
 export function CraftingScreen({
   className,
-  craftItems = [],
+  craftItems = EMPTY_CRAFT_ITEMS,
   craftResult = null,
-  hotbarItems = [],
+  hotbarItems = EMPTY_HOTBAR_ITEMS,
   onRecipeBook,
   onSlotClick,
   selectedIndex,

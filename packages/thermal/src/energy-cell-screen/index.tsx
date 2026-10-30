@@ -8,6 +8,9 @@ import { ThermalEnergyGauge } from "../thermal-energy-gauge/index";
 import { THERMAL_CELL_CONTROLS, THERMAL_ENERGY_GAUGE, THERMAL_GUI } from "../thermal-metrics";
 import { ThermalSprite } from "../thermal-sprite/index";
 
+const EMPTY_PLAYER_HOTBAR: ScreenSlot[] = [];
+const EMPTY_PLAYER_ITEMS: ScreenSlot[] = [];
+
 export interface ThermalEnergyCellScreenProps {
   /**
    * 当前存能（渲染能量表填充）
@@ -60,8 +63,8 @@ export function ThermalEnergyCellScreen({
   onInputChange,
   onOutputChange,
   outputRate = 0,
-  playerHotbar = [],
-  playerItems = [],
+  playerHotbar = EMPTY_PLAYER_HOTBAR,
+  playerItems = EMPTY_PLAYER_ITEMS,
   playerName = "玩家",
   title = "储能仓",
 }: ThermalEnergyCellScreenProps) {

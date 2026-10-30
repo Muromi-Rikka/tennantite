@@ -2,7 +2,8 @@ import type { ReactNode } from "react";
 
 import { cn, gui } from "@tennantite/ui";
 import type { ModDataAttributes } from "../mod-sprite/index";
-import { progressClipPath, type ProgressDirection } from "../progress";
+import type { ProgressDirection } from "../progress";
+import { progressClipPath } from "../progress";
 
 /**
  * progressbar 数值口径：
@@ -58,6 +59,10 @@ export interface ModProgressProps {
   * 进度 0..1；与 value/max 二选一，同时给出时优先
   */
   progress?: number;
+  /**
+  * 悬浮提示（默认等于 label）
+  */
+  title?: string;
   top: number;
   /**
   * 轨道节点（渲染在 aria-hidden 的 absolute inset-0 容器内）
@@ -67,10 +72,6 @@ export interface ModProgressProps {
   * 轨道纹理类（省略时仅绘制填充层）
   */
   trackClassName?: string;
-  /**
-  * 悬浮提示（默认等于 label）
-  */
-  title?: string;
   /**
   * 当前值；与 `max` 搭配使用
   */
@@ -82,25 +83,6 @@ export interface ModProgressProps {
 }
 
 const clampRatio = (value: number) => Math.min(1, Math.max(0, value));
-
-export function progressAriaValues(
-  ariaValue: ModProgressAriaValue,
-  ratio: number,
-  value?: number,
-  max?: number,
-) {
-  switch (ariaValue) {
-    case "percent": {
-      return { max: 100, now: Math.round(ratio * 100) };
-    }
-    case "raw": {
-      return { max: max ?? 0, now: value ?? 0 };
-    }
-    default: {
-      return { max: 1, now: ratio };
-    }
-  }
-}
 
 /**
  * 通用 mod 进度条：轨道 + 按比例裁剪的填充层，坐标为面板 GUI px。
@@ -143,9 +125,9 @@ export function ModProgress({
     >
       {track
         ? <div aria-hidden="true" className="absolute inset-0">{track}</div>
-        : trackClassName
-          ? <div aria-hidden="true" className={cn("absolute inset-0", trackClassName)} />
-          : null}
+        : (trackClassName
+            ? <div aria-hidden="true" className={cn("absolute inset-0", trackClassName)} />
+            : null)}
       <div
         aria-hidden="true"
         className={cn("absolute", fillClassName)}
@@ -155,4 +137,23 @@ export function ModProgress({
       </div>
     </div>
   );
+}
+
+export function progressAriaValues(
+  ariaValue: ModProgressAriaValue,
+  ratio: number,
+  value = 0,
+  max = 0,
+) {
+  switch (ariaValue) {
+    case "percent": {
+      return { max: 100, now: Math.round(ratio * 100) };
+    }
+    case "raw": {
+      return { max, now: value };
+    }
+    default: {
+      return { max: 1, now: ratio };
+    }
+  }
 }

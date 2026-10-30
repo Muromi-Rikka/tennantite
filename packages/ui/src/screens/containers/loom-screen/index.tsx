@@ -24,16 +24,18 @@ export interface LoomScreenProps {
 /**
  * 织布机界面（规格 §6）：`container/loom.png` 176×166。
  */
+const EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];
+const EMPTY_PATTERNS: string[] = [];
 export function LoomScreen({
   banner,
   className,
   dye,
   error = false,
-  hotbarItems = [],
+  hotbarItems = EMPTY_HOTBAR_ITEMS,
   onSlotClick,
   output,
   pattern,
-  patterns = [],
+  patterns = EMPTY_PATTERNS,
   selectedIndex,
   title,
 }: LoomScreenProps) {

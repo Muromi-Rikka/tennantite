@@ -1,7 +1,6 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import { useState } from "react";
 import type { MekanismStorageScreenProps } from "../mekanism-storage-types";
-import type { MekanismSecurityMode } from "../mekanism-types";
 
 import { mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismScreen } from "../mekanism-screen/index";
@@ -11,7 +10,6 @@ import { MekanismTabBar } from "../mekanism-tab-bar/index";
 export interface MekanismPersonalStorageScreenProps extends MekanismStorageScreenProps {
   items?: ScreenSlot[];
 }
-
 
 /**
  * 个人箱子：176×222，9×6 槽位 + 安全标签。

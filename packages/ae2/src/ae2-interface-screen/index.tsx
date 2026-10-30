@@ -93,7 +93,7 @@ export function Ae2InterfaceScreen({
           columns={configRow.columns}
           frame={false}
           items={config}
-          label={(index) => `interface-config-${index}`}
+          label={index => `interface-config-${index}`}
           left={configRow.left}
           onSlotClick={onConfigSlotClick}
           rows={1}
@@ -104,7 +104,7 @@ export function Ae2InterfaceScreen({
           columns={storageRow.columns}
           frame={false}
           items={storage}
-          label={(index) => `interface-storage-${index}`}
+          label={index => `interface-storage-${index}`}
           left={storageRow.left}
           onSlotClick={onStorageSlotClick}
           rows={1}
@@ -115,13 +115,14 @@ export function Ae2InterfaceScreen({
           columns={patternGrid.columns}
           frame={false}
           items={patterns}
-          label={(index) => `interface-pattern-${index}`}
+          label={index => `interface-pattern-${index}`}
           left={patternGrid.left}
           onSlotClick={onPatternSlotClick}
           rows={patternRows}
           top={patternGrid.top}
         />
         {Array.from(upgradeSlots, (item, index) => (
+          // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
           <ScreenItemSlot
             frame={false}
             item={item}

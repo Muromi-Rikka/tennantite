@@ -1,4 +1,4 @@
-import type { GuiSpriteName } from "@tennantite/textures";
+import type { GuiSpriteMeta, GuiSpriteName } from "@tennantite/textures";
 import type { ComponentProps, CSSProperties } from "react";
 import { guiSpriteMeta } from "@tennantite/textures";
 
@@ -64,6 +64,33 @@ export function GuiSprite({
   ...properties
 }: GuiSpriteProps) {
   const meta = guiSpriteMeta[name];
+
+  return (
+    <div
+      aria-hidden="true"
+      className={cn(meta.className, "mc-gui-sprite", className)}
+      data-gui-sprite={name}
+      style={guiSpriteStyle(meta, { fit, height, slice, src, style, tile, width })}
+      {...properties}
+    />
+  );
+}
+
+/**
+ * 计算精灵完整样式：无 `slice` 时按平铺、缩放或适配模式绘制背景，有 `slice` 时用 `border-image` 九宫格。
+ */
+function guiSpriteStyle(
+  meta: GuiSpriteMeta,
+  {
+    fit,
+    height,
+    slice,
+    src,
+    style,
+    tile,
+    width,
+  }: Pick<GuiSpriteProps, "fit" | "height" | "slice" | "src" | "style" | "tile" | "width">,
+): CSSProperties {
   const targetWidth = width ?? src?.width ?? meta.width;
   const targetHeight = height ?? src?.height ?? meta.height;
   const spriteStyle: CSSProperties = {
@@ -114,13 +141,5 @@ export function GuiSprite({
     spriteStyle.borderWidth = `${gui(edges.top)} ${gui(edges.right)} ${gui(edges.bottom)} ${gui(edges.left)}`;
   }
 
-  return (
-    <div
-      aria-hidden="true"
-      className={cn(meta.className, "mc-gui-sprite", className)}
-      data-gui-sprite={name}
-      style={spriteStyle}
-      {...properties}
-    />
-  );
+  return spriteStyle;
 }

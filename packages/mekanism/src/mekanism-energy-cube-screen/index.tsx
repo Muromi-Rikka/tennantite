@@ -1,11 +1,10 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import { useState } from "react";
 import type { MekanismStorageScreenProps } from "../mekanism-storage-types";
-import type { MekanismSecurityMode } from "../mekanism-types";
 
-import { mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismArmorSlots } from "../mekanism-armor-slots/index";
 import { MekanismGauge } from "../mekanism-gauge/index";
+import { mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismScreen } from "../mekanism-screen/index";
 import { MekanismSideConfigWindow } from "../mekanism-side-config-window/index";
 import { MekanismSideHolder } from "../mekanism-side-holder/index";
@@ -17,7 +16,6 @@ export interface MekanismEnergyCubeScreenProps extends MekanismStorageScreenProp
   discharge?: ScreenSlot;
   energy?: { max: number; value: number };
 }
-
 
 /**
  * 能量立方：176×166，energy gauge + 充放电槽 + 右侧 5 个装备槽。

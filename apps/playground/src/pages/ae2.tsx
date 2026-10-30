@@ -15,9 +15,9 @@ import {
   Ae2QuantumBridgeScreenDemo,
   Ae2SkyChestScreenDemo,
   Ae2SpatialIoPortScreenDemo,
+  Ae2TerminalBodyDemo,
   Ae2TerminalScreenDemo,
   Ae2TextDemo,
-  Ae2TerminalBodyDemo,
 } from "@tennantite/ae2/demos";
 
 export function Ae2Page() {

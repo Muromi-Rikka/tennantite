@@ -6,6 +6,8 @@ export { ThermalFluidCacheScreen } from "./fluid-cache-screen/index";
 export type { ThermalFluidCacheScreenProps } from "./fluid-cache-screen/index";
 export { ThermalRedstoneFurnaceScreen } from "./redstone-furnace-screen/index";
 export type { ThermalRedstoneFurnaceScreenProps } from "./redstone-furnace-screen/index";
+export { ThermalAugmentPanel } from "./thermal-augment-panel/index";
+export type { ThermalAugmentPanelProps } from "./thermal-augment-panel/index";
 export { ThermalBottlerScreen } from "./thermal-bottler-screen/index";
 export type { ThermalBottlerScreenProps } from "./thermal-bottler-screen/index";
 export { ThermalBrewerScreen } from "./thermal-brewer-screen/index";
@@ -34,10 +36,14 @@ export { ThermalEnergyGauge, ThermalItemGauge } from "./thermal-energy-gauge/ind
 export type { ThermalEnergyGaugeProps } from "./thermal-energy-gauge/index";
 export { ThermalFisherScreen } from "./thermal-fisher-screen/index";
 export type { ThermalFisherScreenProps } from "./thermal-fisher-screen/index";
+export { ThermalFluidTank } from "./thermal-fluid-tank/index";
+export type { ThermalFluidTankProps } from "./thermal-fluid-tank/index";
 export { ThermalHiveExtractorScreen } from "./thermal-hive-extractor-screen/index";
 export type { ThermalHiveExtractorScreenProps } from "./thermal-hive-extractor-screen/index";
 export { ThermalInsolatorScreen } from "./thermal-insolator-screen/index";
 export type { ThermalInsolatorScreenProps } from "./thermal-insolator-screen/index";
+export { ThermalLayoutSlot } from "./thermal-layout-slot/index";
+export type { ThermalLayoutSlotProps } from "./thermal-layout-slot/index";
 export {
   THERMAL_MACHINES,
   type ThermalMachineFluidLayout,
@@ -46,14 +52,6 @@ export {
 } from "./thermal-machine-layout";
 export { ThermalMachineScreen } from "./thermal-machine-screen/index";
 export type { ThermalMachineScreenProps } from "./thermal-machine-screen/index";
-export { ThermalAugmentPanel } from "./thermal-augment-panel/index";
-export type { ThermalAugmentPanelProps } from "./thermal-augment-panel/index";
-export { ThermalFluidTank } from "./thermal-fluid-tank/index";
-export type { ThermalFluidTankProps } from "./thermal-fluid-tank/index";
-export { ThermalLayoutSlot } from "./thermal-layout-slot/index";
-export type { ThermalLayoutSlotProps } from "./thermal-layout-slot/index";
-export { ThermalSpriteProgress } from "./thermal-sprite-progress/index";
-export type { ThermalSpriteProgressProps } from "./thermal-sprite-progress/index";
 export {
   THERMAL_AUGMENT_PANEL,
   THERMAL_AUGMENT_TAB,
@@ -89,6 +87,8 @@ export { ThermalSmelterScreen } from "./thermal-smelter-screen/index";
 export type { ThermalSmelterScreenProps } from "./thermal-smelter-screen/index";
 export { ThermalSoilInfuserScreen } from "./thermal-soil-infuser-screen/index";
 export type { ThermalSoilInfuserScreenProps } from "./thermal-soil-infuser-screen/index";
+export { ThermalSpriteProgress } from "./thermal-sprite-progress/index";
+export type { ThermalSpriteProgressProps } from "./thermal-sprite-progress/index";
 export { ThermalSprite } from "./thermal-sprite/index";
 export type { ThermalSpriteCrop, ThermalSpriteProps } from "./thermal-sprite/index";
 export { ThermalTinkerBenchScreen } from "./thermal-tinker-bench-screen/index";

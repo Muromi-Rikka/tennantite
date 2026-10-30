@@ -35,11 +35,14 @@ export interface CrafterScreenProps {
 /**
  * 合成器界面（规格 §6）：`container/crafter.png` 176×166，3×3 网格 + 26×26 结果。
  */
+const EMPTY_DISABLED_SLOTS: number[] = [];
+const EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];
+const EMPTY_ITEMS: ScreenSlot[] = [];
 export function CrafterScreen({
   className,
-  disabledSlots = [],
-  hotbarItems = [],
-  items = [],
+  disabledSlots = EMPTY_DISABLED_SLOTS,
+  hotbarItems = EMPTY_HOTBAR_ITEMS,
+  items = EMPTY_ITEMS,
   onSlotClick,
   output,
   powered = false,

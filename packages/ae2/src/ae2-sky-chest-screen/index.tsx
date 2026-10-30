@@ -52,6 +52,7 @@ export function Ae2SkyChestScreen({
         />
         <ModTitle left={titlePos.left} top={titlePos.top}>{title}</ModTitle>
         {Array.from(slots, (slot, index) => (
+          // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
           <ScreenItemSlot
             frame={false}
             item={slot.item}

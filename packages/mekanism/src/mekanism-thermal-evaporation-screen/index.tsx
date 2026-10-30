@@ -1,13 +1,12 @@
 import type { ReactNode } from "react";
 import { useState } from "react";
 import type { MekanismFluidContents, MekanismStorageScreenProps } from "../mekanism-storage-types";
-import type { MekanismSecurityMode } from "../mekanism-types";
 
-import { mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismArrow } from "../mekanism-arrow/index";
 import { MekanismBar } from "../mekanism-bar/index";
 import { MekanismGauge } from "../mekanism-gauge/index";
 import { MekanismInnerScreen } from "../mekanism-inner-screen/index";
+import { mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismScreen } from "../mekanism-screen/index";
 import { MekanismTabBar } from "../mekanism-tab-bar/index";
 
@@ -16,7 +15,6 @@ export interface MekanismThermalEvaporationScreenProps extends MekanismStorageSc
   temperature?: number;
   texts?: { formed?: ReactNode; height?: ReactNode; production?: ReactNode; temperature?: ReactNode };
 }
-
 
 /**
  * 热力蒸发控制器：196×166，输入/输出流体仪表 + 横向速率条 + 内屏。

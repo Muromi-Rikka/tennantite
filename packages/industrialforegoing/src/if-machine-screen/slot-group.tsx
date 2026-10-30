@@ -26,6 +26,7 @@ export function IfSlotGroupGrid({ group, items, onActivate }: IfSlotGroupGridPro
       {cells.map(([dx, dy], index) => {
         const label = isSingle ? group.name : `${group.name}-${index}`;
         return (
+          // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
           <IfSlot
             color={group.color}
             item={items?.[label]}

@@ -1,6 +1,23 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import { ScreenItemSlot } from "@tennantite/ui";
 
+export type ModSlotGridProps = (
+  | {
+    /**
+    * 逐格生成无障碍名称
+    */
+    label: (index: number) => string;
+    labelPrefix?: never;
+  }
+  | {
+    label?: never;
+    /**
+    * 无障碍名称前缀（`${prefix}-${index}`）
+    */
+    labelPrefix: string;
+  }
+) & ModSlotGridBase;
+
 interface ModSlotGridBase {
   /**
   * 单元格边长（GUI px，默认 18）
@@ -27,23 +44,6 @@ interface ModSlotGridBase {
   */
   top: number;
 }
-
-export type ModSlotGridProps = ModSlotGridBase & (
-  | {
-    /**
-    * 无障碍名称前缀（`${prefix}-${index}`）
-    */
-    labelPrefix: string;
-    label?: never;
-  }
-  | {
-    /**
-    * 逐格生成无障碍名称
-    */
-    label: (index: number) => string;
-    labelPrefix?: never;
-  }
-);
 
 /**
  * 通用 mod 槽位网格：按行优先排列，自动补齐到 `rows * columns`。

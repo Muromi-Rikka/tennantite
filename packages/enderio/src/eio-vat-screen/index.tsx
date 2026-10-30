@@ -64,8 +64,8 @@ export function EioVatScreen({
       />
       <EioProgresses
         label="发酵桶进度"
-        progresses={layout.progresses}
         progress={progress}
+        progresses={layout.progresses}
       />
       <EioIconButton
         icon="sprites/buttons/move_fluid"

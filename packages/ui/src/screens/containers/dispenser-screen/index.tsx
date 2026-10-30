@@ -19,10 +19,12 @@ export interface DispenserScreenProps {
 /**
  * 发射器 / 投掷器界面（规格 §6）：`container/dispenser.png` 176×166。
  */
+const EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];
+const EMPTY_ITEMS: ScreenSlot[] = [];
 export function DispenserScreen({
   className,
-  hotbarItems = [],
-  items = [],
+  hotbarItems = EMPTY_HOTBAR_ITEMS,
+  items = EMPTY_ITEMS,
   onSlotClick,
   selectedIndex,
   title,
@@ -37,6 +39,7 @@ export function DispenserScreen({
       width={176}
     >
       {slots.map((item, index) => (
+        // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
         <ScreenItemSlot
           item={item}
           key={index}

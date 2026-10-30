@@ -173,6 +173,7 @@ export function IfMachineScreen({
         ))}
 
         {spec.slots.map((group, index) => (
+          // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
           <IfSlotGroupGrid
             group={group}
             items={items}

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { ModIconButton, ModSprite, ModTitle } from "@tennantite/mods-core";
 import { ae2SpriteMeta } from "@tennantite/textures";
-import { cn, gui, ScreenPanel } from "@tennantite/ui";
+import { cn, ScreenPanel } from "@tennantite/ui";
 import { AE2_ICONS, AE2_PRIORITY_DIALOG } from "../ae2-layout";
 import { Ae2Text } from "../ae2-text/index";
 

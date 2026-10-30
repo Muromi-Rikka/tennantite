@@ -27,8 +27,8 @@ export interface IfFluidTankProps {
  */
 const TANK = {
   inset: 3,
-  small: { height: 19 },
   normal: { height: 56 },
+  small: { height: 19 },
   width: 18,
 } as const;
 

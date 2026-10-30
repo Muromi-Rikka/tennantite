@@ -45,52 +45,6 @@ interface ThermalGaugeBaseProps {
   width: number;
 }
 
-function ThermalGaugeBase({
-  fillCrop,
-  height,
-  label,
-  left,
-  max = 1,
-  tint,
-  top,
-  trackCrop,
-  value = 0,
-  width,
-}: ThermalGaugeBaseProps) {
-  return (
-    <ModProgress
-      ariaValue="percent"
-      direction="up"
-      fill={(
-        <ThermalSprite
-          crop={{ ...fillCrop, height: height - 2 }}
-          height={height - 2}
-          left={0}
-          name="elements/storage_energy"
-          tint={tint}
-          top={1}
-          width={width}
-        />
-      )}
-      height={height}
-      label={label}
-      left={left}
-      max={max}
-      top={top}
-      track={(
-        <ThermalSprite
-          crop={trackCrop}
-          height={height}
-          name="elements/storage_energy"
-          width={width}
-        />
-      )}
-      value={value}
-      width={width}
-    />
-  );
-}
-
 /**
  * Thermal 竖向能量表：storage_energy 图集背景 + 内缩裁剪的填充
  * （照 CoFH ElementEnergyStorage：上下各内缩 1，自下而上填充）。
@@ -146,6 +100,52 @@ export function ThermalItemGauge({
       tint={tint}
       top={top}
       trackCrop={THERMAL_ITEM_GAUGE.trackCrop}
+      value={value}
+      width={width}
+    />
+  );
+}
+
+function ThermalGaugeBase({
+  fillCrop,
+  height,
+  label,
+  left,
+  max = 1,
+  tint,
+  top,
+  trackCrop,
+  value = 0,
+  width,
+}: ThermalGaugeBaseProps) {
+  return (
+    <ModProgress
+      ariaValue="percent"
+      direction="up"
+      fill={(
+        <ThermalSprite
+          crop={{ ...fillCrop, height: height - 2 }}
+          height={height - 2}
+          left={0}
+          name="elements/storage_energy"
+          tint={tint}
+          top={1}
+          width={width}
+        />
+      )}
+      height={height}
+      label={label}
+      left={left}
+      max={max}
+      top={top}
+      track={(
+        <ThermalSprite
+          crop={trackCrop}
+          height={height}
+          name="elements/storage_energy"
+          width={width}
+        />
+      )}
       value={value}
       width={width}
     />

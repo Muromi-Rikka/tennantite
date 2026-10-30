@@ -32,12 +32,14 @@ export interface TradingScreenProps {
 /**
  * 村民交易界面（规格 §6）：`container/villager.png` 276×166。
  */
+const EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];
+const EMPTY_TRADES: TradeOffer[] = [];
 export function TradingScreen({
   className,
-  hotbarItems = [],
+  hotbarItems = EMPTY_HOTBAR_ITEMS,
   onTradeSelect,
   title,
-  trades = [],
+  trades = EMPTY_TRADES,
 }: TradingScreenProps) {
   const [selected, setSelected] = useState(0);
   const active = trades[selected];
@@ -72,6 +74,7 @@ export function TradingScreen({
         物品栏
       </div>
       {trades.slice(0, 7).map((trade, index) => (
+        // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
         <Fragment key={`row-${index}`}>
           <button
             aria-label={`交易 ${index + 1}`}

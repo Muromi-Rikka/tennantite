@@ -10,8 +10,15 @@ import { ThermalFluidTank } from "../thermal-fluid-tank/index";
 import { ThermalLayoutSlot } from "../thermal-layout-slot/index";
 import { THERMAL_MACHINES } from "../thermal-machine-layout";
 import { THERMAL_GUI } from "../thermal-metrics";
-import { ThermalSprite } from "../thermal-sprite/index";
 import { ThermalSpriteProgress } from "../thermal-sprite-progress/index";
+import { ThermalSprite } from "../thermal-sprite/index";
+
+const EMPTY_AUGMENTS: ScreenSlot[] = [];
+const EMPTY_FLUIDS: { amount: number; capacity: number; tint: string }[] = [];
+const EMPTY_INPUTS: (null | ScreenSlot)[] = [];
+const EMPTY_OUTPUTS: (null | ScreenSlot)[] = [];
+const EMPTY_PLAYER_HOTBAR: ScreenSlot[] = [];
+const EMPTY_PLAYER_ITEMS: ScreenSlot[] = [];
 
 export interface ThermalMachineScreenProps {
   /**
@@ -88,22 +95,22 @@ export interface ThermalMachineScreenProps {
  * （视觉复刻上游 AugmentPanel，数据注入、无游戏逻辑）。
  */
 export function ThermalMachineScreen({
-  augments = [],
+  augments = EMPTY_AUGMENTS,
   augmentsOpen = false,
   children,
   className,
   energy,
   fluid,
-  fluids = [],
+  fluids = EMPTY_FLUIDS,
   input,
-  inputs = [],
+  inputs = EMPTY_INPUTS,
   machine,
   onAugmentsToggle,
   onSlotClick,
   output,
-  outputs = [],
-  playerHotbar = [],
-  playerItems = [],
+  outputs = EMPTY_OUTPUTS,
+  playerHotbar = EMPTY_PLAYER_HOTBAR,
+  playerItems = EMPTY_PLAYER_ITEMS,
   playerName = "玩家",
   progress = 0,
   secondaryOutput,
@@ -160,8 +167,8 @@ export function ThermalMachineScreen({
         : null}
       {layout.inputs?.map((slotLayout, index) => (
         <ThermalLayoutSlot
-          key={slotLayout.label}
           item={inputs[index]}
+          key={slotLayout.label}
           label={slotLayout.label}
           left={slotLayout.left}
           onSlotClick={onSlotClick}
@@ -183,8 +190,8 @@ export function ThermalMachineScreen({
         : null}
       {layout.outputs?.map((slotLayout, index) => (
         <ThermalLayoutSlot
-          key={slotLayout.label}
           item={outputs[index]}
+          key={slotLayout.label}
           label={slotLayout.label}
           left={slotLayout.left}
           onSlotClick={onSlotClick}

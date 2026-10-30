@@ -1,7 +1,7 @@
 import type { CreateSpriteName } from "@tennantite/textures";
 import type { CSSProperties } from "react";
-import { createSpriteMeta } from "@tennantite/textures";
 import { ModSprite } from "@tennantite/mods-core";
+import { createSpriteMeta } from "@tennantite/textures";
 import { cn } from "@tennantite/ui";
 
 export interface CreateSpriteProps {

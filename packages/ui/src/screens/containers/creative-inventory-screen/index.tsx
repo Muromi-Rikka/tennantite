@@ -111,6 +111,7 @@ export function CreativeInventoryScreen({
         width={12}
       />
       {slots.map((item, index) => (
+        // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
         <Slot
           aria-label={`creative-${index}`}
           bare

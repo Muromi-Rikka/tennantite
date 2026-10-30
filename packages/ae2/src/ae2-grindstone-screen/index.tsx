@@ -52,7 +52,7 @@ export function Ae2GrindstoneScreen({
           columns={oreRow.columns}
           frame={false}
           items={ores}
-          label={(index) => `grindstone-ore-${index}`}
+          label={index => `grindstone-ore-${index}`}
           left={oreRow.left}
           onSlotClick={onOreSlotClick}
           rows={1}
@@ -71,7 +71,7 @@ export function Ae2GrindstoneScreen({
           columns={outputRow.columns}
           frame={false}
           items={outputs}
-          label={(index) => `grindstone-output-${index}`}
+          label={index => `grindstone-output-${index}`}
           left={outputRow.left}
           onSlotClick={onTakeOutput}
           rows={1}

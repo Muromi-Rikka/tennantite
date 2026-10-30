@@ -18,13 +18,13 @@
     "@tennantite/ie": "workspace:*",
     "@tennantite/industrialforegoing": "workspace:*",
     "@tennantite/mekanism": "workspace:*",
+    "@tennantite/mods-core": "workspace:*",
     "@tennantite/textures": "workspace:*",
     "@tennantite/thermal": "workspace:*",
     "@tennantite/tokens": "workspace:*",
     "@tennantite/ui": "workspace:*",
     "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "@tennantite/mods-core": "workspace:*"
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@rsbuild/core": "^2.2.14",

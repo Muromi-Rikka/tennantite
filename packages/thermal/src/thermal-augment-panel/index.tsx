@@ -4,6 +4,8 @@ import { gui, padSlots, ScreenItemSlot } from "@tennantite/ui";
 import { THERMAL_AUGMENT_PANEL, THERMAL_AUGMENT_TAB, THERMAL_TEXT_COLOR } from "../thermal-metrics";
 import { ThermalSprite } from "../thermal-sprite/index";
 
+const EMPTY_AUGMENTS: ScreenSlot[] = [];
+
 export interface ThermalAugmentPanelProps {
   augments?: ScreenSlot[];
   onSlotClick?: (role: string, item: ScreenSlot) => void;
@@ -15,7 +17,7 @@ export interface ThermalAugmentPanelProps {
  * Thermal 强化页签与 9 宫格强化面板（视觉复刻上游 AugmentPanel）。
  */
 export function ThermalAugmentPanel({
-  augments = [],
+  augments = EMPTY_AUGMENTS,
   onSlotClick,
   onToggle,
   open = false,

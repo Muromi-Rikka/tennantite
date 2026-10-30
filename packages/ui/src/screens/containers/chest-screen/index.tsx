@@ -23,10 +23,12 @@ export interface ChestScreenProps {
  * 箱子界面（规格 §6）：3 行由 `generic_54` 上下两段合成 176×167，
  * 6 行使用整图 176×222；槽框已烘焙在背景中。
  */
+const EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];
+const EMPTY_ITEMS: ScreenSlot[] = [];
 export function ChestScreen({
   className,
-  hotbarItems = [],
-  items = [],
+  hotbarItems = EMPTY_HOTBAR_ITEMS,
+  items = EMPTY_ITEMS,
   onSlotClick,
   rows = 3,
   selectedIndex,
@@ -73,6 +75,7 @@ export function ChestScreen({
         const row = Math.floor(index / 9);
         const column = index % 9;
         return (
+          // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
           <ScreenItemSlot
             item={item}
             key={index}

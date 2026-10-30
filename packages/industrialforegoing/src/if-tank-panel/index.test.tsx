@@ -8,7 +8,7 @@ describe("ifTankPanel", () => {
     const { container } = render(<IfTankPanel input={{ icon: "potion" }} progress={0.25} />);
     expect(screen.getByLabelText("fluid-input")).toBeInTheDocument();
     expect(screen.getByLabelText("fluid-output")).toBeInTheDocument();
-    expect(container.querySelector("[data-if-progress]")?.getAttribute("aria-valuenow")).toBe("25");
-    expect(container.querySelector("[data-if-progress] div[style*=\"clip-path\"]")?.getAttribute("style")).toContain("inset(0 0 75% 0)");
+    expect(container.querySelector(":scope [data-if-progress]")?.getAttribute("aria-valuenow")).toBe("25");
+    expect(container.querySelector(":scope [data-if-progress] div[style*=\"clip-path\"]")?.getAttribute("style")).toContain("inset(0 0 75% 0)");
   });
 });

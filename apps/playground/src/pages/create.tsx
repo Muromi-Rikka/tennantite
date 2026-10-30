@@ -1,7 +1,6 @@
 import {
   CreateCrusherScreenDemo,
   CreateFilterScreenDemo,
-  CreateWindowDemo,
   CreateMillstoneScreenDemo,
   CreatePackageFilterScreenDemo,
   CreateSchematicannonScreenDemo,
@@ -11,6 +10,7 @@ import {
   CreateTrainScheduleScreenDemo,
   CreateTrainStationScreenDemo,
   CreateValueSettingsPanelDemo,
+  CreateWindowDemo,
 } from "@tennantite/create/demos";
 
 export function CreatePage() {

@@ -64,6 +64,7 @@ export function MekanismTabBar({
   warningSide = "right",
   width,
 }: MekanismTabBarProps) {
+  const activeSet = new Set(active);
   return (
     <div className={cn("pointer-events-none absolute inset-0", className)}>
       {tabs.map((kind) => {
@@ -72,7 +73,7 @@ export function MekanismTabBar({
         }
         const side: "left" | "right" = Object.hasOwn(LEFT_TABS, kind) ? "left" : "right";
         const y = positions?.[kind] ?? MEKANISM_TAB_POSITIONS[side][kind] ?? 6;
-        const isOpen = active.includes(kind);
+        const isOpen = activeSet.has(kind);
         return (
           <div className="pointer-events-auto" key={kind}>
             <MekanismTab

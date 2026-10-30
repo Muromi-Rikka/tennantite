@@ -7,6 +7,12 @@ import { IeMachineScreen } from "../ie-machine-screen/index";
 import { IeProgressBars } from "../ie-progress-bars/index";
 import { IeSpriteButton } from "../ie-sprite-button/index";
 
+const EMPTY_ADDITIVES: Array<null | ScreenSlot> = [];
+const EMPTY_ELECTRODES: Array<null | ScreenSlot> = [];
+const EMPTY_INPUTS: Array<null | ScreenSlot> = [];
+const EMPTY_OUTPUTS: Array<null | ScreenSlot> = [];
+const EMPTY_PROGRESSES: number[] = [];
+
 export interface IeArcFurnaceScreenProps {
   /**
    * 4 个添加剂槽（石灰/助熔剂）
@@ -43,15 +49,15 @@ export interface IeArcFurnaceScreenProps {
  * 进度条）、4 添加剂、6 输出 + 炉渣输出、右侧竖向能量条。
  */
 export function IeArcFurnaceScreen({
-  additives = [],
+  additives = EMPTY_ADDITIVES,
   className,
-  electrodes = [],
+  electrodes = EMPTY_ELECTRODES,
   energy,
-  inputs = [],
+  inputs = EMPTY_INPUTS,
   onDistribute,
   onSlotClick,
-  outputs = [],
-  progresses = [],
+  outputs = EMPTY_OUTPUTS,
+  progresses = EMPTY_PROGRESSES,
   slagOutput,
 }: IeArcFurnaceScreenProps) {
   const layout = IE_MACHINES.arcFurnace;

@@ -2,7 +2,7 @@ import { ModTank } from "./index";
 
 export function ModTankDemo() {
   return (
-    <div className="relative h-24 w-24">
+    <div className="relative size-24">
       <ModTank
         height={40}
         inset={1}

@@ -1,10 +1,10 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import { useState } from "react";
-import { mekanismNextRedstone, mekanismNextSecurity, mekanismNextSide } from "../mekanism-mode-state";
 import type { MekanismDataType, MekanismRedstoneMode, MekanismSecurityMode, MekanismSide, MekanismTransmission, MekanismWindowKind } from "../mekanism-types";
 import { MekanismBar } from "../mekanism-bar/index";
 import { MekanismButton } from "../mekanism-button/index";
 import { MekanismInnerScreen } from "../mekanism-inner-screen/index";
+import { mekanismNextRedstone, mekanismNextSecurity, mekanismNextSide } from "../mekanism-mode-state";
 import { MekanismScreen } from "../mekanism-screen/index";
 import { MekanismSideConfigWindow } from "../mekanism-side-config-window/index";
 import { MekanismSlot } from "../mekanism-slot/index";

@@ -26,6 +26,7 @@ export function Ic2UpgradeStrip({ onSlotClick, position, upgrades = [] }: Ic2Upg
   const originLeft = position?.left ?? left;
   const originTop = position?.top ?? top;
   return padSlots(upgrades, count).map((slot, index) => (
+    // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
     <ScreenItemSlot
       frame
       frameClassName="mc-tex-ic2-slot"

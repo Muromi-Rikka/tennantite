@@ -1,7 +1,7 @@
 import type { IndustrialForegoingSpriteName } from "@tennantite/textures";
 import type { CSSProperties } from "react";
-import { industrialForegoingSpriteMeta } from "@tennantite/textures";
 import { ModSprite } from "@tennantite/mods-core";
+import { industrialForegoingSpriteMeta } from "@tennantite/textures";
 import { cn } from "@tennantite/ui";
 import type { IfCrop, IfCropKey } from "../if-metrics";
 

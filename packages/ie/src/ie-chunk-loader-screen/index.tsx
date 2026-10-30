@@ -76,10 +76,9 @@ export function IeChunkLoaderScreen({
         top={layout.refresh.top}
         width={layout.refresh.width}
       />
-      <div
+      <ul
         aria-label="周边区块源列表"
         data-ie-reactive-list=""
-        role="list"
         style={{
           color: "#918d85",
           fontFamily: "inherit",
@@ -94,15 +93,14 @@ export function IeChunkLoaderScreen({
         }}
       >
         {Array.from(entries, (entry, index) => (
-          <div
+          <li
             key={`${index}-${entry}`}
-            role="listitem"
-            style={{ fontSize: gui(6), height: gui(10), lineHeight: `${gui(10)}`, overflow: "hidden", whiteSpace: "nowrap" }}
+            style={{ fontSize: gui(6), height: gui(10), lineHeight: `${gui(10)}`, listStyle: "none", overflow: "hidden", whiteSpace: "nowrap" }}
           >
             {entry}
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
       <IeLayoutSlots
         items={{ "chunk-loader-paper": paper }}
         onSlotClick={onSlotClick}

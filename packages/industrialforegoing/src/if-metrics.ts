@@ -103,7 +103,7 @@ export type IfProgressKind = "arrow-down" | "arrow-right" | "vertical";
 export const IF_PROGRESS_SIZES: Record<IfProgressKind, { height: number; inset: number; width: number }> = {
   "arrow-down": { height: 23, inset: 0, width: 15 },
   "arrow-right": { height: 16, inset: 0, width: 22 },
-  vertical: { height: 56, inset: 3, width: 11 },
+  "vertical": { height: 56, inset: 3, width: 11 },
 };
 
 /**

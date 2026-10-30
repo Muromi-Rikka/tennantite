@@ -44,13 +44,17 @@ export interface InventoryScreenProps {
 /**
  * 物品栏界面（规格 §6）：`container/inventory.png` 176×166，槽框已烘焙在背景中。
  */
+const EMPTY_ARMOR_ITEMS: ScreenSlot[] = [];
+const EMPTY_CRAFT_ITEMS: ScreenSlot[] = [];
+const EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];
+const EMPTY_MAIN_ITEMS: ScreenSlot[] = [];
 export function InventoryScreen({
-  armorItems = [],
+  armorItems = EMPTY_ARMOR_ITEMS,
   className,
-  craftItems = [],
+  craftItems = EMPTY_CRAFT_ITEMS,
   craftResult = null,
-  hotbarItems = [],
-  mainItems = [],
+  hotbarItems = EMPTY_HOTBAR_ITEMS,
+  mainItems = EMPTY_MAIN_ITEMS,
   offhandItem,
   onRecipeBook,
   onSlotClick,

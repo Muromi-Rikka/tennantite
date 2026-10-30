@@ -33,10 +33,11 @@ export interface CartographyTableScreenProps {
 /**
  * 制图台界面（规格 §6）：`container/cartography_table.png` 176×166。
  */
+const EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];
 export function CartographyTableScreen({
   additional,
   className,
-  hotbarItems = [],
+  hotbarItems = EMPTY_HOTBAR_ITEMS,
   input,
   onSlotClick,
   output,

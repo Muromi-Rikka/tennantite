@@ -23,6 +23,8 @@ const MEAL_SLOT = FD_COOKING_POT_SLOTS[6];
 const CONTAINER_SLOT = FD_COOKING_POT_SLOTS[7];
 const OUTPUT_SLOT = FD_COOKING_POT_SLOTS[8];
 
+const EMPTY_INGREDIENTS: ScreenSlot[] = [];
+
 export interface FdCookingPotScreenProps {
   className?: string;
   /**
@@ -65,7 +67,7 @@ export function FdCookingPotScreen({
   className,
   container,
   heated = false,
-  ingredients = [],
+  ingredients = EMPTY_INGREDIENTS,
   inventoryLabel = "物品栏",
   meal,
   onRecipeBookToggle,

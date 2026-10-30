@@ -96,6 +96,7 @@ export function IeCircuitTableScreen({
   // GuiButtonLogicCircuitRegister：输入钮 y=18，x = 130-(count*10-1)+20*i；输出钮 (121,56)
   const inputStart = 130 - (Math.max(inputRegisters.length, 1) * 10 - 1);
   const registerButton = (role: "input" | "output", index: number, x: number, y: number, register: number) => (
+    // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
     <button
       aria-label={`${role === "input" ? "输入" : "输出"}寄存器 ${index}`}
       data-ie-register={register}

@@ -7,9 +7,9 @@ import { EIO_ALLOY_MODE_LABELS, EIO_REDSTONE_LABELS, eioAlloyModeIcon, eioNextAl
 import { EioEnergyBar } from "../eio-energy-bar/index";
 import { EioIconButton } from "../eio-icon-button/index";
 import { EIO_ALLOY_SMELTER_BACKGROUNDS, EIO_MACHINES } from "../eio-machine-layout";
+import { EioMachineSlots } from "../eio-machine-parts";
 import { EioMachineScreen } from "../eio-machine-screen/index";
 import { EioMachineState as EioMachineStateIcon } from "../eio-machine-state/index";
-import { EioMachineSlots } from "../eio-machine-parts";
 import { EioProgresses } from "../eio-progresses/index";
 
 export interface EioAlloySmelterScreenProps {
@@ -92,8 +92,8 @@ export function EioAlloySmelterScreen({
       <EioProgresses
         label="合金炉进度"
         labels={layout.progresses.map((_, index) => `合金炉进度 ${index + 1}`)}
-        progresses={layout.progresses}
         progress={progress}
+        progresses={layout.progresses}
       />
       {layout.state
         ? <EioMachineStateIcon left={layout.state.left} state={state} top={layout.state.top} />

@@ -2,7 +2,7 @@ import type { PlayerInventoryProps, ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
 import { ModSprite, ModTitle } from "@tennantite/mods-core";
 import { ae2SpriteMeta } from "@tennantite/textures";
-import { cn, gui, PlayerInventory, ScreenItemSlot, ScreenPanel } from "@tennantite/ui";
+import { cn, PlayerInventory, ScreenItemSlot, ScreenPanel } from "@tennantite/ui";
 import { AE2_SPATIAL_IO_PORT } from "../ae2-layout";
 import { Ae2Text } from "../ae2-text/index";
 

@@ -17,6 +17,12 @@ import { MekanismSideHolder } from "../mekanism-side-holder/index";
 import { MekanismSlot } from "../mekanism-slot/index";
 import { MekanismTextField } from "../mekanism-text-field/index";
 
+export interface MekanismMachineButtonLayerProps {
+  buttons?: MekanismMachineLayout["buttons"];
+  onButtonClick: (button: { label: string; role?: string }) => void;
+  toggles: Record<string, boolean>;
+}
+
 export interface MekanismMachineMetersProps {
   arrows?: MekanismMachineLayout["arrows"];
   bars?: MekanismMachineLayout["bars"];
@@ -43,17 +49,58 @@ export interface MekanismMachineTextLayerProps {
   condensentrating: boolean;
   fields?: MekanismMachineLayout["fields"];
   fieldValues?: Record<string, string>;
+  innerDefaults?: MekanismMachineLayout["innerDefaults"];
   inners?: MekanismMachineLayout["inners"];
+  textDefaults?: MekanismMachineLayout["textDefaults"];
   texts?: Record<string, ReactNode>;
   textSpecs?: MekanismMachineLayout["texts"];
-  textDefaults?: MekanismMachineLayout["textDefaults"];
-  innerDefaults?: MekanismMachineLayout["innerDefaults"];
 }
 
-export interface MekanismMachineButtonLayerProps {
-  buttons?: MekanismMachineLayout["buttons"];
-  onButtonClick: (button: { label: string; role?: string }) => void;
-  toggles: Record<string, boolean>;
+/**
+ * Mekanism 机器按钮段：气体模式、可切换按钮与普通按钮。
+ */
+export function MekanismMachineButtonLayer({
+  buttons,
+  onButtonClick,
+  toggles,
+}: MekanismMachineButtonLayerProps) {
+  return (
+    <>
+      {buttons?.map((button) => {
+        const key = button.role ?? button.label;
+        if (button.kind === "gas-mode") {
+          return <MekanismGasMode key={key} label={button.label} left={button.left} top={button.top} />;
+        }
+        if (button.kind === "toggle") {
+          const active = toggles[key] ?? false;
+          return (
+            <MekanismImageButton
+              height={button.height}
+              key={key}
+              label={button.label}
+              left={button.left}
+              name={(active && button.spriteActive ? button.spriteActive : button.sprite) ?? "button/toggle"}
+              onClick={() => onButtonClick(button)}
+              top={button.top}
+              width={button.width}
+            />
+          );
+        }
+        return (
+          <MekanismImageButton
+            background={button.kind !== "dump"}
+            height={button.height}
+            key={key}
+            label={button.label}
+            left={button.left}
+            name={button.sprite ?? "button/dump"}
+            top={button.top}
+            width={button.width}
+          />
+        );
+      })}
+    </>
+  );
 }
 
 /**
@@ -222,8 +269,8 @@ export function MekanismMachineSlotArea({
  */
 export function MekanismMachineTextLayer({
   condensentrating,
-  fieldValues,
   fields,
+  fieldValues,
   innerDefaults,
   inners,
   textDefaults,
@@ -278,53 +325,6 @@ export function MekanismMachineTextLayer({
           />
         </div>
       ))}
-    </>
-  );
-}
-
-/**
- * Mekanism 机器按钮段：气体模式、可切换按钮与普通按钮。
- */
-export function MekanismMachineButtonLayer({
-  buttons,
-  onButtonClick,
-  toggles,
-}: MekanismMachineButtonLayerProps) {
-  return (
-    <>
-      {buttons?.map((button) => {
-        const key = button.role ?? button.label;
-        if (button.kind === "gas-mode") {
-          return <MekanismGasMode key={key} label={button.label} left={button.left} top={button.top} />;
-        }
-        if (button.kind === "toggle") {
-          const active = toggles[key] ?? false;
-          return (
-            <MekanismImageButton
-              height={button.height}
-              key={key}
-              label={button.label}
-              left={button.left}
-              name={(active && button.spriteActive ? button.spriteActive : button.sprite) ?? "button/toggle"}
-              onClick={() => onButtonClick(button)}
-              top={button.top}
-              width={button.width}
-            />
-          );
-        }
-        return (
-          <MekanismImageButton
-            background={button.kind !== "dump"}
-            height={button.height}
-            key={key}
-            label={button.label}
-            left={button.left}
-            name={button.sprite ?? "button/dump"}
-            top={button.top}
-            width={button.width}
-          />
-        );
-      })}
     </>
   );
 }

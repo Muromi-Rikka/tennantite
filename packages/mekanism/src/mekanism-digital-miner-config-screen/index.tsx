@@ -11,6 +11,8 @@ import { MekanismSlot } from "../mekanism-slot/index";
 import { MekanismSwitch } from "../mekanism-switch/index";
 import { MekanismTextField } from "../mekanism-text-field/index";
 
+const EMPTY_FILTERS: MekanismListRow[] = [];
+
 export interface MekanismDigitalMinerConfigScreenProps {
   className?: string;
   /**
@@ -62,7 +64,7 @@ export interface MekanismDigitalMinerConfigScreenProps {
 export function MekanismDigitalMinerConfigScreen({
   className,
   filterCount = "0",
-  filters = [],
+  filters = EMPTY_FILTERS,
   maxY,
   minY,
   onBack,

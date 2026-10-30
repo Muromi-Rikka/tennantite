@@ -23,6 +23,7 @@ export { EioMachineStateDemo } from "./eio-machine-state/demo";
 export { EioNiardScreenDemo } from "./eio-niard-screen/demo";
 export { EioPaintingMachineScreenDemo } from "./eio-painting-machine-screen/demo";
 export { EioPoweredSpawnerScreenDemo } from "./eio-powered-spawner-screen/demo";
+export { EioProgressesDemo } from "./eio-progresses/demo";
 export { EioRelocatorScreenDemo } from "./eio-relocator-screen/demo";
 export { EioSagMillScreenDemo } from "./eio-sag-mill-screen/demo";
 export { EioSliceAndSpliceScreenDemo } from "./eio-slice-and-splice-screen/demo";
@@ -40,6 +41,5 @@ export { EioWeatherObeliskScreenDemo } from "./eio-weather-obelisk-screen/demo";
 export { EioWiredChargerScreenDemo } from "./eio-wired-charger-screen/demo";
 export { EioWirelessChargerScreenDemo } from "./eio-wireless-charger-screen/demo";
 export { EioXpObeliskScreenDemo } from "./eio-xp-obelisk-screen/demo";
-export { EioXpVacuumScreenDemo } from "./eio-xp-vacuum-screen/demo";
 
-export { EioProgressesDemo } from "./eio-progresses/demo";
+export { EioXpVacuumScreenDemo } from "./eio-xp-vacuum-screen/demo";

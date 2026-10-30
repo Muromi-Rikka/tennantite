@@ -22,11 +22,12 @@ export interface GrindstoneScreenProps {
 /**
  * 砂轮界面（规格 §6）：`container/grindstone.png` 176×166。
  */
+const EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];
 export function GrindstoneScreen({
   additional,
   className,
   error = false,
-  hotbarItems = [],
+  hotbarItems = EMPTY_HOTBAR_ITEMS,
   input,
   onSlotClick,
   output,

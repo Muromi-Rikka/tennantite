@@ -88,7 +88,7 @@ export function Ae2MolecularAssemblerScreen({
           columns={3}
           frame={false}
           items={craftGrid}
-          label={(index) => `mac-craft-${index}`}
+          label={index => `mac-craft-${index}`}
           left={grid.left}
           onSlotClick={onCraftGridClick}
           rows={3}
@@ -130,6 +130,7 @@ export function Ae2MolecularAssemblerScreen({
           width={bar.width}
         />
         {Array.from(upgradeSlots, (item, index) => (
+          // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
           <ScreenItemSlot
             frame={false}
             item={item}

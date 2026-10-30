@@ -18,10 +18,11 @@ export interface NautilusScreenProps {
 /**
  * 鹦鹉螺界面（规格 §6）：`container/nautilus.png` 176×166。
  */
+const EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];
 export function NautilusScreen({
   armor,
   className,
-  hotbarItems = [],
+  hotbarItems = EMPTY_HOTBAR_ITEMS,
   onSlotClick,
   saddle,
   selectedIndex,

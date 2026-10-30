@@ -103,8 +103,8 @@ export function EioPoweredSpawnerScreen({
         : null}
       <EioProgresses
         label="刷怪笼进度"
-        progresses={layout.progresses.filter(entry => entry.sprite === MODE_PROGRESS_SPRITES[mode])}
         progress={progress}
+        progresses={layout.progresses.filter(entry => entry.sprite === MODE_PROGRESS_SPRITES[mode])}
       />
       {layout.state
         ? <EioMachineStateIcon left={layout.state.left} state={state} top={layout.state.top} />

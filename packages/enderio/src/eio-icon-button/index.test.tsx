@@ -27,7 +27,7 @@ describe("eioIconButton", () => {
     expect(container.querySelector("[data-gui-sprite=\"sprites/widget/button.png\"]")).not.toBeNull();
     const highlighted = container.querySelector("[data-gui-sprite=\"sprites/widget/button_highlighted.png\"]");
     expect(highlighted).not.toBeNull();
-    expect(highlighted?.closest(".group-hover\\:opacity-100")).not.toBeNull();
+    expect(highlighted?.closest(String.raw`.group-hover\:opacity-100`)).not.toBeNull();
     await user.click(button);
     expect(onClick).toHaveBeenCalledOnce();
   });

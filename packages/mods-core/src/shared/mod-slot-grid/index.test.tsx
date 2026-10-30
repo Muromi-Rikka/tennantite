@@ -8,7 +8,7 @@ describe("modSlotGrid", () => {
     render(
       <ModSlotGrid
         columns={2}
-        label={(index) => `custom-${index}`}
+        label={index => `custom-${index}`}
         left={0}
         rows={2}
         top={0}

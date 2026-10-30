@@ -3,8 +3,9 @@ import { describe, expect, it } from "vitest";
 
 import { IfProgress } from "./index";
 
-const fillOf = (container: HTMLElement) =>
-  container.querySelector("[data-if-progress] div[style*=\"clip-path\"]");
+function fillOf(container: HTMLElement) {
+  return container.querySelector(":scope [data-if-progress] div[style*=\"clip-path\"]");
+}
 
 describe("ifProgress", () => {
   it("竖条填充自下而上，染色层 multiply", () => {

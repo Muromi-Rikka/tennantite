@@ -1,6 +1,6 @@
-import { ModProgress } from "@tennantite/mods-core";
-
 import type { ThermalSpriteName } from "@tennantite/textures";
+
+import { ModProgress } from "@tennantite/mods-core";
 
 import type { ThermalSpriteCrop } from "../thermal-sprite/index";
 import { ThermalSprite } from "../thermal-sprite/index";

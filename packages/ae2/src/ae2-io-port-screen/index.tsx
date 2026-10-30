@@ -90,7 +90,7 @@ export function Ae2IoPortScreen({
           columns={inputRow.columns}
           frame={false}
           items={inputCells}
-          label={(index) => `io-port-input-${index}`}
+          label={index => `io-port-input-${index}`}
           left={inputRow.left}
           onSlotClick={onInputCellClick}
           rows={inputRow.rows}
@@ -101,7 +101,7 @@ export function Ae2IoPortScreen({
           columns={outputRow.columns}
           frame={false}
           items={outputCells}
-          label={(index) => `io-port-output-${index}`}
+          label={index => `io-port-output-${index}`}
           left={outputRow.left}
           onSlotClick={onOutputCellClick}
           rows={outputRow.rows}
@@ -115,6 +115,7 @@ export function Ae2IoPortScreen({
           top={operationMode.top - 1}
         />
         {Array.from(upgradeSlots, (item, index) => (
+          // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
           <ScreenItemSlot
             frame={false}
             item={item}

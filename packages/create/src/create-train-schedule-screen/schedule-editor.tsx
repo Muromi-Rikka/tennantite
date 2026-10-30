@@ -44,6 +44,7 @@ export function ScheduleEditor({ editor, player }: ScheduleEditorProps) {
       </div>
       {editor.slots?.length
         ? Array.from(editor.slots, (slot, index) => (
+            // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
             <div
               className="absolute"
               key={`editor-slot-${index}`}

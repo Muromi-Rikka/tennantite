@@ -1,13 +1,12 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import { useState } from "react";
 import type { MekanismChemicalContents, MekanismStorageScreenProps } from "../mekanism-storage-types";
-import type { MekanismSecurityMode } from "../mekanism-types";
 
-import { mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismArmorSlots } from "../mekanism-armor-slots/index";
 import { MekanismBar } from "../mekanism-bar/index";
 import { MekanismGasMode } from "../mekanism-gas-mode/index";
 import { MekanismInnerScreen } from "../mekanism-inner-screen/index";
+import { mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismScreen } from "../mekanism-screen/index";
 import { MekanismSideConfigWindow } from "../mekanism-side-config-window/index";
 import { MekanismSideHolder } from "../mekanism-side-holder/index";
@@ -20,7 +19,6 @@ export interface MekanismChemicalTankScreenProps extends MekanismStorageScreenPr
   dumping?: boolean;
   fill?: ScreenSlot;
 }
-
 
 /**
  * 化学储罐：176×166，横向化学条 + 内屏 + 输入/输出槽 + 左侧装备栏。

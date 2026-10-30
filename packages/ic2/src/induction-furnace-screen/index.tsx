@@ -14,6 +14,8 @@ import { Ic2Progress } from "../ic2-progress";
 import { Ic2Title } from "../ic2-title";
 import { Ic2UpgradeStrip } from "../ic2-upgrade-strip";
 
+const EMPTY_UPGRADES: ScreenSlot[] = [];
+
 export interface InductionFurnaceScreenProps {
   className?: string;
   /**
@@ -71,7 +73,7 @@ export function InductionFurnaceScreen({
   playerName = "玩家",
   progress = 0,
   title,
-  upgrades = [],
+  upgrades = EMPTY_UPGRADES,
 }: InductionFurnaceScreenProps) {
   const slots = IC2_INDUSTRIAL_FURNACE.slots;
   return (

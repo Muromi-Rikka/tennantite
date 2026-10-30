@@ -88,8 +88,8 @@ export function EioSagMillScreen({
         : null}
       <EioProgresses
         label="磨粉机进度"
-        progresses={layout.progresses}
         progress={progress}
+        progresses={layout.progresses}
       />
       {grindingBall && layout.grindingBall
         ? (

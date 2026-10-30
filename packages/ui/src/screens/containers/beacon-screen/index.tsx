@@ -127,6 +127,7 @@ export function BeaconScreen({
       {PRIMARY_POSITIONS.map(([left, top], index) => {
         const option = primaryOptions[index];
         return (
+          // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
           <PowerButton
             disabled={!hasPayment || !option}
             icon={option?.icon}

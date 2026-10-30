@@ -32,8 +32,8 @@
     "react-dom": "^19.2.0"
   },
   "dependencies": {
-    "@tennantite/ui": "workspace:*",
-    "@tennantite/textures": "workspace:*"
+    "@tennantite/textures": "workspace:*",
+    "@tennantite/ui": "workspace:*"
   },
   "devDependencies": {
     "@rsbuild/plugin-react": "^2.1.1",

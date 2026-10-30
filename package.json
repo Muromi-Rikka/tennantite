@@ -10,6 +10,7 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "eslint .",
+    "react-doctor": "react-doctor --no-color",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "registry": "node registry/build.mjs",
@@ -20,6 +21,7 @@
     "eslint": "^10.13.0",
     "eslint-plugin-pnpm": "^1.9.1",
     "jiti": "^2.6.1",
+    "react-doctor": "^0.9.18",
     "tailwindcss": "^4.3.3",
     "turbo": "^2.11.10",
     "typescript": "^6.0.3"

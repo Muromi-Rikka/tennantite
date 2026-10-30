@@ -2,6 +2,7 @@ import type { MekanismSpriteName } from "@tennantite/textures";
 import type { ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
 
+import { useState } from "react";
 import type {
   MekanismEditMode,
   MekanismRedstoneMode,
@@ -10,7 +11,6 @@ import type {
   MekanismWindowKind,
 } from "../mekanism-types";
 import type { MekanismMachineKey, MekanismMachineLayout } from "./mekanism-machine-layout";
-import { useState } from "react";
 import { MekanismScreen } from "../mekanism-screen/index";
 import { useMekanismMachineChrome } from "../mekanism-screen/use-mekanism-machine-chrome";
 import { MekanismSideConfigWindow } from "../mekanism-side-config-window/index";
@@ -23,6 +23,9 @@ import {
   MekanismMachineSlotArea,
   MekanismMachineTextLayer,
 } from "./mekanism-machine-parts";
+
+const EMPTY_PROGRESS: Record<string, number> = {};
+const EMPTY_SLOTS: Record<string, ScreenSlot> = {};
 
 export interface MekanismMachineScreenProps {
   chemicals?: Record<string, { amount: number; capacity: number; fill?: MekanismSpriteName; tint?: string }>;
@@ -65,10 +68,10 @@ export function MekanismMachineScreen({
   onSlotClick,
   onWindowsChange,
   playerName = "玩家",
-  progress = {},
+  progress = EMPTY_PROGRESS,
   redstone: initialRedstone = "disabled",
   security: initialSecurity = "public",
-  slots = {},
+  slots = EMPTY_SLOTS,
   texts,
   title = MEKANISM_MACHINE_TITLES[machine],
   toggles = {},
@@ -229,8 +232,8 @@ export function MekanismMachineScreen({
       />
       <MekanismMachineTextLayer
         condensentrating={isCondensentrating}
-        fieldValues={fields}
         fields={layout.fields}
+        fieldValues={fields}
         innerDefaults={layout.innerDefaults}
         inners={layout.inners}
         textDefaults={layout.textDefaults}

@@ -1,8 +1,8 @@
 import type { FarmersDelightSpriteName } from "@tennantite/textures";
 import type { CSSProperties } from "react";
 
-import { farmersDelightSpriteMeta } from "@tennantite/textures";
 import { ModSprite } from "@tennantite/mods-core";
+import { farmersDelightSpriteMeta } from "@tennantite/textures";
 import { cn } from "@tennantite/ui";
 
 export interface FdSpriteCrop {

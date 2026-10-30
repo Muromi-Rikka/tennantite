@@ -189,6 +189,7 @@ export function Ae2PatternEncodingTerminalScreen({
         })}
         {isProcessing
           ? Array.from(outputsRow.rowTopsFromBottom, (topFromBottomOffset, index) => (
+              // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
               <ScreenItemSlot
                 frame={false}
                 item={outputs?.[index]}

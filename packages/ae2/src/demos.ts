@@ -14,6 +14,6 @@ export { Ae2PriorityDialogDemo } from "./ae2-priority-dialog/demo";
 export { Ae2QuantumBridgeScreenDemo } from "./ae2-quantum-bridge-screen/demo";
 export { Ae2SkyChestScreenDemo } from "./ae2-sky-chest-screen/demo";
 export { Ae2SpatialIoPortScreenDemo } from "./ae2-spatial-io-port-screen/demo";
+export { Ae2TerminalBodyDemo } from "./ae2-terminal-body/demo";
 export { Ae2TerminalScreenDemo } from "./ae2-terminal-screen/demo";
 export { Ae2TextDemo } from "./ae2-text/demo";
-export { Ae2TerminalBodyDemo } from "./ae2-terminal-body/demo";

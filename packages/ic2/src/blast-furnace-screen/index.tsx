@@ -15,6 +15,9 @@ import { Ic2Progress } from "../ic2-progress";
 import { Ic2Title } from "../ic2-title";
 import { Ic2UpgradeStrip } from "../ic2-upgrade-strip";
 
+const EMPTY_OUTPUTS: ScreenSlot[] = [];
+const EMPTY_UPGRADES: ScreenSlot[] = [];
+
 export interface Ic2BlastFurnaceScreenProps {
   /**
    * 压缩空气槽（进气口，万用流体单元）
@@ -60,11 +63,11 @@ export function Ic2BlastFurnaceScreen({
   className,
   heat = 0,
   input,
-  outputs = [],
+  outputs = EMPTY_OUTPUTS,
   playerName = "玩家",
   progress = 0,
   title,
-  upgrades = [],
+  upgrades = EMPTY_UPGRADES,
 }: Ic2BlastFurnaceScreenProps) {
   const slots = IC2_BLAST_FURNACE.slots;
   const ratio = Math.min(1, Math.max(0, heat));
@@ -99,6 +102,7 @@ export function Ic2BlastFurnaceScreen({
         top={slots.input.top}
       />
       {padSlots(outputs, slots.outputs.count).map((slot, index) => (
+        // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
         <ScreenItemSlot
           frame
           frameClassName="mc-tex-ic2-slot"

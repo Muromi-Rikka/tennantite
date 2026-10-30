@@ -93,13 +93,17 @@ export function MekanismWindow({
   };
 
   return (
-    <div
+    <dialog
       aria-label={typeof title === "string" ? title : "窗口"}
       className={cn("absolute z-10", className)}
-      role="dialog"
+      open
       style={{
+        border: 0,
+        display: "block",
         height: gui(height),
         left: gui(left + offset.x),
+        margin: 0,
+        padding: 0,
         top: gui(top + offset.y),
         width: gui(width),
       }}
@@ -152,7 +156,7 @@ export function MekanismWindow({
           )
         : null}
       {children}
-    </div>
+    </dialog>
   );
 }
 

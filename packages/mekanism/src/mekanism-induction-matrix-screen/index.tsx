@@ -2,13 +2,12 @@ import type { ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
 import { useState } from "react";
 import type { MekanismStorageScreenProps } from "../mekanism-storage-types";
-import type { MekanismSecurityMode } from "../mekanism-types";
 
-import { mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismArmorSlots } from "../mekanism-armor-slots/index";
 import { MekanismElementHolder } from "../mekanism-element-holder/index";
 import { MekanismGauge } from "../mekanism-gauge/index";
 import { MekanismInnerScreen } from "../mekanism-inner-screen/index";
+import { mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismScreen } from "../mekanism-screen/index";
 import { MekanismSideHolder } from "../mekanism-side-holder/index";
 import { MekanismSlot } from "../mekanism-slot/index";
@@ -19,7 +18,6 @@ export interface MekanismInductionMatrixScreenProps extends MekanismStorageScree
   energy?: { max: number; value: number };
   texts?: { capacity?: ReactNode; energy?: ReactNode; input?: ReactNode; output?: ReactNode };
 }
-
 
 /**
  * 感应矩阵：176×166，34×56 能量仪表 + 内屏 + 两个元件槽 + 左侧装备栏。

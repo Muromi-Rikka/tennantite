@@ -83,8 +83,8 @@ export function EioStirlingGeneratorScreen({
         : null}
       <EioProgresses
         label="斯特林发电机燃烧进度"
-        progresses={layout.progresses}
         progress={burn}
+        progresses={layout.progresses}
       />
       <span
         className="absolute font-mc mc-text whitespace-pre"

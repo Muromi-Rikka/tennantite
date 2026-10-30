@@ -1,8 +1,7 @@
 import type { MekanismSpriteName } from "@tennantite/textures";
 import type { ScreenSlot } from "@tennantite/ui";
 import { cn, gui } from "@tennantite/ui";
-import { useState } from "react";
-import { MEKANISM_SECURITY_LABELS, mekanismNextRedstone, mekanismNextSecurity, mekanismNextSide } from "../mekanism-mode-state";
+import { useRef, useState } from "react";
 import type { MekanismListRow } from "../mekanism-list/index";
 import type { MekanismDataType, MekanismRedstoneMode, MekanismSecurityMode, MekanismSide, MekanismTransmission, MekanismWindowKind } from "../mekanism-types";
 import { MekanismBar } from "../mekanism-bar/index";
@@ -10,6 +9,7 @@ import { MekanismButton } from "../mekanism-button/index";
 import { MekanismImageButton } from "../mekanism-image-button/index";
 import { MekanismLabel } from "../mekanism-label/index";
 import { MekanismList } from "../mekanism-list/index";
+import { MEKANISM_SECURITY_LABELS, mekanismNextRedstone, mekanismNextSecurity, mekanismNextSide } from "../mekanism-mode-state";
 import { MekanismScreen } from "../mekanism-screen/index";
 import { MekanismSideConfigWindow } from "../mekanism-side-config-window/index";
 import { MekanismSlot } from "../mekanism-slot/index";
@@ -85,6 +85,8 @@ const SECURITY_TABS: { left: number; mode: MekanismSecurityMode; sprite: Mekanis
 
 const DEFAULT_TABS = ["config", "transporter", "upgrade", "security", "redstone", "energy"] as const;
 
+const EMPTY_FREQUENCIES: MekanismTeleporterFrequencyRow[] = [];
+
 /**
  * 传送器：176×240，GuiTeleporter。状态图标 + 纵向能量条 + 频率选择器
  * （模式按钮 / 频率列表 / 设定与删除，坐标自上游 GuiTeleporter + GuiFrequencySelector@d4df9b3）。
@@ -94,7 +96,7 @@ export function MekanismTeleporterScreen({
   currentFrequency,
   defaultWindows = [],
   energySlot,
-  frequencies = [],
+  frequencies = EMPTY_FREQUENCIES,
   onDeleteFrequency,
   onFrequencySelect,
   onRedstoneChange,
@@ -109,7 +111,7 @@ export function MekanismTeleporterScreen({
   status = "no_frequency",
 }: MekanismTeleporterScreenProps) {
   const [windows, setWindows] = useState<MekanismWindowKind[]>(defaultWindows);
-  const [frequencyName, setFrequencyName] = useState("");
+  const frequencyNameRef = useRef("");
   const [redstone, setRedstone] = useState<MekanismRedstoneMode>(initialRedstone);
   const [security, setSecurity] = useState<MekanismSecurityMode>(initialSecurity);
   const [sides, setSides] = useState<Partial<Record<MekanismSide, MekanismDataType>>>({});
@@ -155,11 +157,11 @@ export function MekanismTeleporterScreen({
   };
 
   const submitFrequency = () => {
-    const name = frequencyName.trim();
+    const name = frequencyNameRef.current.trim();
+    frequencyNameRef.current = "";
     if (name) {
       onSetFrequency?.(name);
     }
-    setFrequencyName("");
   };
 
   const selectedRow = frequencies.find(row => row.id === selectedFrequencyId);
@@ -282,7 +284,9 @@ export function MekanismTeleporterScreen({
           height={11}
           label="设置频率"
           left={0}
-          onChange={setFrequencyName}
+          onChange={(value) => {
+            frequencyNameRef.current = value;
+          }}
           top={0}
           width={98}
         />

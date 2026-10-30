@@ -8,6 +8,9 @@ import { ThermalFluidTank } from "../thermal-fluid-tank/index";
 import { THERMAL_CELL_CONTROLS, THERMAL_FLUID_STORAGE, THERMAL_GUI } from "../thermal-metrics";
 import { ThermalSprite } from "../thermal-sprite/index";
 
+const EMPTY_PLAYER_HOTBAR: ScreenSlot[] = [];
+const EMPTY_PLAYER_ITEMS: ScreenSlot[] = [];
+
 export interface ThermalFluidCacheScreenProps {
   /**
    * 流体量（驱动储罐填充）
@@ -62,8 +65,8 @@ export function ThermalFluidCacheScreen({
   onInputChange,
   onOutputChange,
   outputRate = 0,
-  playerHotbar = [],
-  playerItems = [],
+  playerHotbar = EMPTY_PLAYER_HOTBAR,
+  playerItems = EMPTY_PLAYER_ITEMS,
   playerName = "玩家",
   tint = "#3c64c8",
   title = "流体缓存仓",

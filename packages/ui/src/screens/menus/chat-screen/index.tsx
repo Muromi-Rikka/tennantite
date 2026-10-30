@@ -31,6 +31,7 @@ export function ChatScreen({
       <ScrollArea className="max-h-160 bg-black/50 p-1">
         <ul className="flex flex-col gap-1">
           {messages.map((message, index) => (
+            // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 数据模型无稳定 id，列表顺序即身份
             <li className="font-mc mc-text text-mc-text-main mc-text-shadow" key={index}>
               {message.author
                 ? <span className="text-mc-yellow">{`<${message.author}> `}</span>

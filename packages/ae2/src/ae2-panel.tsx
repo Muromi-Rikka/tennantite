@@ -47,6 +47,7 @@ export function Ae2PanelBackground({
       <ModSprite left={0} sprite={ae2SpriteMeta[name]} src={strip(slices.header)} top={0} />
       <ModSprite left={0} sprite={ae2SpriteMeta[name]} src={strip(slices.firstRow)} top={slices.header.height} />
       {Array.from({ length: Math.max(0, rowCount - 2) }, (_, index) => (
+        // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
         <ModSprite
           key={index}
           left={0}

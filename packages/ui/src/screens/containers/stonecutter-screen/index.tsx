@@ -28,14 +28,16 @@ export interface StonecutterScreenProps {
 /**
  * 切石机界面（规格 §6）：`container/stonecutter.png` 176×166。
  */
+const EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];
+const EMPTY_RECIPES: StonecutterRecipe[] = [];
 export function StonecutterScreen({
   className,
-  hotbarItems = [],
+  hotbarItems = EMPTY_HOTBAR_ITEMS,
   input,
   onRecipeSelect,
   onSlotClick,
   output,
-  recipes = [],
+  recipes = EMPTY_RECIPES,
   selectedIndex,
   selectedRecipe,
   title,

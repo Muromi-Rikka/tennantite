@@ -61,7 +61,7 @@ export function MekanismProgress({
   const direction = size.vertical
     ? (size.reverse ? "up" : "down")
     : (size.reverse ? "left" : "right");
-  const inset = !size.vertical && type === "BAR" ? 1 : 0;
+  const inset = type === "BAR" && !size.vertical ? 1 : 0;
 
   return (
     <ModProgress

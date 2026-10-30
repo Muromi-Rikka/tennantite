@@ -81,6 +81,7 @@ export function IeAutoWorkbenchScreen({
           )
         : null}
       {Array.from(recipes, (recipe, index) => (
+        // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
         <IeSpriteButton
           dataAttributes={{ "data-ie-recipe-selected": recipe.selected ? "true" : "false" }}
           icon={(

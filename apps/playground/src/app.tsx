@@ -154,6 +154,7 @@ export function App() {
         </div>
       </section>
 
+      {/* react-doctor-disable-next-line react-doctor/no-noninteractive-element-interactions —— 原生 dialog 点背景关闭的惯用模式，规则误报 */}
       <dialog
         aria-label="页面导航"
         className="m-0 h-full max-h-none w-140 max-w-[85vw] bg-[#1f1f1f] p-0 backdrop:bg-black/60"

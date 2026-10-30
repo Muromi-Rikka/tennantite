@@ -15,6 +15,8 @@ import { Ic2Progress } from "../ic2-progress";
 import { Ic2Title } from "../ic2-title";
 import { Ic2UpgradeStrip } from "../ic2-upgrade-strip";
 
+const EMPTY_UPGRADES: ScreenSlot[] = [];
+
 export interface Ic2MachineScreenProps {
   /**
   * 背景纹理类（默认 IC2 通用机器背景，多台机器共用一张）
@@ -97,7 +99,7 @@ export function Ic2MachineScreen({
   progressPosition,
   progressStyle,
   title,
-  upgrades = [],
+  upgrades = EMPTY_UPGRADES,
 }: Ic2MachineScreenProps) {
   const defaultProgressPosition = IC2_MACHINE.progress[progressStyle];
   const inputLeft = inputPosition?.left ?? IC2_MACHINE.slots.input.left;

@@ -2,20 +2,22 @@ import type { MekanismSpriteName } from "@tennantite/textures";
 import type { ScreenSlot } from "@tennantite/ui";
 import type { KeyboardEvent, ReactNode } from "react";
 import { cn, gui } from "@tennantite/ui";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { MekanismListRow } from "../mekanism-list/index";
 import type { MekanismSecurityMode } from "../mekanism-types";
-import { MEKANISM_SECURITY_LABELS } from "../mekanism-mode-state";
 import { MekanismButton } from "../mekanism-button/index";
 import { MekanismElementHolder } from "../mekanism-element-holder/index";
 import { MekanismImageButton } from "../mekanism-image-button/index";
 import { MekanismLabel } from "../mekanism-label/index";
 import { MekanismList } from "../mekanism-list/index";
+import { MEKANISM_SECURITY_LABELS } from "../mekanism-mode-state";
 import { MekanismScreen } from "../mekanism-screen/index";
 import { MekanismSecurityLight } from "../mekanism-security-light/index";
 import { MekanismSlot } from "../mekanism-slot/index";
 import { MekanismSprite } from "../mekanism-sprite/index";
 import { MekanismTextField } from "../mekanism-text-field/index";
+
+const EMPTY_TRUSTED: MekanismListRow[] = [];
 
 export interface MekanismSecurityDeskScreenProps {
   /**
@@ -83,17 +85,17 @@ export function MekanismSecurityDeskScreen({
   security = "public",
   securityLight = "not_applicable",
   topItem,
-  trusted = [],
+  trusted = EMPTY_TRUSTED,
 }: MekanismSecurityDeskScreenProps) {
   const [selectedTrusted, setSelectedTrusted] = useState<string>();
-  const [trustedName, setTrustedName] = useState("");
+  const trustedNameRef = useRef("");
 
   const submitTrusted = () => {
-    const name = trustedName.trim();
+    const name = trustedNameRef.current.trim();
+    trustedNameRef.current = "";
     if (name) {
       onTrustedSubmit?.(name);
     }
-    setTrustedName("");
   };
 
   const handleFieldKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -151,7 +153,9 @@ export function MekanismSecurityDeskScreen({
           height={11}
           label="添加信任玩家"
           left={0}
-          onChange={setTrustedName}
+          onChange={(value) => {
+            trustedNameRef.current = value;
+          }}
           top={0}
           width={99}
         />

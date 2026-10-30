@@ -1,11 +1,10 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import { useState } from "react";
 import type { MekanismFluidContents, MekanismStorageScreenProps } from "../mekanism-storage-types";
-import type { MekanismEditMode, MekanismSecurityMode } from "../mekanism-types";
 
-import { mekanismNextEdit, mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismArmorSlots } from "../mekanism-armor-slots/index";
 import { MekanismGauge } from "../mekanism-gauge/index";
+import { mekanismNextEdit, mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismScreen } from "../mekanism-screen/index";
 import { MekanismSideHolder } from "../mekanism-side-holder/index";
 import { MekanismSlot } from "../mekanism-slot/index";
@@ -16,7 +15,6 @@ export interface MekanismFluidTankScreenProps extends MekanismStorageScreenProps
   input?: ScreenSlot;
   output?: ScreenSlot;
 }
-
 
 /**
  * 流体储罐：176×166，wide 流体仪表 + 输入/输出槽 + 左侧装备栏。

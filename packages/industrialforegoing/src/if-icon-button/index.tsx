@@ -1,8 +1,7 @@
 import type { ReactNode } from "react";
-import type { IfCropKey } from "../if-metrics";
-
 import { ModIconButton } from "@tennantite/mods-core";
 import { cn } from "@tennantite/ui";
+import type { IfCropKey } from "../if-metrics";
 import { IF_CROPS } from "../if-metrics";
 import { IfSprite } from "../if-sprite/index";
 
@@ -40,6 +39,7 @@ export function IfIconButton({
 
   // `states` 为非空元组，`map` 后按长度回断言，保留 ModIconButton 的非空契约。
   const icons = states.map((spriteCrop, index) => (
+    // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 数据模型无稳定 id，列表顺序即身份
     <IfSprite
       crop={spriteCrop}
       height={height}

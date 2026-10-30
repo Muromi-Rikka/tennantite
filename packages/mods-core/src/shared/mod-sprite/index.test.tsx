@@ -1,7 +1,8 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import { ModSprite, type ModSpriteMeta } from "./index";
+import type { ModSpriteMeta } from "./index";
+import { ModSprite } from "./index";
 
 const PLAIN: ModSpriteMeta = { cssVar: "--test-sprite", height: 256, width: 256 };
 const NINE: ModSpriteMeta = {

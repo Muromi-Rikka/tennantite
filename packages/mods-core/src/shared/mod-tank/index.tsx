@@ -2,9 +2,10 @@ import type { ReactNode } from "react";
 
 import { cn, gui } from "@tennantite/ui";
 import type { ModProgressAriaValue } from "../mod-progress/index";
-import { progressAriaValues } from "../mod-progress/index";
 import type { ModDataAttributes } from "../mod-sprite/index";
-import { progressClipPath, type ProgressDirection } from "../progress";
+import type { ProgressDirection } from "../progress";
+import { progressAriaValues } from "../mod-progress/index";
+import { progressClipPath } from "../progress";
 
 export interface ModTankProps {
   /**
@@ -25,14 +26,14 @@ export interface ModTankProps {
   */
   fill?: ReactNode;
   /**
-  * 填充区四边内缩（GUI px，默认 0）
-  */
-  inset?: number;
-  /**
   * 叠在填充之上的外框节点
   */
   frame?: ReactNode;
   height: number;
+  /**
+  * 填充区四边内缩（GUI px，默认 0）
+  */
+  inset?: number;
   label?: string;
   left: number;
   max: number;
@@ -49,10 +50,6 @@ export interface ModTankProps {
   value: number;
   width: number;
 }
-
-const clampRatio = (value: number, max: number) => (
-  max > 0 ? Math.min(1, Math.max(0, value / max)) : 0
-);
 
 /**
  * mod 液罐/储罐公共壳：内缩的填充层 + 外框 + 顶层遮罩，坐标为面板 GUI px。
@@ -106,4 +103,8 @@ export function ModTank({
       {overlay ? <div className="absolute inset-0">{overlay}</div> : null}
     </div>
   );
+}
+
+function clampRatio(value: number, max: number) {
+  return max > 0 ? Math.min(1, Math.max(0, value / max)) : 0;
 }

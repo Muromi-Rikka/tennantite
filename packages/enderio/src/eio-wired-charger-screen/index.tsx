@@ -69,8 +69,8 @@ export function EioWiredChargerScreen({
         labels={layout.progresses.length > 1
           ? layout.progresses.map((_, index) => `有线充电器进度 ${index + 1}`)
           : undefined}
-        progresses={layout.progresses}
         progress={progress}
+        progresses={layout.progresses}
       />
       {layout.state
         ? <EioMachineStateIcon left={layout.state.left} state={state} top={layout.state.top} />

@@ -70,6 +70,8 @@ export type { EioPaintingMachineScreenProps } from "./eio-painting-machine-scree
 export { EioPoweredSpawnerScreen } from "./eio-powered-spawner-screen/index";
 export type { EioPoweredSpawnerScreenProps } from "./eio-powered-spawner-screen/index";
 export type { EioPoweredSpawnerMode } from "./eio-powered-spawner-screen/index";
+export { EioProgresses } from "./eio-progresses/index";
+export type { EioProgressesProps } from "./eio-progresses/index";
 export { EioRelocatorScreen } from "./eio-relocator-screen/index";
 export type { EioRelocatorScreenProps } from "./eio-relocator-screen/index";
 export { EioSagMillScreen } from "./eio-sag-mill-screen/index";
@@ -80,8 +82,6 @@ export { EioSoulBinderScreen } from "./eio-soul-binder-screen/index";
 export type { EioSoulBinderScreenProps } from "./eio-soul-binder-screen/index";
 export { EioSoulEngineScreen } from "./eio-soul-engine-screen/index";
 export type { EioSoulEngineScreenProps } from "./eio-soul-engine-screen/index";
-export { EioProgresses } from "./eio-progresses/index";
-export type { EioProgressesProps } from "./eio-progresses/index";
 export { EioSprite } from "./eio-sprite/index";
 export type { EioSpriteCrop, EioSpriteProps } from "./eio-sprite/index";
 export { EioStirlingGeneratorScreen } from "./eio-stirling-generator-screen/index";

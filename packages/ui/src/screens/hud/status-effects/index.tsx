@@ -41,6 +41,7 @@ export function StatusEffects({ className, effects }: StatusEffectsProps) {
   return (
     <div className={className} data-hud="">
       {effects.map((effect, index) => (
+        // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 数据模型无稳定 id，列表顺序即身份
         <Tooltip key={`${effect.name}-${index}`}>
           <TooltipTrigger className="block cursor-default">
             <div className="relative size-24">

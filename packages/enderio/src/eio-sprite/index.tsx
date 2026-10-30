@@ -1,7 +1,7 @@
 import type { EioSpriteName } from "@tennantite/textures";
 import type { CSSProperties } from "react";
-import { eioSpriteMeta } from "@tennantite/textures";
 import { ModSprite } from "@tennantite/mods-core";
+import { eioSpriteMeta } from "@tennantite/textures";
 import { cn } from "@tennantite/ui";
 
 export interface EioSpriteCrop {

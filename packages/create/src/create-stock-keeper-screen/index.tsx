@@ -191,6 +191,7 @@ export function CreateStockKeeperScreen({
         {Array.from({ length: layout.columns }, (_, index) => {
           const item = order?.[index];
           return (
+            // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
             <div key={index} style={{ width: gui(layout.colWidth) }}>
               <ModSprite left={1} sprite={createSpriteMeta[SLOT.atlas]} src={SLOT} top={1} />
               {item

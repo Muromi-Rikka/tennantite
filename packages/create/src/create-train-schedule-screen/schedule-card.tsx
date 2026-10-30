@@ -140,24 +140,15 @@ export function ScheduleCard({
             />
           )
         : null}
-      <span
+      <button
         aria-label={`编辑指令-${entry.id}`}
-        className="absolute block cursor-pointer bg-transparent p-0"
+        className="absolute block cursor-pointer appearance-none border-0 bg-transparent p-0 text-left"
         onClick={onEdit ? () => onEdit(entry.id) : undefined}
-        onKeyDown={(event) => {
-          if (!(onEdit && (event.key === "Enter" || event.key === " "))) {
-            return;
-          }
-
-          event.preventDefault();
-          onEdit(entry.id);
-        }}
-        role="button"
         style={{ height: gui(16), left: gui(26), top: gui(5), width: gui(headerWidth) }}
-        tabIndex={0}
+        type="button"
       >
         <ConditionPill condition={{ icon: entry.icon, label: entry.label, width: headerWidth }} />
-      </span>
+      </button>
       {entry.supportsConditions
         ? (
             <div className="absolute" style={{ left: gui(26), top: gui(29) }}>

@@ -30,12 +30,14 @@ export interface HorseScreenProps {
 /**
  * 马 / 羊驼界面（规格 §6）：`container/horse.png` 176×166，鞍 + 马铠 + 可选箱子。
  */
+const EMPTY_CHEST_ITEMS: ScreenSlot[] = [];
+const EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];
 export function HorseScreen({
   armor,
   chest = false,
-  chestItems = [],
+  chestItems = EMPTY_CHEST_ITEMS,
   className,
-  hotbarItems = [],
+  hotbarItems = EMPTY_HOTBAR_ITEMS,
   onSlotClick,
   saddle,
   selectedIndex,
@@ -89,6 +91,7 @@ export function HorseScreen({
                 width={90}
               />
               {chestSlots.map((item, index) => (
+                // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份
                 <ScreenItemSlot
                   item={item}
                   key={index}

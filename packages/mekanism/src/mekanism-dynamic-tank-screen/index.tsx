@@ -2,14 +2,13 @@ import type { ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
 import { useState } from "react";
 import type { MekanismChemicalContents, MekanismFluidContents, MekanismStorageScreenProps } from "../mekanism-storage-types";
-import type { MekanismEditMode, MekanismSecurityMode } from "../mekanism-types";
 
-import { mekanismNextEdit, mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismArmorSlots } from "../mekanism-armor-slots/index";
 import { MekanismArrow } from "../mekanism-arrow/index";
 import { MekanismElementHolder } from "../mekanism-element-holder/index";
 import { MekanismGauge } from "../mekanism-gauge/index";
 import { MekanismInnerScreen } from "../mekanism-inner-screen/index";
+import { mekanismNextEdit, mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismScreen } from "../mekanism-screen/index";
 import { MekanismSideHolder } from "../mekanism-side-holder/index";
 import { MekanismSlot } from "../mekanism-slot/index";
@@ -21,7 +20,6 @@ export interface MekanismDynamicTankScreenProps extends MekanismStorageScreenPro
   fluid?: MekanismFluidContents;
   texts?: { capacity?: ReactNode; stored?: ReactNode };
 }
-
 
 /**
  * 动态储罐：176×166，34×56 合并仪表 + 内屏 + 两个内容槽 + 左侧装备栏。

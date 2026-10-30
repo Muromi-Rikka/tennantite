@@ -26,12 +26,13 @@ export interface SmithingScreenProps {
 /**
  * 锻造台界面（规格 §6）：`container/smithing.png` 176×166。
  */
+const EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];
 export function SmithingScreen({
   addition,
   base,
   className,
   error = false,
-  hotbarItems = [],
+  hotbarItems = EMPTY_HOTBAR_ITEMS,
   onSlotClick,
   output,
   selectedIndex,

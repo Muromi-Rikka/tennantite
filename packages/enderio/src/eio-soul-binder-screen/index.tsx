@@ -81,8 +81,8 @@ export function EioSoulBinderScreen({
         : null}
       <EioProgresses
         label="灵魂绑定器进度"
-        progresses={layout.progresses}
         progress={progress}
+        progresses={layout.progresses}
       />
       {layout.experience
         ? (

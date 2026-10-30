@@ -1,7 +1,7 @@
 import { ae2SpriteMeta } from "@tennantite/textures";
 
-import { ModToolbar } from "./index";
 import { ModSprite } from "../mod-sprite/index";
+import { ModToolbar } from "./index";
 
 const ICON = { height: 16, width: 16, x: 0, y: 0 };
 

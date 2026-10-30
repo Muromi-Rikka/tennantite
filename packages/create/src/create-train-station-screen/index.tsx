@@ -122,6 +122,7 @@ export function CreateTrainStationScreen({
                   )
                 : null}
               {Array.from(howTo ?? [], (line, index) => (
+                // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 数据模型无稳定 id，列表顺序即身份
                 <div
                   className="absolute font-mc mc-text"
                   key={`howto-${index}`}

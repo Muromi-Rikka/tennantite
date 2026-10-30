@@ -41,8 +41,8 @@ export function EioWeatherObeliskScreen({
         labels={layout.progresses.length > 1
           ? layout.progresses.map((_, index) => `天气方尖碑进度 ${index + 1}`)
           : undefined}
-        progresses={layout.progresses}
         progress={progress}
+        progresses={layout.progresses}
       />
       <EioMachineSlots
         items={items ?? {}}

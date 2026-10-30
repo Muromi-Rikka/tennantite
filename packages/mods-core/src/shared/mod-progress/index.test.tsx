@@ -41,8 +41,9 @@ describe("modProgress", () => {
       />,
     );
     const root = container.firstElementChild as HTMLElement;
-    expect(root.children[0]!.querySelector("[data-testid='track']")).not.toBeNull();
-    expect(root.children[1]!.getAttribute("aria-hidden")).toBe("true");
+    const [layer, overlay] = [...root.children] as [HTMLElement, HTMLElement];
+    expect(layer.querySelector("[data-testid='track']")).not.toBeNull();
+    expect(overlay.getAttribute("aria-hidden")).toBe("true");
   });
 
   it("dataAttributes 展开到根节点", () => {

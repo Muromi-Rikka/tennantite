@@ -12,8 +12,8 @@ export interface EioProgressesProps {
    * 逐条覆盖标签（与 progresses 同序，优先）
    */
   labels?: string[];
-  progresses: EioProgressLayout[];
   progress: number;
+  progresses: EioProgressLayout[];
   /**
    * 逐条数值覆盖（缺省用 progress）
    */
@@ -26,13 +26,14 @@ export interface EioProgressesProps {
 export function EioProgresses({
   label,
   labels,
-  progresses,
   progress,
+  progresses,
   values,
 }: EioProgressesProps) {
   return (
     <>
       {progresses.map((entry, index) => (
+        // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 数据模型无稳定 id，列表顺序即身份
         <ModProgress
           direction={entry.direction}
           fill={(

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import type {
   MekanismDataType,
@@ -68,9 +68,13 @@ export function useMekanismMachineChrome(
   const [ejecting, setEjecting] = useState(false);
 
   const windowsRef = useRef(windows);
-  windowsRef.current = windows;
   const callbacks = useRef(options);
-  callbacks.current = options;
+  useEffect(() => {
+    windowsRef.current = windows;
+  }, [windows]);
+  useEffect(() => {
+    callbacks.current = options;
+  });
 
   const updateWindows = (next: MekanismWindowKind[]) => {
     windowsRef.current = next;

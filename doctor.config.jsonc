@@ -1,0 +1,6 @@
+{
+  "$schema": "https://react.doctor/schema/config.json",
+  // Socket.dev 供应链检查需要外部网络且结果不稳定；
+  // 本仓库依赖安全已由 pnpm minimumReleaseAge + trustPolicy 把关（见 eslint.config.ts 注释）
+  "supplyChain": { "enabled": false }
+}

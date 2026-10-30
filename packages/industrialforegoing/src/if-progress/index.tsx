@@ -39,7 +39,7 @@ const GEOMETRY: Record<IfProgressKind, IfProgressGeometry> = {
     fill: { crop: "arrowFill", height: 16, width: 22 },
     track: { crop: "arrowBg", height: 15, width: 22 },
   },
-  vertical: {
+  "vertical": {
     direction: "up",
     fill: { crop: "barFill", height: 50, width: 5 },
     track: { crop: "barBorder", height: 56, width: 11 },

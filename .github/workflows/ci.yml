@@ -18,6 +18,8 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       - uses: pnpm/action-setup@v6
 
@@ -30,6 +32,9 @@ jobs:
 
       - name: Lint
         run: pnpm lint
+
+      - name: React Doctor
+        run: pnpm exec react-doctor --scope changed --blocking warning --no-color
 
       - name: Typecheck
         run: pnpm turbo run typecheck

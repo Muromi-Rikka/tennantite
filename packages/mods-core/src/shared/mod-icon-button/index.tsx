@@ -42,13 +42,13 @@ export interface ModIconButtonProps {
   */
   iconHover?: ReactNode;
   /**
-  * 图标边长（GUI px，默认 16）
-  */
-  iconSize?: number;
-  /**
   * 多态图标（IF 的 states 模式）；与 icon 二选一，icon 优先
   */
   icons?: readonly [ReactNode, ...ReactNode[]];
+  /**
+  * 图标边长（GUI px，默认 16）
+  */
+  iconSize?: number;
   /**
   * 可访问名称
   */
@@ -85,8 +85,8 @@ export function ModIconButton({
   icon,
   iconClassName,
   iconHover,
-  iconSize = 16,
   icons,
+  iconSize = 16,
   label,
   left,
   onClick,
@@ -129,10 +129,10 @@ export function ModIconButton({
         : null}
       {backgroundHover
         ? (
-          <span className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100">
-            {backgroundHover}
-          </span>
-        )
+            <span className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100">
+              {backgroundHover}
+            </span>
+          )
         : null}
       <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
         {content ?? (
@@ -145,10 +145,10 @@ export function ModIconButton({
       </span>
       {iconHover
         ? (
-          <span className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100">
-            {iconHover}
-          </span>
-        )
+            <span className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100">
+              {iconHover}
+            </span>
+          )
         : null}
     </button>
   );

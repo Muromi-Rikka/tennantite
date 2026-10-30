@@ -9,7 +9,6 @@ import { ScreenItemSlot } from "../screen-slot";
 
 export interface AnvilScreenProps {
   className?: string;
-  defaultValue?: string;
   /**
   * 显示错误叉（(99,45) 28×21）
   */
@@ -29,7 +28,6 @@ export interface AnvilScreenProps {
  */
 export function AnvilScreen({
   className,
-  defaultValue,
   error = false,
   item,
   levelCost = 0,
@@ -61,7 +59,6 @@ export function AnvilScreen({
         <input
           aria-label="物品名称"
           className="absolute inset-0 w-full border-0 bg-transparent px-4 font-mc mc-text text-mc-text-main caret-white outline-none"
-          defaultValue={defaultValue}
           onChange={(event) => {
             onNameChange?.(event.target.value);
           }}
