@@ -1,8 +1,8 @@
 import type { ScreenSlot } from "@tennantite/ui";
 
-import { ScreenItemSlot } from "@tennantite/ui";
 import { IeEnergyBar } from "../ie-energy-bar/index";
 import { IeFluidTank } from "../ie-fluid-tank/index";
+import { IeLayoutSlots } from "../ie-layout-slots/index";
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
 
@@ -43,6 +43,9 @@ export function IeSqueezerScreen({
     "squeezer-fluid-container": fluidContainer,
     "squeezer-output": output,
   };
+  for (const [index, item] of inputs.entries()) {
+    slotItems[`squeezer-input-${index}`] = item ?? undefined;
+  }
   return (
     <IeMachineScreen
       background={layout.background}
@@ -79,24 +82,7 @@ export function IeSqueezerScreen({
             />
           )
         : null}
-      {ieExpandSlots(layout).map(slot => (
-        <ScreenItemSlot
-          item={slot.label.startsWith("squeezer-input") ? itemFor(slot.label, inputs) : slotItems[slot.label]}
-          key={slot.label}
-          label={slot.label}
-          left={slot.left}
-          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-          top={slot.top}
-        />
-      ))}
+      <IeLayoutSlots items={slotItems} onSlotClick={onSlotClick} slots={ieExpandSlots(layout)} />
     </IeMachineScreen>
   );
-}
-
-/**
- * 按槽位 label 的数字后缀（如 `squeezer-input-3` → 3）取注入物品。
- */
-function itemFor(label: string, items: Array<null | ScreenSlot>) {
-  const index = Number(label.split("-").pop());
-  return items[index] ?? null;
 }

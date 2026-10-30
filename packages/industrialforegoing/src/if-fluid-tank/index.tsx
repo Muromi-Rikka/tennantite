@@ -1,4 +1,4 @@
-import { gui } from "@tennantite/ui";
+import { ModTank } from "@tennantite/mods-core";
 import type { IfDyeColor } from "../if-metrics";
 
 import { IfSprite } from "../if-sprite/index";
@@ -23,6 +23,16 @@ export interface IfFluidTankProps {
 }
 
 /**
+ * 储罐几何：18 宽，填充区四边内缩 3（`normal` 内高 50，`small` 内高 13）。
+ */
+const TANK = {
+  inset: 3,
+  small: { height: 19 },
+  normal: { height: 56 },
+  width: 18,
+} as const;
+
+/**
  * Titanium 储罐：18×56 / 18×19 外框，内部 12×(50|13) 纯色自下而上。
  * 上游绘制的是流体 still 贴图；按 IE 先例用纯色近似，布局不受影响。
  */
@@ -38,46 +48,36 @@ export function IfFluidTank({
   top,
   value,
 }: IfFluidTankProps) {
-  const innerHeight = size === "normal" ? 50 : 13;
-  const percent = max > 0 ? Math.min(100, Math.max(0, (value / max) * 100)) : 0;
+  const height = TANK[size].height;
 
   return (
-    <div
-      aria-label={label ?? name}
-      aria-valuemax={100}
-      aria-valuenow={Math.round(percent)}
+    <ModTank
+      ariaValue="percent"
       className={className}
-      data-if-tank={name}
-      data-if-tank-color={color}
-      role="progressbar"
-      style={{
-        height: gui(size === "normal" ? 56 : 19),
-        left: gui(left),
-        position: "absolute",
-        top: gui(top),
-        width: gui(18),
+      dataAttributes={{
+        "data-if-tank": name,
+        "data-if-tank-color": color,
       }}
-    >
-      <IfSprite
-        crop={size === "normal" ? "tankNormal" : "tankSmall"}
-        height={size === "normal" ? 56 : 19}
-        left={0}
-        name="titanium_background"
-        top={0}
-        width={18}
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute"
-        style={{
-          backgroundColor: tint,
-          clipPath: `inset(${100 - percent}% 0 0 0)`,
-          height: gui(innerHeight),
-          left: gui(3),
-          top: gui(3),
-          width: gui(12),
-        }}
-      />
-    </div>
+      direction="up"
+      frame={(
+        <IfSprite
+          crop={size === "normal" ? "tankNormal" : "tankSmall"}
+          height={height}
+          left={0}
+          name="titanium_background"
+          top={0}
+          width={TANK.width}
+        />
+      )}
+      height={height}
+      inset={TANK.inset}
+      label={label ?? name}
+      left={left}
+      max={max}
+      tint={tint}
+      top={top}
+      value={value}
+      width={TANK.width}
+    />
   );
 }

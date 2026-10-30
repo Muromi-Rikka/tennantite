@@ -1,7 +1,4 @@
 import type { ScreenSlot } from "@tennantite/ui";
-import { ModProgress } from "@tennantite/mods-core";
-import { ScreenItemSlot } from "@tennantite/ui";
-import { Fragment } from "react";
 
 import type { EioRedstoneControl } from "../eio-machine-layout";
 import type { EioMachineState } from "../eio-machine-state/index";
@@ -10,9 +7,10 @@ import { EioEnergyBar } from "../eio-energy-bar/index";
 import { EioExperienceBar } from "../eio-experience-bar/index";
 import { EioIconButton } from "../eio-icon-button/index";
 import { EIO_MACHINES } from "../eio-machine-layout";
+import { EioMachineSlots } from "../eio-machine-parts";
 import { EioMachineScreen } from "../eio-machine-screen/index";
 import { EioMachineState as EioMachineStateIcon } from "../eio-machine-state/index";
-import { EioSprite } from "../eio-sprite/index";
+import { EioProgresses } from "../eio-progresses/index";
 
 export interface EioSoulBinderScreenProps {
   capacitor?: ScreenSlot;
@@ -81,26 +79,11 @@ export function EioSoulBinderScreen({
             />
           )
         : null}
-      {layout.progresses.map(entry => (
-        <ModProgress
-          direction={entry.direction}
-          fill={(
-            <EioSprite
-              crop={entry.crop}
-              height={entry.height}
-              name={entry.sprite}
-              width={entry.width}
-            />
-          )}
-          height={entry.height}
-          key={`${entry.sprite}-${entry.left}-${entry.top}`}
-          label="灵魂绑定器进度"
-          left={entry.left}
-          progress={progress}
-          top={entry.top}
-          width={entry.width}
-        />
-      ))}
+      <EioProgresses
+        label="灵魂绑定器进度"
+        progresses={layout.progresses}
+        progress={progress}
+      />
       {layout.experience
         ? (
             <EioExperienceBar
@@ -129,28 +112,7 @@ export function EioSoulBinderScreen({
         onClick={onIoConfig}
         top={layout.io?.top ?? 0}
       />
-      {layout.slots.map(slot => (
-        <Fragment key={slot.label}>
-          {slot.label.endsWith("-capacitor")
-            ? (
-                <EioSprite
-                  height={16}
-                  left={slot.left + 1}
-                  name="sprites/widget/empty_capacitor_slot"
-                  top={slot.top + 1}
-                  width={16}
-                />
-              )
-            : null}
-          <ScreenItemSlot
-            item={items[slot.label]}
-            label={slot.label}
-            left={slot.left}
-            onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-            top={slot.top}
-          />
-        </Fragment>
-      ))}
+      <EioMachineSlots items={items} onSlotClick={onSlotClick} slots={layout.slots} />
     </EioMachineScreen>
   );
 }

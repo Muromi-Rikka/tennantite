@@ -1,5 +1,5 @@
-import { progressClipPath } from "@tennantite/mods-core";
-import { gui } from "@tennantite/ui";
+import { ModProgress } from "@tennantite/mods-core";
+import { cn } from "@tennantite/ui";
 
 import { IE_ENERGY_BAR, IE_ENERGY_GRADIENT } from "../ie-metrics";
 
@@ -29,7 +29,7 @@ export interface IeEnergyBarProps {
  * 存量越少越暗）。
  */
 export function IeEnergyBar({
-  className = "",
+  className,
   gradient = IE_ENERGY_GRADIENT,
   height = IE_ENERGY_BAR.height,
   label,
@@ -39,31 +39,13 @@ export function IeEnergyBar({
   value,
   width = IE_ENERGY_BAR.width,
 }: IeEnergyBarProps) {
-  const ratio = max > 0 ? Math.min(1, Math.max(0, value / max)) : 0;
   return (
-    <div
-      aria-label={label}
-      aria-valuemax={100}
-      aria-valuemin={0}
-      aria-valuenow={Math.round(ratio * 100)}
-      className={`absolute overflow-hidden ${className}`}
-      data-ie-energy-bar=""
-      role={label ? "progressbar" : undefined}
-      style={{
-        height: gui(height),
-        left: gui(left),
-        top: gui(top),
-        width: gui(width),
-      }}
-      title={label}
-    >
-      <div
-        style={{
-          clipPath: progressClipPath("up", ratio),
-          height: "100%",
-          width: "100%",
-        }}
-      >
+    <ModProgress
+      ariaValue="percent"
+      className={cn("overflow-hidden", className)}
+      dataAttributes={{ "data-ie-energy-bar": "" }}
+      direction="up"
+      fill={(
         <div
           style={{
             backgroundImage: `linear-gradient(to bottom, ${gradient.from}, ${gradient.to})`,
@@ -71,7 +53,14 @@ export function IeEnergyBar({
             width: "100%",
           }}
         />
-      </div>
-    </div>
+      )}
+      height={height}
+      label={label}
+      left={left}
+      max={max}
+      top={top}
+      value={value}
+      width={width}
+    />
   );
 }

@@ -1,5 +1,6 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import { useState } from "react";
+import { mekanismNextRedstone, mekanismNextSecurity, mekanismNextSide } from "../mekanism-mode-state";
 import type { MekanismDataType, MekanismRedstoneMode, MekanismSecurityMode, MekanismSide, MekanismTransmission, MekanismWindowKind } from "../mekanism-types";
 import { MekanismBar } from "../mekanism-bar/index";
 import { MekanismButton } from "../mekanism-button/index";
@@ -53,9 +54,6 @@ export interface MekanismDigitalMinerScreenProps {
   toMineText?: string;
 }
 
-const SIDE_ORDER: MekanismDataType[] = ["NONE", "INPUT", "OUTPUT", "ENERGY"];
-const REDSTONE_ORDER: MekanismRedstoneMode[] = ["disabled", "high", "low", "pulse"];
-const SECURITY_ORDER: MekanismSecurityMode[] = ["public", "private", "protected"];
 const DEFAULT_TABS = ["config", "transporter", "upgrade", "security", "redstone", "energy"] as const;
 const SWITCHES: { icon: "eject" | "input" | "silk"; key: "eject" | "input" | "silk"; label: string; left: number }[] = [
   { icon: "eject", key: "eject", label: "自动弹出", left: 19 },
@@ -107,13 +105,13 @@ export function MekanismDigitalMinerScreen({
         break;
       }
       case "redstone": {
-        const next = REDSTONE_ORDER[(REDSTONE_ORDER.indexOf(localRedstone) + 1) % REDSTONE_ORDER.length] ?? "disabled";
+        const next = mekanismNextRedstone(localRedstone);
         setLocalRedstone(next);
 
         break;
       }
       case "security": {
-        const next = SECURITY_ORDER[(SECURITY_ORDER.indexOf(localSecurity) + 1) % SECURITY_ORDER.length] ?? "public";
+        const next = mekanismNextSecurity(localSecurity);
         setLocalSecurity(next);
 
         break;
@@ -159,7 +157,7 @@ export function MekanismDigitalMinerScreen({
                   onClose={() => setWindows(windows.filter(value => value !== "side-config"))}
                   onSideCycle={(side) => {
                     const current = sides[side] ?? "NONE";
-                    const next = SIDE_ORDER[(SIDE_ORDER.indexOf(current) + 1) % SIDE_ORDER.length] ?? "NONE";
+                    const next = mekanismNextSide(current);
                     setSides(value => ({ ...value, [side]: next }));
                   }}
                   onTransmissionChange={setTransmission}

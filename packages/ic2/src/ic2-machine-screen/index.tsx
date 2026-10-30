@@ -1,7 +1,6 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
 import {
-  padSlots,
   PlayerInventory,
   ScreenItemSlot,
   ScreenPanel,
@@ -14,6 +13,7 @@ import { Ic2Label } from "../ic2-label";
 import { IC2_MACHINE } from "../ic2-layout";
 import { Ic2Progress } from "../ic2-progress";
 import { Ic2Title } from "../ic2-title";
+import { Ic2UpgradeStrip } from "../ic2-upgrade-strip";
 
 export interface Ic2MachineScreenProps {
   /**
@@ -146,18 +146,7 @@ export function Ic2MachineScreen({
         size={IC2_MACHINE.slots.output.size}
         top={IC2_MACHINE.slots.output.top}
       />
-      {padSlots(upgrades, IC2_MACHINE.slots.upgrades.count).map((slot, index) => (
-        <ScreenItemSlot
-          frame
-          frameClassName="mc-tex-ic2-slot"
-          item={slot}
-          // eslint-disable-next-line react/no-array-index-key -- 固定位置的升级槽，索引即槽位号
-          key={`machine-upgrade-${index}`}
-          label={`machine-upgrade-${index}`}
-          left={IC2_MACHINE.slots.upgrades.left}
-          top={IC2_MACHINE.slots.upgrades.top + index * IC2_MACHINE.slots.upgrades.step}
-        />
-      ))}
+      <Ic2UpgradeStrip upgrades={upgrades} />
       {energy
         ? (
             <Ic2EnergyGauge

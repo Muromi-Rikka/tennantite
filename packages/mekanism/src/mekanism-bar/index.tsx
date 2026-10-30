@@ -1,7 +1,8 @@
 import type { MekanismSpriteName } from "@tennantite/textures";
-import { progressClipPath } from "@tennantite/mods-core";
+import { ModProgress } from "@tennantite/mods-core";
 import { mekanismSpriteMeta } from "@tennantite/textures";
-import { cn, gui } from "@tennantite/ui";
+import { cn } from "@tennantite/ui";
+
 import { MekanismSprite } from "../mekanism-sprite/index";
 
 export interface MekanismBarProps {
@@ -61,7 +62,6 @@ export function MekanismBar({
 }: MekanismBarProps) {
   const innerWidth = width ?? (kind === "rate" ? (horizontal ? 78 : 6) : 4);
   const innerHeight = height ?? (kind === "rate" ? (horizontal ? 8 : 58) : (horizontal ? 4 : 52));
-  const ratio = Math.min(1, Math.max(0, value));
   const outerWidth = innerWidth + 2;
   const outerHeight = innerHeight + 2;
   let fillName: MekanismSpriteName;
@@ -78,56 +78,32 @@ export function MekanismBar({
   const direction = horizontal ? "right" : "up";
 
   return (
-    <div
-      aria-label={label}
-      aria-valuemax={100}
-      aria-valuemin={0}
-      aria-valuenow={Math.round(ratio * 100)}
-      className={cn("absolute", className)}
-      role="progressbar"
-      style={{
-        height: gui(outerHeight),
-        left: gui(left),
-        top: gui(top),
-        width: gui(outerWidth),
-      }}
-      title={label}
-    >
-      <MekanismSprite height={outerHeight} name="bar/base" width={outerWidth} />
-      <div
-        className="absolute overflow-hidden"
-        style={{
-          height: gui(innerHeight),
-          left: gui(1),
-          top: gui(1),
-          width: gui(innerWidth),
-        }}
-      >
-        <div
-          style={{
-            clipPath: progressClipPath(direction, ratio),
-            height: "100%",
-            width: "100%",
-          }}
-        >
-          {tint
-            ? (
-                <div
-                  style={{
-                    backgroundImage: `linear-gradient(${horizontal ? "to right" : "to top"}, ${tint.from}, ${tint.to})`,
-                    height: "100%",
-                    maskImage: `var(${fillMeta.cssVar})`,
-                    maskRepeat: "no-repeat",
-                    maskSize: "100% 100%",
-                    width: "100%",
-                  }}
-                />
-              )
-            : (
-                <MekanismSprite height={innerHeight} name={fillName} width={innerWidth} />
-              )}
-        </div>
-      </div>
-    </div>
+    <ModProgress
+      ariaValue="percent"
+      className={cn(className)}
+      direction={direction}
+      fill={tint
+        ? (
+            <div
+              style={{
+                backgroundImage: `linear-gradient(${horizontal ? "to right" : "to top"}, ${tint.from}, ${tint.to})`,
+                height: "100%",
+                maskImage: `var(${fillMeta.cssVar})`,
+                maskRepeat: "no-repeat",
+                maskSize: "100% 100%",
+                width: "100%",
+              }}
+            />
+          )
+        : <MekanismSprite height={innerHeight} name={fillName} width={innerWidth} />}
+      height={outerHeight}
+      inset={1}
+      label={label}
+      left={left}
+      progress={value}
+      top={top}
+      track={<MekanismSprite height={outerHeight} name="bar/base" width={outerWidth} />}
+      width={outerWidth}
+    />
   );
 }

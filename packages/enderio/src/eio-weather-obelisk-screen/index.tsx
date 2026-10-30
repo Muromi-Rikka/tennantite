@@ -1,9 +1,8 @@
 import type { ScreenSlot } from "@tennantite/ui";
-import { ModProgress } from "@tennantite/mods-core";
 import { EIO_MACHINES } from "../eio-machine-layout";
 import { EioFluidRegions, EioMachineSlots } from "../eio-machine-parts";
 import { EioMachineScreen } from "../eio-machine-screen/index";
-import { EioSprite } from "../eio-sprite/index";
+import { EioProgresses } from "../eio-progresses/index";
 
 export interface EioWeatherObeliskScreenProps {
   className?: string;
@@ -37,26 +36,14 @@ export function EioWeatherObeliskScreen({
       width={layout.width}
     >
       {layout.fluids ? <EioFluidRegions regions={layout.fluids} /> : null}
-      {layout.progresses.map((entry, index) => (
-        <ModProgress
-          direction={entry.direction}
-          fill={(
-            <EioSprite
-              crop={entry.crop}
-              height={entry.height}
-              name={entry.sprite}
-              width={entry.width}
-            />
-          )}
-          height={entry.height}
-          key={`${entry.sprite}-${entry.left}-${entry.top}`}
-          label={`天气方尖碑进度${layout.progresses.length > 1 ? ` ${index + 1}` : ""}`}
-          left={entry.left}
-          progress={progress}
-          top={entry.top}
-          width={entry.width}
-        />
-      ))}
+      <EioProgresses
+        label="天气方尖碑进度"
+        labels={layout.progresses.length > 1
+          ? layout.progresses.map((_, index) => `天气方尖碑进度 ${index + 1}`)
+          : undefined}
+        progresses={layout.progresses}
+        progress={progress}
+      />
       <EioMachineSlots
         items={items ?? {}}
         onSlotClick={onSlotClick}

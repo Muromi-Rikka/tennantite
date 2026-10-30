@@ -80,6 +80,8 @@ export { EioSoulBinderScreen } from "./eio-soul-binder-screen/index";
 export type { EioSoulBinderScreenProps } from "./eio-soul-binder-screen/index";
 export { EioSoulEngineScreen } from "./eio-soul-engine-screen/index";
 export type { EioSoulEngineScreenProps } from "./eio-soul-engine-screen/index";
+export { EioProgresses } from "./eio-progresses/index";
+export type { EioProgressesProps } from "./eio-progresses/index";
 export { EioSprite } from "./eio-sprite/index";
 export type { EioSpriteCrop, EioSpriteProps } from "./eio-sprite/index";
 export { EioStirlingGeneratorScreen } from "./eio-stirling-generator-screen/index";

@@ -1,8 +1,9 @@
 import type { ScreenSlot } from "@tennantite/ui";
 
 import { ModProgress } from "@tennantite/mods-core";
-import { gui, ScreenItemSlot } from "@tennantite/ui";
+import { gui } from "@tennantite/ui";
 import { IeEnergyBar } from "../ie-energy-bar/index";
+import { IeLayoutSlots } from "../ie-layout-slots/index";
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
 import { IeSprite } from "../ie-sprite/index";
@@ -102,16 +103,11 @@ export function IeChunkLoaderScreen({
           </div>
         ))}
       </div>
-      {slots.map(slot => (
-        <ScreenItemSlot
-          item={slot.label === "chunk-loader-paper" ? paper : undefined}
-          key={slot.label}
-          label={slot.label}
-          left={slot.left}
-          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-          top={slot.top}
-        />
-      ))}
+      <IeLayoutSlots
+        items={{ "chunk-loader-paper": paper }}
+        onSlotClick={onSlotClick}
+        slots={slots}
+      />
     </IeMachineScreen>
   );
 }

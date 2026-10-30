@@ -1,6 +1,6 @@
 import type { ScreenSlot } from "@tennantite/ui";
 
-import { ScreenItemSlot } from "@tennantite/ui";
+import { IeLayoutSlots } from "../ie-layout-slots/index";
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
 
@@ -28,13 +28,11 @@ export function IeDrillScreen({
   onSlotClick,
 }: IeDrillScreenProps) {
   const layout = IE_MACHINES.drill;
-  const slots = ieExpandSlots(layout);
-  const itemFor = (label: string): ScreenSlot | undefined => {
-    if (label === "drill-head")
-      return head;
-    if (label === "drill-core")
-      return cores[0] ?? undefined;
-    return label === "drill-core-1" ? cores[1] ?? undefined : cores[2] ?? undefined;
+  const slotItems: Record<string, ScreenSlot | undefined> = {
+    "drill-core": cores[0] ?? undefined,
+    "drill-core-1": cores[1] ?? undefined,
+    "drill-core-2": cores[2] ?? undefined,
+    "drill-head": head,
   };
   return (
     <IeMachineScreen
@@ -45,16 +43,7 @@ export function IeDrillScreen({
       title={layout.title}
       width={layout.width}
     >
-      {slots.map(slot => (
-        <ScreenItemSlot
-          item={itemFor(slot.label)}
-          key={slot.label}
-          label={slot.label}
-          left={slot.left}
-          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-          top={slot.top}
-        />
-      ))}
+      <IeLayoutSlots items={slotItems} onSlotClick={onSlotClick} slots={ieExpandSlots(layout)} />
     </IeMachineScreen>
   );
 }

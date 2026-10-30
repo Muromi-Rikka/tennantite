@@ -1,7 +1,8 @@
 import type { IndustrialForegoingSpriteName } from "@tennantite/textures";
 import type { CSSProperties } from "react";
 import { industrialForegoingSpriteMeta } from "@tennantite/textures";
-import { cn, gui } from "@tennantite/ui";
+import { ModSprite } from "@tennantite/mods-core";
+import { cn } from "@tennantite/ui";
 import type { IfCrop, IfCropKey } from "../if-metrics";
 
 import { IF_CROPS } from "../if-metrics";
@@ -44,7 +45,7 @@ export interface IfSpriteProps {
 }
 
 /**
- * Industrial Foregoing 精灵：按 `IF_CROPS` 从上游图集取区域。
+ * Industrial Foregoing 精灵适配器：按 `IF_CROPS` 解析裁剪后交给 `ModSprite`。
  */
 export function IfSprite({
   className,
@@ -58,52 +59,20 @@ export function IfSprite({
   top,
   width,
 }: IfSpriteProps) {
-  const meta = industrialForegoingSpriteMeta[name];
-  const resolved = resolveCrop(crop);
-  const targetWidth = width ?? resolved?.width ?? meta.width;
-  const targetHeight = height ?? resolved?.height ?? meta.height;
-
-  const spriteStyle: CSSProperties = {
-    backgroundImage: `var(${meta.cssVar})`,
-    backgroundRepeat: "no-repeat",
-    boxSizing: "border-box",
-    height: gui(targetHeight),
-    imageRendering: "pixelated",
-    opacity,
-    pointerEvents: "none",
-    width: gui(targetWidth),
-    ...(!(left === undefined && top === undefined) && { position: "absolute" }),
-    ...(left !== undefined && { left: gui(left) }),
-    ...(top !== undefined && { top: gui(top) }),
-    ...style,
-  };
-
-  if (resolved) {
-    const scaleX = targetWidth / resolved.width;
-    const scaleY = targetHeight / resolved.height;
-    spriteStyle.backgroundPosition = `${gui(-resolved.x * scaleX)} ${gui(-resolved.y * scaleY)}`;
-    spriteStyle.backgroundSize = `${gui(meta.width * scaleX)} ${gui(meta.height * scaleY)}`;
-  }
-  else {
-    spriteStyle.backgroundSize = "100% 100%";
-  }
-
   return (
-    <div
-      aria-hidden="true"
+    <ModSprite
       className={cn("mc-if-sprite", className)}
-      data-if-sprite={name}
-      style={spriteStyle}
-    >
-      {tint
-        ? (
-            <div
-              className="pointer-events-none absolute inset-0"
-              style={{ backgroundColor: tint, mixBlendMode: "multiply" }}
-            />
-          )
-        : null}
-    </div>
+      dataAttributes={{ "data-if-sprite": name }}
+      height={height}
+      left={left}
+      opacity={opacity}
+      sprite={industrialForegoingSpriteMeta[name]}
+      src={resolveCrop(crop)}
+      style={style}
+      tint={tint}
+      top={top}
+      width={width}
+    />
   );
 }
 

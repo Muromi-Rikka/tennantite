@@ -1,6 +1,6 @@
 import type { PlayerInventoryProps, ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
-import { ModSprite, ModTitle, ModToolbar } from "@tennantite/mods-core";
+import { ModSlotGrid, ModSprite, ModTitle, ModToolbar } from "@tennantite/mods-core";
 import { ae2SpriteMeta } from "@tennantite/textures";
 import { cn, gui, PlayerInventory, ScreenItemSlot, ScreenPanel } from "@tennantite/ui";
 import { AE2_ICONS, AE2_INTERFACE } from "../ae2-layout";
@@ -26,9 +26,6 @@ export interface Ae2InterfaceScreenProps {
   title?: ReactNode;
   upgrades?: ScreenSlot[];
 }
-
-const CONFIG_SLOTS = 9;
-const STORAGE_SLOTS = 9;
 
 /**
  * 接口界面（AE2 视觉复刻）：211×256 面板 + 右侧 35 宽升级槽条（4 槽），
@@ -91,52 +88,39 @@ export function Ae2InterfaceScreen({
         <ModTitle left={labels.config.left} top={labels.config.top}>配置</ModTitle>
         <ModTitle left={labels.storage.left} top={labels.storage.top}>存储物品</ModTitle>
         <ModTitle left={labels.patterns.left} top={labels.patterns.top}>图样</ModTitle>
-        {Array.from({ length: CONFIG_SLOTS }, (_, index) => (
-          <ScreenItemSlot
-            frame={false}
-            item={config?.[index]}
-            key={`config-${index}`}
-            label={`interface-config-${index}`}
-            left={configRow.left + index * configRow.size}
-            onActivate={onConfigSlotClick
-              ? () => onConfigSlotClick(index, config?.[index])
-              : undefined}
-            size={configRow.size}
-            top={configRow.top}
-          />
-        ))}
-        {Array.from({ length: STORAGE_SLOTS }, (_, index) => (
-          <ScreenItemSlot
-            frame={false}
-            item={storage?.[index]}
-            key={`storage-${index}`}
-            label={`interface-storage-${index}`}
-            left={storageRow.left + index * storageRow.size}
-            onActivate={onStorageSlotClick
-              ? () => onStorageSlotClick(index, storage?.[index])
-              : undefined}
-            size={storageRow.size}
-            top={storageRow.top}
-          />
-        ))}
-        {Array.from({ length: patternRows * patternGrid.columns }, (_, index) => {
-          const column = index % patternGrid.columns;
-          const row = Math.floor(index / patternGrid.columns);
-          return (
-            <ScreenItemSlot
-              frame={false}
-              item={patterns?.[index]}
-              key={`pattern-${index}`}
-              label={`interface-pattern-${index}`}
-              left={patternGrid.left + column * patternGrid.size}
-              onActivate={onPatternSlotClick
-                ? () => onPatternSlotClick(index, patterns?.[index])
-                : undefined}
-              size={patternGrid.size}
-              top={patternGrid.top + row * patternGrid.size}
-            />
-          );
-        })}
+        <ModSlotGrid
+          cellSize={configRow.size}
+          columns={configRow.columns}
+          frame={false}
+          items={config}
+          label={(index) => `interface-config-${index}`}
+          left={configRow.left}
+          onSlotClick={onConfigSlotClick}
+          rows={1}
+          top={configRow.top}
+        />
+        <ModSlotGrid
+          cellSize={storageRow.size}
+          columns={storageRow.columns}
+          frame={false}
+          items={storage}
+          label={(index) => `interface-storage-${index}`}
+          left={storageRow.left}
+          onSlotClick={onStorageSlotClick}
+          rows={1}
+          top={storageRow.top}
+        />
+        <ModSlotGrid
+          cellSize={patternGrid.size}
+          columns={patternGrid.columns}
+          frame={false}
+          items={patterns}
+          label={(index) => `interface-pattern-${index}`}
+          left={patternGrid.left}
+          onSlotClick={onPatternSlotClick}
+          rows={patternRows}
+          top={patternGrid.top}
+        />
         {Array.from(upgradeSlots, (item, index) => (
           <ScreenItemSlot
             frame={false}

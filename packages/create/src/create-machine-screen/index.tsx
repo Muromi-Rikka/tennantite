@@ -1,10 +1,11 @@
 import type { InventoryItem, ScreenSlot } from "@tennantite/ui";
 
 import { ModProgress } from "@tennantite/mods-core";
-import { gui, PlayerInventory, ScreenItemSlot } from "@tennantite/ui";
+import { ScreenItemSlot } from "@tennantite/ui";
 
 import type { CreateMachineName } from "../create-machine-layout";
 import { CREATE_MACHINE_LAYOUT } from "../create-machine-layout";
+import { CreateWindow } from "../create-window/index";
 
 export interface CreateMillstoneScreenProps {
   className?: string;
@@ -54,15 +55,17 @@ export function CreateMillstoneScreen({
 }: CreateMillstoneScreenProps) {
   const layout = CREATE_MACHINE_LAYOUT[machine];
   return (
-    <div
-      className={`mc-create-machine relative inline-block ${className}`}
-      style={{ height: gui(layout.height), width: gui(layout.width) }}
+    <CreateWindow
+      className={className}
+      height={layout.height}
+      player={{ hotbarItems: player?.hotbarItems, mainItems: player?.mainItems }}
+      title={title ?? layout.title}
+      titleClassName="mc-text-shadow text-mc-text-main"
+      titleLeft={8}
+      titleTop={5}
+      width={layout.width}
+      windowClassName="mc-create-machine"
     >
-      <div
-        className="absolute top-5 left-8 font-mc mc-text text-mc-text-main mc-text-shadow"
-      >
-        {title ?? layout.title}
-      </div>
       <ScreenItemSlot
         item={input}
         label="input"
@@ -88,10 +91,6 @@ export function CreateMillstoneScreen({
         onActivate={onOutputClick}
         top={layout.output.top}
       />
-      <PlayerInventory
-        hotbarItems={player?.hotbarItems}
-        mainItems={player?.mainItems}
-      />
-    </div>
+    </CreateWindow>
   );
 }

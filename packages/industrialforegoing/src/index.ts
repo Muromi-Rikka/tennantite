@@ -77,6 +77,7 @@ export {
   IF_PANEL_WIDTH,
   IF_PARTICLE_BUTTON,
   IF_PLAYER,
+  IF_PROGRESS_SIZES,
   IF_REDSTONE,
   IF_SCREEN_WIDTH,
   IF_SLOT_SIZE,
@@ -84,7 +85,7 @@ export {
   IF_TEXT_COLOR,
   IF_TITLE_TOP,
 } from "./if-metrics";
-export type { IfCrop, IfCropKey, IfDyeColor, IfFaceMode } from "./if-metrics";
+export type { IfCrop, IfCropKey, IfDyeColor, IfFaceMode, IfProgressKind } from "./if-metrics";
 export { IfMobCrusherScreen } from "./if-mob-crusher-screen/index";
 export type { IfMobCrusherMode, IfMobCrusherScreenProps } from "./if-mob-crusher-screen/index";
 export { IfMycelialGeneratorScreen } from "./if-mycelial-generator-screen/index";

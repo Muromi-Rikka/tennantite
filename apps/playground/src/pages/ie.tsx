@@ -18,6 +18,9 @@ import {
   IeMetalPressScreenDemo,
   IeMixerScreenDemo,
   IeModWorkbenchScreenDemo,
+  IeLayoutSlotsDemo,
+  IeSpriteButtonDemo,
+  IeProgressBarsDemo,
   IeRefineryScreenDemo,
   IeSorterScreenDemo,
   IeSqueezerScreenDemo,
@@ -33,6 +36,15 @@ export function IePage() {
       <p className="mb-16 font-mc mc-text text-mc-text-dim">
         Immersive Engineering 1.21.1 原始贴图复刻（数据注入、无游戏逻辑）。
       </p>
+      <Section title="IeLayoutSlots — 布局槽位">
+        <IeLayoutSlotsDemo />
+      </Section>
+      <Section title="IeSpriteButton — 贴图按钮">
+        <IeSpriteButtonDemo />
+      </Section>
+      <Section title="IeProgressBars — 进度条组">
+        <IeProgressBarsDemo />
+      </Section>
       <Section title="IeCokeOvenScreen — 焦炉">
         <IeCokeOvenScreenDemo />
       </Section>

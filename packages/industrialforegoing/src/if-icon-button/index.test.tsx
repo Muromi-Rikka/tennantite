@@ -12,7 +12,7 @@ describe("ifIconButton", () => {
     expect(button.dataset.ifCrop).toBe("showArea");
     expect(button.getAttribute("style")).toContain("calc(var(--mc-gui) * 136)");
     fireEvent.mouseEnter(button);
-    expect(button.getAttribute("style")).toContain("inset 0 0 0 1px #fff");
+    expect(button.className).toContain("hover:shadow-[inset_0_0_0_1px_#fff]");
     expect(container.querySelector("[data-if-sprite=\"machines\"]")).not.toBeNull();
   });
 

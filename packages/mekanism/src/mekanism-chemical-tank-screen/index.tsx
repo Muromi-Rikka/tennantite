@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { MekanismChemicalContents, MekanismStorageScreenProps } from "../mekanism-storage-types";
 import type { MekanismSecurityMode } from "../mekanism-types";
 
+import { mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismArmorSlots } from "../mekanism-armor-slots/index";
 import { MekanismBar } from "../mekanism-bar/index";
 import { MekanismGasMode } from "../mekanism-gas-mode/index";
@@ -20,7 +21,6 @@ export interface MekanismChemicalTankScreenProps extends MekanismStorageScreenPr
   fill?: ScreenSlot;
 }
 
-const SECURITY_ORDER: MekanismSecurityMode[] = ["public", "private", "protected"];
 
 /**
  * 化学储罐：176×166，横向化学条 + 内屏 + 输入/输出槽 + 左侧装备栏。
@@ -62,7 +62,7 @@ export function MekanismChemicalTankScreen({
               updateWindows(windows.includes("side-config") ? [] : ["side-config"]);
             }
             else if (kind === "security") {
-              setSecurity(SECURITY_ORDER[(SECURITY_ORDER.indexOf(security) + 1) % SECURITY_ORDER.length] ?? "public");
+              setSecurity(mekanismNextSecurity(security));
             }
           }}
           security={security}

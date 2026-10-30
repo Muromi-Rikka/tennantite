@@ -9,3 +9,4 @@ export { CreateToolboxScreenDemo } from "./create-toolbox-screen/demo";
 export { CreateTrainScheduleScreenDemo } from "./create-train-schedule-screen/demo";
 export { CreateTrainStationScreenDemo } from "./create-train-station-screen/demo";
 export { CreateValueSettingsPanelDemo } from "./create-value-settings-panel/demo";
+export { CreateWindowDemo } from "./create-window/demo";

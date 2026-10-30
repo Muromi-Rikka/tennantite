@@ -1,9 +1,8 @@
 import type { EioSpriteName } from "@tennantite/textures";
 import type { ScreenSlot } from "@tennantite/ui";
-import { PlayerInventory, ScreenItemSlot, ScreenPanel } from "@tennantite/ui";
-import { Fragment } from "react";
 
-import { EioSprite } from "../eio-sprite/index";
+import { EioMachineSlots } from "../eio-machine-parts";
+import { EioMachineScreen } from "../eio-machine-screen/index";
 
 export type EioTransceiverMode = "channel_select" | "general";
 
@@ -41,39 +40,17 @@ export function EioTransceiverScreen({
   mode = "general",
   onSlotClick,
 }: EioTransceiverScreenProps) {
-  const itemsMap = items ?? {};
-
   return (
-    <ScreenPanel
-      backgroundClassName="bg-transparent"
+    <EioMachineScreen
+      background={BACKGROUNDS[mode]}
+      backgroundHeight={166}
       className={className}
-      data-eio-machine="transceiver"
       height={166}
+      machine="transceiver"
+      player={{ hotbarY: 144, left: 46, top: 86 }}
       width={256}
     >
-      <EioSprite
-        crop={{ height: 166, width: 256, x: 0, y: 0 }}
-        height={166}
-        name={BACKGROUNDS[mode]}
-        width={256}
-      />
-      {CHANNEL_SLOTS.map(slot => (
-        <Fragment key={slot.label}>
-          <ScreenItemSlot
-            item={itemsMap[slot.label]}
-            label={slot.label}
-            left={slot.left}
-            onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-            top={slot.top}
-          />
-        </Fragment>
-      ))}
-      <PlayerInventory
-        bare
-        hotbarY={144}
-        x={46}
-        y={86}
-      />
-    </ScreenPanel>
+      <EioMachineSlots items={items ?? {}} onSlotClick={onSlotClick} slots={CHANNEL_SLOTS} />
+    </EioMachineScreen>
   );
 }

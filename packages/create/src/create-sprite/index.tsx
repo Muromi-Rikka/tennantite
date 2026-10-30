@@ -1,7 +1,8 @@
 import type { CreateSpriteName } from "@tennantite/textures";
 import type { CSSProperties } from "react";
 import { createSpriteMeta } from "@tennantite/textures";
-import { cn, gui } from "@tennantite/ui";
+import { ModSprite } from "@tennantite/mods-core";
+import { cn } from "@tennantite/ui";
 
 export interface CreateSpriteProps {
   className?: string;
@@ -24,9 +25,7 @@ export interface CreateSpriteProps {
 }
 
 /**
- * Create 精灵渲染器：Create GUI 贴图是整图 atlas（无 .mcmeta 缩放声明），
- * 整图绘制、按需传 src 前先用 `CREATE_ATLAS` / ModSprite 裁剪；此组件按
- * meta 整图渲染（1 GUI px = 1 源 px）。
+ * Create 精灵适配器：整图绘制交给 `ModSprite`，保留 Create class 与 data 钩子。
  */
 export function CreateSprite({
   className,
@@ -38,27 +37,17 @@ export function CreateSprite({
   top,
   width,
 }: CreateSpriteProps) {
-  const meta = createSpriteMeta[name];
-  const spriteStyle: CSSProperties = {
-    backgroundImage: `var(${meta.cssVar})`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: `${gui(width ?? meta.width)} ${gui(height ?? meta.height)}`,
-    height: gui(height ?? meta.height),
-    imageRendering: "pixelated",
-    pointerEvents: "none",
-    width: gui(width ?? meta.width),
-    ...(!(left === undefined && top === undefined) && { position: "absolute" }),
-    ...(left !== undefined && { left: gui(left) }),
-    ...(top !== undefined && { top: gui(top) }),
-    ...style,
-    ...(tint !== undefined && { backgroundBlendMode: "multiply", backgroundColor: tint }),
-  };
   return (
-    <div
-      aria-hidden="true"
+    <ModSprite
       className={cn("mc-create-sprite", className)}
-      data-create-sprite={name}
-      style={spriteStyle}
+      dataAttributes={{ "data-create-sprite": name }}
+      height={height}
+      left={left}
+      sprite={createSpriteMeta[name]}
+      style={style}
+      tint={tint}
+      top={top}
+      width={width}
     />
   );
 }

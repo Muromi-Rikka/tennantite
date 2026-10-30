@@ -72,3 +72,4 @@ export {
   CreateValueSettingsPanel,
   type CreateValueSettingsPanelProps,
 } from "./create-value-settings-panel/index";
+export { CreateWindow, type CreateWindowProps } from "./create-window/index";

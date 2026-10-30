@@ -1,6 +1,6 @@
 import type { PlayerInventoryProps, ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
-import { ModSprite, ModTitle } from "@tennantite/mods-core";
+import { ModSlotGrid, ModSprite, ModTitle } from "@tennantite/mods-core";
 import { ae2SpriteMeta } from "@tennantite/textures";
 import { cn, PlayerInventory, ScreenItemSlot, ScreenPanel } from "@tennantite/ui";
 import { AE2_GRINDSTONE } from "../ae2-layout";
@@ -16,9 +16,6 @@ export interface Ae2GrindstoneScreenProps {
   selectedIndex?: number;
   title?: ReactNode;
 }
-
-const ORE_SLOTS = 3;
-const OUTPUT_SLOTS = 3;
 
 /**
  * 磨石界面（AE2 视觉复刻）：176×176 面板，槽框与玩家背包全部来自
@@ -38,8 +35,6 @@ export function Ae2GrindstoneScreen({
   title = "磨石",
 }: Ae2GrindstoneScreenProps) {
   const { height, ores: oreRow, outputs: outputRow, pestle, player, sprite, width } = AE2_GRINDSTONE;
-  const oreItems = Array.from({ length: ORE_SLOTS }, (_, index) => ores?.[index]);
-  const outputItems = Array.from({ length: OUTPUT_SLOTS }, (_, index) => outputs?.[index]);
 
   return (
     <div className={cn("relative inline-block", className)}>
@@ -52,20 +47,17 @@ export function Ae2GrindstoneScreen({
           top={0}
         />
         <ModTitle left={8} top={6}>{title}</ModTitle>
-        {Array.from(oreItems, (item, index) => (
-          <ScreenItemSlot
-            frame={false}
-            item={item}
-            key={`grindstone-ore-${index}`}
-            label={`grindstone-ore-${index}`}
-            left={oreRow.left + index * oreRow.size}
-            onActivate={onOreSlotClick
-              ? () => onOreSlotClick(index, item)
-              : undefined}
-            size={oreRow.size}
-            top={oreRow.top}
-          />
-        ))}
+        <ModSlotGrid
+          cellSize={oreRow.size}
+          columns={oreRow.columns}
+          frame={false}
+          items={ores}
+          label={(index) => `grindstone-ore-${index}`}
+          left={oreRow.left}
+          onSlotClick={onOreSlotClick}
+          rows={1}
+          top={oreRow.top}
+        />
         <ScreenItemSlot
           frame={false}
           item={undefined}
@@ -74,20 +66,17 @@ export function Ae2GrindstoneScreen({
           size={pestle.size}
           top={pestle.top}
         />
-        {Array.from(outputItems, (item, index) => (
-          <ScreenItemSlot
-            frame={false}
-            item={item}
-            key={`grindstone-output-${index}`}
-            label={`grindstone-output-${index}`}
-            left={outputRow.left + index * outputRow.size}
-            onActivate={onTakeOutput
-              ? () => onTakeOutput(index, item)
-              : undefined}
-            size={outputRow.size}
-            top={outputRow.top}
-          />
-        ))}
+        <ModSlotGrid
+          cellSize={outputRow.size}
+          columns={outputRow.columns}
+          frame={false}
+          items={outputs}
+          label={(index) => `grindstone-output-${index}`}
+          left={outputRow.left}
+          onSlotClick={onTakeOutput}
+          rows={1}
+          top={outputRow.top}
+        />
         <ModTitle left={8} top={player.titleTop}>物品栏</ModTitle>
         <PlayerInventory
           bare

@@ -1,5 +1,5 @@
-import { progressClipPath } from "@tennantite/mods-core";
-import { gui } from "@tennantite/ui";
+import { ModProgress } from "@tennantite/mods-core";
+import { cn } from "@tennantite/ui";
 
 import { EIO_ENERGY_CAPACITOR } from "../eio-metrics";
 import { EioSprite } from "../eio-sprite/index";
@@ -34,28 +34,16 @@ export function EioEnergyBar({
   variant,
   width,
 }: EioEnergyBarProps) {
-  const ratio = max > 0 ? Math.min(1, Math.max(0, value / max)) : 0;
   const isMissingCapacitor = variant === "capacitor" && capacitorInstalled === false;
   const tileCount = Math.ceil(height / 16);
 
   return (
-    <div
-      aria-label={label}
-      aria-valuemax={100}
-      aria-valuemin={0}
-      aria-valuenow={isMissingCapacitor ? 0 : Math.round(ratio * 100)}
-      className={`absolute overflow-hidden ${className}`}
-      data-eio-energy-bar=""
-      role="progressbar"
-      style={{
-        height: gui(height),
-        left: gui(left),
-        top: gui(top),
-        width: gui(width),
-      }}
-      title={isMissingCapacitor ? `${label}：缺少电容` : `${label}：${value}/${max}`}
-    >
-      {isMissingCapacitor
+    <ModProgress
+      ariaValue="percent"
+      className={cn("overflow-hidden", className)}
+      dataAttributes={{ "data-eio-energy-bar": "" }}
+      direction="up"
+      fill={isMissingCapacitor
         ? (
             <EioSprite
               height={EIO_ENERGY_CAPACITOR.height}
@@ -65,45 +53,34 @@ export function EioEnergyBar({
           )
         : (variant === "capacitor"
             ? (
-                <div
-                  style={{
-                    clipPath: progressClipPath("up", ratio),
-                    height: "100%",
-                    width: "100%",
-                  }}
-                >
-                  <EioSprite
-                    height={EIO_ENERGY_CAPACITOR.height}
-                    name="sprites/widget/energy_bar_fill"
-                    width={EIO_ENERGY_CAPACITOR.width}
-                  />
-                </div>
+                <EioSprite
+                  height={EIO_ENERGY_CAPACITOR.height}
+                  name="sprites/widget/energy_bar_fill"
+                  width={EIO_ENERGY_CAPACITOR.width}
+                />
               )
-            : (
-                <div
-                  style={{
-                    clipPath: progressClipPath("up", ratio),
-                    height: "100%",
-                    overflow: "hidden",
-                    width: "100%",
-                  }}
-                >
-                  {Array.from({ length: tileCount }, (_, index) => {
-                    const tileTop = height - (index + 1) * 16;
-                    return (
-                      <EioSprite
-                        crop={{ height: 16, width: 9, x: 0, y: 128 }}
-                        height={16}
-                        key={tileTop}
-                        left={0}
-                        name="widgets"
-                        top={tileTop}
-                        width={9}
-                      />
-                    );
-                  })}
-                </div>
-              ))}
-    </div>
+            : Array.from({ length: tileCount }, (_, index) => {
+                const tileTop = height - (index + 1) * 16;
+                return (
+                  <EioSprite
+                    crop={{ height: 16, width: 9, x: 0, y: 128 }}
+                    height={16}
+                    key={tileTop}
+                    left={0}
+                    name="widgets"
+                    top={tileTop}
+                    width={9}
+                  />
+                );
+              }))}
+      height={height}
+      label={label}
+      left={left}
+      max={max}
+      title={isMissingCapacitor ? `${label}：缺少电容` : `${label}：${value}/${max}`}
+      top={top}
+      value={isMissingCapacitor ? 0 : value}
+      width={width}
+    />
   );
 }

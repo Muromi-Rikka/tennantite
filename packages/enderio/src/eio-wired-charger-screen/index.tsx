@@ -1,5 +1,4 @@
 import type { ScreenSlot } from "@tennantite/ui";
-import { ModProgress } from "@tennantite/mods-core";
 import type { EioRedstoneControl } from "../eio-machine-layout";
 import type { EioMachineState } from "../eio-machine-state/index";
 import { EIO_REDSTONE_LABELS, eioNextRedstone, eioRedstoneIcon } from "../eio-controls";
@@ -9,7 +8,7 @@ import { EIO_MACHINES } from "../eio-machine-layout";
 import { EioMachineSlots } from "../eio-machine-parts";
 import { EioMachineScreen } from "../eio-machine-screen/index";
 import { EioMachineState as EioMachineStateIcon } from "../eio-machine-state/index";
-import { EioSprite } from "../eio-sprite/index";
+import { EioProgresses } from "../eio-progresses/index";
 
 export interface EioWiredChargerScreenProps {
   className?: string;
@@ -65,26 +64,14 @@ export function EioWiredChargerScreen({
             />
           )
         : null}
-      {layout.progresses.map((entry, index) => (
-        <ModProgress
-          direction={entry.direction}
-          fill={(
-            <EioSprite
-              crop={entry.crop}
-              height={entry.height}
-              name={entry.sprite}
-              width={entry.width}
-            />
-          )}
-          height={entry.height}
-          key={`${entry.sprite}-${entry.left}-${entry.top}`}
-          label={`有线充电器进度${layout.progresses.length > 1 ? ` ${index + 1}` : ""}`}
-          left={entry.left}
-          progress={progress}
-          top={entry.top}
-          width={entry.width}
-        />
-      ))}
+      <EioProgresses
+        label="有线充电器进度"
+        labels={layout.progresses.length > 1
+          ? layout.progresses.map((_, index) => `有线充电器进度 ${index + 1}`)
+          : undefined}
+        progresses={layout.progresses}
+        progress={progress}
+      />
       {layout.state
         ? <EioMachineStateIcon left={layout.state.left} state={state} top={layout.state.top} />
         : null}

@@ -5,6 +5,7 @@ import { cn, gui } from "@tennantite/ui";
 import { useState } from "react";
 import type { MekanismListRow } from "../mekanism-list/index";
 import type { MekanismSecurityMode } from "../mekanism-types";
+import { MEKANISM_SECURITY_LABELS } from "../mekanism-mode-state";
 import { MekanismButton } from "../mekanism-button/index";
 import { MekanismElementHolder } from "../mekanism-element-holder/index";
 import { MekanismImageButton } from "../mekanism-image-button/index";
@@ -59,12 +60,6 @@ export interface MekanismSecurityDeskScreenProps {
   trusted?: MekanismListRow[];
 }
 
-const SECURITY_LABELS: Record<MekanismSecurityMode, string> = {
-  private: "私有",
-  protected: "受信任",
-  public: "公开",
-};
-
 const SECURITY_BUTTONS: { left: number; mode: MekanismSecurityMode; sprite: MekanismSpriteName }[] = [
   { left: 13, mode: "public", sprite: "security/button_public" },
   { left: 54, mode: "private", sprite: "security/button_private" },
@@ -109,7 +104,7 @@ export function MekanismSecurityDeskScreen({
 
   const frequencyLabel: ReactNode = frequencyOffline
     ? <span className="text-mc-red">安全：离线</span>
-    : `安全：${SECURITY_LABELS[security]}`;
+    : `安全：${MEKANISM_SECURITY_LABELS[security]}`;
 
   return (
     <MekanismScreen
@@ -187,7 +182,7 @@ export function MekanismSecurityDeskScreen({
             className={cn(isInactive && "opacity-50")}
             height={16}
             key={button.mode}
-            label={`${SECURITY_LABELS[button.mode]}模式`}
+            label={`${MEKANISM_SECURITY_LABELS[button.mode]}模式`}
             left={button.left}
             name={button.sprite}
             onClick={onSecurityChange ? () => onSecurityChange(button.mode) : undefined}

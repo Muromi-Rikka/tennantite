@@ -24,51 +24,51 @@ export function IfTankPanel({ className, input, output, progress = 0 }: IfTankPa
     <div className={className} data-if-tank-panel="">
       <IfSprite
         crop="augmentPanel"
-        height={84}
+        height={IF_TANK_PANEL.height}
         left={IF_TANK_PANEL.left}
         name="titanium_background"
         top={IF_TANK_PANEL.top}
-        width={30}
+        width={IF_TANK_PANEL.width}
       />
       <IfSprite
         crop="slot"
-        height={18}
-        left={IF_TANK_PANEL.left + 4}
+        height={IF_TANK_PANEL.slotSize}
+        left={IF_TANK_PANEL.slotLeft}
         name="titanium_background"
-        top={IF_TANK_PANEL.top + 6}
-        width={18}
+        top={IF_TANK_PANEL.inputSlotTop}
+        width={IF_TANK_PANEL.slotSize}
       />
       <ScreenItemSlot
         frame={false}
         item={input}
         label="fluid-input"
-        left={180}
+        left={IF_TANK_PANEL.itemLeft}
         size={IF_ITEM_SIZE}
-        top={101}
+        top={IF_TANK_PANEL.inputTop}
       />
       <IfProgress
         kind="arrow-down"
         label="流体传输"
-        left={180}
+        left={IF_TANK_PANEL.itemLeft}
         max={1}
-        top={124}
+        top={IF_TANK_PANEL.arrowTop}
         value={progress}
       />
       <IfSprite
         crop="slot"
-        height={18}
-        left={IF_TANK_PANEL.left + 4}
+        height={IF_TANK_PANEL.slotSize}
+        left={IF_TANK_PANEL.slotLeft}
         name="titanium_background"
-        top={IF_TANK_PANEL.top + 59}
-        width={18}
+        top={IF_TANK_PANEL.outputSlotTop}
+        width={IF_TANK_PANEL.slotSize}
       />
       <ScreenItemSlot
         frame={false}
         item={output}
         label="fluid-output"
-        left={180}
+        left={IF_TANK_PANEL.itemLeft}
         size={IF_ITEM_SIZE}
-        top={154}
+        top={IF_TANK_PANEL.outputTop}
       />
     </div>
   );

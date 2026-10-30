@@ -28,17 +28,19 @@ describe("ic2EnergyGauge", () => {
   });
 
   it("按比例裁剪填充：横条自左向右，闪电自下而上", () => {
+    const clipOf = (container: HTMLElement) => {
+      const fill = container.querySelector("[data-ic2-gauge-fill]") as HTMLElement;
+      return (fill.parentElement as HTMLElement).style.clipPath;
+    };
     const bar = render(
       <Ic2EnergyGauge left={0} max={100} top={0} value={50} variant="bar" />,
     ).container;
-    expect((bar.querySelector("[data-ic2-gauge-fill]") as HTMLElement).style.clipPath)
-      .toBe("inset(0 50% 0 0)");
+    expect(clipOf(bar)).toBe("inset(0 50% 0 0)");
 
     const bolt = render(
       <Ic2EnergyGauge left={0} max={100} top={0} value={50} variant="bolt" />,
     ).container;
-    expect((bolt.querySelector("[data-ic2-gauge-fill]") as HTMLElement).style.clipPath)
-      .toBe("inset(50% 0 0 0)");
+    expect(clipOf(bolt)).toBe("inset(50% 0 0 0)");
   });
 
   it("越界值仍渲染填充（ratio 收敛到 1）", () => {

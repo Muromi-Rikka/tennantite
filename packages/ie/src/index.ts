@@ -36,6 +36,8 @@ export { IeItemBatcherScreen } from "./ie-item-batcher-screen/index";
 export type { IeItemBatcherScreenProps } from "./ie-item-batcher-screen/index";
 export { IeLabel } from "./ie-label/index";
 export type { IeLabelProps } from "./ie-label/index";
+export { IeLayoutSlots } from "./ie-layout-slots/index";
+export type { IeLayoutSlotsProps } from "./ie-layout-slots/index";
 export { IE_MACHINES, ieExpandSlots } from "./ie-machine-layout";
 export type {
   IeLayoutSlot,
@@ -59,10 +61,14 @@ export { IeMixerScreen } from "./ie-mixer-screen/index";
 export type { IeMixerScreenProps } from "./ie-mixer-screen/index";
 export { IeModWorkbenchScreen } from "./ie-mod-workbench-screen/index";
 export type { IeModWorkbenchScreenProps } from "./ie-mod-workbench-screen/index";
+export { IeProgressBars } from "./ie-progress-bars/index";
+export type { IeProgressBarsProps } from "./ie-progress-bars/index";
 export { IeRefineryScreen } from "./ie-refinery-screen/index";
 export type { IeRefineryScreenProps } from "./ie-refinery-screen/index";
 export { IeSorterScreen } from "./ie-sorter-screen/index";
 export type { IeSorterBit, IeSorterScreenProps, IeSorterSideMask } from "./ie-sorter-screen/index";
+export { IeSpriteButton } from "./ie-sprite-button/index";
+export type { IeSpriteButtonProps } from "./ie-sprite-button/index";
 export { IeSprite } from "./ie-sprite/index";
 export type { IeSpriteProps } from "./ie-sprite/index";
 export { IeSqueezerScreen } from "./ie-squeezer-screen/index";

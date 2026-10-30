@@ -1,7 +1,7 @@
 import type { ModSpriteRect } from "@tennantite/mods-core";
-import { ModSprite, progressClipPath } from "@tennantite/mods-core";
+import { ModProgress, ModSprite } from "@tennantite/mods-core";
 import { ic2SpriteMeta } from "@tennantite/textures";
-import { cn, gui, Tooltip, TooltipPopup, TooltipTrigger } from "@tennantite/ui";
+import { Tooltip, TooltipPopup, TooltipTrigger } from "@tennantite/ui";
 
 import type { Ic2EnergyVariant } from "../ic2-types";
 
@@ -82,40 +82,36 @@ export function Ic2EnergyGauge({
   const ratio = max > 0 ? Math.min(1, Math.max(0, value / max)) : 0;
 
   const gaugeNode = (
-    <div
-      aria-label={label}
-      aria-valuemax={max}
-      aria-valuemin={0}
-      aria-valuenow={value}
-      className={cn("absolute", className)}
-      data-ic2-gauge={variant}
-      role={label ? "progressbar" : undefined}
-      style={{
-        height: gui(gauge.fill.height),
-        left: gui(left),
-        top: gui(top),
-        width: gui(gauge.fill.width),
-      }}
-    >
-      <ModSprite
-        left={gauge.offset.x}
-        sprite={ic2SpriteMeta.common}
-        src={gauge.background}
-        top={gauge.offset.y}
-      />
-      {ratio > 0
+    <ModProgress
+      ariaValue="raw"
+      className={className}
+      dataAttributes={{ "data-ic2-gauge": variant }}
+      direction={gauge.direction}
+      fill={ratio > 0
         ? (
-            <div
-              aria-hidden="true"
-              className="absolute inset-0"
-              data-ic2-gauge-fill=""
-              style={{ clipPath: progressClipPath(gauge.direction, ratio) }}
-            >
-              <ModSprite sprite={ic2SpriteMeta.common} src={gauge.fill} />
-            </div>
+            <ModSprite
+              dataAttributes={{ "data-ic2-gauge-fill": "" }}
+              sprite={ic2SpriteMeta.common}
+              src={gauge.fill}
+            />
           )
-        : null}
-    </div>
+        : undefined}
+      height={gauge.fill.height}
+      label={label}
+      left={left}
+      max={max}
+      top={top}
+      track={(
+        <ModSprite
+          left={gauge.offset.x}
+          sprite={ic2SpriteMeta.common}
+          src={gauge.background}
+          top={gauge.offset.y}
+        />
+      )}
+      value={value}
+      width={gauge.fill.width}
+    />
   );
 
   if (!tooltip) {

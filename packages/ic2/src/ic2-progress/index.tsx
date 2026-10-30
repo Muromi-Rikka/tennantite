@@ -1,7 +1,6 @@
 import type { ModSpriteRect } from "@tennantite/mods-core";
-import { ModSprite, progressClipPath } from "@tennantite/mods-core";
+import { ModProgress, ModSprite } from "@tennantite/mods-core";
 import { ic2SpriteMeta } from "@tennantite/textures";
-import { gui } from "@tennantite/ui";
 
 import type { Ic2ProgressStyle } from "../ic2-types";
 
@@ -62,38 +61,27 @@ export function Ic2Progress({ label, left, progress, style, top }: Ic2ProgressPr
   const geometry = PROGRESS[style];
   const ratio = Math.min(1, Math.max(0, progress));
   return (
-    <div
-      aria-label={label}
-      aria-valuemax={1}
-      aria-valuemin={0}
-      aria-valuenow={ratio}
-      className="absolute"
-      data-ic2-progress={style}
-      role={label ? "progressbar" : undefined}
-      style={{
-        height: gui(geometry.fill.height),
-        left: gui(left),
-        top: gui(top),
-        width: gui(geometry.fill.width),
-      }}
-    >
-      <ModSprite
-        left={geometry.offset.x}
-        sprite={ic2SpriteMeta.common}
-        src={geometry.background}
-        top={geometry.offset.y}
-      />
-      {ratio > 0
-        ? (
-            <div
-              aria-hidden="true"
-              className="absolute inset-0"
-              style={{ clipPath: progressClipPath("right", ratio) }}
-            >
-              <ModSprite sprite={ic2SpriteMeta.common} src={geometry.fill} />
-            </div>
-          )
-        : null}
-    </div>
+    <ModProgress
+      ariaValue="ratio"
+      dataAttributes={{ "data-ic2-progress": style }}
+      direction="right"
+      fill={ratio > 0
+        ? <ModSprite sprite={ic2SpriteMeta.common} src={geometry.fill} />
+        : undefined}
+      height={geometry.fill.height}
+      label={label}
+      left={left}
+      progress={ratio}
+      top={top}
+      track={(
+        <ModSprite
+          left={geometry.offset.x}
+          sprite={ic2SpriteMeta.common}
+          src={geometry.background}
+          top={geometry.offset.y}
+        />
+      )}
+      width={geometry.fill.width}
+    />
   );
 }

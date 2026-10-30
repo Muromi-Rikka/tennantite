@@ -1,7 +1,5 @@
-import { Fragment } from "react";
-
 import { FD_HUD_ICON, FD_HUD_ICON_STEP } from "../fd-metrics";
-import { FdSprite } from "../fd-sprite/index";
+import { FdIconRow } from "../icon-row";
 
 export interface FdComfortOverlayProps {
   className?: string;
@@ -36,48 +34,39 @@ export function FdComfortOverlay({
   y = 0,
 }: FdComfortOverlayProps) {
   const hearts = Math.ceil(Math.min(maxHealth, 20) / 2);
-  const half = sheenFrame % 2;
+  /**
+   * 奇数帧闪光撑满 9 px（左片 + 右片同列）
+   */
+  const isWide = sheenFrame % 2 === 1;
   const sheenColumn = Math.floor(sheenFrame / 2);
+  const rightColumn = isWide ? sheenColumn : sheenColumn - 1;
+  const leftPiece = sheenColumn < hearts
+    ? (
+        <FdIconRow
+          count={1}
+          icon={FD_HUD_ICON.comfortLeft}
+          left={x + sheenColumn * FD_HUD_ICON_STEP}
+          step={FD_HUD_ICON_STEP}
+          top={y}
+        />
+      )
+    : null;
+  const rightPiece = rightColumn >= 0 && rightColumn < hearts
+    ? (
+        <FdIconRow
+          count={1}
+          icon={FD_HUD_ICON.comfortRight}
+          left={x + rightColumn * FD_HUD_ICON_STEP + FD_HUD_ICON.comfortLeft.width}
+          step={FD_HUD_ICON_STEP}
+          top={y}
+        />
+      )
+    : null;
 
   return (
     <div aria-hidden="true" className={className} data-fd-overlay="comfort">
-      {Array.from({ length: hearts }, (_, index) => {
-        const column = index % 10;
-        const left = x + column * FD_HUD_ICON_STEP;
-        const isSheenColumn = column === sheenColumn;
-        const shouldShowRight = (isSheenColumn && half === 1) || (half === 0 && column === sheenColumn - 1);
-        if (!isSheenColumn && !shouldShowRight) {
-          return null;
-        }
-        return (
-          <Fragment key={column}>
-            {isSheenColumn
-              ? (
-                  <FdSprite
-                    crop={FD_HUD_ICON.comfortLeft}
-                    height={FD_HUD_ICON.comfortLeft.height}
-                    left={left}
-                    name="fd_icons"
-                    top={y}
-                    width={FD_HUD_ICON.comfortLeft.width}
-                  />
-                )
-              : null}
-            {shouldShowRight
-              ? (
-                  <FdSprite
-                    crop={FD_HUD_ICON.comfortRight}
-                    height={FD_HUD_ICON.comfortRight.height}
-                    left={left + FD_HUD_ICON.comfortLeft.width}
-                    name="fd_icons"
-                    top={y}
-                    width={FD_HUD_ICON.comfortRight.width}
-                  />
-                )
-              : null}
-          </Fragment>
-        );
-      })}
+      {isWide ? leftPiece : rightPiece}
+      {isWide ? rightPiece : leftPiece}
     </div>
   );
 }

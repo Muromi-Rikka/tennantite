@@ -5,6 +5,7 @@ import { ae2SpriteMeta } from "@tennantite/textures";
 import { cn, gui, ScreenItemSlot, ScreenPanel } from "@tennantite/ui";
 import { Fragment } from "react";
 import { AE2_CRAFTING_CPU } from "../ae2-layout";
+import { Ae2Text } from "../ae2-text/index";
 
 export interface Ae2CraftingCpuScreenProps {
   className?: string;
@@ -111,16 +112,9 @@ export function Ae2CraftingCpuScreen({
                       }}
                     >
                       {lines.map(line => (
-                        <span
-                          className="font-mc whitespace-nowrap text-mc-ae2-text"
-                          key={line}
-                          style={{
-                            fontSize: "calc(var(--mc-gui) * 5.4)",
-                            lineHeight: "calc(var(--mc-gui) * 6)",
-                          }}
-                        >
+                        <Ae2Text inline key={line} lineHeight={6}>
                           {line}
-                        </span>
+                        </Ae2Text>
                       ))}
                     </div>
                   )

@@ -1,7 +1,8 @@
 import type { EioSpriteName } from "@tennantite/textures";
 import type { CSSProperties } from "react";
 import { eioSpriteMeta } from "@tennantite/textures";
-import { cn, gui } from "@tennantite/ui";
+import { ModSprite } from "@tennantite/mods-core";
+import { cn } from "@tennantite/ui";
 
 export interface EioSpriteCrop {
   height: number;
@@ -47,8 +48,7 @@ export interface EioSpriteProps {
 }
 
 /**
- * Ender IO 精灵渲染器：默认整图拉伸，传入 `crop` 时按源图区域取用
- * （26.3 GUI 贴图无 `.mcmeta` scaling，均为整图 / 图集直取）。
+ * Ender IO 精灵适配器：几何与裁剪交给 `ModSprite`，保留 EIO class 与 data 钩子。
  */
 export function EioSprite({
   className,
@@ -61,41 +61,18 @@ export function EioSprite({
   top,
   width,
 }: EioSpriteProps) {
-  const meta = eioSpriteMeta[name];
-  const targetWidth = width ?? crop?.width ?? meta.width;
-  const targetHeight = height ?? crop?.height ?? meta.height;
-
-  const spriteStyle: CSSProperties = {
-    backgroundImage: `var(${meta.cssVar})`,
-    backgroundRepeat: "no-repeat",
-    boxSizing: "border-box",
-    height: gui(targetHeight),
-    imageRendering: "pixelated",
-    opacity,
-    pointerEvents: "none",
-    width: gui(targetWidth),
-    ...(!(left === undefined && top === undefined) && { position: "absolute" }),
-    ...(left !== undefined && { left: gui(left) }),
-    ...(top !== undefined && { top: gui(top) }),
-    ...style,
-  };
-
-  if (crop) {
-    const scaleX = targetWidth / crop.width;
-    const scaleY = targetHeight / crop.height;
-    spriteStyle.backgroundPosition = `${gui(-crop.x * scaleX)} ${gui(-crop.y * scaleY)}`;
-    spriteStyle.backgroundSize = `${gui(meta.width * scaleX)} ${gui(meta.height * scaleY)}`;
-  }
-  else {
-    spriteStyle.backgroundSize = "100% 100%";
-  }
-
   return (
-    <div
-      aria-hidden="true"
+    <ModSprite
       className={cn("mc-eio-sprite", className)}
-      data-eio-sprite={name}
-      style={spriteStyle}
+      dataAttributes={{ "data-eio-sprite": name }}
+      height={height}
+      left={left}
+      opacity={opacity}
+      sprite={eioSpriteMeta[name]}
+      src={crop}
+      style={style}
+      top={top}
+      width={width}
     />
   );
 }

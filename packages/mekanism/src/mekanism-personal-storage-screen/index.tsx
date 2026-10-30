@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { MekanismStorageScreenProps } from "../mekanism-storage-types";
 import type { MekanismSecurityMode } from "../mekanism-types";
 
+import { mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismScreen } from "../mekanism-screen/index";
 import { MekanismSlot } from "../mekanism-slot/index";
 import { MekanismTabBar } from "../mekanism-tab-bar/index";
@@ -11,7 +12,6 @@ export interface MekanismPersonalStorageScreenProps extends MekanismStorageScree
   items?: ScreenSlot[];
 }
 
-const SECURITY_ORDER: MekanismSecurityMode[] = ["public", "private", "protected"];
 
 /**
  * 个人箱子：176×222，9×6 槽位 + 安全标签。
@@ -36,7 +36,7 @@ export function MekanismPersonalStorageScreen({
         <MekanismTabBar
           onTabClick={(kind) => {
             if (kind === "security") {
-              setSecurity(SECURITY_ORDER[(SECURITY_ORDER.indexOf(security) + 1) % SECURITY_ORDER.length] ?? "public");
+              setSecurity(mekanismNextSecurity(security));
             }
           }}
           security={security}

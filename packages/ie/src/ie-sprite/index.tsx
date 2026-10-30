@@ -1,7 +1,8 @@
-import type { IeSpriteName, IeSpriteScaling } from "@tennantite/textures";
+import type { IeSpriteName } from "@tennantite/textures";
 import type { CSSProperties } from "react";
+import { ModSprite } from "@tennantite/mods-core";
 import { ieSpriteMeta } from "@tennantite/textures";
-import { cn, gui } from "@tennantite/ui";
+import { cn } from "@tennantite/ui";
 
 export interface IeSpriteProps {
   className?: string;
@@ -38,8 +39,7 @@ export interface IeSpriteProps {
 }
 
 /**
- * IE 精灵渲染器：按上游 `.mcmeta` 的 `gui.scaling` 决定九宫格/平铺/拉伸。
- * IE 1.21.1 仅 select_box 一个 nine_slice（border 5，数值形式，已规范化为四边对象）。
+ * IE 精灵适配器：`.mcmeta` 的九宫格/平铺/裁剪缩放由 `ModSprite` 处理。
  */
 export function IeSprite({
   className,
@@ -53,88 +53,19 @@ export function IeSprite({
   top,
   width,
 }: IeSpriteProps) {
-  const meta = ieSpriteMeta[name];
-  const targetWidth = width ?? src?.width ?? meta.width;
-  const targetHeight = height ?? src?.height ?? meta.height;
-  const scaling: IeSpriteScaling = meta.scaling;
-  const border = scaling?.type === "nine_slice" ? scaling.border : null;
-  const isNineSlice = border !== null
-    && src === undefined
-    && targetWidth >= border.left + border.right
-    && targetHeight >= border.top + border.bottom;
-
-  const spriteStyle: CSSProperties = {
-    backgroundImage: `var(${meta.cssVar})`,
-    backgroundRepeat: "no-repeat",
-    boxSizing: "border-box",
-    height: gui(targetHeight),
-    imageRendering: "pixelated",
-    opacity,
-    pointerEvents: "none",
-    width: gui(targetWidth),
-    ...(!(left === undefined && top === undefined) && { position: "absolute" }),
-    ...(left !== undefined && { left: gui(left) }),
-    ...(top !== undefined && { top: gui(top) }),
-    ...style,
-  };
-
-  if (isNineSlice && border) {
-    spriteStyle.backgroundImage = "none";
-    spriteStyle.borderImageSource = `var(${meta.cssVar})`;
-    spriteStyle.borderImageSlice = `${border.top} ${border.right} ${border.bottom} ${border.left} fill`;
-    spriteStyle.borderImageWidth = `${gui(border.top)} ${gui(border.right)} ${gui(border.bottom)} ${gui(border.left)}`;
-    spriteStyle.borderImageRepeat = "stretch";
-    spriteStyle.borderStyle = "solid";
-    spriteStyle.borderWidth = `${gui(border.top)} ${gui(border.right)} ${gui(border.bottom)} ${gui(border.left)}`;
-  }
-  else {
-    const isAnimatedStrip = meta.width === 16 && meta.height > 64 && meta.height % 16 === 0;
-    if (src) {
-      // 与 vanilla blit 一致：从源图左上角取 src 区域，平移到元素原点，不做缩放
-      const scaleX = targetWidth / src.width;
-      const scaleY = targetHeight / src.height;
-      spriteStyle.backgroundPosition = `${gui(-src.x * scaleX)} ${gui(-src.y * scaleY)}`;
-      spriteStyle.backgroundSize = `${gui(meta.width * scaleX)} ${gui(meta.height * scaleY)}`;
-    }
-    else if (isAnimatedStrip) {
-      spriteStyle.backgroundPosition = "0 0";
-      spriteStyle.backgroundSize = `${gui(targetWidth)} ${gui(targetWidth * meta.height / meta.width)}`;
-      spriteStyle.overflow = "hidden";
-    }
-    else {
-      spriteStyle.backgroundSize = "100% 100%";
-    }
-    if (tint) {
-      spriteStyle.backgroundBlendMode = "multiply";
-      spriteStyle.backgroundColor = tint;
-    }
-  }
-
   return (
-    <div
-      aria-hidden="true"
+    <ModSprite
       className={cn("mc-ie-sprite", className)}
-      data-ie-sprite={name}
-      style={spriteStyle}
-    >
-      {isNineSlice && border && tint
-        ? (
-            <div
-              aria-hidden="true"
-              style={{
-                backgroundColor: tint,
-                height: "100%",
-                inset: 0,
-                maskImage: `var(${meta.cssVar})`,
-                maskRepeat: "no-repeat",
-                maskSize: "100% 100%",
-                mixBlendMode: "multiply",
-                position: "absolute",
-                width: "100%",
-              }}
-            />
-          )
-        : null}
-    </div>
+      dataAttributes={{ "data-ie-sprite": name }}
+      height={height}
+      left={left}
+      opacity={opacity}
+      sprite={ieSpriteMeta[name]}
+      src={src}
+      style={style}
+      tint={tint}
+      top={top}
+      width={width}
+    />
   );
 }

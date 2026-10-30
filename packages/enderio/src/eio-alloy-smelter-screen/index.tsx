@@ -1,8 +1,5 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
-import { ModProgress } from "@tennantite/mods-core";
-import { ScreenItemSlot } from "@tennantite/ui";
-import { Fragment } from "react";
 
 import type { EioAlloySmelterMode, EioRedstoneControl } from "../eio-machine-layout";
 import type { EioMachineState } from "../eio-machine-state/index";
@@ -12,7 +9,8 @@ import { EioIconButton } from "../eio-icon-button/index";
 import { EIO_ALLOY_SMELTER_BACKGROUNDS, EIO_MACHINES } from "../eio-machine-layout";
 import { EioMachineScreen } from "../eio-machine-screen/index";
 import { EioMachineState as EioMachineStateIcon } from "../eio-machine-state/index";
-import { EioSprite } from "../eio-sprite/index";
+import { EioMachineSlots } from "../eio-machine-parts";
+import { EioProgresses } from "../eio-progresses/index";
 
 export interface EioAlloySmelterScreenProps {
   /**
@@ -91,26 +89,12 @@ export function EioAlloySmelterScreen({
             />
           )
         : null}
-      {layout.progresses.map((entry, index) => (
-        <ModProgress
-          direction={entry.direction}
-          fill={(
-            <EioSprite
-              crop={entry.crop}
-              height={entry.height}
-              name={entry.sprite}
-              width={entry.width}
-            />
-          )}
-          height={entry.height}
-          key={`${entry.sprite}-${entry.left}-${entry.top}`}
-          label={`合金炉进度 ${index + 1}`}
-          left={entry.left}
-          progress={progress}
-          top={entry.top}
-          width={entry.width}
-        />
-      ))}
+      <EioProgresses
+        label="合金炉进度"
+        labels={layout.progresses.map((_, index) => `合金炉进度 ${index + 1}`)}
+        progresses={layout.progresses}
+        progress={progress}
+      />
       {layout.state
         ? <EioMachineStateIcon left={layout.state.left} state={state} top={layout.state.top} />
         : null}
@@ -137,28 +121,7 @@ export function EioAlloySmelterScreen({
         onClick={onIoConfig}
         top={layout.io?.top ?? 0}
       />
-      {layout.slots.map(slot => (
-        <Fragment key={slot.label}>
-          {slot.label.endsWith("-capacitor")
-            ? (
-                <EioSprite
-                  height={16}
-                  left={slot.left + 1}
-                  name="sprites/widget/empty_capacitor_slot"
-                  top={slot.top + 1}
-                  width={16}
-                />
-              )
-            : null}
-          <ScreenItemSlot
-            item={items[slot.label]}
-            label={slot.label}
-            left={slot.left}
-            onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-            top={slot.top}
-          />
-        </Fragment>
-      ))}
+      <EioMachineSlots items={items} onSlotClick={onSlotClick} slots={layout.slots} />
     </EioMachineScreen>
   );
 }

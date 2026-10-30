@@ -1,7 +1,7 @@
 import type { ScreenSlot } from "@tennantite/ui";
 
 import { ModProgress } from "@tennantite/mods-core";
-import { ScreenItemSlot } from "@tennantite/ui";
+import { IeLayoutSlots } from "../ie-layout-slots/index";
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
 import { IE_FLAME } from "../ie-metrics";
@@ -86,16 +86,7 @@ export function IeAlloySmelterScreen({
         top={layout.arrow.top}
         width={layout.arrow.width}
       />
-      {ieExpandSlots(layout).map(slot => (
-        <ScreenItemSlot
-          item={slotItems[slot.label]}
-          key={slot.label}
-          label={slot.label}
-          left={slot.left}
-          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-          top={slot.top}
-        />
-      ))}
+      <IeLayoutSlots items={slotItems} onSlotClick={onSlotClick} slots={ieExpandSlots(layout)} />
     </IeMachineScreen>
   );
 }

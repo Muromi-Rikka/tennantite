@@ -1,6 +1,6 @@
 import type { PlayerInventoryProps, ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
-import { ModSprite, ModTabButton, ModTitle, ModToolbar } from "@tennantite/mods-core";
+import { ModSlotGrid, ModSprite, ModTabButton, ModTitle, ModToolbar } from "@tennantite/mods-core";
 import { ae2SpriteMeta } from "@tennantite/textures";
 import { cn, gui, PlayerInventory, ScreenItemSlot, ScreenPanel } from "@tennantite/ui";
 import { AE2_ICONS, AE2_IO_PORT } from "../ae2-layout";
@@ -21,8 +21,6 @@ export interface Ae2IoPortScreenProps {
   title?: ReactNode;
   upgrades?: ScreenSlot[];
 }
-
-const CELL_SLOTS = 6;
 
 /**
  * IO 端口界面（AE2 视觉复刻）：211×166 面板 + 右侧 35 宽升级槽条（3 槽），
@@ -87,42 +85,28 @@ export function Ae2IoPortScreen({
           top={0}
         />
         <ModTitle left={8} top={6}>{title}</ModTitle>
-        {Array.from({ length: CELL_SLOTS }, (_, index) => {
-          const column = index % inputRow.columns;
-          const row = Math.floor(index / inputRow.columns);
-          return (
-            <ScreenItemSlot
-              frame={false}
-              item={inputCells?.[index]}
-              key={`in-${index}`}
-              label={`io-port-input-${index}`}
-              left={inputRow.left + column * inputRow.size}
-              onActivate={onInputCellClick
-                ? () => onInputCellClick(index, inputCells?.[index])
-                : undefined}
-              size={inputRow.size}
-              top={inputRow.top + row * inputRow.size}
-            />
-          );
-        })}
-        {Array.from({ length: CELL_SLOTS }, (_, index) => {
-          const column = index % outputRow.columns;
-          const row = Math.floor(index / outputRow.columns);
-          return (
-            <ScreenItemSlot
-              frame={false}
-              item={outputCells?.[index]}
-              key={`out-${index}`}
-              label={`io-port-output-${index}`}
-              left={outputRow.left + column * outputRow.size}
-              onActivate={onOutputCellClick
-                ? () => onOutputCellClick(index, outputCells?.[index])
-                : undefined}
-              size={outputRow.size}
-              top={outputRow.top + row * outputRow.size}
-            />
-          );
-        })}
+        <ModSlotGrid
+          cellSize={inputRow.size}
+          columns={inputRow.columns}
+          frame={false}
+          items={inputCells}
+          label={(index) => `io-port-input-${index}`}
+          left={inputRow.left}
+          onSlotClick={onInputCellClick}
+          rows={inputRow.rows}
+          top={inputRow.top}
+        />
+        <ModSlotGrid
+          cellSize={outputRow.size}
+          columns={outputRow.columns}
+          frame={false}
+          items={outputCells}
+          label={(index) => `io-port-output-${index}`}
+          left={outputRow.left}
+          onSlotClick={onOutputCellClick}
+          rows={outputRow.rows}
+          top={outputRow.top}
+        />
         <ModTabButton
           icon={<ModSprite sprite={ae2SpriteMeta.states} src={AE2_ICONS.settings} />}
           label="操作模式"

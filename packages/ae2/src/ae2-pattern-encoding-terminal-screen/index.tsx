@@ -1,18 +1,14 @@
 import type { PlayerInventoryProps, ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
 import {
-  ModScrollbar,
-  ModSearchField,
-  ModSlotGrid,
   ModSprite,
   ModTabButton,
-  ModTitle,
   ModToolbar,
 } from "@tennantite/mods-core";
 import { ae2SpriteMeta } from "@tennantite/textures";
-import { cn, gui, padSlots, PlayerInventory, ScreenItemSlot, ScreenPanel } from "@tennantite/ui";
+import { cn, gui, padSlots, ScreenItemSlot } from "@tennantite/ui";
 import { AE2_ICONS, AE2_PATTERN_SLICES, AE2_PATTERN_TERMINAL, ae2PatternTerminalHeight } from "../ae2-layout";
-import { Ae2PanelBackground } from "../ae2-panel";
+import { Ae2TerminalBody } from "../ae2-terminal-body/index";
 
 export interface Ae2PatternEncodingTerminalScreenProps {
   className?: string;
@@ -151,50 +147,31 @@ export function Ae2PatternEncodingTerminalScreen({
             />
           )
         : null}
-      <ScreenPanel backgroundClassName="bg-transparent" height={height} width={panelWidth}>
-        <Ae2PanelBackground name={sprite} rows={rows} slices={AE2_PATTERN_SLICES} />
-        <ModTitle left={8} top={6}>{title}</ModTitle>
-        <ModSearchField
-          defaultValue={searchDefaultValue}
-          left={search.left}
-          onChange={onSearchChange}
-          placeholder="搜索…"
-          top={search.top}
-          width={search.width}
-        />
-        {entriesLabel === undefined
-          ? null
-          : (
-              <span
-                aria-hidden="true"
-                className="absolute font-mc text-mc-ae2-text"
-                style={{
-                  fontSize: "calc(var(--mc-gui) * 5.4)",
-                  lineHeight: "calc(var(--mc-gui) * 9)",
-                  right: gui(26),
-                  top: gui(8),
-                }}
-              >
-                {entriesLabel}
-              </span>
-            )}
-        <ModSlotGrid
-          cellSize={slotSize}
-          columns={AE2_PATTERN_TERMINAL.columns}
-          frame={false}
-          items={slots}
-          labelPrefix="pattern-terminal"
-          left={gridLeft}
-          onSlotClick={onSlotClick}
-          rows={rows}
-          top={gridTop}
-        />
-        <ModScrollbar
-          height={rows * rowHeight - 2}
-          left={scrollbar.left}
-          top={scrollbar.top}
-          track={false}
-        />
+      <Ae2TerminalBody
+        entriesLabel={entriesLabel}
+        grid={{
+          columns: AE2_PATTERN_TERMINAL.columns,
+          labelPrefix: "pattern-terminal",
+          left: gridLeft,
+          rows,
+          slotSize,
+          top: gridTop,
+        }}
+        height={height}
+        hotbarItems={hotbarItems}
+        mainItems={mainItems}
+        onSearchChange={onSearchChange}
+        onSlotClick={onSlotClick}
+        panel={{ slices: AE2_PATTERN_SLICES, sprite, width: panelWidth }}
+        playerTitleTop={height - 93}
+        scrollbar={{ left: scrollbar.left, rowHeight, top: scrollbar.top }}
+        search={search}
+        searchDefaultValue={searchDefaultValue}
+        selectedIndex={selectedIndex}
+        showStatusTab={false}
+        slots={slots}
+        title={title}
+      >
         {Array.from({ length: 9 }, (_, index) => {
           const column = index % 3;
           const row = Math.floor(index / 3);
@@ -295,17 +272,7 @@ export function Ae2PatternEncodingTerminalScreen({
             top={height - encodeShift.topFromBottom + index * 10}
           />
         ))}
-        <ModTitle left={8} top={height - 93}>物品栏</ModTitle>
-        <PlayerInventory
-          bare
-          hotbarItems={hotbarItems}
-          hotbarY={height - 25}
-          mainItems={mainItems}
-          selectedIndex={selectedIndex}
-          x={7}
-          y={height - 83}
-        />
-      </ScreenPanel>
+      </Ae2TerminalBody>
     </div>
   );
 }

@@ -1,9 +1,6 @@
 import type { EioSpriteName } from "@tennantite/textures";
 import type { ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
-import { ModProgress } from "@tennantite/mods-core";
-import { ScreenItemSlot } from "@tennantite/ui";
-import { Fragment } from "react";
 
 import type { EioRedstoneControl } from "../eio-machine-layout";
 import type { EioMachineState } from "../eio-machine-state/index";
@@ -11,9 +8,10 @@ import { EIO_REDSTONE_LABELS, eioNextRedstone, eioRedstoneIcon } from "../eio-co
 import { EioEnergyBar } from "../eio-energy-bar/index";
 import { EioIconButton } from "../eio-icon-button/index";
 import { EIO_MACHINES } from "../eio-machine-layout";
+import { EioMachineSlots } from "../eio-machine-parts";
 import { EioMachineScreen } from "../eio-machine-screen/index";
 import { EioMachineState as EioMachineStateIcon } from "../eio-machine-state/index";
-import { EioSprite } from "../eio-sprite/index";
+import { EioProgresses } from "../eio-progresses/index";
 
 export type EioPoweredSpawnerMode = "capture" | "spawn";
 
@@ -103,25 +101,11 @@ export function EioPoweredSpawnerScreen({
             />
           )
         : null}
-      {layout.progresses.filter(entry => entry.sprite === MODE_PROGRESS_SPRITES[mode]).map(entry => (
-        <ModProgress
-          direction={entry.direction}
-          fill={(
-            <EioSprite
-              height={entry.height}
-              name={entry.sprite}
-              width={entry.width}
-            />
-          )}
-          height={entry.height}
-          key={entry.sprite}
-          label="刷怪笼进度"
-          left={entry.left}
-          progress={progress}
-          top={entry.top}
-          width={entry.width}
-        />
-      ))}
+      <EioProgresses
+        label="刷怪笼进度"
+        progresses={layout.progresses.filter(entry => entry.sprite === MODE_PROGRESS_SPRITES[mode])}
+        progress={progress}
+      />
       {layout.state
         ? <EioMachineStateIcon left={layout.state.left} state={state} top={layout.state.top} />
         : null}
@@ -156,30 +140,7 @@ export function EioPoweredSpawnerScreen({
         onClick={onIoConfig}
         top={layout.io?.top ?? 0}
       />
-      {layout.slots.map(slot => (
-        <Fragment
-          key={slot.label}
-        >
-          {slot.label.endsWith("-capacitor")
-            ? (
-                <EioSprite
-                  height={16}
-                  left={slot.left + 1}
-                  name="sprites/widget/empty_capacitor_slot"
-                  top={slot.top + 1}
-                  width={16}
-                />
-              )
-            : null}
-          <ScreenItemSlot
-            item={itemsMap[slot.label]}
-            label={slot.label}
-            left={slot.left}
-            onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-            top={slot.top}
-          />
-        </Fragment>
-      ))}
+      <EioMachineSlots items={itemsMap} onSlotClick={onSlotClick} slots={layout.slots} />
     </EioMachineScreen>
   );
 }

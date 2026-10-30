@@ -2,9 +2,10 @@ import type { ScreenSlot } from "@tennantite/ui";
 
 import { ModIconButton, ModSprite } from "@tennantite/mods-core";
 import { createSpriteMeta } from "@tennantite/textures";
-import { cn, gui, ScreenItemSlot } from "@tennantite/ui";
+import { gui, ScreenItemSlot } from "@tennantite/ui";
 
 import { CREATE_ATLAS, CREATE_ICONS, CREATE_STATION_SPRITES, CREATE_TRAIN_STATION } from "../create-metrics";
+import { CreateWindow } from "../create-window/index";
 
 export interface CreateTrainStationScreenProps {
   className?: string;
@@ -81,11 +82,13 @@ export function CreateTrainStationScreen({
   const background = isAssembling ? CREATE_ATLAS.stationAssembling : CREATE_ATLAS.station;
   const height = background.height;
   return (
-    <div
-      className={cn("mc-create-window relative inline-block", className)}
-      style={{ height: gui(height), width: gui(background.width) }}
+    <CreateWindow
+      background={<ModSprite left={0} sprite={createSpriteMeta[background.atlas]} src={background} top={0} />}
+      className={className}
+      height={height}
+      player={false}
+      width={background.width}
     >
-      <ModSprite left={0} sprite={createSpriteMeta[background.atlas]} src={background} top={0} />
       {isAssembling
         ? (
             <>
@@ -290,6 +293,6 @@ export function CreateTrainStationScreen({
                 : null}
             </>
           )}
-    </div>
+    </CreateWindow>
   );
 }

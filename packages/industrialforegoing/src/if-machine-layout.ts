@@ -1,4 +1,4 @@
-import type { IfDyeColor } from "./if-metrics";
+import type { IfDyeColor, IfProgressKind } from "./if-metrics";
 import { IF_BAR, IF_FACE_BUTTON } from "./if-metrics";
 
 /**
@@ -80,7 +80,7 @@ export interface IfOverlaySpec {
 
 export interface IfProgressSpec {
   color: IfDyeColor;
-  kind: "arrow-down" | "arrow-right" | "vertical";
+  kind: IfProgressKind;
   name: string;
   x: number;
   y: number;
@@ -822,7 +822,7 @@ export const IF_MACHINE_KEYS = Object.keys(IF_MACHINES) as IfMachineKey[];
 
 export interface IfResolvedBar {
   color: IfDyeColor;
-  kind: "arrow-down" | "arrow-right" | "vertical";
+  kind: IfProgressKind;
   x: number;
   y: number;
 }

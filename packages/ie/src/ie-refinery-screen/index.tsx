@@ -1,8 +1,8 @@
 import type { ScreenSlot } from "@tennantite/ui";
 
-import { ScreenItemSlot } from "@tennantite/ui";
 import { IeEnergyBar } from "../ie-energy-bar/index";
 import { IeFluidTank } from "../ie-fluid-tank/index";
+import { IeLayoutSlots } from "../ie-layout-slots/index";
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
 
@@ -81,16 +81,7 @@ export function IeRefineryScreen({
             )
           : null;
       })}
-      {ieExpandSlots(layout).map(slot => (
-        <ScreenItemSlot
-          item={slotItems[slot.label]}
-          key={slot.label}
-          label={slot.label}
-          left={slot.left}
-          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-          top={slot.top}
-        />
-      ))}
+      <IeLayoutSlots items={slotItems} onSlotClick={onSlotClick} slots={ieExpandSlots(layout)} />
     </IeMachineScreen>
   );
 }

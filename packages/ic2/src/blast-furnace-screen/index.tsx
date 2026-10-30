@@ -1,30 +1,19 @@
-import type { ModSpriteRect } from "@tennantite/mods-core";
 import type { ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
-import { ModSprite, progressClipPath } from "@tennantite/mods-core";
-import { ic2SpriteMeta } from "@tennantite/textures";
 import {
-  gui,
   padSlots,
   PlayerInventory,
   ScreenItemSlot,
   ScreenPanel,
 } from "@tennantite/ui";
 
+import { Ic2HeatGauge } from "../ic2-heat-gauge";
 import { Ic2InfoIcon } from "../ic2-info-icon";
 import { Ic2Label } from "../ic2-label";
 import { IC2_BLAST_FURNACE } from "../ic2-layout";
 import { Ic2Progress } from "../ic2-progress";
 import { Ic2Title } from "../ic2-title";
-
-/**
- * 热量表源矩形（`common.png`）：
- * // coords from common.png pixel inspection (upstream Gauge heatcentrifuge rect unavailable)
- * - 填充：右侧黄色渐变竖条 (252,33) 3×28
- * - 底：左侧灰白竖条 (247,33) 3×28
- */
-const HEAT_FILL: ModSpriteRect = IC2_BLAST_FURNACE.heat.fill;
-const HEAT_BACKGROUND: ModSpriteRect = IC2_BLAST_FURNACE.heat.background;
+import { Ic2UpgradeStrip } from "../ic2-upgrade-strip";
 
 export interface Ic2BlastFurnaceScreenProps {
   /**
@@ -94,41 +83,13 @@ export function Ic2BlastFurnaceScreen({
       <Ic2Label left={IC2_BLAST_FURNACE.heat.label.left} top={IC2_BLAST_FURNACE.heat.label.top}>
         Heat
       </Ic2Label>
-      <div
-        aria-label="热量"
-        aria-valuemax={100}
-        aria-valuemin={0}
-        aria-valuenow={Math.round(ratio * 100)}
-        className="absolute"
-        data-ic2-heat-gauge=""
-        role="progressbar"
-        style={{
-          height: gui(HEAT_FILL.height),
-          left: gui(IC2_BLAST_FURNACE.heat.gauge.left),
-          top: gui(IC2_BLAST_FURNACE.heat.gauge.top),
-          width: gui(HEAT_FILL.width),
-        }}
-      >
-        <ModSprite
-          sprite={ic2SpriteMeta.common}
-          src={HEAT_BACKGROUND}
-        />
-        {ratio > 0
-          ? (
-              <div
-                aria-hidden="true"
-                className="absolute inset-0"
-                data-ic2-heat-gauge-fill=""
-                style={{ clipPath: progressClipPath("up", ratio) }}
-              >
-                <ModSprite
-                  sprite={ic2SpriteMeta.common}
-                  src={HEAT_FILL}
-                />
-              </div>
-            )
-          : null}
-      </div>
+      <Ic2HeatGauge
+        label="热量"
+        left={IC2_BLAST_FURNACE.heat.gauge.left}
+        max={100}
+        top={IC2_BLAST_FURNACE.heat.gauge.top}
+        value={Math.round(ratio * 100)}
+      />
       <ScreenItemSlot
         frame
         frameClassName="mc-tex-ic2-slot"
@@ -171,18 +132,7 @@ export function Ic2BlastFurnaceScreen({
         left={slots.fluid.left}
         top={slots.fluid.top}
       />
-      {padSlots(upgrades, slots.upgrades.count).map((slot, index) => (
-        <ScreenItemSlot
-          frame
-          frameClassName="mc-tex-ic2-slot"
-          item={slot}
-          // eslint-disable-next-line react/no-array-index-key -- 固定位置的升级槽，索引即槽位号
-          key={`machine-upgrade-${index}`}
-          label={`machine-upgrade-${index}`}
-          left={slots.upgrades.left}
-          top={slots.upgrades.top + index * slots.upgrades.step}
-        />
-      ))}
+      <Ic2UpgradeStrip upgrades={upgrades} />
       <Ic2Progress
         label="处理进度"
         left={IC2_BLAST_FURNACE.progress.arrow.left}

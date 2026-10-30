@@ -1,5 +1,6 @@
 import type { IeSpriteName } from "@tennantite/textures";
-import { progressClipPath } from "@tennantite/mods-core";
+
+import { ModTank } from "@tennantite/mods-core";
 import { ieSpriteMeta } from "@tennantite/textures";
 import { gui } from "@tennantite/ui";
 
@@ -33,7 +34,7 @@ export interface IeFluidTankProps {
  * 外扩 (width-overlayWidth)/2 居中绘制，即 20×51 overlay 对应 16×47 填充区）。
  */
 export function IeFluidTank({
-  className = "",
+  className,
   height,
   label,
   left,
@@ -44,49 +45,33 @@ export function IeFluidTank({
   value,
   width,
 }: IeFluidTankProps) {
-  const ratio = max > 0 ? Math.min(1, Math.max(0, value / max)) : 0;
   const overlay = overlayName ? ieSpriteMeta[overlayName] : null;
   const offsetX = overlay ? (width - overlay.width) / 2 : 0;
   const offsetY = overlay ? (height - overlay.height) / 2 : 0;
   return (
-    <div
-      aria-label={label}
-      aria-valuemax={100}
-      aria-valuemin={0}
-      aria-valuenow={Math.round(ratio * 100)}
-      className={`absolute ${className}`}
-      data-ie-fluid-tank={overlayName}
-      role={label ? "progressbar" : undefined}
-      style={{
-        height: gui(height),
-        left: gui(left),
-        top: gui(top),
-        width: gui(width),
-      }}
-      title={label}
-    >
-      <div className="absolute overflow-hidden" style={{ height: "100%", width: "100%" }}>
-        <div
-          style={{
-            backgroundColor: tint,
-            clipPath: progressClipPath("up", ratio),
-            height: "100%",
-            width: "100%",
-          }}
-        />
-      </div>
-      {overlay
+    <ModTank
+      className={className}
+      dataAttributes={{ "data-ie-fluid-tank": overlayName }}
+      height={height}
+      label={label}
+      left={left}
+      max={max}
+      overlay={overlayName
         ? (
             <IeSprite
               className="absolute"
-              name={overlayName!}
+              name={overlayName}
               style={{
                 left: gui(offsetX),
                 top: gui(offsetY),
               }}
             />
           )
-        : null}
-    </div>
+        : undefined}
+      tint={tint}
+      top={top}
+      value={value}
+      width={width}
+    />
   );
 }

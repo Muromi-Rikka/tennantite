@@ -1,12 +1,11 @@
 import type { ScreenSlot } from "@tennantite/ui";
 
-import { gui, ScreenItemSlot } from "@tennantite/ui";
-import { useState } from "react";
 import { IeEnergyBar } from "../ie-energy-bar/index";
 import { IeFluidTank } from "../ie-fluid-tank/index";
+import { IeLayoutSlots } from "../ie-layout-slots/index";
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
-import { IeSprite } from "../ie-sprite/index";
+import { IeSpriteButton } from "../ie-sprite-button/index";
 
 export interface IeAssemblerScreenProps {
   className?: string;
@@ -54,18 +53,18 @@ export function IeAssemblerScreen({
 }: IeAssemblerScreenProps) {
   const layout = IE_MACHINES.assembler;
   const slots = ieExpandSlots(layout);
-  const [hovered, setHovered] = useState(false);
-  const itemFor = (label: string): null | ScreenSlot | undefined => {
-    if (label.startsWith("assembler-pattern")) {
-      const [, pattern, slot] = label.split("-", 3);
-      const patternIndex = Number(pattern);
-      const slotIndex = Number(slot);
-      return Number.isNaN(patternIndex) || Number.isNaN(slotIndex) ? null : patterns[patternIndex]?.[slotIndex] ?? null;
+  const slotItems: Record<string, null | ScreenSlot | undefined> = {};
+  for (const [pattern, group] of patterns.entries()) {
+    for (const [index, item] of group.entries()) {
+      slotItems[`assembler-pattern-${pattern}-${index}`] = item;
     }
-    if (label.startsWith("assembler-output"))
-      return outputs[Number(label.split("-").pop())] ?? null;
-    return label.startsWith("assembler-storage") ? storage[Number(label.split("-").pop())] ?? null : undefined;
-  };
+  }
+  for (const [index, item] of outputs.entries()) {
+    slotItems[`assembler-output-${index}`] = item;
+  }
+  for (const [index, item] of storage.entries()) {
+    slotItems[`assembler-storage-${index}`] = item;
+  }
   return (
     <IeMachineScreen
       background={layout.background}
@@ -107,53 +106,32 @@ export function IeAssemblerScreen({
           : null;
       })}
       {Array.from(patterns.keys(), pattern => (
-        <button
-          aria-label={`清空配方 ${pattern}`}
-          data-ie-assembler-clear={pattern}
+        <IeSpriteButton
+          dataAttributes={{ "data-ie-assembler-clear": pattern }}
+          height={10}
+          hoverName="sprites/assembler/clear_hovered"
           key={`clear-${pattern}`}
-          onBlur={() => setHovered(false)}
+          label={`清空配方 ${pattern}`}
+          left={11 + pattern * 59}
+          name="sprites/assembler/clear"
           onClick={onClear ? () => onClear(pattern) : undefined}
-          onFocus={() => setHovered(true)}
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
-          style={{
-            height: gui(10),
-            left: gui(11 + pattern * 59),
-            position: "absolute",
-            top: gui(67),
-            width: gui(10),
-          }}
-          type="button"
-        >
-          <IeSprite name={hovered ? "sprites/assembler/clear_hovered" : "sprites/assembler/clear"} />
-        </button>
-      ))}
-      <button
-        aria-label={recursive ? "递归合成（开）" : "递归合成（关）"}
-        aria-pressed={recursive}
-        data-ie-assembler-recursive={recursive ? "true" : "false"}
-        onClick={onRecursiveToggle}
-        style={{
-          height: gui(16),
-          left: gui(162),
-          position: "absolute",
-          top: gui(69),
-          width: gui(16),
-        }}
-        type="button"
-      >
-        <IeSprite name={recursive ? "sprites/assembler/recursive" : "sprites/assembler/no_recursive"} />
-      </button>
-      {slots.map(slot => (
-        <ScreenItemSlot
-          item={itemFor(slot.label)}
-          key={slot.label}
-          label={slot.label}
-          left={slot.left}
-          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-          top={slot.top}
+          top={67}
+          width={10}
         />
       ))}
+      <IeSpriteButton
+        dataAttributes={{ "data-ie-assembler-recursive": recursive ? "true" : "false" }}
+        height={16}
+        label={recursive ? "递归合成（开）" : "递归合成（关）"}
+        left={162}
+        name="sprites/assembler/no_recursive"
+        nameOn="sprites/assembler/recursive"
+        onClick={onRecursiveToggle}
+        pressed={recursive}
+        top={69}
+        width={16}
+      />
+      <IeLayoutSlots items={slotItems} onSlotClick={onSlotClick} slots={slots} />
     </IeMachineScreen>
   );
 }

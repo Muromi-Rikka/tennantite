@@ -1,7 +1,8 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
 
-import { gui, PlayerInventory, ScreenItemSlot, ScreenPanel } from "@tennantite/ui";
+import { ModLabel, ModSlotGrid } from "@tennantite/mods-core";
+import { PlayerInventory, ScreenItemSlot, ScreenPanel } from "@tennantite/ui";
 
 import { FdCookingProgress } from "../fd-cooking-progress/index";
 import { FdHeatIndicator } from "../fd-heat-indicator/index";
@@ -13,6 +14,14 @@ import {
 } from "../fd-metrics";
 import { FdRecipeBookButton } from "../fd-recipe-book-button/index";
 import { FdSprite } from "../fd-sprite/index";
+
+/**
+ * 6 个食材槽是 3×2 连续网格，起点取布局表首项。
+ */
+const INGREDIENT_ORIGIN = FD_COOKING_POT_SLOTS[0];
+const MEAL_SLOT = FD_COOKING_POT_SLOTS[6];
+const CONTAINER_SLOT = FD_COOKING_POT_SLOTS[7];
+const OUTPUT_SLOT = FD_COOKING_POT_SLOTS[8];
 
 export interface FdCookingPotScreenProps {
   className?: string;
@@ -67,15 +76,6 @@ export function FdCookingPotScreen({
   showRecipeBookButton = true,
   title = "厨锅",
 }: FdCookingPotScreenProps) {
-  const items: Record<string, ScreenSlot> = {
-    "cooking-pot-container": container,
-    "cooking-pot-meal": meal,
-    "cooking-pot-output": output,
-  };
-  for (const [index, item] of ingredients.entries()) {
-    items[`cooking-pot-input-${index}`] = item;
-  }
-
   return (
     <ScreenPanel
       backgroundClassName="bg-transparent"
@@ -93,37 +93,54 @@ export function FdCookingPotScreen({
         top={0}
         width={FD_COOKING_POT.width}
       />
-      <span
-        className="absolute font-mc mc-text whitespace-pre"
-        style={{
-          color: FD_TEXT_COLOR,
-          left: gui(FD_COOKING_POT.title.left),
-          top: gui(FD_COOKING_POT.title.top),
-        }}
+      <ModLabel
+        color={FD_TEXT_COLOR}
+        left={FD_COOKING_POT.title.left}
+        top={FD_COOKING_POT.title.top}
       >
         {title}
-      </span>
-      <span
-        className="absolute font-mc mc-text whitespace-pre"
-        style={{
-          color: FD_TEXT_COLOR,
-          left: gui(FD_COOKING_POT.inventoryLabel.left),
-          top: gui(FD_COOKING_POT.inventoryLabel.top),
-        }}
+      </ModLabel>
+      <ModLabel
+        color={FD_TEXT_COLOR}
+        left={FD_COOKING_POT.inventoryLabel.left}
+        top={FD_COOKING_POT.inventoryLabel.top}
       >
         {inventoryLabel}
-      </span>
+      </ModLabel>
 
-      {FD_COOKING_POT_SLOTS.map(slot => (
-        <ScreenItemSlot
-          item={items[slot.label]}
-          key={slot.label}
-          label={slot.label}
-          left={slot.left}
-          onActivate={onSlotClick ? () => { onSlotClick(slot.label); } : undefined}
-          top={slot.top}
-        />
-      ))}
+      <ModSlotGrid
+        columns={3}
+        frame={false}
+        items={ingredients}
+        label={inputLabel}
+        left={INGREDIENT_ORIGIN.left}
+        onSlotClick={onSlotClick
+          ? (index) => { onSlotClick(inputLabel(index)); }
+          : undefined}
+        rows={2}
+        top={INGREDIENT_ORIGIN.top}
+      />
+      <ScreenItemSlot
+        item={meal}
+        label={MEAL_SLOT.label}
+        left={MEAL_SLOT.left}
+        onActivate={onSlotClick ? () => { onSlotClick(MEAL_SLOT.label); } : undefined}
+        top={MEAL_SLOT.top}
+      />
+      <ScreenItemSlot
+        item={container}
+        label={CONTAINER_SLOT.label}
+        left={CONTAINER_SLOT.left}
+        onActivate={onSlotClick ? () => { onSlotClick(CONTAINER_SLOT.label); } : undefined}
+        top={CONTAINER_SLOT.top}
+      />
+      <ScreenItemSlot
+        item={output}
+        label={OUTPUT_SLOT.label}
+        left={OUTPUT_SLOT.left}
+        onActivate={onSlotClick ? () => { onSlotClick(OUTPUT_SLOT.label); } : undefined}
+        top={OUTPUT_SLOT.top}
+      />
 
       <FdHeatIndicator heated={heated} />
       <FdCookingProgress progress={progress} />
@@ -143,4 +160,11 @@ export function FdCookingPotScreen({
       />
     </ScreenPanel>
   );
+}
+
+/**
+ * 网格逐格名称；`rows × columns` 恒为 6，兜底分支不可达。
+ */
+function inputLabel(index: number) {
+  return FD_COOKING_POT_SLOTS[index]?.label ?? `cooking-pot-input-${index}`;
 }

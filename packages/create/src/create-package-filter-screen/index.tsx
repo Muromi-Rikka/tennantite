@@ -2,9 +2,10 @@ import type { InventoryItem } from "@tennantite/ui";
 
 import { ModIconButton, ModSprite } from "@tennantite/mods-core";
 import { createSpriteMeta } from "@tennantite/textures";
-import { cn, gui, PlayerInventory } from "@tennantite/ui";
+import { gui } from "@tennantite/ui";
 
 import { CREATE_ATLAS, CREATE_ICONS, CREATE_PACKAGE_FILTER } from "../create-metrics";
+import { CreateWindow } from "../create-window/index";
 
 export interface CreatePackageFilterScreenProps {
   /**
@@ -41,17 +42,25 @@ export function CreatePackageFilterScreen({
   const background = CREATE_ATLAS.packageFilter;
   const icons = CREATE_ICONS;
   return (
-    <div
-      className={cn("mc-create-window relative inline-block", className)}
-      style={{ height: gui(layout.height), width: gui(layout.width) }}
+    <CreateWindow
+      background={<ModSprite left={0} sprite={createSpriteMeta[background.atlas]} src={background} top={0} />}
+      className={className}
+      height={layout.height}
+      player={{
+        hotbarItems: player?.hotbarItems,
+        hotbarY: layout.player.hotbarY,
+        mainItems: player?.mainItems,
+        x: layout.player.x,
+        y: layout.player.y,
+      }}
+      title={title}
+      titleAlign="center"
+      titleColor="#3d3c48"
+      titleLeft={0}
+      titleTop={layout.title.top}
+      titleWidth={layout.width}
+      width={layout.width}
     >
-      <ModSprite left={0} sprite={createSpriteMeta[background.atlas]} src={background} top={0} />
-      <div
-        className="absolute text-center font-mc mc-text"
-        style={{ color: "#3d3c48", left: 0, top: gui(layout.title.top), width: gui(layout.width) }}
-      >
-        {title}
-      </div>
       <input
         aria-label="地址"
         className="absolute bg-transparent font-mc mc-text outline-none"
@@ -87,13 +96,6 @@ export function CreatePackageFilterScreen({
         top={layout.buttons.confirm.top}
         width={18}
       />
-      <PlayerInventory
-        hotbarItems={player?.hotbarItems}
-        hotbarY={layout.player.hotbarY}
-        mainItems={player?.mainItems}
-        x={layout.player.x}
-        y={layout.player.y}
-      />
-    </div>
+    </CreateWindow>
   );
 }

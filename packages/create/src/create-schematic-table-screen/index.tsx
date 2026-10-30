@@ -2,9 +2,10 @@ import type { InventoryItem, ScreenSlot } from "@tennantite/ui";
 
 import { ModIconButton, ModProgress, ModSprite } from "@tennantite/mods-core";
 import { createSpriteMeta } from "@tennantite/textures";
-import { cn, gui, PlayerInventory, ScreenItemSlot } from "@tennantite/ui";
+import { ScreenItemSlot } from "@tennantite/ui";
 
 import { CREATE_ATLAS, CREATE_ICONS, CREATE_SCHEMATIC_TABLE } from "../create-metrics";
+import { CreateWindow } from "../create-window/index";
 
 export interface CreateSchematicTableScreenProps {
   className?: string;
@@ -54,27 +55,33 @@ export function CreateSchematicTableScreen({
   const buttons = CREATE_SCHEMATIC_TABLE.buttons;
   const slots = CREATE_SCHEMATIC_TABLE.slots;
   return (
-    <div
-      className={cn("mc-create-window relative inline-block", className)}
-      style={{ height: gui(CREATE_SCHEMATIC_TABLE.height), width: gui(CREATE_SCHEMATIC_TABLE.width) }}
+    <CreateWindow
+      background={(
+        <ModSprite
+          left={CREATE_SCHEMATIC_TABLE.background.left}
+          sprite={createSpriteMeta[table.atlas]}
+          src={table}
+          top={CREATE_SCHEMATIC_TABLE.background.top}
+        />
+      )}
+      className={className}
+      height={CREATE_SCHEMATIC_TABLE.height}
+      player={{
+        hotbarItems: player?.hotbarItems,
+        hotbarY: CREATE_SCHEMATIC_TABLE.player.hotbarY,
+        mainItems: player?.mainItems,
+        x: CREATE_SCHEMATIC_TABLE.player.x,
+        y: CREATE_SCHEMATIC_TABLE.player.y,
+      }}
+      title={title}
+      titleAlign="center"
+      titleClassName="mc-text-shadow"
+      titleColor="#505050"
+      titleLeft={0}
+      titleTop={CREATE_SCHEMATIC_TABLE.title.top}
+      titleWidth={CREATE_SCHEMATIC_TABLE.width}
+      width={CREATE_SCHEMATIC_TABLE.width}
     >
-      <ModSprite
-        left={CREATE_SCHEMATIC_TABLE.background.left}
-        sprite={createSpriteMeta[table.atlas]}
-        src={table}
-        top={CREATE_SCHEMATIC_TABLE.background.top}
-      />
-      <div
-        className="absolute text-center font-mc mc-text mc-text-shadow"
-        style={{
-          color: "#505050",
-          left: 0,
-          top: gui(CREATE_SCHEMATIC_TABLE.title.top),
-          width: gui(CREATE_SCHEMATIC_TABLE.width),
-        }}
-      >
-        {title}
-      </div>
       <ScreenItemSlot
         item={input}
         label="input"
@@ -147,13 +154,6 @@ export function CreateSchematicTableScreen({
         top={buttons.refresh.top}
         width={18}
       />
-      <PlayerInventory
-        hotbarItems={player?.hotbarItems}
-        hotbarY={CREATE_SCHEMATIC_TABLE.player.hotbarY}
-        mainItems={player?.mainItems}
-        x={CREATE_SCHEMATIC_TABLE.player.x}
-        y={CREATE_SCHEMATIC_TABLE.player.y}
-      />
-    </div>
+    </CreateWindow>
   );
 }

@@ -1,11 +1,11 @@
 import type { ScreenSlot } from "@tennantite/ui";
 
-import { progressClipPath } from "@tennantite/mods-core";
+import { ModProgress } from "@tennantite/mods-core";
 import { gui, ScreenItemSlot } from "@tennantite/ui";
-import { useState } from "react";
 
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
+import { IeSpriteButton } from "../ie-sprite-button/index";
 
 export interface IeMetalPressScreenProps {
   /**
@@ -46,7 +46,6 @@ export function IeMetalPressScreen({
   progress = 0,
 }: IeMetalPressScreenProps) {
   const layout = IE_MACHINES.metalPress;
-  const [hoveredMold, setHoveredMold] = useState<null | number>(null);
   const slots = ieExpandSlots(layout);
   const moldSlots = slots.filter(slot => slot.label.startsWith("metal-press-mold"));
   return (
@@ -66,60 +65,32 @@ export function IeMetalPressScreen({
         const mold = molds[index] ?? null;
         const moldItem = mold ? { ...mold, tooltip: undefined } : null;
         return (
-          <button
-            aria-label={`${slot.label}${isActive ? "（当前）" : ""}`}
-            aria-pressed={isActive}
-            data-ie-mold-active={isActive || hoveredMold === index ? "true" : "false"}
+          <IeSpriteButton
+            dataAttributes={{ "data-ie-mold-active": isActive ? "true" : "false" }}
+            icon={(
+              <ScreenItemSlot
+                frame
+                item={moldItem}
+                label={`${slot.label}-item`}
+                left={0}
+                top={0}
+              />
+            )}
             key={slot.label}
-            onBlur={() => setHoveredMold(null)}
+            label={`${slot.label}${isActive ? "（当前）" : ""}`}
+            left={slot.left}
             onClick={() => onMoldSelect?.(index)}
-            onFocus={() => setHoveredMold(index)}
-            onMouseEnter={() => setHoveredMold(index)}
-            onMouseLeave={() => setHoveredMold(null)}
-            style={{
-              height: gui(18),
-              left: gui(slot.left),
-              position: "absolute",
-              top: gui(slot.top),
-              width: gui(18),
-            }}
-            type="button"
-          >
-            <ScreenItemSlot
-              frame
-              item={moldItem}
-              label={`${slot.label}-item`}
-              left={0}
-              top={0}
-            />
-          </button>
+            pressed={isActive}
+            top={slot.top}
+          />
         );
       })}
-      <div
-        aria-label="金属压机进度"
-        aria-valuemax={100}
-        aria-valuemin={0}
-        aria-valuenow={Math.round(Math.min(1, Math.max(0, progress)) * 100)}
-        className="absolute overflow-hidden"
-        data-ie-press-belt=""
-        role="progressbar"
-        style={{
-          backgroundColor: "#4c4c4c",
-          height: gui(layout.belt.height),
-          left: gui(layout.belt.left),
-          top: gui(layout.belt.top),
-          width: gui(layout.belt.width),
-        }}
-        title="金属压机进度"
-      >
-        <div
-          className="absolute"
-          style={{
-            clipPath: progressClipPath("right", progress),
-            height: "100%",
-            width: "100%",
-          }}
-        >
+      <ModProgress
+        ariaValue="percent"
+        className="overflow-hidden"
+        dataAttributes={{ "data-ie-press-belt": "" }}
+        direction="right"
+        fill={(
           <div
             style={{
               backgroundColor: "#f78034",
@@ -130,8 +101,15 @@ export function IeMetalPressScreen({
               width: "100%",
             }}
           />
-        </div>
-      </div>
+        )}
+        height={layout.belt.height}
+        label="金属压机进度"
+        left={layout.belt.left}
+        progress={progress}
+        top={layout.belt.top}
+        track={<div style={{ backgroundColor: "#4c4c4c", height: "100%", width: "100%" }} />}
+        width={layout.belt.width}
+      />
       <ScreenItemSlot
         frame
         item={input}

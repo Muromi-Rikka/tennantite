@@ -3,6 +3,7 @@ import { ModIconButton, ModSprite, ModTitle } from "@tennantite/mods-core";
 import { ae2SpriteMeta } from "@tennantite/textures";
 import { cn, gui, ScreenPanel } from "@tennantite/ui";
 import { AE2_ICONS, AE2_PRIORITY_DIALOG } from "../ae2-layout";
+import { Ae2Text } from "../ae2-text/index";
 
 export interface Ae2PriorityDialogProps {
   className?: string;
@@ -47,17 +48,9 @@ export function Ae2PriorityDialog({
           top={0}
         />
         <ModTitle left={titlePos.left} top={titlePos.top}>{title}</ModTitle>
-        <span
-          className="absolute font-mc text-white"
-          style={{
-            fontSize: "calc(var(--mc-gui) * 5.4)",
-            left: gui(field.left),
-            lineHeight: "calc(var(--mc-gui) * 9)",
-            top: gui(field.top),
-          }}
-        >
+        <Ae2Text color="#ffffff" left={field.left} top={field.top}>
           {priority}
-        </span>
+        </Ae2Text>
         {STEPS.map((step, index) => {
           const position = steps[index];
           if (!position) {

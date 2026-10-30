@@ -5,7 +5,7 @@ import type { MekanismDataType, MekanismSide, MekanismTransmission } from "../me
 import { MekanismImageButton } from "../mekanism-image-button/index";
 import { MekanismInnerScreen } from "../mekanism-inner-screen/index";
 import { MekanismLabel } from "../mekanism-label/index";
-import { MEKANISM_DATA_COLORS, MEKANISM_TAB_INSET } from "../mekanism-metrics";
+import { MEKANISM_DATA_COLORS, MEKANISM_SIDE_POSITIONS, MEKANISM_TAB_INSET } from "../mekanism-metrics";
 import { MekanismSprite } from "../mekanism-sprite/index";
 import { MekanismWindow } from "../mekanism-window/index";
 
@@ -84,14 +84,12 @@ const DATA_LABELS: Record<MekanismDataType, string> = {
   OUTPUT_2: "输出",
 };
 
-const SIDE_BUTTONS: [MekanismSide, { left: number; top: number }][] = [
-  ["bottom", { left: 67, top: 92 }],
-  ["top", { left: 67, top: 46 }],
-  ["front", { left: 67, top: 69 }],
-  ["back", { left: 44, top: 92 }],
-  ["left", { left: 44, top: 69 }],
-  ["right", { left: 90, top: 69 }],
-];
+const SIDE_BUTTONS: [MekanismSide, { left: number; top: number }][] = (
+  ["bottom", "top", "front", "back", "left", "right"] as const
+).map(side => [
+  side,
+  MEKANISM_SIDE_POSITIONS[side.toUpperCase() as keyof typeof MEKANISM_SIDE_POSITIONS],
+]);
 
 /**
  * Mekanism 侧面配置窗口：156×135，6 个 22×22 面按钮 + 传输类型标签。

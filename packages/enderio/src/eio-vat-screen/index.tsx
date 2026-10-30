@@ -1,5 +1,4 @@
 import type { ScreenSlot } from "@tennantite/ui";
-import { ModProgress } from "@tennantite/mods-core";
 
 import type { EioRedstoneControl } from "../eio-machine-layout";
 import { EIO_REDSTONE_LABELS, eioNextRedstone, eioRedstoneIcon } from "../eio-controls";
@@ -7,6 +6,7 @@ import { EioIconButton } from "../eio-icon-button/index";
 import { EIO_MACHINES } from "../eio-machine-layout";
 import { EioFluidRegions, EioMachineSlots } from "../eio-machine-parts";
 import { EioMachineScreen } from "../eio-machine-screen/index";
+import { EioProgresses } from "../eio-progresses/index";
 import { EioSprite } from "../eio-sprite/index";
 
 export interface EioVatScreenProps {
@@ -62,26 +62,11 @@ export function EioVatScreen({
         top={34}
         width={26}
       />
-      {layout.progresses.map(entry => (
-        <ModProgress
-          direction={entry.direction}
-          fill={(
-            <EioSprite
-              crop={entry.crop}
-              height={entry.height}
-              name={entry.sprite}
-              width={entry.width}
-            />
-          )}
-          height={entry.height}
-          key={entry.sprite}
-          label="发酵桶进度"
-          left={entry.left}
-          progress={progress}
-          top={entry.top}
-          width={entry.width}
-        />
-      ))}
+      <EioProgresses
+        label="发酵桶进度"
+        progresses={layout.progresses}
+        progress={progress}
+      />
       <EioIconButton
         icon="sprites/buttons/move_fluid"
         label="转移输出流体"

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 
@@ -16,7 +16,7 @@ describe("eioIconButton", () => {
     expect(container.querySelector("[data-eio-sprite=\"sprites/buttons/io_config\"]")).not.toBeNull();
   });
 
-  it("悬停 / 聚焦切换高亮底，点击触发回调", async () => {
+  it("常态与悬停底均存在，悬停底走 group-hover，点击触发回调", async () => {
     const user = userEvent.setup();
     const onClick = vi.fn();
     const { container } = render(
@@ -24,13 +24,10 @@ describe("eioIconButton", () => {
     );
     const button = screen.getByRole("button", { name: "IO 配置" });
     expect(button).toHaveAttribute("title", "自定义");
-    await user.hover(button);
-    expect(container.querySelector("[data-gui-sprite=\"sprites/widget/button_highlighted.png\"]")).not.toBeNull();
-    await user.unhover(button);
-    expect(container.querySelector("[data-gui-sprite=\"sprites/widget/button_highlighted.png\"]")).toBeNull();
-    fireEvent.focus(button);
-    expect(container.querySelector("[data-gui-sprite=\"sprites/widget/button_highlighted.png\"]")).not.toBeNull();
-    fireEvent.blur(button);
+    expect(container.querySelector("[data-gui-sprite=\"sprites/widget/button.png\"]")).not.toBeNull();
+    const highlighted = container.querySelector("[data-gui-sprite=\"sprites/widget/button_highlighted.png\"]");
+    expect(highlighted).not.toBeNull();
+    expect(highlighted?.closest(".group-hover\\:opacity-100")).not.toBeNull();
     await user.click(button);
     expect(onClick).toHaveBeenCalledOnce();
   });

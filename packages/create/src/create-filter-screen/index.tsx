@@ -1,10 +1,10 @@
 import type { ModSpriteRect } from "@tennantite/mods-core";
 import type { InventoryItem, ScreenSlot } from "@tennantite/ui";
-import { ModIconButton, ModSprite } from "@tennantite/mods-core";
+import { ModIconButton, ModSlotGrid, ModSprite } from "@tennantite/mods-core";
 import { createSpriteMeta } from "@tennantite/textures";
-import { cn, gui, PlayerInventory, ScreenItemSlot } from "@tennantite/ui";
 
 import { CREATE_ATLAS, CREATE_FILTER, CREATE_ICONS } from "../create-metrics";
+import { CreateWindow } from "../create-window/index";
 
 export type CreateFilterMatch = "allow" | "deny";
 export type CreateFilterMode = "and" | "or";
@@ -95,30 +95,30 @@ export function CreateFilterScreen({
     }
   };
   return (
-    <div
-      className={cn("mc-create-window relative inline-block", className)}
-      style={{ height: gui(CREATE_FILTER.height), width: gui(CREATE_FILTER.width) }}
+    <CreateWindow
+      background={<ModSprite left={0} sprite={createSpriteMeta[filter.atlas]} src={filter} top={0} />}
+      className={className}
+      height={CREATE_FILTER.height}
+      player={{
+        hotbarItems: player?.hotbarItems,
+        hotbarY: CREATE_FILTER.player.hotbarY,
+        mainItems: player?.mainItems,
+        x: CREATE_FILTER.player.x,
+        y: CREATE_FILTER.player.y,
+      }}
+      width={CREATE_FILTER.width}
     >
-      <ModSprite
-        left={0}
-        sprite={createSpriteMeta[filter.atlas]}
-        src={filter}
-        top={0}
+      <ModSlotGrid
+        columns={CREATE_FILTER.grid.columns}
+        items={items}
+        labelPrefix="filter-slot"
+        left={CREATE_FILTER.grid.left}
+        onSlotClick={onSlotClick
+          ? index => onSlotClick(index, items?.[index])
+          : undefined}
+        rows={CREATE_FILTER.grid.rows}
+        top={CREATE_FILTER.grid.top}
       />
-      {Array.from({ length: CREATE_FILTER.grid.rows * CREATE_FILTER.grid.columns }, (_, index) => {
-        const column = index % CREATE_FILTER.grid.columns;
-        const row = Math.floor(index / CREATE_FILTER.grid.columns);
-        return (
-          <ScreenItemSlot
-            item={items?.[index]}
-            key={index}
-            label={`filter-slot-${index}`}
-            left={CREATE_FILTER.grid.left + column * 18}
-            onActivate={onSlotClick ? () => onSlotClick(index, items?.[index]) : undefined}
-            top={CREATE_FILTER.grid.top + row * 18}
-          />
-        );
-      })}
       {OPTIONS.map(option => (
         <ModIconButton
           buttonClassName="bg-transparent"
@@ -165,14 +165,7 @@ export function CreateFilterScreen({
           width={18}
         />
       ))}
-      <PlayerInventory
-        hotbarItems={player?.hotbarItems}
-        hotbarY={CREATE_FILTER.player.hotbarY}
-        mainItems={player?.mainItems}
-        x={CREATE_FILTER.player.x}
-        y={CREATE_FILTER.player.y}
-      />
-    </div>
+    </CreateWindow>
   );
 }
 

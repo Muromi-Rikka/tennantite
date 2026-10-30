@@ -1,4 +1,9 @@
 import {
+  ThermalAugmentPanelDemo,
+  ThermalFluidTankDemo,
+  ThermalItemGaugeDemo,
+  ThermalLayoutSlotDemo,
+  ThermalSpriteProgressDemo,
   ThermalBottlerScreenDemo,
   ThermalBrewerScreenDemo,
   ThermalCacheScreenDemo,
@@ -137,6 +142,21 @@ export function ThermalPage() {
       </Section>
       <Section title="ThermalCacheScreen — 物品缓存仓">
         <ThermalCacheScreenDemo />
+      </Section>
+      <Section title="ThermalItemGauge — 物品缓存条">
+        <ThermalItemGaugeDemo />
+      </Section>
+      <Section title="ThermalFluidTank — 流体储罐">
+        <ThermalFluidTankDemo />
+      </Section>
+      <Section title="ThermalAugmentPanel — 强化面板">
+        <ThermalAugmentPanelDemo />
+      </Section>
+      <Section title="ThermalSpriteProgress — 贴图进度">
+        <ThermalSpriteProgressDemo />
+      </Section>
+      <Section title="ThermalLayoutSlot — 布局槽位">
+        <ThermalLayoutSlotDemo />
       </Section>
     </div>
   );

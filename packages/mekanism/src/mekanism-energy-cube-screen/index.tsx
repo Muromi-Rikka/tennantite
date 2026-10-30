@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { MekanismStorageScreenProps } from "../mekanism-storage-types";
 import type { MekanismSecurityMode } from "../mekanism-types";
 
+import { mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismArmorSlots } from "../mekanism-armor-slots/index";
 import { MekanismGauge } from "../mekanism-gauge/index";
 import { MekanismScreen } from "../mekanism-screen/index";
@@ -17,7 +18,6 @@ export interface MekanismEnergyCubeScreenProps extends MekanismStorageScreenProp
   energy?: { max: number; value: number };
 }
 
-const SECURITY_ORDER: MekanismSecurityMode[] = ["public", "private", "protected"];
 
 /**
  * 能量立方：176×166，energy gauge + 充放电槽 + 右侧 5 个装备槽。
@@ -45,7 +45,7 @@ export function MekanismEnergyCubeScreen({
     onWindowsChange?.(next);
   };
   const cycleSecurity = () => {
-    setSecurity(SECURITY_ORDER[(SECURITY_ORDER.indexOf(security) + 1) % SECURITY_ORDER.length] ?? "public");
+    setSecurity(mekanismNextSecurity(security));
   };
 
   return (

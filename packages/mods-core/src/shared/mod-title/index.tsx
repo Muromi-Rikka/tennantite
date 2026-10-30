@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
-import { cn, gui } from "@tennantite/ui";
+import { cn } from "@tennantite/ui";
+import { ModLabel } from "../mod-label/index";
 
 export interface ModTitleProps {
   children: ReactNode;
@@ -21,15 +22,13 @@ export function ModTitle({
   top,
 }: ModTitleProps) {
   return (
-    <span
-      className={cn("absolute font-mc mc-text text-mc-ae2-text", className)}
-      style={{
-        left: left === undefined ? undefined : gui(left),
-        right: right === undefined ? undefined : gui(right),
-        top: top === undefined ? undefined : gui(top),
-      }}
+    <ModLabel
+      className={cn("text-mc-ae2-text", className)}
+      left={left}
+      right={right}
+      top={top}
     >
       {children}
-    </span>
+    </ModLabel>
   );
 }

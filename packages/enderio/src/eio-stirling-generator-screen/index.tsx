@@ -1,7 +1,5 @@
 import type { ScreenSlot } from "@tennantite/ui";
-import { ModProgress } from "@tennantite/mods-core";
-import { gui, ScreenItemSlot } from "@tennantite/ui";
-import { Fragment } from "react";
+import { gui } from "@tennantite/ui";
 
 import type { EioRedstoneControl } from "../eio-machine-layout";
 import type { EioMachineState } from "../eio-machine-state/index";
@@ -9,10 +7,11 @@ import { EIO_REDSTONE_LABELS, eioNextRedstone, eioRedstoneIcon } from "../eio-co
 import { EioEnergyBar } from "../eio-energy-bar/index";
 import { EioIconButton } from "../eio-icon-button/index";
 import { EIO_MACHINES } from "../eio-machine-layout";
+import { EioMachineSlots } from "../eio-machine-parts";
 import { EioMachineScreen } from "../eio-machine-screen/index";
 import { EioMachineState as EioMachineStateIcon } from "../eio-machine-state/index";
 import { EIO_TEXT_COLOR } from "../eio-metrics";
-import { EioSprite } from "../eio-sprite/index";
+import { EioProgresses } from "../eio-progresses/index";
 
 export interface EioStirlingGeneratorScreenProps {
   /**
@@ -82,26 +81,11 @@ export function EioStirlingGeneratorScreen({
             />
           )
         : null}
-      {layout.progresses.map(entry => (
-        <ModProgress
-          direction={entry.direction}
-          fill={(
-            <EioSprite
-              crop={entry.crop}
-              height={entry.height}
-              name={entry.sprite}
-              width={entry.width}
-            />
-          )}
-          height={entry.height}
-          key={`${entry.sprite}-${entry.left}-${entry.top}`}
-          label="斯特林发电机燃烧进度"
-          left={entry.left}
-          progress={burn}
-          top={entry.top}
-          width={entry.width}
-        />
-      ))}
+      <EioProgresses
+        label="斯特林发电机燃烧进度"
+        progresses={layout.progresses}
+        progress={burn}
+      />
       <span
         className="absolute font-mc mc-text whitespace-pre"
         style={{
@@ -148,28 +132,7 @@ export function EioStirlingGeneratorScreen({
         onClick={onIoConfig}
         top={layout.io?.top ?? 0}
       />
-      {layout.slots.map(slot => (
-        <Fragment key={slot.label}>
-          {slot.label.endsWith("-capacitor")
-            ? (
-                <EioSprite
-                  height={16}
-                  left={slot.left + 1}
-                  name="sprites/widget/empty_capacitor_slot"
-                  top={slot.top + 1}
-                  width={16}
-                />
-              )
-            : null}
-          <ScreenItemSlot
-            item={items[slot.label]}
-            label={slot.label}
-            left={slot.left}
-            onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-            top={slot.top}
-          />
-        </Fragment>
-      ))}
+      <EioMachineSlots items={items} onSlotClick={onSlotClick} slots={layout.slots} />
     </EioMachineScreen>
   );
 }

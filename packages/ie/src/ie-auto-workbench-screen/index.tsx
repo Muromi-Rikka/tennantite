@@ -1,10 +1,12 @@
 import type { PixelIconName } from "@tennantite/textures";
 import type { ScreenSlot } from "@tennantite/ui";
 
-import { gui, ScreenItemSlot } from "@tennantite/ui";
+import { ScreenItemSlot } from "@tennantite/ui";
 import { IeEnergyBar } from "../ie-energy-bar/index";
+import { IeLayoutSlots } from "../ie-layout-slots/index";
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
+import { IeSpriteButton } from "../ie-sprite-button/index";
 
 export interface IeAutoWorkbenchRecipe {
   icon?: PixelIconName;
@@ -46,6 +48,15 @@ export function IeAutoWorkbenchScreen({
 }: IeAutoWorkbenchScreenProps) {
   const layout = IE_MACHINES.autoWorkbench;
   const slots = ieExpandSlots(layout);
+  const slotItems: Record<string, ScreenSlot | undefined> = {};
+  for (const slot of slots) {
+    if (slot.label.startsWith("auto-workbench-storage")) {
+      slotItems[slot.label] = storage[Number(slot.label.split("-").pop())] ?? undefined;
+    }
+    else if (slot.label === "auto-workbench-blueprint") {
+      slotItems[slot.label] = blueprint;
+    }
+  }
   const l = recipes.length;
   const selectionY = l > 6 ? 59 - Math.floor((l - 3) / 3) * 18 : (l > 3 ? 59 : 68);
   return (
@@ -70,49 +81,26 @@ export function IeAutoWorkbenchScreen({
           )
         : null}
       {Array.from(recipes, (recipe, index) => (
-        <span
-          aria-label={`配方 ${index}${recipe.selected ? "（当前）" : ""}`}
-          aria-pressed={recipe.selected}
-          data-ie-recipe-selected={recipe.selected ? "true" : "false"}
+        <IeSpriteButton
+          dataAttributes={{ "data-ie-recipe-selected": recipe.selected ? "true" : "false" }}
+          icon={(
+            <ScreenItemSlot
+              frame
+              item={recipe.icon ? { icon: recipe.icon, tooltip: recipe.tooltip } : null}
+              label={`auto-workbench-recipe-${index}`}
+              left={0}
+              top={0}
+            />
+          )}
           key={`recipe-${index}`}
+          label={`配方 ${index}${recipe.selected ? "（当前）" : ""}`}
+          left={121 + index % 3 * 18}
           onClick={onRecipeSelect ? () => onRecipeSelect(index) : undefined}
-          onKeyDown={(event) => {
-            if (!(onRecipeSelect && (event.key === "Enter" || event.key === " "))) {
-              return;
-            }
-
-            event.preventDefault();
-            onRecipeSelect(index);
-          }}
-          role="button"
-          style={{
-            height: gui(18),
-            left: gui(121 + index % 3 * 18),
-            position: "absolute",
-            top: gui(selectionY + Math.floor(index / 3) * 18),
-            width: gui(18),
-          }}
-          tabIndex={0}
-        >
-          <ScreenItemSlot
-            frame
-            item={recipe.icon ? { icon: recipe.icon, tooltip: recipe.tooltip } : null}
-            label={`auto-workbench-recipe-${index}`}
-            left={0}
-            top={0}
-          />
-        </span>
-      ))}
-      {slots.map(slot => (
-        <ScreenItemSlot
-          item={slot.label.startsWith("auto-workbench-storage") ? storage[Number(slot.label.split("-").pop())] ?? undefined : (slot.label === "auto-workbench-blueprint" ? blueprint : undefined)}
-          key={slot.label}
-          label={slot.label}
-          left={slot.left}
-          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-          top={slot.top}
+          pressed={recipe.selected}
+          top={selectionY + Math.floor(index / 3) * 18}
         />
       ))}
+      <IeLayoutSlots items={slotItems} onSlotClick={onSlotClick} slots={slots} />
     </IeMachineScreen>
   );
 }

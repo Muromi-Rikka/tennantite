@@ -1,7 +1,7 @@
 import { gui } from "@tennantite/ui";
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
-import { IeSprite } from "../ie-sprite/index";
+import { IeSpriteButton } from "../ie-sprite-button/index";
 
 export interface IeFluidSorterScreenProps {
   className?: string;
@@ -66,23 +66,17 @@ export function IeFluidSorterScreen({
       {Array.from({ length: 6 }, (_, side) => {
         const on = nbt[side] ?? false;
         return (
-          <button
-            aria-label={`面 ${side} NBT 过滤开关`}
-            aria-pressed={on}
-            data-ie-sorter-bit={on ? "true" : "false"}
+          <IeSpriteButton
+            dataAttributes={{ "data-ie-sorter-bit": on ? "true" : "false" }}
             key={`nbt-${side}`}
+            label={`面 ${side} NBT 过滤开关`}
+            left={21 + (side / 2) * 58}
+            name="sprites/sorter/no_components"
+            nameOn="sprites/sorter/components"
             onClick={onNbtClick ? () => onNbtClick(side) : undefined}
-            style={{
-              height: gui(18),
-              left: gui(21 + (side / 2) * 58),
-              position: "absolute",
-              top: gui(3 + (side % 2) * 76),
-              width: gui(18),
-            }}
-            type="button"
-          >
-            <IeSprite name={on ? "sprites/sorter/components" : "sprites/sorter/no_components"} />
-          </button>
+            pressed={on}
+            top={3 + (side % 2) * 76}
+          />
         );
       })}
     </IeMachineScreen>

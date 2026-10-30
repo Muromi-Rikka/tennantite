@@ -1,9 +1,11 @@
 import type { PixelIconName } from "@tennantite/textures";
-import { ModSprite } from "@tennantite/mods-core";
+import { ModScissorList, ModSprite } from "@tennantite/mods-core";
 import { createSpriteMeta } from "@tennantite/textures";
-import { cn, gui, ScreenItemSlot } from "@tennantite/ui";
+import { gui, ScreenItemSlot } from "@tennantite/ui";
 
 import { CREATE_ATLAS, CREATE_STOCK_KEEPER } from "../create-metrics";
+import { CreateWindow } from "../create-window/index";
+import { buildStockRows, StockRows } from "./stock-rows";
 
 /**
  * 库存物品条目（上游 BigItemStack：物品 + 数量）。
@@ -95,51 +97,41 @@ export function CreateStockKeeperScreen({
   const orderY = height - layout.orderBottom;
   const scrollbarHeight = height - 92;
   const thumbTop = layout.scrollbar.top + 1 + scroll * Math.max(0, scrollbarHeight - 12);
-  const groups: CreateStockKeeperCategory[] = categories ?? [{ id: "unsorted", items: items ?? [] }];
-  // 分类行 + 物品行统一 20px 栅格排布，预计算每行窗口 y
-  const rows: { category?: CreateStockKeeperCategory; hidden?: boolean; items?: CreateStockItem[]; top: number }[] = [];
-  {
-    let y = layout.items.top;
-    for (const category of groups) {
-      if (categories) {
-        rows.push({ category, hidden: category.hidden, top: y });
-        y += layout.rowHeight;
-      }
-      const itemRows = chunk(category.items, layout.columns);
-      for (const [index, rowItems] of itemRows.entries()) {
-        rows.push({ items: rowItems, top: y + index * layout.rowHeight });
-      }
-      y += itemRows.length * layout.rowHeight;
-    }
-  }
+  const rows = buildStockRows({ categories, items });
   return (
-    <div
-      className={cn("mc-create-window relative inline-block", className)}
-      style={{ height: gui(height), width: gui(layout.width) }}
+    <CreateWindow
+      background={(
+        <>
+          {/* 三段背板（上游整体绘制在窗口 x−15 处） */}
+          <ModSprite left={-15} sprite={createSpriteMeta[header.atlas]} src={header} top={0} />
+          {Array.from({ length: bodyRows }, (_, index) => (
+            <ModSprite
+              key={index}
+              left={-15}
+              sprite={createSpriteMeta[body.atlas]}
+              src={body}
+              top={layout.headerHeight + index * layout.rowHeight}
+            />
+          ))}
+          <ModSprite
+            left={-15}
+            sprite={createSpriteMeta[footer.atlas]}
+            src={footer}
+            top={layout.headerHeight + bodyRows * layout.rowHeight}
+          />
+        </>
+      )}
+      className={className}
+      height={height}
+      player={false}
+      title={title}
+      titleAlign="center"
+      titleColor="#714a40"
+      titleLeft={0}
+      titleTop={layout.playerTitle.top}
+      titleWidth={layout.width}
+      width={layout.width}
     >
-      {/* 三段背板（上游整体绘制在窗口 x−15 处） */}
-      <ModSprite left={-15} sprite={createSpriteMeta[header.atlas]} src={header} top={0} />
-      {Array.from({ length: bodyRows }, (_, index) => (
-        <ModSprite
-          key={index}
-          left={-15}
-          sprite={createSpriteMeta[body.atlas]}
-          src={body}
-          top={layout.headerHeight + index * layout.rowHeight}
-        />
-      ))}
-      <ModSprite
-        left={-15}
-        sprite={createSpriteMeta[footer.atlas]}
-        src={footer}
-        top={layout.headerHeight + bodyRows * layout.rowHeight}
-      />
-      <div
-        className="absolute text-center font-mc mc-text"
-        style={{ color: "#714a40", left: 0, top: gui(layout.playerTitle.top), width: gui(layout.width) }}
-      >
-        {title}
-      </div>
       {/* 搜索框 */}
       <ModSprite
         left={layout.search.left}
@@ -180,39 +172,14 @@ export function CreateStockKeeperScreen({
         />
       </button>
       {/* 物品视口（上游 scissor 21..205 × 17..高度−80） */}
-      <div
-        className="absolute overflow-hidden"
-        style={{
-          height: gui(height - layout.scissor.bottom - layout.scissor.top),
-          left: gui(layout.scissor.left),
-          top: gui(layout.scissor.top),
-          width: gui(layout.scissor.right - layout.scissor.left),
-        }}
+      <ModScissorList
+        height={height - layout.scissor.bottom - layout.scissor.top}
+        left={layout.scissor.left}
+        top={layout.scissor.top}
+        width={layout.scissor.right - layout.scissor.left}
       >
-        <div
-          className="absolute"
-          style={{ left: gui(layout.items.left - layout.scissor.left), top: gui(-layout.scissor.top) }}
-        >
-          {rows.map(row =>
-            row.category
-              ? (
-                  <div className="absolute flex items-center" key={row.category.id} style={{ left: 0, top: gui(row.top) }}>
-                    <ModSprite
-                      sprite={createSpriteMeta[(row.hidden ? atlas.stockKeeperCategoryHidden : atlas.stockKeeperCategoryShown).atlas]}
-                      src={row.hidden ? atlas.stockKeeperCategoryHidden : atlas.stockKeeperCategoryShown}
-                    />
-                    <span className="font-mc mc-text mc-text-shadow" style={{ color: "#f8f8ec", marginLeft: gui(2) }}>
-                      {row.category.name ?? "未分类"}
-                    </span>
-                  </div>
-                )
-              : (
-                  <div className="absolute flex" key={`row-${row.top}`} style={{ left: 0, top: gui(row.top) }}>
-                    {row.items?.map(item => <ItemCell item={item} key={`${item.icon}-${item.count}`} />)}
-                  </div>
-                ))}
-        </div>
-      </div>
+        <StockRows rows={rows} />
+      </ModScissorList>
       {/* 滚动条 */}
       <div className="absolute" style={{ left: gui(layout.scrollbar.left), top: gui(thumbTop), width: gui(5) }}>
         <ModSprite sprite={createSpriteMeta[atlas.stockKeeperScrollTop.atlas]} src={atlas.stockKeeperScrollTop} />
@@ -289,52 +256,6 @@ export function CreateStockKeeperScreen({
         }}
         type="text"
       />
-    </div>
-  );
-}
-
-function chunk<T>(list: T[], size: number): T[][] {
-  const out: T[][] = [];
-  for (let i = 0; i < list.length; i += size) {
-    out.push(list.slice(i, i + size));
-  }
-  return out;
-}
-
-function formatCount(count: number): string {
-  if (count >= 1000000) {
-    return `${Math.floor(count / 1000000)}m`;
-  }
-  if (count >= 10000) {
-    return `${Math.floor(count / 1000)}k`;
-  }
-  return count >= 1000 ? `${Math.floor(count / 100) / 10}k` : String(count);
-}
-
-function ItemCell({ item }: { item: CreateStockItem }) {
-  return (
-    <div className="relative shrink-0" style={{ height: gui(20), width: gui(20) }}>
-      <ModSprite left={1} sprite={createSpriteMeta[SLOT.atlas]} src={SLOT} top={1} />
-      <div className="absolute" style={{ left: gui(2), top: gui(2) }}>
-        <ScreenItemSlot
-          frame={false}
-          item={{ count: item.count, icon: item.icon, tooltip: item.tooltip }}
-          label={`stock-${item.icon}`}
-          left={0}
-          size={16}
-          top={0}
-        />
-      </div>
-      {item.count > 1
-        ? (
-            <div
-              className="absolute font-mc mc-text mc-text-shadow"
-              style={{ color: "#ffffff", right: gui(1), top: gui(10) }}
-            >
-              {formatCount(item.count)}
-            </div>
-          )
-        : null}
-    </div>
+    </CreateWindow>
   );
 }

@@ -7,6 +7,8 @@ import {
   FermentorScreenDemo,
   Ic2BlastFurnaceScreenDemo,
   Ic2EnergyGaugeDemo,
+  Ic2HeatGaugeDemo,
+  Ic2UpgradeStripDemo,
   InductionFurnaceScreenDemo,
   IronFurnaceScreenDemo,
   MaceratorScreenDemo,
@@ -26,6 +28,12 @@ export function Ic2Page() {
       </p>
       <Section title="Ic2EnergyGauge — EU 能量表">
         <Ic2EnergyGaugeDemo />
+      </Section>
+      <Section title="Ic2HeatGauge — 热量表">
+        <Ic2HeatGaugeDemo />
+      </Section>
+      <Section title="Ic2UpgradeStrip — 升级槽条">
+        <Ic2UpgradeStripDemo />
       </Section>
       <Section title="MaceratorScreen — 磨矿机">
         <MaceratorScreenDemo />

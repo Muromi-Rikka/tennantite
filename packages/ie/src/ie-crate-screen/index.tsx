@@ -1,6 +1,7 @@
 import type { ScreenSlot } from "@tennantite/ui";
 
-import { gui, ScreenItemSlot } from "@tennantite/ui";
+import { gui } from "@tennantite/ui";
+import { IeLayoutSlots } from "../ie-layout-slots/index";
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
 import { IE_TEXT_COLOR } from "../ie-metrics";
@@ -32,6 +33,10 @@ export function IeCrateScreen({
 }: IeCrateScreenProps) {
   const layout = IE_MACHINES.crate;
   const slots = ieExpandSlots(layout);
+  const slotItems: Record<string, ScreenSlot | undefined> = {};
+  for (const [index, slot] of slots.entries()) {
+    slotItems[slot.label] = items[index] ?? undefined;
+  }
   return (
     <IeMachineScreen
       background={layout.background}
@@ -58,16 +63,7 @@ export function IeCrateScreen({
         }}
         value={name}
       />
-      {slots.map((slot, index) => (
-        <ScreenItemSlot
-          item={items[index] ?? undefined}
-          key={slot.label}
-          label={slot.label}
-          left={slot.left}
-          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-          top={slot.top}
-        />
-      ))}
+      <IeLayoutSlots items={slotItems} onSlotClick={onSlotClick} slots={slots} />
     </IeMachineScreen>
   );
 }

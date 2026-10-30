@@ -1,10 +1,8 @@
-import { gui } from "@tennantite/ui";
-
 import { IeEnergyBar } from "../ie-energy-bar/index";
 import { IeLabel } from "../ie-label/index";
 import { IE_MACHINES } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
-import { IeSprite } from "../ie-sprite/index";
+import { IeSpriteButton } from "../ie-sprite-button/index";
 
 export interface IeCapacitorHvScreenProps {
   className?: string;
@@ -20,16 +18,6 @@ export interface IeCapacitorHvScreenProps {
 }
 
 export type IeCapacitorIoMode = "input" | "output";
-
-interface IoModeButtonProps {
-  active: boolean;
-  label: string;
-  left: number;
-  onActivate: () => void;
-  sprite: "sprites/hud/square_in" | "sprites/hud/square_out";
-  title: string;
-  top: number;
-}
 
 /**
  * 高压电容（1.21.1 无 GUI 容器，能量以能量条与侧栏 HUD 呈现；按
@@ -63,47 +51,28 @@ export function IeCapacitorHvScreen({
       />
       <IeLabel left={110} top={35}>{`${stored} IF`}</IeLabel>
       <IeLabel left={110} top={45}>{`容量 ${energy.capacity} IF`}</IeLabel>
-      <IoModeButton
-        active={mode === "input"}
+      <IeSpriteButton
+        className={mode === "input" ? undefined : "opacity-55"}
+        dataAttributes={{ "data-ie-io-mode": mode === "input" ? "active" : "idle" }}
         label="capacitor-hv-mode-in"
         left={24}
-        onActivate={() => onModeChange?.("input")}
-        sprite="sprites/hud/square_in"
+        name="sprites/hud/square_in"
+        onClick={() => onModeChange?.("input")}
+        pressed={mode === "input"}
         title="输入模式"
         top={43}
       />
-      <IoModeButton
-        active={mode === "output"}
+      <IeSpriteButton
+        className={mode === "output" ? undefined : "opacity-55"}
+        dataAttributes={{ "data-ie-io-mode": mode === "output" ? "active" : "idle" }}
         label="capacitor-hv-mode-out"
         left={42}
-        onActivate={() => onModeChange?.("output")}
-        sprite="sprites/hud/square_out"
+        name="sprites/hud/square_out"
+        onClick={() => onModeChange?.("output")}
+        pressed={mode === "output"}
         title="输出模式"
         top={43}
       />
     </IeMachineScreen>
-  );
-}
-
-function IoModeButton({ active, label, left, onActivate, sprite, title, top }: IoModeButtonProps) {
-  return (
-    <button
-      aria-label={label}
-      aria-pressed={active}
-      data-ie-io-mode={active ? "active" : "idle"}
-      onClick={onActivate}
-      style={{
-        height: gui(18),
-        left: gui(left),
-        opacity: active ? 1 : 0.55,
-        position: "absolute",
-        top: gui(top),
-        width: gui(18),
-      }}
-      title={title}
-      type="button"
-    >
-      <IeSprite name={sprite} />
-    </button>
   );
 }

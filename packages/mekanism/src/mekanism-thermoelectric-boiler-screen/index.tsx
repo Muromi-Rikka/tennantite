@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { MekanismChemicalContents, MekanismStorageScreenProps } from "../mekanism-storage-types";
 import type { MekanismSecurityMode } from "../mekanism-types";
 
+import { mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismBar } from "../mekanism-bar/index";
 import { MekanismGauge } from "../mekanism-gauge/index";
 import { MekanismInnerScreen } from "../mekanism-inner-screen/index";
@@ -15,7 +16,6 @@ export interface MekanismThermoelectricBoilerScreenProps extends MekanismStorage
   texts?: { boilRate?: ReactNode; maxBoilRate?: ReactNode; temperature?: ReactNode };
 }
 
-const SECURITY_ORDER: MekanismSecurityMode[] = ["public", "private", "protected"];
 
 /**
  * 热力锅炉：218×166，四个仪表 + 两条竖向速率条 + 内屏。
@@ -45,7 +45,7 @@ export function MekanismThermoelectricBoilerScreen({
         <MekanismTabBar
           onTabClick={(kind) => {
             if (kind === "security") {
-              setSecurity(SECURITY_ORDER[(SECURITY_ORDER.indexOf(security) + 1) % SECURITY_ORDER.length] ?? "public");
+              setSecurity(mekanismNextSecurity(security));
             }
           }}
           security={security}

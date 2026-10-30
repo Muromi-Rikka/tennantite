@@ -1,9 +1,9 @@
 import type { ScreenSlot } from "@tennantite/ui";
 
-import { gui, ScreenItemSlot } from "@tennantite/ui";
+import { IeLayoutSlots } from "../ie-layout-slots/index";
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
-import { IeSprite } from "../ie-sprite/index";
+import { IeSpriteButton } from "../ie-sprite-button/index";
 
 export interface IeItemBatcherScreenProps {
   /**
@@ -44,6 +44,12 @@ export function IeItemBatcherScreen({
 }: IeItemBatcherScreenProps) {
   const layout = IE_MACHINES.itemBatcher;
   const slots = ieExpandSlots(layout);
+  const slotItems: Record<string, null | ScreenSlot | undefined> = {};
+  for (const slot of slots) {
+    const index = Number(slot.label.split("-").pop());
+    const group = slot.label.startsWith("item-batcher-filter") ? filters : buffers;
+    slotItems[slot.label] = group[index] ?? undefined;
+  }
   return (
     <IeMachineScreen
       background={layout.background}
@@ -54,58 +60,35 @@ export function IeItemBatcherScreen({
       title={layout.title}
       width={layout.width}
     >
-      {slots.map((slot) => {
-        const index = Number(slot.label.split("-").pop());
-        const isFilter = slot.label.startsWith("item-batcher-filter");
-        return (
-          <ScreenItemSlot
-            item={(isFilter ? filters : buffers)[index] ?? undefined}
-            key={slot.label}
-            label={slot.label}
-            left={slot.left}
-            onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-            top={slot.top}
-          />
-        );
-      })}
+      <IeLayoutSlots items={slotItems} onSlotClick={onSlotClick} slots={slots} />
       {Array.from({ length: 9 }, (_, index) => {
         const on = colors[index] ?? false;
         return (
-          <button
-            aria-label={`红石染色 ${index}`}
-            aria-pressed={on}
-            data-ie-batcher-color={on ? "true" : "false"}
+          <IeSpriteButton
+            dataAttributes={{ "data-ie-batcher-color": on ? "true" : "false" }}
             key={`color-${index}`}
+            label={`红石染色 ${index}`}
+            left={12 + index * 18}
+            name="sprites/redstone_configuration/color_false"
+            nameOn="sprites/redstone_configuration/color_true"
             onClick={onColorClick ? () => onColorClick(index) : undefined}
-            style={{
-              height: gui(18),
-              left: gui(12 + index * 18),
-              position: "absolute",
-              top: gui(77),
-              width: gui(18),
-            }}
-            type="button"
-          >
-            <IeSprite name={on ? "sprites/redstone_configuration/color_true" : "sprites/redstone_configuration/color_false"} />
-          </button>
+            pressed={on}
+            top={77}
+          />
         );
       })}
-      <button
-        aria-label={outputAll ? "批量输出全部" : "按单物品批量"}
-        aria-pressed={outputAll}
-        data-ie-toggle-active={outputAll ? "true" : "false"}
+      <IeSpriteButton
+        dataAttributes={{ "data-ie-toggle-active": outputAll ? "true" : "false" }}
+        height={layout.toggle.height}
+        label={outputAll ? "批量输出全部" : "按单物品批量"}
+        left={layout.toggle.left}
+        name={layout.toggle.spriteOff}
+        nameOn={layout.toggle.spriteOn}
         onClick={onModeToggle}
-        style={{
-          height: gui(layout.toggle.height),
-          left: gui(layout.toggle.left),
-          position: "absolute",
-          top: gui(layout.toggle.top),
-          width: gui(layout.toggle.width),
-        }}
-        type="button"
-      >
-        <IeSprite name={outputAll ? layout.toggle.spriteOn : layout.toggle.spriteOff} />
-      </button>
+        pressed={outputAll}
+        top={layout.toggle.top}
+        width={layout.toggle.width}
+      />
     </IeMachineScreen>
   );
 }

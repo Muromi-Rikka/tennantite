@@ -20,7 +20,7 @@ export interface EioMachineScreenProps {
    */
   inventoryLabel?: ReactNode;
   labels?: { inventoryTop: number; titleTop: number };
-  machine: EioMachineKey;
+  machine: EioMachineKey | "dialingDevice" | "telePad" | "transceiver";
   player?: { hotbarY: number; left: number; top: number };
   title?: ReactNode;
   width: number;

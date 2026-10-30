@@ -16,6 +16,8 @@ import {
   Ae2SkyChestScreenDemo,
   Ae2SpatialIoPortScreenDemo,
   Ae2TerminalScreenDemo,
+  Ae2TextDemo,
+  Ae2TerminalBodyDemo,
 } from "@tennantite/ae2/demos";
 
 export function Ae2Page() {
@@ -29,6 +31,12 @@ export function Ae2Page() {
       </p>
       <Section title="Ae2TerminalScreen — ME 终端">
         <Ae2TerminalScreenDemo />
+      </Section>
+      <Section title="Ae2Text — 小号文字">
+        <Ae2TextDemo />
+      </Section>
+      <Section title="Ae2TerminalBody — 终端主体">
+        <Ae2TerminalBodyDemo />
       </Section>
       <Section title="Ae2CraftingTerminalScreen — 合成终端">
         <Ae2CraftingTerminalScreenDemo />

@@ -1,13 +1,12 @@
 import type { ScreenSlot } from "@tennantite/ui";
 
-import { progressClipPath } from "@tennantite/mods-core";
-import { gui, ScreenItemSlot } from "@tennantite/ui";
-import { Fragment } from "react";
 import { IeEnergyBar } from "../ie-energy-bar/index";
 import { IeFluidTank } from "../ie-fluid-tank/index";
+import { IeLayoutSlots } from "../ie-layout-slots/index";
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
-import { IeSprite } from "../ie-sprite/index";
+import { IeProgressBars } from "../ie-progress-bars/index";
+import { IeSpriteButton } from "../ie-sprite-button/index";
 
 export interface IeMixerScreenProps {
   className?: string;
@@ -50,6 +49,14 @@ export function IeMixerScreen({
   const layout = IE_MACHINES.mixer;
   const slots = ieExpandSlots(layout);
   const tankArea = layout.tanks[0];
+  const slotItems: Record<string, null | ScreenSlot | undefined> = {};
+  for (const [index, slot] of slots.entries()) {
+    slotItems[slot.label] = inputs[index] ?? null;
+  }
+  const barValues = Array.from(
+    { length: layout.progressBars?.count ?? 0 },
+    (_, index) => progresses[index] ?? 0,
+  );
   return (
     <IeMachineScreen
       background={layout.background}
@@ -85,63 +92,24 @@ export function IeMixerScreen({
             />
           )
         : null}
-      <button
-        aria-label={outputAll ? "搅拌机输出全部产物" : "搅拌机输出单一产物"}
-        aria-pressed={outputAll}
-        data-ie-toggle-active={outputAll ? "true" : "false"}
+      <IeSpriteButton
+        dataAttributes={{ "data-ie-toggle-active": outputAll ? "true" : "false" }}
+        height={layout.toggle.height}
+        label={outputAll ? "搅拌机输出全部产物" : "搅拌机输出单一产物"}
+        left={layout.toggle.left}
+        name={layout.toggle.spriteOff}
+        nameOn={layout.toggle.spriteOn}
         onClick={onOutputAllChange}
-        style={{
-          height: gui(layout.toggle.height),
-          left: gui(layout.toggle.left),
-          position: "absolute",
-          top: gui(layout.toggle.top),
-          width: gui(layout.toggle.width),
-        }}
-        type="button"
-      >
-        <IeSprite name={outputAll ? layout.toggle.spriteOn : layout.toggle.spriteOff} />
-      </button>
-      {slots.map((slot) => {
-        const index = Number(slot.label.split("-").pop());
-        const progress = progresses[index] ?? 0;
-        const bar = layout.progressBars;
-        const x = bar.left + (index % bar.perRow) * (bar.stepX ?? 18);
-        const y = bar.top + Math.floor(index / bar.perRow) * (bar.stepY ?? 18);
-        return (
-          <Fragment key={slot.label}>
-            <ScreenItemSlot
-              item={inputs[index] ?? undefined}
-              label={slot.label}
-              left={slot.left}
-              onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-              top={slot.top}
-            />
-            <div
-              aria-hidden="true"
-              className="absolute overflow-hidden"
-              data-ie-mixer-progress={index}
-              style={{
-                clipPath: progressClipPath("up", progress),
-                height: gui(bar.height),
-                left: gui(x),
-                top: gui(y),
-                width: gui(bar.drawWidth ?? 2),
-              }}
-            >
-              <div
-                style={{
-                  backgroundImage: "var(--mc-ie-sprites-mixer-progress)",
-                  backgroundRepeat: "no-repeat",
-                  backgroundSize: `${gui(3)} ${gui(bar.height)}`,
-                  height: "100%",
-                  imageRendering: "pixelated",
-                  width: "100%",
-                }}
-              />
-            </div>
-          </Fragment>
-        );
-      })}
+        pressed={outputAll}
+        top={layout.toggle.top}
+        width={layout.toggle.width}
+      />
+      <IeLayoutSlots items={slotItems} onSlotClick={onSlotClick} slots={slots} />
+      <IeProgressBars
+        dataAttribute="data-ie-mixer-progress"
+        layout={layout.progressBars}
+        values={barValues}
+      />
     </IeMachineScreen>
   );
 }

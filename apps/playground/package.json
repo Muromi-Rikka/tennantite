@@ -23,7 +23,8 @@
     "@tennantite/tokens": "workspace:*",
     "@tennantite/ui": "workspace:*",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "@tennantite/mods-core": "workspace:*"
   },
   "devDependencies": {
     "@rsbuild/core": "^2.2.14",

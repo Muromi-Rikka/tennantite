@@ -37,4 +37,8 @@ export { Ae2SpatialIoPortScreen } from "./ae2-spatial-io-port-screen/index";
 export type { Ae2SpatialIoPortScreenProps } from "./ae2-spatial-io-port-screen/index";
 export { Ae2TerminalScreen } from "./ae2-terminal-screen/index";
 export type { Ae2TerminalScreenProps } from "./ae2-terminal-screen/index";
+export { Ae2Text } from "./ae2-text/index";
+export type { Ae2TextProps } from "./ae2-text/index";
+export { Ae2TerminalBody } from "./ae2-terminal-body/index";
+export type { Ae2TerminalBodyProps } from "./ae2-terminal-body/index";
 export type { Ae2TerminalAction } from "./ae2-types";

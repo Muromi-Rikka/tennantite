@@ -2,6 +2,7 @@ import type { MekanismSpriteName } from "@tennantite/textures";
 import type { ScreenSlot } from "@tennantite/ui";
 import { cn, gui } from "@tennantite/ui";
 import { useState } from "react";
+import { MEKANISM_SECURITY_LABELS, mekanismNextRedstone, mekanismNextSecurity, mekanismNextSide } from "../mekanism-mode-state";
 import type { MekanismListRow } from "../mekanism-list/index";
 import type { MekanismDataType, MekanismRedstoneMode, MekanismSecurityMode, MekanismSide, MekanismTransmission, MekanismWindowKind } from "../mekanism-types";
 import { MekanismBar } from "../mekanism-bar/index";
@@ -76,21 +77,12 @@ const STATUS_LABELS: Record<MekanismTeleporterStatus, string> = {
   ready: "就绪",
 };
 
-const SECURITY_LABELS: Record<MekanismSecurityMode, string> = {
-  private: "私有",
-  protected: "受信任",
-  public: "公开",
-};
-
 const SECURITY_TABS: { left: number; mode: MekanismSecurityMode; sprite: MekanismSpriteName }[] = [
   { left: 27, mode: "public", sprite: "security/button_public" },
   { left: 69, mode: "protected", sprite: "security/button_trusted" },
   { left: 111, mode: "private", sprite: "security/button_private" },
 ];
 
-const SIDE_ORDER: MekanismDataType[] = ["NONE", "INPUT", "OUTPUT", "ENERGY"];
-const REDSTONE_ORDER: MekanismRedstoneMode[] = ["disabled", "high", "low", "pulse"];
-const SECURITY_ORDER: MekanismSecurityMode[] = ["public", "private", "protected"];
 const DEFAULT_TABS = ["config", "transporter", "upgrade", "security", "redstone", "energy"] as const;
 
 /**
@@ -127,12 +119,12 @@ export function MekanismTeleporterScreen({
     setWindows(current => current.includes(kind) ? current.filter(value => value !== kind) : [...current, kind]);
   };
   const cycleRedstone = () => {
-    const next = REDSTONE_ORDER[(REDSTONE_ORDER.indexOf(redstone) + 1) % REDSTONE_ORDER.length] ?? "disabled";
+    const next = mekanismNextRedstone(redstone);
     setRedstone(next);
     onRedstoneChange?.(next);
   };
   const cycleSecurity = () => {
-    const next = SECURITY_ORDER[(SECURITY_ORDER.indexOf(security) + 1) % SECURITY_ORDER.length] ?? "public";
+    const next = mekanismNextSecurity(security);
     setSecurity(next);
     onSecurityChange?.(next);
   };
@@ -207,7 +199,7 @@ export function MekanismTeleporterScreen({
                   onClose={() => setWindows(windows.filter(value => value !== "side-config"))}
                   onSideCycle={(side) => {
                     const current = sides[side] ?? "NONE";
-                    const next = SIDE_ORDER[(SIDE_ORDER.indexOf(current) + 1) % SIDE_ORDER.length] ?? "NONE";
+                    const next = mekanismNextSide(current);
                     setSides(value => ({ ...value, [side]: next }));
                   }}
                   onTransmissionChange={setTransmission}
@@ -247,7 +239,7 @@ export function MekanismTeleporterScreen({
             className={cn(isInactive && "opacity-50")}
             height={20}
             key={tab.mode}
-            label={`${SECURITY_LABELS[tab.mode]}频率`}
+            label={`${MEKANISM_SECURITY_LABELS[tab.mode]}频率`}
             left={tab.left}
             name={tab.sprite}
             onClick={onSecurityTabChange ? () => onSecurityTabChange(tab.mode) : undefined}
@@ -272,7 +264,7 @@ export function MekanismTeleporterScreen({
         {`所有者：${currentFrequency?.owner ?? "无"}`}
       </MekanismLabel>
       <MekanismLabel left={27} top={101} width={frequencyTextEnd}>
-        {`安全：${currentFrequency ? SECURITY_LABELS[currentFrequency.security] : "无"}`}
+        {`安全：${currentFrequency ? MEKANISM_SECURITY_LABELS[currentFrequency.security] : "无"}`}
       </MekanismLabel>
       <MekanismLabel className="text-right" left={27} top={114} width={23}>
         设置：

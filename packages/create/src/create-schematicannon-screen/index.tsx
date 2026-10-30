@@ -2,16 +2,12 @@ import type { InventoryItem, ScreenSlot } from "@tennantite/ui";
 
 import { ModIconButton, ModProgress, ModSprite } from "@tennantite/mods-core";
 import { createSpriteMeta } from "@tennantite/textures";
-import { cn, gui, PlayerInventory, ScreenItemSlot } from "@tennantite/ui";
+import { gui, ScreenItemSlot } from "@tennantite/ui";
 
-import type { CreateIndicatorState } from "../create-metrics";
-import {
-  CREATE_ATLAS,
-  CREATE_ICONS,
-  CREATE_INDICATOR_COLORS,
-  CREATE_SCHEMATICANNON,
-
-} from "../create-metrics";
+import { CREATE_ATLAS, CREATE_ICONS, CREATE_SCHEMATICANNON } from "../create-metrics";
+import { CreateWindow } from "../create-window/index";
+import { Indicator } from "./indicator";
+import { SettingsRow } from "./settings-row";
 
 export interface CreateSchematicannonScreenProps {
   /**
@@ -80,13 +76,6 @@ export interface CreateSchematicannonScreenProps {
   title?: string;
 }
 
-const REPLACE_OPTIONS = [
-  { icon: "dontReplace", label: "不替换实体" },
-  { icon: "replaceSolid", label: "替换为实体" },
-  { icon: "replaceAny", label: "替换为任意方块" },
-  { icon: "replaceEmpty", label: "替换为空气" },
-] as const;
-
 /**
  * Create 蓝图炮界面（`SchematicannonScreen` 视觉复刻）：上下两段背板
  * （schematics_2 atlas）+ 顶部标题板 + 5 槽位 + 打印/清单/燃料三条进度 +
@@ -128,24 +117,37 @@ export function CreateSchematicannonScreen({
   const isRunning = state === "running";
   const isPaused = state === "paused";
   return (
-    <div
-      className={cn("mc-create-window relative inline-block", className)}
-      style={{ height: gui(layout.height), width: gui(layout.width) }}
+    <CreateWindow
+      background={(
+        <>
+          <ModSprite left={0} sprite={createSpriteMeta[top.atlas]} src={top} top={0} />
+          <ModSprite left={0} sprite={createSpriteMeta[bottom.atlas]} src={bottom} top={top.height} />
+          <ModSprite
+            left={0}
+            sprite={createSpriteMeta[CREATE_ATLAS.schematicTitle.atlas]}
+            src={CREATE_ATLAS.schematicTitle}
+            top={-2}
+          />
+        </>
+      )}
+      className={className}
+      height={layout.height}
+      player={{
+        hotbarItems: player?.hotbarItems,
+        hotbarY: layout.player.hotbarY,
+        mainItems: player?.mainItems,
+        x: layout.player.x,
+        y: layout.player.y,
+      }}
+      title={title}
+      titleAlign="center"
+      titleClassName="mc-text-shadow"
+      titleColor="#505050"
+      titleLeft={0}
+      titleTop={layout.title.top}
+      titleWidth={layout.width}
+      width={layout.width}
     >
-      <ModSprite left={0} sprite={createSpriteMeta[top.atlas]} src={top} top={0} />
-      <ModSprite left={0} sprite={createSpriteMeta[bottom.atlas]} src={bottom} top={top.height} />
-      <ModSprite
-        left={0}
-        sprite={createSpriteMeta[CREATE_ATLAS.schematicTitle.atlas]}
-        src={CREATE_ATLAS.schematicTitle}
-        top={-2}
-      />
-      <div
-        className="absolute text-center font-mc mc-text mc-text-shadow"
-        style={{ color: "#505050", left: 0, top: gui(layout.title.top), width: gui(layout.width) }}
-      >
-        {title}
-      </div>
       {slots
         ? (
             <>
@@ -324,85 +326,16 @@ export function CreateSchematicannonScreen({
       />
       {showSettings
         ? (
-            <>
-              {REPLACE_OPTIONS.map((option, index) => (
-                <ModIconButton
-                  buttonClassName="bg-transparent"
-                  height={18}
-                  icon={(
-                    <ModSprite
-                      sprite={createSpriteMeta.icons}
-                      src={{ height: 16, width: 16, x: icons[option.icon].x, y: icons[option.icon].y }}
-                    />
-                  )}
-                  key={option.icon}
-                  label={option.label}
-                  left={layout.buttons.settingsReplace.left + index * layout.buttons.settingsReplace.step}
-                  onClick={() => onReplaceModeChange?.(index)}
-                  pressed={replaceMode === index}
-                  top={layout.buttons.settingsReplace.top}
-                  width={18}
-                />
-              ))}
-              <ModIconButton
-                buttonClassName="bg-transparent"
-                height={18}
-                icon={(
-                  <ModSprite
-                    sprite={createSpriteMeta.icons}
-                    src={{ height: 16, width: 16, x: icons.skipMissing.x, y: icons.skipMissing.y }}
-                  />
-                )}
-                label="跳过缺失材料"
-                left={layout.buttons.skipMissing.left}
-                onClick={onToggleSkipMissing}
-                pressed={skipMissing}
-                top={layout.buttons.skipMissing.top}
-                width={18}
-              />
-              <ModIconButton
-                buttonClassName="bg-transparent"
-                height={18}
-                icon={(
-                  <ModSprite
-                    sprite={createSpriteMeta.icons}
-                    src={{ height: 16, width: 16, x: icons.skipBlockEntities.x, y: icons.skipBlockEntities.y }}
-                  />
-                )}
-                label="跳过方块实体"
-                left={layout.buttons.skipBlockEntities.left}
-                onClick={onToggleSkipBlockEntities}
-                pressed={skipBlockEntities}
-                top={layout.buttons.skipBlockEntities.top}
-                width={18}
-              />
-            </>
+            <SettingsRow
+              onReplaceModeChange={onReplaceModeChange}
+              onToggleSkipBlockEntities={onToggleSkipBlockEntities}
+              onToggleSkipMissing={onToggleSkipMissing}
+              replaceMode={replaceMode}
+              skipBlockEntities={skipBlockEntities}
+              skipMissing={skipMissing}
+            />
           )
         : null}
-      <PlayerInventory
-        hotbarItems={player?.hotbarItems}
-        hotbarY={layout.player.hotbarY}
-        mainItems={player?.mainItems}
-        x={layout.player.x}
-        y={layout.player.y}
-      />
-    </div>
-  );
-}
-
-function Indicator({ left, state, top }: { left: number; state: CreateIndicatorState; top: number }) {
-  return (
-    <div
-      aria-hidden="true"
-      className="absolute"
-      data-indicator-state={state}
-      style={{
-        background: CREATE_INDICATOR_COLORS[state],
-        height: gui(6),
-        left: gui(left),
-        top: gui(top),
-        width: gui(18),
-      }}
-    />
+    </CreateWindow>
   );
 }

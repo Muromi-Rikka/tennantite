@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { MekanismFluidContents, MekanismStorageScreenProps } from "../mekanism-storage-types";
 import type { MekanismEditMode, MekanismSecurityMode } from "../mekanism-types";
 
+import { mekanismNextEdit, mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismArmorSlots } from "../mekanism-armor-slots/index";
 import { MekanismGauge } from "../mekanism-gauge/index";
 import { MekanismScreen } from "../mekanism-screen/index";
@@ -16,8 +17,6 @@ export interface MekanismFluidTankScreenProps extends MekanismStorageScreenProps
   output?: ScreenSlot;
 }
 
-const SECURITY_ORDER: MekanismSecurityMode[] = ["public", "private", "protected"];
-const EDIT_ORDER: MekanismEditMode[] = ["both", "fill", "empty"];
 
 /**
  * 流体储罐：176×166，wide 流体仪表 + 输入/输出槽 + 左侧装备栏。
@@ -49,10 +48,10 @@ export function MekanismFluidTankScreen({
           editMode={editMode}
           onTabClick={(kind) => {
             if (kind === "security") {
-              setSecurity(SECURITY_ORDER[(SECURITY_ORDER.indexOf(security) + 1) % SECURITY_ORDER.length] ?? "public");
+              setSecurity(mekanismNextSecurity(security));
             }
             else if (kind === "edit") {
-              setEditMode(EDIT_ORDER[(EDIT_ORDER.indexOf(editMode) + 1) % EDIT_ORDER.length] ?? "both");
+              setEditMode(mekanismNextEdit(editMode));
             }
           }}
           security={security}

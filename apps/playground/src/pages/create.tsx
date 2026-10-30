@@ -1,6 +1,7 @@
 import {
   CreateCrusherScreenDemo,
   CreateFilterScreenDemo,
+  CreateWindowDemo,
   CreateMillstoneScreenDemo,
   CreatePackageFilterScreenDemo,
   CreateSchematicannonScreenDemo,
@@ -29,6 +30,9 @@ export function CreatePage() {
       </Section>
       <Section title="CreateFilterScreen — 筛选器">
         <CreateFilterScreenDemo />
+      </Section>
+      <Section title="CreateWindow — 窗口基座">
+        <CreateWindowDemo />
       </Section>
       <Section title="CreateToolboxScreen — 工具箱">
         <CreateToolboxScreenDemo />

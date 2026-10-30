@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { gui } from "@tennantite/ui";
+import { ModLabel } from "@tennantite/mods-core";
 
 import { IE_TEXT_COLOR } from "../ie-metrics";
 
@@ -19,19 +19,8 @@ export interface IeLabelProps {
  */
 export function IeLabel({ children, className, left, top }: IeLabelProps) {
   return (
-    <span
-      className={className
-        ? `absolute font-mc mc-text whitespace-pre mc-text-shadow ${className}`
-        : "absolute font-mc mc-text whitespace-pre mc-text-shadow"}
-      style={{
-        color: IE_TEXT_COLOR,
-        left: left === undefined ? 0 : gui(left),
-        right: left === undefined ? 0 : undefined,
-        textAlign: left === undefined ? "center" : undefined,
-        top: gui(top),
-      }}
-    >
+    <ModLabel className={className} color={IE_TEXT_COLOR} left={left} shadow top={top}>
       {children}
-    </span>
+    </ModLabel>
   );
 }

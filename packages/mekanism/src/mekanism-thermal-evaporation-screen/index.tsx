@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { MekanismFluidContents, MekanismStorageScreenProps } from "../mekanism-storage-types";
 import type { MekanismSecurityMode } from "../mekanism-types";
 
+import { mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismArrow } from "../mekanism-arrow/index";
 import { MekanismBar } from "../mekanism-bar/index";
 import { MekanismGauge } from "../mekanism-gauge/index";
@@ -16,7 +17,6 @@ export interface MekanismThermalEvaporationScreenProps extends MekanismStorageSc
   texts?: { formed?: ReactNode; height?: ReactNode; production?: ReactNode; temperature?: ReactNode };
 }
 
-const SECURITY_ORDER: MekanismSecurityMode[] = ["public", "private", "protected"];
 
 /**
  * 热力蒸发控制器：196×166，输入/输出流体仪表 + 横向速率条 + 内屏。
@@ -44,7 +44,7 @@ export function MekanismThermalEvaporationScreen({
         <MekanismTabBar
           onTabClick={(kind) => {
             if (kind === "security") {
-              setSecurity(SECURITY_ORDER[(SECURITY_ORDER.indexOf(security) + 1) % SECURITY_ORDER.length] ?? "public");
+              setSecurity(mekanismNextSecurity(security));
             }
           }}
           security={security}

@@ -30,7 +30,7 @@ export { ThermalCrucibleScreen } from "./thermal-crucible-screen/index";
 export type { ThermalCrucibleScreenProps } from "./thermal-crucible-screen/index";
 export { ThermalCrystallizerScreen } from "./thermal-crystallizer-screen/index";
 export type { ThermalCrystallizerScreenProps } from "./thermal-crystallizer-screen/index";
-export { ThermalEnergyGauge } from "./thermal-energy-gauge/index";
+export { ThermalEnergyGauge, ThermalItemGauge } from "./thermal-energy-gauge/index";
 export type { ThermalEnergyGaugeProps } from "./thermal-energy-gauge/index";
 export { ThermalFisherScreen } from "./thermal-fisher-screen/index";
 export type { ThermalFisherScreenProps } from "./thermal-fisher-screen/index";
@@ -46,6 +46,14 @@ export {
 } from "./thermal-machine-layout";
 export { ThermalMachineScreen } from "./thermal-machine-screen/index";
 export type { ThermalMachineScreenProps } from "./thermal-machine-screen/index";
+export { ThermalAugmentPanel } from "./thermal-augment-panel/index";
+export type { ThermalAugmentPanelProps } from "./thermal-augment-panel/index";
+export { ThermalFluidTank } from "./thermal-fluid-tank/index";
+export type { ThermalFluidTankProps } from "./thermal-fluid-tank/index";
+export { ThermalLayoutSlot } from "./thermal-layout-slot/index";
+export type { ThermalLayoutSlotProps } from "./thermal-layout-slot/index";
+export { ThermalSpriteProgress } from "./thermal-sprite-progress/index";
+export type { ThermalSpriteProgressProps } from "./thermal-sprite-progress/index";
 export {
   THERMAL_AUGMENT_PANEL,
   THERMAL_AUGMENT_TAB,

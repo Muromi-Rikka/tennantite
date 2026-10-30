@@ -53,10 +53,29 @@ export const IF_PLAYER = { hotbarY: 160, left: 8, top: 102 } as const;
 export const IF_TITLE_TOP = 6;
 
 /**
- * 升级面板 / 流体面板
+ * 升级面板 / 流体面板：30×84 背景 + 面板内槽位几何
  */
-export const IF_AUGMENT_PANEL = { left: 175, top: 4 } as const;
-export const IF_TANK_PANEL = { left: 175, top: 94 } as const;
+export const IF_AUGMENT_PANEL = {
+  height: 84,
+  left: 175,
+  slotLeft: 180,
+  top: 4,
+  width: 30,
+} as const;
+export const IF_TANK_PANEL = {
+  arrowTop: 124,
+  height: 84,
+  inputSlotTop: 100,
+  inputTop: 101,
+  itemLeft: 180,
+  left: 175,
+  outputSlotTop: 153,
+  outputTop: 154,
+  slotLeft: 179,
+  slotSize: 18,
+  top: 94,
+  width: 30,
+} as const;
 export const IF_AUGMENT_SLOTS = [11, 29, 47, 65] as const;
 
 /**
@@ -75,6 +94,17 @@ export const IF_ENERGY = { left: 10, top: 20 } as const;
  * 基础竖条
  */
 export const IF_BAR = { left: 30, top: 20 } as const;
+
+export type IfProgressKind = "arrow-down" | "arrow-right" | "vertical";
+
+/**
+ * 进度条外框尺寸与填充层内缩（GUI px）
+ */
+export const IF_PROGRESS_SIZES: Record<IfProgressKind, { height: number; inset: number; width: number }> = {
+  "arrow-down": { height: 23, inset: 0, width: 15 },
+  "arrow-right": { height: 16, inset: 0, width: 22 },
+  vertical: { height: 56, inset: 3, width: 11 },
+};
 
 /**
  * 红石按钮

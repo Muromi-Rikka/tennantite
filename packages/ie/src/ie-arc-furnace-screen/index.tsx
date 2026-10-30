@@ -1,13 +1,11 @@
 import type { ScreenSlot } from "@tennantite/ui";
 
-import { progressClipPath } from "@tennantite/mods-core";
-import { gui, ScreenItemSlot } from "@tennantite/ui";
-import { useState } from "react";
 import { IeEnergyBar } from "../ie-energy-bar/index";
+import { IeLayoutSlots } from "../ie-layout-slots/index";
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
-import { IE_ARC_PROGRESS } from "../ie-metrics";
-import { IeSprite } from "../ie-sprite/index";
+import { IeProgressBars } from "../ie-progress-bars/index";
+import { IeSpriteButton } from "../ie-sprite-button/index";
 
 export interface IeArcFurnaceScreenProps {
   /**
@@ -57,9 +55,27 @@ export function IeArcFurnaceScreen({
   slagOutput,
 }: IeArcFurnaceScreenProps) {
   const layout = IE_MACHINES.arcFurnace;
-  const [hovered, setHovered] = useState(false);
   const slots = ieExpandSlots(layout);
-  const byLabel = (prefix: string) => slots.filter(slot => slot.label.startsWith(prefix));
+  const slotItems: Record<string, null | ScreenSlot | undefined> = {};
+  for (const slot of slots) {
+    const label = slot.label;
+    const index = Number(label.split("-").pop());
+    if (label.startsWith("arc-furnace-input")) {
+      slotItems[label] = inputs[index] ?? null;
+    }
+    else if (label.startsWith("arc-furnace-additive")) {
+      slotItems[label] = additives[index] ?? null;
+    }
+    else if (label.startsWith("arc-furnace-output")) {
+      slotItems[label] = outputs[index] ?? null;
+    }
+    else if (label.startsWith("arc-furnace-electrode")) {
+      slotItems[label] = electrodes[index] ?? null;
+    }
+    else if (label === "arc-furnace-slag-output") {
+      slotItems[label] = slagOutput;
+    }
+  }
   return (
     <IeMachineScreen
       background={layout.background}
@@ -81,114 +97,23 @@ export function IeArcFurnaceScreen({
             />
           )
         : null}
-      <button
-        aria-label="分配物品"
-        data-ie-distribute-button={hovered ? "hover" : "normal"}
-        onBlur={() => setHovered(false)}
+      <IeSpriteButton
+        dataAttributes={{ "data-ie-distribute-button": "normal" }}
+        height={16}
+        hoverName="sprites/arc_furnace/distribute_hover"
+        label="分配物品"
+        left={10}
+        name="sprites/arc_furnace/distribute"
         onClick={onDistribute}
-        onFocus={() => setHovered(true)}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        style={{
-          height: gui(16),
-          left: gui(10),
-          position: "absolute",
-          top: gui(10),
-          width: gui(16),
-        }}
-        type="button"
-      >
-        <IeSprite name={hovered ? "sprites/arc_furnace/distribute_hover" : "sprites/arc_furnace/distribute"} />
-      </button>
-      {progresses.map((progress, index) => {
-        const bar = layout.progressBars;
-        const x = bar.left + (index % bar.perRow) * (bar.stepX ?? 18);
-        const y = bar.top + Math.floor(index / bar.perRow) * (bar.stepY ?? 18);
-        return (
-          <div
-            aria-hidden="true"
-            className="absolute overflow-hidden"
-            data-ie-arc-progress={index}
-            key={`${x}-${y}`}
-            style={{
-              clipPath: progressClipPath("up", progress),
-              height: gui(IE_ARC_PROGRESS.height),
-              left: gui(x),
-              top: gui(y),
-              width: gui(IE_ARC_PROGRESS.drawWidth),
-            }}
-          >
-            <div
-              style={{
-                backgroundImage: "var(--mc-ie-sprites-arc-furnace-progress)",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: `${gui(IE_ARC_PROGRESS.width)} ${gui(IE_ARC_PROGRESS.height)}`,
-                height: "100%",
-                imageRendering: "pixelated",
-                width: "100%",
-              }}
-            />
-          </div>
-        );
-      })}
-      {byLabel("arc-furnace-input").map(slot => (
-        <ScreenItemSlot
-          item={itemFor(slot.label, inputs)}
-          key={slot.label}
-          label={slot.label}
-          left={slot.left}
-          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-          top={slot.top}
-        />
-      ))}
-      {byLabel("arc-furnace-additive").map(slot => (
-        <ScreenItemSlot
-          item={itemFor(slot.label, additives)}
-          key={slot.label}
-          label={slot.label}
-          left={slot.left}
-          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-          top={slot.top}
-        />
-      ))}
-      {byLabel("arc-furnace-output").map(slot => (
-        <ScreenItemSlot
-          item={itemFor(slot.label, outputs)}
-          key={slot.label}
-          label={slot.label}
-          left={slot.left}
-          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-          top={slot.top}
-        />
-      ))}
-      {byLabel("arc-furnace-electrode").map(slot => (
-        <ScreenItemSlot
-          item={itemFor(slot.label, electrodes)}
-          key={slot.label}
-          label={slot.label}
-          left={slot.left}
-          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-          top={slot.top}
-        />
-      ))}
-      {byLabel("arc-furnace-slag-output").map(slot => (
-        <ScreenItemSlot
-          item={slagOutput}
-          key={slot.label}
-          label={slot.label}
-          left={slot.left}
-          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-          top={slot.top}
-        />
-      ))}
+        top={10}
+        width={16}
+      />
+      <IeProgressBars
+        dataAttribute="data-ie-arc-progress"
+        layout={layout.progressBars}
+        values={progresses}
+      />
+      <IeLayoutSlots items={slotItems} onSlotClick={onSlotClick} slots={slots} />
     </IeMachineScreen>
   );
-}
-
-/**
- * 按槽位 label 的数字后缀（如 `arc-furnace-input-3` → 3）取注入物品。
- */
-function itemFor(label: string, items: Array<null | ScreenSlot>) {
-  const index = Number(label.split("-").pop());
-  return items[index] ?? null;
 }

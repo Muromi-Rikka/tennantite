@@ -254,6 +254,9 @@ importers:
       '@tennantite/mekanism':
         specifier: workspace:*
         version: link:../../packages/mekanism
+      '@tennantite/mods-core':
+        specifier: workspace:*
+        version: link:../../packages/mods-core
       '@tennantite/textures':
         specifier: workspace:*
         version: link:../../packages/textures
@@ -376,6 +379,9 @@ importers:
       '@tennantite/mekanism':
         specifier: workspace:*
         version: link:../../packages/mekanism
+      '@tennantite/mods-core':
+        specifier: workspace:*
+        version: link:../../packages/mods-core
       '@tennantite/textures':
         specifier: workspace:*
         version: link:../../packages/textures
@@ -868,6 +874,9 @@ importers:
 
   packages/mods-core:
     dependencies:
+      '@tennantite/textures':
+        specifier: workspace:*
+        version: link:../textures
       '@tennantite/ui':
         specifier: workspace:*
         version: link:../ui

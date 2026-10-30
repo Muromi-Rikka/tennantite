@@ -3,6 +3,7 @@ import { createSpriteMeta } from "@tennantite/textures";
 import { cn, gui } from "@tennantite/ui";
 
 import { CREATE_ICONS, CREATE_VALUE_SETTINGS } from "../create-metrics";
+import { CreateWindow } from "../create-window/index";
 
 export interface CreateValueSettingsPanelProps {
   className?: string;
@@ -48,9 +49,11 @@ export function CreateValueSettingsPanel({
   const milestones = Math.floor(max / CREATE_VALUE_SETTINGS.milestoneInterval) + 1;
   const milestonePitch = bar.width / range;
   return (
-    <div
-      className={cn("mc-create-value-panel relative inline-block p-4", className)}
-      style={{ width: gui(bar.width + 24) }}
+    <CreateWindow
+      className={cn("p-4", className)}
+      player={false}
+      width={bar.width + 24}
+      windowClassName="mc-create-value-panel"
     >
       <div className="mb-2 flex items-baseline justify-between">
         <span className="font-mc mc-text text-white mc-text-shadow">{title}</span>
@@ -124,6 +127,6 @@ export function CreateValueSettingsPanel({
           width={18}
         />
       </div>
-    </div>
+    </CreateWindow>
   );
 }

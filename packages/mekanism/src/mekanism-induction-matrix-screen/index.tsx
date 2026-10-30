@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { MekanismStorageScreenProps } from "../mekanism-storage-types";
 import type { MekanismSecurityMode } from "../mekanism-types";
 
+import { mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismArmorSlots } from "../mekanism-armor-slots/index";
 import { MekanismElementHolder } from "../mekanism-element-holder/index";
 import { MekanismGauge } from "../mekanism-gauge/index";
@@ -19,7 +20,6 @@ export interface MekanismInductionMatrixScreenProps extends MekanismStorageScree
   texts?: { capacity?: ReactNode; energy?: ReactNode; input?: ReactNode; output?: ReactNode };
 }
 
-const SECURITY_ORDER: MekanismSecurityMode[] = ["public", "private", "protected"];
 
 /**
  * 感应矩阵：176×166，34×56 能量仪表 + 内屏 + 两个元件槽 + 左侧装备栏。
@@ -48,7 +48,7 @@ export function MekanismInductionMatrixScreen({
         <MekanismTabBar
           onTabClick={(kind) => {
             if (kind === "security") {
-              setSecurity(SECURITY_ORDER[(SECURITY_ORDER.indexOf(security) + 1) % SECURITY_ORDER.length] ?? "public");
+              setSecurity(mekanismNextSecurity(security));
             }
           }}
           security={security}

@@ -1,10 +1,10 @@
 import type { IeSpriteName } from "@tennantite/textures";
 import type { ScreenSlot } from "@tennantite/ui";
 
-import { gui, ScreenItemSlot } from "@tennantite/ui";
+import { IeLayoutSlots } from "../ie-layout-slots/index";
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
-import { IeSprite } from "../ie-sprite/index";
+import { IeSpriteButton } from "../ie-sprite-button/index";
 
 export type IeSorterBit = "components" | "damage" | "tags";
 
@@ -52,6 +52,13 @@ export function IeSorterScreen({
 }: IeSorterScreenProps) {
   const layout = IE_MACHINES.sorter;
   const slots = ieExpandSlots(layout);
+  const slotItems: Record<string, null | ScreenSlot | undefined> = {};
+  for (const slot of slots) {
+    const label = slot.label;
+    const side = Number(label.split("-side", 2)[1]?.split("-", 1)[0]);
+    const indexInSide = Number(label.split("-").pop());
+    slotItems[label] = filters[side * 9 + indexInSide] ?? null;
+  }
   return (
     <IeMachineScreen
       background={layout.background}
@@ -62,22 +69,7 @@ export function IeSorterScreen({
       title={layout.title}
       width={layout.width}
     >
-      {slots.map((slot) => {
-        const label = slot.label;
-        const side = Number(label.split("-side", 2)[1]?.split("-", 1)[0]);
-        const indexInSide = Number(label.split("-").pop());
-        const filter = filters[side * 9 + indexInSide] ?? null;
-        return (
-          <ScreenItemSlot
-            item={filter}
-            key={label}
-            label={label}
-            left={slot.left}
-            onActivate={onSlotClick ? () => onSlotClick(label) : undefined}
-            top={slot.top}
-          />
-        );
-      })}
+      <IeLayoutSlots items={slotItems} onSlotClick={onSlotClick} slots={slots} />
       {Array.from({ length: 6 }, (_, side) => {
         const colBase = 3 + (side / 2) * 58;
         const top = 3 + (side % 2) * 76;
@@ -85,23 +77,17 @@ export function IeSorterScreen({
           const mask = masks[side];
           const on = mask ? mask[bit] : false;
           return (
-            <button
-              aria-label={`面 ${side} ${bit} 过滤开关`}
-              aria-pressed={on}
-              data-ie-sorter-bit={on ? "true" : "false"}
+            <IeSpriteButton
+              dataAttributes={{ "data-ie-sorter-bit": on ? "true" : "false" }}
               key={`${side}-${bit}`}
+              label={`面 ${side} ${bit} 过滤开关`}
+              left={colBase + bitIndex * 18}
+              name={BIT_SPRITES[bit][0]}
+              nameOn={BIT_SPRITES[bit][1]}
               onClick={onMaskClick ? () => onMaskClick(bit, side) : undefined}
-              style={{
-                height: gui(18),
-                left: gui(colBase + bitIndex * 18),
-                position: "absolute",
-                top: gui(top),
-                width: gui(18),
-              }}
-              type="button"
-            >
-              <IeSprite name={on ? BIT_SPRITES[bit][1] : BIT_SPRITES[bit][0]} />
-            </button>
+              pressed={on}
+              top={top}
+            />
           );
         });
       })}

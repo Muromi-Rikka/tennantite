@@ -1,7 +1,8 @@
-import { cn, gui } from "@tennantite/ui";
-import { useState } from "react";
+import type { ReactNode } from "react";
 import type { IfCropKey } from "../if-metrics";
 
+import { ModIconButton } from "@tennantite/mods-core";
+import { cn } from "@tennantite/ui";
 import { IF_CROPS } from "../if-metrics";
 import { IfSprite } from "../if-sprite/index";
 
@@ -20,7 +21,7 @@ export interface IfIconButtonProps {
 }
 
 /**
- * Industrial Foregoing 图集按钮：状态图 + 悬停 1px 白色内描边。
+ * Industrial Foregoing 图集按钮：状态图 + 悬停 1px 白色内描边（CSS 悬停，SSR 安全）。
  */
 export function IfIconButton({
   className,
@@ -35,44 +36,43 @@ export function IfIconButton({
   top,
   width,
 }: IfIconButtonProps) {
-  const [highlighted, setHighlighted] = useState(false);
   const crop = states[Math.min(Math.max(state, 0), states.length - 1)] as IfCropKey;
 
+  // `states` 为非空元组，`map` 后按长度回断言，保留 ModIconButton 的非空契约。
+  const icons = states.map((spriteCrop, index) => (
+    <IfSprite
+      crop={spriteCrop}
+      height={height}
+      key={`${spriteCrop}-${index}`}
+      left={0}
+      name={IF_CROPS[spriteCrop].sprite}
+      top={0}
+      width={width}
+    />
+  )) as unknown as readonly [ReactNode, ...ReactNode[]];
+
   return (
-    <button
-      aria-label={label}
+    <ModIconButton
+      buttonClassName=""
       className={cn(
-        "absolute border-0 bg-transparent p-0",
-        disabled ? "cursor-default opacity-60" : (onClick ? "cursor-pointer" : undefined),
+        "bg-transparent hover:shadow-[inset_0_0_0_1px_#fff] focus-visible:shadow-[inset_0_0_0_1px_#fff]",
+        disabled ? "opacity-60" : undefined,
         className,
       )}
-      data-if-button={label}
-      data-if-crop={crop}
-      disabled={disabled}
-      onBlur={() => { setHighlighted(false); }}
-      onClick={onClick}
-      onFocus={() => { setHighlighted(true); }}
-      onMouseEnter={() => { setHighlighted(true); }}
-      onMouseLeave={() => { setHighlighted(false); }}
-      style={{
-        boxShadow: highlighted ? "inset 0 0 0 1px #fff" : undefined,
-        height: gui(height),
-        left: gui(left),
-        padding: 0,
-        top: gui(top),
-        width: gui(width),
+      dataAttributes={{
+        "data-if-button": label,
+        "data-if-crop": crop,
       }}
+      disabled={disabled}
+      height={height}
+      icons={icons}
+      label={label}
+      left={left}
+      onClick={onClick}
+      state={state}
       title={tooltip}
-      type="button"
-    >
-      <IfSprite
-        crop={crop}
-        height={height}
-        left={0}
-        name={IF_CROPS[crop].sprite}
-        top={0}
-        width={width}
-      />
-    </button>
+      top={top}
+      width={width}
+    />
   );
 }

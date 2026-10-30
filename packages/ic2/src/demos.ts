@@ -12,3 +12,5 @@ export { MaceratorScreenDemo } from "./macerator-screen/demo";
 export { MetalFormerScreenDemo } from "./metal-former-screen/demo";
 export { MfsuScreenDemo } from "./mfsu-screen/demo";
 export { RecyclerScreenDemo } from "./recycler-screen/demo";
+export { Ic2HeatGaugeDemo } from "./ic2-heat-gauge/demo";
+export { Ic2UpgradeStripDemo } from "./ic2-upgrade-strip/demo";

@@ -1,27 +1,11 @@
 import type { PlayerInventoryProps, ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
-import {
-  ModScrollbar,
-  ModSearchField,
-  ModSlotGrid,
-  ModSprite,
-  ModTabButton,
-  ModTitle,
-  ModToolbar,
-} from "@tennantite/mods-core";
+import { ModSprite, ModToolbar } from "@tennantite/mods-core";
 import { ae2SpriteMeta } from "@tennantite/textures";
-import { cn, gui, padSlots, PlayerInventory, ScreenPanel } from "@tennantite/ui";
+import { cn, gui, padSlots } from "@tennantite/ui";
 import type { Ae2TerminalAction } from "../ae2-types";
-import {
-  AE2_ICONS,
-  AE2_TERMINAL,
-  AE2_TERMINAL_SLICES,
-  ae2TerminalHeight,
-  ae2TerminalPlayerHotbarTop,
-  ae2TerminalPlayerMainTop,
-  ae2TerminalPlayerTitleTop,
-} from "../ae2-layout";
-import { Ae2PanelBackground } from "../ae2-panel";
+import { AE2_ICONS, AE2_TERMINAL, AE2_TERMINAL_SLICES, ae2TerminalHeight } from "../ae2-layout";
+import { Ae2TerminalBody } from "../ae2-terminal-body/index";
 
 export interface Ae2TerminalScreenProps {
   className?: string;
@@ -117,76 +101,31 @@ export function Ae2TerminalScreen({
             />
           )
         : null}
-      <ScreenPanel
-        backgroundClassName="bg-transparent"
+      <Ae2TerminalBody
+        entriesLabel={entriesLabel}
+        grid={{
+          columns: AE2_TERMINAL.columns,
+          labelPrefix: "terminal",
+          left: AE2_TERMINAL.gridLeft,
+          rows,
+          slotSize: AE2_TERMINAL.slotSize,
+          top: AE2_TERMINAL.gridTop,
+        }}
         height={height}
-        width={AE2_TERMINAL.panelWidth}
-      >
-        <Ae2PanelBackground
-          name={AE2_TERMINAL.sprite}
-          rows={rows}
-          slices={AE2_TERMINAL_SLICES}
-        />
-        <ModTitle left={8} top={6}>{title}</ModTitle>
-        <ModSearchField
-          defaultValue={searchDefaultValue}
-          left={AE2_TERMINAL.search.left}
-          onChange={onSearchChange}
-          placeholder={searchPlaceholder}
-          top={AE2_TERMINAL.search.top}
-          width={AE2_TERMINAL.search.width}
-        />
-        {entriesLabel === undefined
-          ? null
-          : (
-              <span
-                aria-hidden="true"
-                className="absolute font-mc text-mc-ae2-text"
-                style={{
-                  fontSize: "calc(var(--mc-gui) * 5.4)",
-                  lineHeight: "calc(var(--mc-gui) * 9)",
-                  right: gui(26),
-                  top: gui(8),
-                }}
-              >
-                {entriesLabel}
-              </span>
-            )}
-        <ModSlotGrid
-          cellSize={AE2_TERMINAL.slotSize}
-          columns={AE2_TERMINAL.columns}
-          frame={false}
-          items={slots}
-          labelPrefix="terminal"
-          left={AE2_TERMINAL.gridLeft}
-          onSlotClick={onSlotClick}
-          rows={rows}
-          top={AE2_TERMINAL.gridTop}
-        />
-        <ModScrollbar
-          height={rows * AE2_TERMINAL.rowHeight - 2}
-          left={AE2_TERMINAL.scrollbar.left}
-          top={AE2_TERMINAL.scrollbar.top}
-          track={false}
-        />
-        <ModTitle left={8} top={ae2TerminalPlayerTitleTop(height)}>物品栏</ModTitle>
-        <PlayerInventory
-          bare
-          hotbarItems={hotbarItems}
-          hotbarY={ae2TerminalPlayerHotbarTop(height)}
-          mainItems={mainItems}
-          selectedIndex={selectedIndex}
-          x={7}
-          y={ae2TerminalPlayerMainTop(height)}
-        />
-        <ModTabButton
-          icon={<ModSprite sprite={ae2SpriteMeta.states} src={AE2_ICONS.craftStatus} />}
-          label="合成状态"
-          left={171}
-          onClick={onCraftingStatus}
-          top={-5}
-        />
-      </ScreenPanel>
+        hotbarItems={hotbarItems}
+        mainItems={mainItems}
+        onCraftingStatus={onCraftingStatus}
+        onSearchChange={onSearchChange}
+        onSlotClick={onSlotClick}
+        panel={{ slices: AE2_TERMINAL_SLICES, sprite: AE2_TERMINAL.sprite, width: AE2_TERMINAL.panelWidth }}
+        scrollbar={{ left: AE2_TERMINAL.scrollbar.left, rowHeight: AE2_TERMINAL.rowHeight, top: AE2_TERMINAL.scrollbar.top }}
+        search={AE2_TERMINAL.search}
+        searchDefaultValue={searchDefaultValue}
+        searchPlaceholder={searchPlaceholder}
+        selectedIndex={selectedIndex}
+        slots={slots}
+        title={title}
+      />
     </div>
   );
 }

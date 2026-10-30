@@ -28,7 +28,8 @@
     "astro": "^7.4.2",
     "motion": "^14.8.0",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "@tennantite/mods-core": "workspace:*"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",

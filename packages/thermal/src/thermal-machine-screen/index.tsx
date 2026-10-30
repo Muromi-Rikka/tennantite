@@ -1,19 +1,17 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
-import { ModProgress, progressClipPath } from "@tennantite/mods-core";
-import { gui, padSlots, PlayerInventory, ScreenItemSlot } from "@tennantite/ui";
-import { Fragment } from "react";
-import type { ThermalMachineFluidLayout, ThermalMachineKey, ThermalMachineLayout } from "../thermal-machine-layout";
+import { ModLabel } from "@tennantite/mods-core";
+import { gui, PlayerInventory } from "@tennantite/ui";
+
+import type { ThermalMachineKey, ThermalMachineLayout } from "../thermal-machine-layout";
+import { ThermalAugmentPanel } from "../thermal-augment-panel/index";
 import { ThermalEnergyGauge } from "../thermal-energy-gauge/index";
-import {
-  THERMAL_MACHINES,
-} from "../thermal-machine-layout";
-import {
-  THERMAL_AUGMENT_PANEL,
-  THERMAL_AUGMENT_TAB,
-  THERMAL_GUI,
-} from "../thermal-metrics";
+import { ThermalFluidTank } from "../thermal-fluid-tank/index";
+import { ThermalLayoutSlot } from "../thermal-layout-slot/index";
+import { THERMAL_MACHINES } from "../thermal-machine-layout";
+import { THERMAL_GUI } from "../thermal-metrics";
 import { ThermalSprite } from "../thermal-sprite/index";
+import { ThermalSpriteProgress } from "../thermal-sprite-progress/index";
 
 export interface ThermalMachineScreenProps {
   /**
@@ -114,24 +112,15 @@ export function ThermalMachineScreen({
 }: ThermalMachineScreenProps) {
   const layout: ThermalMachineLayout = THERMAL_MACHINES[machine];
   const height = layout.height ?? THERMAL_GUI.height;
-  const visibleAugments = Math.min(augments.length, THERMAL_AUGMENT_PANEL.slots.count);
   return (
     <div className={className} style={{ height: gui(height), position: "relative", width: gui(THERMAL_GUI.width) }}>
       <ThermalSprite crop={{ height, width: THERMAL_GUI.width, x: 0, y: 0 }} name={layout.background} />
-      <span
-        className="absolute font-mc mc-text text-mc-thermal-text"
-        style={{ left: 0, right: 0, textAlign: "center", top: gui(6) }}
-      >
-        {title ?? layout.title}
-      </span>
+      <ModLabel className="text-mc-thermal-text" top={6}>{title ?? layout.title}</ModLabel>
       {playerName
         ? (
-            <span
-              className="absolute font-mc mc-text text-mc-thermal-text"
-              style={{ left: gui(8), top: gui(height - 93) }}
-            >
+            <ModLabel className="text-mc-thermal-text" left={8} top={height - 93}>
               {playerName}
-            </span>
+            </ModLabel>
           )
         : null}
       {layout.energy
@@ -148,82 +137,68 @@ export function ThermalMachineScreen({
           )
         : null}
       {layout.fluid
-        ? renderFluidTank(layout.fluid, fluid)
+        ? <ThermalFluidTank state={fluid} tank={layout.fluid} />
         : null}
       {layout.fluids?.map((tankLayout, index) => (
-        <Fragment key={`fluid-${tankLayout.left}-${tankLayout.top}`}>
-          {renderFluidTank(tankLayout, fluids[index])}
-        </Fragment>
-      )) ?? null}
+        <ThermalFluidTank
+          key={`fluid-${tankLayout.left}-${tankLayout.top}`}
+          state={fluids[index]}
+          tank={tankLayout}
+        />
+      ))}
       {layout.input
         ? (
-            <ScreenItemSlot
+            <ThermalLayoutSlot
               item={input}
               label={layout.input.label}
               left={layout.input.left}
-              onActivate={onSlotClick && input
-                ? () => onSlotClick(layout.input!.label, input)
-                : undefined}
+              onSlotClick={onSlotClick}
               size={layout.input.size}
               top={layout.input.top}
             />
           )
         : null}
-      {layout.inputs?.map((slotLayout, index) => {
-        const item = inputs[index];
-        return (
-          <ScreenItemSlot
-            item={item}
-            key={slotLayout.label}
-            label={slotLayout.label}
-            left={slotLayout.left}
-            onActivate={onSlotClick && item
-              ? () => onSlotClick(slotLayout.label, item)
-              : undefined}
-            size={slotLayout.size}
-            top={slotLayout.top}
-          />
-        );
-      })}
+      {layout.inputs?.map((slotLayout, index) => (
+        <ThermalLayoutSlot
+          key={slotLayout.label}
+          item={inputs[index]}
+          label={slotLayout.label}
+          left={slotLayout.left}
+          onSlotClick={onSlotClick}
+          size={slotLayout.size}
+          top={slotLayout.top}
+        />
+      ))}
       {layout.output
         ? (
-            <ScreenItemSlot
+            <ThermalLayoutSlot
               item={output}
               label={layout.output.label}
               left={layout.output.left}
-              onActivate={onSlotClick && output
-                ? () => onSlotClick(layout.output!.label, output)
-                : undefined}
+              onSlotClick={onSlotClick}
               size={layout.output.size}
               top={layout.output.top}
             />
           )
         : null}
-      {layout.outputs?.map((slotLayout, index) => {
-        const item = outputs[index];
-        return (
-          <ScreenItemSlot
-            item={item}
-            key={slotLayout.label}
-            label={slotLayout.label}
-            left={slotLayout.left}
-            onActivate={onSlotClick && item
-              ? () => onSlotClick(slotLayout.label, item)
-              : undefined}
-            size={slotLayout.size}
-            top={slotLayout.top}
-          />
-        );
-      })}
+      {layout.outputs?.map((slotLayout, index) => (
+        <ThermalLayoutSlot
+          key={slotLayout.label}
+          item={outputs[index]}
+          label={slotLayout.label}
+          left={slotLayout.left}
+          onSlotClick={onSlotClick}
+          size={slotLayout.size}
+          top={slotLayout.top}
+        />
+      ))}
       {layout.secondaryOutput
         ? (
-            <ScreenItemSlot
+            <ThermalLayoutSlot
               item={secondaryOutput}
               label={layout.secondaryOutput.label}
               left={layout.secondaryOutput.left}
-              onActivate={onSlotClick
-                ? () => onSlotClick(layout.secondaryOutput!.label, secondaryOutput!)
-                : undefined}
+              onSlotClick={onSlotClick}
               size={layout.secondaryOutput.size}
               top={layout.secondaryOutput.top}
             />
@@ -231,64 +206,34 @@ export function ThermalMachineScreen({
         : null}
       {layout.progress
         ? (
-            <>
-              <ThermalSprite
-                crop={layout.progress.trackCrop}
-                height={layout.progress.height}
-                left={layout.progress.left}
-                name={layout.progressSprite ?? "elements/progress_arrow_right"}
-                top={layout.progress.top}
-                width={layout.progress.width}
-              />
-              <ModProgress
-                direction="right"
-                fill={(
-                  <ThermalSprite
-                    crop={layout.progress.fillCrop}
-                    height={layout.progress.height}
-                    name={layout.progressSprite ?? "elements/progress_arrow_right"}
-                    width={layout.progress.width}
-                  />
-                )}
-                height={layout.progress.height}
-                label="处理进度"
-                left={layout.progress.left}
-                progress={progress}
-                top={layout.progress.top}
-                width={layout.progress.width}
-              />
-            </>
+            <ThermalSpriteProgress
+              direction="right"
+              fillCrop={layout.progress.fillCrop}
+              height={layout.progress.height}
+              label="处理进度"
+              left={layout.progress.left}
+              progress={progress}
+              sprite={layout.progressSprite ?? "elements/progress_arrow_right"}
+              top={layout.progress.top}
+              trackCrop={layout.progress.trackCrop}
+              width={layout.progress.width}
+            />
           )
         : null}
       {layout.speed
         ? (
-            <>
-              <ThermalSprite
-                crop={layout.speed.trackCrop}
-                height={layout.speed.height}
-                left={layout.speed.left}
-                name={layout.speedSprite ?? "elements/scale_flame"}
-                top={layout.speed.top}
-                width={layout.speed.width}
-              />
-              <ModProgress
-                direction="up"
-                fill={(
-                  <ThermalSprite
-                    crop={layout.speed.fillCrop}
-                    height={layout.speed.height}
-                    name={layout.speedSprite ?? "elements/scale_flame"}
-                    width={layout.speed.width}
-                  />
-                )}
-                height={layout.speed.height}
-                label="处理速度"
-                left={layout.speed.left}
-                progress={speed}
-                top={layout.speed.top}
-                width={layout.speed.width}
-              />
-            </>
+            <ThermalSpriteProgress
+              direction="up"
+              fillCrop={layout.speed.fillCrop}
+              height={layout.speed.height}
+              label="处理速度"
+              left={layout.speed.left}
+              progress={speed}
+              sprite={layout.speedSprite ?? "elements/scale_flame"}
+              top={layout.speed.top}
+              trackCrop={layout.speed.trackCrop}
+              width={layout.speed.width}
+            />
           )
         : null}
       {children}
@@ -299,135 +244,11 @@ export function ThermalMachineScreen({
         mainItems={playerItems}
         y={height - 83}
       />
-      <button
-        aria-expanded={augmentsOpen}
-        aria-label="强化"
-        className="absolute cursor-pointer border-0 bg-transparent p-0"
-        onClick={onAugmentsToggle}
-        style={{ height: gui(THERMAL_AUGMENT_TAB.height), left: gui(THERMAL_AUGMENT_TAB.left), top: gui(THERMAL_AUGMENT_TAB.top), width: gui(THERMAL_AUGMENT_TAB.width) }}
-        type="button"
-      >
-        <ThermalSprite height={16} name="icons/icon_augment" width={16} />
-      </button>
-      {augmentsOpen
-        ? (
-            <div
-              data-thermal-augment-panel=""
-              style={{
-                height: gui(THERMAL_AUGMENT_PANEL.height),
-                left: gui(THERMAL_AUGMENT_TAB.left),
-                position: "absolute",
-                top: 0,
-                width: gui(THERMAL_AUGMENT_PANEL.width),
-              }}
-            >
-              <div
-                aria-hidden="true"
-                style={{
-                  borderImageOutset: "0",
-                  borderImageSlice: "4 fill",
-                  borderImageSource: "var(--mc-thermal-elements-panel-right)",
-                  borderImageWidth: `${gui(4)} ${gui(4)} ${gui(4)} ${gui(4)}`,
-                  borderStyle: "solid",
-                  borderWidth: gui(4),
-                  boxSizing: "border-box",
-                  height: "100%",
-                  imageRendering: "pixelated",
-                  position: "absolute",
-                  width: "100%",
-                }}
-              />
-              <span
-                className="absolute font-mc mc-text text-mc-thermal-text"
-                style={{ left: gui(THERMAL_AUGMENT_PANEL.titleLeft), top: gui(THERMAL_AUGMENT_PANEL.titleTop) }}
-              >
-                {THERMAL_AUGMENT_PANEL.title}
-              </span>
-              <ThermalSprite
-                height={THERMAL_AUGMENT_PANEL.icon.size}
-                left={THERMAL_AUGMENT_PANEL.icon.left}
-                name="icons/icon_augment"
-                top={THERMAL_AUGMENT_PANEL.icon.top}
-                width={THERMAL_AUGMENT_PANEL.icon.size}
-              />
-              <div
-                aria-hidden="true"
-                style={{
-                  backgroundColor: THERMAL_AUGMENT_PANEL.borderColor,
-                  height: gui(THERMAL_AUGMENT_PANEL.border.height),
-                  left: gui(THERMAL_AUGMENT_PANEL.border.left),
-                  position: "absolute",
-                  top: gui(THERMAL_AUGMENT_PANEL.border.top),
-                  width: gui(THERMAL_AUGMENT_PANEL.border.width),
-                }}
-              />
-              {padSlots(augments, visibleAugments).map((item, index) => {
-                const augmentLeft = THERMAL_AUGMENT_PANEL.slots.origin.left + (index % 3) * THERMAL_AUGMENT_PANEL.slots.gap;
-                const augmentTop = THERMAL_AUGMENT_PANEL.slots.origin.top + Math.floor(index / 3) * THERMAL_AUGMENT_PANEL.slots.gap;
-                return (
-                  <ScreenItemSlot
-                    frame
-                    frameClassName="mc-tex-slot"
-                    item={item}
-                    key={`${augmentLeft}-${augmentTop}`}
-                    label={`augment-${index}`}
-                    left={augmentLeft}
-                    onActivate={onSlotClick ? () => onSlotClick(`augment-${index}`, item) : undefined}
-                    top={augmentTop}
-                  />
-                );
-              })}
-            </div>
-          )
-        : null}
-    </div>
-  );
-}
-
-function renderFluidTank(
-  tank: ThermalMachineFluidLayout,
-  state?: { amount: number; capacity: number; tint: string },
-) {
-  const fill = state ? Math.min(1, Math.max(0, state.capacity > 0 ? state.amount / state.capacity : 0)) : 0;
-  return (
-    <div
-      aria-label="液体"
-      aria-valuemax={100}
-      aria-valuemin={0}
-      aria-valuenow={Math.round(fill * 100)}
-      className="absolute"
-      data-thermal-fluid-tank={tank.frame}
-      role="progressbar"
-      style={{
-        height: gui(tank.height),
-        left: gui(tank.left),
-        top: gui(tank.top),
-        width: gui(tank.width),
-      }}
-      title="液体"
-    >
-      <div
-        className="absolute overflow-hidden"
-        style={{ bottom: gui(1), left: gui(1), right: gui(1), top: gui(1) }}
-      >
-        <div
-          style={{
-            backgroundColor: state?.tint,
-            clipPath: progressClipPath("up", fill),
-            height: "100%",
-            width: "100%",
-          }}
-        />
-      </div>
-      <ThermalSprite
-        className="absolute top-0 left-0"
-        crop={{ height: tank.height, width: tank.width, x: 0, y: 0 }}
-        name={tank.frame}
-      />
-      <ThermalSprite
-        className="absolute top-0 left-0"
-        crop={{ height: tank.height, width: tank.width, x: 0, y: 0 }}
-        name={tank.overlay}
+      <ThermalAugmentPanel
+        augments={augments}
+        onSlotClick={onSlotClick}
+        onToggle={onAugmentsToggle}
+        open={augmentsOpen}
       />
     </div>
   );

@@ -1,9 +1,9 @@
 import type { ScreenSlot } from "@tennantite/ui";
 
 import { ModProgress } from "@tennantite/mods-core";
-import { ScreenItemSlot } from "@tennantite/ui";
 import { IeEnergyBar } from "../ie-energy-bar/index";
 import { IeFluidTank } from "../ie-fluid-tank/index";
+import { IeLayoutSlots } from "../ie-layout-slots/index";
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
 import { IeSprite } from "../ie-sprite/index";
@@ -52,6 +52,9 @@ export function IeClocheScreen({
     "cloche-seed": seed,
     "cloche-soil": soil,
   };
+  for (const [index, item] of outputs.entries()) {
+    slotItems[`cloche-output-${index}`] = item ?? undefined;
+  }
   return (
     <IeMachineScreen
       background={layout.background}
@@ -112,16 +115,7 @@ export function IeClocheScreen({
         top={layout.spriteProgress.top}
         width={layout.spriteProgress.width}
       />
-      {ieExpandSlots(layout).map(slot => (
-        <ScreenItemSlot
-          item={slot.label.startsWith("cloche-output") ? outputs[Number(slot.label.split("-").pop())] ?? undefined : slotItems[slot.label]}
-          key={slot.label}
-          label={slot.label}
-          left={slot.left}
-          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-          top={slot.top}
-        />
-      ))}
+      <IeLayoutSlots items={slotItems} onSlotClick={onSlotClick} slots={ieExpandSlots(layout)} />
     </IeMachineScreen>
   );
 }

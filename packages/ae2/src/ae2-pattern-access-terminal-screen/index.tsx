@@ -3,6 +3,7 @@ import { ModScrollbar, ModSprite } from "@tennantite/mods-core";
 import { ae2SpriteMeta } from "@tennantite/textures";
 import { cn, gui, ScreenPanel } from "@tennantite/ui";
 import { AE2_CPU_SELECTOR } from "../ae2-layout";
+import { Ae2Text } from "../ae2-text/index";
 
 export interface Ae2CraftingCpuOption {
   /**
@@ -61,17 +62,9 @@ export function Ae2PatternAccessTerminalScreen({
           src={{ height, width, x: 0, y: 0 }}
           top={0}
         />
-        <span
-          className="absolute font-mc text-mc-ae2-text"
-          style={{
-            fontSize: "calc(var(--mc-gui) * 5.4)",
-            left: gui(5),
-            lineHeight: "calc(var(--mc-gui) * 9)",
-            top: gui(4),
-          }}
-        >
+        <Ae2Text left={5} top={4}>
           {title}
-        </span>
+        </Ae2Text>
         {visible.map((cpu, index) => {
           if (!cpu) {
             return null;
@@ -113,30 +106,14 @@ export function Ae2PatternAccessTerminalScreen({
                       top={0}
                     />
                   )}
-              <span
-                className="pointer-events-none absolute font-mc text-mc-ae2-text"
-                style={{
-                  fontSize: "calc(var(--mc-gui) * 5.4)",
-                  left: gui(3),
-                  lineHeight: "calc(var(--mc-gui) * 9)",
-                  top: gui(3),
-                }}
-              >
+              <Ae2Text left={3} top={3}>
                 {cpu.name}
-              </span>
+              </Ae2Text>
               {cpu.detail
                 ? (
-                    <span
-                      className="pointer-events-none absolute font-mc text-mc-ae2-text"
-                      style={{
-                        fontSize: "calc(var(--mc-gui) * 5.4)",
-                        left: gui(3),
-                        lineHeight: "calc(var(--mc-gui) * 9)",
-                        top: gui(11),
-                      }}
-                    >
+                    <Ae2Text left={3} top={11}>
                       {cpu.detail}
-                    </span>
+                    </Ae2Text>
                   )
                 : null}
             </button>

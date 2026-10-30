@@ -1,9 +1,10 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
 
-import { progressClipPath } from "@tennantite/mods-core";
+import { ModLabel } from "@tennantite/mods-core";
 import { gui, PlayerInventory } from "@tennantite/ui";
 import { ThermalCellRateText, ThermalCellStepButton } from "../thermal-cell-controls";
+import { ThermalFluidTank } from "../thermal-fluid-tank/index";
 import { THERMAL_CELL_CONTROLS, THERMAL_FLUID_STORAGE, THERMAL_GUI } from "../thermal-metrics";
 import { ThermalSprite } from "../thermal-sprite/index";
 
@@ -69,16 +70,10 @@ export function ThermalFluidCacheScreen({
 }: ThermalFluidCacheScreenProps) {
   const { buttons, icons, textCenters } = THERMAL_CELL_CONTROLS;
   const medium = THERMAL_FLUID_STORAGE.medium;
-  const ratio = Math.min(1, Math.max(0, capacity === 0 ? 0 : amount / capacity));
   return (
     <div className={className} style={{ height: gui(THERMAL_GUI.height), position: "relative", width: gui(THERMAL_GUI.width) }}>
       <ThermalSprite crop={{ height: THERMAL_GUI.height, width: THERMAL_GUI.width, x: 0, y: 0 }} name="container/fluid_cell" />
-      <span
-        className="absolute font-mc mc-text text-mc-thermal-text"
-        style={{ left: 0, right: 0, textAlign: "center", top: gui(6) }}
-      >
-        {title}
-      </span>
+      <ModLabel className="text-mc-thermal-text" top={6}>{title}</ModLabel>
       <ThermalSprite
         height={icons.input.size}
         left={icons.input.left}
@@ -93,41 +88,18 @@ export function ThermalFluidCacheScreen({
         top={icons.output.top}
         width={icons.output.size}
       />
-      <div
-        aria-label="缓存容量"
-        aria-valuemax={100}
-        aria-valuemin={0}
-        aria-valuenow={Math.round(ratio * 100)}
-        className="absolute"
-        data-thermal-fluid-tank="elements/storage_fluid_medium"
-        role="progressbar"
-        style={{ height: gui(medium.height), left: gui(80), top: gui(22), width: gui(medium.width) }}
-        title="缓存容量"
-      >
-        <div
-          className="absolute overflow-hidden"
-          style={{ bottom: gui(1), left: gui(1), right: gui(1), top: gui(1) }}
-        >
-          <div
-            style={{
-              backgroundColor: tint,
-              clipPath: progressClipPath("up", ratio),
-              height: "100%",
-              width: "100%",
-            }}
-          />
-        </div>
-        <ThermalSprite
-          className="absolute top-0 left-0"
-          crop={{ height: medium.height, width: medium.width, x: 0, y: 0 }}
-          name="elements/storage_fluid_medium"
-        />
-        <ThermalSprite
-          className="absolute top-0 left-0"
-          crop={{ height: medium.height, width: medium.width, x: 0, y: 0 }}
-          name="elements/overlay_fluid_medium"
-        />
-      </div>
+      <ThermalFluidTank
+        label="缓存容量"
+        state={{ amount, capacity, tint }}
+        tank={{
+          frame: "elements/storage_fluid_medium",
+          height: medium.height,
+          left: 80,
+          overlay: "elements/overlay_fluid_medium",
+          top: 22,
+          width: medium.width,
+        }}
+      />
       <ThermalCellRateText center={textCenters.input} label="存入速率" value={inputRate} />
       <ThermalCellRateText center={textCenters.output} label="取出速率" value={outputRate} />
       <ThermalCellStepButton
@@ -174,12 +146,9 @@ export function ThermalFluidCacheScreen({
       />
       {playerName
         ? (
-            <span
-              className="absolute font-mc mc-text text-mc-thermal-text"
-              style={{ left: gui(8), top: gui(72) }}
-            >
+            <ModLabel className="text-mc-thermal-text" left={8} top={72}>
               {playerName}
-            </span>
+            </ModLabel>
           )
         : null}
       <PlayerInventory bare hotbarItems={playerHotbar} mainItems={playerItems} />

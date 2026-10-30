@@ -26,3 +26,6 @@ export { IeSorterScreenDemo } from "./ie-sorter-screen/demo";
 export { IeSpriteDemo } from "./ie-sprite/demo";
 export { IeSqueezerScreenDemo } from "./ie-squeezer-screen/demo";
 export { IeToolboxScreenDemo } from "./ie-toolbox-screen/demo";
+export { IeLayoutSlotsDemo } from "./ie-layout-slots/demo";
+export { IeSpriteButtonDemo } from "./ie-sprite-button/demo";
+export { IeProgressBarsDemo } from "./ie-progress-bars/demo";

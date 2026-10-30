@@ -8,6 +8,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
+    },
+    "./demos": {
+      "types": "./dist/demos.d.ts",
+      "default": "./dist/demos.js"
     }
   },
   "files": [
@@ -28,7 +32,8 @@
     "react-dom": "^19.2.0"
   },
   "dependencies": {
-    "@tennantite/ui": "workspace:*"
+    "@tennantite/ui": "workspace:*",
+    "@tennantite/textures": "workspace:*"
   },
   "devDependencies": {
     "@rsbuild/plugin-react": "^2.1.1",

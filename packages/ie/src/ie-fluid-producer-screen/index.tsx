@@ -1,8 +1,8 @@
 import type { ScreenSlot } from "@tennantite/ui";
 
-import { ScreenItemSlot } from "@tennantite/ui";
 import { IeEnergyBar } from "../ie-energy-bar/index";
 import { IeFluidTank } from "../ie-fluid-tank/index";
+import { IeLayoutSlots } from "../ie-layout-slots/index";
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
 
@@ -44,13 +44,14 @@ export function IeFluidProducerScreen({
   const layout = IE_MACHINES.fluidProducer;
   const slots = ieExpandSlots(layout);
   const tankArea = layout.tanks[0];
-  const itemFor = (label: string): ScreenSlot | undefined => {
-    if (label.startsWith("fluid-producer-grid"))
-      return grid[Number(label.split("-").pop())] ?? undefined;
-    if (label === "fluid-producer-cell")
-      return cell;
-    return label === "fluid-producer-input" ? input : output;
+  const slotItems: Record<string, ScreenSlot | undefined> = {
+    "fluid-producer-cell": cell,
+    "fluid-producer-input": input,
+    "fluid-producer-output": output,
   };
+  for (const [index, item] of grid.entries()) {
+    slotItems[`fluid-producer-grid-${index}`] = item ?? undefined;
+  }
   return (
     <IeMachineScreen
       className={className}
@@ -87,16 +88,7 @@ export function IeFluidProducerScreen({
             />
           )
         : null}
-      {slots.map(slot => (
-        <ScreenItemSlot
-          item={itemFor(slot.label)}
-          key={slot.label}
-          label={slot.label}
-          left={slot.left}
-          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-          top={slot.top}
-        />
-      ))}
+      <IeLayoutSlots items={slotItems} onSlotClick={onSlotClick} slots={slots} />
     </IeMachineScreen>
   );
 }

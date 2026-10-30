@@ -1,5 +1,7 @@
 import type { ComponentType } from "react";
 
+import * as modsCoreDemos from "@tennantite/mods-core/demos";
+
 import {
   Ae2ChestScreenDemo,
   Ae2CondenserScreenDemo,
@@ -18,10 +20,13 @@ import {
   Ae2SkyChestScreenDemo,
   Ae2SpatialIoPortScreenDemo,
   Ae2TerminalScreenDemo,
+  Ae2TextDemo,
+  Ae2TerminalBodyDemo,
 } from "@tennantite/ae2/demos";
 import {
   CreateCrusherScreenDemo,
   CreateFilterScreenDemo,
+  CreateWindowDemo,
   CreateMillstoneScreenDemo,
   CreatePackageFilterScreenDemo,
   CreateSchematicannonScreenDemo,
@@ -77,6 +82,7 @@ import {
   EioWirelessChargerScreenDemo,
   EioXpObeliskScreenDemo,
   EioXpVacuumScreenDemo,
+  EioProgressesDemo,
 } from "@tennantite/enderio/demos";
 import {
   FdComfortOverlayDemo,
@@ -102,6 +108,8 @@ import {
   MetalFormerScreenDemo,
   MfsuScreenDemo,
   RecyclerScreenDemo,
+  Ic2HeatGaugeDemo,
+  Ic2UpgradeStripDemo,
 } from "@tennantite/ic2/demos";
 import {
   IeAlloySmelterScreenDemo,
@@ -132,6 +140,9 @@ import {
   IeSpriteDemo,
   IeSqueezerScreenDemo,
   IeToolboxScreenDemo,
+  IeLayoutSlotsDemo,
+  IeProgressBarsDemo,
+  IeSpriteButtonDemo,
 } from "@tennantite/ie/demos";
 import {
   IfAugmentPanelDemo,
@@ -190,6 +201,11 @@ import {
   MekanismWindowDemo,
 } from "@tennantite/mekanism/demos";
 import {
+  ThermalAugmentPanelDemo,
+  ThermalFluidTankDemo,
+  ThermalItemGaugeDemo,
+  ThermalLayoutSlotDemo,
+  ThermalSpriteProgressDemo,
   ThermalBottlerScreenDemo,
   ThermalBrewerScreenDemo,
   ThermalCacheScreenDemo,
@@ -295,6 +311,12 @@ import { LiveDemo } from "./live-demo";
 import { LIVE_SPECS } from "./live-specs";
 
 const registry: Record<string, ComponentType> = {
+  ...modsCoreDemos,
+  IeLayoutSlotsDemo,
+  IeProgressBarsDemo,
+  IeSpriteButtonDemo,
+  Ae2TextDemo,
+  Ae2TerminalBodyDemo,
   Ae2ChestScreenDemo,
   Ae2CondenserScreenDemo,
   Ae2CraftingCpuScreenDemo,
@@ -333,6 +355,7 @@ const registry: Record<string, ComponentType> = {
   CraftingScreenDemo,
   CreateCrusherScreenDemo,
   CreateFilterScreenDemo,
+  CreateWindowDemo,
   CreateMillstoneScreenDemo,
   CreatePackageFilterScreenDemo,
   CreateSchematicannonScreenDemo,
@@ -373,6 +396,7 @@ const registry: Record<string, ComponentType> = {
   EioNiardScreenDemo,
   EioPaintingMachineScreenDemo,
   EioPoweredSpawnerScreenDemo,
+  EioProgressesDemo,
   EioRelocatorScreenDemo,
   EioSagMillScreenDemo,
   EioSliceAndSpliceScreenDemo,
@@ -414,6 +438,8 @@ const registry: Record<string, ComponentType> = {
   HotbarDemo,
   Ic2BlastFurnaceScreenDemo,
   Ic2EnergyGaugeDemo,
+  Ic2HeatGaugeDemo,
+  Ic2UpgradeStripDemo,
   IconDemo,
   IeAlloySmelterScreenDemo,
   IeArcFurnaceScreenDemo,
@@ -539,6 +565,11 @@ const registry: Record<string, ComponentType> = {
   ThermalCrystallizerScreenDemo,
   ThermalEnergyCellScreenDemo,
   ThermalEnergyGaugeDemo,
+  ThermalItemGaugeDemo,
+  ThermalAugmentPanelDemo,
+  ThermalFluidTankDemo,
+  ThermalLayoutSlotDemo,
+  ThermalSpriteProgressDemo,
   ThermalFisherScreenDemo,
   ThermalFluidCacheScreenDemo,
   ThermalHiveExtractorScreenDemo,

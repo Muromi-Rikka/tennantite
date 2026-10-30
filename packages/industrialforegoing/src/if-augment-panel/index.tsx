@@ -17,11 +17,11 @@ export function IfAugmentPanel({ className, items = [] }: IfAugmentPanelProps) {
     <div className={className} data-if-augment-panel="">
       <IfSprite
         crop="augmentPanel"
-        height={84}
+        height={IF_AUGMENT_PANEL.height}
         left={IF_AUGMENT_PANEL.left}
         name="titanium_background"
         top={IF_AUGMENT_PANEL.top}
-        width={30}
+        width={IF_AUGMENT_PANEL.width}
       />
       {IF_AUGMENT_SLOTS.map((top, index) => (
         <IfSlot
@@ -29,7 +29,7 @@ export function IfAugmentPanel({ className, items = [] }: IfAugmentPanelProps) {
           item={items[index]}
           key={top}
           label={`augment-${index}`}
-          left={180}
+          left={IF_AUGMENT_PANEL.slotLeft}
           top={top}
         />
       ))}

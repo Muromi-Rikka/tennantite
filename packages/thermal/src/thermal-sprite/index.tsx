@@ -1,7 +1,8 @@
 import type { ThermalSpriteName } from "@tennantite/textures";
 import type { CSSProperties } from "react";
 import { thermalSpriteMeta } from "@tennantite/textures";
-import { cn, gui } from "@tennantite/ui";
+import { ModSprite } from "@tennantite/mods-core";
+import { cn } from "@tennantite/ui";
 
 export interface ThermalSpriteCrop {
   height: number;
@@ -52,8 +53,7 @@ export interface ThermalSpriteProps {
 }
 
 /**
- * Thermal 精灵渲染器：默认整图拉伸，传入 `crop` 时按源图区域取用
- * （1.20.x 贴图无 `.mcmeta` gui.scaling，均为整图/图集直取）。
+ * Thermal 精灵适配器：几何与裁剪交给 `ModSprite`，保留 Thermal class 与 data 钩子。
  */
 export function ThermalSprite({
   className,
@@ -67,48 +67,19 @@ export function ThermalSprite({
   top,
   width,
 }: ThermalSpriteProps) {
-  const meta = thermalSpriteMeta[name];
-  const sourceWidth = crop?.width ?? meta.width;
-  const sourceHeight = crop?.height ?? meta.height;
-  const targetWidth = width ?? sourceWidth;
-  const targetHeight = height ?? sourceHeight;
-
-  const spriteStyle: CSSProperties = {
-    height: gui(targetHeight),
-    opacity,
-    width: gui(targetWidth),
-    ...(crop
-      ? {
-          backgroundImage: `var(${meta.cssVar})`,
-          backgroundPosition: `${gui(-crop.x)} ${gui(-crop.y)}`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: `${gui(meta.width)} ${gui(meta.height)}`,
-        }
-      : {
-          backgroundImage: `var(${meta.cssVar})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "100% 100%",
-        }),
-    boxSizing: "border-box",
-    imageRendering: "pixelated",
-    pointerEvents: "none",
-    ...(!(left === undefined && top === undefined) && { position: "absolute" }),
-    ...(left !== undefined && { left: gui(left) }),
-    ...(top !== undefined && { top: gui(top) }),
-    ...style,
-  };
-
-  if (tint) {
-    spriteStyle.backgroundBlendMode = "multiply";
-    spriteStyle.backgroundColor = tint;
-  }
-
   return (
-    <div
-      aria-hidden="true"
+    <ModSprite
       className={cn("mc-thermal-sprite", className)}
-      data-thermal-sprite={name}
-      style={spriteStyle}
+      dataAttributes={{ "data-thermal-sprite": name }}
+      height={height}
+      left={left}
+      opacity={opacity}
+      sprite={thermalSpriteMeta[name]}
+      src={crop}
+      style={style}
+      tint={tint}
+      top={top}
+      width={width}
     />
   );
 }

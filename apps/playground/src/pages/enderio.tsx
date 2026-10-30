@@ -17,6 +17,7 @@ import {
   EioNiardScreenDemo,
   EioPaintingMachineScreenDemo,
   EioPoweredSpawnerScreenDemo,
+  EioProgressesDemo,
   EioRelocatorScreenDemo,
   EioSagMillScreenDemo,
   EioSliceAndSpliceScreenDemo,
@@ -53,6 +54,9 @@ export function EnderioPage() {
       </Section>
       <Section title="EioStirlingGeneratorScreen — 斯特林发电机">
         <EioStirlingGeneratorScreenDemo />
+      </Section>
+      <Section title="EioProgresses — 进度列表">
+        <EioProgressesDemo />
       </Section>
       <Section title="EioSoulBinderScreen — 灵魂绑定器">
         <EioSoulBinderScreenDemo />

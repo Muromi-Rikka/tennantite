@@ -41,3 +41,5 @@ export { EioWiredChargerScreenDemo } from "./eio-wired-charger-screen/demo";
 export { EioWirelessChargerScreenDemo } from "./eio-wireless-charger-screen/demo";
 export { EioXpObeliskScreenDemo } from "./eio-xp-obelisk-screen/demo";
 export { EioXpVacuumScreenDemo } from "./eio-xp-vacuum-screen/demo";
+
+export { EioProgressesDemo } from "./eio-progresses/demo";

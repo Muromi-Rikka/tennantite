@@ -1,7 +1,6 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
 import {
-  padSlots,
   PlayerInventory,
   ScreenItemSlot,
   ScreenPanel,
@@ -13,6 +12,7 @@ import { Ic2Label } from "../ic2-label";
 import { IC2_INDUSTRIAL_FURNACE } from "../ic2-layout";
 import { Ic2Progress } from "../ic2-progress";
 import { Ic2Title } from "../ic2-title";
+import { Ic2UpgradeStrip } from "../ic2-upgrade-strip";
 
 export interface InductionFurnaceScreenProps {
   className?: string;
@@ -126,18 +126,10 @@ export function InductionFurnaceScreen({
         left={slots.discharge.left}
         top={slots.discharge.top}
       />
-      {padSlots(upgrades, slots.upgrades.count).map((slot, index) => (
-        <ScreenItemSlot
-          frame
-          frameClassName="mc-tex-ic2-slot"
-          item={slot}
-          // eslint-disable-next-line react/no-array-index-key -- 固定位置的升级槽，索引即槽位号
-          key={`machine-upgrade-${index}`}
-          label={`machine-upgrade-${index}`}
-          left={slots.upgrades.left}
-          top={slots.upgrades.top + index * slots.upgrades.step}
-        />
-      ))}
+      <Ic2UpgradeStrip
+        position={{ left: slots.upgrades.left, top: slots.upgrades.top }}
+        upgrades={upgrades}
+      />
       <Ic2EnergyGauge
         label="EU 能量"
         left={55}

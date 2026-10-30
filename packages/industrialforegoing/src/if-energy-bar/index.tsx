@@ -1,4 +1,4 @@
-import { gui } from "@tennantite/ui";
+import { ModProgress } from "@tennantite/mods-core";
 
 import { IF_ENERGY } from "../if-metrics";
 import { IfSprite } from "../if-sprite/index";
@@ -12,6 +12,11 @@ export interface IfEnergyBarProps {
 }
 
 /**
+ * 能量条几何：18×56 外框，12×50 填充区内缩 3。
+ */
+const ENERGY_BAR = { height: 56, inset: 3, width: 18 } as const;
+
+/**
  * Titanium 能量条：18×56 外框 @ (10,20)，12×50 红色填充自下而上。
  */
 export function IfEnergyBar({
@@ -21,44 +26,31 @@ export function IfEnergyBar({
   top = IF_ENERGY.top,
   value,
 }: IfEnergyBarProps) {
-  const percent = max > 0 ? Math.min(100, Math.max(0, (value / max) * 100)) : 0;
-
   return (
-    <div
-      aria-label="能量"
-      aria-valuemax={100}
-      aria-valuenow={Math.round(percent)}
+    <ModProgress
+      ariaValue="percent"
       className={className}
-      data-if-energy=""
-      role="progressbar"
-      style={{
-        height: gui(56),
-        left: gui(left),
-        position: "absolute",
-        top: gui(top),
-        width: gui(18),
-      }}
-    >
-      <IfSprite
-        crop="energyFrame"
-        height={56}
-        left={0}
-        name="titanium_background"
-        top={0}
-        width={18}
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute"
-        style={{
-          backgroundColor: "#B3312C",
-          clipPath: `inset(${100 - percent}% 0 0 0)`,
-          height: gui(50),
-          left: gui(3),
-          top: gui(3),
-          width: gui(12),
-        }}
-      />
-    </div>
+      dataAttributes={{ "data-if-energy": "" }}
+      direction="up"
+      fill={<div className="absolute inset-0" style={{ backgroundColor: "#B3312C" }} />}
+      height={ENERGY_BAR.height}
+      inset={ENERGY_BAR.inset}
+      label="能量"
+      left={left}
+      max={max}
+      top={top}
+      track={(
+        <IfSprite
+          crop="energyFrame"
+          height={ENERGY_BAR.height}
+          left={0}
+          name="titanium_background"
+          top={0}
+          width={ENERGY_BAR.width}
+        />
+      )}
+      value={value}
+      width={ENERGY_BAR.width}
+    />
   );
 }

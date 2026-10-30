@@ -1,6 +1,7 @@
 import type { ScreenSlot } from "@tennantite/ui";
 
-import { gui, ScreenItemSlot } from "@tennantite/ui";
+import { gui } from "@tennantite/ui";
+import { IeLayoutSlots } from "../ie-layout-slots/index";
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
 import { IeSprite } from "../ie-sprite/index";
@@ -44,7 +45,6 @@ export function IeToolboxScreen({
   tools = [],
 }: IeToolboxScreenProps) {
   const layout = IE_MACHINES.toolbox;
-  const slots = ieExpandSlots(layout);
   const groupOf = (label: string): Array<null | ScreenSlot> => {
     if (label.startsWith("toolbox-armor"))
       return armor;
@@ -54,6 +54,11 @@ export function IeToolboxScreen({
       return food;
     return label.startsWith("toolbox-misc") ? misc : tools;
   };
+  const slots = ieExpandSlots(layout);
+  const slotItems: Record<string, ScreenSlot | undefined> = {};
+  for (const slot of slots) {
+    slotItems[slot.label] = groupOf(slot.label)[indexInGroup(slot.label)] ?? undefined;
+  }
   return (
     <IeMachineScreen
       className={className}
@@ -68,16 +73,7 @@ export function IeToolboxScreen({
         src={{ height: 255, width: 176, x: 0, y: 0 }}
         style={{ left: 0, position: "absolute", top: gui(-17) }}
       />
-      {slots.map(slot => (
-        <ScreenItemSlot
-          item={groupOf(slot.label)[indexInGroup(slot.label)] ?? undefined}
-          key={slot.label}
-          label={slot.label}
-          left={slot.left}
-          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-          top={slot.top}
-        />
-      ))}
+      <IeLayoutSlots items={slotItems} onSlotClick={onSlotClick} slots={slots} />
     </IeMachineScreen>
   );
 }

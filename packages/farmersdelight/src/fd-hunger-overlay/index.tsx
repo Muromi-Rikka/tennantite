@@ -1,7 +1,6 @@
-import { Fragment } from "react";
-
 import { FD_HUD_ICON, FD_HUD_ICON_COUNT, FD_HUD_ICON_STEP } from "../fd-metrics";
 import { FdSprite } from "../fd-sprite/index";
+import { FdIconRow } from "../icon-row";
 
 export interface FdHungerOverlayProps {
   className?: string;
@@ -36,33 +35,29 @@ export function FdHungerOverlay({
 }: FdHungerOverlayProps) {
   return (
     <div aria-hidden="true" className={className} data-fd-overlay="nourishment">
+      <FdIconRow
+        count={FD_HUD_ICON_COUNT}
+        icon={FD_HUD_ICON.hungerEmpty}
+        left={x}
+        step={FD_HUD_ICON_STEP}
+        top={y}
+      />
       {Array.from({ length: FD_HUD_ICON_COUNT }, (_, index) => {
         const column = FD_HUD_ICON_COUNT - 1 - index;
-        const left = x + column * FD_HUD_ICON_STEP;
         const overlay = hungerOverlayIcon(foodLevel / 2 - index, naturalHealing);
+        if (!overlay) {
+          return null;
+        }
         return (
-          <Fragment key={column}>
-            <FdSprite
-              crop={FD_HUD_ICON.hungerEmpty}
-              height={FD_HUD_ICON.hungerEmpty.height}
-              left={left}
-              name="fd_icons"
-              top={y}
-              width={FD_HUD_ICON.hungerEmpty.width}
-            />
-            {overlay
-              ? (
-                  <FdSprite
-                    crop={overlay}
-                    height={overlay.height}
-                    left={left}
-                    name="fd_icons"
-                    top={y}
-                    width={overlay.width}
-                  />
-                )
-              : null}
-          </Fragment>
+          <FdSprite
+            crop={overlay}
+            height={overlay.height}
+            key={column}
+            left={x + column * FD_HUD_ICON_STEP}
+            name="fd_icons"
+            top={y}
+            width={overlay.width}
+          />
         );
       })}
     </div>

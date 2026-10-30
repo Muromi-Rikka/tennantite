@@ -1,6 +1,6 @@
 import type { PlayerInventoryProps, ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
-import { ModProgress, ModSprite, ModTitle, ModToolbar } from "@tennantite/mods-core";
+import { ModProgress, ModSlotGrid, ModSprite, ModTitle, ModToolbar } from "@tennantite/mods-core";
 import { ae2SpriteMeta } from "@tennantite/textures";
 import { cn, gui, PlayerInventory, ScreenItemSlot, ScreenPanel } from "@tennantite/ui";
 import { AE2_ICONS, AE2_MAC } from "../ae2-layout";
@@ -24,8 +24,6 @@ export interface Ae2MolecularAssemblerScreenProps {
   title?: ReactNode;
   upgrades?: ScreenSlot[];
 }
-
-const CRAFT_SLOTS = 9;
 
 /**
  * 分子装配室界面（AE2 视觉复刻）：211×197 面板 + 右侧 35 宽升级槽条
@@ -85,24 +83,17 @@ export function Ae2MolecularAssemblerScreen({
           top={panel.y}
         />
         <ModTitle left={8} top={6}>{title}</ModTitle>
-        {Array.from({ length: CRAFT_SLOTS }, (_, index) => {
-          const column = index % 3;
-          const row = Math.floor(index / 3);
-          return (
-            <ScreenItemSlot
-              frame={false}
-              item={craftGrid?.[index]}
-              key={index}
-              label={`mac-craft-${index}`}
-              left={grid.left + column * grid.size}
-              onActivate={onCraftGridClick
-                ? () => onCraftGridClick(index, craftGrid?.[index])
-                : undefined}
-              size={grid.size}
-              top={grid.top + row * grid.size}
-            />
-          );
-        })}
+        <ModSlotGrid
+          cellSize={grid.size}
+          columns={3}
+          frame={false}
+          items={craftGrid}
+          label={(index) => `mac-craft-${index}`}
+          left={grid.left}
+          onSlotClick={onCraftGridClick}
+          rows={3}
+          top={grid.top}
+        />
         <ScreenItemSlot
           frame={false}
           item={pattern}

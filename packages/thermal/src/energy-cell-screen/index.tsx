@@ -1,10 +1,11 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
 
+import { ModLabel } from "@tennantite/mods-core";
 import { gui, PlayerInventory } from "@tennantite/ui";
 import { ThermalCellRateText, ThermalCellStepButton } from "../thermal-cell-controls";
 import { ThermalEnergyGauge } from "../thermal-energy-gauge/index";
-import { THERMAL_CELL_CONTROLS, THERMAL_GUI } from "../thermal-metrics";
+import { THERMAL_CELL_CONTROLS, THERMAL_ENERGY_GAUGE, THERMAL_GUI } from "../thermal-metrics";
 import { ThermalSprite } from "../thermal-sprite/index";
 
 export interface ThermalEnergyCellScreenProps {
@@ -41,7 +42,6 @@ export interface ThermalEnergyCellScreenProps {
   title?: ReactNode;
 }
 
-const THERMAL_ENERGY = { height: 42, left: 80, top: 22, width: 16 } as const;
 const STEP = 4;
 
 /**
@@ -69,12 +69,7 @@ export function ThermalEnergyCellScreen({
   return (
     <div className={className} style={{ height: gui(THERMAL_GUI.height), position: "relative", width: gui(THERMAL_GUI.width) }}>
       <ThermalSprite crop={{ height: THERMAL_GUI.height, width: THERMAL_GUI.width, x: 0, y: 0 }} name="container/energy_cell" />
-      <span
-        className="absolute font-mc mc-text text-mc-thermal-text"
-        style={{ left: 0, right: 0, textAlign: "center", top: gui(6) }}
-      >
-        {title}
-      </span>
+      <ModLabel className="text-mc-thermal-text" top={6}>{title}</ModLabel>
       <ThermalSprite
         height={icons.input.size}
         left={icons.input.left}
@@ -90,13 +85,13 @@ export function ThermalEnergyCellScreen({
         width={icons.output.size}
       />
       <ThermalEnergyGauge
-        height={THERMAL_ENERGY.height}
+        height={THERMAL_ENERGY_GAUGE.cell.height}
         label="能量"
-        left={THERMAL_ENERGY.left}
+        left={THERMAL_ENERGY_GAUGE.cell.left}
         max={capacity}
-        top={THERMAL_ENERGY.top}
+        top={THERMAL_ENERGY_GAUGE.cell.top}
         value={amount}
-        width={THERMAL_ENERGY.width}
+        width={THERMAL_ENERGY_GAUGE.cell.width}
       />
       <ThermalCellRateText center={textCenters.input} label="进料速率" value={inputRate} />
       <ThermalCellRateText center={textCenters.output} label="出料速率" value={outputRate} />
@@ -144,12 +139,9 @@ export function ThermalEnergyCellScreen({
       />
       {playerName
         ? (
-            <span
-              className="absolute font-mc mc-text text-mc-thermal-text"
-              style={{ left: gui(8), top: gui(72) }}
-            >
+            <ModLabel className="text-mc-thermal-text" left={8} top={72}>
               {playerName}
-            </span>
+            </ModLabel>
           )
         : null}
       <PlayerInventory bare hotbarItems={playerHotbar} mainItems={playerItems} />

@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { MekanismChemicalContents, MekanismFluidContents, MekanismStorageScreenProps } from "../mekanism-storage-types";
 import type { MekanismEditMode, MekanismSecurityMode } from "../mekanism-types";
 
+import { mekanismNextEdit, mekanismNextSecurity } from "../mekanism-mode-state";
 import { MekanismArmorSlots } from "../mekanism-armor-slots/index";
 import { MekanismArrow } from "../mekanism-arrow/index";
 import { MekanismElementHolder } from "../mekanism-element-holder/index";
@@ -21,8 +22,6 @@ export interface MekanismDynamicTankScreenProps extends MekanismStorageScreenPro
   texts?: { capacity?: ReactNode; stored?: ReactNode };
 }
 
-const SECURITY_ORDER: MekanismSecurityMode[] = ["public", "private", "protected"];
-const EDIT_ORDER: MekanismEditMode[] = ["both", "fill", "empty"];
 
 /**
  * 动态储罐：176×166，34×56 合并仪表 + 内屏 + 两个内容槽 + 左侧装备栏。
@@ -57,10 +56,10 @@ export function MekanismDynamicTankScreen({
           editMode={editMode}
           onTabClick={(tab) => {
             if (tab === "security") {
-              setSecurity(SECURITY_ORDER[(SECURITY_ORDER.indexOf(security) + 1) % SECURITY_ORDER.length] ?? "public");
+              setSecurity(mekanismNextSecurity(security));
             }
             else if (tab === "edit") {
-              setEditMode(EDIT_ORDER[(EDIT_ORDER.indexOf(editMode) + 1) % EDIT_ORDER.length] ?? "both");
+              setEditMode(mekanismNextEdit(editMode));
             }
           }}
           security={security}

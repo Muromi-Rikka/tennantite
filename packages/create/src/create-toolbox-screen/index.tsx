@@ -2,7 +2,7 @@ import type { InventoryItem, ScreenSlot } from "@tennantite/ui";
 
 import { ModIconButton, ModSprite } from "@tennantite/mods-core";
 import { createSpriteMeta } from "@tennantite/textures";
-import { cn, gui, PlayerInventory, ScreenItemSlot } from "@tennantite/ui";
+import { cn, gui, ScreenItemSlot } from "@tennantite/ui";
 
 import {
   CREATE_ATLAS,
@@ -10,6 +10,7 @@ import {
   CREATE_TOOLBOX,
   CREATE_TOOLBOX_COLORS,
 } from "../create-metrics";
+import { CreateWindow } from "../create-window/index";
 
 export type CreateToolboxColor = (typeof CREATE_TOOLBOX_COLORS)[number] | string;
 
@@ -54,26 +55,31 @@ export function CreateToolboxScreen({
   const toolbox = CREATE_ATLAS.toolbox;
   const colorBar = CREATE_TOOLBOX.colorBar;
   return (
-    <div
-      className={cn("mc-create-window relative inline-block", className)}
-      style={{ height: gui(CREATE_TOOLBOX.height), width: gui(CREATE_TOOLBOX.width) }}
+    <CreateWindow
+      background={(
+        <ModSprite
+          left={CREATE_TOOLBOX.background.left}
+          sprite={createSpriteMeta[toolbox.atlas]}
+          src={toolbox}
+          top={CREATE_TOOLBOX.background.top}
+        />
+      )}
+      className={className}
+      height={CREATE_TOOLBOX.height}
+      player={{
+        hotbarItems: player?.hotbarItems,
+        hotbarY: CREATE_TOOLBOX.player.hotbarY,
+        mainItems: player?.mainItems,
+        x: CREATE_TOOLBOX.player.x,
+        y: CREATE_TOOLBOX.player.y,
+      }}
+      title={title}
+      titleClassName="mc-text-shadow"
+      titleColor="#592424"
+      titleLeft={CREATE_TOOLBOX.title.left}
+      titleTop={CREATE_TOOLBOX.title.top}
+      width={CREATE_TOOLBOX.width}
     >
-      <ModSprite
-        left={CREATE_TOOLBOX.background.left}
-        sprite={createSpriteMeta[toolbox.atlas]}
-        src={toolbox}
-        top={CREATE_TOOLBOX.background.top}
-      />
-      <div
-        className="absolute font-mc mc-text mc-text-shadow"
-        style={{
-          color: "#592424",
-          left: gui(CREATE_TOOLBOX.title.left),
-          top: gui(CREATE_TOOLBOX.title.top),
-        }}
-      >
-        {title}
-      </div>
       {CREATE_TOOLBOX_COLORS.map((color, index) => (
         <button
           aria-label={`染料色 ${index}`}
@@ -133,13 +139,6 @@ export function CreateToolboxScreen({
         top={CREATE_TOOLBOX.buttons.dispose.top}
         width={18}
       />
-      <PlayerInventory
-        hotbarItems={player?.hotbarItems}
-        hotbarY={CREATE_TOOLBOX.player.hotbarY}
-        mainItems={player?.mainItems}
-        x={CREATE_TOOLBOX.player.x}
-        y={CREATE_TOOLBOX.player.y}
-      />
-    </div>
+    </CreateWindow>
   );
 }

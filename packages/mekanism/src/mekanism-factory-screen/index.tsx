@@ -2,6 +2,7 @@ import type { ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
 
 import { useRef, useState } from "react";
+import { mekanismNextRedstone, mekanismNextSecurity, mekanismNextSide } from "../mekanism-mode-state";
 import type {
   MekanismDataType,
   MekanismRedstoneMode,
@@ -44,9 +45,6 @@ export interface MekanismFactoryScreenProps {
   warning?: boolean;
 }
 
-const SECURITY_ORDER: MekanismSecurityMode[] = ["public", "private", "protected"];
-const REDSTONE_ORDER: MekanismRedstoneMode[] = ["disabled", "high", "low", "pulse"];
-const SIDE_ORDER: MekanismDataType[] = ["NONE", "INPUT", "OUTPUT", "ENERGY"];
 const CHEMICAL_BAR = { from: "#c9071f", to: "#e03030" };
 
 /**
@@ -95,12 +93,12 @@ export function MekanismFactoryScreen({
   };
 
   const cycleSecurity = () => {
-    const next = SECURITY_ORDER[(SECURITY_ORDER.indexOf(security) + 1) % SECURITY_ORDER.length] ?? "public";
+    const next = mekanismNextSecurity(security);
     setSecurity(next);
     onSecurityChange?.(next);
   };
   const cycleRedstone = () => {
-    const next = REDSTONE_ORDER[(REDSTONE_ORDER.indexOf(redstone) + 1) % REDSTONE_ORDER.length] ?? "disabled";
+    const next = mekanismNextRedstone(redstone);
     setRedstone(next);
     onRedstoneChange?.(next);
   };
@@ -173,7 +171,7 @@ export function MekanismFactoryScreen({
                   onClose={() => updateWindows(windows.filter(value => value !== "side-config"))}
                   onSideCycle={(side) => {
                     const current = sides[side] ?? "NONE";
-                    const next = SIDE_ORDER[(SIDE_ORDER.indexOf(current) + 1) % SIDE_ORDER.length] ?? "NONE";
+                    const next = mekanismNextSide(current);
                     setSides(value => ({ ...value, [side]: next }));
                   }}
                   onToggleEject={() => setEjecting(value => !value)}

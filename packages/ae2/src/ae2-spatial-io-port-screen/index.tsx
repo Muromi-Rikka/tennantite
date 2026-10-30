@@ -4,6 +4,7 @@ import { ModSprite, ModTitle } from "@tennantite/mods-core";
 import { ae2SpriteMeta } from "@tennantite/textures";
 import { cn, gui, PlayerInventory, ScreenItemSlot, ScreenPanel } from "@tennantite/ui";
 import { AE2_SPATIAL_IO_PORT } from "../ae2-layout";
+import { Ae2Text } from "../ae2-text/index";
 
 export interface Ae2SpatialIoPortScreenProps {
   className?: string;
@@ -121,17 +122,5 @@ export function Ae2SpatialIoPortScreen({
 }
 
 function StatusText({ children, left, top }: { children: ReactNode; left: number; top: number }) {
-  return (
-    <span
-      className="absolute font-mc text-mc-ae2-text"
-      style={{
-        fontSize: "calc(var(--mc-gui) * 5.4)",
-        left: gui(left),
-        lineHeight: "calc(var(--mc-gui) * 9)",
-        top: gui(top),
-      }}
-    >
-      {children}
-    </span>
-  );
+  return <Ae2Text left={left} top={top}>{children}</Ae2Text>;
 }

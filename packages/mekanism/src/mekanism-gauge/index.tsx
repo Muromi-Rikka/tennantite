@@ -1,7 +1,7 @@
 import type { MekanismSpriteName } from "@tennantite/textures";
 
-import { progressClipPath } from "@tennantite/mods-core";
-import { cn, gui } from "@tennantite/ui";
+import { ModProgress } from "@tennantite/mods-core";
+import { cn } from "@tennantite/ui";
 import type { MekanismGaugeKind, MekanismGaugeType } from "../mekanism-types";
 import { MEKANISM_GAUGE_OVERLAYS, MEKANISM_GAUGE_SIZES } from "../mekanism-metrics";
 import { MekanismSprite } from "../mekanism-sprite/index";
@@ -80,54 +80,41 @@ export function MekanismGauge({
   const size = MEKANISM_GAUGE_SIZES[type];
   const targetWidth = width ?? size.width;
   const targetHeight = height ?? size.height;
-  const ratio = Math.min(1, Math.max(0, max === 0 ? 0 : value / max));
   const resolvedTint = gaugeTint(kind, tint);
 
   return (
-    <div
-      aria-label={label}
-      aria-valuemax={100}
-      aria-valuemin={0}
-      aria-valuenow={Math.round(ratio * 100)}
-      className={cn("absolute", className)}
-      role="progressbar"
-      style={{
-        height: gui(targetHeight),
-        left: gui(left),
-        top: gui(top),
-        width: gui(targetWidth),
-      }}
-      title={label}
-    >
-      <MekanismSprite height={targetHeight} name="gauge/normal" width={targetWidth} />
-      <div
-        className="absolute overflow-hidden"
-        style={{ height: gui(targetHeight - 2), left: gui(1), top: gui(1), width: gui(targetWidth - 2) }}
-      >
-        <div
-          style={{
-            clipPath: progressClipPath("up", ratio),
-            height: "100%",
-            width: "100%",
-          }}
-        >
+    <>
+      <ModProgress
+        ariaValue="percent"
+        className={cn(className)}
+        direction="up"
+        fill={(
           <MekanismSprite
             height={targetHeight - 2}
             name={fillSprite ?? DEFAULT_FILLS[kind]}
             tint={resolvedTint}
             width={targetWidth - 2}
           />
-        </div>
-      </div>
+        )}
+        height={targetHeight}
+        inset={1}
+        label={label}
+        left={left}
+        max={max}
+        top={top}
+        track={<MekanismSprite height={targetHeight} name="gauge/normal" width={targetWidth} />}
+        value={value}
+        width={targetWidth}
+      />
       <MekanismSprite
         className="absolute"
         height={targetHeight - 2}
-        left={1}
+        left={left + 1}
         name={`gauge/overlay/${MEKANISM_GAUGE_OVERLAYS[type]}` as MekanismSpriteName}
-        top={1}
+        top={top + 1}
         width={targetWidth - 2}
       />
-    </div>
+    </>
   );
 }
 

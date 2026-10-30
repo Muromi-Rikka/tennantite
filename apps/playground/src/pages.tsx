@@ -33,6 +33,7 @@ import { ItemStackPage } from "./pages/item-stack";
 import { L0Page } from "./pages/l0";
 import { MainMenuPage } from "./pages/main-menu";
 import { MekanismPage } from "./pages/mekanism";
+import { ModsCorePage } from "./pages/mods-core";
 import { PanelPage } from "./pages/panel";
 import { ProgressPage } from "./pages/progress";
 import { RadioGroupPage } from "./pages/radio-group";
@@ -84,6 +85,7 @@ export const pageGroups: readonly PageGroup[] = [
  * 预览页注册表：每个组件 / 层级一个路由（hash = 键）
 */
 export const pageRegistry = new Map<string, PageEntry>([
+  ["mods-core", { group: "mods", render: () => <ModsCorePage />, title: "Mod 共用原语" }],
   ["ae2", { group: "mods", render: () => <Ae2Page />, title: "AE2 (Mod)" }],
   ["anvil-screen", { group: "screens", render: () => <AnvilScreenPage />, title: "AnvilScreen" }],
   ["badge", { group: "primitives", render: () => <BadgePage />, title: "Badge" }],

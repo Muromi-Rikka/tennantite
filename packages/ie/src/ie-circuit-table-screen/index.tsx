@@ -1,8 +1,9 @@
 import type { ScreenSlot } from "@tennantite/ui";
 
-import { gui, ScreenItemSlot } from "@tennantite/ui";
+import { gui } from "@tennantite/ui";
 import { useState } from "react";
 import { IeEnergyBar } from "../ie-energy-bar/index";
+import { IeLayoutSlots } from "../ie-layout-slots/index";
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "../ie-machine-screen/index";
 import { IeSprite } from "../ie-sprite/index";
@@ -201,16 +202,7 @@ export function IeCircuitTableScreen({
         }}
         value={name}
       />
-      {slots.map(slot => (
-        <ScreenItemSlot
-          item={slotItems[slot.label]}
-          key={slot.label}
-          label={slot.label}
-          left={slot.left}
-          onActivate={onSlotClick ? () => onSlotClick(slot.label) : undefined}
-          top={slot.top}
-        />
-      ))}
+      <IeLayoutSlots items={slotItems} onSlotClick={onSlotClick} slots={slots} />
     </IeMachineScreen>
   );
 }

@@ -1,9 +1,10 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
 
-import { progressClipPath } from "@tennantite/mods-core";
+import { ModLabel } from "@tennantite/mods-core";
 import { gui, PlayerInventory, ScreenItemSlot } from "@tennantite/ui";
 import { ThermalCellRateText, ThermalCellStepButton } from "../thermal-cell-controls";
+import { ThermalItemGauge } from "../thermal-energy-gauge/index";
 import { THERMAL_CELL_CONTROLS, THERMAL_GUI, THERMAL_ITEM_GAUGE } from "../thermal-metrics";
 import { ThermalSprite } from "../thermal-sprite/index";
 
@@ -67,16 +68,10 @@ export function ThermalCacheScreen({
   title = "物品缓存仓",
 }: ThermalCacheScreenProps) {
   const { buttons, icons, textCenters } = THERMAL_CELL_CONTROLS;
-  const ratio = Math.min(1, Math.max(0, capacity === 0 ? 0 : amount / capacity));
   return (
     <div className={className} style={{ height: gui(THERMAL_GUI.height), position: "relative", width: gui(THERMAL_GUI.width) }}>
       <ThermalSprite crop={{ height: THERMAL_GUI.height, width: THERMAL_GUI.width, x: 0, y: 0 }} name="container/item_cell" />
-      <span
-        className="absolute font-mc mc-text text-mc-thermal-text"
-        style={{ left: 0, right: 0, textAlign: "center", top: gui(6) }}
-      >
-        {title}
-      </span>
+      <ModLabel className="text-mc-thermal-text" top={6}>{title}</ModLabel>
       <ThermalSprite
         height={icons.input.size}
         left={icons.input.left}
@@ -92,32 +87,15 @@ export function ThermalCacheScreen({
         width={icons.output.size}
       />
       <ScreenItemSlot item={item} label="cache-item" left={80} size={16} top={16} />
-      <div
-        aria-label="缓存容量"
-        aria-valuemax={100}
-        aria-valuemin={0}
-        aria-valuenow={Math.round(ratio * 100)}
-        className="absolute"
-        role="progressbar"
-        style={{ height: gui(THERMAL_ITEM_GAUGE.height), left: gui(THERMAL_ITEM_GAUGE.left), top: gui(THERMAL_ITEM_GAUGE.top), width: gui(THERMAL_ITEM_GAUGE.width) }}
-        title="缓存容量"
-      >
-        <ThermalSprite
-          crop={THERMAL_ITEM_GAUGE.trackCrop}
-          height={THERMAL_ITEM_GAUGE.height}
-          name="elements/storage_energy"
-          width={THERMAL_ITEM_GAUGE.width}
-        />
-        <ThermalSprite
-          crop={{ ...THERMAL_ITEM_GAUGE.fillCrop, height: THERMAL_ITEM_GAUGE.height - 2 }}
-          height={THERMAL_ITEM_GAUGE.height - 2}
-          left={0}
-          name="elements/storage_energy"
-          style={{ clipPath: progressClipPath("up", ratio) }}
-          top={1}
-          width={THERMAL_ITEM_GAUGE.width}
-        />
-      </div>
+      <ThermalItemGauge
+        height={THERMAL_ITEM_GAUGE.height}
+        label="缓存容量"
+        left={THERMAL_ITEM_GAUGE.left}
+        max={capacity}
+        top={THERMAL_ITEM_GAUGE.top}
+        value={amount}
+        width={THERMAL_ITEM_GAUGE.width}
+      />
       <ThermalCellRateText center={textCenters.input} label="存入速率" value={inputRate} />
       <ThermalCellRateText center={textCenters.output} label="取出速率" value={outputRate} />
       <ThermalCellStepButton
@@ -164,12 +142,9 @@ export function ThermalCacheScreen({
       />
       {playerName
         ? (
-            <span
-              className="absolute font-mc mc-text text-mc-thermal-text"
-              style={{ left: gui(8), top: gui(72) }}
-            >
+            <ModLabel className="text-mc-thermal-text" left={8} top={72}>
               {playerName}
-            </span>
+            </ModLabel>
           )
         : null}
       <PlayerInventory bare hotbarItems={playerHotbar} mainItems={playerItems} />

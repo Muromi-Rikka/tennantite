@@ -1,7 +1,7 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import { ScreenItemSlot } from "@tennantite/ui";
 
-export interface ModSlotGridProps {
+interface ModSlotGridBase {
   /**
   * 单元格边长（GUI px，默认 18）
   */
@@ -17,10 +17,6 @@ export interface ModSlotGridProps {
   frameClassName?: string;
   items?: ScreenSlot[];
   /**
-  * 无障碍名称前缀（`${prefix}-${index}`）
-  */
-  labelPrefix: string;
-  /**
   * 第一个槽框左上角 x
   */
   left: number;
@@ -32,21 +28,39 @@ export interface ModSlotGridProps {
   top: number;
 }
 
+export type ModSlotGridProps = ModSlotGridBase & (
+  | {
+    /**
+    * 无障碍名称前缀（`${prefix}-${index}`）
+    */
+    labelPrefix: string;
+    label?: never;
+  }
+  | {
+    /**
+    * 逐格生成无障碍名称
+    */
+    label: (index: number) => string;
+    labelPrefix?: never;
+  }
+);
+
 /**
  * 通用 mod 槽位网格：按行优先排列，自动补齐到 `rows * columns`。
  */
-export function ModSlotGrid({
-  cellSize = 18,
-  columns,
-  frame = true,
-  frameClassName,
-  items = [],
-  labelPrefix,
-  left,
-  onSlotClick,
-  rows,
-  top,
-}: ModSlotGridProps) {
+export function ModSlotGrid(props: ModSlotGridProps) {
+  const {
+    cellSize = 18,
+    columns,
+    frame = true,
+    frameClassName,
+    items = [],
+    left,
+    onSlotClick,
+    rows,
+    top,
+  } = props;
+  const labelFor = props.label ?? ((index: number) => `${props.labelPrefix}-${index}`);
   const slots = Array.from({ length: rows * columns }, (_, index) => items[index] ?? null);
   return (
     <>
@@ -61,7 +75,7 @@ export function ModSlotGrid({
             frameClassName={frameClassName}
             item={item}
             key={`${x}-${y}`}
-            label={`${labelPrefix}-${index}`}
+            label={labelFor(index)}
             left={x}
             onActivate={onSlotClick ? () => onSlotClick(index, item) : undefined}
             size={cellSize}
