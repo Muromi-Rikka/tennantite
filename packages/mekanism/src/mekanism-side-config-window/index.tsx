@@ -122,7 +122,7 @@ export function MekanismSideConfigWindow({
       top={top}
       width={156}
     >
-      <MekanismInnerScreen height={12} left={38} top={25} width={80}>
+      <MekanismInnerScreen height={15} left={38} top={25} width={80}>
         <span className="truncate">
           弹出：
           {ejecting ? "开" : "关"}

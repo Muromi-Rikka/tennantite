@@ -87,7 +87,7 @@ export function MekanismSlot({
       <MekanismSprite height={height} name={MEKANISM_SLOT_SPRITES[type]} width={width} />
       {item
         ? (
-            <div className="absolute top-0 left-0">
+            <div className="absolute top-0 left-0 z-10">
               <ItemStack bare {...item} size={18} />
             </div>
           )
