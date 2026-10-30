@@ -1,5 +1,4 @@
-import type { PixelIconName } from "@tennantite/textures";
-import { pixelIcons } from "@tennantite/textures";
+import { iconNames } from "@tennantite/textures";
 import { mcColors } from "@tennantite/tokens";
 import { Icon } from "@tennantite/ui";
 
@@ -89,7 +88,7 @@ export function L0Page() {
 
       <Section title="Pixel Icon Set (starter)">
         <div className="flex flex-wrap gap-12">
-          {(Object.keys(pixelIcons) as PixelIconName[]).map(name => (
+          {iconNames.map(name => (
             <div className="flex flex-col items-center gap-2" key={name}>
               <Icon name={name} size={32} />
               <span className="text-mc-text-dim">{name}</span>

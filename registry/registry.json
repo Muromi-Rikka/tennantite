@@ -284,6 +284,26 @@
       ],
       "files": [
         {
+          "path": "packages/ui/src/containers/block-icon/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "packages/ui/src/containers/block-icon/geometry.ts",
+          "type": "registry:component"
+        }
+      ],
+      "name": "block-icon",
+      "registryDependencies": [],
+      "title": "Block Icon",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
           "path": "packages/ui/src/containers/card/index.tsx",
           "type": "registry:component"
         }

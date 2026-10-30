@@ -12,7 +12,7 @@ import TextureClasses from "@/components/docs/TextureClasses.astro";
 
 ## 重绘策略
 
-GUI 九宫格与进度条为本项目重绘；物品、方块与 HUD 状态图标取自 Minecraft Java 26.3 官方客户端（固定版本与 SHA-1），由 `packages/textures/scripts/sync-vanilla-icons.mjs` 生成 base64 PNG data URI。方块图标使用平面贴图，不是游戏内 3D 物品渲染。许可见 `packages/textures/LICENSE-ASSETS.md`。
+GUI 九宫格与进度条为本项目重绘；物品、方块与 HUD 状态图标取自 Minecraft Java 26.3 官方客户端（固定版本与 SHA-1），由 `packages/textures/scripts/sync-vanilla-icons.mjs` 生成 base64 PNG data URI。方块图标按原版物品渲染合成为等轴三面立方体（`rotateX 30° · rotateY 225° · scale 0.625`），逐面亮度取 `Direction.getShade()`：顶 1.0 / 北 0.8 / 东 0.6。许可见 `packages/textures/LICENSE-ASSETS.md`。
 
 ## 九宫格
 

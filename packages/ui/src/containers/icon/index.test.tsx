@@ -72,8 +72,18 @@ describe("icon", () => {
     );
   });
 
+  it("方块名委派给 BlockIcon（等轴三面，不再是平面贴图）", () => {
+    const { container } = render(<Icon name="grass-block" size={32} />);
+    expect(container.querySelector("img")).toBeNull();
+    const svg = container.querySelector("svg");
+    expect(svg).toHaveAttribute("data-icon", "grass-block");
+    expect(svg?.querySelectorAll("image")).toHaveLength(3);
+  });
+
   it("demo 渲染多个图标", () => {
     const { container } = render(<IconDemo />);
-    expect(container.querySelectorAll("img").length).toBeGreaterThanOrEqual(6);
+    // 4 个平面图标 + 2 个方块（grass-block / stone-block）走 BlockIcon
+    expect(container.querySelectorAll("img")).toHaveLength(4);
+    expect(container.querySelectorAll("svg")).toHaveLength(2);
   });
 });

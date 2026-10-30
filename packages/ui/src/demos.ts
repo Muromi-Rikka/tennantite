@@ -1,3 +1,4 @@
+export { BlockIconDemo } from "./containers/block-icon/demo";
 export { CardDemo } from "./containers/card/demo";
 export { DividerDemo } from "./containers/divider/demo";
 export { GridDemo } from "./containers/grid/demo";

@@ -24,15 +24,17 @@ Mojang Synergies AB，**不在本项目授权范围内**。使用需遵守
 
 ## 图标（Minecraft Java 26.3 原版素材）
 
-`packages/textures/src/pixel-icons.generated.ts` 中的 31 个图标提取自 Mojang 官方
+`packages/textures/src/pixel-icons.generated.ts`（53 个平面图标）与
+`packages/textures/src/block-icons.generated.ts`（12 个方块的等轴面）提取自 Mojang 官方
 Minecraft Java 26.3 客户端 `client.jar`：
 
 - 下载：<https://piston-data.mojang.com/v1/objects/e877b6a07acd633fb3bb475002175cec036e7b87/client.jar>
 - SHA-1：`e877b6a07acd633fb3bb475002175cec036e7b87`（41,483,720 bytes）
 - 提取路径：
-  - `assets/minecraft/textures/item/*.png`：14 个物品图标，16×16（苹果、钻石、铁剑、绿宝石、铁锭、青金石、烈焰粉、地狱疣、木炭、小麦、火药、药水、铁胸甲、经验瓶）。
-  - `assets/minecraft/textures/block/*.png`：6 个方块图标，16×16（石头、泥土、草方块侧面、铁矿石、工作台正面、橡木木板）。使用平面贴图，不是游戏内 3D 物品渲染。
+  - `assets/minecraft/textures/item/*.png`：40 个物品图标，16×16（苹果、钻石、铁剑、绿宝石、铁锭、青金石、烈焰粉、地狱疣、木炭、小麦、火药、药水、铁胸甲、经验瓶等）。
   - `assets/minecraft/textures/gui/sprites/hud/*.png`：11 个 HUD 状态图标，9×9（生命、饥饿、护甲、氧气及其半格/空槽）。
+  - `assets/minecraft/textures/block/*.png`：2 个蘑菇（`brown_mushroom`、`red_mushroom`）平面贴图，16×16；原版为 `cross` 模型，本就平面渲染。
+  - `assets/minecraft/textures/block/*.png`：12 个方块的 16 张面贴图，16×16（石头、石砖、泥土、草方块顶/侧/侧覆层、沙、沙砾、冰、铁块、铁矿石、橡木原木/原木顶、橡木木板、工作台顶/侧/正面）。三可见面按原版物品渲染烘焙（等轴投影 + 逐面亮度 1.0 / 0.6 / 0.8），草方块另按 plains 草色 `#91bd59` 乘法着色。
 - 生成脚本：`packages/textures/scripts/sync-vanilla-icons.mjs`；重新生成：
   `pnpm --filter @tennantite/textures sync:icons`。
 

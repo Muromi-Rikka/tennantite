@@ -17,6 +17,7 @@ const globalIgnores = {
     "**/next-env.d.ts",
     "**/.next/**",
     "packages/textures/src/pixel-icons.generated.ts",
+    "packages/textures/src/block-icons.generated.ts",
     "packages/textures/src/gui-icons.generated.ts",
     "packages/textures/src/gui-layouts.generated.ts",
     "packages/textures/src/gui-sprites.generated.ts",

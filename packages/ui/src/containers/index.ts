@@ -1,3 +1,6 @@
+export { BlockIcon } from "./block-icon/index";
+export type { BlockIconProps } from "./block-icon/index";
+
 export { Card } from "./card/index";
 export type { CardProps } from "./card/index";
 

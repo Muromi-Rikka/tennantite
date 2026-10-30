@@ -10,7 +10,9 @@ describe("itemStack", () => {
   it("渲染槽位与图标", () => {
     const { container } = render(<ItemStack icon="stone-block" />);
     expect(container.querySelector(".mc-tex-slot")).not.toBeNull();
-    expect(container.querySelector("img")).not.toBeNull();
+    // 方块图标走 BlockIcon 等轴渲染
+    expect(container.querySelector("svg")).not.toBeNull();
+    expect(container.querySelectorAll("image")).toHaveLength(3);
   });
 
   it("count > 1 渲染计数徽标，count = 1 不渲染", () => {

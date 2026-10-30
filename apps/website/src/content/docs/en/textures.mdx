@@ -12,7 +12,7 @@ import TextureClasses from "@/components/docs/TextureClasses.astro";
 
 ## Redraw strategy
 
-GUI nine-slices and progress bars are redrawn for this project. Item, block and HUD status icons come from the official Minecraft Java 26.3 client (pinned version and SHA-1), generated as base64 PNG data URIs by `packages/textures/scripts/sync-vanilla-icons.mjs`. Block icons use flat face textures, not in-game 3D item renders. See `packages/textures/LICENSE-ASSETS.md`.
+GUI nine-slices and progress bars are redrawn for this project. Item, block and HUD status icons come from the official Minecraft Java 26.3 client (pinned version and SHA-1), generated as base64 PNG data URIs by `packages/textures/scripts/sync-vanilla-icons.mjs`. Block icons are composed as isometric cubes from three visible faces exactly like the vanilla item renderer (`rotateX 30° · rotateY 225° · scale 0.625`), with per-face brightness from `Direction.getShade()`: top 1.0 / north 0.8 / east 0.6. See `packages/textures/LICENSE-ASSETS.md`.
 
 ## Nine-slice
 

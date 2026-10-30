@@ -64,7 +64,7 @@ describe("creativeInventoryScreen", () => {
     expect(tab(container, 12)).toHaveStyle({ left: "calc(var(--mc-gui) * 142)" });
     expect(tab(container, 13)).toHaveStyle({ left: "calc(var(--mc-gui) * 169)" });
 
-    const icon = tab(container, 0)?.querySelector("img[data-icon=\"stone-block\"]");
+    const icon = tab(container, 0)?.querySelector("[data-icon=\"stone-block\"]");
     expect(icon).not.toBeNull();
     expect(icon?.parentElement).toHaveStyle({
       left: "calc(var(--mc-gui) * 5)",

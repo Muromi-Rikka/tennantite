@@ -155,6 +155,14 @@ export const components: CatalogEntry[] = [
     sourceDir: "packages/ui/src/primitives/tooltip",
   },
   {
+    description: "等轴方块图标：按原版物品渲染合成顶 / 左 / 右三面，逐面着色。",
+    exports: ["BlockIcon"],
+    group: "containers",
+    name: "BlockIcon",
+    slug: "block-icon",
+    sourceDir: "packages/ui/src/containers/block-icon",
+  },
+  {
     description: "Panel + TitleBar + 内容区块的三段式卡片。",
     exports: ["Card"],
     group: "containers",

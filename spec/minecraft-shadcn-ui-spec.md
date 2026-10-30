@@ -233,7 +233,7 @@ L0 基础素材    Design Tokens · 像素字体 · 像素纹理 · 渲染基调
 | 按钮纹理（常态 / 悬停 / 按下 / 禁用） | 9 宫格切片   | 石纹渐变 + 硬阴影          |
 | 面板背景                    | 9 宫格切片   | 半透明灰 + 边框           |
 | 槽位 Slot 边框              | 1×1 可平铺  | 物品格凹槽感              |
-| 像素图标集                   | 16×16 基底 | 方块 / 物品 / 状态图标（原版 26.3 素材；方块使用平面贴图，不做 3D 物品渲染） |
+| 像素图标集                   | 16×16 基底 | 方块 / 物品 / 状态图标（原版 26.3 素材；方块按原版物品渲染合成等轴三面） |
 | 滑条轨道与把手                 | 切片       | 音量 / 难度滑杆           |
 
 
@@ -277,8 +277,9 @@ L0 基础素材    Design Tokens · 像素字体 · 像素纹理 · 渲染基调
 | 1 | `Panel`                         | 半透明界面面板，9 宫格背景      | `variant`(default/dark)、`className` |
 | 2 | `Slot` / `Grid`                 | 物品格与栅格布局，支持尺寸 / 行列数 | `size`、`columns`、`rows`、`selected`  |
 | 3 | `ItemStack`                     | 图标 + 数量徽标组合         | `icon`、`count`、`selected`、`tooltip` |
-| 4 | `Icon`                          | 像素图标容器（16px 基底放大）   | `name`/`src`、`size`、`pixelated`     |
+| 4 | `Icon`                          | 像素图标容器（16px 基底放大；方块名委派 `BlockIcon`） | `name`/`src`、`size`、`pixelated`     |
 | 5 | `Card` / `TitleBar` / `Divider` | 区块容器、标题栏、分隔线        | `title`、`align`、`variant`           |
+| 6 | `BlockIcon`                     | 等轴方块图标（顶 / 左 / 右三可见面合成） | `name`、`size`、`pixelated`           |
 
 **重点：**`Slot`**&#x20;与&#x20;**`ItemStack`**&#x20;是容器类界面的最小复用单元**，物品栏 / 箱子 / 快捷栏 / 合成台都建立其上。
 

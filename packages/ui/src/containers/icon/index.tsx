@@ -1,11 +1,12 @@
 import type { PixelIconName } from "@tennantite/textures";
 import type { ComponentProps } from "react";
-import { pixelIcons } from "@tennantite/textures";
+import { isBlockIconName, pixelIcons } from "@tennantite/textures";
 import { cn, gui } from "../../lib/utils";
+import { BlockIcon } from "../block-icon/index";
 
 export interface IconProps extends Omit<ComponentProps<"img">, "alt" | "src"> {
   /**
-  * 内置图标名（textures 包原版 PNG data URI）
+  * 内置图标名（textures 包原版 PNG data URI；方块名走 `BlockIcon` 等轴渲染）
   */
   name?: PixelIconName;
   /**
@@ -24,6 +25,7 @@ export interface IconProps extends Omit<ComponentProps<"img">, "alt" | "src"> {
 
 /**
  * MC 像素图标容器（规格 §5 #4）：16×16 基底按 size 放大，pixelated 无模糊缩放。
+ * 方块名（`isBlockIconName`）委派给 `BlockIcon` 等轴渲染，与游戏内物品栏一致。
  * 纯展示组件，RSC 兼容。
  */
 export function Icon({
@@ -35,6 +37,11 @@ export function Icon({
   style,
   ...properties
 }: IconProps) {
+  if (name && isBlockIconName(name)) {
+    return (
+      <BlockIcon className={className} name={name} pixelated={pixelated} size={size} style={style} />
+    );
+  }
   const href = name ? pixelIcons[name] : src;
   if (!href) {
     return null;

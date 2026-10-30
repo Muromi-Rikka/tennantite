@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   Badge,
+  BlockIcon,
   BossBar,
   Button,
   Checkbox,
@@ -50,6 +51,7 @@ function render(): string {
     <>
       <Badge>64</Badge>
       <GuiSprite name="container/inventory.png" />
+      <BlockIcon name="grass-block" />
       <InventoryScreen />
       <ChestScreen rows={3} />
       <HealthHungerBar health={20} hunger={20} />

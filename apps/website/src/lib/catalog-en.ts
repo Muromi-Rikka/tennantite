@@ -10,6 +10,7 @@ export const componentDescriptionsEn: Record<string, string> = {
   "badge": "Count and rarity badge for item stacks; pure styling with default / dim / gold variants.",
   "batbox-screen": "IC2 BatBox from the original 1.12.2 GUI: four armor slots, charge / discharge slots, red EU bar, vanilla redstone button and status text.",
   "beacon-screen": "230×219 beacon panel with 5 primary / 1 secondary effect buttons, payment material row, payment slot and confirm / cancel buttons.",
+  "block-icon": "Isometric block icon: composes the top / left / right faces with vanilla per-face shading.",
   "boss-bar": "Boss bar with purple title and health bar (overlay semantics).",
   "brewing-stand-screen": "Fuel / ingredient / three bottle slots with bubble and arrow clipping progress.",
   "button": "Vanilla-geometry stone-textured button with default / success / ghost variants.",

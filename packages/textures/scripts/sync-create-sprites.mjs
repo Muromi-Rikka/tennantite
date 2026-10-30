@@ -13,7 +13,8 @@ import { unzipSync } from "fflate";
 import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { deflateSync, inflateSync } from "node:zlib";
+
+import { pngSize, readPng, writePng } from "./png.mjs";
 
 const COMMIT = "4148fd8d5b05c85d88947edc00fb495a5074f57d";
 const ZIP_URL = `https://codeload.github.com/Creators-of-Create/Create/zip/${COMMIT}`;
@@ -46,151 +47,6 @@ const OUT_TEXTURES = `${ROOT}css/create-textures.css`;
 
 const check = process.argv.includes("--check");
 
-// ---- PNG 编解码（仅索引色 / RGBA、8-bit、非隔行——Create GUI 贴图全部满足）----
-
-// 非 IHDR chunk 处理；返回 true 表示 IEND（流结束）。
-function applyChunk(type, data, chunks) {
-  switch (type) {
-    case "IDAT": {
-      chunks.idat.push(data);
-      return false;
-    }
-    case "IEND": {
-      return true;
-    }
-    case "PLTE": {
-      chunks.palette = data;
-      return false;
-    }
-    case "tRNS": {
-      chunks.transparency = data;
-      return false;
-    }
-    default: {
-      return false;
-    }
-  }
-}
-
-function paeth(a, b, c) {
-  const p = a + b - c;
-  const pa = Math.abs(p - a);
-  const pb = Math.abs(p - b);
-  const pc = Math.abs(p - c);
-  if (pa <= pb && pa <= pc) {
-    return a;
-  }
-  return pb <= pc ? b : c;
-}
-
-function pixelAt(line, x, depth, palette, transparency) {
-  if (depth === 8 && palette === null) {
-    const i = x * 4;
-    return [line[i], line[i + 1], line[i + 2], line[i + 3]];
-  }
-  const index = depth === 8 ? line[x] : ((x & 1) === 0 ? line[x >> 1] >> 4 : line[x >> 1] & 15);
-  return [
-    palette[index * 3],
-    palette[index * 3 + 1],
-    palette[index * 3 + 2],
-    transparency !== null && index < transparency.length ? transparency[index] : 255,
-  ];
-}
-
-function pngSize(bytes) {
-  const view = new DataView(bytes.buffer, bytes.byteOffset);
-  return { height: view.getUint32(20), width: view.getUint32(16) };
-}
-
-function readPng(bytes) {
-  const view = new DataView(bytes.buffer, bytes.byteOffset);
-  const chunks = { idat: [], palette: null, transparency: null };
-  let width = 0;
-  let height = 0;
-  let offset = 8;
-  while (offset < bytes.length) {
-    const length = view.getUint32(offset);
-    const type = String.fromCodePoint(...bytes.subarray(offset + 4, offset + 8));
-    const data = bytes.subarray(offset + 8, offset + 8 + length);
-    if (type === "IHDR") {
-      width = view.getUint32(16);
-      height = view.getUint32(20);
-      const isUnsupportedDepth = data[8] !== 8 && !(data[8] === 4 && data[9] === 3);
-      const isUnsupportedColor = data[9] !== 3 && data[9] !== 6;
-      if (isUnsupportedDepth || isUnsupportedColor || data[12] !== 0) {
-        throw new Error(`unsupported PNG: depth=${data[8]} color=${data[9]} interlace=${data[12]}`);
-      }
-    }
-    const isEnd = applyChunk(type, data, chunks);
-    offset += 12 + length;
-    if (isEnd) {
-      break;
-    }
-  }
-  const idat = chunks.idat;
-  const palette = chunks.palette;
-  const transparency = chunks.transparency;
-  const isPaletteMode = view.getUint32(0) !== 0 && bytes[25] === 3;
-  const depth = bytes[24];
-  const stride = isPaletteMode ? Math.ceil((width * depth) / 8) : width * 4;
-  const raw = inflateSync(Buffer.concat(idat));
-  const rgba = new Uint8Array(width * height * 4);
-  let previous = new Uint8Array(stride);
-  let cursor = 0;
-  for (let y = 0; y < height; y += 1) {
-    const filter = raw[cursor];
-    cursor += 1;
-    const line = new Uint8Array(stride);
-    for (let x = 0; x < stride; x += 1) {
-      const a = x >= 4 ? line[x - 4] : 0;
-      const b = previous[x];
-      const c = x >= 4 ? previous[x - 4] : 0;
-      line[x] = unfilter(filter, raw[cursor + x], a, b, c);
-    }
-    cursor += stride;
-    for (let x = 0; x < width; x += 1) {
-      rgba.set(pixelAt(line, x, depth, palette, transparency), (y * width + x) * 4);
-    }
-    previous = line;
-  }
-  return { height, rgba, width };
-}
-
-function unfilter(filter, value, a, b, c) {
-  switch (filter) {
-    case 0: {
-      return value;
-    }
-    case 1: {
-      return (value + a) & 0xFF;
-    }
-    case 2: {
-      return (value + b) & 0xFF;
-    }
-    case 3: {
-      return (value + ((a + b) >> 1)) & 0xFF;
-    }
-    case 4: {
-      return (value + paeth(a, b, c)) & 0xFF;
-    }
-    default: {
-      throw new Error(`unsupported PNG filter ${filter}`);
-    }
-  }
-}
-
-const CRC_TABLE = (() => {
-  const table = new Uint32Array(256);
-  for (let index = 0; index < 256; index += 1) {
-    let value = index;
-    for (let bit = 0; bit < 8; bit += 1) {
-      value = (value & 1) === 1 ? 0xED_B8_83_20 ^ (value >>> 1) : value >>> 1;
-    }
-    table[index] = value >>> 0;
-  }
-  return table;
-})();
-
 /**
  * source-over 合成；源 alpha 为 0 的像素跳过，越界像素丢弃。
  */
@@ -215,29 +71,6 @@ function blit(target, source, dy, sy, height, shouldFlipY = false) {
       target.rgba.set(source.rgba.subarray(sourceIndex, sourceIndex + 4), targetIndex);
     }
   }
-}
-
-function chunk(type, data) {
-  const head = new Uint8Array(8);
-  const view = new DataView(head.buffer);
-  view.setUint32(0, data.length);
-  for (let index = 0; index < 4; index += 1) {
-    head[4 + index] = type.codePointAt(index) ?? 0;
-  }
-  const body = new Uint8Array(head.length + data.length + 4);
-  body.set(head);
-  body.set(data, head.length);
-  const crcInput = body.subarray(4, head.length + data.length);
-  new DataView(body.buffer).setUint32(head.length + data.length, crc32(crcInput));
-  return body;
-}
-
-function crc32(bytes) {
-  let crc = 0xFF_FF_FF_FF;
-  for (const byte of bytes) {
-    crc = CRC_TABLE[(crc ^ byte) & 0xFF] ^ (crc >>> 8);
-  }
-  return (crc ^ 0xFF_FF_FF_FF) >>> 0;
 }
 
 function cssVar(name) {
@@ -277,30 +110,6 @@ function machineBackground(playerInventory) {
   }
   blit(target, playerInventory, 162, 0, 4, true);
   return target;
-}
-
-function writePng(width, height, rgba) {
-  const header = new Uint8Array(13);
-  new DataView(header.buffer).setUint32(0, width);
-  new DataView(header.buffer).setUint32(4, height);
-  header[8] = 8;
-  header[9] = 6;
-  header[12] = 0;
-  // filter 0 每行 + 1 字节 filter 头
-  const stride = width * 4;
-  const raw = new Uint8Array((stride + 1) * height);
-  for (let y = 0; y < height; y += 1) {
-    raw[y * (stride + 1)] = 0;
-    raw.set(rgba.subarray(y * stride, (y + 1) * stride), y * (stride + 1) + 1);
-  }
-  const compressedIdat = deflateSync(raw, { level: 9 });
-  const endChunk = chunk("IEND", new Uint8Array(0));
-  return Buffer.concat([
-    Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
-    Buffer.from(chunk("IHDR", header)),
-    Buffer.from(chunk("IDAT", compressedIdat)),
-    Buffer.from(endChunk),
-  ]);
 }
 
 const zip = await download(ZIP_URL);
