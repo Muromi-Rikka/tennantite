@@ -12,7 +12,7 @@ export interface EioCombustionGeneratorScreenProps {
 }
 
 /**
- * 燃烧发电机（200×166，coords from screen/combustion_gen pixel inspection (upstream Screen unavailable at pinned commit)）：双 16×48 流体表与 9×42 能量条。
+ * 燃烧发电机（176×166，coords from screen/combustion_gen pixel inspection (upstream Screen unavailable at pinned commit)）：双 16×48 流体表与 9×42 能量条。
  */
 export function EioCombustionGeneratorScreen({
   className,

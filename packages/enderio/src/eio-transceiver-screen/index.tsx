@@ -15,12 +15,6 @@ export interface EioTransceiverScreenProps {
 }
 
 // coords from screen/transceiver_general pixel inspection (upstream Screen unavailable at pinned commit)
-const LEFT_SLOTS = [0, 1, 2, 3, 4, 5].map(index => ({
-  label: `transceiver-left-${index}`,
-  left: 15 + (index % 2) * 18,
-  top: 13 + Math.floor(index / 2) * 18,
-}));
-
 const CHANNEL_COLUMNS = [53, 71, 89, 107, 130, 148, 166, 184];
 const CHANNEL_SLOTS = CHANNEL_COLUMNS.flatMap((left, column) =>
   [0, 1].map(row => ({
@@ -38,7 +32,8 @@ const BACKGROUNDS: Record<EioTransceiverMode, EioSpriteName> = {
 /**
  * 传输器（256×166，coords from screen/transceiver_general pixel inspection
  * (upstream Screen unavailable at pinned commit)）：general / channel_select
- * 双背景，2×3 左列槽位、8×2 信道槽位与玩家背包。
+ * 双背景，8×2 信道槽位与玩家背包。左侧 x=10/22 起的两条 11×60 竖条是背景贴图
+ * 自带的计量槽，不是物品槽。
  */
 export function EioTransceiverScreen({
   className,
@@ -62,7 +57,7 @@ export function EioTransceiverScreen({
         name={BACKGROUNDS[mode]}
         width={256}
       />
-      {[...LEFT_SLOTS, ...CHANNEL_SLOTS].map(slot => (
+      {CHANNEL_SLOTS.map(slot => (
         <Fragment key={slot.label}>
           <ScreenItemSlot
             item={itemsMap[slot.label]}

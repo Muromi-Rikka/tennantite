@@ -279,7 +279,7 @@ const ENCHANTER: EioMachineLayout = {
 const COMBUSTION_GENERATOR: EioMachineLayout = {
   background: "screen/combustion_gen",
   backgroundHeight: 166,
-  energy: { height: 42, left: 12, top: 14, variant: "legacy", width: 9 },
+  energy: { height: 42, left: 16, top: 14, variant: "legacy", width: 9 },
   fluids: [
     { height: 48, left: 46, top: 20, width: 16 },
     { height: 48, left: 114, top: 20, width: 16 },
@@ -289,14 +289,14 @@ const COMBUSTION_GENERATOR: EioMachineLayout = {
   progresses: [],
   slots: [],
   title: "燃烧发电机",
-  width: 200,
+  width: 176,
 };
 
 // coords from screen/lava_generator pixel inspection (upstream Screen unavailable at pinned commit)
 const LAVA_GENERATOR: EioMachineLayout = {
   background: "screen/lava_generator",
   backgroundHeight: 166,
-  energy: { height: 42, left: 12, top: 14, variant: "legacy", width: 9 },
+  energy: { height: 42, left: 16, top: 14, variant: "legacy", width: 9 },
   fluids: [
     { height: 60, left: 54, top: 12, width: 66 },
     { height: 52, left: 134, top: 18, width: 16 },

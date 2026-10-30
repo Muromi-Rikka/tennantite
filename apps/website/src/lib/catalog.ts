@@ -1862,7 +1862,7 @@ export const components: CatalogEntry[] = [
     sourceDir: "packages/enderio/src/eio-enchanter-screen",
   },
   {
-    description: "Ender IO 燃烧发电机（200×166，贴图测量坐标）：双 16×48 流体表与 9×42 能量条。",
+    description: "Ender IO 燃烧发电机（176×166，贴图测量坐标）：双 16×48 流体表与 9×42 能量条。",
     exports: ["EioCombustionGeneratorScreen"],
     group: "mods",
     mod: "enderio",
@@ -2096,7 +2096,7 @@ export const components: CatalogEntry[] = [
     sourceDir: "packages/enderio/src/eio-tele-pad-screen",
   },
   {
-    description: "Ender IO 传输器（256×166，贴图测量坐标）：general / channel_select 双背景，2×3 左列槽位、8×2 信道槽位与玩家背包。",
+    description: "Ender IO 传输器（256×166，贴图测量坐标）：general / channel_select 双背景，8×2 信道槽位与玩家背包。",
     exports: ["EioTransceiverScreen"],
     group: "mods",
     mod: "enderio",
