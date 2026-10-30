@@ -30,12 +30,37 @@ describe("ae2CraftingCpuScreen", () => {
       top: gui(22),
     });
     expect(screen.getByText("已存储: 64")).toBeInTheDocument();
+    expect(screen.getByText("已存储: 64").parentElement).toHaveStyle({
+      // 区块文字区：图标左侧 48×22，起始 (9, 19)
+      height: gui(22),
+      left: gui(9),
+      top: gui(19),
+      width: gui(48),
+    });
 
     const progress = screen.getByRole("progressbar", { name: "合成进度" });
     expect(progress).toHaveAttribute("aria-valuenow", "0.25");
     expect(progress).toHaveStyle({ left: gui(8), top: gui(165) });
 
-    expect(screen.getByLabelText("取消合成")).toBeInTheDocument();
+    expect(screen.getByLabelText("取消合成")).toHaveTextContent("取消");
+  });
+
+  it("多段状态按 “ / ” 分行", () => {
+    render(
+      <Ae2CraftingCpuScreen
+        jobs={[
+          {
+            detail: "已存储: 64 / 合成中: 8",
+            icon: { icon: "iron-ingot" },
+            id: "iron",
+          },
+        ]}
+      />,
+    );
+
+    expect(screen.getByText("已存储: 64")).toBeInTheDocument();
+    expect(screen.getByText("合成中: 8")).toBeInTheDocument();
+    expect(screen.queryByText("已存储: 64 / 合成中: 8")).not.toBeInTheDocument();
   });
 
   it("取消回调与禁用态", async () => {

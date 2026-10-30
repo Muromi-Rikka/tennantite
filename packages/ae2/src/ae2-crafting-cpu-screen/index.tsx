@@ -1,8 +1,9 @@
 import type { ScreenSlot } from "@tennantite/ui";
 import type { ReactNode } from "react";
-import { ModIconButton, ModProgress, ModScrollbar, ModSprite, ModTitle } from "@tennantite/mods-core";
+import { ModProgress, ModScrollbar, ModSprite, ModTitle } from "@tennantite/mods-core";
 import { ae2SpriteMeta } from "@tennantite/textures";
 import { cn, gui, ScreenItemSlot, ScreenPanel } from "@tennantite/ui";
+import { Fragment } from "react";
 import { AE2_CRAFTING_CPU } from "../ae2-layout";
 
 export interface Ae2CraftingCpuScreenProps {
@@ -28,7 +29,8 @@ export interface Ae2CraftingCpuScreenProps {
 
 export interface Ae2CraftingJob {
   /**
-  * 状态明细（如 “已存储: 64 / 合成中: 4”），渲染在区块下半行
+  * 状态明细（如 “已存储: 64 / 合成中: 4”）；`" / "` 分隔的多段状态
+  * 逐行右对齐渲染在图标左侧的文字区内
   */
   detail?: string;
   icon?: ScreenSlot;
@@ -36,6 +38,7 @@ export interface Ae2CraftingJob {
 }
 
 const VISIBLE_JOBS = 18;
+const DETAIL_SEPARATOR = " / ";
 
 /**
  * 合成 CPU 监控界面（AE2 视觉复刻）：`craftingcpu.png` 238×184 面板，
@@ -82,40 +85,54 @@ export function Ae2CraftingCpuScreen({
           }
           const column = index % sections.columns;
           const row = Math.floor(index / sections.columns);
-          const left = sections.firstIconLeft + column * (sections.sectionWidth + 1);
-          const top = sections.firstIconTop + row * sections.rowHeight;
+          const offset = column * (sections.sectionWidth + 1);
+          const iconLeft = sections.firstIconLeft + offset;
+          const iconTop = sections.firstIconTop + row * sections.rowHeight;
+          const lines = job.detail ? jobDetailLines(job.detail) : [];
           return (
-            <div key={job.id}>
+            <Fragment key={job.id}>
               <ScreenItemSlot
                 frame={false}
                 item={job.icon}
                 label={`cpu-job-${job.id}`}
-                left={left}
+                left={iconLeft}
                 size={sections.iconSize}
-                top={top}
+                top={iconTop}
               />
-              {job.detail
+              {lines.length > 0
                 ? (
-                    <span
-                      className="absolute font-mc text-mc-ae2-text"
+                    <div
+                      className="absolute flex flex-col items-end justify-center overflow-hidden"
                       style={{
-                        fontSize: "calc(var(--mc-gui) * 5.4)",
-                        left: gui(sections.left + column * (sections.sectionWidth + 1)),
-                        lineHeight: "calc(var(--mc-gui) * 8)",
-                        top: gui(top + sections.iconSize + 1),
+                        height: gui(sections.rowHeight - 1),
+                        left: gui(sections.left + offset),
+                        top: gui(sections.textTop + row * sections.rowHeight),
+                        width: gui(sections.textWidth),
                       }}
                     >
-                      {job.detail}
-                    </span>
+                      {lines.map(line => (
+                        <span
+                          className="font-mc whitespace-nowrap text-mc-ae2-text"
+                          key={line}
+                          style={{
+                            fontSize: "calc(var(--mc-gui) * 5.4)",
+                            lineHeight: "calc(var(--mc-gui) * 6)",
+                          }}
+                        >
+                          {line}
+                        </span>
+                      ))}
+                    </div>
                   )
                 : null}
-            </div>
+            </Fragment>
           );
         })}
         <ModProgress
           direction="right"
           fill={<div className="size-full bg-emerald-600" />}
           height={bar.height}
+          inset={3}
           label="合成进度"
           left={bar.left}
           progress={progress}
@@ -123,15 +140,32 @@ export function Ae2CraftingCpuScreen({
           trackClassName="mc-tex-btn"
           width={bar.width}
         />
-        <ModIconButton
+        <button
+          aria-label="取消合成"
+          className={cn(
+            "mc-tex-btn absolute flex items-center justify-center border-0 p-0 font-mc mc-text",
+            onCancel ? "cursor-pointer" : "cursor-default",
+          )}
           disabled={!onCancel}
-          height={cancel.height}
-          label="取消合成"
-          left={cancel.left}
           onClick={onCancel}
-          top={cancel.top}
-          width={cancel.width}
-        />
+          style={{
+            height: gui(cancel.height),
+            left: gui(cancel.left),
+            top: gui(cancel.top),
+            width: gui(cancel.width),
+          }}
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            className={cn(
+              "pointer-events-none mc-text-shadow",
+              onCancel ? "text-mc-text-main" : "text-mc-text-disabled",
+            )}
+          >
+            取消
+          </span>
+        </button>
         <ModScrollbar
           height={scrollbar.height}
           left={scrollbar.left}
@@ -141,4 +175,11 @@ export function Ae2CraftingCpuScreen({
       </ScreenPanel>
     </div>
   );
+}
+
+function jobDetailLines(detail: string): string[] {
+  return detail
+    .split(DETAIL_SEPARATOR)
+    .map(line => line.trim())
+    .filter(line => line.length > 0);
 }

@@ -276,7 +276,9 @@ export const AE2_CPU_SELECTOR = {
 /**
  * 合成 CPU / 合成状态监控（`GuiCraftingCPU`，`craftingcpu.png` 238×184）：
  * 3 列 × 6 行任务区块（67×23/格）、右侧滚动条、右下取消按钮；
- * 底部条带内叠加一条合成进度（计划约定：进度条用 ModProgress，
+ * 区块内物品图标占右侧 16×16，状态文字右对齐到图标左缘（贴图格子
+ * 内容区左 48 × 高 22，即 `textTop`/`textWidth`），换行由调用方文案
+ * 决定；底部条带内叠加一条合成进度（计划约定：进度条用 ModProgress，
  * `craftingcpu.png` 本身没有烘焙进度轨）。
  */
 export const AE2_CRAFTING_CPU = {
@@ -293,6 +295,8 @@ export const AE2_CRAFTING_CPU = {
     rowHeight: 23,
     rows: 6,
     sectionWidth: 67,
+    textTop: 19,
+    textWidth: 48,
     top: 22,
   },
   title: { left: 8, top: 7 },
