@@ -1,23 +1,26 @@
-import type { ScreenSlot } from "@tennantite/ui";
-
 import { IeAssemblerScreen } from "./index";
 
 /**
- * IeAssemblerScreen 预览用例：3 组配方（2 组有料）、递归开启、能量 62%。
+ * IeAssemblerScreen 预览用例：铁机械零件图纸（2 铁板 + 1 铜锭），能量 62%。
  */
 export function IeAssemblerScreenDemo() {
-  const pattern = (isFilled: boolean): Array<null | ScreenSlot> =>
-    Array.from({ length: 9 }, (_, i) => isFilled && i < 5 ? { count: 8, icon: "iron-ingot", tooltip: "铁锭" } : null);
   return (
     <IeAssemblerScreen
       energy={{ max: 32000, value: 20000 }}
       onClear={() => {}}
       onRecursiveToggle={() => {}}
       onSlotClick={() => {}}
-      outputs={[{ count: 2, icon: "iron-ingot", tooltip: "铁块" }, null, null]}
-      patterns={[pattern(true), pattern(false), pattern(true)]}
+      outputs={[{ count: 1, icon: "iron-ingot", tooltip: "铁机械零件" }, null, null]}
+      patterns={[[
+        { count: 2, icon: "iron-ingot", tooltip: "铁板" },
+        { count: 1, icon: "copper-ingot", tooltip: "铜锭" },
+      ]]}
       recursive
-      storage={Array.from({ length: 18 }, (_, i) => i < 8 ? { count: 24, icon: "iron-ore", tooltip: "铁矿" } : null)}
+      storage={[
+        { count: 64, icon: "iron-ingot", tooltip: "铁板" },
+        { count: 64, icon: "copper-ingot", tooltip: "铜锭" },
+        ...Array.from({ length: 16 }, () => null),
+      ]}
       tankValues={[
         { max: 8000, tint: "#3a5cc8", value: 4000 },
         null,

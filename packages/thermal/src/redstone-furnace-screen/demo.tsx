@@ -1,8 +1,6 @@
 import {
   THERMAL_DEMO_PLAYER_HOTBAR,
   THERMAL_DEMO_PLAYER_MAIN,
-  THERMAL_DEMO_REDSTONE,
-  THERMAL_DEMO_SMOOTH_STONE,
 } from "../thermal-demo-data";
 import { ThermalRedstoneFurnaceScreen } from "./index";
 
@@ -13,7 +11,7 @@ export function ThermalRedstoneFurnaceIdleDemo() {
   return (
     <ThermalRedstoneFurnaceScreen
       energy={{ amount: 80000, capacity: 400000 }}
-      input={THERMAL_DEMO_REDSTONE}
+      input={{ count: 1, icon: "iron-ore", tooltip: "铁矿石" }}
       onAugmentsToggle={() => {}}
       playerHotbar={THERMAL_DEMO_PLAYER_HOTBAR}
       playerItems={THERMAL_DEMO_PLAYER_MAIN}
@@ -22,7 +20,7 @@ export function ThermalRedstoneFurnaceIdleDemo() {
 }
 
 /**
- * ThermalRedstoneFurnaceScreen 预览用例：打开强化面板，进度 0.5。
+ * ThermalRedstoneFurnaceScreen 预览用例：打开强化面板，铁矿石 → 铁锭，进度 0.5。
  */
 export function ThermalRedstoneFurnaceScreenDemo() {
   return (
@@ -35,10 +33,10 @@ export function ThermalRedstoneFurnaceScreenDemo() {
       ]}
       augmentsOpen
       energy={{ amount: 240000, capacity: 400000 }}
-      input={THERMAL_DEMO_REDSTONE}
+      input={{ count: 1, icon: "iron-ore", tooltip: "铁矿石" }}
       onAugmentsToggle={() => {}}
       onSlotClick={() => {}}
-      output={THERMAL_DEMO_SMOOTH_STONE}
+      output={{ count: 1, icon: "iron-ingot", tooltip: "铁锭" }}
       playerHotbar={THERMAL_DEMO_PLAYER_HOTBAR}
       playerItems={THERMAL_DEMO_PLAYER_MAIN}
       progress={0.5}

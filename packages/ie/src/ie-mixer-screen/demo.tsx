@@ -1,19 +1,19 @@
 import { IeMixerScreen } from "./index";
 
 /**
- * IeMixerScreen 预览用例：生物质混合，多罐 5200 / 10000，能量 21000 / 32000。
+ * IeMixerScreen 预览用例：2 沙 + 沙砾 + 黏土球 + 500mB 水 → 500mB 混凝土。
  */
 export function IeMixerScreenDemo() {
   return (
     <IeMixerScreen
       energy={{ max: 32000, value: 21000 }}
       inputs={[
-        { count: 12, icon: "iron-ore", tooltip: "泥土" },
-        { count: 8, icon: "charcoal", tooltip: "树叶" },
+        { count: 2, icon: "sand", tooltip: "沙子 ×2" },
+        { count: 1, icon: "gravel", tooltip: "沙砾" },
+        { count: 1, icon: "clay-ball", tooltip: "黏土球" },
         null,
-        { count: 5, icon: "potion", tooltip: "水桶" },
       ]}
-      multitank={{ max: 10000, tint: "#5c7a3c", value: 5200 }}
+      multitank={{ max: 8000, tint: "#9a9a9a", value: 500 }}
       onOutputAllChange={() => {}}
       onSlotClick={() => {}}
       outputAll

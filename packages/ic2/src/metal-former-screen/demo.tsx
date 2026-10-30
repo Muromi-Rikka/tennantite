@@ -18,8 +18,8 @@ export function MetalFormerScreenDemo() {
     <MetalFormerScreen
       discharge={{ icon: "lapis-lazuli", tooltip: "RE 电池" }}
       energy={{ max: 2000, value: 1400 }}
-      input={{ icon: "iron-ingot", tooltip: "铁锭" }}
-      output={{ count: 2, icon: "iron-ingot", tooltip: "铁板" }}
+      input={{ count: 1, icon: "iron-ingot", tooltip: "铁锭" }}
+      output={{ count: 1, icon: "iron-ingot", tooltip: "铁板" }}
       progress={0.6}
       title="金属成型机"
     >

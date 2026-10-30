@@ -18,7 +18,7 @@ export function Ae2CraftingTerminalScreenDemo() {
         { count: 32, icon: "iron-ingot", tooltip: "铁锭" },
         { count: 16, icon: "gold-ingot", tooltip: "金锭" },
         { count: 64, icon: "lapis-lazuli", tooltip: "青金石" },
-        { count: 8, icon: "nether-wart", tooltip: "红石" },
+        { count: 8, icon: "redstone", tooltip: "红石" },
         { count: 64, icon: "stone-block", tooltip: "石头" },
         { count: 12, icon: "emerald", tooltip: "绿宝石" },
       ]}

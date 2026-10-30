@@ -6,7 +6,7 @@ import { BeaconScreen } from "./index";
 export function BeaconScreenDemo() {
   return (
     <BeaconScreen
-      payment={{ count: 9, icon: "diamond", tooltip: "钻石" }}
+      payment={{ count: 1, icon: "diamond", tooltip: "钻石" }}
       primaryOptions={[
         { icon: "effect-speed", id: "speed", label: "速度" },
         { icon: "effect-haste", id: "haste", label: "急迫" },

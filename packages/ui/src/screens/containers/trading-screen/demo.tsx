@@ -14,10 +14,8 @@ export function TradingScreenDemo() {
           output: { icon: "emerald", tooltip: "绿宝石" },
         },
         {
-          inputA: { count: 3, icon: "emerald", tooltip: "绿宝石 ×3" },
-          inputB: { count: 1, icon: "apple" },
-          outOfStock: true,
-          output: { icon: "sword", tooltip: "铁剑" },
+          inputA: { count: 1, icon: "emerald", tooltip: "绿宝石" },
+          output: { count: 6, icon: "bread", tooltip: "面包 ×6" },
         },
       ]}
     />

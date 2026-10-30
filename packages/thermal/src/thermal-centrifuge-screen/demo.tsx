@@ -5,21 +5,17 @@ import {
 import { ThermalCentrifugeScreen } from "./index";
 
 /**
- * ThermalCentrifugeScreen 预览用例：离心机（centrifuge）。
+ * ThermalCentrifugeScreen 预览用例：蜜脾 → 100mB 蜂蜜（离心机 centrifuge）。
  */
 export function ThermalCentrifugeScreenDemo() {
   return (
     <ThermalCentrifugeScreen
       energy={{ amount: 240000, capacity: 400000 }}
-      fluid={{ amount: 2700, capacity: 4000, tint: "#7a3ce0" }}
-      input={{ count: 5, icon: "blaze-powder", tooltip: "离心机输入" }}
+      fluid={{ amount: 100, capacity: 4000, tint: "#f5c542" }}
+      input={{ count: 1, icon: "honeycomb", tooltip: "蜜脾" }}
       onSlotClick={() => {}}
-      output={{ count: 11, icon: "gunpowder", tooltip: "离心机产物" }}
-      outputs={[
-        { count: 12, icon: "diamond", tooltip: "离心机产物 2" },
-        { count: 14, icon: "lapis-lazuli", tooltip: "离心机产物 3" },
-        { count: 7, icon: "gold-ingot", tooltip: "离心机产物 4" },
-      ]}
+      output={undefined}
+      outputs={[null, null, null]}
       playerHotbar={THERMAL_DEMO_PLAYER_HOTBAR}
       playerItems={THERMAL_DEMO_PLAYER_MAIN}
       progress={0.55}

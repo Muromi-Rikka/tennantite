@@ -8,12 +8,12 @@ export function CraftingScreenDemo() {
     <CraftingScreen
       craftItems={[
         { count: 1, icon: "oak-planks" },
-        null,
         { count: 1, icon: "oak-planks" },
         null,
         { count: 1, icon: "oak-planks" },
-        null,
         { count: 1, icon: "oak-planks" },
+        null,
+        null,
         null,
         null,
       ]}

@@ -16,13 +16,18 @@ export function InventoryScreenDemo() {
   return (
     <InventoryScreen
       armorItems={[
+        null,
         { icon: "iron-chestplate" },
         null,
-        { count: 1, icon: "diamond" },
         null,
       ]}
-      craftItems={[stone(1), null, stone(3), null]}
-      craftResult={stone(4)}
+      craftItems={[
+        { count: 1, icon: "oak-planks" },
+        { count: 1, icon: "oak-planks" },
+        { count: 1, icon: "oak-planks" },
+        { count: 1, icon: "oak-planks" },
+      ]}
+      craftResult={{ count: 1, icon: "crafting-table", tooltip: "工作台" }}
       hotbarItems={[
         { count: 64, icon: "stone-block" },
         { icon: "grass-block" },

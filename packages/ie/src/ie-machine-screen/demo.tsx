@@ -2,16 +2,15 @@ import type { ScreenSlot } from "@tennantite/ui";
 
 import { ScreenItemSlot } from "@tennantite/ui";
 
-import { IE_DEMO_BUCKET, IE_DEMO_COAL, IE_DEMO_COKE, IE_DEMO_CREOSOTE_BUCKET } from "../ie-demo-data";
 import { IeFluidTank } from "../ie-fluid-tank/index";
 import { IE_MACHINES, ieExpandSlots } from "../ie-machine-layout";
 import { IeMachineScreen } from "./index";
 
 const slotItems: Record<string, ScreenSlot | undefined> = {
-  "coke-oven-bucket-output": IE_DEMO_CREOSOTE_BUCKET,
-  "coke-oven-fluid-container": IE_DEMO_BUCKET,
-  "coke-oven-input": IE_DEMO_COAL,
-  "coke-oven-output": IE_DEMO_COKE,
+  "coke-oven-bucket-output": { count: 1, icon: "potion", tooltip: "杂酚油桶" },
+  "coke-oven-fluid-container": { count: 1, icon: "potion", tooltip: "空桶" },
+  "coke-oven-input": { count: 8, icon: "oak-log", tooltip: "橡木原木 ×8" },
+  "coke-oven-output": { count: 1, icon: "charcoal", tooltip: "木炭" },
 };
 
 /**
@@ -37,7 +36,7 @@ export function IeMachineScreenDemo() {
         overlayName={layout.tank.overlayName}
         tint="#6e5530"
         top={layout.tank.fill.top}
-        value={3600}
+        value={250}
         width={layout.tank.fill.width}
       />
       {ieExpandSlots(layout).map(slot => (

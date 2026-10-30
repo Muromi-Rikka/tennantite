@@ -8,9 +8,9 @@ export function AnvilScreenDemo() {
     <AnvilScreen
       defaultValue="铁剑"
       item={{ icon: "sword", tooltip: "铁剑" }}
-      levelCost={3}
-      material={{ count: 4, icon: "iron-ingot", tooltip: "铁锭" }}
-      result={{ icon: "sword", tooltip: "铁剑 · 锋利 I" }}
+      levelCost={1}
+      material={{ count: 1, icon: "iron-ingot", tooltip: "铁锭" }}
+      result={{ icon: "sword", tooltip: "铁剑（已修复）" }}
       title="修理"
     />
   );

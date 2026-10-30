@@ -5,7 +5,7 @@ import {
 import { ThermalBrewerScreen } from "./index";
 
 /**
- * ThermalBrewerScreen 预览用例：酿造机（brewer）。
+ * ThermalBrewerScreen 预览用例：酿造机以流体 + 配料工作，不产出物品。
  */
 export function ThermalBrewerScreenDemo() {
   return (
@@ -15,7 +15,7 @@ export function ThermalBrewerScreenDemo() {
       fluids={[
         { amount: 1600, capacity: 4000, tint: "#7a3ce0" },
       ]}
-      input={{ count: 5, icon: "nether-wart", tooltip: "酿造机输入" }}
+      input={{ count: 1, icon: "nether-wart", tooltip: "地狱疣" }}
       onSlotClick={() => {}}
       playerHotbar={THERMAL_DEMO_PLAYER_HOTBAR}
       playerItems={THERMAL_DEMO_PLAYER_MAIN}

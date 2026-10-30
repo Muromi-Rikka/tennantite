@@ -9,20 +9,20 @@ export function FdCookingPotScreenDemo() {
   return (
     <div className="flex flex-col gap-3">
       <FdCookingPotScreen
-        container={FD_DEMO_ITEMS.potion}
+        container={FD_DEMO_ITEMS.bowl}
         heated={heated}
         ingredients={[
-          FD_DEMO_ITEMS.apple,
-          FD_DEMO_ITEMS.wheat,
-          FD_DEMO_ITEMS.ironIngot,
-          FD_DEMO_ITEMS.charcoal,
-          FD_DEMO_ITEMS.emerald,
-          FD_DEMO_ITEMS.gunpowder,
+          FD_DEMO_ITEMS.brownMushroom,
+          FD_DEMO_ITEMS.redMushroom,
+          null,
+          null,
+          null,
+          null,
         ]}
-        meal={FD_DEMO_ITEMS.apple}
+        meal={undefined}
         onRecipeBookToggle={() => { setRecipeBookOpen(value => !value); }}
         onSlotClick={() => { setHeated(value => !value); }}
-        output={FD_DEMO_ITEMS.wheat}
+        output={FD_DEMO_ITEMS.mushroomStew}
         progress={0.6}
         recipeBookOpen={recipeBookOpen}
       />

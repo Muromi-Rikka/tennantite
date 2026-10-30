@@ -4,7 +4,7 @@ export function MekanismTeleporterScreenDemo() {
   return (
     <MekanismTeleporterScreen
       currentFrequency={{ color: "#59c15f", id: "home", label: "home (Steve)", owner: "Steve", security: "public" }}
-      energySlot={{ count: 1, icon: "iron-ingot", tooltip: "充能物品" }}
+      energySlot={{ count: 1, icon: "lapis-lazuli", tooltip: "能量平板" }}
       frequencies={[
         { color: "#59c15f", id: "home", label: "home (Steve)", owner: "Steve", security: "public" },
         { id: "base", label: "base (Alex)", owner: "Alex", security: "private" },

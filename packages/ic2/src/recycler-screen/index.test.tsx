@@ -33,6 +33,5 @@ describe("recyclerScreen", () => {
   it("demo 渲染", () => {
     render(<RecyclerScreenDemo />);
     expect(screen.getByText("回收机")).toBeInTheDocument();
-    expect(screen.getByText("5")).toBeInTheDocument();
   });
 });

@@ -1,19 +1,18 @@
-import { IE_DEMO_BUCKET, IE_DEMO_COAL, IE_DEMO_COKE, IE_DEMO_CREOSOTE_BUCKET } from "../ie-demo-data";
 import { IeCokeOvenScreen } from "./index";
 
 /**
- * IeCokeOvenScreen 预览用例：煤炭炼焦 65%，焦炉罐 3600 / 8000。
+ * IeCokeOvenScreen 预览用例：8 橡木原木 → 木炭 + 250mB 杂酚油，炼焦 65%。
  */
 export function IeCokeOvenScreenDemo() {
   return (
     <IeCokeOvenScreen
-      bucketOutput={IE_DEMO_CREOSOTE_BUCKET}
+      bucketOutput={{ count: 1, icon: "potion", tooltip: "杂酚油桶" }}
       burn={0.65}
-      fluidContainer={IE_DEMO_BUCKET}
-      input={IE_DEMO_COAL}
+      fluidContainer={{ count: 1, icon: "potion", tooltip: "空桶" }}
+      input={{ count: 8, icon: "oak-log", tooltip: "橡木原木 ×8" }}
       onSlotClick={() => {}}
-      output={IE_DEMO_COKE}
-      tank={{ max: 8000, tint: "#6e5530", value: 3600 }}
+      output={{ count: 1, icon: "charcoal", tooltip: "木炭" }}
+      tank={{ max: 8000, tint: "#6e5530", value: 250 }}
     />
   );
 }

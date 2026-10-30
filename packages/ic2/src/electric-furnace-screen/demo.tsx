@@ -8,7 +8,7 @@ export function ElectricFurnaceScreenDemo() {
     <ElectricFurnaceScreen
       energy={{ max: 2000, value: 1750 }}
       input={{ icon: "iron-ore", tooltip: "铁矿石" }}
-      output={{ count: 3, icon: "iron-ingot", tooltip: "铁锭" }}
+      output={{ count: 1, icon: "iron-ingot", tooltip: "铁锭" }}
       progress={0.8}
       title="电炉"
     />

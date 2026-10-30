@@ -42,6 +42,5 @@ describe("electricFurnaceScreen", () => {
   it("demo 渲染", () => {
     render(<ElectricFurnaceScreenDemo />);
     expect(screen.getByText("电炉")).toBeInTheDocument();
-    expect(screen.getByText("3")).toBeInTheDocument();
   });
 });

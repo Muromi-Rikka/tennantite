@@ -6,7 +6,7 @@ import { MfsuScreen } from "./index";
 export function MfsuScreenDemo() {
   return (
     <MfsuScreen
-      charge={{ icon: "lapis-lazuli", tooltip: "充电槽" }}
+      charge={{ icon: "lapis-lazuli", tooltip: "RE 电池" }}
       energy={{ max: 40000000, value: 26000000 }}
       title="MFSU 超高压储电箱"
     />

@@ -1,7 +1,7 @@
 import { Ic2BlastFurnaceScreen } from "./index";
 
 /**
- * Ic2BlastFurnaceScreen 预览用例：铁锭 ×2 → 钢锭（原版图标近似），进气 / 排气
+ * Ic2BlastFurnaceScreen 预览用例：铁锭 ×1 → 钢锭（原版图标近似），进气 / 排气
  * 万用流体单元，热量 64%。
 */
 export function Ic2BlastFurnaceScreenDemo() {

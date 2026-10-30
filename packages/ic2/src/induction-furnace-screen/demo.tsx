@@ -1,7 +1,7 @@
 import { InductionFurnaceScreen } from "./index";
 
 /**
- * InductionFurnaceScreen 预览用例：铁矿石 ×2 → 铁锭 ×2（原版图标近似），热量 46。
+ * InductionFurnaceScreen 预览用例：每输入 1 铁矿石 → 1 铁锭（原版图标近似），热量 46。
 */
 export function InductionFurnaceScreenDemo() {
   return (

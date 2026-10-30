@@ -10,7 +10,7 @@ export function FurnaceScreenDemo() {
       cookProgress={0.45}
       fuel={{ count: 3, icon: "charcoal", tooltip: "木炭" }}
       input={{ icon: "iron-ore", tooltip: "铁矿石" }}
-      output={{ count: 2, icon: "iron-ingot", tooltip: "铁锭" }}
+      output={{ count: 1, icon: "iron-ingot", tooltip: "铁锭" }}
       title="熔炉"
     />
   );

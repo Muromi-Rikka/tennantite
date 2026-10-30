@@ -10,6 +10,14 @@ import { ScreenItemSlot } from "../screen-slot";
 
 export type CartographyOverlay = "duplicated" | "error" | "locked" | "map" | "scaled";
 
+const OVERLAY_SPRITES: Record<CartographyOverlay, string> = {
+  duplicated: "duplicated_map",
+  error: "error",
+  locked: "locked",
+  map: "map",
+  scaled: "scaled_map",
+};
+
 export interface CartographyTableScreenProps {
   additional?: ScreenSlot;
   className?: string;
@@ -63,7 +71,7 @@ export function CartographyTableScreen({
             <GuiSprite
               className="absolute"
               height={26}
-              name={`sprites/container/cartography_table/${overlay}.png` as GuiSpriteName}
+              name={`sprites/container/cartography_table/${OVERLAY_SPRITES[overlay]}.png` as GuiSpriteName}
               style={{ left: gui(104), top: gui(48) }}
               width={26}
             />

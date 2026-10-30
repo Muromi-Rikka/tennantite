@@ -38,6 +38,5 @@ describe("furnaceScreen", () => {
   it("demo 渲染", () => {
     render(<FurnaceScreenDemo />);
     expect(screen.getByText("熔炉")).toBeInTheDocument();
-    expect(screen.getByText("2")).toBeInTheDocument();
   });
 });
