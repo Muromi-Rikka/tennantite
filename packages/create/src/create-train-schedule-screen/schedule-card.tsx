@@ -147,7 +147,14 @@ export function ScheduleCard({
         style={{ height: gui(16), left: gui(26), top: gui(5), width: gui(headerWidth) }}
         type="button"
       >
-        <ConditionPill condition={{ icon: entry.icon, label: entry.label, width: headerWidth }} />
+        {/* 外层已是 <button>：物品不能再带 tooltip（ItemStack 会渲染成嵌套 <button>，SSR 解析会弹栈破坏布局） */}
+        <ConditionPill
+          condition={{
+            icon: entry.icon ? { ...entry.icon, tooltip: undefined } : undefined,
+            label: entry.label,
+            width: headerWidth,
+          }}
+        />
       </button>
       {entry.supportsConditions
         ? (
