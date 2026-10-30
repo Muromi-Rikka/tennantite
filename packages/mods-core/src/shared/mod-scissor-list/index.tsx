@@ -34,7 +34,7 @@ export function ModScissorList({
     >
       <div
         className="absolute"
-        style={{ left: gui(-left), top: gui(-top - scroll) }}
+        style={{ left: gui(-left), top: gui(-top - scroll), width: gui(width + left) }}
       >
         {children}
       </div>

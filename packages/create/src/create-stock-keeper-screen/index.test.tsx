@@ -34,7 +34,7 @@ describe("createStockKeeperScreen", () => {
     expect(screen.getByText("食材")).toBeInTheDocument();
     expect(screen.getByText("杂物")).toBeInTheDocument();
     expect(screen.getByLabelText("stock-wheat")).toBeInTheDocument();
-    expect(screen.getByText("10k")).toBeInTheDocument();
+    expect(screen.getByText("10000")).toBeInTheDocument();
   });
 
   it("锁定按钮两态与回调", () => {

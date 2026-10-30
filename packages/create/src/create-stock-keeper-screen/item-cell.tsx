@@ -24,29 +24,6 @@ export function ItemCell({ item }: { item: CreateStockItem }) {
           top={0}
         />
       </div>
-      {item.count > 1
-        ? (
-            <div
-              className="absolute font-mc mc-text mc-text-shadow"
-              style={{ color: "#ffffff", right: gui(1), top: gui(10) }}
-            >
-              {formatCount(item.count)}
-            </div>
-          )
-        : null}
     </div>
   );
-}
-
-/**
- * 库存管理员物品数量缩写（1000 → 1.2k、10000 → 10k、1000000 → 1m）。
- */
-function formatCount(count: number): string {
-  if (count >= 1000000) {
-    return `${Math.floor(count / 1000000)}m`;
-  }
-  if (count >= 10000) {
-    return `${Math.floor(count / 1000)}k`;
-  }
-  return count >= 1000 ? `${Math.floor(count / 100) / 10}k` : String(count);
 }
