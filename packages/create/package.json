@@ -4,7 +4,7 @@
   "version": "0.1.1",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Muromi-Rikka/verdigris.git",
+    "url": "git+https://github.com/Muromi-Rikka/tennantite.git",
     "directory": "packages/create"
   },
   "sideEffects": false,

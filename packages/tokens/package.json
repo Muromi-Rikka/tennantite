@@ -5,7 +5,7 @@
   "description": "Tennantite design tokens — Minecraft-style Tailwind v4 theme variables",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Muromi-Rikka/verdigris.git",
+    "url": "git+https://github.com/Muromi-Rikka/tennantite.git",
     "directory": "packages/tokens"
   },
   "exports": {

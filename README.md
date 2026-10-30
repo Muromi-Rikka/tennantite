@@ -101,7 +101,7 @@ spec/             # 规格文档
 
 1. 本地 `pnpm cs` 写 changeset 并随 PR 推送。
 2. master 上 CI 的 `version-pr` job 自动创建「chore: version packages」PR（统一全部包版本，linked 强制同步 bump）。
-3. 合并版本 PR 后，在 GitHub 上以 `v<版本>`（如 `v0.1.1`）创建 Release——`Publish` workflow 由此触发：校验 tag 与全部包版本一致 → turbo build → `pnpm publish`（`id-token: write` 走 OIDC，已在 npmjs.com 为每个包配置 Trusted Publisher：repo `Muromi-Rikka/verdigris`、workflow `release.yml`）。已发布的相同版本会自动跳过，可安全重跑。
+3. 合并版本 PR 后，在 GitHub 上以 `v<版本>`（如 `v0.1.1`）创建 Release——`Publish` workflow 由此触发：校验 tag 与全部包版本一致 → turbo build → `pnpm publish`（`id-token: write` 走 OIDC，已在 npmjs.com 为每个包配置 Trusted Publisher：repo `Muromi-Rikka/tennantite`、workflow `release.yml`）。已发布的相同版本会自动跳过，可安全重跑。
 
 本地排查可用 `node scripts/publish-all.mjs --dry-run` 对比 registry 版本。
 

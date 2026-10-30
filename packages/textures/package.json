@@ -5,7 +5,7 @@
   "description": "Tennantite pixel textures — vanilla Minecraft GUI PNG sprites, redrawn nine-slices and vanilla item/status icons",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Muromi-Rikka/verdigris.git",
+    "url": "git+https://github.com/Muromi-Rikka/tennantite.git",
     "directory": "packages/textures"
   },
   "exports": {
