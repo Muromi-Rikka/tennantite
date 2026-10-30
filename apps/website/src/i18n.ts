@@ -121,8 +121,10 @@ export interface UIDictionary {
     common: { description: string; title: string };
     components: { description: string; title: string };
     description: string;
+    frames: { description: string; title: string };
     metaTitle: string;
     mods: Record<"ae2" | "create" | "enderio" | "farmersdelight" | "ic2" | "ie" | "industrialforegoing" | "mekanism" | "thermal", { description: string; title: string }>;
+    parts: { description: string; title: string };
     screens: { description: string; title: string };
     title: string;
   };
@@ -334,10 +336,11 @@ export function Start() {
       title: "跨 mod 通用",
     },
     components: {
-      description: "各 mod 可复制的组件级部件，按 mod 维度归档。",
+      description: "各 mod 的可复用部件，以及拼装整屏用的布局骨架。",
       title: "组件",
     },
     description: "Mekanism、IC2、AE2、Create、Thermal Expansion、Immersive Engineering、Ender IO、Industrial Foregoing 与 Farmer's Delight 的整屏界面与组件：全部使用上游原始 GUI 贴图（固定版本 + 校验），数据注入、无游戏逻辑。",
+    frames: { description: "整屏的框架与窗口：机器基座、槽位布局、侧边配置与升级窗口。", title: "布局骨架" },
     metaTitle: "Mod 界面 · Tennantite",
     mods: {
       ae2: {
@@ -377,6 +380,7 @@ export function Start() {
         title: "Thermal Expansion",
       },
     },
+    parts: { description: "可直接嵌入机器界面的部件：能量条、流体罐、进度条、槽位、按钮与精灵。", title: "可复用子件" },
     screens: {
       description: "按游戏内屏幕定义复刻尺寸与槽位坐标。",
       title: "整屏界面",
@@ -574,10 +578,11 @@ export function Start() {
       title: "Cross-mod shared",
     },
     components: {
-      description: "Copy-ready component-level parts, archived per mod.",
+      description: "Reusable per-mod parts plus the layout frames screens are assembled from.",
       title: "Components",
     },
     description: "Full-screen interfaces and components for Mekanism, IndustrialCraft 2, Applied Energistics 2, Create, Thermal Expansion, Immersive Engineering, Ender IO, Industrial Foregoing and Farmer's Delight — all from the original upstream GUI textures (pinned versions, verified); data-injected, no game logic.",
+    frames: { description: "Screen frames and windows: machine bases, slot layouts, side-config and upgrade windows.", title: "Layout frames" },
     metaTitle: "Mod screens · Tennantite",
     mods: {
       ae2: {
@@ -617,6 +622,7 @@ export function Start() {
         title: "Thermal Expansion",
       },
     },
+    parts: { description: "Parts you can drop into a machine screen: energy bars, fluid tanks, progress bars, slots, buttons and sprites.", title: "Reusable parts" },
     screens: {
       description: "Screen dimensions and slot coordinates matched to the in-game screens.",
       title: "Full screens",

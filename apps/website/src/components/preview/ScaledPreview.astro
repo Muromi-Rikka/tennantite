@@ -3,30 +3,63 @@ import Demo from "./demo";
 
 interface Props {
   class?: string;
+  /**
+   * 允许裁切超高内容：内容可见高度超过容器盒 4 倍时按宽度适配并贴顶显示（例如 48 台机器的画廊），
+   * 否则与缺省一样按宽度与高度双向适配、完整可见。
+   */
+  cropHeight?: boolean;
   name: string;
   maxScale?: number;
 }
 
-const { class: className = "", maxScale = 1, name } = Astro.props;
+const { class: className = "", cropHeight = false, maxScale = 1, name } = Astro.props;
 ---
 <div
   class:list={["relative overflow-hidden", className]}
+  data-crop-height={cropHeight ? "" : undefined}
   data-max-scale={maxScale}
   data-scaled-preview=""
 >
   <div
     aria-hidden="true"
     inert
-    class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+    class="pointer-events-none absolute top-1/2 left-1/2"
     data-scaled-content=""
   >
     <Demo client:visible name={name} />
   </div>
 </div>
 <script>
-  // 自动等比缩放：scale = min(容器盒 / 内容固有盒, maxScale)。
-  // translate 类负责居中，这里只写 CSS `scale` 属性（与 translate 组合生效）；
+  // 自动等比缩放：scale = min(容器盒 / 可见范围, maxScale)。
+  // 可见范围 = 内容包装盒 ∪ 各可见子元素：部分 demo 的部件按 176 px 屏幕坐标绝对定位，
+  // 会伸到包装盒外（例如贴右边沿的升级面板），只量包装盒会把这些部件裁掉。
+  // 内容左上角固定在容器盒中心，transform-origin 为左上角，这里只写 CSS `scale` / `translate`；
   // 实测尺寸按当前 scale 换算回固有值，天然适配任意 demo，无需逐处写断点。
+  interface Bounds {
+    height: number;
+    left: number;
+    top: number;
+    width: number;
+  }
+
+  function visibleBounds(content: HTMLElement, rect: DOMRect, scale: number): Bounds {
+    let left = 0;
+    let top = 0;
+    let right = rect.width / scale;
+    let bottom = rect.height / scale;
+    for (const element of content.querySelectorAll("*")) {
+      const box = element.getBoundingClientRect();
+      if (box.width <= 0 || box.height <= 0) {
+        continue;
+      }
+      left = Math.min(left, (box.left - rect.left) / scale);
+      top = Math.min(top, (box.top - rect.top) / scale);
+      right = Math.max(right, (box.right - rect.left) / scale);
+      bottom = Math.max(bottom, (box.bottom - rect.top) / scale);
+    }
+    return { height: bottom - top, left, top, width: right - left };
+  }
+
   function fit(preview: HTMLElement): void {
     const content = preview.querySelector<HTMLElement>("[data-scaled-content]");
     if (!content) {
@@ -38,31 +71,67 @@ const { class: className = "", maxScale = 1, name } = Astro.props;
     }
     const current = Number.parseFloat(content.dataset.previewScale ?? "1") || 1;
     const rect = content.getBoundingClientRect();
-    const naturalWidth = rect.width / current;
-    const naturalHeight = rect.height / current;
-    if (naturalWidth <= 0 || naturalHeight <= 0) {
+    if (rect.width <= 0 || rect.height <= 0) {
+      return;
+    }
+    const bounds = visibleBounds(content, rect, current);
+    if (bounds.width <= 0 || bounds.height <= 0) {
       return;
     }
     const maxScale = Number.parseFloat(preview.dataset.maxScale ?? "1") || 1;
-    const scale = Math.min(
+    const contain = Math.min(
       maxScale,
-      box.width / naturalWidth,
-      box.height / naturalHeight,
+      box.width / bounds.width,
+      box.height / bounds.height,
     );
+    // 可见高度超过容器盒 4 倍时（如 48 台机器的画廊），双向适配只会缩成一条细线；
+    // 改为按宽度适配并贴顶裁切，露出前几行。
+    const cropHeight = preview.hasAttribute("data-crop-height")
+      && bounds.height > box.height * 4;
+    const scale = cropHeight ? Math.min(maxScale, box.width / bounds.width) : contain;
+    const translateX = -scale * (bounds.left + bounds.width / 2);
+    const translateY = cropHeight
+      ? -box.height / 2 - scale * bounds.top
+      : -scale * (bounds.top + bounds.height / 2);
     content.dataset.previewScale = String(scale);
     content.style.scale = String(scale);
+    content.style.translate = `${translateX}px ${translateY}px`;
+    if (cropHeight) {
+      content.dataset.previewAnchor = "top";
+    } else {
+      delete content.dataset.previewAnchor;
+    }
   }
 
   const previews = document.querySelectorAll<HTMLElement>("[data-scaled-preview]");
   const observer = new ResizeObserver((entries) => {
     for (const entry of entries) {
-      if (entry.target instanceof HTMLElement) {
-        fit(entry.target);
+      const target = entry.target;
+      if (!(target instanceof HTMLElement)) {
+        continue;
+      }
+      const preview = target.matches("[data-scaled-preview]")
+        ? target
+        : target.closest<HTMLElement>("[data-scaled-preview]");
+      if (preview) {
+        fit(preview);
       }
     }
   });
   for (const preview of previews) {
+    // island 延迟 hydrate（如隐藏面板内的 client:visible）后内容才出现，外框尺寸不变，
+    // 因此同时观察内容自身；CSS `scale` 不参与布局，不会触发出新的尺寸变化。
+    const content = preview.querySelector<HTMLElement>("[data-scaled-content]");
+    if (content) {
+      observer.observe(content);
+    }
     observer.observe(preview);
     fit(preview);
   }
 </script>
+
+<style>
+  [data-scaled-content] {
+    transform-origin: left top;
+  }
+</style>

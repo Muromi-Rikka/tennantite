@@ -2,7 +2,7 @@ import { IfAugmentPanel } from "./index";
 
 export function IfAugmentPanelDemo() {
   return (
-    <div className="relative h-48 w-56">
+    <div className="relative h-48 w-[420px]">
       <IfAugmentPanel
         items={[
           { icon: "diamond" },
