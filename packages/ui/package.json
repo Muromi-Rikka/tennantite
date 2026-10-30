@@ -1,7 +1,7 @@
 {
   "name": "@tennantite/ui",
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Tennantite — Minecraft-style UI components built on shadcn philosophy (Base UI + Tailwind v4)",
   "repository": {
     "type": "git",

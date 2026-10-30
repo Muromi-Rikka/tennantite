@@ -1,7 +1,7 @@
 {
   "name": "@tennantite/tokens",
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Tennantite design tokens — Minecraft-style Tailwind v4 theme variables",
   "repository": {
     "type": "git",
