@@ -95,6 +95,16 @@ spec/             # 规格文档
 
 详见 `packages/textures/LICENSE-ASSETS.md`。
 
+## 发布
+
+全部 13 个 `@tennantite/*` 包通过 GitHub Actions 以 npm Trusted Publisher（OIDC）发布，无 NPM_TOKEN：
+
+1. 本地 `pnpm cs` 写 changeset 并随 PR 推送。
+2. master 上 CI 的 `version-pr` job 自动创建「chore: version packages」PR（统一全部包版本，linked 强制同步 bump）。
+3. 合并版本 PR 后，在 GitHub 上以 `v<版本>`（如 `v0.1.1`）创建 Release——`Publish` workflow 由此触发：校验 tag 与全部包版本一致 → turbo build → `pnpm publish`（`id-token: write` 走 OIDC，已在 npmjs.com 为每个包配置 Trusted Publisher：repo `Muromi-Rikka/verdigris`、workflow `release.yml`）。已发布的相同版本会自动跳过，可安全重跑。
+
+本地排查可用 `node scripts/publish-all.mjs --dry-run` 对比 registry 版本。
+
 ## 供应链策略说明
 
 pnpm 12 的 `trustPolicy: no-downgrade` 会将 semver@6.3.1 等发布于 provenance 机制之前的经典包误判为"信任降级"而阻断安装（[pnpm discussion #10706](https://github.com/pnpm/pnpm/discussions/10706)），本项目将其设为 `off`，并在 `eslint.config.ts` 中同步覆盖 `pnpm/yaml-enforce-settings` 的期望值。

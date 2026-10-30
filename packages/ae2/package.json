@@ -1,7 +1,12 @@
 {
   "name": "@tennantite/ae2",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muromi-Rikka/verdigris.git",
+    "directory": "packages/ae2"
+  },
   "sideEffects": false,
   "exports": {
     ".": {
@@ -50,5 +55,8 @@
     "react-dom": "19.2.8",
     "typescript": "^6.0.3",
     "vitest": "^5.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

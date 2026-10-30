@@ -1,0 +1,23 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
+  "commit": false,
+  "access": "public",
+  "baseBranch": "master",
+  "linked": [
+    [
+      "@tennantite/ae2",
+      "@tennantite/create",
+      "@tennantite/enderio",
+      "@tennantite/farmersdelight",
+      "@tennantite/ic2",
+      "@tennantite/ie",
+      "@tennantite/industrialforegoing",
+      "@tennantite/mekanism",
+      "@tennantite/mods-core",
+      "@tennantite/textures",
+      "@tennantite/thermal",
+      "@tennantite/tokens",
+      "@tennantite/ui"
+    ]
+  ]
+}

@@ -1,8 +1,13 @@
 {
   "name": "@tennantite/textures",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tennantite pixel textures — vanilla Minecraft GUI PNG sprites, redrawn nine-slices and vanilla item/status icons",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muromi-Rikka/verdigris.git",
+    "directory": "packages/textures"
+  },
   "exports": {
     ".": {
       "types": "./src/index.ts",
@@ -37,5 +42,8 @@
   "devDependencies": {
     "fflate": "^0.8.3",
     "typescript": "^6.0.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

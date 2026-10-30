@@ -1,0 +1,36 @@
+name: Publish
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  # npm Trusted Publishing（OIDC）：pnpm 在 GitHub Actions 中检测到该权限时自动走无 token 发布
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: pnpm
+          registry-url: "https://registry.npmjs.org"
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Verify versions match release tag
+        run: node scripts/verify-release-version.mjs "$GITHUB_REF_NAME"
+
+      - name: Build
+        run: pnpm turbo run build
+
+      - name: Publish
+        run: node scripts/publish-all.mjs

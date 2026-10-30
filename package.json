@@ -13,10 +13,13 @@
     "react-doctor": "react-doctor --no-color",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
+    "cs": "changeset",
+    "version:all": "changeset version && node scripts/sync-versions.mjs",
     "registry": "node registry/build.mjs",
     "verify:assets": "node packages/textures/scripts/sync-gui-sprites.mjs --check && node packages/textures/scripts/sync-ae2-sprites.mjs --check && node packages/textures/scripts/sync-ic2-sprites.mjs --check && node packages/textures/scripts/sync-mekanism-sprites.mjs --check && node packages/textures/scripts/sync-industrialforegoing-sprites.mjs --check && node packages/textures/scripts/sync-farmersdelight-sprites.mjs --check && node packages/textures/scripts/scan-gui-layouts.mjs --check && node packages/textures/scripts/sync-vanilla-icons.mjs --check"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.8",
     "@renton/eslint-config-react": "^1.2.1",
     "eslint": "^10.13.0",
     "eslint-plugin-pnpm": "^1.9.1",
