@@ -1,4 +1,5 @@
 import type { ComponentType } from "react";
+
 import {
   Ae2ChestScreenDemo,
   Ae2CondenserScreenDemo,
@@ -290,6 +291,9 @@ import {
   TradingScreenDemo,
 } from "@tennantite/ui/demos";
 
+import { LiveDemo } from "./live-demo";
+import { LIVE_SPECS } from "./live-specs";
+
 const registry: Record<string, ComponentType> = {
   Ae2ChestScreenDemo,
   Ae2CondenserScreenDemo,
@@ -564,15 +568,18 @@ const registry: Record<string, ComponentType> = {
 };
 
 export function Demo({ name }: { name: string }) {
-  const Component = registry[`${name}Demo`];
-  return Component
-    ? <Component />
-    : (
-        <p className="font-mc mc-text text-mc-red">
-          缺少示例：
-          {name}
-        </p>
-      );
+  const key = `${name}Demo`;
+  const Component = registry[key];
+  if (!Component) {
+    return (
+      <p className="font-mc mc-text text-mc-red">
+        缺少示例：
+        {name}
+      </p>
+    );
+  }
+  const spec = LIVE_SPECS[key];
+  return spec ? <LiveDemo Component={Component} spec={spec} /> : <Component />;
 }
 
 export default Demo;

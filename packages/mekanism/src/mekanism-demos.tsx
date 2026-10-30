@@ -32,6 +32,11 @@ import { MekanismTitle } from "./mekanism-title/index";
 import { MekanismUpgradeWindow } from "./mekanism-upgrade-window/index";
 import { MekanismWindow } from "./mekanism-window/index";
 
+interface MekanismMachineScreenDemoProps {
+  energy?: { max: number; value: number };
+  progress?: Record<string, number>;
+}
+
 const IRON: ScreenSlot = { count: 32, icon: "iron-ingot", tooltip: "铁锭" };
 const GOLD: ScreenSlot = { count: 8, icon: "gold-ingot", tooltip: "金锭" };
 
@@ -160,8 +165,18 @@ export function MekanismInductionMatrixScreenDemo() {
   return <MekanismInductionMatrixScreen cells={[IRON, GOLD]} energy={{ max: 100000000, value: 62000000 }} />;
 }
 
-export function MekanismMachineScreenDemo() {
-  return <MekanismMachineScreen energy={{ max: 10000, value: 6400 }} machine="enrichment-chamber" progress={{ progress: 0.55 }} slots={{ input: IRON, output: GOLD }} />;
+export function MekanismMachineScreenDemo({
+  energy = { max: 10000, value: 6400 },
+  progress = { progress: 0.55 },
+}: MekanismMachineScreenDemoProps = {}) {
+  return (
+    <MekanismMachineScreen
+      energy={energy}
+      machine="enrichment-chamber"
+      progress={progress}
+      slots={{ input: IRON, output: GOLD }}
+    />
+  );
 }
 
 export function MekanismMachineScreensDemo() {

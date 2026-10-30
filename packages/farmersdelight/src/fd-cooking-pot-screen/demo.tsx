@@ -3,7 +3,11 @@ import { useState } from "react";
 import { FD_DEMO_ITEMS } from "../fd-demo-data";
 import { FdCookingPotScreen } from "./index";
 
-export function FdCookingPotScreenDemo() {
+interface FdCookingPotScreenDemoProps {
+  progress?: number;
+}
+
+export function FdCookingPotScreenDemo({ progress = 0.6 }: FdCookingPotScreenDemoProps = {}) {
   const [heated, setHeated] = useState(true);
   const [recipeBookOpen, setRecipeBookOpen] = useState(false);
   return (
@@ -23,7 +27,7 @@ export function FdCookingPotScreenDemo() {
         onRecipeBookToggle={() => { setRecipeBookOpen(value => !value); }}
         onSlotClick={() => { setHeated(value => !value); }}
         output={FD_DEMO_ITEMS.mushroomStew}
-        progress={0.6}
+        progress={progress}
         recipeBookOpen={recipeBookOpen}
       />
       <p className="text-xs opacity-60">

@@ -1,7 +1,9 @@
-import { useState } from "react";
-
 import { CREATE_DEMO_FLOUR, CREATE_DEMO_PLAYER, CREATE_DEMO_WHEAT } from "../create-demo-data";
 import { CreateMillstoneScreen } from "./index";
+
+interface CreateMillstoneScreenDemoProps {
+  progress?: number;
+}
 
 /**
  * 粉碎机（同一数据表 `crusher` 键）：铁矿石 → 1 粉碎粗铁（另 75% 概率再产 1）。
@@ -22,8 +24,7 @@ export function CreateCrusherScreenDemo() {
 /**
  * CreateMillstoneScreen 预览用例：小麦 → 小麦面粉，进度 0.5。
  */
-export function CreateMillstoneScreenDemo() {
-  const [progress] = useState(0.5);
+export function CreateMillstoneScreenDemo({ progress = 0.5 }: CreateMillstoneScreenDemoProps = {}) {
   return (
     <CreateMillstoneScreen
       input={CREATE_DEMO_WHEAT}

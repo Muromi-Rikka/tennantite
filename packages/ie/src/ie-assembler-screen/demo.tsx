@@ -1,12 +1,16 @@
 import { IeAssemblerScreen } from "./index";
 
+interface IeAssemblerScreenDemoProps {
+  energy?: { max: number; value: number };
+}
+
 /**
  * IeAssemblerScreen 预览用例：铁机械零件图纸（2 铁板 + 1 铜锭），能量 62%。
  */
-export function IeAssemblerScreenDemo() {
+export function IeAssemblerScreenDemo({ energy = { max: 32000, value: 20000 } }: IeAssemblerScreenDemoProps = {}) {
   return (
     <IeAssemblerScreen
-      energy={{ max: 32000, value: 20000 }}
+      energy={energy}
       onClear={() => {}}
       onRecursiveToggle={() => {}}
       onSlotClick={() => {}}

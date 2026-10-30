@@ -1,10 +1,14 @@
 import { IE_DEMO_IRON_INGOT, IE_DEMO_MOLD } from "../ie-demo-data";
 import { IeMetalPressScreen } from "./index";
 
+interface IeMetalPressScreenDemoProps {
+  progress?: number;
+}
+
 /**
  * IeMetalPressScreen 预览用例：铁锭 → 铁板，选中板材模具，进度 0.5。
  */
-export function IeMetalPressScreenDemo() {
+export function IeMetalPressScreenDemo({ progress = 0.5 }: IeMetalPressScreenDemoProps = {}) {
   return (
     <IeMetalPressScreen
       activeMold={1}
@@ -13,7 +17,7 @@ export function IeMetalPressScreenDemo() {
       onMoldSelect={() => {}}
       onSlotClick={() => {}}
       output={{ count: 1, icon: "iron-ingot", tooltip: "铁板" }}
-      progress={0.5}
+      progress={progress}
     />
   );
 }
