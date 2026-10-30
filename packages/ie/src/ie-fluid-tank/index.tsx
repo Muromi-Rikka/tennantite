@@ -15,9 +15,10 @@ export interface IeFluidTankProps {
   left: number;
   max: number;
   /**
-   * overlay 精灵（如 sprites/coke_oven/tank_overlay 20×51）
+   * overlay 精灵（如 sprites/coke_oven/tank_overlay 20×51；多流体罐等无
+   * overlay 贴图时省略，只渲染填充色）
    */
-  overlayName: IeSpriteName;
+  overlayName?: IeSpriteName;
   /**
    * 液体染色（数据注入；上游以流体贴图绘制，此处用纯色近似）
    */
@@ -44,9 +45,9 @@ export function IeFluidTank({
   width,
 }: IeFluidTankProps) {
   const ratio = max > 0 ? Math.min(1, Math.max(0, value / max)) : 0;
-  const overlay = ieSpriteMeta[overlayName];
-  const offsetX = (width - overlay.width) / 2;
-  const offsetY = (height - overlay.height) / 2;
+  const overlay = overlayName ? ieSpriteMeta[overlayName] : null;
+  const offsetX = overlay ? (width - overlay.width) / 2 : 0;
+  const offsetY = overlay ? (height - overlay.height) / 2 : 0;
   return (
     <div
       aria-label={label}
@@ -74,14 +75,18 @@ export function IeFluidTank({
           }}
         />
       </div>
-      <IeSprite
-        className="absolute"
-        name={overlayName}
-        style={{
-          left: gui(offsetX),
-          top: gui(offsetY),
-        }}
-      />
+      {overlay
+        ? (
+            <IeSprite
+              className="absolute"
+              name={overlayName!}
+              style={{
+                left: gui(offsetX),
+                top: gui(offsetY),
+              }}
+            />
+          )
+        : null}
     </div>
   );
 }

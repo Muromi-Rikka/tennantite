@@ -1,6 +1,14 @@
 export { BatBoxScreenDemo } from "./batbox-screen/demo";
+export { Ic2BlastFurnaceScreenDemo } from "./blast-furnace-screen/demo";
+export { CesuScreenDemo } from "./cesu-screen/demo";
 export { CompressorScreenDemo } from "./compressor-screen/demo";
 export { ElectricFurnaceScreenDemo } from "./electric-furnace-screen/demo";
 export { ExtractorScreenDemo } from "./extractor-screen/demo";
+export { FermentorScreenDemo } from "./fermentor-screen/demo";
 export { Ic2EnergyGaugeDemo } from "./ic2-energy-gauge/demo";
+export { InductionFurnaceScreenDemo } from "./induction-furnace-screen/demo";
+export { IronFurnaceScreenDemo } from "./iron-furnace-screen/demo";
 export { MaceratorScreenDemo } from "./macerator-screen/demo";
+export { MetalFormerScreenDemo } from "./metal-former-screen/demo";
+export { MfsuScreenDemo } from "./mfsu-screen/demo";
+export { RecyclerScreenDemo } from "./recycler-screen/demo";

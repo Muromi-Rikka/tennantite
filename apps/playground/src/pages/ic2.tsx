@@ -1,10 +1,18 @@
 import {
   BatBoxScreenDemo,
+  CesuScreenDemo,
   CompressorScreenDemo,
   ElectricFurnaceScreenDemo,
   ExtractorScreenDemo,
+  FermentorScreenDemo,
+  Ic2BlastFurnaceScreenDemo,
   Ic2EnergyGaugeDemo,
+  InductionFurnaceScreenDemo,
+  IronFurnaceScreenDemo,
   MaceratorScreenDemo,
+  MetalFormerScreenDemo,
+  MfsuScreenDemo,
+  RecyclerScreenDemo,
 } from "@tennantite/ic2/demos";
 
 export function Ic2Page() {
@@ -31,8 +39,32 @@ export function Ic2Page() {
       <Section title="CompressorScreen — 压缩机">
         <CompressorScreenDemo />
       </Section>
+      <Section title="RecyclerScreen — 回收机">
+        <RecyclerScreenDemo />
+      </Section>
+      <Section title="MetalFormerScreen — 金属成型机">
+        <MetalFormerScreenDemo />
+      </Section>
+      <Section title="IronFurnaceScreen — 铁炉">
+        <IronFurnaceScreenDemo />
+      </Section>
+      <Section title="FermentorScreen — 发酵机">
+        <FermentorScreenDemo />
+      </Section>
+      <Section title="InductionFurnaceScreen — 感应炉">
+        <InductionFurnaceScreenDemo />
+      </Section>
+      <Section title="Ic2BlastFurnaceScreen — 高炉">
+        <Ic2BlastFurnaceScreenDemo />
+      </Section>
       <Section title="BatBoxScreen — 储电箱">
         <BatBoxScreenDemo />
+      </Section>
+      <Section title="CesuScreen — CESU 储电箱">
+        <CesuScreenDemo />
+      </Section>
+      <Section title="MfsuScreen — MFSU 储电箱">
+        <MfsuScreenDemo />
       </Section>
     </div>
   );

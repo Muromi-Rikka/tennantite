@@ -1,5 +1,17 @@
 export { Ae2ChestScreenDemo } from "./ae2-chest-screen/demo";
+export { Ae2CondenserScreenDemo } from "./ae2-condenser-screen/demo";
+export { Ae2CraftingCpuScreenDemo } from "./ae2-crafting-cpu-screen/demo";
 export { Ae2CraftingTerminalScreenDemo } from "./ae2-crafting-terminal-screen/demo";
 export { Ae2DriveScreenDemo } from "./ae2-drive-screen/demo";
+export { Ae2GrindstoneScreenDemo } from "./ae2-grindstone-screen/demo";
 export { Ae2InscriberScreenDemo } from "./ae2-inscriber-screen/demo";
+export { Ae2InterfaceScreenDemo } from "./ae2-interface-screen/demo";
+export { Ae2IoPortScreenDemo } from "./ae2-io-port-screen/demo";
+export { Ae2MolecularAssemblerScreenDemo } from "./ae2-molecular-assembler-screen/demo";
+export { Ae2PatternAccessTerminalScreenDemo } from "./ae2-pattern-access-terminal-screen/demo";
+export { Ae2PatternEncodingTerminalScreenDemo } from "./ae2-pattern-encoding-terminal-screen/demo";
+export { Ae2PriorityDialogDemo } from "./ae2-priority-dialog/demo";
+export { Ae2QuantumBridgeScreenDemo } from "./ae2-quantum-bridge-screen/demo";
+export { Ae2SkyChestScreenDemo } from "./ae2-sky-chest-screen/demo";
+export { Ae2SpatialIoPortScreenDemo } from "./ae2-spatial-io-port-screen/demo";
 export { Ae2TerminalScreenDemo } from "./ae2-terminal-screen/demo";

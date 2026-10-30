@@ -5,17 +5,48 @@ import { describe, expect, it } from "vitest";
 
 import {
   EioAlloySmelterScreenDemo,
+  EioAttractorScreenDemo,
+  EioAversionScreenDemo,
+  EioBufferScreenDemo,
   EioCapacitorBankScreenDemo,
+  EioCombustionGeneratorScreenDemo,
+  EioCrafterScreenDemo,
+  EioDialingDeviceScreenDemo,
+  EioDrainScreenDemo,
+  EioEnchanterScreenDemo,
   EioEnergyBarDemo,
   EioExperienceBarDemo,
+  EioFarmStationScreenDemo,
   EioGrindingBallDemo,
   EioIconButtonDemo,
+  EioImpulseHopperScreenDemo,
+  EioInhibitorScreenDemo,
+  EioKillerJoeScreenDemo,
+  EioLavaGeneratorScreenDemo,
+  EioMachineLayoutDemo,
   EioMachineScreenDemo,
   EioMachineStateDemo,
+  EioNiardScreenDemo,
+  EioPaintingMachineScreenDemo,
+  EioPoweredSpawnerScreenDemo,
+  EioRelocatorScreenDemo,
   EioSagMillScreenDemo,
+  EioSliceAndSpliceScreenDemo,
   EioSoulBinderScreenDemo,
+  EioSoulEngineScreenDemo,
   EioSpriteDemo,
   EioStirlingGeneratorScreenDemo,
+  EioTankScreenDemo,
+  EioTelePadScreenDemo,
+  EioTransceiverScreenDemo,
+  EioTravelAnchorScreenDemo,
+  EioVacuumChestScreenDemo,
+  EioVatScreenDemo,
+  EioWeatherObeliskScreenDemo,
+  EioWiredChargerScreenDemo,
+  EioWirelessChargerScreenDemo,
+  EioXpObeliskScreenDemo,
+  EioXpVacuumScreenDemo,
 } from "./demos";
 
 describe("sSR smoke (node env, 规格 §1.1)", () => {
@@ -23,6 +54,7 @@ describe("sSR smoke (node env, 规格 §1.1)", () => {
     const html = renderToStaticMarkup(
       <>
         <EioSpriteDemo />
+        <EioMachineLayoutDemo />
         <EioMachineScreenDemo />
         <EioIconButtonDemo />
         <EioMachineStateDemo />
@@ -34,6 +66,36 @@ describe("sSR smoke (node env, 规格 §1.1)", () => {
         <EioStirlingGeneratorScreenDemo />
         <EioSoulBinderScreenDemo />
         <EioCapacitorBankScreenDemo />
+        <EioPaintingMachineScreenDemo />
+        <EioSliceAndSpliceScreenDemo />
+        <EioEnchanterScreenDemo />
+        <EioCombustionGeneratorScreenDemo />
+        <EioLavaGeneratorScreenDemo />
+        <EioSoulEngineScreenDemo />
+        <EioVatScreenDemo />
+        <EioTankScreenDemo />
+        <EioDrainScreenDemo />
+        <EioNiardScreenDemo />
+        <EioWiredChargerScreenDemo />
+        <EioWirelessChargerScreenDemo />
+        <EioPoweredSpawnerScreenDemo />
+        <EioXpObeliskScreenDemo />
+        <EioXpVacuumScreenDemo />
+        <EioImpulseHopperScreenDemo />
+        <EioCrafterScreenDemo />
+        <EioFarmStationScreenDemo />
+        <EioVacuumChestScreenDemo />
+        <EioAttractorScreenDemo />
+        <EioAversionScreenDemo />
+        <EioInhibitorScreenDemo />
+        <EioRelocatorScreenDemo />
+        <EioWeatherObeliskScreenDemo />
+        <EioKillerJoeScreenDemo />
+        <EioBufferScreenDemo />
+        <EioTravelAnchorScreenDemo />
+        <EioDialingDeviceScreenDemo />
+        <EioTelePadScreenDemo />
+        <EioTransceiverScreenDemo />
       </>,
     );
     expect(typeof html).toBe("string");

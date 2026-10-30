@@ -2,8 +2,13 @@ import {
   CreateCrusherScreenDemo,
   CreateFilterScreenDemo,
   CreateMillstoneScreenDemo,
+  CreatePackageFilterScreenDemo,
+  CreateSchematicannonScreenDemo,
   CreateSchematicTableScreenDemo,
+  CreateStockKeeperScreenDemo,
   CreateToolboxScreenDemo,
+  CreateTrainScheduleScreenDemo,
+  CreateTrainStationScreenDemo,
   CreateValueSettingsPanelDemo,
 } from "@tennantite/create/demos";
 
@@ -33,6 +38,21 @@ export function CreatePage() {
       </Section>
       <Section title="CreateValueSettingsPanel — 数值配置浮层">
         <CreateValueSettingsPanelDemo />
+      </Section>
+      <Section title="CreateSchematicannonScreen — 蓝图炮">
+        <CreateSchematicannonScreenDemo />
+      </Section>
+      <Section title="CreatePackageFilterScreen — 包裹过滤器">
+        <CreatePackageFilterScreenDemo />
+      </Section>
+      <Section title="CreateTrainScheduleScreen — 列车时刻表">
+        <CreateTrainScheduleScreenDemo />
+      </Section>
+      <Section title="CreateTrainStationScreen — 列车站台">
+        <CreateTrainStationScreenDemo />
+      </Section>
+      <Section title="CreateStockKeeperScreen — 库存管理员">
+        <CreateStockKeeperScreenDemo />
       </Section>
     </div>
   );

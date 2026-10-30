@@ -123,17 +123,17 @@ export function EioSagMillScreen({
       <EioIconButton
         icon={eioRedstoneIcon(redstone)}
         label="红石控制"
-        left={layout.redstone.left}
+        left={layout.redstone?.left ?? 0}
         onClick={() => { onRedstoneChange?.(eioNextRedstone(redstone)); }}
         title={`红石控制：${EIO_REDSTONE_LABELS[redstone]}`}
-        top={layout.redstone.top}
+        top={layout.redstone?.top ?? 0}
       />
       <EioIconButton
         icon="sprites/buttons/io_config"
         label="IO 配置"
-        left={layout.io.left}
+        left={layout.io?.left ?? 0}
         onClick={onIoConfig}
-        top={layout.io.top}
+        top={layout.io?.top ?? 0}
       />
       {layout.slots.map(slot => (
         <Fragment key={slot.label}>

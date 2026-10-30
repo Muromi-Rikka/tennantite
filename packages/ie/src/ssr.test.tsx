@@ -4,20 +4,68 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 
 import {
+  IeAlloySmelterScreenDemo,
   IeArcFurnaceScreenDemo,
+  IeAssemblerScreenDemo,
+  IeAutoWorkbenchScreenDemo,
+  IeBlastFurnaceScreenDemo,
   IeCapacitorHvScreenDemo,
+  IeChunkLoaderScreenDemo,
+  IeCircuitTableScreenDemo,
+  IeClocheScreenDemo,
   IeCokeOvenScreenDemo,
+  IeCrateScreenDemo,
+  IeDrillScreenDemo,
+  IeEnergyBarDemo,
+  IeFermenterScreenDemo,
+  IeFluidProducerScreenDemo,
+  IeFluidSorterScreenDemo,
+  IeFluidTankDemo,
+  IeItemBatcherScreenDemo,
+  IeLabelDemo,
+  IeMachineScreenDemo,
   IeMetalPressScreenDemo,
+  IeMixerScreenDemo,
+  IeModWorkbenchScreenDemo,
+  IeRefineryScreenDemo,
+  IeSorterScreenDemo,
+  IeSpriteDemo,
+  IeSqueezerScreenDemo,
+  IeToolboxScreenDemo,
 } from "./demos";
 
 describe("sSR smoke (node env, 规格 §1.1)", () => {
-  it("iE 机器屏可服务端渲染", () => {
+  it("iE 全部机器屏可服务端渲染", () => {
     const html = renderToStaticMarkup(
       <>
         <IeCokeOvenScreenDemo />
+        <IeBlastFurnaceScreenDemo />
+        <IeAlloySmelterScreenDemo />
         <IeArcFurnaceScreenDemo />
         <IeMetalPressScreenDemo />
         <IeCapacitorHvScreenDemo />
+        <IeFermenterScreenDemo />
+        <IeSqueezerScreenDemo />
+        <IeRefineryScreenDemo />
+        <IeMixerScreenDemo />
+        <IeClocheScreenDemo />
+        <IeSorterScreenDemo />
+        <IeFluidSorterScreenDemo />
+        <IeItemBatcherScreenDemo />
+        <IeCrateScreenDemo />
+        <IeDrillScreenDemo />
+        <IeToolboxScreenDemo />
+        <IeMachineScreenDemo />
+        <IeSpriteDemo />
+        <IeEnergyBarDemo />
+        <IeFluidTankDemo />
+        <IeLabelDemo />
+        <IeCircuitTableScreenDemo />
+        <IeChunkLoaderScreenDemo />
+        <IeAutoWorkbenchScreenDemo />
+        <IeAssemblerScreenDemo />
+        <IeModWorkbenchScreenDemo />
+        <IeFluidProducerScreenDemo />
       </>,
     );
     expect(typeof html).toBe("string");

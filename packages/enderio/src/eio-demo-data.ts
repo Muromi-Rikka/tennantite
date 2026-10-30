@@ -9,3 +9,4 @@ export const EIO_DEMO_GOLD_INGOT: ScreenSlot = { icon: "gold-ingot", tooltip: "�
 export const EIO_DEMO_CHARCOAL: ScreenSlot = { count: 12, icon: "charcoal", tooltip: "煤炭" };
 export const EIO_DEMO_GUNPOWDER: ScreenSlot = { icon: "gunpowder", tooltip: "研磨球" };
 export const EIO_DEMO_SOUL_VIAL: ScreenSlot = { icon: "experience-bottle", tooltip: "灵魂瓶" };
+export const EIO_DEMO_BOOK: ScreenSlot = { icon: "oak-planks", tooltip: "书" };

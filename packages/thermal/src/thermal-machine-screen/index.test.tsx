@@ -2,11 +2,13 @@ import type { ScreenSlot } from "@tennantite/ui";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
+import type { ThermalMachineKey, ThermalMachineLayout } from "../thermal-machine-layout";
 import { ThermalRedstoneFurnaceScreen } from "../redstone-furnace-screen/index";
 import { THERMAL_MACHINES } from "../thermal-machine-layout";
 import { ThermalMachineScreen } from "../thermal-machine-screen/index";
 import {
   THERMAL_AUGMENT_PANEL,
+  THERMAL_FLUID_STORAGE,
   THERMAL_GUI,
 } from "../thermal-metrics";
 
@@ -116,5 +118,64 @@ describe("thermalMachineScreen 数据表驱动", () => {
     expect(layout.speed?.left).toBe(53);
     render(<ThermalMachineScreen machine="redstone_furnace" />);
     expect(screen.getByLabelText("machine-input")).toBeInTheDocument();
+  });
+
+  it("可选字段默认不渲染（红石炉布局无 secondaryOutput/fluid）", () => {
+    render(<ThermalMachineScreen machine="redstone_furnace" />);
+    expect(screen.queryByLabelText("machine-secondary-output")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("液体")).not.toBeInTheDocument();
+    expect(document.querySelector("[data-thermal-fluid-tank]")).toBeNull();
+  });
+
+  it("secondaryOutput 槽位与流体储罐按布局渲染", () => {
+    const machines = THERMAL_MACHINES as Record<string, ThermalMachineLayout>;
+    machines.test_machine = {
+      ...THERMAL_MACHINES.redstone_furnace,
+      fluid: {
+        frame: "elements/storage_fluid_large",
+        height: THERMAL_FLUID_STORAGE.large.height,
+        left: 8,
+        overlay: "elements/overlay_fluid_large",
+        top: 53,
+        width: THERMAL_FLUID_STORAGE.large.width,
+      },
+      output: { label: "machine-output", left: 111, size: 26, top: 30 },
+      secondaryOutput: { label: "machine-secondary-output", left: 134, size: 26, top: 30 },
+    };
+    try {
+      render(
+        <ThermalMachineScreen
+          fluid={{ amount: 3000, capacity: 4000, tint: "#3c64c8" }}
+          machine={"test_machine" as ThermalMachineKey}
+        />,
+      );
+      expect(screen.getByLabelText("machine-secondary-output")).toBeInTheDocument();
+      const tank = screen.getByLabelText("液体");
+      expect(tank.getAttribute("aria-valuenow")).toBe("75");
+      expect(tank.querySelectorAll("[data-thermal-sprite='elements/storage_fluid_large']")).toHaveLength(1);
+      expect(tank.querySelectorAll("[data-thermal-sprite='elements/overlay_fluid_large']")).toHaveLength(1);
+    }
+    finally {
+      delete machines.test_machine;
+    }
+  });
+
+  it("speedSprite/progressSprite 覆盖默认贴图名", () => {
+    const machines = THERMAL_MACHINES as Record<string, ThermalMachineLayout>;
+    machines.test_machine = {
+      ...THERMAL_MACHINES.redstone_furnace,
+      progressSprite: "elements/progress_arrow_fluid_right",
+      speedSprite: "elements/scale_crush",
+    };
+    try {
+      const { container } = render(
+        <ThermalMachineScreen machine={"test_machine" as ThermalMachineKey} progress={0.5} speed={0.5} />,
+      );
+      expect(container.querySelectorAll("[data-thermal-sprite='elements/progress_arrow_fluid_right']")).toHaveLength(2);
+      expect(container.querySelectorAll("[data-thermal-sprite='elements/scale_crush']")).toHaveLength(2);
+    }
+    finally {
+      delete machines.test_machine;
+    }
   });
 });

@@ -21,12 +21,20 @@ const ASSET_ROOT = "assets/create/textures/gui/";
 
 // 生成名 → [上游文件名]。atlas 整图入库，键名去下划线走 kebab-case。
 const SPRITES = {
+  "assemble": "assemble.png",
+  "factory-gauge": "factory_gauge.png",
   "filters": "filters.png",
   "filters-2": "filters_2.png",
   "icons": "icons.png",
   "player-inventory": "player_inventory.png",
+  "requester": "requester.png",
+  "schedule": "schedule.png",
+  "schedule-2": "schedule_2.png",
   "schematics": "schematics.png",
   "schematics-2": "schematics_2.png",
+  // stock_keeper.png / stock_keeper_categories.png 已核实存在于 pinned 提交。
+  "stock-keeper": "stock_keeper.png",
+  "stock-keeper-categories": "stock_keeper_categories.png",
   "toolbox": "toolbox.png",
   "value-settings": "value_settings.png",
 };

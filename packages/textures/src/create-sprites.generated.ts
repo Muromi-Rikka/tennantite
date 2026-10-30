@@ -14,6 +14,18 @@ export interface CreateSpriteMeta {
 }
 
 export const createSpriteMeta = {
+  assemble: {
+    cssVar: "--mc-create-assemble",
+    height: 256,
+    sha256: "44a0e1b0373ccb9470f796a9639807fee8f1c55db5a39c1f61d0f5cb1eada7ea",
+    width: 256,
+  },
+  "factory-gauge": {
+    cssVar: "--mc-create-factory-gauge",
+    height: 256,
+    sha256: "7e4e3b4f909b669396e5a0a8e38ca730453a393f1fd7cc7677199449252c45ea",
+    width: 256,
+  },
   filters: {
     cssVar: "--mc-create-filters",
     height: 256,
@@ -44,6 +56,24 @@ export const createSpriteMeta = {
     sha256: "7917cb94a9477c82aed5167f16fff79b3c2c2e574098e3ff0c482f05ed9f213d",
     width: 256,
   },
+  requester: {
+    cssVar: "--mc-create-requester",
+    height: 256,
+    sha256: "e96587eac82d74f4db198e3e489f220371c969f92e9530ca6e0a6a706287e5bb",
+    width: 256,
+  },
+  schedule: {
+    cssVar: "--mc-create-schedule",
+    height: 256,
+    sha256: "9ec0d384f1aa645aae74c34d32bccf2d4091fd9e71fef48086d518ed392d1727",
+    width: 256,
+  },
+  "schedule-2": {
+    cssVar: "--mc-create-schedule-2",
+    height: 256,
+    sha256: "a929d236714897b1b3835e4b2dcf89f5f6c3566671c6dcd90c2dfc42e52f735c",
+    width: 256,
+  },
   schematics: {
     cssVar: "--mc-create-schematics",
     height: 256,
@@ -54,6 +84,18 @@ export const createSpriteMeta = {
     cssVar: "--mc-create-schematics-2",
     height: 256,
     sha256: "ea549af30fb86994b5f5b952b71db318f29c346a75cba4787d0f71e4e10fbfec",
+    width: 256,
+  },
+  "stock-keeper": {
+    cssVar: "--mc-create-stock-keeper",
+    height: 256,
+    sha256: "ffbc0e703f7cc40ffafcf8257c24d2a8f126dcc3387a0a3a998b639382f4d35e",
+    width: 256,
+  },
+  "stock-keeper-categories": {
+    cssVar: "--mc-create-stock-keeper-categories",
+    height: 256,
+    sha256: "4c9ffbc2802da9324ac1e8127a9f8084054a6a7d471c8798f6883cb0747e3799",
     width: 256,
   },
   toolbox: {

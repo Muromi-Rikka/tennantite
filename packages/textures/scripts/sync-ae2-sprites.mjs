@@ -26,8 +26,23 @@ const MODERN_BASE
  * （`statesModern` → `--mc-ae2-states-modern`）。
 */
 const SPRITES = {
+  condenser: { base: LEGACY_BASE, file: "condenser.png" },
+  // 上游文件名 cpu_selector.png / io_port.png（生成名转 camelCase 以保持 CSS 变量 kebab-case）。
+  cpuSelector: { base: LEGACY_BASE, file: "cpu_selector.png" },
   crafting: { base: LEGACY_BASE, file: "crafting.png" },
+  craftingcpu: { base: LEGACY_BASE, file: "craftingcpu.png" },
+  grinder: { base: LEGACY_BASE, file: "grinder.png" },
   inscriber: { base: LEGACY_BASE, file: "inscriber.png" },
+  // pinned 提交下 interface.png 存在（另有 newinterface*.png，按计划不用替代）。
+  interface: { base: LEGACY_BASE, file: "interface.png" },
+  ioPort: { base: LEGACY_BASE, file: "io_port.png" },
+  mac: { base: LEGACY_BASE, file: "mac.png" },
+  pattern: { base: LEGACY_BASE, file: "pattern.png" },
+  pattern2: { base: LEGACY_BASE, file: "pattern2.png" },
+  priority: { base: LEGACY_BASE, file: "priority.png" },
+  qbgui: { base: LEGACY_BASE, file: "qbgui.png" },
+  skychest: { base: LEGACY_BASE, file: "skychest.png" },
+  spatialio: { base: LEGACY_BASE, file: "spatialio.png" },
   states: { base: LEGACY_BASE, file: "states.png" },
   statesModern: { base: MODERN_BASE, file: "states.png" },
   terminal: { base: LEGACY_BASE, file: "terminal.png" },

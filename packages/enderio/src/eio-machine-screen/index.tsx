@@ -21,7 +21,7 @@ export interface EioMachineScreenProps {
   inventoryLabel?: ReactNode;
   labels?: { inventoryTop: number; titleTop: number };
   machine: EioMachineKey;
-  player: { hotbarY: number; left: number; top: number };
+  player?: { hotbarY: number; left: number; top: number };
   title?: ReactNode;
   width: number;
 }
@@ -82,12 +82,16 @@ export function EioMachineScreen({
           )
         : null}
       {children}
-      <PlayerInventory
-        bare
-        hotbarY={player.hotbarY}
-        x={player.left}
-        y={player.top}
-      />
+      {player
+        ? (
+            <PlayerInventory
+              bare
+              hotbarY={player.hotbarY}
+              x={player.left}
+              y={player.top}
+            />
+          )
+        : null}
     </ScreenPanel>
   );
 }

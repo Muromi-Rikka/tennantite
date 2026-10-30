@@ -27,6 +27,7 @@ const EXPECTED: Record<keyof typeof MEKANISM_MACHINES, Record<string, { x: numbe
   "energized-smelter": { input: { x: 64, y: 17 }, output: { x: 116, y: 35 } },
   "enrichment-chamber": { input: { x: 64, y: 17 }, output: { x: 116, y: 35 } },
   "formulaic-assemblicator": { energy: { x: 152, y: 76 }, formula: { x: 6, y: 26 } },
+  "fuelwood-heater": { fuel: { x: 15, y: 29 } },
   "isotopic-centrifuge": { input: { x: 5, y: 56 }, output: { x: 155, y: 56 } },
   "metallurgic-infuser": { infusion: { x: 17, y: 35 }, input: { x: 51, y: 43 } },
   "nutritional-liquifier": { fluidOut: { x: 155, y: 56 }, input: { x: 26, y: 36 } },
@@ -43,8 +44,8 @@ const EXPECTED: Record<keyof typeof MEKANISM_MACHINES, Record<string, { x: numbe
 };
 
 describe("mekanism machine layouts", () => {
-  it("defines 26 machines and the base panel", () => {
-    expect(Object.keys(MEKANISM_MACHINES)).toHaveLength(26);
+  it("defines 27 machines and the base panel", () => {
+    expect(Object.keys(MEKANISM_MACHINES)).toHaveLength(27);
     expect(MEKANISM_BASE_IMAGE).toEqual({ height: 166, width: 176 });
   });
 

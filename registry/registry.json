@@ -1227,6 +1227,34 @@
       "dependencies": [],
       "files": [
         {
+          "path": "packages/mekanism/src/mekanism-digital-miner-config-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-digital-miner-config-screen",
+      "registryDependencies": [],
+      "title": "Mekanism Digital Miner Config Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-digital-miner-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-digital-miner-screen",
+      "registryDependencies": [],
+      "title": "Mekanism Digital Miner Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
           "path": "packages/mekanism/src/mekanism-dynamic-tank-screen/index.tsx",
           "type": "registry:component"
         }
@@ -1400,6 +1428,22 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-list/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-list",
+      "registryDependencies": [],
+      "title": "Mekanism List",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "dependencies": [],
       "files": [
         {
@@ -1488,6 +1532,22 @@
       "name": "mekanism-screen",
       "registryDependencies": [],
       "title": "Mekanism Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/mekanism/src/mekanism-security-desk-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-security-desk-screen",
+      "registryDependencies": [],
+      "title": "Mekanism Security Desk Screen",
       "type": "registry:component"
     },
     {
@@ -1621,6 +1681,22 @@
       ],
       "files": [
         {
+          "path": "packages/mekanism/src/mekanism-teleporter-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mekanism-teleporter-screen",
+      "registryDependencies": [],
+      "title": "Mekanism Teleporter Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
           "path": "packages/mekanism/src/mekanism-text-field/index.tsx",
           "type": "registry:component"
         }
@@ -1737,6 +1813,34 @@
       "dependencies": [],
       "files": [
         {
+          "path": "packages/ic2/src/blast-furnace-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "blast-furnace-screen",
+      "registryDependencies": [],
+      "title": "Blast Furnace Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ic2/src/cesu-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "cesu-screen",
+      "registryDependencies": [],
+      "title": "Cesu Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
           "path": "packages/ic2/src/compressor-screen/index.tsx",
           "type": "registry:component"
         }
@@ -1772,6 +1876,20 @@
       "name": "extractor-screen",
       "registryDependencies": [],
       "title": "Extractor Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ic2/src/fermentor-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "fermentor-screen",
+      "registryDependencies": [],
+      "title": "Fermentor Screen",
       "type": "registry:component"
     },
     {
@@ -1879,6 +1997,34 @@
       "dependencies": [],
       "files": [
         {
+          "path": "packages/ic2/src/induction-furnace-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "induction-furnace-screen",
+      "registryDependencies": [],
+      "title": "Induction Furnace Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ic2/src/iron-furnace-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "iron-furnace-screen",
+      "registryDependencies": [],
+      "title": "Iron Furnace Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
           "path": "packages/ic2/src/macerator-screen/index.tsx",
           "type": "registry:component"
         }
@@ -1886,6 +2032,48 @@
       "name": "macerator-screen",
       "registryDependencies": [],
       "title": "Macerator Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ic2/src/metal-former-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "metal-former-screen",
+      "registryDependencies": [],
+      "title": "Metal Former Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ic2/src/mfsu-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "mfsu-screen",
+      "registryDependencies": [],
+      "title": "Mfsu Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ic2/src/recycler-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "recycler-screen",
+      "registryDependencies": [],
+      "title": "Recycler Screen",
       "type": "registry:component"
     },
     {
@@ -1902,6 +2090,38 @@
       "name": "ae2-chest-screen",
       "registryDependencies": [],
       "title": "Ae2 Chest Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ae2/src/ae2-condenser-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-condenser-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Condenser Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ae2/src/ae2-crafting-cpu-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-crafting-cpu-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Crafting Cpu Screen",
       "type": "registry:component"
     },
     {
@@ -1943,6 +2163,22 @@
       ],
       "files": [
         {
+          "path": "packages/ae2/src/ae2-grindstone-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-grindstone-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Grindstone Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
           "path": "packages/ae2/src/ae2-inscriber-screen/index.tsx",
           "type": "registry:component"
         }
@@ -1950,6 +2186,102 @@
       "name": "ae2-inscriber-screen",
       "registryDependencies": [],
       "title": "Ae2 Inscriber Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ae2/src/ae2-interface-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-interface-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Interface Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ae2/src/ae2-io-port-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-io-port-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Io Port Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ae2/src/ae2-molecular-assembler-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-molecular-assembler-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Molecular Assembler Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ae2/src/ae2-pattern-access-terminal-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-pattern-access-terminal-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Pattern Access Terminal Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ae2/src/ae2-pattern-encoding-terminal-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-pattern-encoding-terminal-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Pattern Encoding Terminal Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ae2/src/ae2-priority-dialog/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-priority-dialog",
+      "registryDependencies": [],
+      "title": "Ae2 Priority Dialog",
       "type": "registry:component"
     },
     {
@@ -1964,6 +2296,54 @@
       "name": "ae2-priority-tab",
       "registryDependencies": [],
       "title": "Ae2 Priority Tab",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ae2/src/ae2-quantum-bridge-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-quantum-bridge-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Quantum Bridge Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ae2/src/ae2-sky-chest-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-sky-chest-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Sky Chest Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/ae2/src/ae2-spatial-io-port-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ae2-spatial-io-port-screen",
+      "registryDependencies": [],
+      "title": "Ae2 Spatial Io Port Screen",
       "type": "registry:component"
     },
     {
@@ -2019,6 +2399,22 @@
       ],
       "files": [
         {
+          "path": "packages/create/src/create-package-filter-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "create-package-filter-screen",
+      "registryDependencies": [],
+      "title": "Create Package Filter Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
           "path": "packages/create/src/create-schematic-table-screen/index.tsx",
           "type": "registry:component"
         }
@@ -2026,6 +2422,22 @@
       "name": "create-schematic-table-screen",
       "registryDependencies": [],
       "title": "Create Schematic Table Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/create/src/create-schematicannon-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "create-schematicannon-screen",
+      "registryDependencies": [],
+      "title": "Create Schematicannon Screen",
       "type": "registry:component"
     },
     {
@@ -2051,6 +2463,22 @@
       ],
       "files": [
         {
+          "path": "packages/create/src/create-stock-keeper-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "create-stock-keeper-screen",
+      "registryDependencies": [],
+      "title": "Create Stock Keeper Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
           "path": "packages/create/src/create-toolbox-screen/index.tsx",
           "type": "registry:component"
         }
@@ -2058,6 +2486,38 @@
       "name": "create-toolbox-screen",
       "registryDependencies": [],
       "title": "Create Toolbox Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/create/src/create-train-schedule-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "create-train-schedule-screen",
+      "registryDependencies": [],
+      "title": "Create Train Schedule Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "packages/create/src/create-train-station-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "create-train-station-screen",
+      "registryDependencies": [],
+      "title": "Create Train Station Screen",
       "type": "registry:component"
     },
     {
@@ -2109,6 +2569,20 @@
       "dependencies": [],
       "files": [
         {
+          "path": "packages/thermal/src/fluid-cache-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "fluid-cache-screen",
+      "registryDependencies": [],
+      "title": "Fluid Cache Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
           "path": "packages/thermal/src/redstone-furnace-screen/index.tsx",
           "type": "registry:component"
         }
@@ -2116,6 +2590,146 @@
       "name": "redstone-furnace-screen",
       "registryDependencies": [],
       "title": "Redstone Furnace Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-bottler-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-bottler-screen",
+      "registryDependencies": [],
+      "title": "Thermal Bottler Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-brewer-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-brewer-screen",
+      "registryDependencies": [],
+      "title": "Thermal Brewer Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-centrifuge-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-centrifuge-screen",
+      "registryDependencies": [],
+      "title": "Thermal Centrifuge Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-charge-bench-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-charge-bench-screen",
+      "registryDependencies": [],
+      "title": "Thermal Charge Bench Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-chiller-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-chiller-screen",
+      "registryDependencies": [],
+      "title": "Thermal Chiller Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-collector-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-collector-screen",
+      "registryDependencies": [],
+      "title": "Thermal Collector Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-composter-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-composter-screen",
+      "registryDependencies": [],
+      "title": "Thermal Composter Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-crafter-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-crafter-screen",
+      "registryDependencies": [],
+      "title": "Thermal Crafter Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-crucible-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-crucible-screen",
+      "registryDependencies": [],
+      "title": "Thermal Crucible Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-crystallizer-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-crystallizer-screen",
+      "registryDependencies": [],
+      "title": "Thermal Crystallizer Screen",
       "type": "registry:component"
     },
     {
@@ -2137,6 +2751,48 @@
       "dependencies": [],
       "files": [
         {
+          "path": "packages/thermal/src/thermal-fisher-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-fisher-screen",
+      "registryDependencies": [],
+      "title": "Thermal Fisher Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-hive-extractor-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-hive-extractor-screen",
+      "registryDependencies": [],
+      "title": "Thermal Hive Extractor Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-insolator-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-insolator-screen",
+      "registryDependencies": [],
+      "title": "Thermal Insolator Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
           "path": "packages/thermal/src/thermal-machine-screen/index.tsx",
           "type": "registry:component"
         }
@@ -2144,6 +2800,146 @@
       "name": "thermal-machine-screen",
       "registryDependencies": [],
       "title": "Thermal Machine Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-nullifier-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-nullifier-screen",
+      "registryDependencies": [],
+      "title": "Thermal Nullifier Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-potion-diffuser-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-potion-diffuser-screen",
+      "registryDependencies": [],
+      "title": "Thermal Potion Diffuser Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-press-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-press-screen",
+      "registryDependencies": [],
+      "title": "Thermal Press Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-pulverizer-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-pulverizer-screen",
+      "registryDependencies": [],
+      "title": "Thermal Pulverizer Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-pyrolyzer-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-pyrolyzer-screen",
+      "registryDependencies": [],
+      "title": "Thermal Pyrolyzer Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-refinery-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-refinery-screen",
+      "registryDependencies": [],
+      "title": "Thermal Refinery Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-rock-gen-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-rock-gen-screen",
+      "registryDependencies": [],
+      "title": "Thermal Rock Gen Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-sawmill-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-sawmill-screen",
+      "registryDependencies": [],
+      "title": "Thermal Sawmill Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-smelter-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-smelter-screen",
+      "registryDependencies": [],
+      "title": "Thermal Smelter Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-soil-infuser-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-soil-infuser-screen",
+      "registryDependencies": [],
+      "title": "Thermal Soil Infuser Screen",
       "type": "registry:component"
     },
     {
@@ -2167,6 +2963,76 @@
       "dependencies": [],
       "files": [
         {
+          "path": "packages/thermal/src/thermal-tinker-bench-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-tinker-bench-screen",
+      "registryDependencies": [],
+      "title": "Thermal Tinker Bench Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-tree-extractor-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-tree-extractor-screen",
+      "registryDependencies": [],
+      "title": "Thermal Tree Extractor Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-water-gen-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-water-gen-screen",
+      "registryDependencies": [],
+      "title": "Thermal Water Gen Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/thermal/src/thermal-xp-condenser-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "thermal-xp-condenser-screen",
+      "registryDependencies": [],
+      "title": "Thermal Xp Condenser Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ie/src/ie-alloy-smelter-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-alloy-smelter-screen",
+      "registryDependencies": [],
+      "title": "Ie Alloy Smelter Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
           "path": "packages/ie/src/ie-arc-furnace-screen/index.tsx",
           "type": "registry:component"
         }
@@ -2174,6 +3040,48 @@
       "name": "ie-arc-furnace-screen",
       "registryDependencies": [],
       "title": "Ie Arc Furnace Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ie/src/ie-assembler-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-assembler-screen",
+      "registryDependencies": [],
+      "title": "Ie Assembler Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ie/src/ie-auto-workbench-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-auto-workbench-screen",
+      "registryDependencies": [],
+      "title": "Ie Auto Workbench Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ie/src/ie-blast-furnace-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-blast-furnace-screen",
+      "registryDependencies": [],
+      "title": "Ie Blast Furnace Screen",
       "type": "registry:component"
     },
     {
@@ -2195,6 +3103,48 @@
       "dependencies": [],
       "files": [
         {
+          "path": "packages/ie/src/ie-chunk-loader-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-chunk-loader-screen",
+      "registryDependencies": [],
+      "title": "Ie Chunk Loader Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ie/src/ie-circuit-table-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-circuit-table-screen",
+      "registryDependencies": [],
+      "title": "Ie Circuit Table Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ie/src/ie-cloche-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-cloche-screen",
+      "registryDependencies": [],
+      "title": "Ie Cloche Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
           "path": "packages/ie/src/ie-coke-oven-screen/index.tsx",
           "type": "registry:component"
         }
@@ -2202,6 +3152,34 @@
       "name": "ie-coke-oven-screen",
       "registryDependencies": [],
       "title": "Ie Coke Oven Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ie/src/ie-crate-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-crate-screen",
+      "registryDependencies": [],
+      "title": "Ie Crate Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ie/src/ie-drill-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-drill-screen",
+      "registryDependencies": [],
+      "title": "Ie Drill Screen",
       "type": "registry:component"
     },
     {
@@ -2223,6 +3201,48 @@
       "dependencies": [],
       "files": [
         {
+          "path": "packages/ie/src/ie-fermenter-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-fermenter-screen",
+      "registryDependencies": [],
+      "title": "Ie Fermenter Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ie/src/ie-fluid-producer-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-fluid-producer-screen",
+      "registryDependencies": [],
+      "title": "Ie Fluid Producer Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ie/src/ie-fluid-sorter-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-fluid-sorter-screen",
+      "registryDependencies": [],
+      "title": "Ie Fluid Sorter Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
           "path": "packages/ie/src/ie-fluid-tank/index.tsx",
           "type": "registry:component"
         }
@@ -2230,6 +3250,20 @@
       "name": "ie-fluid-tank",
       "registryDependencies": [],
       "title": "Ie Fluid Tank",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ie/src/ie-item-batcher-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-item-batcher-screen",
+      "registryDependencies": [],
+      "title": "Ie Item Batcher Screen",
       "type": "registry:component"
     },
     {
@@ -2276,6 +3310,62 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ie/src/ie-mixer-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-mixer-screen",
+      "registryDependencies": [],
+      "title": "Ie Mixer Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ie/src/ie-mod-workbench-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-mod-workbench-screen",
+      "registryDependencies": [],
+      "title": "Ie Mod Workbench Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ie/src/ie-refinery-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-refinery-screen",
+      "registryDependencies": [],
+      "title": "Ie Refinery Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ie/src/ie-sorter-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-sorter-screen",
+      "registryDependencies": [],
+      "title": "Ie Sorter Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "dependencies": [
         "cn"
       ],
@@ -2288,6 +3378,34 @@
       "name": "ie-sprite",
       "registryDependencies": [],
       "title": "Ie Sprite",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ie/src/ie-squeezer-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-squeezer-screen",
+      "registryDependencies": [],
+      "title": "Ie Squeezer Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/ie/src/ie-toolbox-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "ie-toolbox-screen",
+      "registryDependencies": [],
+      "title": "Ie Toolbox Screen",
       "type": "registry:component"
     },
     {
@@ -2309,6 +3427,48 @@
       "dependencies": [],
       "files": [
         {
+          "path": "packages/enderio/src/eio-attractor-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-attractor-screen",
+      "registryDependencies": [],
+      "title": "Eio Attractor Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-aversion-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-aversion-screen",
+      "registryDependencies": [],
+      "title": "Eio Aversion Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-buffer-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-buffer-screen",
+      "registryDependencies": [],
+      "title": "Eio Buffer Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
           "path": "packages/enderio/src/eio-capacitor-bank-screen/index.tsx",
           "type": "registry:component"
         }
@@ -2316,6 +3476,76 @@
       "name": "eio-capacitor-bank-screen",
       "registryDependencies": [],
       "title": "Eio Capacitor Bank Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-combustion-generator-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-combustion-generator-screen",
+      "registryDependencies": [],
+      "title": "Eio Combustion Generator Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-crafter-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-crafter-screen",
+      "registryDependencies": [],
+      "title": "Eio Crafter Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-dialing-device-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-dialing-device-screen",
+      "registryDependencies": [],
+      "title": "Eio Dialing Device Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-drain-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-drain-screen",
+      "registryDependencies": [],
+      "title": "Eio Drain Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-enchanter-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-enchanter-screen",
+      "registryDependencies": [],
+      "title": "Eio Enchanter Screen",
       "type": "registry:component"
     },
     {
@@ -2344,6 +3574,20 @@
       "name": "eio-experience-bar",
       "registryDependencies": [],
       "title": "Eio Experience Bar",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-farm-station-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-farm-station-screen",
+      "registryDependencies": [],
+      "title": "Eio Farm Station Screen",
       "type": "registry:component"
     },
     {
@@ -2381,6 +3625,62 @@
       "dependencies": [],
       "files": [
         {
+          "path": "packages/enderio/src/eio-impulse-hopper-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-impulse-hopper-screen",
+      "registryDependencies": [],
+      "title": "Eio Impulse Hopper Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-inhibitor-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-inhibitor-screen",
+      "registryDependencies": [],
+      "title": "Eio Inhibitor Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-killer-joe-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-killer-joe-screen",
+      "registryDependencies": [],
+      "title": "Eio Killer Joe Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-lava-generator-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-lava-generator-screen",
+      "registryDependencies": [],
+      "title": "Eio Lava Generator Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
           "path": "packages/enderio/src/eio-machine-screen/index.tsx",
           "type": "registry:component"
         }
@@ -2409,6 +3709,62 @@
       "dependencies": [],
       "files": [
         {
+          "path": "packages/enderio/src/eio-niard-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-niard-screen",
+      "registryDependencies": [],
+      "title": "Eio Niard Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-painting-machine-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-painting-machine-screen",
+      "registryDependencies": [],
+      "title": "Eio Painting Machine Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-powered-spawner-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-powered-spawner-screen",
+      "registryDependencies": [],
+      "title": "Eio Powered Spawner Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-relocator-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-relocator-screen",
+      "registryDependencies": [],
+      "title": "Eio Relocator Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
           "path": "packages/enderio/src/eio-sag-mill-screen/index.tsx",
           "type": "registry:component"
         }
@@ -2423,6 +3779,20 @@
       "dependencies": [],
       "files": [
         {
+          "path": "packages/enderio/src/eio-slice-and-splice-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-slice-and-splice-screen",
+      "registryDependencies": [],
+      "title": "Eio Slice And Splice Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
           "path": "packages/enderio/src/eio-soul-binder-screen/index.tsx",
           "type": "registry:component"
         }
@@ -2430,6 +3800,20 @@
       "name": "eio-soul-binder-screen",
       "registryDependencies": [],
       "title": "Eio Soul Binder Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-soul-engine-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-soul-engine-screen",
+      "registryDependencies": [],
+      "title": "Eio Soul Engine Screen",
       "type": "registry:component"
     },
     {
@@ -2460,6 +3844,160 @@
       "name": "eio-stirling-generator-screen",
       "registryDependencies": [],
       "title": "Eio Stirling Generator Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-tank-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-tank-screen",
+      "registryDependencies": [],
+      "title": "Eio Tank Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-tele-pad-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-tele-pad-screen",
+      "registryDependencies": [],
+      "title": "Eio Tele Pad Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-transceiver-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-transceiver-screen",
+      "registryDependencies": [],
+      "title": "Eio Transceiver Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-travel-anchor-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-travel-anchor-screen",
+      "registryDependencies": [],
+      "title": "Eio Travel Anchor Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-vacuum-chest-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-vacuum-chest-screen",
+      "registryDependencies": [],
+      "title": "Eio Vacuum Chest Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-vat-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-vat-screen",
+      "registryDependencies": [],
+      "title": "Eio Vat Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-weather-obelisk-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-weather-obelisk-screen",
+      "registryDependencies": [],
+      "title": "Eio Weather Obelisk Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-wired-charger-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-wired-charger-screen",
+      "registryDependencies": [],
+      "title": "Eio Wired Charger Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-wireless-charger-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-wireless-charger-screen",
+      "registryDependencies": [],
+      "title": "Eio Wireless Charger Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-xp-obelisk-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-xp-obelisk-screen",
+      "registryDependencies": [],
+      "title": "Eio Xp Obelisk Screen",
+      "type": "registry:component"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/enderio/src/eio-xp-vacuum-screen/index.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "name": "eio-xp-vacuum-screen",
+      "registryDependencies": [],
+      "title": "Eio Xp Vacuum Screen",
       "type": "registry:component"
     },
     {

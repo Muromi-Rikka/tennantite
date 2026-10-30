@@ -42,6 +42,9 @@ export function MekanismEnrichmentChamberScreen(props: MekanismMachinePresetProp
 export function MekanismFormulaicAssemblicatorScreen(props: MekanismMachinePresetProps) {
   return <MekanismMachineScreen machine="formulaic-assemblicator" {...props} />;
 }
+export function MekanismFuelwoodHeaterScreen(props: MekanismMachinePresetProps) {
+  return <MekanismMachineScreen machine="fuelwood-heater" {...props} />;
+}
 export function MekanismIsotopicCentrifugeScreen(props: MekanismMachinePresetProps) {
   return <MekanismMachineScreen machine="isotopic-centrifuge" {...props} />;
 }

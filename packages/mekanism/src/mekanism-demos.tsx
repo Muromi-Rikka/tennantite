@@ -17,6 +17,7 @@ import { MekanismInductionMatrixScreen } from "./mekanism-induction-matrix-scree
 import { MekanismInnerScreen } from "./mekanism-inner-screen/index";
 import { MekanismLabel } from "./mekanism-label/index";
 import { MekanismMachineScreen } from "./mekanism-machine-screen/index";
+import { MekanismFuelwoodHeaterScreen } from "./mekanism-machine-screen/machines";
 import { MEKANISM_MACHINES } from "./mekanism-machine-screen/mekanism-machine-layout";
 import { MekanismPersonalStorageScreen } from "./mekanism-personal-storage-screen/index";
 import { MekanismProgress } from "./mekanism-progress/index";
@@ -72,6 +73,16 @@ const FACTORY_TIERS = ["basic", "advanced", "elite", "ultimate"] as const;
 export function MekanismChemicalTankScreenDemo() {
   return <MekanismChemicalTankScreen chemical={{ amount: 32000, capacity: 64000 }} drain={GOLD} fill={IRON} />;
 }
+
+export { MekanismBarDemo } from "./mekanism-bar/demo";
+
+export { MekanismDigitalMinerConfigScreenDemo } from "./mekanism-digital-miner-config-screen/demo";
+
+export { MekanismDigitalMinerScreenDemo } from "./mekanism-digital-miner-screen/demo";
+
+export { MekanismListDemo } from "./mekanism-list/demo";
+
+export { MekanismSecurityDeskScreenDemo } from "./mekanism-security-desk-screen/demo";
 
 export function MekanismDynamicTankScreenDemo() {
   return <MekanismDynamicTankScreen contents={[IRON, GOLD]} fluid={{ amount: 8000, capacity: 16000, tint: "#3c7fe0" }} />;
@@ -131,6 +142,10 @@ export function MekanismFluidTankScreenDemo() {
   return <MekanismFluidTankScreen fluid={{ amount: 64000, capacity: 128000, tint: "#3c7fe0" }} input={GOLD} output={IRON} />;
 }
 
+export function MekanismFuelwoodHeaterScreenDemo() {
+  return <MekanismFuelwoodHeaterScreen energy={{ max: 10000, value: 6400 }} progress={{ flame: 0.45 }} slots={{ fuel: IRON }} />;
+}
+
 export function MekanismGaugeDemo() {
   return (
     <div className="relative h-40 w-72">
@@ -161,6 +176,7 @@ export function MekanismMachineScreensDemo() {
           slots={{
             "energy": GOLD,
             "extra": IRON,
+            "fuel": IRON,
             "input": IRON,
             "input-0": IRON,
             "input-1": GOLD,
@@ -175,6 +191,8 @@ export function MekanismMachineScreensDemo() {
     </div>
   );
 }
+
+export { MekanismTeleporterScreenDemo } from "./mekanism-teleporter-screen/demo";
 
 export function MekanismPartsDemo() {
   return (

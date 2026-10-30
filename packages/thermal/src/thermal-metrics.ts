@@ -41,6 +41,29 @@ export const THERMAL_SPEED_FLAME = {
 } as const;
 
 /**
+ * 速度元素图集共用几何（scale_*.png 32×16：左 16 底图、右 16 填充，自下而上；
+ * scale_crush/saw/bubble/snowflake/sun/... 与 scale_flame 同构，
+ * 机器布局经 speedSprite 换名复用此几何）。
+ */
+export const THERMAL_SCALE_ELEMENT = {
+  fillCrop: { height: 16, width: 16, x: 16, y: 0 },
+  height: 16,
+  trackCrop: { height: 16, width: 16, x: 0, y: 0 },
+  width: 16,
+} as const;
+
+/**
+ * 流体储罐元素（GuiHelper.create*FluidStorage：storage_fluid_*.png 32×64 图集
+ * 自原点直取 18 宽边框；液体填充内缩 1 px（ElementFluidStorage 的 width-2/height-2）
+ * 自下而上；overlay_fluid_*.png 液位刻度自原点直取同尺寸叠加）。
+ */
+export const THERMAL_FLUID_STORAGE = {
+  large: { height: 62, width: 18 },
+  medium: { height: 42, width: 18 },
+  small: { height: 34, width: 18 },
+} as const;
+
+/**
  * 能量表（storage_energy.png 32×64 图集：左 16 背景、右 16 填充；
  * ElementEnergyStorage 自下而上填充，上下各内缩 1）。
  * 机器基座在 (8,8)（MachineScreen），储能方块在 (80,22)（EnergyCellScreen）。

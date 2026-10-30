@@ -1,8 +1,20 @@
 import {
   Ae2ChestScreenDemo,
+  Ae2CondenserScreenDemo,
+  Ae2CraftingCpuScreenDemo,
   Ae2CraftingTerminalScreenDemo,
   Ae2DriveScreenDemo,
+  Ae2GrindstoneScreenDemo,
   Ae2InscriberScreenDemo,
+  Ae2InterfaceScreenDemo,
+  Ae2IoPortScreenDemo,
+  Ae2MolecularAssemblerScreenDemo,
+  Ae2PatternAccessTerminalScreenDemo,
+  Ae2PatternEncodingTerminalScreenDemo,
+  Ae2PriorityDialogDemo,
+  Ae2QuantumBridgeScreenDemo,
+  Ae2SkyChestScreenDemo,
+  Ae2SpatialIoPortScreenDemo,
   Ae2TerminalScreenDemo,
 } from "@tennantite/ae2/demos";
 
@@ -29,6 +41,42 @@ export function Ae2Page() {
       </Section>
       <Section title="Ae2ChestScreen — ME 箱子">
         <Ae2ChestScreenDemo />
+      </Section>
+      <Section title="Ae2PatternEncodingTerminalScreen — 样式编码终端">
+        <Ae2PatternEncodingTerminalScreenDemo />
+      </Section>
+      <Section title="Ae2PatternAccessTerminalScreen — 样式访问终端（CPU 选择表）">
+        <Ae2PatternAccessTerminalScreenDemo />
+      </Section>
+      <Section title="Ae2CraftingCpuScreen — 合成 CPU 监控">
+        <Ae2CraftingCpuScreenDemo />
+      </Section>
+      <Section title="Ae2MolecularAssemblerScreen — 分子装配室">
+        <Ae2MolecularAssemblerScreenDemo />
+      </Section>
+      <Section title="Ae2QuantumBridgeScreen — 量子链接仓">
+        <Ae2QuantumBridgeScreenDemo />
+      </Section>
+      <Section title="Ae2SpatialIoPortScreen — 空间 IO 端口">
+        <Ae2SpatialIoPortScreenDemo />
+      </Section>
+      <Section title="Ae2IoPortScreen — IO 端口">
+        <Ae2IoPortScreenDemo />
+      </Section>
+      <Section title="Ae2InterfaceScreen — 接口">
+        <Ae2InterfaceScreenDemo />
+      </Section>
+      <Section title="Ae2CondenserScreen — 物质冷凝器">
+        <Ae2CondenserScreenDemo />
+      </Section>
+      <Section title="Ae2GrindstoneScreen — 磨石">
+        <Ae2GrindstoneScreenDemo />
+      </Section>
+      <Section title="Ae2SkyChestScreen — ME 天空石箱">
+        <Ae2SkyChestScreenDemo />
+      </Section>
+      <Section title="Ae2PriorityDialog — 优先级弹窗">
+        <Ae2PriorityDialogDemo />
       </Section>
     </div>
   );

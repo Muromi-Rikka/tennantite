@@ -8,13 +8,19 @@ import {
   CreateCrusherScreenDemo,
   CreateFilterScreenDemo,
   CreateMillstoneScreenDemo,
+  CreatePackageFilterScreenDemo,
+  CreateSchematicannonScreenDemo,
   CreateSchematicTableScreenDemo,
+  CreateSpriteDemo,
+  CreateStockKeeperScreenDemo,
   CreateToolboxScreenDemo,
+  CreateTrainScheduleScreenDemo,
+  CreateTrainStationScreenDemo,
   CreateValueSettingsPanelDemo,
 } from "./demos";
 
 describe("sSR smoke (node env, 规格 §1.1)", () => {
-  it("create 五个界面可服务端渲染", () => {
+  it("create 全部界面可服务端渲染", () => {
     const html = renderToStaticMarkup(
       <>
         <CreateMillstoneScreenDemo />
@@ -23,6 +29,12 @@ describe("sSR smoke (node env, 规格 §1.1)", () => {
         <CreateToolboxScreenDemo />
         <CreateSchematicTableScreenDemo />
         <CreateValueSettingsPanelDemo />
+        <CreateSchematicannonScreenDemo />
+        <CreatePackageFilterScreenDemo />
+        <CreateTrainScheduleScreenDemo />
+        <CreateTrainStationScreenDemo />
+        <CreateStockKeeperScreenDemo />
+        <CreateSpriteDemo />
       </>,
     );
     expect(typeof html).toBe("string");

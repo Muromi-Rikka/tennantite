@@ -26,14 +26,30 @@ export interface Ic2MachineScreenProps {
   children?: ReactNode;
   className?: string;
   /**
-  * 放电槽（扳手取下电池）
+  * 放电槽（扳手取下电池）；`hideDischarge` 时整块槽位不渲染
   */
   discharge?: ScreenSlot;
+  /**
+  * 放电槽位置（默认 IC2_MACHINE）
+  */
+  dischargePosition?: { left: number; top: number };
   /**
   * EU 能量状态（省略时不渲染 EU 闪电）
   */
   energy?: { max: number; value: number };
+  /**
+  * 能量表位置（默认 IC2_MACHINE；金属成型机等偏离通用布局的机器用）
+  */
+  energyPosition?: { left: number; top: number };
+  /**
+  * 隐藏放电槽（燃料槽机器改由 children 自行落位）
+  */
+  hideDischarge?: boolean;
   input?: ScreenSlot;
+  /**
+  * 输入槽位置（默认 IC2_MACHINE）
+  */
+  inputPosition?: { left: number; top: number };
   /**
   * 产物槽点击回调
   */
@@ -43,10 +59,11 @@ export interface Ic2MachineScreenProps {
   * 玩家名（默认“玩家”，渲染在背包上方）
   */
   playerName?: ReactNode;
-  /**
-  * 机器处理进度 0..1
-  */
   progress?: number;
+  /**
+  * 进度填充原点（默认 IC2_MACHINE.progress[progressStyle]）
+  */
+  progressPosition?: { left: number; top: number };
   /**
   * 进度贴图：磨矿机 crush / 电炉 arrow / 压缩机 triangle / 提取机 drop
   */
@@ -67,17 +84,26 @@ export function Ic2MachineScreen({
   children,
   className,
   discharge,
+  dischargePosition,
   energy,
+  energyPosition,
+  hideDischarge = false,
   input,
+  inputPosition,
   onTakeOutput,
   output,
   playerName = "玩家",
   progress = 0,
+  progressPosition,
   progressStyle,
   title,
   upgrades = [],
 }: Ic2MachineScreenProps) {
-  const progressPosition = IC2_MACHINE.progress[progressStyle];
+  const defaultProgressPosition = IC2_MACHINE.progress[progressStyle];
+  const inputLeft = inputPosition?.left ?? IC2_MACHINE.slots.input.left;
+  const inputTop = inputPosition?.top ?? IC2_MACHINE.slots.input.top;
+  const dischargeLeft = dischargePosition?.left ?? IC2_MACHINE.slots.discharge.left;
+  const dischargeTop = dischargePosition?.top ?? IC2_MACHINE.slots.discharge.top;
   return (
     <ScreenPanel
       backgroundClassName={backgroundClassName}
@@ -95,17 +121,21 @@ export function Ic2MachineScreen({
         frameClassName="mc-tex-ic2-slot"
         item={input}
         label="machine-input"
-        left={IC2_MACHINE.slots.input.left}
-        top={IC2_MACHINE.slots.input.top}
+        left={inputLeft}
+        top={inputTop}
       />
-      <ScreenItemSlot
-        frame
-        frameClassName="mc-tex-ic2-slot"
-        item={discharge}
-        label="machine-discharge"
-        left={IC2_MACHINE.slots.discharge.left}
-        top={IC2_MACHINE.slots.discharge.top}
-      />
+      {hideDischarge
+        ? null
+        : (
+            <ScreenItemSlot
+              frame
+              frameClassName="mc-tex-ic2-slot"
+              item={discharge}
+              label="machine-discharge"
+              left={dischargeLeft}
+              top={dischargeTop}
+            />
+          )}
       <ScreenItemSlot
         frame
         frameClassName="mc-tex-ic2-slot-large"
@@ -132,10 +162,10 @@ export function Ic2MachineScreen({
         ? (
             <Ic2EnergyGauge
               label="EU 能量"
-              left={IC2_MACHINE.energy.left}
+              left={energyPosition?.left ?? IC2_MACHINE.energy.left}
               max={energy.max}
               tooltip
-              top={IC2_MACHINE.energy.top}
+              top={energyPosition?.top ?? IC2_MACHINE.energy.top}
               value={energy.value}
               variant={IC2_MACHINE.energy.variant}
             />
@@ -143,10 +173,10 @@ export function Ic2MachineScreen({
         : null}
       <Ic2Progress
         label="处理进度"
-        left={progressPosition.left}
+        left={progressPosition?.left ?? defaultProgressPosition.left}
         progress={progress}
         style={progressStyle}
-        top={progressPosition.top}
+        top={progressPosition?.top ?? defaultProgressPosition.top}
       />
       {children}
       <PlayerInventory

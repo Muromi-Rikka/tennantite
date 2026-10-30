@@ -347,6 +347,19 @@ export const MEKANISM_MACHINES = {
     },
     tabs: DEFAULT_TABS,
   },
+  "fuelwood-heater": {
+    innerDefaults: { screen: "—" },
+    inners: [{ height: 28, left: 48, role: "screen", top: 23, width: 80 }],
+    inventoryLabel: DEFAULT_LABEL,
+    player: DEFAULT_PLAYER,
+    progress: [{ left: 144, role: "progress", top: 31, type: "FLAME" }],
+    slots: {
+      fuel: { left: 14, top: 28, type: "input" },
+    },
+    tabs: ["config", "transporter", "upgrade", "security", "redstone", "heat"],
+    transmissions: ["energy", "item", "heat"],
+    warningSide: "right",
+  },
   "isotopic-centrifuge": {
     gauges: [
       { gauge: "standard", kind: "chemical", left: 25, role: "chemical-left", top: 13 },
@@ -590,6 +603,7 @@ export const MEKANISM_MACHINE_TITLES: Record<MekanismMachineKey, string> = {
   "energized-smelter": "通电冶炼炉",
   "enrichment-chamber": "富集仓",
   "formulaic-assemblicator": "公式装配机",
+  "fuelwood-heater": "燃木加热器",
   "isotopic-centrifuge": "同位素离心机",
   "metallurgic-infuser": "冶金灌注机",
   "nutritional-liquifier": "营养液化器",

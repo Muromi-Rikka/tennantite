@@ -1,9 +1,39 @@
 import {
   EioAlloySmelterScreenDemo,
+  EioAttractorScreenDemo,
+  EioAversionScreenDemo,
+  EioBufferScreenDemo,
   EioCapacitorBankScreenDemo,
+  EioCombustionGeneratorScreenDemo,
+  EioCrafterScreenDemo,
+  EioDialingDeviceScreenDemo,
+  EioDrainScreenDemo,
+  EioEnchanterScreenDemo,
+  EioFarmStationScreenDemo,
+  EioImpulseHopperScreenDemo,
+  EioInhibitorScreenDemo,
+  EioKillerJoeScreenDemo,
+  EioLavaGeneratorScreenDemo,
+  EioNiardScreenDemo,
+  EioPaintingMachineScreenDemo,
+  EioPoweredSpawnerScreenDemo,
+  EioRelocatorScreenDemo,
   EioSagMillScreenDemo,
+  EioSliceAndSpliceScreenDemo,
   EioSoulBinderScreenDemo,
+  EioSoulEngineScreenDemo,
   EioStirlingGeneratorScreenDemo,
+  EioTankScreenDemo,
+  EioTelePadScreenDemo,
+  EioTransceiverScreenDemo,
+  EioTravelAnchorScreenDemo,
+  EioVacuumChestScreenDemo,
+  EioVatScreenDemo,
+  EioWeatherObeliskScreenDemo,
+  EioWiredChargerScreenDemo,
+  EioWirelessChargerScreenDemo,
+  EioXpObeliskScreenDemo,
+  EioXpVacuumScreenDemo,
 } from "@tennantite/enderio/demos";
 
 export function EnderioPage() {
@@ -29,6 +59,96 @@ export function EnderioPage() {
       </Section>
       <Section title="EioCapacitorBankScreen — 电容组">
         <EioCapacitorBankScreenDemo />
+      </Section>
+      <Section title="EioPaintingMachineScreen — 涂色机">
+        <EioPaintingMachineScreenDemo />
+      </Section>
+      <Section title="EioSliceAndSpliceScreen — 切片拼接机">
+        <EioSliceAndSpliceScreenDemo />
+      </Section>
+      <Section title="EioEnchanterScreen — 附魔台">
+        <EioEnchanterScreenDemo />
+      </Section>
+      <Section title="EioCombustionGeneratorScreen — 燃烧发电机">
+        <EioCombustionGeneratorScreenDemo />
+      </Section>
+      <Section title="EioLavaGeneratorScreen — 岩浆发电机">
+        <EioLavaGeneratorScreenDemo />
+      </Section>
+      <Section title="EioSoulEngineScreen — 灵魂发动机">
+        <EioSoulEngineScreenDemo />
+      </Section>
+      <Section title="EioVatScreen — 发酵桶">
+        <EioVatScreenDemo />
+      </Section>
+      <Section title="EioTankScreen — 流体坦克">
+        <EioTankScreenDemo />
+      </Section>
+      <Section title="EioDrainScreen — 抽液器">
+        <EioDrainScreenDemo />
+      </Section>
+      <Section title="EioNiardScreen — 泼洒器">
+        <EioNiardScreenDemo />
+      </Section>
+      <Section title="EioWiredChargerScreen — 有线充电器">
+        <EioWiredChargerScreenDemo />
+      </Section>
+      <Section title="EioWirelessChargerScreen — 无线充电器">
+        <EioWirelessChargerScreenDemo />
+      </Section>
+      <Section title="EioPoweredSpawnerScreen — 刷怪笼">
+        <EioPoweredSpawnerScreenDemo />
+      </Section>
+      <Section title="EioXpObeliskScreen — 经验方尖碑">
+        <EioXpObeliskScreenDemo />
+      </Section>
+      <Section title="EioXpVacuumScreen — 经验真空机">
+        <EioXpVacuumScreenDemo />
+      </Section>
+      <Section title="EioImpulseHopperScreen — 脉冲漏斗">
+        <EioImpulseHopperScreenDemo />
+      </Section>
+      <Section title="EioCrafterScreen — 制造机">
+        <EioCrafterScreenDemo />
+      </Section>
+      <Section title="EioFarmStationScreen — 农业站">
+        <EioFarmStationScreenDemo />
+      </Section>
+      <Section title="EioVacuumChestScreen — 真空箱">
+        <EioVacuumChestScreenDemo />
+      </Section>
+      <Section title="EioAttractorScreen — 吸引方尖碑">
+        <EioAttractorScreenDemo />
+      </Section>
+      <Section title="EioAversionScreen — 驱离方尖碑">
+        <EioAversionScreenDemo />
+      </Section>
+      <Section title="EioInhibitorScreen — 阻慑方尖碑">
+        <EioInhibitorScreenDemo />
+      </Section>
+      <Section title="EioRelocatorScreen — 中继方尖碑">
+        <EioRelocatorScreenDemo />
+      </Section>
+      <Section title="EioWeatherObeliskScreen — 天气方尖碑">
+        <EioWeatherObeliskScreenDemo />
+      </Section>
+      <Section title="EioKillerJoeScreen — 杀戮乔">
+        <EioKillerJoeScreenDemo />
+      </Section>
+      <Section title="EioBufferScreen — 缓冲器">
+        <EioBufferScreenDemo />
+      </Section>
+      <Section title="EioTravelAnchorScreen — 旅行锚点">
+        <EioTravelAnchorScreenDemo />
+      </Section>
+      <Section title="EioDialingDeviceScreen — 拨号装置">
+        <EioDialingDeviceScreenDemo />
+      </Section>
+      <Section title="EioTelePadScreen — 传送板">
+        <EioTelePadScreenDemo />
+      </Section>
+      <Section title="EioTransceiverScreen — 传输器">
+        <EioTransceiverScreenDemo />
       </Section>
     </div>
   );

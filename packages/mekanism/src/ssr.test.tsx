@@ -5,11 +5,18 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 
 import {
+  MekanismDigitalMinerConfigScreen,
+  MekanismDigitalMinerScreen,
   MekanismEnergyCubeScreen,
   MekanismEnrichingFactoryScreen,
   MekanismEnrichmentChamberScreen,
+  MekanismFuelwoodHeaterScreen,
+  MekanismList,
+  MekanismSecurityDeskScreen,
   MekanismSideConfigWindow,
+  MekanismTeleporterScreen,
 } from "./index";
+import { MekanismBarDemo } from "./mekanism-demos";
 
 function render(): string {
   return renderToStaticMarkup(
@@ -21,7 +28,24 @@ function render(): string {
       />
       <MekanismEnergyCubeScreen energy={{ max: 4000000, value: 2400000 }} />
       <MekanismEnrichingFactoryScreen energy={{ max: 10, value: 5 }} tier="ultimate" />
+      <MekanismFuelwoodHeaterScreen progress={{ progress: 0.4 }} slots={{ fuel: { icon: "charcoal" } }} />
+      <MekanismSecurityDeskScreen owner="Steve" security="private" trusted={[{ id: "alice", label: "Alice" }]} />
+      <MekanismTeleporterScreen frequencies={[{ id: "home", label: "home", owner: "Steve", security: "public" }]} status="ready" />
+      <MekanismDigitalMinerScreen energy={{ max: 10, value: 5 }} searchText="搜索完成" toMineText="1024" />
+      <MekanismDigitalMinerConfigScreen filterCount="2" filters={[{ id: "iron", label: "铁矿石" }]} radius="10" />
       <MekanismSideConfigWindow left={0} top={0} />
+      <MekanismBarDemo />
+      <MekanismList
+        left={0}
+        rows={[
+          { icon: "item/upgrade/speed", id: "speed", label: "速度升级" },
+          { id: "energy", label: "能量升级" },
+        ]}
+        selectedId="energy"
+        top={0}
+        visibleRows={2}
+        width={120}
+      />
     </>,
   );
 }

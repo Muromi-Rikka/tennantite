@@ -12,16 +12,94 @@ export interface Ae2SpriteMeta {
 }
 
 export const ae2SpriteMeta = {
+  condenser: {
+    cssVar: "--mc-ae2-condenser",
+    height: 256,
+    sha256: "fe5ee8c08c9e27a4ba03badd4ed5d94cf0edae24b31f6748f0d6ac9a9ee1f392",
+    width: 256,
+  },
+  cpuSelector: {
+    cssVar: "--mc-ae2-cpu-selector",
+    height: 256,
+    sha256: "c8cd9a012d47e38cbb99b914933ed1aaef86cbff356def8ddf270a6780248602",
+    width: 256,
+  },
   crafting: {
     cssVar: "--mc-ae2-crafting",
     height: 256,
     sha256: "e54594e997baab2e963af530162f087f53db8387b03381beba435ca10d094c41",
     width: 256,
   },
+  craftingcpu: {
+    cssVar: "--mc-ae2-craftingcpu",
+    height: 256,
+    sha256: "6ef1e68862ac61d67785c7d05a74f3384f85036f2662e42792ac36f53c0d65cd",
+    width: 256,
+  },
+  grinder: {
+    cssVar: "--mc-ae2-grinder",
+    height: 256,
+    sha256: "da9f67a53e9c5287f0502b697873a0881dbee455f40d6761ceb7718fab219194",
+    width: 256,
+  },
   inscriber: {
     cssVar: "--mc-ae2-inscriber",
     height: 256,
     sha256: "090eef32059e98c07f29ef49c3dd71b559b71a7a1a74b4dc99ce62096118c1c3",
+    width: 256,
+  },
+  interface: {
+    cssVar: "--mc-ae2-interface",
+    height: 256,
+    sha256: "b8c99eb6dd3ef6d19b6a741b36eccfa1e4afff01cfe7ab64c807f32cc3707f73",
+    width: 256,
+  },
+  ioPort: {
+    cssVar: "--mc-ae2-io-port",
+    height: 256,
+    sha256: "324759b90a6f17273badf6d5927ccc4df07f18c50f9a6344b3b411858937d15b",
+    width: 256,
+  },
+  mac: {
+    cssVar: "--mc-ae2-mac",
+    height: 256,
+    sha256: "3cb1f437d0a770fa19b7711fe0df261e729035d6952da2eaa6315559e84731ab",
+    width: 256,
+  },
+  pattern: {
+    cssVar: "--mc-ae2-pattern",
+    height: 256,
+    sha256: "d20d174272d8f3cc79cbd89d80322dbd878c30be9f7778704398e2207618be72",
+    width: 256,
+  },
+  pattern2: {
+    cssVar: "--mc-ae2-pattern2",
+    height: 256,
+    sha256: "1c0bd0beb3b6b597c568d5826c070e54d70c2a5501b42c250cc5bb2f39807d8f",
+    width: 256,
+  },
+  priority: {
+    cssVar: "--mc-ae2-priority",
+    height: 256,
+    sha256: "bbce28e3a8bbe3c3a71583616243f350deb6c3f1d8a7832b51e3ebb7a21b83a4",
+    width: 256,
+  },
+  qbgui: {
+    cssVar: "--mc-ae2-qbgui",
+    height: 256,
+    sha256: "e768307a10f4b4dba4334d0564b3aee33e1372680f7fa8511f921be9ca48d394",
+    width: 256,
+  },
+  skychest: {
+    cssVar: "--mc-ae2-skychest",
+    height: 256,
+    sha256: "7f8400d2cfa1d526d0d5c72e45245a8104a390d1d9cea4b3be19e4d7e06b7482",
+    width: 256,
+  },
+  spatialio: {
+    cssVar: "--mc-ae2-spatialio",
+    height: 256,
+    sha256: "86c973e91108592b3ace5f0480456ed28777e5680a4b49fbc75bc1c253020a7c",
     width: 256,
   },
   states: {
