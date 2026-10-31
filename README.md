@@ -95,6 +95,8 @@ spec/             # 规格文档
 
 详见 `packages/textures/LICENSE-ASSETS.md`。
 
+代码部分（全部 `@tennantite/*` 包）以 [MIT](LICENSE) 许可发布；上述素材授权仅覆盖贴图、图标与字体，各自版权保留。
+
 ## 发布
 
 全部 13 个 `@tennantite/*` 包通过 GitHub Actions 以 npm Trusted Publisher（OIDC）发布，无 NPM_TOKEN：

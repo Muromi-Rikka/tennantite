@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.1.2",
   "description": "Tennantite pixel textures — vanilla Minecraft GUI PNG sprites, redrawn nine-slices and vanilla item/status icons",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Muromi-Rikka/tennantite.git",

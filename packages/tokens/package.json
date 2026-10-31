@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.1.2",
   "description": "Tennantite design tokens — Minecraft-style Tailwind v4 theme variables",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Muromi-Rikka/tennantite.git",
