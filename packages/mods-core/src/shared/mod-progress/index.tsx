@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { cn, gui } from "@tennantite/ui";
 import type { ModDataAttributes } from "../mod-sprite/index";
 import type { ProgressDirection } from "../progress";
-import { progressClipPath } from "../progress";
+import { progressAriaValues, progressClipPath } from "../progress";
 
 /**
  * progressbar 数值口径：
@@ -137,23 +137,4 @@ export function ModProgress({
       </div>
     </div>
   );
-}
-
-export function progressAriaValues(
-  ariaValue: ModProgressAriaValue,
-  ratio: number,
-  value = 0,
-  max = 0,
-) {
-  switch (ariaValue) {
-    case "percent": {
-      return { max: 100, now: Math.round(ratio * 100) };
-    }
-    case "raw": {
-      return { max, now: value };
-    }
-    default: {
-      return { max: 1, now: ratio };
-    }
-  }
 }

@@ -177,7 +177,10 @@ export function IfMachineScreen({
           <IfSlotGroupGrid
             group={group}
             items={items}
-            key={`${group.name}-${index}`}
+            key={
+              // eslint-disable-next-line react/no-array-index-key -- 位置固定槽位网格，index 即稳定身份
+              `${group.name}-${index}`
+            }
             onActivate={onSlotActivate}
           />
         ))}

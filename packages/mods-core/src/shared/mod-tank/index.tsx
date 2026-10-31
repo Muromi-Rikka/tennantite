@@ -4,8 +4,7 @@ import { cn, gui } from "@tennantite/ui";
 import type { ModProgressAriaValue } from "../mod-progress/index";
 import type { ModDataAttributes } from "../mod-sprite/index";
 import type { ProgressDirection } from "../progress";
-import { progressAriaValues } from "../mod-progress/index";
-import { progressClipPath } from "../progress";
+import { progressAriaValues, progressClipPath } from "../progress";
 
 export interface ModTankProps {
   /**

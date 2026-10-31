@@ -5,7 +5,8 @@ import { gui, ScreenItemSlot } from "@tennantite/ui";
 
 import { CREATE_ATLAS, CREATE_STOCK_KEEPER } from "../create-metrics";
 import { CreateWindow } from "../create-window/index";
-import { buildStockRows, StockRows } from "./stock-rows";
+import { buildStockRows } from "./build-stock-rows";
+import { StockRows } from "./stock-rows";
 
 /**
  * 库存物品条目（上游 BigItemStack：物品 + 数量）。

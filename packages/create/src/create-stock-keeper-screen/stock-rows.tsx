@@ -2,44 +2,9 @@ import { ModSprite } from "@tennantite/mods-core";
 import { createSpriteMeta } from "@tennantite/textures";
 import { gui } from "@tennantite/ui";
 
-import type { CreateStockItem, CreateStockKeeperCategory } from "./index";
+import type { StockRow } from "./build-stock-rows";
 import { CREATE_ATLAS, CREATE_STOCK_KEEPER } from "../create-metrics";
 import { ItemCell } from "./item-cell";
-
-export interface StockRow {
-  category?: CreateStockKeeperCategory;
-  hidden?: boolean;
-  items?: CreateStockItem[];
-  top: number;
-}
-
-/**
- * 分类行 + 物品行统一 20px 栅格排布（窗口坐标）。
- */
-export function buildStockRows({
-  categories,
-  items,
-}: {
-  categories?: CreateStockKeeperCategory[];
-  items?: CreateStockItem[];
-}): StockRow[] {
-  const layout = CREATE_STOCK_KEEPER;
-  const groups: CreateStockKeeperCategory[] = categories ?? [{ id: "unsorted", items: items ?? [] }];
-  const rows: StockRow[] = [];
-  let y = layout.items.top;
-  for (const category of groups) {
-    if (categories) {
-      rows.push({ category, hidden: category.hidden, top: y });
-      y += layout.rowHeight;
-    }
-    const itemRows = chunk(category.items, layout.columns);
-    for (const [index, rowItems] of itemRows.entries()) {
-      rows.push({ items: rowItems, top: y + index * layout.rowHeight });
-    }
-    y += itemRows.length * layout.rowHeight;
-  }
-  return rows;
-}
 
 /**
  * 库存管理员物品视口内容：分类行（显示/隐藏图标 + 名称）与 9 列物品行。
@@ -76,12 +41,4 @@ export function StockRows({ rows }: { rows: StockRow[] }) {
             ))}
     </>
   );
-}
-
-function chunk<T>(list: T[], size: number): T[][] {
-  const out: T[][] = [];
-  for (let i = 0; i < list.length; i += size) {
-    out.push(list.slice(i, i + size));
-  }
-  return out;
 }

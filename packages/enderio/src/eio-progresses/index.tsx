@@ -45,7 +45,10 @@ export function EioProgresses({
             />
           )}
           height={entry.height}
-          key={`${entry.sprite}-${entry.left}-${entry.top}-${index}`}
+          key={
+            // eslint-disable-next-line react/no-array-index-key -- 数据模型无稳定 id，列表顺序即身份
+            `${entry.sprite}-${entry.left}-${entry.top}-${index}`
+          }
           label={labels?.[index] ?? label}
           left={entry.left}
           progress={values?.[index] ?? progress}

@@ -43,7 +43,10 @@ export function IfIconButton({
     <IfSprite
       crop={spriteCrop}
       height={height}
-      key={`${spriteCrop}-${index}`}
+      key={
+        // eslint-disable-next-line react/no-array-index-key -- 数据模型无稳定 id，列表顺序即身份
+        `${spriteCrop}-${index}`
+      }
       left={0}
       name={IF_CROPS[spriteCrop].sprite}
       top={0}

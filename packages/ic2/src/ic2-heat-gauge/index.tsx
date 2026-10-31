@@ -10,8 +10,8 @@ import { IC2_BLAST_FURNACE } from "../ic2-layout";
  * - 填充：右侧黄色渐变竖条 (252,33) 3×28
  * - 底：左侧灰白竖条 (247,33) 3×28
  */
-export const HEAT_FILL: ModSpriteRect = IC2_BLAST_FURNACE.heat.fill;
-export const HEAT_BACKGROUND: ModSpriteRect = IC2_BLAST_FURNACE.heat.background;
+const HEAT_FILL: ModSpriteRect = IC2_BLAST_FURNACE.heat.fill;
+const HEAT_BACKGROUND: ModSpriteRect = IC2_BLAST_FURNACE.heat.background;
 
 export interface Ic2HeatGaugeProps {
   className?: string;

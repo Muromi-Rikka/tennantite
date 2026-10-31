@@ -12,7 +12,8 @@ import {
   CREATE_TRAIN_SCHEDULE,
 } from "../create-metrics";
 import { CreateWindow } from "../create-window/index";
-import { entryHeight, ScheduleCard } from "./schedule-card";
+import { entryHeight } from "./entry-height";
+import { ScheduleCard } from "./schedule-card";
 import { ScheduleEditor } from "./schedule-editor";
 
 const createMeta = createSpriteMeta;

@@ -5,6 +5,7 @@ import { gui } from "@tennantite/ui";
 import type { CreateScheduleEntry } from "./index";
 import { CREATE_SCHEDULE_CARD_COLORS, CREATE_SCHEDULE_SPRITES, CREATE_TRAIN_SCHEDULE } from "../create-metrics";
 import { ConditionPill } from "./condition-pill";
+import { entryHeight } from "./entry-height";
 
 const CARD = CREATE_TRAIN_SCHEDULE.card;
 const createMeta = createSpriteMeta;
@@ -20,14 +21,6 @@ export interface ScheduleCardProps {
   onRemove?: (id: string) => void;
   top: number;
   total: number;
-}
-
-/**
- * 时刻表卡片高度：题头 + （条件模式 24 + 条件行数×18；否则 4）。
- */
-export function entryHeight(entry: CreateScheduleEntry): number {
-  const maxRows = (entry.conditions ?? []).reduce((max, list) => Math.max(max, list.length), 0);
-  return CARD.header + (entry.supportsConditions ? 24 + maxRows * 18 : 4);
 }
 
 /**
