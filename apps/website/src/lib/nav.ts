@@ -1,7 +1,8 @@
 import { getCollection } from "astro:content";
 
-import type { DocsNavGroup } from "./docs";
-import { buildDocsNav, filterDocs, type DocEntry } from "./docs";
+import type { Locale } from "../i18n";
+import type { DocEntry, DocsNavGroup } from "./docs";
+import { localeHref, ui } from "../i18n";
 import {
   blockHref,
   catalogDescription,
@@ -11,8 +12,7 @@ import {
   modIds,
   primaryBlocks,
 } from "./catalog";
-import type { Locale } from "../i18n";
-import { localeHref, ui } from "../i18n";
+import { buildDocsNav, filterDocs } from "./docs";
 
 /**
  * shadcn 式单一全局侧栏：docs 四组 + 组件 + HUD 与界面 + Mod 界面。

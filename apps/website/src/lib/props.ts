@@ -11,4 +11,4 @@ export const componentProps: Record<string, PropDoc[]> = {
   ...primitivesProps,
 };
 
-export type { PropDoc };
+export { type PropDoc } from "./props-types";
