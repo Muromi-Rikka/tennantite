@@ -39,12 +39,12 @@ Read the [layer guide](/en/docs/layers/), or browse [Components](/en/components/
 
 ## Distribution
 
-`@tennantite/ui` is a workspace package. The repo also includes `registry/registry.json`, which describes component source and dependencies using the shadcn registry shape. The registry currently covers primitives and containers only.
+`@tennantite/ui` is published on npm. Core components are also distributed as source through the shadcn registry endpoint (`https://tennantite.pages.dev/r/<name>.json`) — install with `npx shadcn add @tennantite/<name>`; mod packages use npm install. See [Registry](/en/docs/registry/) and [Installation](/en/docs/installation/).
 
 ## Current status
 
-<Callout variant="warn" title="v0.1.0 preview">
-`@tennantite/ui` is not published on npm yet, and the registry has no public host. Use `workspace:*` inside this repo. Next.js App Router and TanStack Start SSR smoke tests pass; axe tests cover primitives.
+<Callout title="v0.1.0">
+Next.js App Router and TanStack Start SSR smoke tests pass; axe tests cover primitives.
 </Callout>
 
 ## Next

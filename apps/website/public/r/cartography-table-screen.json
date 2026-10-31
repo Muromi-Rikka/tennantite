@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@tennantite/textures",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { GuiSpriteName } from \"@tennantite/textures\";\nimport type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { PlayerInventory } from \"@/components/tennantite/player-inventory\";\nimport { ScreenPanel } from \"@/components/tennantite/screen-panel\";\nimport { gui } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { ScreenItemSlot } from \"@/components/tennantite/lib/screen-slot\";\n\nexport type CartographyOverlay = \"duplicated\" | \"error\" | \"locked\" | \"map\" | \"scaled\";\n\nconst OVERLAY_SPRITES: Record<CartographyOverlay, string> = {\n  duplicated: \"duplicated_map\",\n  error: \"error\",\n  locked: \"locked\",\n  map: \"map\",\n  scaled: \"scaled_map\",\n};\n\nexport interface CartographyTableScreenProps {\n  additional?: ScreenSlot;\n  className?: string;\n  hotbarItems?: ScreenSlot[];\n  input?: ScreenSlot;\n  onSlotClick?: (area: \"hotbar\" | \"input\" | \"main\" | \"output\", index: number) => void;\n  output?: ScreenSlot;\n  overlay?: CartographyOverlay;\n  selectedIndex?: number;\n  title?: ReactNode;\n}\n\n/**\n * 制图台界面（规格 §6）：`container/cartography_table.png` 176×166。\n */\nconst EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];\nexport function CartographyTableScreen({\n  additional,\n  className,\n  hotbarItems = EMPTY_HOTBAR_ITEMS,\n  input,\n  onSlotClick,\n  output,\n  overlay,\n  selectedIndex,\n  title,\n}: CartographyTableScreenProps) {\n  return (\n    <ScreenPanel\n      background=\"container/cartography_table.png\"\n      className={className}\n      height={166}\n      title={title}\n      width={176}\n    >\n      <ScreenItemSlot\n        item={input}\n        label=\"cartography-input\"\n        left={14}\n        onActivate={onSlotClick ? () => onSlotClick(\"input\", 0) : undefined}\n        top={14}\n      />\n      <ScreenItemSlot\n        item={additional}\n        label=\"cartography-additional\"\n        left={14}\n        onActivate={onSlotClick ? () => onSlotClick(\"input\", 1) : undefined}\n        top={51}\n      />\n      {overlay\n        ? (\n            <GuiSprite\n              className=\"absolute\"\n              height={26}\n              name={`sprites/container/cartography_table/${OVERLAY_SPRITES[overlay]}.png` as GuiSpriteName}\n              style={{ left: gui(104), top: gui(48) }}\n              width={26}\n            />\n          )\n        : null}\n      <ScreenItemSlot\n        item={output}\n        label=\"cartography-output\"\n        left={140}\n        onActivate={onSlotClick ? () => onSlotClick(\"output\", 0) : undefined}\n        size={26}\n        top={34}\n      />\n      <PlayerInventory\n        bare\n        hotbarItems={hotbarItems}\n        onSlotClick={onSlotClick}\n        selectedIndex={selectedIndex}\n      />\n    </ScreenPanel>\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/cartography-table-screen/index.tsx",
+      "target": "components/tennantite/cartography-table-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "cartography-table-screen",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/player-inventory",
+    "@tennantite/screen-panel",
+    "@tennantite/screen-slot",
+    "@tennantite/screen-types",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Cartography Table Screen",
+  "type": "registry:component"
+}

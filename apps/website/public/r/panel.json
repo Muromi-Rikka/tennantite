@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ComponentProps } from \"react\";\n\nimport { cn } from \"@/components/tennantite/lib/tennantite-utils\";\n\nexport interface PanelProps extends ComponentProps<\"div\"> {\n  /**\n  * default 窗口灰 / dark 半透明暗底（规格 §5 #1）\n  */\n  variant?: \"dark\" | \"default\";\n}\n\n/**\n * MC 面板（规格 §5 #1）：九宫格纹理容器，纯展示组件，RSC 兼容。\n */\nexport function Panel({\n  className,\n  variant = \"default\",\n  ...properties\n}: PanelProps) {\n  return (\n    <div\n      className={cn(\n        variant === \"dark\" ? \"mc-tex-panel-dark\" : \"mc-tex-panel\",\n        \"font-mc mc-text text-mc-text-main\",\n        className,\n      )}\n      {...properties}\n    />\n  );\n}\n",
+      "path": "packages/ui/src/containers/panel/index.tsx",
+      "target": "components/tennantite/panel/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "panel",
+  "registryDependencies": [
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Panel",
+  "type": "registry:component"
+}

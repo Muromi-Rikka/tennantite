@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "/* eslint-disable react/no-array-index-key -- 聊天记录只追加，索引在生命周期内稳定 */\nimport { cn } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { Input } from \"@/components/tennantite/input\";\nimport { ScrollArea } from \"@/components/tennantite/scroll-area\";\n\nexport interface ChatMessage {\n  author?: string;\n  text: string;\n}\n\nexport interface ChatScreenProps {\n  className?: string;\n  defaultValue?: string;\n  messages?: ChatMessage[];\n  onSend?: (text: string) => void;\n  value?: string;\n}\n\n/**\n * 聊天界面（规格 §6.3）：半透明黑底 + 原版 text_field 输入框。\n */\nexport function ChatScreen({\n  className,\n  defaultValue,\n  messages = [],\n  onSend,\n  value,\n}: ChatScreenProps) {\n  return (\n    <div className={cn(\"flex w-320 flex-col gap-1\", className)}>\n      <ScrollArea className=\"max-h-160 bg-black/50 p-1\">\n        <ul className=\"flex flex-col gap-1\">\n          {messages.map((message, index) => (\n            // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 数据模型无稳定 id，列表顺序即身份\n            <li className=\"font-mc mc-text text-mc-text-main mc-text-shadow\" key={index}>\n              {message.author\n                ? <span className=\"text-mc-yellow\">{`<${message.author}> `}</span>\n                : null}\n              {message.text}\n            </li>\n          ))}\n        </ul>\n      </ScrollArea>\n      <Input\n        aria-label=\"聊天输入\"\n        className=\"w-200\"\n        defaultValue={defaultValue}\n        onKeyDown={(event) => {\n          if (!onSend || event.key !== \"Enter\")\n            return;\n          const target = event.currentTarget;\n          onSend(target.value);\n          target.value = \"\";\n        }}\n        placeholder=\"输入消息，回车发送…\"\n        value={value}\n      />\n    </div>\n  );\n}\n",
+      "path": "packages/ui/src/screens/menus/chat-screen/index.tsx",
+      "target": "components/tennantite/chat-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "chat-screen",
+  "registryDependencies": [
+    "@tennantite/input",
+    "@tennantite/scroll-area",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Chat Screen",
+  "type": "registry:component"
+}

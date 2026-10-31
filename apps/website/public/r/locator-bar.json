@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@tennantite/textures",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "/* eslint-disable react/no-array-index-key -- 固定槽位/列表以位置为身份 */\nimport type { GuiSpriteName } from \"@tennantite/textures\";\n\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { cn, gui } from \"@/components/tennantite/lib/tennantite-utils\";\n\nexport interface LocatorBarProps {\n  /**\n  * 方向箭头\n  */\n  arrow?: \"down\" | \"up\";\n  className?: string;\n  dots: LocatorDot[];\n}\n\nexport interface LocatorDot {\n  /**\n  * 颜色（CSS 颜色；通过 mask 着色）\n  */\n  color?: string;\n  /**\n  * 图标类型\n  */\n  kind?: \"0\" | \"1\" | \"2\" | \"3\" | \"bowtie\";\n  /**\n  * 归一化位置 -1..1（0 为中心）\n  */\n  x: number;\n}\n\n/**\n * 定位条（规格 §6.1）：原版 182×5 locator_bar 背景与 9×9 点位。\n */\nexport function LocatorBar({ arrow, className, dots }: LocatorBarProps) {\n  return (\n    <div className={cn(\"relative h-9 w-182\", className)} data-hud=\"\">\n      <GuiSprite\n        className=\"absolute inset-x-0 top-2\"\n        height={5}\n        name=\"sprites/hud/locator_bar_background.png\"\n        tile\n        width={182}\n      />\n      {dots.map((dot, index) => {\n        const name = (dot.kind === \"bowtie\"\n          ? \"sprites/hud/locator_bar_dot/bowtie.png\"\n          : `sprites/hud/locator_bar_dot/default_${dot.kind ?? \"0\"}.png`) as GuiSpriteName;\n        return (\n          // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 数据模型无稳定 id，列表顺序即身份\n          <div\n            className=\"absolute top-0 size-9\"\n            key={`${dot.x}-${index}`}\n            style={{ left: `calc(50% + ${gui(dot.x * 91)} - ${gui(4.5)})` }}\n          >\n            <div\n              style={{\n                backgroundColor: dot.color,\n                height: \"100%\",\n                maskImage: `var(--mc-gui-sprites-hud-locator-bar-dot-${dot.kind === \"bowtie\" ? \"bowtie\" : `default-${dot.kind ?? \"0\"}`}-png)`,\n                maskSize: \"100% 100%\",\n                width: \"100%\",\n              }}\n            />\n            <GuiSprite\n              className=\"absolute inset-0\"\n              height={9}\n              name={name}\n              style={dot.color ? { opacity: 0 } : undefined}\n              width={9}\n            />\n          </div>\n        );\n      })}\n      {arrow\n        ? (\n            <GuiSprite\n              className=\"absolute top-0 left-1/2 -translate-x-1/2\"\n              height={9}\n              name={arrow === \"up\"\n                ? \"sprites/hud/locator_bar_arrow_up.png\"\n                : \"sprites/hud/locator_bar_arrow_down.png\"}\n              width={9}\n            />\n          )\n        : null}\n    </div>\n  );\n}\n",
+      "path": "packages/ui/src/screens/hud/locator-bar/index.tsx",
+      "target": "components/tennantite/locator-bar/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "locator-bar",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Locator Bar",
+  "type": "registry:component"
+}

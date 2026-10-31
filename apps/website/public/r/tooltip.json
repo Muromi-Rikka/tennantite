@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@base-ui/react",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ComponentProps } from \"react\";\nimport { Tooltip as BaseTooltip } from \"@base-ui/react/tooltip\";\n\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { cn } from \"@/components/tennantite/lib/tennantite-utils\";\n\nexport type TooltipPopupProps = ComponentProps<typeof BaseTooltip.Popup>;\n\nexport type TooltipProps = ComponentProps<typeof BaseTooltip.Root>;\n\n/**\n * MC 物品悬浮提示（规格 §4 #11）：原版 tooltip/background + frame 九宫格。\n */\nexport function Tooltip(properties: TooltipProps) {\n  return <BaseTooltip.Root {...properties} />;\n}\n\nexport function TooltipPopup({\n  children,\n  className,\n  ...properties\n}: TooltipPopupProps) {\n  return (\n    <BaseTooltip.Portal>\n      <BaseTooltip.Positioner className=\"z-50 outline-none\" sideOffset={4}>\n        <BaseTooltip.Popup\n          className={cn(\n            \"relative p-4\",\n            \"font-mc mc-text text-mc-text-main mc-text-shadow\",\n            className,\n          )}\n          {...properties}\n        >\n          <GuiSprite\n            className=\"absolute inset-0\"\n            name=\"sprites/tooltip/background.png\"\n            slice={9}\n            style={{ height: \"100%\", width: \"100%\" }}\n          />\n          <GuiSprite\n            className=\"absolute inset-0\"\n            name=\"sprites/tooltip/frame.png\"\n            slice={10}\n            style={{ height: \"100%\", width: \"100%\" }}\n          />\n          <span className=\"relative\">{children}</span>\n        </BaseTooltip.Popup>\n      </BaseTooltip.Positioner>\n    </BaseTooltip.Portal>\n  );\n}\n\nexport function TooltipTrigger({\n  className,\n  ...properties\n}: ComponentProps<typeof BaseTooltip.Trigger>) {\n  return (\n    <BaseTooltip.Trigger className={cn(\"cursor-pointer\", className)} {...properties} />\n  );\n}\n",
+      "path": "packages/ui/src/primitives/tooltip/index.tsx",
+      "target": "components/tennantite/tooltip/index.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import type { ComponentProps } from \"react\";\n\nimport type { Tooltip, TooltipPopup, TooltipTrigger } from \"./index\";\n\nexport type TooltipPopupProps = ComponentProps<typeof TooltipPopup>;\n\nexport type TooltipProps = ComponentProps<typeof Tooltip>;\n\nexport type TooltipTriggerProps = ComponentProps<typeof TooltipTrigger>;\n",
+      "path": "packages/ui/src/primitives/tooltip/types.ts",
+      "target": "components/tennantite/tooltip/types.ts",
+      "type": "registry:component"
+    }
+  ],
+  "name": "tooltip",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Tooltip",
+  "type": "registry:component"
+}

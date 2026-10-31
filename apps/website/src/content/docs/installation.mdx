@@ -16,13 +16,35 @@ import InstallCommand from "@/components/docs/InstallCommand.astro";
 - React 19.2.8（peer 范围 `^19.2.0`；19.3 与 Next 16 预渲染存在已知兼容问题）
 - Tailwind CSS v4
 
-## 安装依赖
+## 方式一：CLI 拷贝安装（推荐）
+
+用 shadcn CLI 把组件源码直接拷进项目，再按需改造——这是 shadcn/ui 的使用习惯。
+
+<InstallCommand command="npx shadcn init" />
+
+初始化生成的 `components.json` 中加入本项目的 registry：
+
+```json
+{
+  "registries": {
+    "@tennantite": "https://tennantite.pages.dev/r/{name}.json"
+  }
+}
+```
+
+然后安装基础资产与组件：
+
+<InstallCommand command="npx shadcn add @tennantite/tennantite-base @tennantite/button" />
+
+<Callout title="CLI 安装会做什么">
+- `tennantite-base` 条目自动安装 `@tennantite/tokens` 与 `@tennantite/textures` 两个 L0 资产包，并落下一个 `base.css`（记录需要引入的资产 CSS）。
+- 组件源码拷贝到 `components/tennantite/<组件名>/`，跨组件依赖（registryDependencies）随组件一并拉取。
+- 组件内部导入已改写为 `@/components/tennantite/...` 别名与 `components/tennantite/lib/` 下的共享工具（`cn`、`gui`、screen 类型），不覆盖你已有的 `@/lib/utils`。
+</Callout>
+
+## 方式二：npm 直装
 
 <InstallCommand command="pnpm add @tennantite/ui @tennantite/tokens @tennantite/textures" />
-
-<Callout variant="warn" title="npm 尚未发布">
-v0.1.0 仍在预览。仓库内使用 `"@tennantite/ui": "workspace:*"`，不要从 npm 安装。
-</Callout>
 
 ## 接入样式
 
@@ -46,13 +68,25 @@ body {
 ```
 
 <Callout>
-monorepo 内把 `@source` 指向 `../../packages`。`@source` 的路径必须相对当前 CSS 文件；消费者按自己的目录位置调整。否则组件里的 Tailwind 类不会生成。
+`@source` 的路径必须相对当前 CSS 文件；消费者按自己的目录位置调整，否则组件里的 Tailwind 类不会生成。
+
+- npm 直装：扫描包产物 `node_modules/@tennantite/ui/dist`。
+- CLI 拷贝：扫描拷贝目录，如 `@source "../../components/tennantite"`。
 </Callout>
 
 ## 第一个组件
 
+npm 直装时从包导入：
+
 ```tsx
 import { Button, Panel } from "@tennantite/ui";
+```
+
+CLI 拷贝时从本地组件导入：
+
+```tsx
+import { Button } from "@/components/tennantite/button";
+import { Panel } from "@/components/tennantite/panel";
 
 export function StartPanel() {
   return (

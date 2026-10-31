@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { BossBarColor, BossBarNotch } from \"@/components/tennantite/progress\";\nimport { cn } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { Progress } from \"@/components/tennantite/progress\";\n\nexport interface BossBarProps {\n  className?: string;\n  /**\n  * 条颜色；原版 7 色\n  */\n  color?: BossBarColor;\n  /**\n  * Boss 名称（标题，渲染在血条上方）\n  */\n  name: string;\n  /**\n  * 分段数；省略为连续条\n  */\n  notched?: BossBarNotch;\n  /**\n  * 血量进度 0..1\n  */\n  value: number;\n}\n\n/**\n * MC Boss 血条（规格 §6.1）：标题 + 原版 182×5 Boss 条，overlay 语义。\n */\nexport function BossBar({\n  className,\n  color = \"purple\",\n  name,\n  notched,\n  value,\n}: BossBarProps) {\n  return (\n    <div className={cn(\"w-182\", className)} data-hud=\"\">\n      <div className=\"mb-2 text-center font-mc mc-text text-mc-text-main mc-text-shadow\">\n        {name}\n      </div>\n      <Progress\n        aria-label={`Boss：${name}`}\n        color={color}\n        max={1}\n        notched={notched}\n        value={Math.min(1, Math.max(0, value))}\n        variant=\"boss\"\n      />\n    </div>\n  );\n}\n",
+      "path": "packages/ui/src/screens/hud/boss-bar/index.tsx",
+      "target": "components/tennantite/boss-bar/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "boss-bar",
+  "registryDependencies": [
+    "@tennantite/progress",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Boss Bar",
+  "type": "registry:component"
+}

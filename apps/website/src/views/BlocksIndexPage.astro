@@ -2,9 +2,12 @@
 import PageHeader from "@/components/site/PageHeader.astro";
 import LinkButton from "@/components/site/LinkButton.astro";
 import ScaledPreview from "@/components/preview/ScaledPreview.astro";
+import DocsSidebar from "@/components/docs/DocsSidebar.astro";
+import MobileDocsNav from "@/components/docs/MobileDocsNav.astro";
 import type { Locale } from "@/i18n";
 import { fill, localeHref, ui } from "@/i18n";
 import SiteLayout from "@/layouts/SiteLayout.astro";
+import { buildSiteNav } from "@/lib/nav";
 import { blockHref, componentTitle, modBlocks, primaryBlocks } from "@/lib/catalog";
 
 interface Props {
@@ -19,10 +22,18 @@ const groups = [
   { id: "screens" as const, ...text.groups.screens },
   { id: "menus" as const, ...text.groups.menus },
 ];
+const nav = await buildSiteNav(locale);
 ---
 <SiteLayout title={text.metaTitle} description={description} locale={locale}>
-  <div class="mx-auto max-w-[1440px] px-12 py-24">
-    <PageHeader
+  <div class="mx-auto flex w-full max-w-[1440px] gap-24 px-12">
+    <aside class="hidden w-[200px] shrink-0 lg:block">
+      <div class="sticky top-32 max-h-[calc(100vh-128px)] overflow-y-auto py-24">
+        <DocsSidebar groups={nav} label={ui[locale].docsChrome.mobileNav} pathname={Astro.url.pathname} />
+      </div>
+    </aside>
+    <div class="min-w-0 flex-1 py-24">
+      <MobileDocsNav groups={nav} title={ui[locale].docsChrome.mobileNav} />
+      <PageHeader
       breadcrumb={[{ label: text.breadcrumb }]}
       title={text.title}
       description={description}
@@ -76,6 +87,7 @@ const groups = [
           );
         })}
       </div>
+    </div>
     </div>
   </div>
 </SiteLayout>

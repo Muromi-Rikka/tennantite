@@ -4,10 +4,13 @@ import { ScaledBox } from "@tennantite/ui";
 import Demo from "@/components/preview/demo";
 import LinkButton from "@/components/site/LinkButton.astro";
 import PageHeader from "@/components/site/PageHeader.astro";
+import DocsSidebar from "@/components/docs/DocsSidebar.astro";
+import MobileDocsNav from "@/components/docs/MobileDocsNav.astro";
 import PrevNext from "@/components/site/PrevNext.astro";
 import type { Locale } from "@/i18n";
 import { fill, localeHref, ui } from "@/i18n";
 import SiteLayout from "@/layouts/SiteLayout.astro";
+import { buildSiteNav } from "@/lib/nav";
 import { blockComposition } from "@/lib/blocks";
 import {
   blockHref,
@@ -48,6 +51,7 @@ const composition = (blockComposition[entry.slug] ?? [])
   .map(name => findComponentByName(name))
   .filter((component): component is CatalogEntry => component !== undefined);
 const site = Astro.site ?? new URL("http://localhost:3300");
+const nav = await buildSiteNav(locale);
 const jsonLd = [
   techArticle({ description, locale, path: href, site, title: displayName }),
   breadcrumb({ items: [{ label: indexLabel, path: indexHref }, { label: displayName, path: href }], site }),
@@ -60,8 +64,15 @@ const jsonLd = [
   type="article"
   jsonLd={jsonLd}
 >
-  <div class="mx-auto max-w-[1440px] px-12 py-24">
-    <PageHeader
+  <div class="mx-auto flex w-full max-w-[1440px] gap-24 px-12">
+    <aside class="hidden w-[200px] shrink-0 lg:block">
+      <div class="sticky top-32 max-h-[calc(100vh-128px)] overflow-y-auto py-24">
+        <DocsSidebar groups={nav} label={ui[locale].docsChrome.mobileNav} pathname={Astro.url.pathname} />
+      </div>
+    </aside>
+    <div class="min-w-0 flex-1 py-24">
+      <MobileDocsNav groups={nav} title={ui[locale].docsChrome.mobileNav} />
+      <PageHeader
       breadcrumb={[{ href: indexHref, label: indexLabel }, { label: displayName }]}
       title={displayName}
       description={description}
@@ -101,5 +112,6 @@ const jsonLd = [
     </section>
 
     <PrevNext locale={locale} prev={pager.prev} next={pager.next} />
+    </div>
   </div>
 </SiteLayout>

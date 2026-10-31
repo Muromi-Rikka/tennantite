@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@base-ui/react",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ComponentProps } from \"react\";\nimport { Dialog as BaseDialog } from \"@base-ui/react/dialog\";\nimport type {\n  DialogCloseProps as DialogCloseProperties,\n  DialogPopupProps as DialogPopupProperties,\n  DialogProps as DialogProperties,\n} from \"./types\";\n\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { cn } from \"@/components/tennantite/lib/tennantite-utils\";\n\nexport type {\n  DialogCloseProps,\n  DialogPopupProps,\n  DialogProps,\n} from \"./types\";\n\n/**\n * MC 模态弹窗（规格 §4 #9）：半透明底 + 原版 popup 背景。\n */\nexport function Dialog(properties: DialogProperties) {\n  return <BaseDialog.Root {...properties} />;\n}\n\nexport function DialogBackdrop({\n  className,\n  ...properties\n}: ComponentProps<typeof BaseDialog.Backdrop>) {\n  return (\n    <BaseDialog.Backdrop\n      className={cn(\"fixed inset-0 z-40 bg-mc-panel-overlay\", className)}\n      {...properties}\n    />\n  );\n}\n\nexport function DialogClose({ className, ...properties }: DialogCloseProperties) {\n  return (\n    <BaseDialog.Close\n      className={cn(\n        \"cursor-pointer font-mc mc-text text-mc-text-dim hover:text-mc-text-main\",\n        className,\n      )}\n      {...properties}\n    />\n  );\n}\n\nexport function DialogDescription({\n  className,\n  ...properties\n}: ComponentProps<typeof BaseDialog.Description>) {\n  return (\n    <BaseDialog.Description\n      className={cn(\"font-mc mc-text text-mc-text-dim\", className)}\n      {...properties}\n    />\n  );\n}\n\nexport function DialogPopup({\n  children,\n  className,\n  variant = \"panel\",\n  ...properties\n}: DialogPopupProperties) {\n  return (\n    <BaseDialog.Portal>\n      <DialogBackdrop />\n      <BaseDialog.Popup\n        className={cn(\n          \"z-50 text-mc-text-main outline-none\",\n          variant === \"panel\"\n            ? \"fixed top-1/2 left-1/2 w-176 max-w-[calc(100vw-4*var(--mc-gui))] -translate-1/2 p-6\"\n            : \"fixed inset-0 flex flex-col items-center justify-center gap-4 bg-transparent p-0\",\n          className,\n        )}\n        {...properties}\n      >\n        {variant === \"panel\"\n          ? (\n              <GuiSprite\n                className=\"absolute inset-0\"\n                name=\"sprites/popup/background.png\"\n                slice={5}\n                style={{ height: \"100%\", width: \"100%\" }}\n              />\n            )\n          : null}\n        <div className=\"relative\">{children}</div>\n      </BaseDialog.Popup>\n    </BaseDialog.Portal>\n  );\n}\n\nexport function DialogTitle({\n  className,\n  ...properties\n}: ComponentProps<typeof BaseDialog.Title>) {\n  return (\n    <BaseDialog.Title\n      className={cn(\n        \"font-mc mc-text text-mc-text-main mc-text-shadow\",\n        className,\n      )}\n      {...properties}\n    />\n  );\n}\n\nexport function DialogTrigger({\n  className,\n  ...properties\n}: ComponentProps<typeof BaseDialog.Trigger>) {\n  return <BaseDialog.Trigger className={cn(\"cursor-pointer\", className)} {...properties} />;\n}\n",
+      "path": "packages/ui/src/primitives/dialog/index.tsx",
+      "target": "components/tennantite/dialog/index.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import type { Dialog as BaseDialog } from \"@base-ui/react/dialog\";\nimport type { ComponentProps } from \"react\";\n\nexport type DialogCloseProps = ComponentProps<typeof BaseDialog.Close>;\n\nexport type DialogPopupProps = {\n  /**\n  * panel 居中窗口面板 / overlay 全屏无底板（暂停 / 死亡界面）\n  */\n  variant?: \"overlay\" | \"panel\";\n} & ComponentProps<typeof BaseDialog.Popup>;\n\nexport type DialogProps = ComponentProps<typeof BaseDialog.Root>;\n",
+      "path": "packages/ui/src/primitives/dialog/types.ts",
+      "target": "components/tennantite/dialog/types.ts",
+      "type": "registry:component"
+    }
+  ],
+  "name": "dialog",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Dialog",
+  "type": "registry:component"
+}

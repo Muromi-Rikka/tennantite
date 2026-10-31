@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@base-ui/react",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ComponentProps } from \"react\";\nimport { Radio as BaseRadio } from \"@base-ui/react/radio\";\nimport { RadioGroup as BaseRadioGroup } from \"@base-ui/react/radio-group\";\nimport { cn } from \"@/components/tennantite/lib/tennantite-utils\";\n\nexport type RadioGroupProps = ComponentProps<typeof BaseRadioGroup>;\n\nexport type RadioProps = ComponentProps<typeof BaseRadio.Root>;\n\nexport function Radio({ className, ...properties }: RadioProps) {\n  return (\n    <BaseRadio.Root\n      className={cn(\n        \"mc-tex-checkbox flex size-20 shrink-0 cursor-pointer items-center justify-center outline-none\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        className,\n      )}\n      {...properties}\n    >\n      <BaseRadio.Indicator\n        className={cn(\n          \"size-8 bg-white shadow-[var(--mc-gui)_var(--mc-gui)_0_0_#868686]\",\n          \"data-unchecked:invisible\",\n        )}\n      />\n    </BaseRadio.Root>\n  );\n}\n\n/**\n * MC 单选组（规格 §4 #6）：1 GUI px 黑框选项 + 8×8 白色方块指示器。\n*/\nexport function RadioGroup({ className, ...properties }: RadioGroupProps) {\n  return (\n    <BaseRadioGroup\n      className={cn(\"flex flex-col gap-4 outline-none\", className)}\n      {...properties}\n    />\n  );\n}\n",
+      "path": "packages/ui/src/primitives/radio-group/index.tsx",
+      "target": "components/tennantite/radio-group/index.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import type { ComponentProps } from \"react\";\n\nimport type { Radio, RadioGroup } from \"./index\";\n\nexport type RadioGroupProps = ComponentProps<typeof RadioGroup>;\n\nexport type RadioProps = ComponentProps<typeof Radio>;\n",
+      "path": "packages/ui/src/primitives/radio-group/types.ts",
+      "target": "components/tennantite/radio-group/types.ts",
+      "type": "registry:component"
+    }
+  ],
+  "name": "radio-group",
+  "registryDependencies": [
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Radio Group",
+  "type": "registry:component"
+}

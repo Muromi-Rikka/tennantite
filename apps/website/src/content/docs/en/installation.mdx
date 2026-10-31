@@ -16,13 +16,35 @@ import InstallCommand from "@/components/docs/InstallCommand.astro";
 - React 19.2.8 (peer range `^19.2.0`; 19.3 has a known prerender issue with Next 16)
 - Tailwind CSS v4
 
-## Install dependencies
+## Option 1: CLI copy-paste install (recommended)
+
+Use the shadcn CLI to copy component source into your project and adapt it — the shadcn/ui workflow.
+
+<InstallCommand command="npx shadcn init" locale="en" />
+
+Add this project's registry to the generated `components.json`:
+
+```json
+{
+  "registries": {
+    "@tennantite": "https://tennantite.pages.dev/r/{name}.json"
+  }
+}
+```
+
+Then install the base assets and components:
+
+<InstallCommand command="npx shadcn add @tennantite/tennantite-base @tennantite/button" locale="en" />
+
+<Callout title="What the CLI install does">
+- The `tennantite-base` item installs the two L0 asset packages `@tennantite/tokens` and `@tennantite/textures`, and drops a `base.css` recording the asset CSS to import.
+- Component source is copied to `components/tennantite/<component>/`; cross-component dependencies (registryDependencies) are pulled in automatically.
+- Internal imports are rewritten to the `@/components/tennantite/...` alias plus shared utilities under `components/tennantite/lib/` (`cn`, `gui`, screen types); your existing `@/lib/utils` is never touched.
+</Callout>
+
+## Option 2: Install from npm
 
 <InstallCommand command="pnpm add @tennantite/ui @tennantite/tokens @tennantite/textures" locale="en" />
-
-<Callout variant="warn" title="Not on npm yet">
-v0.1.0 is still a preview. Inside this repo use `"@tennantite/ui": "workspace:*"` instead of installing from npm.
-</Callout>
 
 ## Wire up styles
 
@@ -46,13 +68,25 @@ body {
 ```
 
 <Callout>
-In this monorepo point `@source` at `../../packages`. The path must be relative to the current CSS file; consumers should adjust it for their layout. Without it, Tailwind classes used inside components are not generated.
+The `@source` path must be relative to the current CSS file; adjust it to your layout, otherwise Tailwind classes used inside components are not generated.
+
+- npm install: scan the package output `node_modules/@tennantite/ui/dist`.
+- CLI copy: scan the copied directory, e.g. `@source "../../components/tennantite"`.
 </Callout>
 
 ## First component
 
+With npm, import from the package:
+
 ```tsx
 import { Button, Panel } from "@tennantite/ui";
+```
+
+With the CLI copy, import from your local components:
+
+```tsx
+import { Button } from "@/components/tennantite/button";
+import { Panel } from "@/components/tennantite/panel";
 
 export function StartPanel() {
   return (

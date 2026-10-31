@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@base-ui/react",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ComponentProps } from \"react\";\nimport { Slider as BaseSlider } from \"@base-ui/react/slider\";\nimport { cn } from \"@/components/tennantite/lib/tennantite-utils\";\n\nexport type SliderProps = ComponentProps<typeof BaseSlider.Root>;\n\n/**\n * MC 滑条（规格 §4 #3）：原版 20 GUI px 高，纯 #2C2C2C 轨道 + 按钮浮雕把手。\n*/\nexport function Slider({\n  \"aria-label\": ariaLabel,\n  className,\n  ...properties\n}: SliderProps) {\n  return (\n    <BaseSlider.Root className={cn(\"flex h-20 w-full items-center\", className)} {...properties}>\n      <BaseSlider.Control className=\"relative flex w-full cursor-pointer touch-none items-center outline-none\">\n        <BaseSlider.Track className=\"mc-tex-slider-track h-20 w-full\" />\n        <BaseSlider.Thumb\n          aria-label={ariaLabel}\n          className=\"mc-tex-slider-thumb h-20 w-8 shrink-0 outline-none focus-visible:mc-outline focus-visible:outline-white\"\n        />\n      </BaseSlider.Control>\n    </BaseSlider.Root>\n  );\n}\n",
+      "path": "packages/ui/src/primitives/slider/index.tsx",
+      "target": "components/tennantite/slider/index.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import type { ComponentProps } from \"react\";\n\nimport type { Slider } from \"./index\";\n\nexport type SliderProps = ComponentProps<typeof Slider>;\n",
+      "path": "packages/ui/src/primitives/slider/types.ts",
+      "target": "components/tennantite/slider/types.ts",
+      "type": "registry:component"
+    }
+  ],
+  "name": "slider",
+  "registryDependencies": [
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Slider",
+  "type": "registry:component"
+}

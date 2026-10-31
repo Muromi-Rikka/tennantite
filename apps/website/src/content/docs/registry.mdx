@@ -1,6 +1,6 @@
 ---
 title: Registry
-description: 生成 registry.json 与源码分发的现状。
+description: shadcn registry 端点与全量索引的生成方式。
 section: distribution
 order: 1
 locale: zh
@@ -10,7 +10,10 @@ import Callout from "@/components/docs/Callout.astro";
 
 ## registry 是什么
 
-Registry 是 shadcn 的源码分发格式：每个条目描述组件名、类型、依赖与文件路径。使用方可以按条目把源码复制进项目，而不是从 npm 引入编译产物。
+Registry 是 shadcn 的源码分发格式。本项目产出两类文件：
+
+1. **可安装端点** `https://tennantite.pages.dev/r/<name>.json`：每个核心组件一个文件，内联全部源码 `content` 与 `target`，shadcn CLI 可直接消费。
+2. **全量索引** `registry/registry.json`：覆盖 `@tennantite/ui` 与全部 mod 包组件（311 个条目），供目录与文档引用；mod 包条目仍只有 `path`，不参与 CLI 拷贝。
 
 ## 生成
 
@@ -20,34 +23,69 @@ pnpm registry
 node registry/build.mjs
 ```
 
-脚本扫描 `packages/ui/src/primitives` 与 `packages/ui/src/containers`，为每个目录读取 `index.tsx`，推断 `@base-ui/react`、`class-variance-authority`、`cn` 依赖，并把同目录的 `.ts` / `.tsx` 兄弟文件一并列出。
+## 覆盖范围
 
-## 结构
+可安装端点覆盖 `@tennantite/ui` 内 5 组组件（primitives、containers、screens/containers、screens/hud、screens/menus）共 63 个组件条目，外加 tennantite-base 与 4 个共享条目：
+
+- `tennantite-base`：仅声明 `@tennantite/tokens` 与 `@tennantite/textures` 两个 npm 依赖，并落下一个记录资产 CSS 引入方式的 `base.css`；首次 add 任一组件时 CLI 会一并安装。
+- `tennantite-utils`：`cn` 与 `gui` 共享工具，落在 `components/tennantite/lib/tennantite-utils.ts`，不覆盖消费者的 `@/lib/utils`。
+- `screen-types`：`ScreenSlot`、`padSlots` 等 screen 共享类型。
+- `screen-parts` / `screen-slot`：容器界面共享的槽位与部件组件。
+
+**mod 包（mekanism、ic2、ae2 等）不在 CLI 拷贝范围内**：它们大量通过 `@tennantite/ui` barrel 导入，拷贝改写成本不成比例，保持 `pnpm add @tennantite/<mod>` 的 npm 安装模式。
+
+## 消费方式
+
+方式一：`components.json` 配置 namespace registry 后按名安装：
 
 ```json
 {
-  "name": "button",
-  "title": "Button",
+  "registries": {
+    "@tennantite": "https://tennantite.pages.dev/r/{name}.json"
+  }
+}
+```
+
+```bash
+npx shadcn add @tennantite/button
+```
+
+方式二：直接 URL，无需配置：
+
+```bash
+npx shadcn add https://tennantite.pages.dev/r/button.json
+```
+
+## item 结构
+
+每个条目内联源码，CLI 无需再解析仓库路径：
+
+```json
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
   "type": "registry:component",
-  "dependencies": ["@base-ui/react"],
-  "registryDependencies": [],
+  "dependencies": ["cn"],
+  "registryDependencies": ["@tennantite/tennantite-base", "@tennantite/panel", "@tennantite/title-bar"],
   "files": [
     {
-      "path": "packages/ui/src/primitives/button/index.tsx",
+      "content": "import { Panel } from \"@/components/tennantite/panel\";\n// …",
+      "target": "components/tennantite/card/index.tsx",
       "type": "registry:component"
     }
   ]
 }
 ```
 
-当前的 `files` 只有 `path` 与 `type`，没有内联 `content`。这意味着它还不能直接作为远程 registry 端点使用。
+## 导入改写规则
 
-## 覆盖范围
+生成器对每个内联文件按以下规则改写导入（改写失败会直接报错，不产出坏条目）：
 
-当前只覆盖 primitives 与 containers，共 23 个条目。screens 没有纳入。要扩展，需要在 `groups` 数组中加 `["screens", "registry:component"]`，并处理 `screens/hud`、`screens/containers`、`screens/menus` 的二级目录。
+- 相对导入解析后落在组件自身目录内（`./types`、`./styles`）→ 保持不变。
+- 指向其他组件目录（如 `../panel/index`）→ 改写为 `@/components/tennantite/panel`，并写入 `registryDependencies`。
+- 指向 `lib/utils.ts`、screen 共享类型 → 改写为 `@/components/tennantite/lib/tennantite-utils`、`@/components/tennantite/lib/screen-types`。
+- `@tennantite/textures` 保留不改写，追加进该条目的 npm `dependencies`。
 
-## 分发状态
-
-<Callout variant="warn" title="尚未托管">
-`@tennantite/ui` 尚未发布到 npm，也没有公开的 registry URL。官网不提供 `/r/*.json` 端点。托管前需要把文件内容内联，或提供一个能解析 `path` 的构建步骤。
+<Callout>
+`registryDependencies` 中的每个条目都会自动追加 `@tennantite/tennantite-base`，保证 L0 资产包（tokens/textures）随首次安装到位；跨 item 依赖必须写全 namespace（`@tennantite/<name>`），否则 CLI 会到官方 registry 解析。
 </Callout>

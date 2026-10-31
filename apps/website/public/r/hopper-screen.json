@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [],
+  "files": [
+    {
+      "content": "/* eslint-disable react/no-array-index-key -- 固定槽位/列表以位置为身份 */\nimport type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { PlayerInventory } from \"@/components/tennantite/player-inventory\";\nimport { ScreenPanel } from \"@/components/tennantite/screen-panel\";\nimport { ScreenItemSlot } from \"@/components/tennantite/lib/screen-slot\";\nimport { padSlots } from \"@/components/tennantite/lib/screen-types\";\n\nexport interface HopperScreenProps {\n  className?: string;\n  hotbarItems?: ScreenSlot[];\n  items?: ScreenSlot[];\n  onSlotClick?: (area: \"hotbar\" | \"main\" | \"secondary\", index: number) => void;\n  selectedIndex?: number;\n  title?: ReactNode;\n}\n\n/**\n * 漏斗界面（规格 §6）：`container/hopper.png` 176×133，5 槽 + 2 行背包。\n */\nconst EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];\nconst EMPTY_ITEMS: ScreenSlot[] = [];\nexport function HopperScreen({\n  className,\n  hotbarItems = EMPTY_HOTBAR_ITEMS,\n  items = EMPTY_ITEMS,\n  onSlotClick,\n  selectedIndex,\n  title,\n}: HopperScreenProps) {\n  const slots = padSlots(items, 5);\n  return (\n    <ScreenPanel\n      background=\"container/hopper.png\"\n      className={className}\n      height={133}\n      title={title}\n      width={176}\n    >\n      {slots.map((item, index) => (\n        // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份\n        <ScreenItemSlot\n          item={item}\n          key={index}\n          label={`hopper-${index}`}\n          left={43 + index * 18}\n          onActivate={\n            onSlotClick\n              ? () => {\n                  onSlotClick(\"secondary\", index);\n                }\n              : undefined\n          }\n          top={19}\n        />\n      ))}\n      <PlayerInventory\n        bare\n        hotbarItems={hotbarItems}\n        hotbarY={108}\n        mainRows={2}\n        onSlotClick={onSlotClick}\n        selectedIndex={selectedIndex}\n        y={50}\n      />\n    </ScreenPanel>\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/hopper-screen/index.tsx",
+      "target": "components/tennantite/hopper-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "hopper-screen",
+  "registryDependencies": [
+    "@tennantite/player-inventory",
+    "@tennantite/screen-panel",
+    "@tennantite/screen-slot",
+    "@tennantite/screen-types",
+    "@tennantite/tennantite-base"
+  ],
+  "title": "Hopper Screen",
+  "type": "registry:component"
+}

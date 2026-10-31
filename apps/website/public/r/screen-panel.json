@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@tennantite/textures",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { GuiSpriteName } from \"@tennantite/textures\";\nimport type { ComponentProps, ReactNode } from \"react\";\n\nimport type { GuiSpriteRect } from \"@/components/tennantite/gui-sprite\";\nimport { cn, gui } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { TitleBar } from \"@/components/tennantite/title-bar\";\n\nexport interface ScreenPanelProps extends Omit<ComponentProps<\"div\">, \"title\"> {\n  /**\n  * 原版容器背景精灵（如 `container/inventory.png`）\n  */\n  background?: GuiSpriteName;\n  /**\n  * 非 Sprite 背景的 CSS 纹理类（如 IC2 复刻 `.mc-tex-ic2-machine`）；\n  * 未传 `background` 时替代默认 `.mc-tex-panel` 回退\n  */\n  backgroundClassName?: string;\n  /**\n  * 背景九宫格切片（源 PNG px）\n  */\n  backgroundSlice?: number | { bottom: number; left: number; right: number; top: number };\n  /**\n  * 背景裁剪区域；省略时为整图\n  */\n  backgroundSrc?: GuiSpriteRect;\n  /**\n  * 背景平铺\n  */\n  backgroundTile?: boolean;\n  /**\n  * 面板高度（GUI px，原版容器界面 166）\n  */\n  height: number;\n  /**\n  * 窗口标题（渲染在 (8,6) 的原版标题位置）\n  */\n  title?: ReactNode;\n  /**\n  * 面板宽度（GUI px，原版容器界面 176）\n  */\n  width: number;\n}\n\n/**\n * MC 容器界面面板（规格 §6）：绝对坐标基座。\n *\n * 面板纹理铺满整块面积，子元素坐标从面板外沿 (0,0) 起算的 GUI px ——\n * 因此槽位坐标可直接照抄原版 `container/*.png` 的数值，不受 3px 边框影响。\n * 传入 `background` 时直接绘制原版背景（含烘焙槽框），否则使用通用面板。\n */\nexport function ScreenPanel({\n  background,\n  backgroundClassName = \"mc-tex-panel\",\n  backgroundSlice,\n  backgroundSrc,\n  backgroundTile,\n  children,\n  className,\n  height,\n  style,\n  title,\n  width,\n  ...properties\n}: ScreenPanelProps) {\n  return (\n    <div\n      className={cn(\"relative inline-block\", className)}\n      style={{ height: gui(height), width: gui(width), ...style }}\n      {...properties}\n    >\n      {background\n        ? (\n            <GuiSprite\n              className=\"absolute inset-0\"\n              height={height}\n              name={background}\n              slice={backgroundSlice}\n              src={backgroundTile ? backgroundSrc : (backgroundSrc ?? { height, width, x: 0, y: 0 })}\n              tile={backgroundTile}\n              width={width}\n            />\n          )\n        : <div aria-hidden=\"true\" className={cn(backgroundClassName, \"absolute inset-0\")} />}\n      <div className=\"absolute inset-0\">\n        {title === undefined\n          ? null\n          : <TitleBar align=\"start\" className=\"absolute top-5 left-8\" title={title} />}\n        {children}\n      </div>\n    </div>\n  );\n}\n",
+      "path": "packages/ui/src/containers/screen-panel/index.tsx",
+      "target": "components/tennantite/screen-panel/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "screen-panel",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils",
+    "@tennantite/title-bar"
+  ],
+  "title": "Screen Panel",
+  "type": "registry:component"
+}

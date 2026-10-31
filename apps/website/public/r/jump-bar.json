@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { cn } from \"@/components/tennantite/lib/tennantite-utils\";\n\nexport interface JumpBarProps {\n  className?: string;\n  /**\n  * 蓄力冷却 0..1（0 无冷却）\n  */\n  cooldown?: number;\n  /**\n  * 蓄力进度 0..1\n  */\n  progress: number;\n}\n\n/**\n * 跳跃蓄力条（规格 §6.1）：原版 182×5 jump_bar 精灵。\n */\nexport function JumpBar({ className, cooldown = 0, progress }: JumpBarProps) {\n  const ratio = Math.min(1, Math.max(0, progress));\n  const cooldownRatio = Math.min(1, Math.max(0, cooldown));\n  return (\n    <div\n      className={cn(\"relative h-5 w-182\", className)}\n      data-hud=\"\"\n    >\n      <GuiSprite\n        className=\"absolute inset-0\"\n        height={5}\n        name=\"sprites/hud/jump_bar_background.png\"\n        width={182}\n      />\n      <GuiSprite\n        className=\"absolute inset-0\"\n        height={5}\n        name=\"sprites/hud/jump_bar_progress.png\"\n        style={{ clipPath: `inset(0 ${(1 - ratio) * 100}% 0 0)` }}\n        width={182}\n      />\n      {cooldownRatio > 0\n        ? (\n            <GuiSprite\n              className=\"absolute inset-0\"\n              height={5}\n              name=\"sprites/hud/jump_bar_cooldown.png\"\n              style={{ clipPath: `inset(0 ${(1 - cooldownRatio) * 100}% 0 0)` }}\n              width={182}\n            />\n          )\n        : null}\n    </div>\n  );\n}\n",
+      "path": "packages/ui/src/screens/hud/jump-bar/index.tsx",
+      "target": "components/tennantite/jump-bar/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "jump-bar",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Jump Bar",
+  "type": "registry:component"
+}

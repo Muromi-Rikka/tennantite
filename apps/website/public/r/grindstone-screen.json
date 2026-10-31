@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { PlayerInventory } from \"@/components/tennantite/player-inventory\";\nimport { ScreenPanel } from \"@/components/tennantite/screen-panel\";\nimport { gui } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { ScreenItemSlot } from \"@/components/tennantite/lib/screen-slot\";\n\nexport interface GrindstoneScreenProps {\n  additional?: ScreenSlot;\n  className?: string;\n  error?: boolean;\n  hotbarItems?: ScreenSlot[];\n  input?: ScreenSlot;\n  onSlotClick?: (area: \"hotbar\" | \"input\" | \"main\" | \"output\", index: number) => void;\n  output?: ScreenSlot;\n  selectedIndex?: number;\n  title?: ReactNode;\n}\n\n/**\n * 砂轮界面（规格 §6）：`container/grindstone.png` 176×166。\n */\nconst EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];\nexport function GrindstoneScreen({\n  additional,\n  className,\n  error = false,\n  hotbarItems = EMPTY_HOTBAR_ITEMS,\n  input,\n  onSlotClick,\n  output,\n  selectedIndex,\n  title,\n}: GrindstoneScreenProps) {\n  return (\n    <ScreenPanel\n      background=\"container/grindstone.png\"\n      className={className}\n      height={166}\n      title={title}\n      width={176}\n    >\n      <ScreenItemSlot\n        item={input}\n        label=\"grindstone-input\"\n        left={48}\n        onActivate={onSlotClick ? () => onSlotClick(\"input\", 0) : undefined}\n        top={18}\n      />\n      <ScreenItemSlot\n        item={additional}\n        label=\"grindstone-additional\"\n        left={48}\n        onActivate={onSlotClick ? () => onSlotClick(\"input\", 1) : undefined}\n        top={39}\n      />\n      <ScreenItemSlot\n        item={output}\n        label=\"grindstone-output\"\n        left={128}\n        onActivate={onSlotClick ? () => onSlotClick(\"output\", 0) : undefined}\n        top={33}\n      />\n      {error\n        ? (\n            <GuiSprite\n              className=\"absolute\"\n              height={21}\n              name=\"sprites/container/grindstone/error.png\"\n              style={{ left: gui(92), top: gui(31) }}\n              width={28}\n            />\n          )\n        : null}\n      <PlayerInventory\n        bare\n        hotbarItems={hotbarItems}\n        onSlotClick={onSlotClick}\n        selectedIndex={selectedIndex}\n      />\n    </ScreenPanel>\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/grindstone-screen/index.tsx",
+      "target": "components/tennantite/grindstone-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "grindstone-screen",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/player-inventory",
+    "@tennantite/screen-panel",
+    "@tennantite/screen-slot",
+    "@tennantite/screen-types",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Grindstone Screen",
+  "type": "registry:component"
+}

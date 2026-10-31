@@ -39,12 +39,12 @@ Tennantite 把 Minecraft 的 GUI 语言拆成可复制的 React 源码。它同�
 
 ## 分发
 
-`@tennantite/ui` 是 workspace 包。仓库还包含 `registry/registry.json`，它按 shadcn registry 的结构描述组件源码与依赖。Registry 当前只覆盖 primitives 与 containers。
+`@tennantite/ui` 已发布到 npm。核心组件同时通过 shadcn registry 端点（`https://tennantite.pages.dev/r/<name>.json`）分发源码，可用 `npx shadcn add @tennantite/<name>` 拷贝安装；mod 包走 npm 安装。详见 [Registry](/docs/registry/) 与 [安装](/docs/installation/)。
 
 ## 当前状态
 
-<Callout variant="warn" title="v0.1.0 预览">
-`@tennantite/ui` 尚未发布到 npm，registry 也没有公开托管地址。仓库内请使用 `workspace:*` 引用。Next.js App Router 与 TanStack Start 的 SSR 冒烟已通过；axe 测试覆盖 primitives。
+<Callout title="v0.1.0">
+Next.js App Router 与 TanStack Start 的 SSR 冒烟已通过；axe 测试覆盖 primitives。
 </Callout>
 
 ## 下一步

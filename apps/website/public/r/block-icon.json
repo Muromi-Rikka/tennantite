@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@tennantite/textures",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { BlockIconName } from \"@tennantite/textures\";\nimport type { CSSProperties } from \"react\";\nimport { blockFaces } from \"@tennantite/textures\";\n\nimport { cn, gui } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { BLOCK_FACE_TRANSFORMS } from \"./geometry\";\n\nexport interface BlockIconProps {\n  className?: string;\n  /**\n  * 方块图标名（`blockFaces` 的键）\n  */\n  name: BlockIconName;\n  /**\n  * 像素渲染（默认开启，规格 §0.4）\n  */\n  pixelated?: boolean;\n  /**\n  * 边长（GUI px，默认 16 —— 原版物品图标）\n  */\n  size?: number;\n  style?: CSSProperties;\n}\n\n/**\n * 绘制顺序：左右两侧先画，顶面最后覆盖共享棱边，避免亚像素缝隙\n*/\nconst FACE_ORDER = [\"left\", \"right\", \"top\"] as const;\n\n/**\n * 等轴方块图标（规格 §5 #6）：按原版物品渲染合成顶 / 左 / 右三可见面，\n * 逐面亮度已在 textures 包烘焙（顶 1.0、左 east 0.6、右 north 0.8）。\n * 纯展示组件，RSC 兼容。\n */\nexport function BlockIcon({\n  className,\n  name,\n  pixelated = true,\n  size = 16,\n  style,\n}: BlockIconProps) {\n  const faces = blockFaces[name];\n  return (\n    <svg\n      aria-hidden=\"true\"\n      className={cn(\"shrink-0\", className)}\n      data-icon={name}\n      style={{ height: gui(size), width: gui(size), ...style }}\n      viewBox=\"0 0 16 16\"\n    >\n      {FACE_ORDER.map(face => (\n        <g key={face} transform={BLOCK_FACE_TRANSFORMS[face]}>\n          <image\n            height={16}\n            href={faces[face]}\n            style={{ imageRendering: pixelated ? \"pixelated\" : undefined }}\n            width={16}\n          />\n        </g>\n      ))}\n    </svg>\n  );\n}\n",
+      "path": "packages/ui/src/containers/block-icon/index.tsx",
+      "target": "components/tennantite/block-icon/index.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "/**\n * 等轴投影矩阵：纹理 16×16 px → viewBox 0..16 的仿射变换。\n * 等价于原版 block/block.json 的 gui display：rotateX(30°) · rotateY(225°) · scale(0.625)，\n * 1 方块单位 = 16 × 0.625 = 10 viewBox 单位；三可见面为 +Y（顶）、+X（左）、-Z（右）。\n *\n * `matrix(a,b,c,d,e,f)`：`(x, y) ↦ (a·x + c·y + e, b·x + d·y + f)`。\n * 六边形顶点：左上 (0.9289322, 3.669873)、上尖 (8, 0.134326)、右上 (15.0710678, 3.669873)、\n * 中心 (8, 7.2054071)、右陷 (15.0710678, 12.330127)、下尖 (8, 15.865674)；\n * 轮廓 14.142136 × 15.731348，恰好落在 16×16 内。\n */\nexport const BLOCK_FACE_TRANSFORMS = {\n  left: \"matrix(0.4419417, 0.220971, 0, 0.5412659, 0.9289322, 3.669873)\",\n  right: \"matrix(0.4419417, -0.220971, 0, 0.5412659, 8, 7.2054071)\",\n  top: \"matrix(-0.4419417, 0.220971, -0.4419417, -0.220971, 15.0710678, 3.669873)\",\n} as const;\n",
+      "path": "packages/ui/src/containers/block-icon/geometry.ts",
+      "target": "components/tennantite/block-icon/geometry.ts",
+      "type": "registry:component"
+    }
+  ],
+  "name": "block-icon",
+  "registryDependencies": [
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Block Icon",
+  "type": "registry:component"
+}

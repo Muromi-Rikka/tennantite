@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@base-ui/react",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ComponentProps } from \"react\";\nimport { Input as BaseInput } from \"@base-ui/react/input\";\nimport { cn } from \"@/components/tennantite/lib/tennantite-utils\";\n\nexport type InputProps = ComponentProps<typeof BaseInput>;\n\n/**\n * MC 文本输入框（规格 §4 #2）：黑底 + 1 GUI px #A0A0A0 边框，聚焦变白。\n * 用于告示牌 / 铁砧 / 聊天输入。\n */\nexport function Input({ className, ...properties }: InputProps) {\n  return (\n    <BaseInput\n      className={cn(\n        \"mc-tex-text-field h-20 w-full cursor-text px-4\",\n        \"font-mc mc-text text-mc-text-main caret-white outline-none\",\n        \"placeholder:text-mc-text-dim\",\n        \"disabled:cursor-not-allowed disabled:text-mc-text-dim\",\n        className,\n      )}\n      {...properties}\n    />\n  );\n}\n",
+      "path": "packages/ui/src/primitives/input/index.tsx",
+      "target": "components/tennantite/input/index.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import type { ComponentProps } from \"react\";\n\nimport type { Input } from \"./index\";\n\nexport type InputProps = ComponentProps<typeof Input>;\n",
+      "path": "packages/ui/src/primitives/input/types.ts",
+      "target": "components/tennantite/input/types.ts",
+      "type": "registry:component"
+    }
+  ],
+  "name": "input",
+  "registryDependencies": [
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Input",
+  "type": "registry:component"
+}

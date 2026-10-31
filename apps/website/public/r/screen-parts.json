@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@tennantite/textures",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { GuiSpriteName } from \"@tennantite/textures\";\n\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { gui } from \"@/components/tennantite/lib/tennantite-utils\";\n\nexport interface CroppedProgressProps {\n  /**\n  * 填充方向：从左/右/上/下开始\n  */\n  direction?: \"down\" | \"left\" | \"right\" | \"up\";\n  height: number;\n  label?: string;\n  left: number;\n  name: GuiSpriteName;\n  progress: number;\n  top: number;\n  width: number;\n}\n\n/**\n * 在原版进度精灵上按比例裁剪（不缩放）。\n */\nexport function CroppedProgress({\n  direction = \"left\",\n  height,\n  label,\n  left,\n  name,\n  progress,\n  top,\n  width,\n}: CroppedProgressProps) {\n  const ratio = Math.min(1, Math.max(0, progress));\n  const clip = clipFor(direction, ratio);\n  return (\n    <div\n      aria-label={label}\n      aria-valuemax={1}\n      aria-valuemin={0}\n      aria-valuenow={ratio}\n      className=\"absolute\"\n      role={label ? \"progressbar\" : undefined}\n      style={{ height: gui(height), left: gui(left), top: gui(top), width: gui(width) }}\n    >\n      <GuiSprite\n        height={height}\n        name={name}\n        style={{ clipPath: clip, height: \"100%\", width: \"100%\" }}\n        width={width}\n      />\n    </div>\n  );\n}\n\nexport function RecipeBookButton({\n  left,\n  onClick,\n  top,\n}: {\n  left: number;\n  onClick?: () => void;\n  top: number;\n}) {\n  return (\n    <button\n      aria-label=\"配方书\"\n      className=\"absolute cursor-pointer border-0 bg-transparent p-0\"\n      onClick={onClick}\n      style={{ height: gui(18), left: gui(left), top: gui(top), width: gui(20) }}\n      type=\"button\"\n    >\n      <GuiSprite height={18} name=\"sprites/recipe_book/button.png\" width={20} />\n    </button>\n  );\n}\n\nfunction clipFor(direction: CroppedProgressProps[\"direction\"], ratio: number): string {\n  switch (direction) {\n    case \"down\": { return `inset(0 0 ${(1 - ratio) * 100}% 0)`;\n    }\n    case \"right\": { return `inset(0 0 0 ${(1 - ratio) * 100}%)`;\n    }\n    case \"up\": { return `inset(${(1 - ratio) * 100}% 0 0 0)`;\n    }\n    default: { return `inset(0 ${(1 - ratio) * 100}% 0 0)`;\n    }\n  }\n}\n",
+      "path": "packages/ui/src/screens/containers/screen-parts.tsx",
+      "target": "components/tennantite/lib/screen-parts.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "screen-parts",
+  "registryDependencies": [],
+  "title": "Screen Parts",
+  "type": "registry:component"
+}

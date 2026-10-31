@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { PlayerInventory } from \"@/components/tennantite/player-inventory\";\nimport { ScreenPanel } from \"@/components/tennantite/screen-panel\";\nimport { gui } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { ScreenItemSlot } from \"@/components/tennantite/lib/screen-slot\";\n\nexport interface LoomScreenProps {\n  banner?: ScreenSlot;\n  className?: string;\n  dye?: ScreenSlot;\n  error?: boolean;\n  hotbarItems?: ScreenSlot[];\n  onSlotClick?: (area: \"hotbar\" | \"input\" | \"main\" | \"output\", index: number) => void;\n  output?: ScreenSlot;\n  pattern?: ScreenSlot;\n  patterns?: string[];\n  selectedIndex?: number;\n  title?: ReactNode;\n}\n\n/**\n * 织布机界面（规格 §6）：`container/loom.png` 176×166。\n */\nconst EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];\nconst EMPTY_PATTERNS: string[] = [];\nexport function LoomScreen({\n  banner,\n  className,\n  dye,\n  error = false,\n  hotbarItems = EMPTY_HOTBAR_ITEMS,\n  onSlotClick,\n  output,\n  pattern,\n  patterns = EMPTY_PATTERNS,\n  selectedIndex,\n  title,\n}: LoomScreenProps) {\n  return (\n    <ScreenPanel\n      background=\"container/loom.png\"\n      className={className}\n      height={166}\n      title={title}\n      width={176}\n    >\n      <ScreenItemSlot\n        item={banner}\n        label=\"loom-banner\"\n        left={12}\n        onActivate={onSlotClick ? () => onSlotClick(\"input\", 0) : undefined}\n        top={25}\n      />\n      <ScreenItemSlot\n        item={dye}\n        label=\"loom-dye\"\n        left={32}\n        onActivate={onSlotClick ? () => onSlotClick(\"input\", 1) : undefined}\n        top={25}\n      />\n      <ScreenItemSlot\n        item={pattern}\n        label=\"loom-pattern\"\n        left={22}\n        onActivate={onSlotClick ? () => onSlotClick(\"input\", 2) : undefined}\n        top={44}\n      />\n      {patterns.slice(0, 4).map((name, index) => (\n        <GuiSprite\n          className=\"absolute\"\n          height={14}\n          key={name}\n          name={name as never}\n          style={{ left: gui(56 + (index % 2) * 18), top: gui(20 + Math.floor(index / 2) * 18) }}\n          width={14}\n        />\n      ))}\n      <ScreenItemSlot\n        item={output}\n        label=\"loom-output\"\n        left={138}\n        onActivate={onSlotClick ? () => onSlotClick(\"output\", 0) : undefined}\n        size={26}\n        top={52}\n      />\n      {error\n        ? (\n            <GuiSprite\n              className=\"absolute\"\n              height={26}\n              name=\"sprites/container/loom/error.png\"\n              style={{ left: gui(108), top: gui(44) }}\n              width={26}\n            />\n          )\n        : null}\n      <PlayerInventory\n        bare\n        hotbarItems={hotbarItems}\n        onSlotClick={onSlotClick}\n        selectedIndex={selectedIndex}\n      />\n    </ScreenPanel>\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/loom-screen/index.tsx",
+      "target": "components/tennantite/loom-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "loom-screen",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/player-inventory",
+    "@tennantite/screen-panel",
+    "@tennantite/screen-slot",
+    "@tennantite/screen-types",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Loom Screen",
+  "type": "registry:component"
+}

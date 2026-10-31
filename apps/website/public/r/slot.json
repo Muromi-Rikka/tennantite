@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@tennantite/textures",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { GuiSpriteName } from \"@tennantite/textures\";\nimport type { ComponentProps } from \"react\";\n\nimport { cn, gui } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\n\nexport interface SlotProps extends ComponentProps<\"div\"> {\n  /**\n  * 不绘制槽位纹理（用于 HUD 热键栏等自带槽位纹理的容器）\n  */\n  bare?: boolean;\n  /**\n  * 自定义槽框纹理类（默认 `mc-tex-slot`；mod 界面可传自己的槽框）\n  */\n  frameClassName?: string;\n  /**\n  * 空槽 ghost 精灵\n  */\n  ghost?: GuiSpriteName;\n  /**\n  * 选中态：1 GUI px 白色内框\n  */\n  selected?: boolean;\n  /**\n  * 边长（GUI px，默认 18 —— 原版槽位）\n  */\n  size?: number;\n}\n\n/**\n * MC 物品格（规格 §5 #2）：凹槽视觉容器，是物品栏 / 箱子 / 快捷栏的最小复用单元。\n * 纯展示组件，RSC 兼容。\n */\nexport function Slot({\n  bare = false,\n  children,\n  className,\n  frameClassName = \"mc-tex-slot\",\n  ghost,\n  selected = false,\n  size = 18,\n  style,\n  ...properties\n}: SlotProps) {\n  return (\n    <div\n      className={cn(\n        \"relative flex items-center justify-center\",\n        !bare && frameClassName,\n        selected && \"mc-slot-selected\",\n        className,\n      )}\n      style={{ height: gui(size), width: gui(size), ...style }}\n      {...properties}\n    >\n      {children ?? (ghost ? <GuiSprite height={16} name={ghost} width={16} /> : null)}\n    </div>\n  );\n}\n",
+      "path": "packages/ui/src/containers/slot/index.tsx",
+      "target": "components/tennantite/slot/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "slot",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Slot",
+  "type": "registry:component"
+}

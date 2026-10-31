@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "/* eslint-disable react/no-array-index-key -- 固定槽位/列表以位置为身份 */\nimport type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { PlayerInventory } from \"@/components/tennantite/player-inventory\";\nimport { ScreenPanel } from \"@/components/tennantite/screen-panel\";\nimport { gui } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { ScreenItemSlot } from \"@/components/tennantite/lib/screen-slot\";\nimport { padSlots } from \"@/components/tennantite/lib/screen-types\";\n\nexport interface HorseScreenProps {\n  armor?: ScreenSlot;\n  /**\n  * 是否有箱子（渲染 90×54 槽位覆盖层与 15 格）\n  */\n  chest?: boolean;\n  chestItems?: ScreenSlot[];\n  className?: string;\n  hotbarItems?: ScreenSlot[];\n  onSlotClick?: (\n    area: \"armor\" | \"hotbar\" | \"main\" | \"secondary\",\n    index: number,\n  ) => void;\n  saddle?: ScreenSlot;\n  selectedIndex?: number;\n  title?: ReactNode;\n}\n\n/**\n * 马 / 羊驼界面（规格 §6）：`container/horse.png` 176×166，鞍 + 马铠 + 可选箱子。\n */\nconst EMPTY_CHEST_ITEMS: ScreenSlot[] = [];\nconst EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];\nexport function HorseScreen({\n  armor,\n  chest = false,\n  chestItems = EMPTY_CHEST_ITEMS,\n  className,\n  hotbarItems = EMPTY_HOTBAR_ITEMS,\n  onSlotClick,\n  saddle,\n  selectedIndex,\n  title,\n}: HorseScreenProps) {\n  const chestSlots = padSlots(chestItems, 15);\n  return (\n    <ScreenPanel\n      background=\"container/horse.png\"\n      className={className}\n      height={166}\n      title={title}\n      width={176}\n    >\n      <ScreenItemSlot\n        ghost=\"sprites/container/slot/saddle.png\"\n        item={saddle}\n        label=\"horse-saddle\"\n        left={7}\n        onActivate={\n          onSlotClick\n            ? () => {\n                onSlotClick(\"armor\", 0);\n              }\n            : undefined\n        }\n        top={17}\n      />\n      <ScreenItemSlot\n        ghost=\"sprites/container/slot/horse_armor.png\"\n        item={armor}\n        label=\"horse-armor\"\n        left={7}\n        onActivate={\n          onSlotClick\n            ? () => {\n                onSlotClick(\"armor\", 1);\n              }\n            : undefined\n        }\n        top={35}\n      />\n      {chest\n        ? (\n            <>\n              <GuiSprite\n                className=\"absolute\"\n                height={54}\n                name=\"sprites/container/horse/chest_slots.png\"\n                style={{ left: gui(79), top: gui(17) }}\n                width={90}\n              />\n              {chestSlots.map((item, index) => (\n                // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份\n                <ScreenItemSlot\n                  item={item}\n                  key={index}\n                  label={`horse-chest-${index}`}\n                  left={80 + (index % 5) * 18}\n                  onActivate={\n                    onSlotClick\n                      ? () => {\n                          onSlotClick(\"secondary\", index);\n                        }\n                      : undefined\n                  }\n                  top={18 + Math.floor(index / 5) * 18}\n                />\n              ))}\n            </>\n          )\n        : null}\n      <PlayerInventory\n        bare\n        hotbarItems={hotbarItems}\n        onSlotClick={onSlotClick}\n        selectedIndex={selectedIndex}\n      />\n    </ScreenPanel>\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/horse-screen/index.tsx",
+      "target": "components/tennantite/horse-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "horse-screen",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/player-inventory",
+    "@tennantite/screen-panel",
+    "@tennantite/screen-slot",
+    "@tennantite/screen-types",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Horse Screen",
+  "type": "registry:component"
+}

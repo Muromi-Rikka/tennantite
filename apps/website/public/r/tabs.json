@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@base-ui/react",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ComponentProps } from \"react\";\nimport { Tabs as BaseTabs } from \"@base-ui/react/tabs\";\nimport { cn } from \"@/components/tennantite/lib/tennantite-utils\";\n\nexport interface TabsPanelProps extends ComponentProps<typeof BaseTabs.Panel> {\n  /**\n  * panel 自带窗口面板纹理 / plain 无纹理无内边距（嵌在已有面板内时用）\n  */\n  variant?: \"panel\" | \"plain\";\n}\n\nexport type TabsProps = ComponentProps<typeof BaseTabs.Root>;\n\n/**\n * MC 标签页（规格 §4 #8）：用于配方书 / 设置分页。原版标签页 24 GUI px 高。\n*/\nexport function Tabs({ className, ...properties }: TabsProps) {\n  return <BaseTabs.Root className={cn(\"flex flex-col gap-0\", className)} {...properties} />;\n}\n\nexport function TabsList({\n  className,\n  ...properties\n}: ComponentProps<typeof BaseTabs.List>) {\n  return (\n    <BaseTabs.List\n      className={cn(\n        \"mc-scroll flex max-w-full items-end gap-0 overflow-x-auto outline-none\",\n        className,\n      )}\n      {...properties}\n    />\n  );\n}\n\nexport function TabsPanel({\n  className,\n  variant = \"plain\",\n  ...properties\n}: TabsPanelProps) {\n  return (\n    <BaseTabs.Panel\n      className={cn(\n        \"text-mc-text-main\",\n        variant === \"panel\" ? \"mc-tex-panel p-6\" : \"p-0\",\n        className,\n      )}\n      {...properties}\n    />\n  );\n}\n\nexport function TabsTab({\n  className,\n  ...properties\n}: ComponentProps<typeof BaseTabs.Tab>) {\n  return (\n    <BaseTabs.Tab\n      className={cn(\n        \"mc-tex-tab h-24 w-130 cursor-pointer px-4\",\n        \"font-mc mc-text text-mc-text-main select-none mc-text-shadow\",\n        className,\n      )}\n      {...properties}\n    />\n  );\n}\n",
+      "path": "packages/ui/src/primitives/tabs/index.tsx",
+      "target": "components/tennantite/tabs/index.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import type { ComponentProps } from \"react\";\n\nimport type { Tabs, TabsPanel, TabsTab } from \"./index\";\n\nexport type TabsPanelProps = ComponentProps<typeof TabsPanel>;\n\nexport type TabsProps = ComponentProps<typeof Tabs>;\n\nexport type TabsTabProps = ComponentProps<typeof TabsTab>;\n",
+      "path": "packages/ui/src/primitives/tabs/types.ts",
+      "target": "components/tennantite/tabs/types.ts",
+      "type": "registry:component"
+    }
+  ],
+  "name": "tabs",
+  "registryDependencies": [
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Tabs",
+  "type": "registry:component"
+}

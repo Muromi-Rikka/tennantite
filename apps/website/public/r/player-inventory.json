@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@tennantite/textures",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { PixelIconName } from \"@tennantite/textures\";\n\nimport { cn, gui } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { Grid } from \"@/components/tennantite/grid\";\nimport { ItemStack } from \"@/components/tennantite/item-stack\";\nimport { Slot } from \"@/components/tennantite/slot\";\n\n/**\n * 背包物品（与 screens/containers 的 ScreenItem 结构一致，形状兼容）\n */\nexport interface InventoryItem {\n  count?: number;\n  icon?: PixelIconName;\n  src?: string;\n  tooltip?: string;\n}\n\nexport interface PlayerInventoryProps {\n  /**\n  * 不绘制槽位凹槽（容器背景已烘焙槽框）\n  */\n  bare?: boolean;\n  className?: string;\n  /**\n  * 自定义槽框纹理类（默认原版 `mc-tex-slot`）\n  */\n  frameClassName?: string;\n  /**\n  * 快捷栏 9 格\n  */\n  hotbarItems?: (InventoryItem | null | undefined)[];\n  /**\n  * 快捷栏槽位 y（GUI px，默认 141）\n  */\n  hotbarY?: number;\n  /**\n  * 主背包物品（行优先，默认 3×9）\n  */\n  mainItems?: (InventoryItem | null | undefined)[];\n  /**\n  * 主背包行数（默认 3）\n  */\n  mainRows?: number;\n  onSlotClick?: (area: \"hotbar\" | \"main\", index: number) => void;\n  /**\n  * 快捷栏选中索引\n  */\n  selectedIndex?: number;\n  /**\n  * 槽位起始 x（GUI px，默认 7）\n  */\n  x?: number;\n  /**\n  * 主背包槽位起始 y（GUI px，默认 83）\n  */\n  y?: number;\n}\n\nconst COLUMNS = 9;\nconst HOTBAR_SLOTS = 9;\n\n/**\n * MC 玩家背包区块（规格 §6）：主背包 3×9 + 快捷栏 1×9，供所有容器界面复用。\n * 数据注入、无游戏逻辑；RSC 兼容（纯展示 + 可选回调）。\n */\nexport function PlayerInventory({\n  bare = false,\n  className,\n  frameClassName,\n  hotbarItems = [],\n  hotbarY = 141,\n  mainItems = [],\n  mainRows = 3,\n  onSlotClick,\n  selectedIndex,\n  x = 7,\n  y = 83,\n}: PlayerInventoryProps) {\n  return (\n    <div className={cn(\"contents\", className)}>\n      <InventoryGroup\n        area=\"main\"\n        bare={bare}\n        count={mainRows * COLUMNS}\n        frameClassName={frameClassName}\n        items={mainItems}\n        left={x}\n        onSlotClick={onSlotClick}\n        top={y}\n      />\n      <InventoryGroup\n        area=\"hotbar\"\n        bare={bare}\n        count={HOTBAR_SLOTS}\n        frameClassName={frameClassName}\n        items={hotbarItems}\n        left={x}\n        onSlotClick={onSlotClick}\n        selectedIndex={selectedIndex}\n        top={hotbarY}\n      />\n    </div>\n  );\n}\n\nfunction InventoryGroup({\n  area,\n  bare,\n  count,\n  frameClassName,\n  items,\n  left,\n  onSlotClick,\n  selectedIndex,\n  top,\n}: {\n  area: \"hotbar\" | \"main\";\n  bare: boolean;\n  count: number;\n  frameClassName?: string;\n  items: PlayerInventoryProps[\"mainItems\"];\n  left: number;\n  onSlotClick?: PlayerInventoryProps[\"onSlotClick\"];\n  selectedIndex?: number;\n  top: number;\n}) {\n  return (\n    <Grid\n      className=\"absolute\"\n      columns={COLUMNS}\n      style={{ left: gui(left), top: gui(top) }}\n    >\n      {Array.from({ length: count }, (_, index) => {\n        const item = items?.[index];\n        return (\n          <Slot\n            aria-label={`${area}-${index}`}\n            bare={bare}\n            className={onSlotClick ? \"cursor-pointer\" : undefined}\n            frameClassName={frameClassName}\n            key={index}\n            onClick={\n              onSlotClick\n                ? () => {\n                    onSlotClick(area, index);\n                  }\n                : undefined\n            }\n            selected={area === \"hotbar\" && selectedIndex === index}\n          >\n            {item ? <ItemStack bare {...item} /> : null}\n          </Slot>\n        );\n      })}\n    </Grid>\n  );\n}\n",
+      "path": "packages/ui/src/containers/player-inventory/index.tsx",
+      "target": "components/tennantite/player-inventory/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "player-inventory",
+  "registryDependencies": [
+    "@tennantite/grid",
+    "@tennantite/item-stack",
+    "@tennantite/slot",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Player Inventory",
+  "type": "registry:component"
+}

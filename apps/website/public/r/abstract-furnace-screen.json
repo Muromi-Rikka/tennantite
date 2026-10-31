@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@tennantite/textures"
+  ],
+  "files": [
+    {
+      "content": "import type { GuiSpriteName } from \"@tennantite/textures\";\nimport type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { PlayerInventory } from \"@/components/tennantite/player-inventory\";\nimport { ScreenPanel } from \"@/components/tennantite/screen-panel\";\nimport { CroppedProgress, RecipeBookButton } from \"@/components/tennantite/lib/screen-parts\";\nimport { ScreenItemSlot } from \"@/components/tennantite/lib/screen-slot\";\n\nexport interface AbstractFurnaceScreenProps {\n  background: GuiSpriteName;\n  burnProgress?: number;\n  className?: string;\n  cookProgress?: number;\n  fuel?: ScreenSlot;\n  input?: ScreenSlot;\n  onRecipeBook?: () => void;\n  onTakeOutput?: () => void;\n  output?: ScreenSlot;\n  progressPrefix: string;\n  title?: ReactNode;\n}\n\n/**\n * 熔炉 / 高炉 / 烟熏炉共享布局（规格 §6）：176×166，火焰 14×14 与箭头 24×16。\n */\nexport function AbstractFurnaceScreen({\n  background,\n  burnProgress = 0,\n  className,\n  cookProgress = 0,\n  fuel,\n  input,\n  onRecipeBook,\n  onTakeOutput,\n  output,\n  progressPrefix,\n  title,\n}: AbstractFurnaceScreenProps) {\n  return (\n    <ScreenPanel\n      background={background}\n      className={className}\n      height={166}\n      title={title}\n      width={176}\n    >\n      <ScreenItemSlot item={input} label=\"furnace-input\" left={55} top={16} />\n      <ScreenItemSlot item={fuel} label=\"furnace-fuel\" left={55} top={52} />\n      <ScreenItemSlot\n        item={output}\n        label=\"furnace-output\"\n        left={111}\n        onActivate={onTakeOutput}\n        size={26}\n        top={30}\n      />\n      <CroppedProgress\n        direction=\"up\"\n        height={14}\n        label=\"燃料燃烧进度\"\n        left={56}\n        name={`${progressPrefix}/lit_progress.png` as GuiSpriteName}\n        progress={burnProgress}\n        top={34}\n        width={14}\n      />\n      <CroppedProgress\n        height={16}\n        label=\"熔炼进度\"\n        left={79}\n        name={`${progressPrefix}/burn_progress.png` as GuiSpriteName}\n        progress={cookProgress}\n        top={34}\n        width={24}\n      />\n      <RecipeBookButton left={5} onClick={onRecipeBook} top={34} />\n      <PlayerInventory bare />\n    </ScreenPanel>\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/abstract-furnace-screen/index.tsx",
+      "target": "components/tennantite/abstract-furnace-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "abstract-furnace-screen",
+  "registryDependencies": [
+    "@tennantite/player-inventory",
+    "@tennantite/screen-panel",
+    "@tennantite/screen-parts",
+    "@tennantite/screen-slot",
+    "@tennantite/screen-types",
+    "@tennantite/tennantite-base"
+  ],
+  "title": "Abstract Furnace Screen",
+  "type": "registry:component"
+}

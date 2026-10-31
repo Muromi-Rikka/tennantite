@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { PlayerInventory } from \"@/components/tennantite/player-inventory\";\nimport { ScreenPanel } from \"@/components/tennantite/screen-panel\";\nimport { gui } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { ScreenItemSlot } from \"@/components/tennantite/lib/screen-slot\";\n\nexport interface EnchantingScreenProps {\n  availableLevel?: number;\n  className?: string;\n  item?: ScreenSlot;\n  lapis?: ScreenSlot;\n  onEnchantSelect?: (option: EnchantOption) => void;\n  options?: EnchantOption[];\n  title?: ReactNode;\n}\n\nexport interface EnchantOption {\n  label?: string;\n  lapisCost: number;\n  level: 1 | 2 | 3;\n  xpCost: number;\n}\n\nconst ROMAN = [\"\", \"I\", \"II\", \"III\"];\n\n/**\n * 附魔台界面（规格 §6）：`container/enchanting_table.png` 176×166。\n */\nexport function EnchantingScreen({\n  availableLevel = 0,\n  className,\n  item,\n  lapis,\n  onEnchantSelect,\n  options = [],\n  title,\n}: EnchantingScreenProps) {\n  return (\n    <ScreenPanel\n      background=\"container/enchanting_table.png\"\n      className={className}\n      height={166}\n      title={title}\n      width={176}\n    >\n      <ScreenItemSlot item={item} label=\"enchant-item\" left={14} top={46} />\n      <ScreenItemSlot\n        ghost=\"sprites/container/slot/lapis_lazuli.png\"\n        item={lapis}\n        label=\"enchant-lapis\"\n        left={34}\n        top={46}\n      />\n      {options.map((option, index) => {\n        const isAffordable\n          = availableLevel >= option.xpCost\n            && (lapis?.count ?? 0) >= option.lapisCost;\n        return (\n          <button\n            aria-label={`附魔选项 ${ROMAN[option.level]}（消耗 ${option.xpCost} 级与 ${option.lapisCost} 青金石）`}\n            className=\"absolute cursor-pointer border-0 bg-transparent p-0 text-left\"\n            disabled={!isAffordable}\n            key={option.level}\n            onClick={() => {\n              onEnchantSelect?.(option);\n            }}\n            style={{ height: gui(19), left: gui(60), top: gui(14 + 18 * index), width: gui(108) }}\n            type=\"button\"\n          >\n            <GuiSprite\n              className=\"absolute inset-0\"\n              height={19}\n              name={isAffordable\n                ? \"sprites/container/enchanting_table/enchantment_slot.png\"\n                : \"sprites/container/enchanting_table/enchantment_slot_disabled.png\"}\n              width={108}\n            />\n            <GuiSprite\n              className=\"absolute\"\n              height={16}\n              name={`sprites/container/enchanting_table/level_${option.level}.png` as never}\n              style={{ left: gui(1), top: gui(1) }}\n              width={16}\n            />\n            <span\n              className=\"relative ml-20 font-mc mc-text text-mc-text-main mc-text-shadow\"\n            >\n              {ROMAN[option.level]}\n              {\" · \"}\n              {option.lapisCost}\n              {\" 青金石 · \"}\n              {option.xpCost}\n              {\" 级\"}\n            </span>\n          </button>\n        );\n      })}\n      <PlayerInventory bare />\n    </ScreenPanel>\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/enchanting-screen/index.tsx",
+      "target": "components/tennantite/enchanting-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "enchanting-screen",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/player-inventory",
+    "@tennantite/screen-panel",
+    "@tennantite/screen-slot",
+    "@tennantite/screen-types",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Enchanting Screen",
+  "type": "registry:component"
+}

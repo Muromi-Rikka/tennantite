@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ComponentProps, CSSProperties } from \"react\";\n\nimport { cn, gui } from \"@/components/tennantite/lib/tennantite-utils\";\n\nexport interface GridProps extends ComponentProps<\"div\"> {\n  /**\n  * 单元格边长（GUI px，默认 18 —— 原版槽位）\n  */\n  cellSize?: number;\n  /**\n  * 列数（规格 §5 #2）\n  */\n  columns: number;\n  /**\n  * 单元格间距（GUI px，默认 0 —— 原版槽位紧邻）\n  */\n  gap?: number;\n  /**\n  * 行数（省略时按内容自动）\n  */\n  rows?: number;\n}\n\n/**\n * MC 物品格栅格（规格 §5 #2）：配合 Slot 编排 inventory / chest 布局。\n * 纯布局组件，RSC 兼容。\n */\nexport function Grid({\n  cellSize = 18,\n  className,\n  columns,\n  gap = 0,\n  rows,\n  style,\n  ...properties\n}: GridProps) {\n  const gridStyle: CSSProperties = {\n    gap: gui(gap),\n    gridTemplateColumns: `repeat(${columns}, ${gui(cellSize)})`,\n    ...(rows && { gridTemplateRows: `repeat(${rows}, ${gui(cellSize)})` }),\n    ...style,\n  };\n  return (\n    <div\n      className={cn(\"grid content-start\", className)}\n      style={gridStyle}\n      {...properties}\n    />\n  );\n}\n",
+      "path": "packages/ui/src/containers/grid/index.tsx",
+      "target": "components/tennantite/grid/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "grid",
+  "registryDependencies": [
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Grid",
+  "type": "registry:component"
+}

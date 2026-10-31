@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@tennantite/textures",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { GuiSpriteName } from \"@tennantite/textures\";\nimport type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { PlayerInventory } from \"@/components/tennantite/player-inventory\";\nimport { ScreenPanel } from \"@/components/tennantite/screen-panel\";\nimport { gui } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { RecipeBookButton } from \"@/components/tennantite/lib/screen-parts\";\nimport { ScreenItemSlot } from \"@/components/tennantite/lib/screen-slot\";\nimport { padSlots } from \"@/components/tennantite/lib/screen-types\";\n\nconst ARMOR_TOPS = [7, 25, 43, 61];\nconst ARMOR_GHOSTS: GuiSpriteName[] = [\n  \"sprites/container/slot/helmet.png\",\n  \"sprites/container/slot/chestplate.png\",\n  \"sprites/container/slot/leggings.png\",\n  \"sprites/container/slot/boots.png\",\n];\nconst CRAFT_POSITIONS = [\n  [97, 17],\n  [115, 17],\n  [97, 35],\n  [115, 35],\n] as const;\n\nexport interface InventoryScreenProps {\n  armorItems?: ScreenSlot[];\n  className?: string;\n  craftItems?: ScreenSlot[];\n  craftResult?: ScreenSlot;\n  hotbarItems?: ScreenSlot[];\n  mainItems?: ScreenSlot[];\n  offhandItem?: ScreenSlot;\n  onRecipeBook?: () => void;\n  onSlotClick?: (\n    area: \"armor\" | \"craft\" | \"craft-result\" | \"hotbar\" | \"main\" | \"offhand\",\n    index: number,\n  ) => void;\n  playerPreview?: ReactNode;\n  selectedIndex?: number;\n  title?: ReactNode;\n}\n\n/**\n * 物品栏界面（规格 §6）：`container/inventory.png` 176×166，槽框已烘焙在背景中。\n */\nconst EMPTY_ARMOR_ITEMS: ScreenSlot[] = [];\nconst EMPTY_CRAFT_ITEMS: ScreenSlot[] = [];\nconst EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];\nconst EMPTY_MAIN_ITEMS: ScreenSlot[] = [];\nexport function InventoryScreen({\n  armorItems = EMPTY_ARMOR_ITEMS,\n  className,\n  craftItems = EMPTY_CRAFT_ITEMS,\n  craftResult = null,\n  hotbarItems = EMPTY_HOTBAR_ITEMS,\n  mainItems = EMPTY_MAIN_ITEMS,\n  offhandItem,\n  onRecipeBook,\n  onSlotClick,\n  playerPreview,\n  selectedIndex,\n  title,\n}: InventoryScreenProps) {\n  const armor = padSlots(armorItems, 4);\n  const craft = padSlots(craftItems, 4);\n\n  return (\n    <ScreenPanel\n      background=\"container/inventory.png\"\n      className={className}\n      height={166}\n      title={title}\n      width={176}\n    >\n      <div\n        className=\"absolute bg-black\"\n        style={{ height: gui(64), left: gui(26), top: gui(8), width: gui(50) }}\n      >\n        {playerPreview}\n      </div>\n      {ARMOR_TOPS.map((top, index) => (\n        <ScreenItemSlot\n          ghost={ARMOR_GHOSTS[index]}\n          item={armor[index]}\n          key={top}\n          label={`armor-${index}`}\n          left={7}\n          onActivate={\n            onSlotClick\n              ? () => {\n                  onSlotClick(\"armor\", index);\n                }\n              : undefined\n          }\n          top={top}\n        />\n      ))}\n      <ScreenItemSlot\n        ghost=\"sprites/container/slot/shield.png\"\n        item={offhandItem}\n        label=\"offhand-0\"\n        left={76}\n        onActivate={\n          onSlotClick\n            ? () => {\n                onSlotClick(\"offhand\", 0);\n              }\n            : undefined\n        }\n        top={61}\n      />\n      {CRAFT_POSITIONS.map(([left, top], index) => (\n        <ScreenItemSlot\n          item={craft[index]}\n          key={`${left}-${top}`}\n          label={`craft-${index}`}\n          left={left}\n          onActivate={\n            onSlotClick\n              ? () => {\n                  onSlotClick(\"craft\", index);\n                }\n              : undefined\n          }\n          top={top}\n        />\n      ))}\n      <ScreenItemSlot\n        item={craftResult}\n        label=\"craft-result-0\"\n        left={153}\n        onActivate={\n          onSlotClick\n            ? () => {\n                onSlotClick(\"craft-result\", 0);\n              }\n            : undefined\n        }\n        top={27}\n      />\n      <RecipeBookButton left={104} onClick={onRecipeBook} top={22} />\n      <PlayerInventory\n        bare\n        hotbarItems={hotbarItems}\n        mainItems={mainItems}\n        onSlotClick={onSlotClick}\n        selectedIndex={selectedIndex}\n      />\n    </ScreenPanel>\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/inventory-screen/index.tsx",
+      "target": "components/tennantite/inventory-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "inventory-screen",
+  "registryDependencies": [
+    "@tennantite/player-inventory",
+    "@tennantite/screen-panel",
+    "@tennantite/screen-parts",
+    "@tennantite/screen-slot",
+    "@tennantite/screen-types",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Inventory Screen",
+  "type": "registry:component"
+}

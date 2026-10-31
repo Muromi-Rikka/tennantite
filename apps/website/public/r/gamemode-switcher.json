@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ReactNode } from \"react\";\n\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { ScreenPanel } from \"@/components/tennantite/screen-panel\";\nimport { gui } from \"@/components/tennantite/lib/tennantite-utils\";\n\nexport interface GamemodeSwitcherProps {\n  className?: string;\n  /**\n  * 当前选中的游戏模式 0..3\n  */\n  onChange?: (value: number) => void;\n  title?: ReactNode;\n  /**\n  * 当前值 0..3\n  */\n  value?: number;\n}\n\nconst LABELS = [\"生存\", \"创造\", \"冒险\", \"旁观\"];\n\n/**\n * 游戏模式切换器（规格 §6）：`container/gamemode_switcher.png` 125×75。\n */\nexport function GamemodeSwitcher({\n  className,\n  onChange,\n  title,\n  value = 0,\n}: GamemodeSwitcherProps) {\n  return (\n    <ScreenPanel\n      background=\"container/gamemode_switcher.png\"\n      className={className}\n      height={75}\n      title={title}\n      width={125}\n    >\n      {Array.from({ length: 4 }, (_, index) => (\n        <button\n          aria-label={LABELS[index]}\n          aria-pressed={value === index}\n          className=\"absolute cursor-pointer border-0 bg-transparent p-0\"\n          key={index}\n          onClick={() => {\n            onChange?.(index);\n          }}\n          style={{ height: gui(26), left: gui(9 + index * 27), top: gui(24), width: gui(26) }}\n          type=\"button\"\n        >\n          <GuiSprite\n            height={26}\n            name=\"sprites/gamemode_switcher/slot.png\"\n            width={26}\n          />\n          {value === index\n            ? (\n                <GuiSprite\n                  className=\"absolute inset-0\"\n                  height={26}\n                  name=\"sprites/gamemode_switcher/selection.png\"\n                  width={26}\n                />\n              )\n            : null}\n        </button>\n      ))}\n    </ScreenPanel>\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/gamemode-switcher/index.tsx",
+      "target": "components/tennantite/gamemode-switcher/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "gamemode-switcher",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/screen-panel",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Gamemode Switcher",
+  "type": "registry:component"
+}

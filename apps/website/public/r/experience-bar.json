@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import { cn } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { Progress } from \"@/components/tennantite/progress\";\n\nexport interface ExperienceBarProps {\n  className?: string;\n  /**\n  * 等级数字（渲染在进度条中央上方）\n  */\n  level: number;\n  /**\n  * 进度 0..1\n  */\n  progress: number;\n}\n\n/**\n * MC 经验条（规格 §6.1）：绿色进度 + 中央等级徽标，overlay 语义。\n*/\nexport function ExperienceBar({ className, level, progress }: ExperienceBarProps) {\n  return (\n    <div className={cn(\"w-182\", className)} data-hud=\"\">\n      <div className=\"relative\">\n        <Progress\n          aria-label={`经验：等级 ${level}`}\n          max={1}\n          value={Math.min(1, Math.max(0, progress))}\n          variant=\"xp\"\n        />\n        <span\n          aria-hidden=\"true\"\n          className=\"absolute -top-4 left-1/2 -translate-x-1/2 font-mc mc-text text-mc-xp mc-text-shadow\"\n        >\n          {level}\n        </span>\n      </div>\n    </div>\n  );\n}\n",
+      "path": "packages/ui/src/screens/hud/experience-bar/index.tsx",
+      "target": "components/tennantite/experience-bar/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "experience-bar",
+  "registryDependencies": [
+    "@tennantite/progress",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Experience Bar",
+  "type": "registry:component"
+}

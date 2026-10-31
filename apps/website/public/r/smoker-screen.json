@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [],
+  "files": [
+    {
+      "content": "import type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { AbstractFurnaceScreen } from \"@/components/tennantite/abstract-furnace-screen\";\n\nexport interface SmokerScreenProps {\n  burnProgress?: number;\n  className?: string;\n  cookProgress?: number;\n  fuel?: ScreenSlot;\n  input?: ScreenSlot;\n  onRecipeBook?: () => void;\n  onTakeOutput?: () => void;\n  output?: ScreenSlot;\n  title?: ReactNode;\n}\n\n/**\n * 烟熏炉界面（规格 §6）：`container/smoker.png` 176×166。\n */\nexport function SmokerScreen(properties: SmokerScreenProps) {\n  return (\n    <AbstractFurnaceScreen\n      background=\"container/smoker.png\"\n      progressPrefix=\"sprites/container/smoker\"\n      {...properties}\n    />\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/smoker-screen/index.tsx",
+      "target": "components/tennantite/smoker-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "smoker-screen",
+  "registryDependencies": [
+    "@tennantite/abstract-furnace-screen",
+    "@tennantite/screen-types",
+    "@tennantite/tennantite-base"
+  ],
+  "title": "Smoker Screen",
+  "type": "registry:component"
+}

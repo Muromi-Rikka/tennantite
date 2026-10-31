@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [],
+  "files": [
+    {
+      "content": "import type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { PlayerInventory } from \"@/components/tennantite/player-inventory\";\nimport { ScreenPanel } from \"@/components/tennantite/screen-panel\";\nimport { ScreenItemSlot } from \"@/components/tennantite/lib/screen-slot\";\n\nexport interface NautilusScreenProps {\n  armor?: ScreenSlot;\n  className?: string;\n  hotbarItems?: ScreenSlot[];\n  onSlotClick?: (area: \"armor\" | \"hotbar\" | \"main\", index: number) => void;\n  saddle?: ScreenSlot;\n  selectedIndex?: number;\n  title?: ReactNode;\n}\n\n/**\n * 鹦鹉螺界面（规格 §6）：`container/nautilus.png` 176×166。\n */\nconst EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];\nexport function NautilusScreen({\n  armor,\n  className,\n  hotbarItems = EMPTY_HOTBAR_ITEMS,\n  onSlotClick,\n  saddle,\n  selectedIndex,\n  title,\n}: NautilusScreenProps) {\n  return (\n    <ScreenPanel\n      background=\"container/nautilus.png\"\n      className={className}\n      height={166}\n      title={title}\n      width={176}\n    >\n      <ScreenItemSlot\n        ghost=\"sprites/container/slot/saddle.png\"\n        item={saddle}\n        label=\"nautilus-saddle\"\n        left={7}\n        onActivate={onSlotClick ? () => onSlotClick(\"armor\", 0) : undefined}\n        top={17}\n      />\n      <ScreenItemSlot\n        ghost=\"sprites/container/slot/nautilus_armor_inventory.png\"\n        item={armor}\n        label=\"nautilus-armor\"\n        left={7}\n        onActivate={onSlotClick ? () => onSlotClick(\"armor\", 1) : undefined}\n        top={35}\n      />\n      <PlayerInventory\n        bare\n        hotbarItems={hotbarItems}\n        onSlotClick={onSlotClick}\n        selectedIndex={selectedIndex}\n      />\n    </ScreenPanel>\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/nautilus-screen/index.tsx",
+      "target": "components/tennantite/nautilus-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "nautilus-screen",
+  "registryDependencies": [
+    "@tennantite/player-inventory",
+    "@tennantite/screen-panel",
+    "@tennantite/screen-slot",
+    "@tennantite/screen-types",
+    "@tennantite/tennantite-base"
+  ],
+  "title": "Nautilus Screen",
+  "type": "registry:component"
+}

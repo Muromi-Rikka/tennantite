@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "/* eslint-disable react/no-array-index-key -- 固定槽位以位置为身份，列表不会重排 */\nimport type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { PlayerInventory } from \"@/components/tennantite/player-inventory\";\nimport { ScreenPanel } from \"@/components/tennantite/screen-panel\";\nimport { gui } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { ScreenItemSlot } from \"@/components/tennantite/lib/screen-slot\";\nimport { padSlots } from \"@/components/tennantite/lib/screen-types\";\n\nexport interface ChestScreenProps {\n  className?: string;\n  hotbarItems?: ScreenSlot[];\n  items?: ScreenSlot[];\n  onSlotClick?: (area: \"hotbar\" | \"main\" | \"secondary\", index: number) => void;\n  rows?: 3 | 6;\n  selectedIndex?: number;\n  title?: ReactNode;\n}\n\n/**\n * 箱子界面（规格 §6）：3 行由 `generic_54` 上下两段合成 176×167，\n * 6 行使用整图 176×222；槽框已烘焙在背景中。\n */\nconst EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];\nconst EMPTY_ITEMS: ScreenSlot[] = [];\nexport function ChestScreen({\n  className,\n  hotbarItems = EMPTY_HOTBAR_ITEMS,\n  items = EMPTY_ITEMS,\n  onSlotClick,\n  rows = 3,\n  selectedIndex,\n  title,\n}: ChestScreenProps) {\n  const slots = padSlots(items, rows * 9);\n  const height = rows === 6 ? 222 : 167;\n  const mainY = rows === 6 ? 139 : 84;\n  const hotbarY = rows === 6 ? 197 : 142;\n\n  return (\n    <ScreenPanel className={className} height={height} title={title} width={176}>\n      {rows === 6\n        ? (\n            <GuiSprite\n              className=\"absolute inset-0\"\n              height={222}\n              name=\"container/generic_54.png\"\n              src={{ height: 222, width: 176, x: 0, y: 0 }}\n              width={176}\n            />\n          )\n        : (\n            <>\n              <GuiSprite\n                className=\"absolute\"\n                height={71}\n                name=\"container/generic_54.png\"\n                src={{ height: 71, width: 176, x: 0, y: 0 }}\n                style={{ left: 0, top: 0 }}\n                width={176}\n              />\n              <GuiSprite\n                className=\"absolute\"\n                height={96}\n                name=\"container/generic_54.png\"\n                src={{ height: 96, width: 176, x: 0, y: 126 }}\n                style={{ left: 0, top: gui(71) }}\n                width={176}\n              />\n            </>\n          )}\n      {slots.map((item, index) => {\n        const row = Math.floor(index / 9);\n        const column = index % 9;\n        return (\n          // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份\n          <ScreenItemSlot\n            item={item}\n            key={index}\n            label={`chest-${index}`}\n            left={7 + column * 18}\n            onActivate={\n              onSlotClick\n                ? () => {\n                    onSlotClick(\"secondary\", index);\n                  }\n                : undefined\n            }\n            top={17 + row * 18}\n          />\n        );\n      })}\n      <PlayerInventory\n        bare\n        hotbarItems={hotbarItems}\n        hotbarY={hotbarY}\n        mainItems={slots.slice(0, 0)}\n        onSlotClick={onSlotClick}\n        selectedIndex={selectedIndex}\n        y={mainY}\n      />\n    </ScreenPanel>\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/chest-screen/index.tsx",
+      "target": "components/tennantite/chest-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "chest-screen",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/player-inventory",
+    "@tennantite/screen-panel",
+    "@tennantite/screen-slot",
+    "@tennantite/screen-types",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Chest Screen",
+  "type": "registry:component"
+}

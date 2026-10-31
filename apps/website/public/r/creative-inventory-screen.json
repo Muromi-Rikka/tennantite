@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@tennantite/textures",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "/* eslint-disable react/no-array-index-key -- 固定槽位/列表以位置为身份 */\nimport type { GuiSpriteName } from \"@tennantite/textures\";\nimport type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { ItemStack } from \"@/components/tennantite/item-stack\";\nimport { ScreenPanel } from \"@/components/tennantite/screen-panel\";\nimport { Slot } from \"@/components/tennantite/slot\";\nimport { gui } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { padSlots } from \"@/components/tennantite/lib/screen-types\";\n\nexport interface CreativeInventoryScreenProps {\n  activeTab?: string;\n  className?: string;\n  items?: ScreenSlot[];\n  onTabSelect?: (id: string) => void;\n  tabs?: CreativeTab[];\n  title?: ReactNode;\n}\n\nexport interface CreativeTab {\n  icon?: ScreenSlot;\n  id: string;\n  label: string;\n}\n\nconst TOP_TABS = 7;\nconst BOTTOM_TABS = 7;\nconst TAB_WIDTH = 26;\nconst TAB_HEIGHT = 32;\nconst TAB_PITCH = 27;\nconst PANEL_WIDTH = 195;\nconst TAB_TOP = 4;\nconst TAB_BOTTOM = 164;\n\n/**\n * 创造模式物品栏（规格 §6）：195×196，上下各 7 个 26×32 标签 + 9×5 物品网格。\n */\nexport function CreativeInventoryScreen({\n  activeTab,\n  className,\n  items = [],\n  onTabSelect,\n  tabs = [],\n  title,\n}: CreativeInventoryScreenProps) {\n  const slots = padSlots(items, 45);\n  const selectedIndex = tabs.findIndex(tab => tab.id === activeTab);\n\n  function renderTab(column: number, isTop: boolean, isSelected: boolean) {\n    const index = isTop ? column : column + TOP_TABS;\n    const tab = tabs[index];\n    return (\n      <button\n        aria-label={tab?.label ?? `标签 ${index + 1}`}\n        aria-pressed={isSelected}\n        className=\"absolute cursor-pointer border-0 bg-transparent p-0\"\n        key={`${isTop ? \"top\" : \"bottom\"}-${column}`}\n        onClick={() => tab && onTabSelect?.(tab.id)}\n        style={{\n          height: gui(TAB_HEIGHT),\n          left: gui(tabLeft(column)),\n          top: gui(isTop ? TAB_TOP : TAB_BOTTOM),\n          width: gui(TAB_WIDTH),\n        }}\n        type=\"button\"\n      >\n        <GuiSprite\n          height={TAB_HEIGHT}\n          name={`sprites/container/creative_inventory/tab_${isTop ? \"top\" : \"bottom\"}_${isSelected ? \"selected\" : \"unselected\"}_${column + 1}.png` as GuiSpriteName}\n          width={TAB_WIDTH}\n        />\n        {tab?.icon\n          ? (\n              <ItemStack\n                bare\n                className=\"pointer-events-none absolute\"\n                count={tab.icon.count}\n                icon={tab.icon.icon}\n                size={16}\n                src={tab.icon.src}\n                style={{ left: gui(5), top: gui(isTop ? 9 : 7) }}\n              />\n            )\n          : null}\n      </button>\n    );\n  }\n\n  return (\n    <ScreenPanel className={className} height={196} title={title} width={195}>\n      {Array.from({ length: TOP_TABS }, (_, column) =>\n        selectedIndex === column ? null : renderTab(column, true, false))}\n      {Array.from({ length: BOTTOM_TABS }, (_, column) =>\n        selectedIndex === column + TOP_TABS ? null : renderTab(column, false, false))}\n      <GuiSprite\n        className=\"pointer-events-none absolute\"\n        height={136}\n        name=\"container/creative_inventory/tab_items.png\"\n        src={{ height: 136, width: 195, x: 0, y: 0 }}\n        style={{ left: 0, top: gui(32) }}\n        width={195}\n      />\n      {selectedIndex === -1 ? null : renderTab(selectedIndex % TOP_TABS, selectedIndex < TOP_TABS, true)}\n      <GuiSprite\n        className=\"absolute\"\n        height={15}\n        name=\"sprites/container/creative_inventory/scroller.png\"\n        style={{ left: gui(175), top: gui(50) }}\n        width={12}\n      />\n      {slots.map((item, index) => (\n        // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 位置固定槽位网格，index 即稳定身份\n        <Slot\n          aria-label={`creative-${index}`}\n          bare\n          className=\"absolute\"\n          key={index}\n          size={18}\n          style={{\n            left: gui(8 + (index % 9) * 18),\n            top: gui(49 + Math.floor(index / 9) * 18),\n          }}\n        >\n          {item ? <ItemStack bare {...item} /> : null}\n        </Slot>\n      ))}\n    </ScreenPanel>\n  );\n}\n\n/**\n * 原版 `CreativeModeTabs.getTabX`：第 5/6 列（index 5/6）靠右对齐。\n */\nfunction tabLeft(column: number): number {\n  return column >= 5\n    ? PANEL_WIDTH - TAB_PITCH * (7 - column) + 1\n    : column * TAB_PITCH;\n}\n",
+      "path": "packages/ui/src/screens/containers/creative-inventory-screen/index.tsx",
+      "target": "components/tennantite/creative-inventory-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "creative-inventory-screen",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/item-stack",
+    "@tennantite/screen-panel",
+    "@tennantite/screen-types",
+    "@tennantite/slot",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Creative Inventory Screen",
+  "type": "registry:component"
+}

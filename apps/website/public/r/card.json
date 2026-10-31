@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ComponentProps, ReactNode } from \"react\";\n\nimport { cn } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { Panel } from \"@/components/tennantite/panel\";\nimport { TitleBar } from \"@/components/tennantite/title-bar\";\n\nexport interface CardProps extends Omit<ComponentProps<typeof Panel>, \"title\"> {\n  align?: \"center\" | \"end\" | \"start\";\n  /**\n  * 标题（渲染 TitleBar）\n  */\n  title?: ReactNode;\n}\n\n/**\n * MC 卡片（规格 §5 #5）：Panel + TitleBar + 内容区块。\n*/\nexport function Card({\n  align,\n  children,\n  className,\n  title,\n  ...properties\n}: CardProps) {\n  return (\n    <Panel className={cn(\"flex flex-col gap-4 p-6\", className)} {...properties}>\n      {title === undefined ? null : <TitleBar align={align} title={title} />}\n      {children}\n    </Panel>\n  );\n}\n",
+      "path": "packages/ui/src/containers/card/index.tsx",
+      "target": "components/tennantite/card/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "card",
+  "registryDependencies": [
+    "@tennantite/panel",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils",
+    "@tennantite/title-bar"
+  ],
+  "title": "Card",
+  "type": "registry:component"
+}

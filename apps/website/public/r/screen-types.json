@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@tennantite/textures"
+  ],
+  "files": [
+    {
+      "content": "import type { PixelIconName } from \"@tennantite/textures\";\n\n/**\n * 槽位区域标识（onSlotClick 回调用）\n*/\nexport type ScreenArea\n  = | \"armor\"\n    | \"craft\"\n    | \"craft-result\"\n    | \"hotbar\"\n    | \"input\"\n    | \"main\"\n    | \"offhand\"\n    | \"output\"\n    | \"secondary\";\n\n/**\n * 容器界面的槽位数据（由使用方注入，库不含任何游戏逻辑，规格 §0.2 / §8.2）\n*/\nexport interface ScreenItem {\n  count?: number;\n  icon?: PixelIconName;\n  src?: string;\n  tooltip?: string;\n}\n\nexport type ScreenSlot = null | ScreenItem | undefined;\n\nexport interface SlotClickDetails {\n  area: ScreenArea;\n  index: number;\n}\n\n/**\n * 固定长度槽位数组补齐\n*/\nexport function padSlots(slots: ScreenSlot[], length: number): ScreenSlot[] {\n  const result = slots.slice(0, length);\n  while (result.length < length) {\n    result.push(null);\n  }\n  return result;\n}\n",
+      "path": "packages/ui/src/screens/containers/types.ts",
+      "target": "components/tennantite/lib/screen-types.ts",
+      "type": "registry:component"
+    }
+  ],
+  "name": "screen-types",
+  "registryDependencies": [],
+  "title": "Screen Types",
+  "type": "registry:component"
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@tennantite/textures",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "/* eslint-disable react/no-array-index-key -- 固定槽位/列表以位置为身份 */\nimport type { GuiSpriteName } from \"@tennantite/textures\";\nimport type { ReactNode } from \"react\";\n\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { cn, gui } from \"@/components/tennantite/lib/tennantite-utils\";\n\nexport interface NotificationBadgeProps {\n  className?: string;\n  count: number;\n}\n\nexport interface ToastProps {\n  className?: string;\n  description?: ReactNode;\n  icon?: GuiSpriteName;\n  onClose?: () => void;\n  title: ReactNode;\n  variant?: ToastVariant;\n}\n\nexport interface ToastStackProps {\n  className?: string;\n  toasts: ToastProps[];\n}\n\nexport type ToastVariant = \"advancement\" | \"now_playing\" | \"recipe\" | \"system\" | \"tutorial\";\n\n/**\n * 通知角标（规格 §6.3）：8×8 `notification/1..5|more`。\n */\nexport function NotificationBadge({ className, count }: NotificationBadgeProps) {\n  if (count <= 0)\n    return null;\n  const name = `sprites/notification/${count > 5 ? \"more\" : Math.max(1, count)}.png` as GuiSpriteName;\n  return <GuiSprite className={className} height={8} name={name} width={8} />;\n}\n\n/**\n * 原版 Toast（规格 §6.3）：160×32（system 160×64）背景 + 20×20 图标。\n */\nexport function Toast({\n  className,\n  description,\n  icon,\n  onClose,\n  title,\n  variant = \"advancement\",\n}: ToastProps) {\n  const height = variant === \"system\" ? 64 : 32;\n  return (\n    <div\n      className={cn(\"relative\", className)}\n      data-toast-variant={variant}\n      style={{ height: gui(height), width: gui(160) }}\n    >\n      <GuiSprite\n        className=\"absolute inset-0\"\n        height={height}\n        name={`sprites/toast/${variant}.png` as GuiSpriteName}\n        width={160}\n      />\n      {icon\n        ? <GuiSprite className=\"absolute\" height={20} name={icon} style={{ left: gui(8), top: gui(6) }} width={20} />\n        : null}\n      <div\n        className=\"absolute font-mc mc-text text-mc-text-main mc-text-shadow\"\n        style={{ left: gui(32), top: gui(6), width: gui(120) }}\n      >\n        {title}\n      </div>\n      {description\n        ? (\n            <div\n              className=\"absolute font-mc mc-text text-mc-text-dim\"\n              style={{ left: gui(32), top: gui(18), width: gui(120) }}\n            >\n              {description}\n            </div>\n          )\n        : null}\n      {onClose\n        ? (\n            <button\n              aria-label=\"关闭通知\"\n              className=\"absolute cursor-pointer border-0 bg-transparent p-0\"\n              onClick={onClose}\n              style={{ height: gui(15), right: gui(4), top: gui(4), width: gui(15) }}\n              type=\"button\"\n            >\n              <GuiSprite height={15} name=\"sprites/widget/cross_button.png\" width={15} />\n            </button>\n          )\n        : null}\n    </div>\n  );\n}\n\n/**\n * 右上角 Toast 栈（规格 §6.3）。\n */\nexport function ToastStack({ className, toasts }: ToastStackProps) {\n  return (\n    <div className={cn(\"absolute top-4 right-4 flex flex-col gap-4\", className)}>\n      {toasts.map((toast, index) => (\n        // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 数据模型无稳定 id，列表顺序即身份\n        <Toast key={`${toast.title}-${index}`} {...toast} />\n      ))}\n    </div>\n  );\n}\n",
+      "path": "packages/ui/src/screens/menus/toast/index.tsx",
+      "target": "components/tennantite/toast/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "toast",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Toast",
+  "type": "registry:component"
+}

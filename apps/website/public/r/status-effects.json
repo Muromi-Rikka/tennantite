@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@tennantite/textures"
+  ],
+  "files": [
+    {
+      "content": "/* eslint-disable react/no-array-index-key -- 状态效果是固定顺序的纵向列表 */\nimport type { PixelIconName } from \"@tennantite/textures\";\n\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { Icon } from \"@/components/tennantite/icon\";\nimport { Tooltip, TooltipPopup, TooltipTrigger } from \"@/components/tennantite/tooltip\";\n\nexport interface StatusEffect {\n  /**\n  * 环境效果（不同背景）\n  */\n  ambient?: boolean;\n  /**\n  * 增强等级文本（如 \"II\"）\n  */\n  amplifier?: string;\n  /**\n  * 剩余时间文本（tooltip 次行）\n  */\n  duration?: string;\n  icon?: PixelIconName;\n  /**\n  * 效果名称（tooltip 主行）\n  */\n  name: string;\n  src?: string;\n}\n\nexport interface StatusEffectsProps {\n  className?: string;\n  effects: StatusEffect[];\n}\n\n/**\n * MC 状态效果栏（规格 §6.1）：原版 24×24 背景 + 18×18 图标，纵向堆叠。\n */\nexport function StatusEffects({ className, effects }: StatusEffectsProps) {\n  if (effects.length === 0) {\n    return null;\n  }\n  return (\n    <div className={className} data-hud=\"\">\n      {effects.map((effect, index) => (\n        // react-doctor-disable-next-line react-doctor/no-array-index-as-key —— 数据模型无稳定 id，列表顺序即身份\n        <Tooltip key={`${effect.name}-${index}`}>\n          <TooltipTrigger className=\"block cursor-default\">\n            <div className=\"relative size-24\">\n              <GuiSprite\n                className=\"absolute inset-0\"\n                height={24}\n                name={effect.ambient\n                  ? \"sprites/hud/effect_background_ambient.png\"\n                  : \"sprites/hud/effect_background.png\"}\n                width={24}\n              />\n              <Icon\n                className=\"absolute top-3 left-3\"\n                name={effect.icon}\n                size={18}\n                src={effect.src}\n              />\n            </div>\n            <span className=\"sr-only\">\n              {`${effect.name}${effect.amplifier ? ` ${effect.amplifier}` : \"\"}`}\n            </span>\n          </TooltipTrigger>\n          <TooltipPopup>\n            <div className=\"text-mc-text-main\">\n              {effect.name}\n              {effect.amplifier ? ` ${effect.amplifier}` : \"\"}\n            </div>\n            {effect.duration\n              ? (\n                  <div className=\"text-mc-text-dim\">{effect.duration}</div>\n                )\n              : null}\n          </TooltipPopup>\n        </Tooltip>\n      ))}\n    </div>\n  );\n}\n",
+      "path": "packages/ui/src/screens/hud/status-effects/index.tsx",
+      "target": "components/tennantite/status-effects/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "status-effects",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/icon",
+    "@tennantite/tennantite-base",
+    "@tennantite/tooltip"
+  ],
+  "title": "Status Effects",
+  "type": "registry:component"
+}

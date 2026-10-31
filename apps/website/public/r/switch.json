@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@base-ui/react",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ComponentProps } from \"react\";\nimport { Switch as BaseSwitch } from \"@base-ui/react/switch\";\nimport { cn } from \"@/components/tennantite/lib/tennantite-utils\";\n\nexport type SwitchProps = ComponentProps<typeof BaseSwitch.Root>;\n\n/**\n * MC 开关（规格 §4 #5）：槽位凹槽轨道 + 20×20 按钮浮雕把手，用于快速开关。\n*/\nexport function Switch({ className, ...properties }: SwitchProps) {\n  return (\n    <BaseSwitch.Root\n      className={cn(\n        \"mc-tex-slot flex h-20 w-40 shrink-0 cursor-pointer items-center p-0 outline-none\",\n        \"focus-visible:mc-outline focus-visible:outline-white\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        className,\n      )}\n      {...properties}\n    >\n      <BaseSwitch.Thumb className=\"mc-tex-btn size-20 data-checked:translate-x-20\" />\n    </BaseSwitch.Root>\n  );\n}\n",
+      "path": "packages/ui/src/primitives/switch/index.tsx",
+      "target": "components/tennantite/switch/index.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import type { ComponentProps } from \"react\";\n\nimport type { Switch } from \"./index\";\n\nexport type SwitchProps = ComponentProps<typeof Switch>;\n",
+      "path": "packages/ui/src/primitives/switch/types.ts",
+      "target": "components/tennantite/switch/types.ts",
+      "type": "registry:component"
+    }
+  ],
+  "name": "switch",
+  "registryDependencies": [
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Switch",
+  "type": "registry:component"
+}

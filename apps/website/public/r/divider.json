@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@base-ui/react",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ComponentProps, CSSProperties } from \"react\";\nimport { Separator as BaseSeparator } from \"@base-ui/react/separator\";\n\nimport { cn } from \"@/components/tennantite/lib/tennantite-utils\";\n\nexport interface DividerProps extends ComponentProps<typeof BaseSeparator> {\n  /**\n  * 原版分隔线：普通 / 游戏内 / 强分隔\n  */\n  variant?: \"default\" | \"inworld\" | \"strong\";\n}\n\n/**\n * MC 分隔线（规格 §5 #5）：32×2 原版 separator 平铺。\n */\nexport function Divider({\n  className,\n  style,\n  variant = \"default\",\n  ...properties\n}: DividerProps) {\n  const sprite = separatorFor(variant);\n  const dividerStyle: CSSProperties = {\n    backgroundImage: sprite,\n    backgroundRepeat: \"repeat\",\n    backgroundSize: \"calc(var(--mc-gui) * 32) calc(var(--mc-gui) * 2)\",\n    imageRendering: \"pixelated\",\n    ...style,\n  };\n  return (\n    <BaseSeparator\n      className={cn(\n        \"data-[orientation=horizontal]:h-2 data-[orientation=horizontal]:w-full\",\n        \"data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2\",\n        className,\n      )}\n      style={dividerStyle}\n      {...properties}\n    />\n  );\n}\n\nfunction separatorFor(variant: DividerProps[\"variant\"]): string {\n  switch (variant) {\n    case \"inworld\": { return \"var(--mc-gui-inworld-header-separator-png)\";\n    }\n    case \"strong\": { return \"var(--mc-gui-footer-separator-png)\";\n    }\n    default: { return \"var(--mc-gui-header-separator-png)\";\n    }\n  }\n}\n",
+      "path": "packages/ui/src/containers/divider/index.tsx",
+      "target": "components/tennantite/divider/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "divider",
+  "registryDependencies": [
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Divider",
+  "type": "registry:component"
+}

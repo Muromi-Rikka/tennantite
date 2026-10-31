@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { PlayerInventory } from \"@/components/tennantite/player-inventory\";\nimport { ScreenPanel } from \"@/components/tennantite/screen-panel\";\nimport { gui } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { ScreenItemSlot } from \"@/components/tennantite/lib/screen-slot\";\nimport { padSlots } from \"@/components/tennantite/lib/screen-types\";\n\nconst GRID_POSITIONS = [\n  [25, 16],\n  [43, 16],\n  [61, 16],\n  [25, 34],\n  [43, 34],\n  [61, 34],\n  [25, 52],\n  [43, 52],\n  [61, 52],\n] as const;\n\nexport interface CrafterScreenProps {\n  className?: string;\n  disabledSlots?: number[];\n  hotbarItems?: ScreenSlot[];\n  items?: ScreenSlot[];\n  onSlotClick?: (area: \"craft\" | \"hotbar\" | \"main\" | \"output\", index: number) => void;\n  output?: ScreenSlot;\n  powered?: boolean;\n  selectedIndex?: number;\n  title?: ReactNode;\n}\n\n/**\n * 合成器界面（规格 §6）：`container/crafter.png` 176×166，3×3 网格 + 26×26 结果。\n */\nconst EMPTY_DISABLED_SLOTS: number[] = [];\nconst EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];\nconst EMPTY_ITEMS: ScreenSlot[] = [];\nexport function CrafterScreen({\n  className,\n  disabledSlots = EMPTY_DISABLED_SLOTS,\n  hotbarItems = EMPTY_HOTBAR_ITEMS,\n  items = EMPTY_ITEMS,\n  onSlotClick,\n  output,\n  powered = false,\n  selectedIndex,\n  title,\n}: CrafterScreenProps) {\n  const slots = padSlots(items, 9);\n  return (\n    <ScreenPanel\n      background=\"container/crafter.png\"\n      className={className}\n      height={166}\n      title={title}\n      width={176}\n    >\n      {GRID_POSITIONS.map(([left, top], index) => (\n        <div key={`${left}-${top}`}>\n          <ScreenItemSlot\n            item={slots[index]}\n            label={`crafter-${index}`}\n            left={left}\n            onActivate={\n              onSlotClick\n                ? () => {\n                    onSlotClick(\"craft\", index);\n                  }\n                : undefined\n            }\n            top={top}\n          />\n          {disabledSlots.includes(index)\n            ? (\n                <GuiSprite\n                  className=\"absolute\"\n                  height={18}\n                  name=\"sprites/container/crafter/disabled_slot.png\"\n                  style={{ left: gui(left), top: gui(top) }}\n                  width={18}\n                />\n              )\n            : null}\n        </div>\n      ))}\n      <GuiSprite\n        className=\"absolute\"\n        height={16}\n        name={powered\n          ? \"sprites/container/crafter/powered_redstone.png\"\n          : \"sprites/container/crafter/unpowered_redstone.png\"}\n        style={{ left: gui(98), top: gui(91) }}\n        width={16}\n      />\n      <ScreenItemSlot\n        item={output}\n        label=\"crafter-output\"\n        left={129}\n        onActivate={onSlotClick ? () => onSlotClick(\"output\", 0) : undefined}\n        size={26}\n        top={30}\n      />\n      <PlayerInventory\n        bare\n        hotbarItems={hotbarItems}\n        onSlotClick={onSlotClick}\n        selectedIndex={selectedIndex}\n      />\n    </ScreenPanel>\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/crafter-screen/index.tsx",
+      "target": "components/tennantite/crafter-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "crafter-screen",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/player-inventory",
+    "@tennantite/screen-panel",
+    "@tennantite/screen-slot",
+    "@tennantite/screen-types",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Crafter Screen",
+  "type": "registry:component"
+}

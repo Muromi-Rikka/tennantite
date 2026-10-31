@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { PlayerInventory } from \"@/components/tennantite/player-inventory\";\nimport { ScreenPanel } from \"@/components/tennantite/screen-panel\";\nimport { gui } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { ScreenItemSlot } from \"@/components/tennantite/lib/screen-slot\";\n\nexport interface AnvilScreenProps {\n  className?: string;\n  /**\n  * 显示错误叉（(99,45) 28×21）\n  */\n  error?: boolean;\n  item?: ScreenSlot;\n  levelCost?: number;\n  material?: ScreenSlot;\n  onNameChange?: (name: string) => void;\n  onTakeResult?: () => void;\n  result?: ScreenSlot;\n  title?: ReactNode;\n  value?: string;\n}\n\n/**\n * 铁砧界面（规格 §6）：`container/anvil.png` 176×166。\n */\nexport function AnvilScreen({\n  className,\n  error = false,\n  item,\n  levelCost = 0,\n  material,\n  onNameChange,\n  onTakeResult,\n  result,\n  title,\n  value,\n}: AnvilScreenProps) {\n  return (\n    <ScreenPanel\n      background=\"container/anvil.png\"\n      className={className}\n      height={166}\n      title={title}\n      width={176}\n    >\n      <div\n        className=\"absolute\"\n        style={{ height: gui(16), left: gui(59), top: gui(20), width: gui(110) }}\n      >\n        <GuiSprite\n          className=\"absolute inset-0\"\n          height={16}\n          name=\"sprites/container/anvil/text_field.png\"\n          width={110}\n        />\n        <input\n          aria-label=\"物品名称\"\n          className=\"absolute inset-0 w-full border-0 bg-transparent px-4 font-mc mc-text text-mc-text-main caret-white outline-none\"\n          onChange={(event) => {\n            onNameChange?.(event.target.value);\n          }}\n          style={{ height: gui(16) }}\n          value={value}\n        />\n      </div>\n      <ScreenItemSlot item={item} label=\"anvil-item\" left={26} top={46} />\n      <ScreenItemSlot item={material} label=\"anvil-material\" left={75} top={46} />\n      <ScreenItemSlot\n        item={result}\n        label=\"anvil-result\"\n        left={133}\n        onActivate={onTakeResult}\n        top={46}\n      />\n      {error\n        ? (\n            <GuiSprite\n              className=\"absolute\"\n              height={21}\n              name=\"sprites/container/anvil/error.png\"\n              style={{ left: gui(99), top: gui(45) }}\n              width={28}\n            />\n          )\n        : null}\n      <span\n        className=\"absolute font-mc mc-text text-mc-accent-green mc-text-shadow\"\n        style={{ left: gui(59), top: gui(68) }}\n      >\n        {levelCost > 0 ? `${levelCost} 级` : \"\"}\n      </span>\n      <PlayerInventory bare />\n    </ScreenPanel>\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/anvil-screen/index.tsx",
+      "target": "components/tennantite/anvil-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "anvil-screen",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/player-inventory",
+    "@tennantite/screen-panel",
+    "@tennantite/screen-slot",
+    "@tennantite/screen-types",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Anvil Screen",
+  "type": "registry:component"
+}

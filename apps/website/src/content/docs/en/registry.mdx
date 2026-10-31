@@ -1,6 +1,6 @@
 ---
 title: Registry
-description: Generating registry.json and the current source-distribution status.
+description: How the shadcn registry endpoint and the full index are generated.
 section: distribution
 order: 1
 locale: en
@@ -10,7 +10,10 @@ import Callout from "@/components/docs/Callout.astro";
 
 ## What a registry is
 
-A registry is shadcn's source-distribution format. Each entry describes a component name, type, dependencies and file paths. Consumers copy source into their project instead of importing a compiled package.
+A registry is shadcn's source-distribution format. This project produces two kinds of output:
+
+1. **Installable endpoint** `https://tennantite.pages.dev/r/<name>.json`: one file per core component with all source inlined as `content` plus `target`, directly consumable by the shadcn CLI.
+2. **Full index** `registry/registry.json`: covers `@tennantite/ui` and every mod package (311 entries) for catalog and documentation reference; mod entries keep `path` only and do not participate in CLI copying.
 
 ## Generate
 
@@ -20,34 +23,69 @@ pnpm registry
 node registry/build.mjs
 ```
 
-The script scans `packages/ui/src/primitives` and `packages/ui/src/containers`, reads each `index.tsx`, infers `@base-ui/react`, `class-variance-authority` and `cn`, and lists sibling `.ts` / `.tsx` files.
+## Coverage
 
-## Shape
+The installable endpoint covers 5 component groups inside `@tennantite/ui` (primitives, containers, screens/containers, screens/hud, screens/menus) — 63 component items — plus `tennantite-base` and 4 shared items:
+
+- `tennantite-base`: only declares the `@tennantite/tokens` and `@tennantite/textures` npm dependencies and drops a `base.css` recording the asset CSS to import; the CLI installs it alongside the first component you add.
+- `tennantite-utils`: shared `cn` and `gui` helpers, placed at `components/tennantite/lib/tennantite-utils.ts` without touching your own `@/lib/utils`.
+- `screen-types`: shared screen types such as `ScreenSlot` and `padSlots`.
+- `screen-parts` / `screen-slot`: shared slot and part components used by container screens.
+
+**Mod packages (mekanism, ic2, ae2, …) are outside the CLI copy scope**: they import heavily through the `@tennantite/ui` barrel, which makes copy-and-rewrite disproportionately expensive. They keep the `pnpm add @tennantite/<mod>` npm-install mode.
+
+## Consuming it
+
+Option 1: configure a namespace registry in `components.json` and install by name:
 
 ```json
 {
-  "name": "button",
-  "title": "Button",
+  "registries": {
+    "@tennantite": "https://tennantite.pages.dev/r/{name}.json"
+  }
+}
+```
+
+```bash
+npx shadcn add @tennantite/button
+```
+
+Option 2: direct URL, no configuration needed:
+
+```bash
+npx shadcn add https://tennantite.pages.dev/r/button.json
+```
+
+## Item shape
+
+Every item inlines its source so the CLI never resolves repo paths:
+
+```json
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
   "type": "registry:component",
-  "dependencies": ["@base-ui/react"],
-  "registryDependencies": [],
+  "dependencies": ["cn"],
+  "registryDependencies": ["@tennantite/tennantite-base", "@tennantite/panel", "@tennantite/title-bar"],
   "files": [
     {
-      "path": "packages/ui/src/primitives/button/index.tsx",
+      "content": "import { Panel } from \"@/components/tennantite/panel\";\n// …",
+      "target": "components/tennantite/card/index.tsx",
       "type": "registry:component"
     }
   ]
 }
 ```
 
-The current `files` entries contain only `path` and `type`, with no inline `content`. That means this is not yet a remote registry endpoint.
+## Import rewrite rules
 
-## Coverage
+For every inlined file the generator rewrites imports with these rules (a failed rewrite aborts the build instead of producing a broken item):
 
-The current output covers primitives and containers only, 23 entries. Screens are not included. To extend it, add `["screens", "registry:component"]` to the `groups` array and handle the second-level `screens/hud`, `screens/containers` and `screens/menus` paths.
+- Relative imports resolving inside the component's own directory (`./types`, `./styles`) are kept as-is.
+- Imports pointing at another component directory (e.g. `../panel/index`) become `@/components/tennantite/panel` and are recorded in `registryDependencies`.
+- Imports of `lib/utils.ts` and shared screen types become `@/components/tennantite/lib/tennantite-utils` and `@/components/tennantite/lib/screen-types`.
+- `@tennantite/textures` is kept untouched and appended to the item's npm `dependencies`.
 
-## Distribution status
-
-<Callout variant="warn" title="Not hosted">
-`@tennantite/ui` is not on npm and has no public registry URL. This site exposes no `/r/*.json` endpoint. Before hosting, inline file content or add a build step that resolves `path`.
+<Callout>
+Every entry in `registryDependencies` automatically gains `@tennantite/tennantite-base`, so the L0 asset packages (tokens/textures) are installed on first add. Cross-item dependencies must be fully namespaced (`@tennantite/<name>`); unqualified names are resolved against the official shadcn registry by the CLI.
 </Callout>

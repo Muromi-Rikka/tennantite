@@ -1,7 +1,9 @@
 ---
-import ComponentNav from "@/components/catalog/ComponentNav.astro";
-import MobileComponentNav from "@/components/catalog/MobileComponentNav.astro";
+import { Code } from "astro:components";
 import InstallCommand from "@/components/docs/InstallCommand.astro";
+import DocsSidebar from "@/components/docs/DocsSidebar.astro";
+import MobileDocsNav from "@/components/docs/MobileDocsNav.astro";
+import PropsTable from "@/components/docs/PropsTable.astro";
 import PreviewTabs from "@/components/preview/preview-tabs";
 import PageHeader from "@/components/site/PageHeader.astro";
 import PageSection from "@/components/site/PageSection.astro";
@@ -20,6 +22,8 @@ import {
   modScopeEntries,
   type CatalogEntry,
 } from "@/lib/catalog";
+import { buildSiteNav } from "@/lib/nav";
+import { componentProps } from "@/lib/props";
 import { readDemoSource } from "@/lib/source";
 import { breadcrumb, techArticle } from "@/lib/seo";
 
@@ -39,6 +43,9 @@ const indexHref = mod ? modIndexHref(entry, locale) : localeHref(locale, "/compo
 const indexLabel = mod ? text.modsPage.breadcrumb : page.breadcrumb;
 const code = readDemoSource(entry.sourceDir);
 const pager = getComponentPager(entry.slug, locale, entries);
+const nav = await buildSiteNav(locale);
+const isCore = !mod && ["primitives", "containers"].includes(entry.group);
+const props = isCore ? componentProps[entry.slug] : undefined;
 const site = Astro.site ?? new URL("http://localhost:3300");
 const jsonLd = [
   techArticle({ description, locale, path: href, site, title: displayName }),
@@ -53,14 +60,14 @@ const jsonLd = [
   jsonLd={jsonLd}
 >
   <div class="mx-auto flex w-full max-w-[1440px] gap-24 px-12">
-    <aside class="hidden w-[260px] shrink-0 lg:block">
-      <div class="sticky top-32 max-h-[calc(100vh-128px)] overflow-y-auto py-24" data-component-nav-scroll>
-        <ComponentNav currentSlug={entry.slug} entries={entries} locale={locale} />
+    <aside class="hidden w-[200px] shrink-0 lg:block">
+      <div class="sticky top-32 max-h-[calc(100vh-128px)] overflow-y-auto py-24">
+        <DocsSidebar groups={nav} label={text.docsChrome.mobileNav} pathname={Astro.url.pathname} />
       </div>
     </aside>
 
     <div class="min-w-0 flex-1 py-24">
-      <MobileComponentNav currentSlug={entry.slug} entries={entries} locale={locale} />
+      <MobileDocsNav groups={nav} title={text.docsChrome.mobileNav} />
       <PageHeader
         breadcrumb={[{ href: indexHref, label: indexLabel }, { label: displayName }]}
         title={displayName}
@@ -69,17 +76,39 @@ const jsonLd = [
       <PreviewTabs client:load code={code} locale={locale} name={entry.name} />
 
       <PageSection title={page.install}>
-        <InstallCommand command="pnpm add @tennantite/ui" locale={locale} />
+        {mod ? (
+          <InstallCommand command={`pnpm add @tennantite/${entry.mod}`} locale={locale} />
+        ) : (
+          <>
+            <h3 class="text-sm font-bold text-site-fg">{page.installCli}</h3>
+            <InstallCommand command={`npx shadcn add @tennantite/${entry.slug}`} locale={locale} />
+            <h3 class="mt-12 text-sm font-bold text-site-fg">{page.installNpm}</h3>
+            <InstallCommand command="pnpm add @tennantite/ui" locale={locale} />
+          </>
+        )}
         <p class="mt-4 text-xs text-site-muted">{page.installNote}</p>
       </PageSection>
 
-      <PageSection title={page.exports}>
-        <div class="flex flex-wrap gap-4">
-          {entry.exports.map(name => (
-            <code class="border border-site-border bg-site-surface px-4 py-2 font-mono text-xs text-site-fg">{name}</code>
-          ))}
-        </div>
-      </PageSection>
+      {isCore && (
+        <PageSection title={page.usage}>
+          <h3 class="text-sm font-bold text-site-fg">{page.usageNpm}</h3>
+          <Code lang="tsx" code={`import { ${entry.exports.join(", ")} } from "@tennantite/ui";`} />
+          <h3 class="mt-12 text-sm font-bold text-site-fg">{page.usageCli}</h3>
+          <Code
+            lang="tsx"
+            code={`import { ${entry.exports.join(", ")} } from "@/components/tennantite/${entry.slug}";`}
+          />
+          <div class="mt-12">
+            <Code lang="tsx" code={code} />
+          </div>
+        </PageSection>
+      )}
+
+      {isCore && props && (
+        <PageSection title={page.api}>
+          <PropsTable locale={locale} props={props} />
+        </PageSection>
+      )}
 
       <PageSection title={page.source}>
         <code class="font-mono text-sm text-site-fg">{entry.sourceDir}/index.tsx</code>
@@ -90,15 +119,3 @@ const jsonLd = [
     </div>
   </div>
 </SiteLayout>
-
-<script>
-  const scroller = document.querySelector<HTMLElement>("[data-component-nav-scroll]");
-  const activeItem = scroller?.querySelector<HTMLElement>('[aria-current="page"]');
-  if (scroller && activeItem) {
-    const scrollerRect = scroller.getBoundingClientRect();
-    const itemRect = activeItem.getBoundingClientRect();
-    if (itemRect.top < scrollerRect.top || itemRect.bottom > scrollerRect.bottom) {
-      scroller.scrollTop = activeItem.offsetTop - (scroller.clientHeight - activeItem.offsetHeight) / 2;
-    }
-  }
-</script>

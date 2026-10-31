@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [],
+  "files": [
+    {
+      "content": "import type { CSSProperties, ReactNode } from \"react\";\n\nimport { Badge } from \"@/components/tennantite/badge\";\nimport { Tooltip, TooltipPopup, TooltipTrigger } from \"@/components/tennantite/tooltip\";\nimport { Icon } from \"@/components/tennantite/icon\";\nimport { Slot } from \"@/components/tennantite/slot\";\n\nexport interface ItemStackProps {\n  /**\n  * 不绘制槽位纹理（由父容器提供）\n  */\n  bare?: boolean;\n  className?: string;\n  /**\n  * 数量（>1 时显示计数徽标，规格 §5 #3）\n  */\n  count?: number;\n  /**\n  * 内置像素图标名（与 src 二选一）\n  */\n  icon?: Parameters<typeof Icon>[0][\"name\"];\n  /**\n  * 选中态（1 GUI px 白色内框）\n  */\n  selected?: boolean;\n  /**\n  * 槽位边长（GUI px，默认 18 —— 原版槽位）\n  */\n  size?: number;\n  /**\n  * 自定义图标 URL\n  */\n  src?: string;\n  /**\n  * 槽位样式（绝对定位等）\n  */\n  style?: CSSProperties;\n  /**\n  * 悬浮提示内容（提供时以 Tooltip 包裹，交互经水合增强）\n  */\n  tooltip?: ReactNode;\n}\n\n/**\n * MC 物品堆（规格 §5 #3）：图标 + 计数徽标的最小复用单元。\n * 图标固定 16 GUI px（原版物品图标），无 tooltip 时为纯展示组合，RSC 兼容。\n */\nexport function ItemStack({\n  bare = false,\n  className,\n  count,\n  icon,\n  selected = false,\n  size = 18,\n  src,\n  style,\n  tooltip,\n}: ItemStackProps) {\n  const content = (\n    <Slot bare={bare} className={className} selected={selected} size={size} style={style}>\n      <Icon name={icon} size={16} src={src} />\n      {count !== undefined && count > 1\n        ? (\n            <Badge className=\"absolute right-1 bottom-0\">{count}</Badge>\n          )\n        : null}\n    </Slot>\n  );\n\n  if (!tooltip) {\n    return content;\n  }\n\n  return (\n    <Tooltip>\n      <TooltipTrigger className=\"cursor-default\">\n        {content}\n        <span className=\"sr-only\">{typeof tooltip === \"string\" ? tooltip : \"\"}</span>\n      </TooltipTrigger>\n      <TooltipPopup>{tooltip}</TooltipPopup>\n    </Tooltip>\n  );\n}\n",
+      "path": "packages/ui/src/containers/item-stack/index.tsx",
+      "target": "components/tennantite/item-stack/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "item-stack",
+  "registryDependencies": [
+    "@tennantite/badge",
+    "@tennantite/icon",
+    "@tennantite/slot",
+    "@tennantite/tennantite-base",
+    "@tennantite/tooltip"
+  ],
+  "title": "Item Stack",
+  "type": "registry:component"
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { PlayerInventory } from \"@/components/tennantite/player-inventory\";\nimport { ScreenPanel } from \"@/components/tennantite/screen-panel\";\nimport { gui } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { ScreenItemSlot } from \"@/components/tennantite/lib/screen-slot\";\n\nexport interface SmithingScreenProps {\n  addition?: ScreenSlot;\n  base?: ScreenSlot;\n  className?: string;\n  error?: boolean;\n  hotbarItems?: ScreenSlot[];\n  onSlotClick?: (\n    area: \"addition\" | \"base\" | \"hotbar\" | \"main\" | \"output\" | \"template\",\n    index: number,\n  ) => void;\n  output?: ScreenSlot;\n  selectedIndex?: number;\n  template?: ScreenSlot;\n  title?: ReactNode;\n}\n\n/**\n * 锻造台界面（规格 §6）：`container/smithing.png` 176×166。\n */\nconst EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];\nexport function SmithingScreen({\n  addition,\n  base,\n  className,\n  error = false,\n  hotbarItems = EMPTY_HOTBAR_ITEMS,\n  onSlotClick,\n  output,\n  selectedIndex,\n  template,\n  title,\n}: SmithingScreenProps) {\n  return (\n    <ScreenPanel\n      background=\"container/smithing.png\"\n      className={className}\n      height={166}\n      title={title}\n      width={176}\n    >\n      <ScreenItemSlot\n        ghost=\"sprites/container/slot/smithing_template_armor_trim.png\"\n        item={template}\n        label=\"smithing-template\"\n        left={7}\n        onActivate={onSlotClick ? () => onSlotClick(\"template\", 0) : undefined}\n        top={47}\n      />\n      <ScreenItemSlot\n        ghost=\"sprites/container/slot/chestplate.png\"\n        item={base}\n        label=\"smithing-base\"\n        left={25}\n        onActivate={onSlotClick ? () => onSlotClick(\"base\", 0) : undefined}\n        top={47}\n      />\n      <ScreenItemSlot\n        ghost=\"sprites/container/slot/ingot.png\"\n        item={addition}\n        label=\"smithing-addition\"\n        left={43}\n        onActivate={onSlotClick ? () => onSlotClick(\"addition\", 0) : undefined}\n        top={47}\n      />\n      <ScreenItemSlot\n        item={output}\n        label=\"smithing-output\"\n        left={97}\n        onActivate={onSlotClick ? () => onSlotClick(\"output\", 0) : undefined}\n        top={47}\n      />\n      {error\n        ? (\n            <GuiSprite\n              className=\"absolute\"\n              height={21}\n              name=\"sprites/container/smithing/error.png\"\n              style={{ left: gui(65), top: gui(46) }}\n              width={28}\n            />\n          )\n        : null}\n      <PlayerInventory\n        bare\n        hotbarItems={hotbarItems}\n        onSlotClick={onSlotClick}\n        selectedIndex={selectedIndex}\n      />\n    </ScreenPanel>\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/smithing-screen/index.tsx",
+      "target": "components/tennantite/smithing-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "smithing-screen",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/player-inventory",
+    "@tennantite/screen-panel",
+    "@tennantite/screen-slot",
+    "@tennantite/screen-types",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Smithing Screen",
+  "type": "registry:component"
+}

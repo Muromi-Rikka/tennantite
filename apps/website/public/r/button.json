@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import { Button as BaseButton } from \"@base-ui/react/button\";\n\nimport type { ButtonProps as ButtonProperties } from \"./types\";\nimport { buttonClassName } from \"./styles\";\n\nexport type { ButtonProps, ButtonVariant } from \"./types\";\n\n/**\n * MC 石纹按钮（规格 §4 #1）：原版 20 GUI px 高。\n * 悬浮 / 聚焦 / 禁用态由 textures.css 伪类切换，无 JS 状态，SSR 安全。\n */\nexport function Button({ className, variant, ...properties }: ButtonProperties) {\n  return (\n    <BaseButton\n      className={buttonClassName({ className, variant })}\n      type=\"button\"\n      {...properties}\n    />\n  );\n}\n",
+      "path": "packages/ui/src/primitives/button/index.tsx",
+      "target": "components/tennantite/button/index.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { cva } from \"class-variance-authority\";\n\nimport type { ButtonProps as ButtonProperties } from \"./types\";\n\nimport { cn } from \"@/components/tennantite/lib/tennantite-utils\";\n\n/**\n * 原版按钮几何：200×20 GUI px，横向内边距 4 GUI px；\n * 悬浮 / 聚焦态的白色边框与填充变化由 textures.css 的伪类接管。\n */\nexport const buttonStyles = cva(\n  [\n    \"mc-text-shadow inline-flex h-20 max-w-full cursor-pointer items-center justify-center gap-0 overflow-hidden px-4\",\n    \"font-mc mc-text text-mc-text-main no-underline select-none\",\n    \"whitespace-nowrap\",\n    \"disabled:cursor-not-allowed disabled:text-mc-text-dim\",\n  ].join(\" \"),\n  {\n    defaultVariants: {\n      variant: \"default\",\n    },\n    variants: {\n      variant: {\n        default: \"mc-tex-btn\",\n        ghost: [\n          \"bg-transparent\",\n          \"hover:bg-white/10 active:bg-white/20\",\n          \"focus-visible:mc-outline focus-visible:outline-white\",\n        ].join(\" \"),\n        realms: \"mc-tex-btn-realms focus-visible:mc-outline focus-visible:outline-white\",\n        success: \"mc-tex-btn-success focus-visible:mc-outline focus-visible:outline-white\",\n      },\n    },\n  },\n);\n\nexport function buttonClassName({\n  className,\n  variant,\n}: Pick<ButtonProperties, \"className\" | \"variant\">): string {\n  return cn(buttonStyles({ variant }), className);\n}\n",
+      "path": "packages/ui/src/primitives/button/styles.ts",
+      "target": "components/tennantite/button/styles.ts",
+      "type": "registry:component"
+    },
+    {
+      "content": "import type { ComponentProps } from \"react\";\n\nexport interface ButtonProps extends ComponentProps<\"button\"> {\n  /**\n  * 视觉变体：default 石纹（规格 §4 #1）/ success 主行动绿 / ghost 透明\n  */\n  variant?: ButtonVariant;\n}\n\nexport type ButtonVariant = \"default\" | \"ghost\" | \"realms\" | \"success\";\n",
+      "path": "packages/ui/src/primitives/button/types.ts",
+      "target": "components/tennantite/button/types.ts",
+      "type": "registry:component"
+    }
+  ],
+  "name": "button",
+  "registryDependencies": [
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Button",
+  "type": "registry:component"
+}

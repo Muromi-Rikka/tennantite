@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [],
+  "files": [
+    {
+      "content": "import type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { PlayerInventory } from \"@/components/tennantite/player-inventory\";\nimport { ScreenPanel } from \"@/components/tennantite/screen-panel\";\nimport { CroppedProgress } from \"@/components/tennantite/lib/screen-parts\";\nimport { ScreenItemSlot } from \"@/components/tennantite/lib/screen-slot\";\n\nconst BOTTLE_POSITIONS = [\n  [55, 50],\n  [78, 57],\n  [101, 50],\n] as const;\n\nexport interface BrewingStandScreenProps {\n  blazeFuel?: ScreenSlot;\n  bottles?: ScreenSlot[];\n  brewProgress?: number;\n  className?: string;\n  /**\n  * 燃料剩余 0..1\n  */\n  fuelProgress?: number;\n  ingredient?: ScreenSlot;\n  title?: ReactNode;\n}\n\n/**\n * 酿造台界面（规格 §6）：`container/brewing_stand.png` 176×166。\n */\nexport function BrewingStandScreen({\n  blazeFuel,\n  bottles = [],\n  brewProgress = 0,\n  className,\n  fuelProgress = 0,\n  ingredient,\n  title,\n}: BrewingStandScreenProps) {\n  return (\n    <ScreenPanel\n      background=\"container/brewing_stand.png\"\n      className={className}\n      height={166}\n      title={title}\n      width={176}\n    >\n      <ScreenItemSlot\n        ghost=\"sprites/container/slot/brewing_fuel.png\"\n        item={blazeFuel}\n        label=\"brewing-fuel\"\n        left={16}\n        top={16}\n      />\n      <ScreenItemSlot item={ingredient} label=\"brewing-ingredient\" left={79} top={16} />\n      {BOTTLE_POSITIONS.map(([left, top], index) => (\n        <ScreenItemSlot\n          ghost=\"sprites/container/slot/potion.png\"\n          item={bottles[index]}\n          key={left}\n          label={`brewing-bottle-${index}`}\n          left={left}\n          top={top}\n        />\n      ))}\n      <CroppedProgress\n        direction=\"up\"\n        height={29}\n        label=\"酿造进度\"\n        left={63}\n        name=\"sprites/container/brewing_stand/bubbles.png\"\n        progress={brewProgress}\n        top={14}\n        width={12}\n      />\n      <CroppedProgress\n        height={28}\n        left={97}\n        name=\"sprites/container/brewing_stand/brew_progress.png\"\n        progress={brewProgress}\n        top={16}\n        width={9}\n      />\n      <CroppedProgress\n        height={4}\n        left={60}\n        name=\"sprites/container/brewing_stand/fuel_length.png\"\n        progress={fuelProgress}\n        top={44}\n        width={18}\n      />\n      <PlayerInventory bare />\n    </ScreenPanel>\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/brewing-stand-screen/index.tsx",
+      "target": "components/tennantite/brewing-stand-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "brewing-stand-screen",
+  "registryDependencies": [
+    "@tennantite/player-inventory",
+    "@tennantite/screen-panel",
+    "@tennantite/screen-parts",
+    "@tennantite/screen-slot",
+    "@tennantite/screen-types",
+    "@tennantite/tennantite-base"
+  ],
+  "title": "Brewing Stand Screen",
+  "type": "registry:component"
+}

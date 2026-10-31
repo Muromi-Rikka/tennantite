@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "class-variance-authority",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ComponentProps } from \"react\";\nimport { cva } from \"class-variance-authority\";\n\nimport { cn } from \"@/components/tennantite/lib/tennantite-utils\";\n\nconst badgeStyles = cva(\n  [\n    \"mc-text-shadow inline-flex items-center justify-center whitespace-nowrap\",\n    \"font-mc mc-text leading-none\",\n  ].join(\" \"),\n  {\n    defaultVariants: {\n      variant: \"default\",\n    },\n    variants: {\n      variant: {\n        /**\n        * 物品数量：白字黑影（MC 计数样式）\n        */\n        default: \"text-mc-text-main\",\n        /**\n        * 次要信息：暗灰\n        */\n        dim: \"text-mc-text-dim\",\n        /**\n        * 稀有 / 标题：金色\n        */\n        gold: \"text-mc-gold\",\n      },\n    },\n  },\n);\n\nexport interface BadgeProps extends ComponentProps<\"span\"> {\n  variant?: BadgeVariant;\n}\n\nexport type BadgeVariant = \"default\" | \"dim\" | \"gold\";\n\n/**\n * MC 计数徽标（规格 §4 #13，自研纯样式）：物品数量 / 稀有标识。\n*/\nexport function Badge({ className, variant, ...properties }: BadgeProps) {\n  return (\n    <span\n      className={cn(badgeStyles({ variant }), className)}\n      {...properties}\n    />\n  );\n}\n",
+      "path": "packages/ui/src/primitives/badge/index.tsx",
+      "target": "components/tennantite/badge/index.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import type { ComponentProps } from \"react\";\n\nimport type { Badge } from \"./index\";\n\nexport type { BadgeVariant } from \"./index\";\n\nexport type BadgeProps = ComponentProps<typeof Badge>;\n",
+      "path": "packages/ui/src/primitives/badge/types.ts",
+      "target": "components/tennantite/badge/types.ts",
+      "type": "registry:component"
+    }
+  ],
+  "name": "badge",
+  "registryDependencies": [
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Badge",
+  "type": "registry:component"
+}

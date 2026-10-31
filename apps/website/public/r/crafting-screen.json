@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [],
+  "files": [
+    {
+      "content": "import type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { PlayerInventory } from \"@/components/tennantite/player-inventory\";\nimport { ScreenPanel } from \"@/components/tennantite/screen-panel\";\nimport { RecipeBookButton } from \"@/components/tennantite/lib/screen-parts\";\nimport { ScreenItemSlot } from \"@/components/tennantite/lib/screen-slot\";\nimport { padSlots } from \"@/components/tennantite/lib/screen-types\";\n\nconst CRAFT_POSITIONS = [\n  [29, 16],\n  [47, 16],\n  [65, 16],\n  [29, 34],\n  [47, 34],\n  [65, 34],\n  [29, 52],\n  [47, 52],\n  [65, 52],\n] as const;\n\nexport interface CraftingScreenProps {\n  className?: string;\n  craftItems?: ScreenSlot[];\n  craftResult?: ScreenSlot;\n  hotbarItems?: ScreenSlot[];\n  onRecipeBook?: () => void;\n  onSlotClick?: (area: \"craft\" | \"craft-result\" | \"hotbar\" | \"main\", index: number) => void;\n  selectedIndex?: number;\n  title?: ReactNode;\n}\n\n/**\n * 工作台界面（规格 §6）：`container/crafting_table.png` 176×166。\n */\nconst EMPTY_CRAFT_ITEMS: ScreenSlot[] = [];\nconst EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];\nexport function CraftingScreen({\n  className,\n  craftItems = EMPTY_CRAFT_ITEMS,\n  craftResult = null,\n  hotbarItems = EMPTY_HOTBAR_ITEMS,\n  onRecipeBook,\n  onSlotClick,\n  selectedIndex,\n  title,\n}: CraftingScreenProps) {\n  const craft = padSlots(craftItems, 9);\n  return (\n    <ScreenPanel\n      background=\"container/crafting_table.png\"\n      className={className}\n      height={166}\n      title={title}\n      width={176}\n    >\n      {CRAFT_POSITIONS.map(([left, top], index) => (\n        <ScreenItemSlot\n          item={craft[index]}\n          key={`${left}-${top}`}\n          label={`craft-${index}`}\n          left={left}\n          onActivate={\n            onSlotClick\n              ? () => {\n                  onSlotClick(\"craft\", index);\n                }\n              : undefined\n          }\n          top={top}\n        />\n      ))}\n      <ScreenItemSlot\n        item={craftResult}\n        label=\"craft-result-0\"\n        left={119}\n        onActivate={\n          onSlotClick\n            ? () => {\n                onSlotClick(\"craft-result\", 0);\n              }\n            : undefined\n        }\n        size={26}\n        top={30}\n      />\n      <RecipeBookButton left={5} onClick={onRecipeBook} top={34} />\n      <PlayerInventory\n        bare\n        hotbarItems={hotbarItems}\n        onSlotClick={onSlotClick}\n        selectedIndex={selectedIndex}\n      />\n    </ScreenPanel>\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/crafting-screen/index.tsx",
+      "target": "components/tennantite/crafting-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "crafting-screen",
+  "registryDependencies": [
+    "@tennantite/player-inventory",
+    "@tennantite/screen-panel",
+    "@tennantite/screen-parts",
+    "@tennantite/screen-slot",
+    "@tennantite/screen-types",
+    "@tennantite/tennantite-base"
+  ],
+  "title": "Crafting Screen",
+  "type": "registry:component"
+}

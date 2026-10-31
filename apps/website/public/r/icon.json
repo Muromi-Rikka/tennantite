@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@tennantite/textures",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { PixelIconName } from \"@tennantite/textures\";\nimport type { ComponentProps } from \"react\";\nimport { isBlockIconName, pixelIcons } from \"@tennantite/textures\";\nimport { cn, gui } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { BlockIcon } from \"@/components/tennantite/block-icon\";\n\nexport interface IconProps extends Omit<ComponentProps<\"img\">, \"alt\" | \"src\"> {\n  /**\n  * 内置图标名（textures 包原版 PNG data URI；方块名走 `BlockIcon` 等轴渲染）\n  */\n  name?: PixelIconName;\n  /**\n  * 像素渲染（默认开启，规格 §0.4）\n  */\n  pixelated?: boolean;\n  /**\n  * 边长（GUI px，默认 16 —— 原版物品图标）\n  */\n  size?: number;\n  /**\n  * 自定义图片 URL（与 name 二选一）\n  */\n  src?: string;\n}\n\n/**\n * MC 像素图标容器（规格 §5 #4）：16×16 基底按 size 放大，pixelated 无模糊缩放。\n * 方块名（`isBlockIconName`）委派给 `BlockIcon` 等轴渲染，与游戏内物品栏一致。\n * 纯展示组件，RSC 兼容。\n */\nexport function Icon({\n  className,\n  name,\n  pixelated = true,\n  size = 16,\n  src,\n  style,\n  ...properties\n}: IconProps) {\n  if (name && isBlockIconName(name)) {\n    return (\n      <BlockIcon className={className} name={name} pixelated={pixelated} size={size} style={style} />\n    );\n  }\n  const href = name ? pixelIcons[name] : src;\n  if (!href) {\n    return null;\n  }\n  return (\n    // alt 语义由调用方通过 aria-label / title 提供，图标默认装饰性；\n    // 像素图标为原版 PNG data URI，需原位 img 渲染，不适用 next/image\n    // eslint-disable-next-line next/no-img-element -- 同上\n    <img\n      alt=\"\"\n      aria-hidden=\"true\"\n      className={cn(\"shrink-0\", pixelated && \"pixelated\", className)}\n      data-icon={name}\n      src={href}\n      style={{ height: gui(size), width: gui(size), ...style }}\n      {...properties}\n    />\n  );\n}\n",
+      "path": "packages/ui/src/containers/icon/index.tsx",
+      "target": "components/tennantite/icon/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "icon",
+  "registryDependencies": [
+    "@tennantite/block-icon",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Icon",
+  "type": "registry:component"
+}

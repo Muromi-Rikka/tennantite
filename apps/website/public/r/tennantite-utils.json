@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [],
+  "files": [
+    {
+      "content": "export { cn } from \"cn\";\n\n/**\n * GUI px → CSS 长度：`gui(18)` = 18 × var(--mc-gui)。\n *\n * 原版 GUI 坐标为整数 GUI px，默认 `--mc-scale: 2` 时 1 GUI px = 2 CSS px。\n */\nexport function gui(value: number): string {\n  return `calc(var(--mc-gui) * ${value})`;\n}\n",
+      "path": "packages/ui/src/lib/utils.ts",
+      "target": "components/tennantite/lib/tennantite-utils.ts",
+      "type": "registry:component"
+    }
+  ],
+  "name": "tennantite-utils",
+  "registryDependencies": [],
+  "title": "Tennantite Utils",
+  "type": "registry:component"
+}

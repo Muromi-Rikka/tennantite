@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [],
+  "files": [
+    {
+      "content": "import type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { AbstractFurnaceScreen } from \"@/components/tennantite/abstract-furnace-screen\";\n\nexport interface FurnaceScreenProps {\n  burnProgress?: number;\n  className?: string;\n  cookProgress?: number;\n  fuel?: ScreenSlot;\n  input?: ScreenSlot;\n  onRecipeBook?: () => void;\n  onTakeOutput?: () => void;\n  output?: ScreenSlot;\n  title?: ReactNode;\n}\n\n/**\n * 熔炉界面（规格 §6）：`container/furnace.png` 176×166。\n */\nexport function FurnaceScreen(properties: FurnaceScreenProps) {\n  return (\n    <AbstractFurnaceScreen\n      background=\"container/furnace.png\"\n      progressPrefix=\"sprites/container/furnace\"\n      {...properties}\n    />\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/furnace-screen/index.tsx",
+      "target": "components/tennantite/furnace-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "furnace-screen",
+  "registryDependencies": [
+    "@tennantite/abstract-furnace-screen",
+    "@tennantite/screen-types",
+    "@tennantite/tennantite-base"
+  ],
+  "title": "Furnace Screen",
+  "type": "registry:component"
+}

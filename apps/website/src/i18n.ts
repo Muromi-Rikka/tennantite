@@ -39,17 +39,23 @@ export interface UIDictionary {
     title: string;
   };
   componentPage: {
+    api: string;
     breadcrumb: string;
     codeLabel: string;
     exports: string;
     install: string;
+    installCli: string;
     installNote: string;
+    installNpm: string;
     metaDescriptionSuffix: string;
     metaTitleSuffix: string;
     previewLabel: string;
     source: string;
     sourceNote: string;
     tabsLabel: string;
+    usage: string;
+    usageCli: string;
+    usageNpm: string;
   };
   componentsPage: {
     breadcrumb: string;
@@ -66,6 +72,11 @@ export interface UIDictionary {
     metaSuffix: string;
     mobileNav: string;
     sections: Record<DocSection, string>;
+    sidebarGroups: {
+      components: string;
+      hud: string;
+      mods: string;
+    };
     toc: string;
   };
   footer: {
@@ -203,17 +214,23 @@ const zh: UIDictionary = {
     title: "整屏界面",
   },
   componentPage: {
+    api: "API Reference",
     breadcrumb: "Components",
     codeLabel: "代码",
     exports: "导出",
     install: "安装",
-    installNote: "仓库内使用 workspace 依赖；npm 尚未发布。",
+    installCli: "CLI 拷贝",
+    installNote: "npm 方式安装编译产物；需要改造源码请用上方的 CLI 拷贝安装。",
+    installNpm: "npm 直装",
     metaDescriptionSuffix: "查看 {name} 的实时预览、导出与源码。",
     metaTitleSuffix: "组件 · Tennantite",
     previewLabel: "预览",
     source: "源码",
     sourceNote: "npm 包保留源码目录，可直接复制改造。",
     tabsLabel: "预览与代码",
+    usage: "用法",
+    usageCli: "CLI 拷贝导入",
+    usageNpm: "npm 导入",
   },
   componentsPage: {
     breadcrumb: "Components",
@@ -234,6 +251,11 @@ const zh: UIDictionary = {
       design: "设计系统",
       distribution: "分发",
       start: "开始",
+    },
+    sidebarGroups: {
+      components: "组件",
+      hud: "HUD 与界面",
+      mods: "Mod 界面",
     },
     toc: "本页目录",
   },
@@ -306,7 +328,7 @@ const zh: UIDictionary = {
       headingLine2Prefix: "界面，",
       headingSuffix: "。",
       install: "开始安装",
-      installNote: "v0.1.0 预览：npm 尚未发布，仓库内使用 workspace 依赖。",
+      installNote: "v0.1.0：一行命令拷贝组件源码；npm 直装见安装文档。",
       previewLabel: "菜单界面 · MainMenu",
       view: "查看 →",
     },
@@ -445,17 +467,23 @@ const en: UIDictionary = {
     title: "Blocks",
   },
   componentPage: {
+    api: "API Reference",
     breadcrumb: "Components",
     codeLabel: "Code",
     exports: "Exports",
     install: "Install",
-    installNote: "Use a workspace dependency in this repo; npm is not published yet.",
+    installCli: "CLI copy",
+    installNote: "npm installs the compiled package; use the CLI copy above to adapt the source.",
+    installNpm: "npm install",
     metaDescriptionSuffix: "See the live preview, exports and source for {name}.",
     metaTitleSuffix: "component · Tennantite",
     previewLabel: "Preview",
     source: "Source",
     sourceNote: "The npm package keeps the source tree, so you can copy and adapt it directly.",
     tabsLabel: "Preview and code",
+    usage: "Usage",
+    usageCli: "CLI copy import",
+    usageNpm: "npm import",
   },
   componentsPage: {
     breadcrumb: "Components",
@@ -476,6 +504,11 @@ const en: UIDictionary = {
       design: "Design system",
       distribution: "Distribution",
       start: "Start",
+    },
+    sidebarGroups: {
+      components: "Components",
+      hud: "HUD & Screens",
+      mods: "Mod UIs",
     },
     toc: "On this page",
   },
@@ -548,7 +581,7 @@ const en: UIDictionary = {
       headingLine2Prefix: "interface into ",
       headingSuffix: ".",
       install: "Get started",
-      installNote: "v0.1.0 preview: not on npm yet; use a workspace dependency in this repo.",
+      installNote: "v0.1.0: copy component source with one command; npm install is documented on the installation page.",
       previewLabel: "Menu · MainMenu",
       view: "View →",
     },

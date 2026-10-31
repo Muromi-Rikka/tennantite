@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ComponentProps, ReactNode } from \"react\";\n\nimport { cn } from \"@/components/tennantite/lib/tennantite-utils\";\n\nexport interface TitleBarProps extends Omit<ComponentProps<\"div\">, \"title\"> {\n  align?: \"center\" | \"end\" | \"start\";\n  title: ReactNode;\n}\n\n/**\n * MC 窗口标题栏（规格 §5 #5）：像素字体标题。\n*/\nexport function TitleBar({\n  align = \"center\",\n  className,\n  title,\n  ...properties\n}: TitleBarProps) {\n  return (\n    <div\n      className={cn(\n        \"font-mc mc-text text-mc-text-main mc-text-shadow\",\n        align === \"center\" && \"text-center\",\n        align === \"end\" && \"text-right\",\n        className,\n      )}\n      {...properties}\n    >\n      {title}\n    </div>\n  );\n}\n",
+      "path": "packages/ui/src/containers/title-bar/index.tsx",
+      "target": "components/tennantite/title-bar/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "title-bar",
+  "registryDependencies": [
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Title Bar",
+  "type": "registry:component"
+}

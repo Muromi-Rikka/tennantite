@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { CSSProperties } from \"react\";\n\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { cn } from \"@/components/tennantite/lib/tennantite-utils\";\n\nexport interface AttackIndicatorProps {\n  className?: string;\n  /**\n  * 是否已蓄力满（显示 full 精灵）\n  */\n  full?: boolean;\n  /**\n  * 蓄力进度 0..1\n  */\n  progress: number;\n  /**\n  * 准星下方或快捷栏上方\n  */\n  style?: CSSProperties;\n  variant?: \"crosshair\" | \"hotbar\";\n}\n\n/**\n * 攻击指示器（规格 §6.1）：原版 crosshair/hotbar attack indicator 精灵。\n */\nexport function AttackIndicator({\n  className,\n  full = false,\n  progress,\n  style,\n  variant = \"crosshair\",\n}: AttackIndicatorProps) {\n  const ratio = Math.min(1, Math.max(0, progress));\n  if (variant === \"hotbar\") {\n    return (\n      <div className={cn(\"relative size-18\", className)} data-hud=\"\" style={style}>\n        <GuiSprite\n          className=\"absolute inset-0\"\n          height={18}\n          name=\"sprites/hud/hotbar_attack_indicator_background.png\"\n          width={18}\n        />\n        <GuiSprite\n          className=\"absolute inset-0\"\n          height={18}\n          name=\"sprites/hud/hotbar_attack_indicator_progress.png\"\n          style={{ clipPath: `inset(0 0 ${(1 - ratio) * 100}% 0)` }}\n          width={18}\n        />\n      </div>\n    );\n  }\n  return (\n    <div className={cn(\"relative size-16\", className)} data-hud=\"\" style={style}>\n      {full\n        ? (\n            <GuiSprite\n              className=\"absolute inset-0\"\n              height={16}\n              name=\"sprites/hud/crosshair_attack_indicator_full.png\"\n              width={16}\n            />\n          )\n        : (\n            <>\n              <GuiSprite\n                className=\"absolute inset-x-0 bottom-0\"\n                height={4}\n                name=\"sprites/hud/crosshair_attack_indicator_background.png\"\n                width={16}\n              />\n              <GuiSprite\n                className=\"absolute inset-x-0 bottom-0\"\n                height={4}\n                name=\"sprites/hud/crosshair_attack_indicator_progress.png\"\n                style={{ clipPath: `inset(0 ${(1 - ratio) * 100}% 0 0)` }}\n                width={16}\n              />\n            </>\n          )}\n    </div>\n  );\n}\n",
+      "path": "packages/ui/src/screens/hud/attack-indicator/index.tsx",
+      "target": "components/tennantite/attack-indicator/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "attack-indicator",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Attack Indicator",
+  "type": "registry:component"
+}

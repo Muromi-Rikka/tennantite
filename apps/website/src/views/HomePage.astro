@@ -17,7 +17,7 @@ const { locale } = Astro.props;
 const text = ui[locale];
 const home = text.home;
 const site = Astro.site ?? new URL("http://localhost:3300");
-const installCommand = "pnpm add @tennantite/ui @tennantite/tokens @tennantite/textures";
+const installCommand = "npx shadcn add @tennantite/button";
 ---
 <SiteLayout
   title={home.metaTitle}

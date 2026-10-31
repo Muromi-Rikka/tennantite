@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@tennantite/textures",
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { PixelIconName } from \"@tennantite/textures\";\n\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { ItemStack } from \"@/components/tennantite/item-stack\";\nimport { cn, gui } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { AttackIndicator } from \"@/components/tennantite/attack-indicator\";\n\nexport interface HotbarItem {\n  count?: number;\n  icon?: PixelIconName;\n  src?: string;\n  tooltip?: string;\n}\n\nexport interface HotbarProps {\n  /**\n  * 攻击指示器进度 0..1\n  */\n  attackIndicator?: number;\n  className?: string;\n  /**\n  * 9 个快捷栏位的数据（规格 §6.1，物品数据由使用方注入）\n  */\n  items?: HotbarItem[];\n  /**\n  * 副手物品\n  */\n  offhand?: HotbarItem;\n  /**\n  * 副手槽在左/右\n  */\n  offhandSide?: \"left\" | \"right\";\n  /**\n  * 当前选中槽位索引（0..8）\n  */\n  selectedIndex?: number;\n}\n\nconst SLOT_COUNT = 9;\n/**\n * 原版：热键栏 182×22，槽位 20×20，步进 20，首槽左上角 (1,1)\n*/\nconst SLOT_SIZE = 20;\nconst SLOT_STEP = 20;\nconst FRAME_INSET = 1;\n\n/**\n * MC 快捷栏（规格 §6.1）：原版 182×22 GUI px，9 个 20×20 槽位。\n * 选中框 24×23 围绕 20×20 槽位偏移 (-2,-1)，overlay 语义。\n */\nexport function Hotbar({\n  attackIndicator,\n  className,\n  items = [],\n  offhand,\n  offhandSide = \"left\",\n  selectedIndex,\n}: HotbarProps) {\n  return (\n    <div\n      className={cn(\"mc-tex-hotbar relative\", className)}\n      data-hud=\"\"\n      style={{ height: gui(22), width: gui(182) }}\n    >\n      {Array.from({ length: SLOT_COUNT }, (_, index) => {\n        const item = items[index];\n        return (\n          <div\n            className=\"absolute\"\n            data-selected={index === selectedIndex ? \"\" : undefined}\n            key={index}\n            style={{\n              height: gui(SLOT_SIZE),\n              left: gui(FRAME_INSET + SLOT_STEP * index),\n              top: gui(FRAME_INSET),\n              width: gui(SLOT_SIZE),\n            }}\n          >\n            {item\n              ? (\n                  <ItemStack\n                    bare\n                    count={item.count}\n                    icon={item.icon}\n                    size={SLOT_SIZE}\n                    src={item.src}\n                    tooltip={item.tooltip}\n                  />\n                )\n              : null}\n          </div>\n        );\n      })}\n      {selectedIndex === undefined\n        ? null\n        : (\n            <div\n              className=\"mc-tex-hotbar-selection absolute\"\n              style={{ left: gui(SLOT_STEP * selectedIndex - 1), top: 0 }}\n            />\n          )}\n      {offhand\n        ? (\n            <div\n              className=\"absolute top-0\"\n              style={{\n                height: gui(24),\n                left: gui(offhandSide === \"left\" ? -29 : 182),\n                width: gui(29),\n              }}\n            >\n              <GuiSprite\n                className=\"absolute inset-0\"\n                height={24}\n                name={offhandSide === \"left\"\n                  ? \"sprites/hud/hotbar_offhand_left.png\"\n                  : \"sprites/hud/hotbar_offhand_right.png\"}\n                width={29}\n              />\n              <ItemStack\n                bare\n                className=\"absolute\"\n                count={offhand.count}\n                icon={offhand.icon}\n                size={20}\n                src={offhand.src}\n                style={{ left: gui(offhandSide === \"left\" ? 5 : 4), top: gui(2) }}\n                tooltip={offhand.tooltip}\n              />\n            </div>\n          )\n        : null}\n      {attackIndicator === undefined\n        ? null\n        : (\n            <AttackIndicator\n              className=\"absolute\"\n              progress={attackIndicator}\n              style={{ left: gui(82), top: gui(-18) }}\n              variant=\"hotbar\"\n            />\n          )}\n    </div>\n  );\n}\n",
+      "path": "packages/ui/src/screens/hud/hotbar/index.tsx",
+      "target": "components/tennantite/hotbar/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "hotbar",
+  "registryDependencies": [
+    "@tennantite/attack-indicator",
+    "@tennantite/gui-sprite",
+    "@tennantite/item-stack",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Hotbar",
+  "type": "registry:component"
+}

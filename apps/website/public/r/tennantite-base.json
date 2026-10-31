@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "@tennantite/tokens",
+    "@tennantite/textures"
+  ],
+  "files": [
+    {
+      "content": "/* @tennantite base：L0 资产包 @tennantite/tokens 与 @tennantite/textures 已随本条目作为 npm 依赖安装。\n * 在 Tailwind 入口 CSS 中按顺序引入：\n *   @import \"tailwindcss\";\n *   @import \"@tennantite/tokens/css/tokens.css\";\n *   @import \"@tennantite/textures/css/textures.css\";\n * 让 Tailwind 扫描拷贝的组件目录：\n *   @source \"../../components/tennantite\";（路径相对当前 CSS 文件）\n */\n\n:root {\n  --mc-scale: 2;\n}",
+      "path": "registry/base/base.css",
+      "target": "components/tennantite/base.css",
+      "type": "registry:component"
+    }
+  ],
+  "name": "tennantite-base",
+  "registryDependencies": [],
+  "title": "Tennantite Base",
+  "type": "registry:component"
+}

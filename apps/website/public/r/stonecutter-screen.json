@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import type { ReactNode } from \"react\";\n\nimport type { ScreenSlot } from \"@/components/tennantite/lib/screen-types\";\nimport { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { PlayerInventory } from \"@/components/tennantite/player-inventory\";\nimport { ScreenPanel } from \"@/components/tennantite/screen-panel\";\nimport { gui } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { ScreenItemSlot } from \"@/components/tennantite/lib/screen-slot\";\n\nexport interface StonecutterRecipe {\n  icon?: ScreenSlot;\n  id: string;\n}\n\nexport interface StonecutterScreenProps {\n  className?: string;\n  hotbarItems?: ScreenSlot[];\n  input?: ScreenSlot;\n  onRecipeSelect?: (id: string) => void;\n  onSlotClick?: (area: \"hotbar\" | \"input\" | \"main\" | \"output\", index: number) => void;\n  output?: ScreenSlot;\n  recipes?: StonecutterRecipe[];\n  selectedIndex?: number;\n  selectedRecipe?: string;\n  title?: ReactNode;\n}\n\n/**\n * 切石机界面（规格 §6）：`container/stonecutter.png` 176×166。\n */\nconst EMPTY_HOTBAR_ITEMS: ScreenSlot[] = [];\nconst EMPTY_RECIPES: StonecutterRecipe[] = [];\nexport function StonecutterScreen({\n  className,\n  hotbarItems = EMPTY_HOTBAR_ITEMS,\n  input,\n  onRecipeSelect,\n  onSlotClick,\n  output,\n  recipes = EMPTY_RECIPES,\n  selectedIndex,\n  selectedRecipe,\n  title,\n}: StonecutterScreenProps) {\n  return (\n    <ScreenPanel\n      background=\"container/stonecutter.png\"\n      className={className}\n      height={166}\n      title={title}\n      width={176}\n    >\n      <ScreenItemSlot\n        item={input}\n        label=\"stonecutter-input\"\n        left={19}\n        onActivate={onSlotClick ? () => onSlotClick(\"input\", 0) : undefined}\n        top={32}\n      />\n      {recipes.slice(0, 12).map((recipe, index) => (\n        <button\n          aria-label={`切石配方 ${recipe.id}`}\n          aria-pressed={selectedRecipe === recipe.id}\n          className=\"absolute cursor-pointer border-0 bg-transparent p-0\"\n          key={recipe.id}\n          onClick={() => {\n            onRecipeSelect?.(recipe.id);\n          }}\n          style={{\n            height: gui(18),\n            left: gui(52 + (index % 2) * 18),\n            top: gui(15 + Math.floor(index / 2) * 18),\n            width: gui(16),\n          }}\n          type=\"button\"\n        >\n          <GuiSprite\n            height={18}\n            name={selectedRecipe === recipe.id\n              ? \"sprites/container/stonecutter/recipe_selected.png\"\n              : \"sprites/container/stonecutter/recipe.png\"}\n            width={16}\n          />\n        </button>\n      ))}\n      <GuiSprite\n        className=\"absolute\"\n        height={15}\n        name=\"sprites/container/stonecutter/scroller.png\"\n        style={{ left: gui(119), top: gui(15) }}\n        width={12}\n      />\n      <ScreenItemSlot\n        item={output}\n        label=\"stonecutter-output\"\n        left={138}\n        onActivate={onSlotClick ? () => onSlotClick(\"output\", 0) : undefined}\n        size={26}\n        top={28}\n      />\n      <PlayerInventory\n        bare\n        hotbarItems={hotbarItems}\n        onSlotClick={onSlotClick}\n        selectedIndex={selectedIndex}\n      />\n    </ScreenPanel>\n  );\n}\n",
+      "path": "packages/ui/src/screens/containers/stonecutter-screen/index.tsx",
+      "target": "components/tennantite/stonecutter-screen/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "stonecutter-screen",
+  "registryDependencies": [
+    "@tennantite/gui-sprite",
+    "@tennantite/player-inventory",
+    "@tennantite/screen-panel",
+    "@tennantite/screen-slot",
+    "@tennantite/screen-types",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Stonecutter Screen",
+  "type": "registry:component"
+}

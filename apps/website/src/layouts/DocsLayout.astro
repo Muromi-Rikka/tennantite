@@ -7,7 +7,8 @@ import DocsToc from "@/components/docs/DocsToc.astro";
 import MobileDocsNav from "@/components/docs/MobileDocsNav.astro";
 import { getCollection } from "astro:content";
 import { ui } from "@/i18n";
-import { buildDocsNav, docHref, docSlug, filterDocs, getDocsPager, type DocEntry, type DocHeading } from "@/lib/docs";
+import { filterDocs, docHref, docSlug, getDocsPager, type DocEntry, type DocHeading } from "@/lib/docs";
+import { buildSiteNav } from "@/lib/nav";
 import { breadcrumb, techArticle } from "@/lib/seo";
 
 interface Props {
@@ -18,7 +19,7 @@ const { entry, headings } = Astro.props;
 const locale = entry.data.locale;
 const text = ui[locale];
 const docs = filterDocs(await getCollection("docs"), locale);
-const nav = buildDocsNav(docs, locale);
+const nav = await buildSiteNav(locale);
 const href = docHref(entry.id);
 const isIndex = docSlug(entry.id) === "index";
 const docsIndexHref = docHref(locale === "en" ? "en/index" : "index");

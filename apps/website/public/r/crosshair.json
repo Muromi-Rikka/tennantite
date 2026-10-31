@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "dependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "content": "import { GuiSprite } from \"@/components/tennantite/gui-sprite\";\nimport { cn } from \"@/components/tennantite/lib/tennantite-utils\";\nimport { AttackIndicator } from \"@/components/tennantite/attack-indicator\";\n\nexport interface CrosshairProps {\n  /**\n   * 攻击指示器进度 0..1（可选）\n   */\n  attackIndicator?: number;\n  className?: string;\n  /**\n   * 隐藏准星（规格 §6.1：可隐藏）\n   */\n  hidden?: boolean;\n}\n\n/**\n * MC 准星（规格 §6.1）：原版 15×15 `hud/crosshair.png`，overlay 语义。\n */\nexport function Crosshair({ attackIndicator, className, hidden = false }: CrosshairProps) {\n  if (hidden) {\n    return null;\n  }\n  return (\n    <div aria-hidden=\"true\" className={cn(\"inline-flex flex-col items-center\", className)} data-hud=\"\">\n      <GuiSprite height={15} name=\"sprites/hud/crosshair.png\" width={15} />\n      {attackIndicator === undefined\n        ? null\n        : <AttackIndicator className=\"mt-2\" progress={attackIndicator} variant=\"crosshair\" />}\n    </div>\n  );\n}\n",
+      "path": "packages/ui/src/screens/hud/crosshair/index.tsx",
+      "target": "components/tennantite/crosshair/index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "name": "crosshair",
+  "registryDependencies": [
+    "@tennantite/attack-indicator",
+    "@tennantite/gui-sprite",
+    "@tennantite/tennantite-base",
+    "@tennantite/tennantite-utils"
+  ],
+  "title": "Crosshair",
+  "type": "registry:component"
+}

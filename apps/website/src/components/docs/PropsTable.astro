@@ -1,0 +1,37 @@
+---
+import type { PropDoc } from "@/lib/props-types";
+
+interface Props {
+  locale: "en" | "zh";
+  props: PropDoc[];
+}
+const { locale, props } = Astro.props;
+const hasDefault = props.some(prop => prop.default !== undefined);
+const emptyText = locale === "en" ? "No public props." : "无公开 props。";
+---
+{props.length === 0 ? (
+  <p class="text-sm leading-12 text-site-muted">{emptyText}</p>
+) : (
+  <div class="overflow-x-auto border border-site-border">
+    <table class="w-full border-collapse text-left text-sm">
+      <thead>
+        <tr class="border-b border-site-border bg-site-surface">
+          <th class="px-8 py-6 font-medium text-site-muted">Prop</th>
+          <th class="px-8 py-6 font-medium text-site-muted">Type</th>
+          {hasDefault && <th class="px-8 py-6 font-medium text-site-muted">Default</th>}
+          <th class="px-8 py-6 font-medium text-site-muted">{locale === "en" ? "Description" : "描述"}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {props.map(prop => (
+          <tr class="border-b border-site-border/60 align-top last:border-b-0">
+            <td class="px-8 py-6 font-mono text-xs text-site-fg">{prop.name}</td>
+            <td class="px-8 py-6 font-mono text-xs text-site-accent">{prop.type}</td>
+            {hasDefault && <td class="px-8 py-6 font-mono text-xs text-site-muted">{prop.default ?? "—"}</td>}
+            <td class="px-8 py-6 leading-12 text-site-muted">{locale === "en" ? prop.descriptionEn : prop.description}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+)}

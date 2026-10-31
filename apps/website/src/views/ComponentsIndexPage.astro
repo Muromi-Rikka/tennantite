@@ -1,9 +1,12 @@
 ---
 import PageHeader from "@/components/site/PageHeader.astro";
 import LinkButton from "@/components/site/LinkButton.astro";
+import DocsSidebar from "@/components/docs/DocsSidebar.astro";
+import MobileDocsNav from "@/components/docs/MobileDocsNav.astro";
 import type { Locale } from "@/i18n";
 import { fill, localeHref, ui } from "@/i18n";
 import SiteLayout from "@/layouts/SiteLayout.astro";
+import { buildSiteNav } from "@/lib/nav";
 import {
   catalogDescription,
   componentGroups,
@@ -28,9 +31,17 @@ const groups = componentGroups
     items: coreComponents.filter(component => component.group === group.id),
   }))
   .filter(group => group.items.length > 0);
+const nav = await buildSiteNav(locale);
 ---
 <SiteLayout title={text.metaTitle} description={description} locale={locale}>
-  <div class="mx-auto max-w-[1440px] px-12 py-24">
+  <div class="mx-auto flex w-full max-w-[1440px] gap-24 px-12">
+    <aside class="hidden w-[200px] shrink-0 lg:block">
+      <div class="sticky top-32 max-h-[calc(100vh-128px)] overflow-y-auto py-24">
+        <DocsSidebar groups={nav} label={ui[locale].docsChrome.mobileNav} pathname={Astro.url.pathname} />
+      </div>
+    </aside>
+    <div class="min-w-0 flex-1 py-24">
+      <MobileDocsNav groups={nav} title={ui[locale].docsChrome.mobileNav} />
     <PageHeader
       breadcrumb={[{ label: text.breadcrumb }]}
       title={text.title}
@@ -67,6 +78,7 @@ const groups = componentGroups
         </section>
       );
     })}
+    </div>
   </div>
 </SiteLayout>
 
