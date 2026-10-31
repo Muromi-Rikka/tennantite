@@ -61,10 +61,23 @@ const sharedItems = [
  */
 const fileOwner = new Map();
 
+function collectFiles(dir) {
+  return fs
+    .readdirSync(dir)
+    .filter(
+      file =>
+        file !== "index.test.tsx"
+        && file !== "demo.tsx"
+        && (file.endsWith(".tsx") || file.endsWith(".ts")),
+    )
+    .map(file => path.join(dir, file));
+}
+
 function registerCopyFiles() {
   for (const group of copyGroups) {
     const groupDir = path.join(copyRoot, group);
-    for (const entry of fs.readdirSync(groupDir, { withFileTypes: true })) {
+    const entries = fs.readdirSync(groupDir, { withFileTypes: true });
+    for (const entry of entries) {
       if (!entry.isDirectory()) {
         continue;
       }
@@ -82,23 +95,7 @@ function registerCopyFiles() {
   }
 }
 
-function collectFiles(dir) {
-  return fs
-    .readdirSync(dir)
-    .filter(
-      file =>
-        file !== "index.test.tsx"
-        && file !== "demo.tsx"
-        && (file.endsWith(".tsx") || file.endsWith(".ts")),
-    )
-    .map(file => path.join(dir, file));
-}
-
 const importPattern = /(from\s*)(["'])(\.\.?\/[^"']+)\2/g;
-
-function stripIndexSuffix(specifier) {
-  return specifier.replace(/\/index$/, "");
-}
 
 /**
  * 解析相对导入到真实文件；返回 null 表示解析失败。
@@ -109,30 +106,11 @@ function resolveRelative(fromFile, specifier) {
   return candidates.find(candidate => fs.existsSync(candidate) && fs.statSync(candidate).isFile()) ?? null;
 }
 
-const errors = [];
-
-/**
- * 导入改写：相对导入指向自身目录内保持不变；否则改写为归属 item 的别名。
- * 失败记录错误（防止静默产出坏 item）。
- */
-function rewriteContent(sourceFile, content, selfDir) {
-  return content.replace(importPattern, (match, from, quote, specifier) => {
-    const resolved = resolveRelative(sourceFile, specifier);
-    if (!resolved) {
-      errors.push(`${sourceFile}: 无法解析相对导入 "${specifier}"`);
-      return match;
-    }
-    if (resolved.startsWith(selfDir + path.sep)) {
-      return match;
-    }
-    const owner = fileOwner.get(resolved);
-    if (!owner) {
-      errors.push(`${sourceFile}: 相对导入 "${specifier}" 指向拷贝范围外的文件 ${path.relative(root, resolved)}`);
-      return match;
-    }
-    return `${from}${quote}${stripIndexSuffix(owner)}${quote}`;
-  });
+function stripIndexSuffix(specifier) {
+  return specifier.replace(/\/index$/, "");
 }
+
+const errors = [];
 
 /**
  * 依赖推断：基础依赖 + 共享 lib（cn/gui）+ 纹理资产包。
@@ -151,7 +129,30 @@ function inferDependencies(content) {
   if (content.includes("@tennantite/textures")) {
     dependencies.add("@tennantite/textures");
   }
-  return [...dependencies].sort();
+  return [...dependencies].toSorted((a, b) => a.localeCompare(b));
+}
+
+/**
+ * 导入改写：相对导入指向自身目录内保持不变；否则改写为归属 item 的别名。
+ * 失败记录错误（防止静默产出坏 item）。
+ */
+function rewriteContent(sourceFile, content, selfDir) {
+  return content.replaceAll(importPattern, (match, from, quote, specifier) => {
+    const resolved = resolveRelative(sourceFile, specifier);
+    if (!resolved) {
+      errors.push(`${sourceFile}: 无法解析相对导入 "${specifier}"`);
+      return match;
+    }
+    if (resolved.startsWith(selfDir + path.sep)) {
+      return match;
+    }
+    const owner = fileOwner.get(resolved);
+    if (!owner) {
+      errors.push(`${sourceFile}: 相对导入 "${specifier}" 指向拷贝范围外的文件 ${path.relative(root, resolved)}`);
+      return match;
+    }
+    return `${from}${quote}${stripIndexSuffix(owner)}${quote}`;
+  });
 }
 
 function titleCase(name) {
@@ -166,52 +167,49 @@ registerCopyFiles();
 // ---------------------------------------------------------------------------
 // 拷贝范围 item（primitives/containers/screens 各组 + 共享 lib）
 // ---------------------------------------------------------------------------
-const copyRegistryItems = [];
-
-// base item：首次 add 任一组件时一并装上两个 L0 资产包。
-// 注意：registry:style 类型会被 CLI 解析到官方 styles 目录而非本 registry，因此用 registry:component。
-copyRegistryItems.push({
-  $schema: REGISTRY_ITEM_SCHEMA,
-  dependencies: ["@tennantite/tokens", "@tennantite/textures"],
-  files: [
-    {
-      content: [
-        "/* @tennantite base：L0 资产包 @tennantite/tokens 与 @tennantite/textures 已随本条目作为 npm 依赖安装。",
-        " * 在 Tailwind 入口 CSS 中按顺序引入：",
-        " *   @import \"tailwindcss\";",
-        " *   @import \"@tennantite/tokens/css/tokens.css\";",
-        " *   @import \"@tennantite/textures/css/textures.css\";",
-        " * 让 Tailwind 扫描拷贝的组件目录：",
-        " *   @source \"../../components/tennantite\";（路径相对当前 CSS 文件）",
-        " */",
-        "",
-        ":root {",
-        "  --mc-scale: 2;",
-        "}",
-      ].join("\n"),
-      path: "registry/base/base.css",
-      target: "components/tennantite/base.css",
-      type: "registry:component",
-    },
-  ],
-  name: "tennantite-base",
-  registryDependencies: [],
-  title: "Tennantite Base",
-  type: "registry:component",
-});
+const copyRegistryItems = [
+  // base item：首次 add 任一组件时一并装上两个 L0 资产包。
+  // 注意：registry:style 类型会被 CLI 解析到官方 styles 目录而非本 registry，因此用 registry:component。
+  {
+    $schema: REGISTRY_ITEM_SCHEMA,
+    dependencies: ["@tennantite/tokens", "@tennantite/textures"],
+    files: [
+      {
+        content: [
+          "/* @tennantite base：L0 资产包 @tennantite/tokens 与 @tennantite/textures 已随本条目作为 npm 依赖安装。",
+          " * 在 Tailwind 入口 CSS 中按顺序引入：",
+          " *   @import \"tailwindcss\";",
+          " *   @import \"@tennantite/tokens/css/tokens.css\";",
+          " *   @import \"@tennantite/textures/css/textures.css\";",
+          " * 让 Tailwind 扫描拷贝的组件目录：",
+          " *   @source \"../../components/tennantite\";（路径相对当前 CSS 文件）",
+          " */",
+          "",
+          ":root {",
+          "  --mc-scale: 2;",
+          "}",
+        ].join("\n"),
+        path: "registry/base/base.css",
+        target: "components/tennantite/base.css",
+        type: "registry:component",
+      },
+    ],
+    name: "tennantite-base",
+    registryDependencies: [],
+    title: "Tennantite Base",
+    type: "registry:component",
+  },
+];
 
 for (const shared of sharedItems) {
   const sourceFile = path.join(copyRoot, shared.source);
   const content = rewriteContent(sourceFile, fs.readFileSync(sourceFile, "utf8"), path.dirname(sourceFile));
   // 共享 lib 同目录内的兄弟共享文件（如 screen-slot 引 ./types）改写为 lib 内的邻居文件名。
-  const rewritten = content.replace(
+  const rewritten = content.replaceAll(
     /(from\s*)(["'])\.\/(types|screen-slot|screen-parts|utils)\2/g,
     (match, from, quote, name) => {
       const sibling = sharedItems.find(item => path.basename(item.source) === `${name}.ts` || path.basename(item.source) === `${name}.tsx`);
-      if (!sibling) {
-        return match;
-      }
-      return `${from}${quote}./${path.basename(sibling.target, path.extname(sibling.target))}${quote}`;
+      return sibling ? `${from}${quote}./${path.basename(sibling.target, path.extname(sibling.target))}${quote}` : match;
     },
   );
   copyRegistryItems.push({
@@ -227,7 +225,8 @@ for (const shared of sharedItems) {
 
 for (const group of copyGroups) {
   const groupDir = path.join(copyRoot, group);
-  for (const entry of fs.readdirSync(groupDir, { withFileTypes: true })) {
+  const groupEntries = fs.readdirSync(groupDir, { withFileTypes: true });
+  for (const entry of groupEntries) {
     if (!entry.isDirectory()) {
       continue;
     }
@@ -248,7 +247,7 @@ for (const group of copyGroups) {
     const registryDependencies = new Set(["@tennantite/tennantite-base"]);
     for (const owner of content.matchAll(/@\/components\/tennantite\/(?:lib\/)?([\w-]+)/g)) {
       const ownerName = owner[1];
-      if (ownerName !== entry.name && ownerName !== "index") {
+      if (ownerName !== "index" && ownerName !== entry.name) {
         // 未限定名称会被 CLI 解析到官方 registry，跨 item 依赖必须带 namespace
         registryDependencies.add(`@tennantite/${ownerName}`);
       }
@@ -258,7 +257,7 @@ for (const group of copyGroups) {
       dependencies: inferDependencies(content),
       files,
       name: entry.name,
-      registryDependencies: [...registryDependencies].sort(),
+      registryDependencies: [...registryDependencies].toSorted((a, b) => a.localeCompare(b)),
       title: titleCase(entry.name),
       type: "registry:component",
     });
@@ -291,7 +290,8 @@ for (const [groupRoot, group] of [
   const entries = fs.existsSync(groupDir)
     ? fs.readdirSync(groupDir, { withFileTypes: true })
     : [];
-  for (const entry of entries.filter(candidate => candidate.isDirectory())) {
+  const directoryEntries = entries.filter(candidate => candidate.isDirectory());
+  for (const entry of directoryEntries) {
     const componentDir = path.join(groupDir, entry.name);
     const indexFile = path.join(componentDir, "index.tsx");
     if (!fs.existsSync(indexFile)) {
