@@ -52,6 +52,15 @@ jobs:
         run: pnpm turbo run build --filter=@tennantite/website...
 
       # PR 只做门禁 + 构建校验，不发布
+      # 项目生产别名指向 production branch 的最新部署；显式对齐为 master，避免 master 部署只落在分支别名
+      - name: Ensure production branch is master
+        if: github.event_name != 'pull_request'
+        run: |
+          curl -sfX PATCH "https://api.cloudflare.com/client/v4/accounts/${{ secrets.ACCOUNT_ID }}/pages/projects/tennantite" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            --data '{"production_branch":"master"}'
+
       - name: Publish to CF Pages tennantite
         if: github.event_name != 'pull_request'
         uses: nick-fields/retry@v3
