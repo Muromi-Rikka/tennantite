@@ -1,5 +1,14 @@
 # @tennantite/tanstack-app
 
+## 0.1.3
+
+### Patch Changes
+
+- Updated dependencies [fc57c72]
+  - @tennantite/textures@0.1.3
+  - @tennantite/tokens@0.1.3
+  - @tennantite/ui@0.1.3
+
 ## 0.1.2
 
 ### Patch Changes

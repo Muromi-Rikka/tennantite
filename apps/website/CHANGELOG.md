@@ -1,5 +1,24 @@
 # @tennantite/website
 
+## 0.1.3
+
+### Patch Changes
+
+- Updated dependencies [fc57c72]
+  - @tennantite/ae2@0.1.3
+  - @tennantite/create@0.1.3
+  - @tennantite/enderio@0.1.3
+  - @tennantite/farmersdelight@0.1.3
+  - @tennantite/ic2@0.1.3
+  - @tennantite/ie@0.1.3
+  - @tennantite/industrialforegoing@0.1.3
+  - @tennantite/mekanism@0.1.3
+  - @tennantite/mods-core@0.1.3
+  - @tennantite/textures@0.1.3
+  - @tennantite/thermal@0.1.3
+  - @tennantite/tokens@0.1.3
+  - @tennantite/ui@0.1.3
+
 ## 0.1.2
 
 ### Patch Changes
