@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect x="72" y="72" width="1056" height="486" fill="none" stroke="#373737" stroke-width="4"/>
+  <rect x="72" y="72" width="1056" height="8" fill="#FFAA00"/>
+  <text x="120" y="256" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="104" font-weight="700" fill="#FFFFFF">Tennantite</text>
+  <text x="120" y="348" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="44" fill="#FFAA00">Minecraft 风格 React UI 组件库</text>
+  <text x="120" y="412" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="32" fill="#A0A0A0">71 components · 37 full-screen interfaces · SSR-safe</text>
+  <text x="120" y="496" font-family="Consolas, monospace" font-size="28" fill="#55FF55">pnpm add @tennantite/ui</text>
+</svg>

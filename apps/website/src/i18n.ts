@@ -154,6 +154,7 @@ export interface UIDictionary {
     home: string;
     title: string;
   };
+  ogImageAlt: string;
   ogLocale: string;
   pager: {
     next: string;
@@ -424,6 +425,7 @@ export function Start() {
     home: "返回首页",
     title: "区块未找到 · Tennantite",
   },
+  ogImageAlt: "Tennantite —— Minecraft 风格 React UI 组件库",
   ogLocale: "zh_CN",
   pager: { next: "下一页", previous: "上一页" },
   preview: {
@@ -677,6 +679,7 @@ export function Start() {
     home: "Go home",
     title: "Page not found · Tennantite",
   },
+  ogImageAlt: "Tennantite — a Minecraft-style React UI library",
   ogLocale: "en_US",
   pager: { next: "Next", previous: "Previous" },
   preview: {
