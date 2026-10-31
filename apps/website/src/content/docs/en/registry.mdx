@@ -12,7 +12,7 @@ import Callout from "@/components/docs/Callout.astro";
 
 A registry is shadcn's source-distribution format. This project produces two kinds of output:
 
-1. **Installable endpoint** `https://tennantite.pages.dev/r/<name>.json`: one file per core component with all source inlined as `content` plus `target`, directly consumable by the shadcn CLI.
+1. **Installable endpoint** `https://tennantite.rikka.cc/r/<name>.json`: one file per core component with all source inlined as `content` plus `target`, directly consumable by the shadcn CLI.
 2. **Full index** `registry/registry.json`: covers `@tennantite/ui` and every mod package (311 entries) for catalog and documentation reference; mod entries keep `path` only and do not participate in CLI copying.
 
 ## Generate
@@ -41,7 +41,7 @@ Option 1: configure a namespace registry in `components.json` and install by nam
 ```json
 {
   "registries": {
-    "@tennantite": "https://tennantite.pages.dev/r/{name}.json"
+    "@tennantite": "https://tennantite.rikka.cc/r/{name}.json"
   }
 }
 ```
@@ -53,7 +53,7 @@ npx shadcn add @tennantite/button
 Option 2: direct URL, no configuration needed:
 
 ```bash
-npx shadcn add https://tennantite.pages.dev/r/button.json
+npx shadcn add https://tennantite.rikka.cc/r/button.json
 ```
 
 ## Item shape

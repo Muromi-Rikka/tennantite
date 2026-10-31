@@ -16,13 +16,27 @@ import {
 } from "./catalog";
 import { docHref, filterDocs, sortDocs } from "./docs";
 
+export function buildLlmsFullText(docs: CollectionEntry<"docs">[], locale: Locale, site: URL): string {
+  const sections = sortDocs(filterDocs(docs, locale)).map((entry) => {
+    const body = (entry.body ?? "").replaceAll(/^import\s.+$/gm, "").replaceAll(/\n{3,}/g, "\n\n").trim();
+    return [`### ${entry.data.title}`, "", entry.data.description, "", body].join("\n");
+  });
+  return [...headerLines(locale), "", ...sections, "---", "", ...indexLines(docs, locale, site)].join("\n");
+}
+
 export function buildLlmsText(docs: CollectionEntry<"docs">[], locale: Locale, site: URL): string {
+  const fullHref = new URL(locale === "en" ? "/en/llms-full.txt" : "/llms-full.txt", site).href;
+  return [...headerLines(locale), "", `- [Full docs (llms-full.txt)](${fullHref})`, "", ...indexLines(docs, locale, site)].join("\n");
+}
+
+function headerLines(locale: Locale): string[] {
   const text = ui[locale];
-  const lines = [
-    "# Tennantite",
-    "",
-    `> ${text.home.metaDescription}`,
-    "",
+  return ["# Tennantite", "", `> ${text.home.metaDescription}`];
+}
+
+function indexLines(docs: CollectionEntry<"docs">[], locale: Locale, site: URL): string[] {
+  const text = ui[locale];
+  return [
     `## ${text.nav.docs}`,
     ...sortDocs(filterDocs(docs, locale)).map(entry =>
       `- [${entry.data.title}](${new URL(docHref(entry.id), site).href}): ${entry.data.description}`,
@@ -58,5 +72,4 @@ export function buildLlmsText(docs: CollectionEntry<"docs">[], locale: Locale, s
         ]
       : []),
   ];
-  return lines.join("\n");
 }

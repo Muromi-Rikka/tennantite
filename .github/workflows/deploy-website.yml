@@ -22,7 +22,7 @@ jobs:
     env:
       CI: "true"
       # 站点绝对 URL：Astro 的 canonical/sitemap 依赖它，turbo 已声明该 env 参与缓存键
-      SITE_URL: ${{ vars.SITE_URL || 'https://tennantite.pages.dev' }}
+      SITE_URL: ${{ vars.SITE_URL || 'https://tennantite.rikka.cc' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7

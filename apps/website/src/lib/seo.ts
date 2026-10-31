@@ -1,4 +1,5 @@
 import type { Locale } from "../i18n";
+import pkg from "../../package.json";
 import { localeHref, ui } from "../i18n";
 
 type JsonLd = Record<string, unknown>;
@@ -24,10 +25,11 @@ export function softwareApplication(site: URL, locale: Locale): JsonLd {
   return {
     "@type": "SoftwareApplication",
     "applicationCategory": "DeveloperApplication",
+    "codeRepository": "https://github.com/Muromi-Rikka/verdigris",
     "description": DESCRIPTION[locale],
     "name": "Tennantite",
     "operatingSystem": "Web",
-    "softwareVersion": "0.1.0",
+    "softwareVersion": pkg.version,
     "url": new URL(localeHref(locale, "/"), site).href,
   };
 }

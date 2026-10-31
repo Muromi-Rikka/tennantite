@@ -3,7 +3,7 @@
  * 产出：
  * 1. registry/registry.json：全量索引（@tennantite/ui + 各 mod 包），供目录/文档引用。
  * 2. apps/website/public/r/<name>.json：核心组件（primitives/containers/screens 各组）的可安装
- *    registry item，shadcn CLI 经 namespace registry `https://tennantite.pages.dev/r/{name}.json`
+ *    registry item，shadcn CLI 经 namespace registry `https://tennantite.rikka.cc/r/{name}.json`
  *    或直接 URL 消费。mod 包组件保持 npm 安装模式，不进入拷贝范围。
  * 运行：node registry/build.mjs
  */

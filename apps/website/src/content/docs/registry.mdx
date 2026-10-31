@@ -12,7 +12,7 @@ import Callout from "@/components/docs/Callout.astro";
 
 Registry 是 shadcn 的源码分发格式。本项目产出两类文件：
 
-1. **可安装端点** `https://tennantite.pages.dev/r/<name>.json`：每个核心组件一个文件，内联全部源码 `content` 与 `target`，shadcn CLI 可直接消费。
+1. **可安装端点** `https://tennantite.rikka.cc/r/<name>.json`：每个核心组件一个文件，内联全部源码 `content` 与 `target`，shadcn CLI 可直接消费。
 2. **全量索引** `registry/registry.json`：覆盖 `@tennantite/ui` 与全部 mod 包组件（311 个条目），供目录与文档引用；mod 包条目仍只有 `path`，不参与 CLI 拷贝。
 
 ## 生成
@@ -41,7 +41,7 @@ node registry/build.mjs
 ```json
 {
   "registries": {
-    "@tennantite": "https://tennantite.pages.dev/r/{name}.json"
+    "@tennantite": "https://tennantite.rikka.cc/r/{name}.json"
   }
 }
 ```
@@ -53,7 +53,7 @@ npx shadcn add @tennantite/button
 方式二：直接 URL，无需配置：
 
 ```bash
-npx shadcn add https://tennantite.pages.dev/r/button.json
+npx shadcn add https://tennantite.rikka.cc/r/button.json
 ```
 
 ## item 结构
