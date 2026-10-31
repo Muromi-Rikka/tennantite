@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.1.2",
   "description": "Tennantite — 跨 mod 共享的 mod 界面原语（按钮/进度条/槽位网格/贴图裁剪等）",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Muromi-Rikka/tennantite.git",
@@ -58,6 +59,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "license": "MIT"
+  }
 }

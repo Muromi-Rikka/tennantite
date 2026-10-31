@@ -2,6 +2,7 @@
   "name": "@tennantite/create",
   "type": "module",
   "version": "0.1.2",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Muromi-Rikka/tennantite.git",
@@ -58,6 +59,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "license": "MIT"
+  }
 }
